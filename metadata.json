@@ -1,0 +1,6 @@
+{
+  "name": "Calculate Daily",
+  "description": "Daily calculators, savings challenge, and smart AI calculator builder.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
