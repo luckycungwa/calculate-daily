@@ -6,12 +6,16 @@ import { Label } from '../ui/label';
 import { Badge } from '../ui/badge';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/card';
 import { ExportModal } from '../common/ExportModal';
+import { useCurrency } from '../../lib/currency';
+import { useToast } from '../ui/toast';
 
 interface DiscountCalculatorProps {
   onSaveHistory?: (summary: string) => void;
 }
 
 export const DiscountCalculator: React.FC<DiscountCalculatorProps> = ({ onSaveHistory }) => {
+  const currency = useCurrency();
+  const { toast } = useToast();
   const [originalPrice, setOriginalPrice] = useState<string>('120');
   const [discountPercent, setDiscountPercent] = useState<string>('25');
   const [extraCouponPercent, setExtraCouponPercent] = useState<string>('0');
@@ -42,11 +46,12 @@ export const DiscountCalculator: React.FC<DiscountCalculatorProps> = ({ onSaveHi
   }, [originalPrice, discountPercent, extraCouponPercent, salesTaxPercent]);
 
   const handleCopy = () => {
-    const text = `Discount Summary:\nOriginal Price: $${results.price.toFixed(2)}\nDiscount: ${discountPercent}%\nTotal Saved: $${results.totalSaved.toFixed(2)}\nFinal Checkout Price: $${results.finalPrice.toFixed(2)}`;
+    const text = `Discount Summary:\nOriginal Price: ${currency}${results.price.toFixed(2)}\nDiscount: ${discountPercent}%\nTotal Saved: ${currency}${results.totalSaved.toFixed(2)}\nFinal Checkout Price: ${currency}${results.finalPrice.toFixed(2)}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
+    toast('Result copied to clipboard');
     setTimeout(() => setCopied(false), 2000);
-    if (onSaveHistory) onSaveHistory(`Discount: $${results.finalPrice.toFixed(2)} (Saved $${results.totalSaved.toFixed(2)})`);
+    if (onSaveHistory) onSaveHistory(`Discount: ${currency}${results.finalPrice.toFixed(2)} (Saved ${currency}${results.totalSaved.toFixed(2)})`);
   };
 
   const handleReset = () => {
@@ -103,9 +108,9 @@ export const DiscountCalculator: React.FC<DiscountCalculatorProps> = ({ onSaveHi
           <div className="lg:col-span-7 space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label>Original Retail Price ($)</Label>
+                <Label>Original Retail Price ({currency})</Label>
                 <div className="relative">
-                  <span className="absolute left-3 top-2 text-xs font-mono font-bold text-zinc-400">$</span>
+                  <span className="absolute left-3 top-2 text-xs font-mono font-bold text-zinc-400">{currency}</span>
                   <Input
                     type="number"
                     min="0"
@@ -179,7 +184,7 @@ export const DiscountCalculator: React.FC<DiscountCalculatorProps> = ({ onSaveHi
                   Total Due
                 </p>
                 <div className="text-3xl sm:text-4xl font-bold font-mono tracking-tight text-white tabular-nums">
-                  ${results.finalPrice.toFixed(2)}
+                  {currency}{results.finalPrice.toFixed(2)}
                 </div>
               </div>
 
@@ -187,16 +192,16 @@ export const DiscountCalculator: React.FC<DiscountCalculatorProps> = ({ onSaveHi
                 <div className="flex justify-between">
                   <span className="text-zinc-500">Total Money Saved:</span>
                   <span className="font-bold text-emerald-400 tabular-nums">
-                    ${results.totalSaved.toFixed(2)}
+                    {currency}{results.totalSaved.toFixed(2)}
                   </span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-zinc-500">Calculated Sales Tax:</span>
-                  <span className="font-mono tabular-nums">+${results.taxAmount.toFixed(2)}</span>
+                  <span className="font-mono tabular-nums">+{currency}{results.taxAmount.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-[11px] text-zinc-500 pt-1 border-t border-zinc-800">
                   <span>Pre-Tax Subtotal:</span>
-                  <span className="tabular-nums">${(results.price - results.totalSaved).toFixed(2)}</span>
+                  <span className="tabular-nums">{currency}{(results.price - results.totalSaved).toFixed(2)}</span>
                 </div>
               </div>
             </div>
@@ -222,14 +227,14 @@ export const DiscountCalculator: React.FC<DiscountCalculatorProps> = ({ onSaveHi
         calculatorName="Discount & Sales Tax Calculator"
         title="Shopping Markdown & Discount Summary"
         data={{
-          'Original Retail Price': `$${results.price.toFixed(2)}`,
+          'Original Retail Price': `${currency}${results.price.toFixed(2)}`,
           'Primary Discount': `${discountPercent}%`,
           'Extra Promo': `${extraCouponPercent}%`,
-          'Sales Tax': `${salesTaxPercent}% ($${results.taxAmount.toFixed(2)})`,
-          'Total Money Saved': `$${results.totalSaved.toFixed(2)} (${results.savingsPct.toFixed(0)}%)`,
-          'Final Checkout Price': `$${results.finalPrice.toFixed(2)}`,
+          'Sales Tax': `${salesTaxPercent}% (${currency}${results.taxAmount.toFixed(2)})`,
+          'Total Money Saved': `${currency}${results.totalSaved.toFixed(2)} (${results.savingsPct.toFixed(0)}%)`,
+          'Final Checkout Price': `${currency}${results.finalPrice.toFixed(2)}`,
         }}
-        summaryText={`Discount Summary:\nOriginal Price: $${results.price.toFixed(2)}\nDiscount: ${discountPercent}%\nTotal Saved: $${results.totalSaved.toFixed(2)}\nFinal Checkout Price: $${results.finalPrice.toFixed(2)}`}
+        summaryText={`Discount Summary:\nOriginal Price: ${currency}${results.price.toFixed(2)}\nDiscount: ${discountPercent}%\nTotal Saved: ${currency}${results.totalSaved.toFixed(2)}\nFinal Checkout Price: ${currency}${results.finalPrice.toFixed(2)}`}
       />
     </Card>
   );

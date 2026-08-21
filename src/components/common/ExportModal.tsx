@@ -9,6 +9,7 @@ import {
 } from '../ui/dialog';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
+import { useToast } from '../ui/toast';
 
 interface ExportModalProps {
   isOpen: boolean;
@@ -29,10 +30,12 @@ export const ExportModal: React.FC<ExportModalProps> = ({
 }) => {
   const [copied, setCopied] = useState(false);
   const [copiedUrl, setCopiedUrl] = useState(false);
+  const { toast } = useToast();
 
   const handleCopyText = () => {
     navigator.clipboard.writeText(summaryText);
     setCopied(true);
+    toast('Result copied to clipboard');
     setTimeout(() => setCopied(false), 2000);
   };
 
@@ -41,6 +44,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
     url.searchParams.set('calc', calculatorName.toLowerCase().replace(/\s+/g, '-'));
     navigator.clipboard.writeText(url.toString());
     setCopiedUrl(true);
+    toast('Share link copied');
     setTimeout(() => setCopiedUrl(false), 2000);
   };
 

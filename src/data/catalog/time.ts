@@ -1,0 +1,214 @@
+import { CalculatorMeta } from '../../types';
+
+export const TIME_CALCULATORS: CalculatorMeta[] = [
+  {
+    id: 'work-hours',
+    slug: 'work-hours-calculator',
+    name: 'Work Hours Calculator',
+    shortDesc: 'Calculate total hours worked between start and end times minus breaks.',
+    tagline: 'Know your exact shift length and hours.',
+    category: 'time',
+    iconName: 'Clock',
+    badge: 'Workplace',
+    keywords: ['work hours', 'hours calculator', 'time clock', 'shift hours', 'hours worked', 'break time', 'payroll hours'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'startHour', label: 'Start Hour (0-23)', type: 'number', defaultValue: 9, min: 0, max: 23 },
+        { id: 'startMin', label: 'Start Minutes', type: 'number', defaultValue: 0, min: 0, max: 59 },
+        { id: 'endHour', label: 'End Hour (0-23)', type: 'number', defaultValue: 17, min: 0, max: 23 },
+        { id: 'endMin', label: 'End Minutes', type: 'number', defaultValue: 30, min: 0, max: 59 },
+        { id: 'breakMin', label: 'Break Duration', type: 'number', defaultValue: 30, min: 0, suffix: 'min' },
+      ],
+      results: [
+        { label: 'Hours Worked', formulaCode: '((endHour * 60 + endMin) - (startHour * 60 + startMin) - breakMin) / 60', suffix: 'hours', accent: true },
+        { label: 'Minutes Worked', formulaCode: '(endHour * 60 + endMin) - (startHour * 60 + startMin) - breakMin', suffix: 'min' },
+      ],
+      formulaDescription: 'Hours = (End time - Start time - Break) in minutes / 60',
+      tips: [
+        'Use the 24-hour clock so afternoon shifts do not underflow.',
+        'Subtract every unpaid break to match payroll.',
+      ],
+    },
+    content: {
+      intro:
+        'The Work Hours Calculator computes the exact hours worked between a start and end time after subtracting breaks. Freelancers tracking time and employees checking pay stubs use it for accurate totals.',
+      howItWorks:
+        'Start and end times convert to total minutes since midnight, the break is subtracted, and the remainder is divided by 60 for decimal hours. The tool also reports the figure in minutes.',
+      example:
+        'Working 9:00 AM to 5:30 PM with a 30-minute lunch yields 8.0 hours: (510 - 540 + 30) converted and divided by 60.',
+      formulas: [
+        {
+          label: 'Hours Worked',
+          expression: 'Hours = (End − Start − Break) minutes / 60',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Hours Worked',
+          explanation:
+            'The total paid time in decimal hours between start and end, after subtracting unpaid breaks.',
+        },
+        {
+          resultLabel: 'Minutes Worked',
+          explanation:
+            'The same total expressed in minutes, useful for payroll systems that track exact minutes.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'decimal-hours-calculator', step: 'Convert the result into the decimal form payroll uses.' },
+        { slug: 'hourly-to-annual-salary-calculator', step: 'Turn hours worked into income projections.' },
+      ],
+      faqs: [
+        { q: 'How do I calculate hours worked by hand?', a: 'Convert both times to minutes since midnight, subtract the break, then divide by 60. For example, 9 to 5:30 with a 30-minute lunch is 8 hours.' },
+        { q: 'Does it handle overnight shifts?', a: 'Not automatically. For overnight work, add 24 hours to the end time or split the shift into two segments.' },
+        { q: 'Should breaks be included?', a: 'Only unpaid breaks should be subtracted. Paid 15-minute breaks stay within working hours.' },
+      ],
+      related: ['decimal-hours-calculator', 'days-to-weeks-calculator', 'hourly-to-annual-salary-calculator'],
+    },
+    seo: {
+      status: 'index',
+      reviewStatus: 'reviewed',
+      priority: 0.7,
+    },
+  },
+  {
+    id: 'decimal-hours',
+    slug: 'decimal-hours-calculator',
+    name: 'Decimal Hours Converter',
+    shortDesc: 'Convert hours and minutes into decimal hours instantly.',
+    tagline: 'Time in payroll decimal form, ready to bill.',
+    category: 'time',
+    iconName: 'Timer',
+    keywords: ['decimal hours', 'hours and minutes', 'convert minutes to decimal', 'time to decimal', 'payroll time'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'hours', label: 'Hours', type: 'number', defaultValue: 7, min: 0, suffix: 'hr' },
+        { id: 'minutes', label: 'Minutes', type: 'number', defaultValue: 45, min: 0, max: 59, suffix: 'min' },
+      ],
+      results: [
+        { label: 'Decimal Hours', formulaCode: 'hours + minutes / 60', suffix: 'hrs', accent: true },
+        { label: 'Total Minutes', formulaCode: 'hours * 60 + minutes', suffix: 'min' },
+      ],
+      formulaDescription: 'Decimal hours = Hours + Minutes / 60',
+      tips: [
+        'Payroll often bills in quarter-hour (0.25) or tenth-hour (0.1) increments.',
+        '30 minutes is 0.5 hours; 45 minutes is 0.75 hours.',
+      ],
+    },
+    content: {
+      intro:
+        'The Decimal Hours Converter turns hours and minutes into the decimal form used on timesheets and invoices. It is essential for anyone who bills time or processes payroll.',
+      howItWorks:
+        'Minutes divide by 60 to become a fraction of an hour and add to the whole hours. The tool also returns total minutes for cross-checking.',
+      example:
+        'Seven hours and 45 minutes converts to 7.75 decimal hours, or 465 total minutes.',
+      formulas: [
+        {
+          label: 'Decimal Hours',
+          expression: 'Decimal = Hours + Minutes / 60',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Decimal Hours',
+          explanation:
+            'The time in the base-10 form used by payroll and invoicing, where 7:45 becomes 7.75.',
+        },
+        {
+          resultLabel: 'Total Minutes',
+          explanation:
+            'The complete duration in minutes, a quick cross-check for billing accuracy.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'work-hours-calculator', step: 'Compute total shift hours before converting to decimal.' },
+        { slug: 'hourly-to-annual-salary-calculator', step: 'Multiply decimal hours by your rate for pay.' },
+      ],
+      faqs: [
+        { q: 'How do I convert minutes to decimal hours?', a: 'Divide the minutes by 60. Fifteen minutes is 0.25 hours, 30 minutes is 0.5, and 45 minutes is 0.75.' },
+        { q: 'Why does payroll use decimal time?', a: 'Decimal time makes wage multiplication simple, avoiding the awkwardness of base-60 arithmetic in invoices.' },
+        { q: 'How many decimal hours is 8 hours 20 minutes?', a: '20 minutes is 0.333 hours, so the total is approximately 8.33 decimal hours.' },
+      ],
+      related: ['work-hours-calculator', 'days-to-weeks-calculator', 'hourly-to-annual-salary-calculator'],
+    },
+    seo: {
+      status: 'index',
+      reviewStatus: 'reviewed',
+      priority: 0.65,
+    },
+  },
+  {
+    id: 'days-weeks',
+    slug: 'days-to-weeks-calculator',
+    name: 'Days to Weeks & Months',
+    shortDesc: 'Convert a day count into weeks and months instantly.',
+    tagline: 'Timelines in the units you actually plan with.',
+    category: 'time',
+    iconName: 'CalendarDays',
+    keywords: ['days to weeks', 'days to months', 'days calculator', 'weeks to days', 'time period', 'timeline'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'days', label: 'Number of Days', type: 'number', defaultValue: 90, min: 1 },
+      ],
+      results: [
+        { label: 'Weeks', formulaCode: 'days / 7', suffix: 'weeks' },
+        { label: 'Months (avg)', formulaCode: 'days / 30.44', suffix: 'months', accent: true },
+        { label: 'Years', formulaCode: 'days / 365', suffix: 'years' },
+      ],
+      formulaDescription: 'Weeks = Days / 7; Months = Days / 30.44',
+      tips: [
+        'A month averages 30.44 days across the calendar year.',
+        'For exact calendar math, count the specific start and end dates.',
+      ],
+    },
+    content: {
+      intro:
+        'The Days to Weeks & Months converter translates a day count into weeks, months, and years. Project planning, savings challenges, and countdowns all benefit from seeing a number in familiar time units.',
+      howItWorks:
+        'Weeks are days divided by 7. Months use the average month length of 30.44 days, derived from 365.25 days across 12 months, which is accurate for planning horizons.',
+      example:
+        '90 days equals 12.9 weeks, or roughly 3.0 months, useful for a savings challenge or a project timeline.',
+      formulas: [
+        {
+          label: 'Weeks',
+          expression: 'Weeks = Days / 7',
+        },
+        {
+          label: 'Months',
+          expression: 'Months = Days / 30.44',
+          note: 'Average month length across the calendar year.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Weeks',
+          explanation:
+            'The day count broken into 7-day weeks.',
+        },
+        {
+          resultLabel: 'Months (avg)',
+          explanation:
+            'The day count in average calendar months, using 30.44 days per month for planning.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'work-hours-calculator', step: 'Plan a schedule in exact working hours.' },
+        { slug: 'decimal-hours-calculator', step: 'Convert planning time into billing-friendly decimal form.' },
+      ],
+      faqs: [
+        { q: 'How many weeks are in 30 days?', a: '30 days divided by 7 equals about 4.3 weeks. Calendar months vary between 4 and 4.4 weeks.' },
+        { q: 'Why is a month 30.44 days?', a: 'It is the average calendar month length: 365.25 days divided by 12. It smooths over months with 28 to 31 days.' },
+        { q: 'Is this exact for calendar dates?', a: 'For exact date math, compare the specific start and end dates. This converter is best for estimating time horizons.' },
+      ],
+      related: ['work-hours-calculator', 'decimal-hours-calculator'],
+    },
+    seo: {
+      status: 'index',
+      reviewStatus: 'reviewed',
+      priority: 0.6,
+    },
+  },
+];

@@ -1,171 +1,111 @@
-import { CalculatorMeta, LeaderboardEntry } from '../types';
+import {
+  CalculatorMeta,
+  CalculatorCategory,
+  CategoryMeta,
+} from '../types';
+import { MATH_CALCULATORS } from './catalog/math';
+import { FINANCE_CALCULATORS } from './catalog/finance';
+import { HEALTH_CALCULATORS } from './catalog/health';
+import { CONVERSION_CALCULATORS } from './catalog/conversion';
+import { TIME_CALCULATORS } from './catalog/time';
+import { CONSTRUCTION_CALCULATORS } from './catalog/construction';
+import { FOOD_CALCULATORS, FITNESS_CALCULATORS, DAILY_CALCULATORS } from './catalog/other';
 
 export const CALCULATOR_CATALOG: CalculatorMeta[] = [
+  ...MATH_CALCULATORS,
+  ...FINANCE_CALCULATORS,
+  ...HEALTH_CALCULATORS,
+  ...CONVERSION_CALCULATORS,
+  ...TIME_CALCULATORS,
+  ...CONSTRUCTION_CALCULATORS,
+  ...FOOD_CALCULATORS,
+  ...FITNESS_CALCULATORS,
+  ...DAILY_CALCULATORS,
+];
+
+export const CATEGORIES: CategoryMeta[] = [
   {
-    id: 'tip',
-    name: 'Tip & Bill Splitter',
-    shortDesc: 'Calculate exact tip percentages and split evenly per diner with one click.',
-    tagline: 'Split bills and tips fairly without awkward table math',
-    category: 'daily',
-    iconName: 'Receipt',
-    badge: 'Popular',
+    id: 'math',
+    label: 'Math',
+    description: 'Percentages, ratios, grades, and everyday arithmetic.',
   },
   {
-    id: 'bmi',
-    name: 'BMI & Body Health',
-    shortDesc: 'Compute Body Mass Index with Metric & Imperial units and target healthy weight guides.',
-    tagline: 'Instant health index and target weight range breakdown',
-    category: 'health',
-    iconName: 'Activity',
-    badge: 'Health',
+    id: 'finance',
+    label: 'Finance & Money',
+    description: 'Loans, savings, salaries, interest, and budgeting.',
   },
   {
-    id: 'mortgage',
-    name: 'Mortgage & Loan Planner',
-    shortDesc: 'Estimate monthly loan repayments, total interest, and amortization schedules.',
-    tagline: 'Smart monthly mortgage costs with interest analysis',
-    category: 'finance',
-    iconName: 'Home',
-    badge: 'Finance',
+    id: 'health',
+    label: 'Health & Fitness',
+    description: 'BMI, calories, macros, heart rate, and wellness metrics.',
   },
   {
-    id: 'daily-challenge',
-    name: 'Daily Savings Goal',
-    shortDesc: 'Break down large financial dreams into tiny, actionable daily savings milestones.',
-    tagline: 'Hit your financial milestones one day at a time',
-    category: 'finance',
-    iconName: 'Target',
-    badge: 'Challenge of the Day',
-    isDailyChallenge: true,
+    id: 'conversion',
+    label: 'Unit Conversion',
+    description: 'Temperature, length, weight, volume, currency, and more.',
   },
   {
-    id: 'percentage',
-    name: 'Percentage Calculator',
-    shortDesc: 'Find percentage of a value, percentage increase/decrease, and ratios instantly.',
-    tagline: 'Effortless percentage formulas for shopping and analysis',
-    category: 'math',
-    iconName: 'Percent',
-    badge: 'Essential',
+    id: 'time',
+    label: 'Time & Schedule',
+    description: 'Work hours, decimal time, and timeline planning.',
   },
   {
-    id: 'compound',
-    name: 'Compound Interest',
-    shortDesc: 'Project long-term wealth growth with recurring deposits and compound interest.',
-    tagline: 'See the exponential power of compounding your money',
-    category: 'finance',
-    iconName: 'TrendingUp',
-    badge: 'Wealth',
+    id: 'construction',
+    label: 'Construction & DIY',
+    description: 'Room area, concrete, paint, flooring, and lumber estimates.',
   },
   {
-    id: 'discount',
-    name: 'Discount & Sales Tax',
-    shortDesc: 'Compute discounted prices, stacking promo codes, and final checkout totals.',
-    tagline: 'Never wonder how much you save on clearance racks',
-    category: 'daily',
-    iconName: 'Tag',
-    badge: 'Shopping',
+    id: 'food',
+    label: 'Food & Cooking',
+    description: 'Recipe scaling and per-serving meal costs.',
+  },
+  {
+    id: 'fitness',
+    label: 'Sports & Strength',
+    description: 'Running pace and one-rep-max strength estimates.',
+  },
+  {
+    id: 'daily',
+    label: 'Everyday Tools',
+    description: 'Tips, bills, and daily life math.',
+  },
+  {
+    id: 'misc',
+    label: 'Automotive & Home',
+    description: 'Fuel and electricity running costs.',
   },
 ];
 
-export const INITIAL_LEADERBOARD: LeaderboardEntry[] = [
-  {
-    id: 'lead-1',
-    name: 'Sarah Jenkins',
-    avatar: 'SJ',
-    targetAmount: 1500,
-    days: 100,
-    dailyRate: 15.0,
-    streakDays: 42,
-    badge: 'Rank 1',
-    timestamp: 'Today, 10:14 AM',
-  },
-  {
-    id: 'lead-2',
-    name: 'David Rivera',
-    avatar: 'DR',
-    targetAmount: 1000,
-    days: 80,
-    dailyRate: 12.5,
-    streakDays: 29,
-    badge: 'Rank 2',
-    timestamp: 'Today, 8:30 AM',
-  },
-  {
-    id: 'lead-3',
-    name: 'Marcus Vance',
-    avatar: 'MV',
-    targetAmount: 500,
-    days: 51,
-    dailyRate: 9.8,
-    streakDays: 19,
-    badge: 'Rank 3',
-    timestamp: 'Yesterday',
-  },
-  {
-    id: 'lead-4',
-    name: 'Elena Rostova',
-    avatar: 'ER',
-    targetAmount: 300,
-    days: 48,
-    dailyRate: 6.25,
-    streakDays: 14,
-    badge: 'Rank 4',
-    timestamp: 'Yesterday',
-  },
-  {
-    id: 'lead-5',
-    name: 'Alex Chen',
-    avatar: 'AC',
-    targetAmount: 250,
-    days: 50,
-    dailyRate: 5.0,
-    streakDays: 11,
-    badge: 'Rank 5',
-    timestamp: '2 days ago',
-  },
-];
-
-export const KEYWORD_ROUTING_MAP: Record<string, { id: CalculatorMeta['id']; name: string }> = {
-  tip: { id: 'tip', name: 'Tip & Bill Splitter' },
-  bill: { id: 'tip', name: 'Tip & Bill Splitter' },
-  split: { id: 'tip', name: 'Tip & Bill Splitter' },
-  restaurant: { id: 'tip', name: 'Tip & Bill Splitter' },
-  gratuity: { id: 'tip', name: 'Tip & Bill Splitter' },
-  
-  bmi: { id: 'bmi', name: 'BMI & Body Health' },
-  weight: { id: 'bmi', name: 'BMI & Body Health' },
-  height: { id: 'bmi', name: 'BMI & Body Health' },
-  body: { id: 'bmi', name: 'BMI & Body Health' },
-  health: { id: 'bmi', name: 'BMI & Body Health' },
-  mass: { id: 'bmi', name: 'BMI & Body Health' },
-
-  mortgage: { id: 'mortgage', name: 'Mortgage & Loan Planner' },
-  loan: { id: 'mortgage', name: 'Mortgage & Loan Planner' },
-  home: { id: 'mortgage', name: 'Mortgage & Loan Planner' },
-  house: { id: 'mortgage', name: 'Mortgage & Loan Planner' },
-  repayment: { id: 'mortgage', name: 'Mortgage & Loan Planner' },
-  amortization: { id: 'mortgage', name: 'Mortgage & Loan Planner' },
-
-  savings: { id: 'daily-challenge', name: 'Daily Savings Goal' },
-  save: { id: 'daily-challenge', name: 'Daily Savings Goal' },
-  challenge: { id: 'daily-challenge', name: 'Daily Savings Goal' },
-  goal: { id: 'daily-challenge', name: 'Daily Savings Goal' },
-  budget: { id: 'daily-challenge', name: 'Daily Savings Goal' },
-
-  percent: { id: 'percentage', name: 'Percentage Calculator' },
-  percentage: { id: 'percentage', name: 'Percentage Calculator' },
-  ratio: { id: 'percentage', name: 'Percentage Calculator' },
-  math: { id: 'percentage', name: 'Percentage Calculator' },
-
-  compound: { id: 'compound', name: 'Compound Interest' },
-  invest: { id: 'compound', name: 'Compound Interest' },
-  interest: { id: 'compound', name: 'Compound Interest' },
-  wealth: { id: 'compound', name: 'Compound Interest' },
-  growth: { id: 'compound', name: 'Compound Interest' },
-
-  discount: { id: 'discount', name: 'Discount & Sales Tax' },
-  tax: { id: 'discount', name: 'Discount & Sales Tax' },
-  sale: { id: 'discount', name: 'Discount & Sales Tax' },
-  coupon: { id: 'discount', name: 'Discount & Sales Tax' },
-  shopping: { id: 'discount', name: 'Discount & Sales Tax' },
+export const CATEGORY_LABELS: Record<Exclude<CalculatorCategory, 'all' | 'ai'>, string> = {
+  math: 'Math',
+  finance: 'Finance & Money',
+  health: 'Health & Fitness',
+  conversion: 'Unit Conversion',
+  time: 'Time & Schedule',
+  construction: 'Construction & DIY',
+  food: 'Food & Cooking',
+  fitness: 'Sports & Strength',
+  daily: 'Everyday Tools',
+  misc: 'Automotive & Home',
 };
+
+export function getCalculatorById(id: string): CalculatorMeta | undefined {
+  return CALCULATOR_CATALOG.find((c) => c.id === id);
+}
+
+export function getCalculatorBySlug(slug: string): CalculatorMeta | undefined {
+  return CALCULATOR_CATALOG.find((c) => c.slug === slug);
+}
+
+export function getCalculatorsByCategory(category: CalculatorCategory): CalculatorMeta[] {
+  if (category === 'all') return CALCULATOR_CATALOG;
+  return CALCULATOR_CATALOG.filter((c) => c.category === category);
+}
+
+export function getFeaturedCalculators(): CalculatorMeta[] {
+  return CALCULATOR_CATALOG.filter((c) => c.featured);
+}
+
+export function getCategoryById(id: string): CategoryMeta | undefined {
+  return CATEGORIES.find((c) => c.id === id);
+}

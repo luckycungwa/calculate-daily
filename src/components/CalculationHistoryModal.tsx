@@ -11,6 +11,7 @@ import {
 } from './ui/dialog';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
+import { useToast } from './ui/toast';
 
 interface CalculationHistoryModalProps {
   isOpen: boolean;
@@ -26,10 +27,12 @@ export const CalculationHistoryModal: React.FC<CalculationHistoryModalProps> = (
   onClearHistory,
 }) => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
+  const { toast } = useToast();
 
   const handleCopy = (item: CalculationHistoryItem) => {
     navigator.clipboard.writeText(item.summary);
     setCopiedId(item.id);
+    toast('Result copied to clipboard');
     setTimeout(() => setCopiedId(null), 2000);
   };
 

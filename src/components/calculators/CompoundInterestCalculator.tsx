@@ -6,12 +6,16 @@ import { Label } from '../ui/label';
 import { Badge } from '../ui/badge';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/card';
 import { ExportModal } from '../common/ExportModal';
+import { useCurrency } from '../../lib/currency';
+import { useToast } from '../ui/toast';
 
 interface CompoundInterestCalculatorProps {
   onSaveHistory?: (summary: string) => void;
 }
 
 export const CompoundInterestCalculator: React.FC<CompoundInterestCalculatorProps> = ({ onSaveHistory }) => {
+  const currency = useCurrency();
+  const { toast } = useToast();
   const [principal, setPrincipal] = useState<string>('5000');
   const [monthlyContribution, setMonthlyContribution] = useState<string>('250');
   const [annualRate, setAnnualRate] = useState<string>('8');
@@ -57,11 +61,12 @@ export const CompoundInterestCalculator: React.FC<CompoundInterestCalculatorProp
   }, [principal, monthlyContribution, annualRate, years, frequency]);
 
   const handleCopy = () => {
-    const text = `Compound Growth Projector:\nStarting: $${results.P.toLocaleString()} + $${results.PMT}/mo\nIn ${years} years @ ${annualRate}%:\nEnding Balance: $${results.futureValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\nTotal Interest Earned: $${results.totalInterestEarned.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    const text = `Compound Growth Projector:\nStarting: ${currency}${results.P.toLocaleString()} + ${currency}${results.PMT}/mo\nIn ${years} years @ ${annualRate}%:\nEnding Balance: ${currency}${results.futureValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\nTotal Interest Earned: ${currency}${results.totalInterestEarned.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
+    toast('Result copied to clipboard');
     setTimeout(() => setCopied(false), 2000);
-    if (onSaveHistory) onSaveHistory(`Compound Growth: $${results.futureValue.toFixed(0)} in ${years} yrs`);
+    if (onSaveHistory) onSaveHistory(`Compound Growth: ${currency}${results.futureValue.toFixed(0)} in ${years} yrs`);
   };
 
   const handleReset = () => {
@@ -118,9 +123,9 @@ export const CompoundInterestCalculator: React.FC<CompoundInterestCalculatorProp
           <div className="lg:col-span-7 space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-1.5">
-                <Label>Initial Principal ($)</Label>
+                <Label>Initial Principal ({currency})</Label>
                 <div className="relative">
-                  <span className="absolute left-3 top-2 text-xs font-mono font-bold text-zinc-400">$</span>
+                  <span className="absolute left-3 top-2 text-xs font-mono font-bold text-zinc-400">{currency}</span>
                   <Input
                     type="number"
                     min="0"
@@ -132,9 +137,9 @@ export const CompoundInterestCalculator: React.FC<CompoundInterestCalculatorProp
               </div>
 
               <div className="space-y-1.5">
-                <Label>Monthly Addition ($)</Label>
+                <Label>Monthly Addition ({currency})</Label>
                 <div className="relative">
-                  <span className="absolute left-3 top-2 text-xs font-mono font-bold text-zinc-400">$</span>
+                  <span className="absolute left-3 top-2 text-xs font-mono font-bold text-zinc-400">{currency}</span>
                   <Input
                     type="number"
                     min="0"
@@ -198,15 +203,15 @@ export const CompoundInterestCalculator: React.FC<CompoundInterestCalculatorProp
                   Projected Balance
                 </p>
                 <div className="text-3xl sm:text-4xl font-bold font-mono tracking-tight text-white tabular-nums">
-                  ${results.futureValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  {currency}{results.futureValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                 </div>
               </div>
 
               {/* Split Bar */}
               <div className="my-3 space-y-1.5">
                 <div className="flex justify-between text-[11px] font-mono text-zinc-400">
-                  <span>Deposits: ${results.totalDeposited.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
-                  <span>Interest: +${results.totalInterestEarned.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+                  <span>Deposits: {currency}{results.totalDeposited.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+                  <span>Interest: +{currency}{results.totalInterestEarned.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
                 </div>
                 <div className="h-2 w-full rounded-full bg-zinc-800 overflow-hidden flex">
                   <div
@@ -223,11 +228,11 @@ export const CompoundInterestCalculator: React.FC<CompoundInterestCalculatorProp
               <div className="space-y-1.5 text-xs font-mono text-zinc-300 pt-3 border-t border-zinc-800">
                 <div className="flex justify-between">
                   <span className="text-zinc-500">Total Money Deposited:</span>
-                  <span className="font-bold tabular-nums">${results.totalDeposited.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
+                  <span className="font-bold tabular-nums">{currency}{results.totalDeposited.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-zinc-500">Total Compound Growth:</span>
-                  <span className="font-bold text-emerald-400 tabular-nums">+${results.totalInterestEarned.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
+                  <span className="font-bold text-emerald-400 tabular-nums">+{currency}{results.totalInterestEarned.toLocaleString('en-US', { maximumFractionDigits: 2 })}</span>
                 </div>
               </div>
             </div>
@@ -253,15 +258,15 @@ export const CompoundInterestCalculator: React.FC<CompoundInterestCalculatorProp
         calculatorName="Compound Interest Calculator"
         title="Investment Compound Growth Projection"
         data={{
-          'Initial Deposit': `$${results.P.toLocaleString()}`,
-          'Monthly Contribution': `$${results.PMT}`,
+          'Initial Deposit': `${currency}${results.P.toLocaleString()}`,
+          'Monthly Contribution': `${currency}${results.PMT}`,
           'Annual Rate': `${annualRate}%`,
           'Investment Period': `${years} Years`,
-          'Total Principal Deposited': `$${results.totalDeposited.toLocaleString('en-US', { maximumFractionDigits: 2 })}`,
-          'Total Interest Earned': `$${results.totalInterestEarned.toLocaleString('en-US', { maximumFractionDigits: 2 })}`,
-          'Projected Future Value': `$${results.futureValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+          'Total Principal Deposited': `${currency}${results.totalDeposited.toLocaleString('en-US', { maximumFractionDigits: 2 })}`,
+          'Total Interest Earned': `${currency}${results.totalInterestEarned.toLocaleString('en-US', { maximumFractionDigits: 2 })}`,
+          'Projected Future Value': `${currency}${results.futureValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
         }}
-        summaryText={`Compound Growth Projector:\nStarting: $${results.P.toLocaleString()} + $${results.PMT}/mo\nIn ${years} years @ ${annualRate}%:\nEnding Balance: $${results.futureValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\nTotal Interest Earned: $${results.totalInterestEarned.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
+        summaryText={`Compound Growth Projector:\nStarting: ${currency}${results.P.toLocaleString()} + ${currency}${results.PMT}/mo\nIn ${years} years @ ${annualRate}%:\nEnding Balance: ${currency}${results.futureValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\nTotal Interest Earned: ${currency}${results.totalInterestEarned.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`}
       />
     </Card>
   );

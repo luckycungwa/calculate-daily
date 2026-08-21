@@ -7,6 +7,7 @@ import { Badge } from '../ui/badge';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/card';
 import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
 import { ExportModal } from '../common/ExportModal';
+import { useToast } from '../ui/toast';
 
 interface BmiCalculatorProps {
   onSaveHistory?: (summary: string) => void;
@@ -15,6 +16,7 @@ interface BmiCalculatorProps {
 type UnitMode = 'metric' | 'imperial';
 
 export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) => {
+  const { toast } = useToast();
   const [unitMode, setUnitMode] = useState<UnitMode>('metric');
 
   // Metric state
@@ -103,6 +105,7 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
     }`;
     navigator.clipboard.writeText(text);
     setCopied(true);
+    toast('Result copied to clipboard');
     setTimeout(() => setCopied(false), 2000);
 
     if (onSaveHistory) {

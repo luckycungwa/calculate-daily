@@ -6,12 +6,16 @@ import { Label } from '../ui/label';
 import { Badge } from '../ui/badge';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/card';
 import { ExportModal } from '../common/ExportModal';
+import { useCurrency } from '../../lib/currency';
+import { useToast } from '../ui/toast';
 
 interface TipCalculatorProps {
   onSaveHistory?: (summary: string) => void;
 }
 
 export const TipCalculator: React.FC<TipCalculatorProps> = ({ onSaveHistory }) => {
+  const currency = useCurrency();
+  const { toast } = useToast();
   const [billAmount, setBillAmount] = useState<string>('84.50');
   const [tipPercent, setTipPercent] = useState<number>(18);
   const [customTip, setCustomTip] = useState<string>('');
@@ -55,13 +59,14 @@ export const TipCalculator: React.FC<TipCalculatorProps> = ({ onSaveHistory }) =
   const presetTips = [10, 15, 18, 20, 25];
 
   const handleCopySummary = () => {
-    const text = `Tip & Bill Split:\nTotal Bill: $${results.total.toFixed(2)} ($${results.bill.toFixed(2)} + $${results.tipAmount.toFixed(2)} tip)\nSplit (${results.people} people): $${results.totalPerPerson.toFixed(2)}/person ($${results.tipPerPerson.toFixed(2)} tip each)`;
+    const text = `Tip & Bill Split:\nTotal Bill: ${currency}${results.total.toFixed(2)} (${currency}${results.bill.toFixed(2)} + ${currency}${results.tipAmount.toFixed(2)} tip)\nSplit (${results.people} people): ${currency}${results.totalPerPerson.toFixed(2)}/person (${currency}${results.tipPerPerson.toFixed(2)} tip each)`;
     navigator.clipboard.writeText(text);
     setCopied(true);
+    toast('Result copied to clipboard');
     setTimeout(() => setCopied(false), 2000);
 
     if (onSaveHistory) {
-      onSaveHistory(`Split $${results.total.toFixed(2)} bill between ${results.people} people ($${results.totalPerPerson.toFixed(2)}/each)`);
+      onSaveHistory(`Split ${currency}${results.total.toFixed(2)} bill between ${results.people} people (${currency}${results.totalPerPerson.toFixed(2)}/each)`);
     }
   };
 
@@ -121,11 +126,11 @@ export const TipCalculator: React.FC<TipCalculatorProps> = ({ onSaveHistory }) =
             {/* Bill Amount */}
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <Label htmlFor="tip-bill-input">Bill Subtotal ($)</Label>
+                <Label htmlFor="tip-bill-input">Bill Subtotal ({currency})</Label>
                 <span className="text-xs text-zinc-400 font-mono">Base amount</span>
               </div>
               <div className="relative">
-                <span className="absolute left-3 top-2 text-xs font-mono font-bold text-zinc-400">$</span>
+                <span className="absolute left-3 top-2 text-xs font-mono font-bold text-zinc-400">{currency}</span>
                 <Input
                   id="tip-bill-input"
                   type="number"
@@ -144,7 +149,7 @@ export const TipCalculator: React.FC<TipCalculatorProps> = ({ onSaveHistory }) =
               <div className="flex items-center justify-between">
                 <Label>Gratuity Rate ({activeTipPercent}%)</Label>
                 <span className="text-xs text-emerald-600 dark:text-emerald-400 font-mono font-bold">
-                  Tip: ${results.tipAmount.toFixed(2)}
+                  Tip: {currency}{results.tipAmount.toFixed(2)}
                 </span>
               </div>
 
@@ -271,10 +276,10 @@ export const TipCalculator: React.FC<TipCalculatorProps> = ({ onSaveHistory }) =
                     Total Due Per Person
                   </p>
                   <div className="text-3xl sm:text-4xl font-bold text-white font-mono tracking-tight tabular-nums">
-                    ${results.totalPerPerson.toFixed(2)}
+                    {currency}{results.totalPerPerson.toFixed(2)}
                   </div>
                   <p className="text-[11px] text-emerald-400 font-mono mt-1 font-semibold">
-                    Includes ${results.tipPerPerson.toFixed(2)} tip share
+                    Includes {currency}{results.tipPerPerson.toFixed(2)} tip share
                   </p>
                 </div>
 
@@ -282,19 +287,19 @@ export const TipCalculator: React.FC<TipCalculatorProps> = ({ onSaveHistory }) =
                 <div className="space-y-2 pt-3 border-t border-zinc-800 text-xs font-mono">
                   <div className="flex justify-between text-zinc-200">
                     <span className="text-zinc-400">Bill Share:</span>
-                    <span className="font-bold tabular-nums">${results.billPerPerson.toFixed(2)}</span>
+                    <span className="font-bold tabular-nums">{currency}{results.billPerPerson.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-zinc-200">
                     <span className="text-zinc-400">Tip Share ({results.effectiveTipPercent.toFixed(1)}%):</span>
-                    <span className="font-bold text-emerald-400 tabular-nums">${results.tipPerPerson.toFixed(2)}</span>
+                    <span className="font-bold text-emerald-400 tabular-nums">{currency}{results.tipPerPerson.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-zinc-100 pt-2 border-t border-zinc-800">
                     <span className="font-semibold">Full Check Total:</span>
-                    <span className="font-bold text-white tabular-nums">${results.total.toFixed(2)}</span>
+                    <span className="font-bold text-white tabular-nums">{currency}{results.total.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-zinc-300 text-[11px]">
                     <span className="text-zinc-400">Total Tip Combined:</span>
-                    <span className="font-mono tabular-nums text-emerald-300 font-bold">${results.tipAmount.toFixed(2)}</span>
+                    <span className="font-mono tabular-nums text-emerald-300 font-bold">{currency}{results.tipAmount.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
@@ -325,15 +330,15 @@ export const TipCalculator: React.FC<TipCalculatorProps> = ({ onSaveHistory }) =
         calculatorName="Tip & Bill Splitter"
         title="Restaurant Bill & Tip Summary"
         data={{
-          'Subtotal Bill': `$${results.bill.toFixed(2)}`,
+          'Subtotal Bill': `${currency}${results.bill.toFixed(2)}`,
           'Tip Rate': `${results.effectiveTipPercent.toFixed(1)}%`,
-          'Total Tip Amount': `$${results.tipAmount.toFixed(2)}`,
-          'Grand Total': `$${results.total.toFixed(2)}`,
+          'Total Tip Amount': `${currency}${results.tipAmount.toFixed(2)}`,
+          'Grand Total': `${currency}${results.total.toFixed(2)}`,
           'Diners Split': results.people,
-          'Total Per Diner': `$${results.totalPerPerson.toFixed(2)}`,
-          'Tip Per Diner': `$${results.tipPerPerson.toFixed(2)}`,
+          'Total Per Diner': `${currency}${results.totalPerPerson.toFixed(2)}`,
+          'Tip Per Diner': `${currency}${results.tipPerPerson.toFixed(2)}`,
         }}
-        summaryText={`Tip & Bill Split:\nTotal Bill: $${results.total.toFixed(2)} ($${results.bill.toFixed(2)} + $${results.tipAmount.toFixed(2)} tip)\nSplit (${results.people} people): $${results.totalPerPerson.toFixed(2)}/person ($${results.tipPerPerson.toFixed(2)} tip each)`}
+        summaryText={`Tip & Bill Split:\nTotal Bill: ${currency}${results.total.toFixed(2)} (${currency}${results.bill.toFixed(2)} + ${currency}${results.tipAmount.toFixed(2)} tip)\nSplit (${results.people} people): ${currency}${results.totalPerPerson.toFixed(2)}/person (${currency}${results.tipPerPerson.toFixed(2)} tip each)`}
       />
     </Card>
   );

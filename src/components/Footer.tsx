@@ -1,17 +1,22 @@
 import React from 'react';
-import { Calculator, ArrowUp } from 'lucide-react';
-import { CalculatorId } from '../types';
+import { Calculator, ArrowUp, Layers } from 'lucide-react';
 import { Button } from './ui/button';
+import { Link } from '../lib/router';
+import { CATEGORIES } from '../data/calculators';
 
-interface FooterProps {
-  onSelectCalculator: (id: CalculatorId) => void;
-  onNavigate: (view: 'home' | 'calculators' | 'daily-challenge' | 'ai-builder' | 'about') => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onSelectCalculator, onNavigate }) => {
+export const Footer: React.FC = () => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const topTools = [
+    { slug: 'tip-calculator', label: 'Tip & Bill Splitter' },
+    { slug: 'bmi-calculator', label: 'BMI Health Index' },
+    { slug: 'mortgage-calculator', label: 'Mortgage & Loan Planner' },
+    { slug: 'percentage-calculator', label: 'Percentage Calculator' },
+    { slug: 'compound-interest-calculator', label: 'Compound Interest' },
+    { slug: 'oz-to-cups-calculator', label: 'Oz to Cups Converter' },
+  ];
 
   return (
     <footer id="app-footer" className="bg-zinc-950 text-zinc-400 mt-16 border-t border-zinc-800">
@@ -26,97 +31,39 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCalculator, onNavigate }
               <span>Calculate<span className="text-emerald-500">Daily</span></span>
             </div>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Deterministic, fast calculations for finance, health, and everyday planning.
+              Deterministic, fast calculators for finance, health, construction, cooking, and everyday planning.
             </p>
           </div>
 
-          {/* Col 2: Featured Calculators */}
+          {/* Col 2: Top Tools */}
           <div>
             <h4 className="text-zinc-200 text-xs font-mono uppercase tracking-wider mb-3">
-              Standard Tools
+              Top Tools
             </h4>
             <ul className="space-y-1.5 text-xs">
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onSelectCalculator('tip')}
-                  className="hover:text-zinc-100 transition-colors cursor-pointer"
-                >
-                  Tip & Bill Splitter
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onSelectCalculator('bmi')}
-                  className="hover:text-zinc-100 transition-colors cursor-pointer"
-                >
-                  BMI Health Index
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onSelectCalculator('mortgage')}
-                  className="hover:text-zinc-100 transition-colors cursor-pointer"
-                >
-                  Mortgage Amortization
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onSelectCalculator('daily-challenge')}
-                  className="hover:text-zinc-100 transition-colors cursor-pointer"
-                >
-                  Daily Savings Goal
-                </button>
-              </li>
+              {topTools.map((tool) => (
+                <li key={tool.slug}>
+                  <Link to={`/calculators/${tool.slug}`} className="hover:text-zinc-100 transition-colors">
+                    {tool.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Col 3: More Math & Finance */}
+          {/* Col 3: Categories */}
           <div>
             <h4 className="text-zinc-200 text-xs font-mono uppercase tracking-wider mb-3">
-              Math & Finance
+              Categories
             </h4>
             <ul className="space-y-1.5 text-xs">
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onSelectCalculator('percentage')}
-                  className="hover:text-zinc-100 transition-colors cursor-pointer"
-                >
-                  Percentage Calculations
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onSelectCalculator('compound')}
-                  className="hover:text-zinc-100 transition-colors cursor-pointer"
-                >
-                  Compound Growth
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onSelectCalculator('discount')}
-                  className="hover:text-zinc-100 transition-colors cursor-pointer"
-                >
-                  Discount & Tax Analysis
-                </button>
-              </li>
-              <li>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('ai-builder')}
-                  className="text-emerald-400 hover:text-emerald-300 font-medium cursor-pointer"
-                >
-                  AI Custom Builder
-                </button>
-              </li>
+              {CATEGORIES.slice(0, 6).map((cat) => (
+                <li key={cat.id}>
+                  <Link to={`/categories/${cat.id}`} className="hover:text-zinc-100 transition-colors">
+                    {cat.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -127,42 +74,62 @@ export const Footer: React.FC<FooterProps> = ({ onSelectCalculator, onNavigate }
             </h4>
             <ul className="space-y-1.5 text-xs">
               <li>
-                <button type="button" onClick={() => onNavigate('home')} className="hover:text-zinc-100 cursor-pointer">
+                <Link to="/" className="hover:text-zinc-100">
                   Overview
-                </button>
+                </Link>
               </li>
               <li>
-                <button type="button" onClick={() => onNavigate('calculators')} className="hover:text-zinc-100 cursor-pointer">
-                  Directory
-                </button>
+                <Link to="/calculators" className="hover:text-zinc-100 inline-flex items-center gap-1">
+                  <Layers className="w-3 h-3" /> Directory
+                </Link>
               </li>
               <li>
-                <button type="button" onClick={() => onNavigate('daily-challenge')} className="hover:text-zinc-100 cursor-pointer">
+                <Link to="/savings-goal" className="hover:text-zinc-100">
                   Savings Challenge
-                </button>
+                </Link>
               </li>
               <li>
-                <button type="button" onClick={() => onNavigate('about')} className="hover:text-zinc-100 cursor-pointer">
+                <Link to="/about" className="hover:text-zinc-100">
                   Documentation
-                </button>
+                </Link>
+              </li>
+              <li className="pt-2 mt-2 border-t border-zinc-800">
+                <Link to="/privacy" className="hover:text-zinc-100">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="hover:text-zinc-100">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-zinc-100">
+                  Contact Us
+                </Link>
               </li>
             </ul>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 pt-6 border-t border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 font-mono">
-          <div>
-            Calculate Daily • All calculations performed locally
+        <div className="mt-8 pt-6 border-t border-zinc-800 text-xs text-zinc-500 font-mono space-y-3">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              Calculate Daily • All calculations performed locally
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={scrollToTop}
+              className="h-7 text-xs border-zinc-800 bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-white"
+            >
+              <ArrowUp className="w-3 h-3" /> Top
+            </Button>
           </div>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={scrollToTop}
-            className="h-7 text-xs border-zinc-800 bg-zinc-900 text-zinc-300 hover:bg-zinc-800 hover:text-white"
-          >
-            <ArrowUp className="w-3 h-3" /> Top
-          </Button>
+          <p className="text-zinc-600 leading-relaxed max-w-3xl">
+            Results are estimates for general informational purposes and are not professional financial, medical, legal, or construction advice. Consult a qualified professional before making decisions based on these calculations.
+          </p>
         </div>
       </div>
     </footer>

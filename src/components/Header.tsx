@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { Calculator, Sparkles, Target, Layers, Info, History, Moon, Sun, Keyboard, Menu, X } from 'lucide-react';
+import { Calculator, Target, Layers, Info, History, Moon, Sun, Keyboard, Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
+import { Link, navigate } from '../lib/router';
+import { useCurrency, setCurrencySymbol, CURRENCY_SYMBOLS } from '../lib/currency';
+import { useRegion } from '../lib/region';
+import { REGIONS } from '../data/regions';
 
 interface HeaderProps {
-  activeView: string;
-  onNavigate: (view: 'home' | 'calculators' | 'daily-challenge' | 'ai-builder' | 'about') => void;
+  activePath: string;
   onOpenHistory: () => void;
   historyCount: number;
   isDarkMode: boolean;
@@ -13,9 +16,15 @@ interface HeaderProps {
   onOpenShortcuts: () => void;
 }
 
+interface NavItem {
+  id: string;
+  label: string;
+  path: string;
+  icon: React.ReactNode;
+}
+
 export const Header: React.FC<HeaderProps> = ({
-  activeView,
-  onNavigate,
+  activePath,
   onOpenHistory,
   historyCount,
   isDarkMode,
@@ -23,9 +32,26 @@ export const Header: React.FC<HeaderProps> = ({
   onOpenShortcuts,
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const currency = useCurrency();
+  const { regionCode, setRegion } = useRegion();
 
-  const handleNavClick = (view: 'home' | 'calculators' | 'daily-challenge' | 'ai-builder' | 'about') => {
-    onNavigate(view);
+  const navItems: NavItem[] = [
+    { id: 'home', label: 'Home', path: '/', icon: null },
+    { id: 'calculators', label: 'Calculators', path: '/calculators', icon: <Layers className="w-3.5 h-3.5" /> },
+    { id: 'savings-goal', label: 'Savings Goal', path: '/savings-goal', icon: <Target className="w-3.5 h-3.5" /> },
+    { id: 'about', label: 'About', path: '/about', icon: <Info className="w-3.5 h-3.5" /> },
+  ];
+
+  const isActive = (path: string) => {
+    if (path === '/') return activePath === '/';
+    if (path === '/calculators') {
+      return activePath.startsWith('/calculators') || activePath.startsWith('/categories');
+    }
+    return activePath.startsWith(path);
+  };
+
+  const handleNavClick = (path: string) => {
+    navigate(path);
     setMobileMenuOpen(false);
   };
 
@@ -37,11 +63,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo & Brand */}
-          <div
-            id="brand-logo"
-            onClick={() => handleNavClick('home')}
-            className="flex items-center gap-3 cursor-pointer group"
-          >
+          <Link to="/" className="flex items-center gap-3 cursor-pointer group" id="brand-logo">
             <div className="w-9 h-9 rounded-lg bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-950 flex items-center justify-center font-bold">
               <Calculator className="w-4 h-4" />
             </div>
@@ -50,71 +72,62 @@ export const Header: React.FC<HeaderProps> = ({
                 <span className="text-base sm:text-lg font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
                   Calculate<span className="text-emerald-600 dark:text-emerald-500">Daily</span>
                 </span>
-                <Badge variant="outline" className="hidden sm:inline-flex text-[10px] py-0 px-1.5 font-mono">
-                  PRO
-                </Badge>
               </div>
               <p className="text-[11px] text-zinc-500 dark:text-zinc-400 -mt-0.5 hidden sm:block">
                 Daily Dose of Numbers
               </p>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden md:flex items-center gap-1 bg-zinc-100 dark:bg-zinc-900 p-1 rounded-lg border border-zinc-200 dark:border-zinc-800">
-            <Button
-              id="nav-home"
-              variant={activeView === 'home' ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => handleNavClick('home')}
-              className="text-xs h-7.5"
-            >
-              Home
-            </Button>
-            <Button
-              id="nav-calculators"
-              variant={activeView === 'calculators' ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => handleNavClick('calculators')}
-              className="text-xs h-7.5"
-            >
-              <Layers className="w-3.5 h-3.5" />
-              Calculators
-            </Button>
-            <Button
-              id="nav-daily-challenge"
-              variant={activeView === 'daily-challenge' ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => handleNavClick('daily-challenge')}
-              className="text-xs h-7.5"
-            >
-              <Target className="w-3.5 h-3.5" />
-              Savings Goal
-            </Button>
-            <Button
-              id="nav-ai-builder"
-              variant={activeView === 'ai-builder' ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => handleNavClick('ai-builder')}
-              className="text-xs h-7.5"
-            >
-              <Sparkles className="w-3.5 h-3.5" />
-              AI Builder
-            </Button>
-            <Button
-              id="nav-about"
-              variant={activeView === 'about' ? 'default' : 'ghost'}
-              size="sm"
-              onClick={() => handleNavClick('about')}
-              className="text-xs h-7.5"
-            >
-              <Info className="w-3.5 h-3.5" />
-              About
-            </Button>
+            {navItems.map((item) => (
+              <Button
+                key={item.id}
+                id={`nav-${item.id}`}
+                variant={isActive(item.path) ? 'default' : 'ghost'}
+                size="sm"
+                onClick={() => handleNavClick(item.path)}
+                className="text-xs h-7.5"
+              >
+                {item.icon}
+                {item.label}
+              </Button>
+            ))}
           </nav>
 
           {/* Right Action Bar */}
           <div className="flex items-center gap-1.5">
+            {/* Region Selector */}
+            <select
+              id="region-selector"
+              value={regionCode}
+              onChange={(e) => setRegion(e.target.value as typeof regionCode)}
+              title="Region"
+              className="h-8 px-1.5 rounded-lg text-xs font-mono font-bold bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 cursor-pointer hover:border-emerald-500 focus:outline-none"
+            >
+              {REGIONS.map((r) => (
+                <option key={r.code} value={r.code}>
+                  {r.code}
+                </option>
+              ))}
+            </select>
+
+            {/* Currency Selector */}
+            <select
+              id="currency-selector"
+              value={currency}
+              onChange={(e) => setCurrencySymbol(e.target.value)}
+              title="Currency symbol"
+              className="h-8 px-1.5 rounded-lg text-xs font-mono font-bold bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 cursor-pointer hover:border-emerald-500 focus:outline-none"
+            >
+              {CURRENCY_SYMBOLS.map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+
             {/* Dark Mode Toggle */}
             <Button
               id="theme-toggle-btn"
@@ -172,55 +185,21 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden py-3 px-2 border-t border-zinc-200 dark:border-zinc-800 space-y-1 bg-white dark:bg-zinc-950">
-            <button
-              type="button"
-              onClick={() => handleNavClick('home')}
-              className={`w-full text-left px-3 py-2 text-xs font-medium rounded-md ${
-                activeView === 'home' ? 'bg-zinc-100 dark:bg-zinc-800 text-emerald-600 font-bold' : 'text-zinc-700 dark:text-zinc-300'
-              }`}
-            >
-              Home
-            </button>
-            <button
-              type="button"
-              onClick={() => handleNavClick('calculators')}
-              className={`w-full text-left px-3 py-2 text-xs font-medium rounded-md flex items-center gap-2 ${
-                activeView === 'calculators' ? 'bg-zinc-100 dark:bg-zinc-800 text-emerald-600 font-bold' : 'text-zinc-700 dark:text-zinc-300'
-              }`}
-            >
-              <Layers className="w-3.5 h-3.5 text-emerald-600" />
-              Calculators Directory
-            </button>
-            <button
-              type="button"
-              onClick={() => handleNavClick('daily-challenge')}
-              className={`w-full text-left px-3 py-2 text-xs font-medium rounded-md flex items-center gap-2 ${
-                activeView === 'daily-challenge' ? 'bg-zinc-100 dark:bg-zinc-800 text-emerald-600 font-bold' : 'text-zinc-700 dark:text-zinc-300'
-              }`}
-            >
-              <Target className="w-3.5 h-3.5 text-zinc-500" />
-              Daily Savings Goal
-            </button>
-            <button
-              type="button"
-              onClick={() => handleNavClick('ai-builder')}
-              className={`w-full text-left px-3 py-2 text-xs font-medium rounded-md flex items-center gap-2 ${
-                activeView === 'ai-builder' ? 'bg-zinc-100 dark:bg-zinc-800 text-emerald-600 font-bold' : 'text-zinc-700 dark:text-zinc-300'
-              }`}
-            >
-              <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
-              AI Custom Builder
-            </button>
-            <button
-              type="button"
-              onClick={() => handleNavClick('about')}
-              className={`w-full text-left px-3 py-2 text-xs font-medium rounded-md flex items-center gap-2 ${
-                activeView === 'about' ? 'bg-zinc-100 dark:bg-zinc-800 text-emerald-600 font-bold' : 'text-zinc-700 dark:text-zinc-300'
-              }`}
-            >
-              <Info className="w-3.5 h-3.5 text-zinc-500" />
-              About & Methodology
-            </button>
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                type="button"
+                onClick={() => handleNavClick(item.path)}
+                className={`w-full text-left px-3 py-2 text-xs font-medium rounded-md flex items-center gap-2 ${
+                  isActive(item.path)
+                    ? 'bg-zinc-100 dark:bg-zinc-800 text-emerald-600 font-bold'
+                    : 'text-zinc-700 dark:text-zinc-300'
+                }`}
+              >
+                {item.icon}
+                {item.label}
+              </button>
+            ))}
           </div>
         )}
       </div>

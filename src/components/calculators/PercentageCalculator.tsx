@@ -6,12 +6,14 @@ import { Label } from '../ui/label';
 import { Badge } from '../ui/badge';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/card';
 import { ExportModal } from '../common/ExportModal';
+import { useToast } from '../ui/toast';
 
 interface PercentageCalculatorProps {
   onSaveHistory?: (summary: string) => void;
 }
 
 export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSaveHistory }) => {
+  const { toast } = useToast();
   // Mode 1: What is X% of Y?
   const [m1Pct, setM1Pct] = useState<string>('15');
   const [m1Val, setM1Val] = useState<string>('240');
@@ -47,6 +49,7 @@ export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSa
   const handleCopy = (mode: number, text: string) => {
     navigator.clipboard.writeText(text);
     setCopiedMode(mode);
+    toast('Result copied to clipboard');
     setTimeout(() => setCopiedMode(null), 2000);
     if (onSaveHistory) onSaveHistory(text);
   };
