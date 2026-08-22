@@ -115,3 +115,35 @@ export interface CalculationHistoryItem {
   summary: string;
   timestamp: number;
 }
+
+export interface GuideSection {
+  heading: string;
+  body: string[];
+  list?: string[];
+  callout?: string;
+}
+
+export interface Guide {
+  id: string;
+  slug: string;
+  name: string;
+  shortDesc: string;
+  category: CalculatorCategory;
+  iconName: string;
+  keywords?: string[];
+  content: {
+    hook: string;
+    sections: GuideSection[];
+    conclusion: string;
+  };
+  faqs: FaqItem[];
+  embeddedCalculators: string[];
+  relatedCalculators: string[];
+  relatedGuides?: string[];
+  seo?: {
+    status?: SeoStatus;
+    reviewStatus?: ReviewStatus;
+    priority?: number;
+  };
+  publishedAt: string;
+}

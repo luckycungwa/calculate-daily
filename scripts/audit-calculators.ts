@@ -35,6 +35,16 @@ const REGISTERED_CUSTOM = new Set([
   'AffordabilityCalculator',
   'RentVsBuyCalculator',
   'DownPaymentSavingsCalculator',
+  'AgeCalculator',
+  'DateDifferenceCalculator',
+  'DaysUntilCalculator',
+  'ScientificCalculator',
+  'TdeeCalculator',
+  'SleepCycleCalculator',
+  'StepsToMilesCalculator',
+  'StandardDeviationCalculator',
+  'MeanMedianModeCalculator',
+  'FinalGradeCalculator',
 ]);
 
 function auditConfig(item: { name: string; slug: string; config?: any }, results: AuditItem[]) {

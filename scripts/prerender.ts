@@ -132,6 +132,7 @@ async function main() {
 
   const { default: App } = await import('../src/App');
   const { CALCULATOR_CATALOG, CATEGORIES, CATEGORY_LABELS } = await import('../src/data/calculators');
+  const { GUIDE_REGISTRY } = await import('../src/data/guides');
   const { preloadCalculatorComponents } = await import(
     '../src/components/calculators/CalculatorRenderer'
   );
@@ -330,6 +331,75 @@ async function main() {
     }
   );
 
+  // Guide listing page
+  pages.push({
+    path: '/guides',
+    file: 'guides.html',
+    title: 'Guides & Articles | Learn Math, Finance, Health, and More',
+    description:
+      'In-depth guides for using calculators effectively. Learn about mortgages, BMI, unit conversions, and everyday math with practical examples.',
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: 'Guides & Articles',
+        itemListElement: GUIDE_REGISTRY.map((g, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: g.name,
+          url: `${SITE_URL}/guides/${g.slug}`,
+        })),
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: 'Guides', item: `${SITE_URL}/guides` },
+        ],
+      },
+    ],
+  });
+
+  // Individual guide pages
+  GUIDE_REGISTRY.forEach((guide) => {
+    pages.push({
+      path: `/guides/${guide.slug}`,
+      file: `guides/${guide.slug}.html`,
+      title: `${guide.name} | CalculateDaily Guide`,
+      description: guide.shortDesc,
+      jsonLd: [
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          name: guide.name,
+          description: guide.shortDesc,
+          url: `${SITE_URL}/guides/${guide.slug}`,
+          datePublished: guide.publishedAt,
+          publisher: { '@type': 'Organization', name: 'CalculateDaily' },
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: guide.faqs.map((f) => ({
+            '@type': 'Question',
+            name: f.q,
+            acceptedAnswer: { '@type': 'Answer', text: f.a },
+          })),
+        },
+        {
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+            { '@type': 'ListItem', position: 2, name: 'Guides', item: `${SITE_URL}/guides` },
+            { '@type': 'ListItem', position: 3, name: guide.name, item: `${SITE_URL}/guides/${guide.slug}` },
+          ],
+        },
+      ],
+    });
+  });
+
   let rendered = 0;
   for (const page of pages) {
     window.history.pushState({}, '', page.path);
@@ -376,6 +446,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
   const sitemapUrls: string[] = [
     `${SITE_URL}/`,
     `${SITE_URL}/calculators`,
+    `${SITE_URL}/guides`,
     `${SITE_URL}/savings-goal`,
     `${SITE_URL}/about`,
     `${SITE_URL}/privacy`,
@@ -385,6 +456,9 @@ Sitemap: ${SITE_URL}/sitemap.xml
   CATEGORIES.forEach((cat) => sitemapUrls.push(`${SITE_URL}/categories/${cat.id}`));
   CALCULATOR_CATALOG.filter(isIndexable).forEach((calc) =>
     sitemapUrls.push(`${SITE_URL}/calculators/${calc.slug}`)
+  );
+  GUIDE_REGISTRY.forEach((guide) =>
+    sitemapUrls.push(`${SITE_URL}/guides/${guide.slug}`)
   );
 
   const lastmod = new Date().toISOString().slice(0, 10);
@@ -404,6 +478,10 @@ Sitemap: ${SITE_URL}/sitemap.xml
   CALCULATOR_CATALOG.forEach((calc) => {
     pagePriority[`/calculators/${calc.slug}`] = calc.seo?.priority ?? 0.6;
   });
+  GUIDE_REGISTRY.forEach((guide) => {
+    pagePriority[`/guides/${guide.slug}`] = guide.seo?.priority ?? 0.7;
+  });
+  pagePriority['/guides'] = 0.8;
 
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

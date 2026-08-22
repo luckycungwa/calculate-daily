@@ -10,6 +10,8 @@ export type Route =
   | { name: 'privacy' }
   | { name: 'terms' }
   | { name: 'contact' }
+  | { name: 'guides' }
+  | { name: 'guide'; slug: string }
   | { name: 'not-found' };
 
 export function parsePath(path: string): Route {
@@ -31,6 +33,11 @@ export function parsePath(path: string): Route {
   if (segments[0] === 'privacy') return { name: 'privacy' };
   if (segments[0] === 'terms') return { name: 'terms' };
   if (segments[0] === 'contact') return { name: 'contact' };
+
+  if (segments[0] === 'guides') {
+    if (segments.length === 1) return { name: 'guides' };
+    if (segments.length >= 2) return { name: 'guide', slug: segments[1] };
+  }
 
   return { name: 'not-found' };
 }

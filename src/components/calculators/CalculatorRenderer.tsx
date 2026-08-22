@@ -19,6 +19,16 @@ const LAZY_COMPONENTS: Record<string, () => Promise<Record<string, unknown>>> = 
   AffordabilityCalculator: () => import('./AffordabilityCalculator'),
   RentVsBuyCalculator: () => import('./RentVsBuyCalculator'),
   DownPaymentSavingsCalculator: () => import('./DownPaymentSavingsCalculator'),
+  AgeCalculator: () => import('./DateCalculators'),
+  DateDifferenceCalculator: () => import('./DateCalculators'),
+  DaysUntilCalculator: () => import('./DateCalculators'),
+  ScientificCalculator: () => import('./ScientificCalculator'),
+  TdeeCalculator: () => import('./HealthCalculators'),
+  SleepCycleCalculator: () => import('./HealthCalculators'),
+  StepsToMilesCalculator: () => import('./HealthCalculators'),
+  StandardDeviationCalculator: () => import('./StatisticsCalculators'),
+  MeanMedianModeCalculator: () => import('./StatisticsCalculators'),
+  FinalGradeCalculator: () => import('./StatisticsCalculators'),
 };
 
 const LOADED: Record<string, CalculatorComponent | undefined> = {};

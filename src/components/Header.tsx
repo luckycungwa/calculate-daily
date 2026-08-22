@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Calculator, Target, Layers, Info, History, Moon, Sun, Keyboard, Menu, X } from 'lucide-react';
+import { Calculator, Target, Layers, Info, History, Moon, Sun, Keyboard, Menu, X, BookOpen } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
 import { Link, navigate } from '../lib/router';
@@ -38,6 +38,7 @@ export const Header: React.FC<HeaderProps> = ({
   const navItems: NavItem[] = [
     { id: 'home', label: 'Home', path: '/', icon: null },
     { id: 'calculators', label: 'Calculators', path: '/calculators', icon: <Layers className="w-3.5 h-3.5" /> },
+    { id: 'guides', label: 'Guides', path: '/guides', icon: <BookOpen className="w-3.5 h-3.5" /> },
     { id: 'savings-goal', label: 'Savings Goal', path: '/savings-goal', icon: <Target className="w-3.5 h-3.5" /> },
     { id: 'about', label: 'About', path: '/about', icon: <Info className="w-3.5 h-3.5" /> },
   ];

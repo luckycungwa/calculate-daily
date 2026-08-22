@@ -12,6 +12,8 @@ import { AboutPage } from './pages/AboutPage';
 import { PrivacyPage } from './pages/PrivacyPage';
 import { TermsPage } from './pages/TermsPage';
 import { ContactPage } from './pages/ContactPage';
+import { GuideListingPage } from './pages/GuideListingPage';
+import { GuideDetailPage } from './pages/GuideDetailPage';
 import { useRoute } from './lib/router';
 import { useTheme } from './lib/theme';
 import { useToast } from './components/ui/toast';
@@ -106,6 +108,10 @@ export default function App() {
         return <TermsPage />;
       case 'contact':
         return <ContactPage />;
+      case 'guides':
+        return <GuideListingPage />;
+      case 'guide':
+        return <GuideDetailPage slug={route.slug} />;
       default:
         return (
           <div className="max-w-2xl mx-auto py-20 text-center space-y-4">
