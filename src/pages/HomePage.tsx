@@ -11,6 +11,7 @@ import { CalculatorCard } from '../components/common/CalculatorCard';
 import { Input } from '../components/ui/input';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
+const heroImg = '/hero-bg.jpg';
 
 export const HomePage: React.FC = () => {
   usePageMeta({
@@ -31,7 +32,12 @@ export const HomePage: React.FC = () => {
   return (
     <div className="space-y-12">
       {/* Hero */}
-      <section className="pt-4 pb-4 text-center max-w-4xl mx-auto">
+      <section className="relative pt-4 pb-4 text-center max-w-4xl mx-auto overflow-hidden rounded-2xl">
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-15 dark:opacity-10"
+          style={{ backgroundImage: `url(${heroImg})` }}
+        />
+        <div className="relative z-10 py-6 px-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 mb-5">
           <Zap className="w-3 h-3 text-emerald-600 dark:text-emerald-500" />
           Zero Latency • Local Execution • {CALCULATOR_CATALOG.length} Free Tools
@@ -72,6 +78,7 @@ export const HomePage: React.FC = () => {
               </Button>
             </Link>
           ))}
+        </div>
         </div>
       </section>
 

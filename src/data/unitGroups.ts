@@ -112,6 +112,80 @@ export const UNIT_GROUPS: Record<string, UnitGroup> = {
       { value: 'pb', label: 'Petabyte (PB)', toBaseFactor: 1024 ** 5 },
     ],
   },
+  pressure: {
+    id: 'pressure',
+    name: 'Pressure',
+    baseUnit: 'pa',
+    units: [
+      { value: 'pa', label: 'Pascal (Pa)', toBaseFactor: 1 },
+      { value: 'kpa', label: 'Kilopascal (kPa)', toBaseFactor: 1000 },
+      { value: 'bar', label: 'Bar', toBaseFactor: 100000 },
+      { value: 'psi', label: 'PSI (lbf/in²)', toBaseFactor: 6894.757 },
+      { value: 'atm', label: 'Atmosphere (atm)', toBaseFactor: 101325 },
+      { value: 'mmhg', label: 'mmHg (Torr)', toBaseFactor: 133.3224 },
+    ],
+  },
+  energy: {
+    id: 'energy',
+    name: 'Energy',
+    baseUnit: 'j',
+    units: [
+      { value: 'j', label: 'Joule (J)', toBaseFactor: 1 },
+      { value: 'kj', label: 'Kilojoule (kJ)', toBaseFactor: 1000 },
+      { value: 'cal', label: 'Calorie (cal)', toBaseFactor: 4.184 },
+      { value: 'kcal', label: 'Kilocalorie (kcal)', toBaseFactor: 4184 },
+      { value: 'wh', label: 'Watt-hour (Wh)', toBaseFactor: 3600 },
+      { value: 'kwh', label: 'Kilowatt-hour (kWh)', toBaseFactor: 3600000 },
+      { value: 'btu', label: 'BTU', toBaseFactor: 1055.06 },
+    ],
+  },
+  'fuel-economy': {
+    id: 'fuel-economy',
+    name: 'Fuel Economy',
+    baseUnit: 'l100km',
+    units: [
+      { value: 'l100km', label: 'Liters/100km (L/100km)', toBaseFactor: 1 },
+      { value: 'mpgus', label: 'MPG (US)', toBaseFactor: 235.215, toBaseOffset: 0 },
+      { value: 'mpguk', label: 'MPG (UK)', toBaseFactor: 282.481, toBaseOffset: 0 },
+      { value: 'kml', label: 'Kilometers/Liter (km/L)', toBaseFactor: 100, toBaseOffset: 0 },
+    ],
+  },
+  angle: {
+    id: 'angle',
+    name: 'Angle',
+    baseUnit: 'deg',
+    units: [
+      { value: 'deg', label: 'Degrees (°)', toBaseFactor: 1 },
+      { value: 'rad', label: 'Radians (rad)', toBaseFactor: 180 / Math.PI },
+      { value: 'grad', label: 'Gradians (gon)', toBaseFactor: 0.9 },
+    ],
+  },
+  frequency: {
+    id: 'frequency',
+    name: 'Frequency',
+    baseUnit: 'hz',
+    units: [
+      { value: 'hz', label: 'Hertz (Hz)', toBaseFactor: 1 },
+      { value: 'khz', label: 'Kilohertz (kHz)', toBaseFactor: 1000 },
+      { value: 'mhz', label: 'Megahertz (MHz)', toBaseFactor: 1000000 },
+      { value: 'ghz', label: 'Gigahertz (GHz)', toBaseFactor: 1000000000 },
+    ],
+  },
+  'time-conv': {
+    id: 'time-conv',
+    name: 'Time',
+    baseUnit: 's',
+    units: [
+      { value: 'ms', label: 'Millisecond (ms)', toBaseFactor: 0.001 },
+      { value: 's', label: 'Second (s)', toBaseFactor: 1 },
+      { value: 'min', label: 'Minute (min)', toBaseFactor: 60 },
+      { value: 'hr', label: 'Hour (hr)', toBaseFactor: 3600 },
+      { value: 'day', label: 'Day', toBaseFactor: 86400 },
+      { value: 'week', label: 'Week', toBaseFactor: 604800 },
+      { value: 'month', label: 'Month (30 days)', toBaseFactor: 2592000 },
+      { value: 'year', label: 'Year (365 days)', toBaseFactor: 31536000 },
+    ],
+  },
 };
 
 export const UNIT_GROUP_LIST = Object.values(UNIT_GROUPS);

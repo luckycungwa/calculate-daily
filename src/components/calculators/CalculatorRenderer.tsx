@@ -29,6 +29,7 @@ const LAZY_COMPONENTS: Record<string, () => Promise<Record<string, unknown>>> = 
   StandardDeviationCalculator: () => import('./StatisticsCalculators'),
   MeanMedianModeCalculator: () => import('./StatisticsCalculators'),
   FinalGradeCalculator: () => import('./StatisticsCalculators'),
+  SaFuelCalculator: () => import('./SaFuelCalculator'),
 };
 
 const LOADED: Record<string, CalculatorComponent | undefined> = {};

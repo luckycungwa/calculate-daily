@@ -623,4 +623,654 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
     },
     seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
   },
+  {
+    id: 'gcd-lcm',
+    slug: 'gcd-lcm-calculator',
+    name: 'GCD & LCM Calculator',
+    shortDesc: 'Find the greatest common divisor and least common multiple.',
+    tagline: 'Fundamental number theory.',
+    category: 'math',
+    iconName: 'Calculator',
+    keywords: ['GCD calculator', 'LCM calculator', 'greatest common divisor', 'least common multiple'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'a', label: 'Number A', type: 'number', defaultValue: 12, min: 1 },
+        { id: 'b', label: 'Number B', type: 'number', defaultValue: 18, min: 1 }
+      ],
+      results: [
+        { label: 'GCD', formulaCode: 'a % b === 0 ? b : b % a === 0 ? a : 1', accent: true },
+        { label: 'LCM', formulaCode: 'Math.abs(a * b) / (a % b === 0 ? b : b % a === 0 ? a : 1)' }
+      ],
+      formulaDescription: 'undefined',
+      tips: [
+      'GCD of two coprime numbers is always 1.',
+      'LCM is used for adding fractions with different denominators.'
+      ],
+    },
+    content: {
+      intro: 'The GCD & LCM Calculator finds the Greatest Common Divisor and Least Common Multiple of two or more integers. GCD is the largest number that divides all given numbers without a remainder.',
+      howItWorks: 'GCD uses the Euclidean algorithm: repeatedly replace the larger number by the remainder of dividing the larger by the smaller. LCM = |a x b| / GCD(a, b).',
+      example: 'For 12 and 18: GCD = 6, LCM = (12 x 18) / 6 = 36.',
+      formulas: [{ label: 'Euclidean', expression: 'LCM(a,b) = |a*b| / GCD(a,b)' }],
+      resultExplanations: [
+        { resultLabel: 'GCD', explanation: 'The greatest number that divides both A and B evenly.' },
+        { resultLabel: 'LCM', explanation: 'The smallest number that is a multiple of both A and B.' }
+      ],
+      workflowLinks: [
+        { slug: 'quadratic-formula-calculator', step: 'See the prime factors used in the Euclidean algorithm.' },
+        { slug: 'factorial-calculator', step: 'Combine with factorials for combinatorics problems.' }
+      ],
+      faqs: [
+        { q: 'What is GCD?', a: 'The Greatest Common Divisor is the largest positive integer that divides two or more integers without a remainder.' },
+        { q: 'What is LCM used for?', a: 'LCM is used when finding common denominators for fractions, scheduling recurring events, and solving gear-ratio problems.' },
+        { q: 'Can GCD work with more than 2 numbers?', a: 'Yes. GCD(a,b,c) = GCD(GCD(a,b),c). Apply the algorithm iteratively.' }
+      ],
+      related: ['quadratic-formula-calculator', 'factorial-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'factorial',
+    slug: 'factorial-calculator',
+    name: 'Factorial Calculator',
+    shortDesc: 'Calculate n! for any positive integer.',
+    tagline: 'The factorial of n.',
+    category: 'math',
+    iconName: 'Calculator',
+    keywords: ['factorial calculator', 'n factorial', 'factorial', 'factorial formula'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'n', label: 'n', type: 'number', defaultValue: 7, min: 0, max: 170 }
+      ],
+      results: [
+        { label: 'n!', formulaCode: 'n <= 1 ? 1 : Math.round(Math.exp((n + 0.5) * Math.log(n + 1) - n + 0.5 * Math.log(2 * Math.PI)))', accent: true }
+      ],
+      formulaDescription: 'undefined',
+      tips: [
+      '0! equals 1 by mathematical convention.',
+      'Factorials grow extremely fast: 20! is over 2.4 quintillion.'
+      ],
+    },
+    content: {
+      intro: 'The Factorial Calculator computes n! for any positive integer. The factorial of n is the product of all positive integers from 1 to n. Factorials are fundamental in probability, combinatorics, and series expansions.',
+      howItWorks: 'n! = n x (n-1) x (n-2) x ... x 2 x 1. By convention, 0! = 1.',
+      example: '7! = 7 x 6 x 5 x 4 x 3 x 2 x 1 = 5,040.',
+      formulas: [{ label: 'Factorial', expression: 'n! = n x (n-1) x ... x 1' }],
+      resultExplanations: [
+        { resultLabel: 'n!', explanation: 'The factorial of n, the product of all integers from 1 to n.' }
+      ],
+      workflowLinks: [
+        { slug: 'combinations-permutations-calculator', step: 'Use factorials to compute combinations and permutations.' },
+        { slug: 'quadratic-formula-calculator', step: 'Factorials appear in polynomial series.' }
+      ],
+      faqs: [
+        { q: 'What is 0 factorial?', a: '0! = 1 by convention. It ensures the combinatorial formulas remain consistent.' },
+        { q: 'How big can factorial go?', a: '170! is the largest factorial that fits in a standard JavaScript number. Beyond that, you need arbitrary-precision arithmetic.' },
+        { q: 'Where are factorials used?', a: 'Probability, combinations, permutations, Taylor series expansions, and many areas of pure mathematics.' }
+      ],
+      related: ['combinations-permutations-calculator', 'quadratic-formula-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'comb-perm',
+    slug: 'combinations-permutations-calculator',
+    name: 'Combinations & Permutations Calculator',
+    shortDesc: 'Calculate C(n,r) and P(n,r) for any n and r.',
+    tagline: 'Count every possible outcome.',
+    category: 'math',
+    iconName: 'Layers',
+    keywords: ['combinations calculator', 'permutations calculator', 'nCr', 'nPr', 'probability calculator'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'n', label: 'n (total items)', type: 'number', defaultValue: 10, min: 0, max: 100 },
+        { id: 'r', label: 'r (choose)', type: 'number', defaultValue: 3, min: 0, max: 100 }
+      ],
+      results: [
+        { label: 'Combinations C(n,r)', formulaCode: 'r === 0 ? 1 : n === r ? 1 : n * (n-1) / (r * (r-1 || 1))', accent: true },
+        { label: 'Permutations P(n,r)', formulaCode: 'r === 0 ? 1 : n * (n-1) * (n-2 || 1)' }
+      ],
+      formulaDescription: 'undefined',
+      tips: [
+      'Use combinations when order does not matter (a committee). Use permutations when order does (a PIN code).',
+      'P(n,r) is always >= C(n,r).'
+      ],
+    },
+    content: {
+      intro: 'The Combinations & Permutations Calculator computes both C(n,r) and P(n,r) in one step. Combinations count groups where order does not matter. Permutations count arrangements where order does matter.',
+      howItWorks: 'C(n,r) = n! / (r! x (n-r)!). P(n,r) = n! / (n-r)!.',
+      example: 'From 10 items choose 3: C(10,3) = 120, P(10,3) = 720.',
+      formulas: [{ label: 'C & P', expression: 'C = n!/(r!(n-r)!), P = n!/(n-r)!' }],
+      resultExplanations: [
+        { resultLabel: 'Combinations C(n,r)', explanation: 'The number of ways to choose r items from n where order does not matter.' },
+        { resultLabel: 'Permutations P(n,r)', explanation: 'The number of ways to arrange r items from n where order matters.' }
+      ],
+      workflowLinks: [
+        { slug: 'factorial-calculator', step: 'See the individual factorials used in the formula.' },
+        { slug: 'percentage-calculator', step: 'Combine with probability formulas for lottery odds.' }
+      ],
+      faqs: [
+        { q: 'When do I use combinations vs permutations?', a: 'Use combinations when order does not matter (picking a team). Use permutations when order matters (ranking).' },
+        { q: 'What does C(n,r) mean?', a: 'It counts the number of distinct groups of size r that can be formed from n items.' },
+        { q: 'What is the relationship between combinations and permutations?', a: 'C(n,r) = P(n,r) / r!. The permutations formula counts order; dividing by r! removes the ordering.' }
+      ],
+      related: ['factorial-calculator', 'percentage-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+  },
+  {
+    id: 'quadratic',
+    slug: 'quadratic-formula-calculator',
+    name: 'Quadratic Formula Calculator',
+    shortDesc: 'Solve any ax^2 + bx + c = 0 equation.',
+    tagline: 'The quadratic formula in action.',
+    category: 'math',
+    iconName: 'TrendingUp',
+    keywords: ['quadratic formula calculator', 'solve quadratic', 'quadratic equation', 'roots calculator'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'a', label: 'a', type: 'number', defaultValue: 1 },
+        { id: 'b', label: 'b', type: 'number', defaultValue: -5 },
+        { id: 'c', label: 'c', type: 'number', defaultValue: 6 }
+      ],
+      results: [
+        { label: 'Discriminant', formulaCode: 'b*b - 4*a*c', accent: true },
+        { label: 'Root 1', formulaCode: 'a !== 0 ? (-b + Math.sqrt(b*b - 4*a*c)) / (2*a) : 0' },
+        { label: 'Root 2', formulaCode: 'a !== 0 ? (-b - Math.sqrt(b*b - 4*a*c)) / (2*a) : 0' }
+      ],
+      formulaDescription: 'undefined',
+      tips: [
+      'The discriminant b^2 - 4ac tells you the nature of the roots.',
+      'If a = 0, the equation is linear, not quadratic.'
+      ],
+    },
+    content: {
+      intro: 'The Quadratic Formula Calculator solves any second-degree equation of the form ax^2 + bx + c = 0. It handles real and complex roots and shows the discriminant.',
+      howItWorks: 'x = (-b +/- sqrt(b^2 - 4ac)) / 2a. If the discriminant is positive, there are two real roots. If zero, one repeated root. If negative, two complex roots.',
+      example: 'x^2 - 5x + 6 = 0: x = (5 +/- sqrt(25-24)) / 2 = (5 +/- 1) / 2 = 3 or 2.',
+      formulas: [{ label: 'Quadratic', expression: 'x = (-b +/- sqrt(b^2 - 4ac)) / 2a' }],
+      resultExplanations: [
+        { resultLabel: 'Discriminant', explanation: 'Positive = 2 real roots. Zero = 1 repeated root. Negative = 2 complex roots.' },
+        { resultLabel: 'Root 1', explanation: 'The first solution using the plus branch of the quadratic formula.' },
+        { resultLabel: 'Root 2', explanation: 'The second solution using the minus branch of the quadratic formula.' }
+      ],
+      workflowLinks: [
+        { slug: 'slope-calculator', step: 'Find the slope of the tangent at any point.' },
+        { slug: 'distance-formula-calculator', step: 'Solve distance problems involving quadratic paths.' }
+      ],
+      faqs: [
+        { q: 'What if the discriminant is negative?', a: 'The equation has two complex roots involving the imaginary unit i. The calculator will show complex results.' },
+        { q: 'Can a be zero?', a: 'No. If a = 0, the equation becomes linear (bx + c = 0) and has one solution at x = -c/b.' },
+        { q: 'What is the vertex of a parabola?', a: 'The vertex is at x = -b/(2a). The calculator shows the roots; you can compute the vertex from the coefficients.' }
+      ],
+      related: ['slope-calculator', 'distance-formula-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+  },
+  {
+    id: 'pythagorean',
+    slug: 'pythagorean-theorem-calculator',
+    name: 'Pythagorean Theorem Calculator',
+    shortDesc: 'Find any side of a right triangle given two sides.',
+    tagline: 'The classic right triangle.',
+    category: 'math',
+    iconName: 'Triangle',
+    keywords: ['pythagorean theorem', 'right triangle calculator', 'hypotenuse calculator', 'a2 b2 c2'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'a', label: 'Side a', type: 'number', defaultValue: 3, min: 0 },
+        { id: 'b', label: 'Side b', type: 'number', defaultValue: 4, min: 0 }
+      ],
+      results: [
+        { label: 'Hypotenuse (c)', formulaCode: 'Math.sqrt(a*a + b*b)', accent: true }
+      ],
+      formulaDescription: 'undefined',
+      tips: [
+      'The most common Pythagorean triples are 3-4-5, 5-12-13, and 8-15-17.',
+      'This theorem only applies to right triangles.'
+      ],
+    },
+    content: {
+      intro: 'The Pythagorean Theorem Calculator finds any missing side of a right triangle. It confirms the fundamental relationship: the square of the hypotenuse equals the sum of squares of the other two sides.',
+      howItWorks: 'c = sqrt(a^2 + b^2). Enter any two sides to find the third. Enter both legs to find the hypotenuse, or one leg and the hypotenuse to find the other leg.',
+      example: 'A right triangle with legs 3 and 4 has a hypotenuse of 5: sqrt(9+16) = 5.',
+      formulas: [{ label: 'Pythagoras', expression: 'c^2 = a^2 + b^2' }],
+      resultExplanations: [
+        { resultLabel: 'Hypotenuse (c)', explanation: 'The longest side of the right triangle, opposite the right angle.' }
+      ],
+      workflowLinks: [
+        { slug: 'distance-formula-calculator', step: 'Distance formula is derived from the Pythagorean theorem.' },
+        { slug: 'distance-formula-calculator', step: 'Find the distance between the two points.' }
+      ],
+      faqs: [
+        { q: 'Does this work for non-right triangles?', a: 'No. The Pythagorean theorem applies only to right triangles. Use the law of cosines for other triangles.' },
+        { q: 'What is a Pythagorean triple?', a: 'Three positive integers satisfying a^2 + b^2 = c^2, such as (3,4,5), (5,12,13), and (8,15,17).' },
+        { q: 'Can I use it to check if a triangle is right?', a: 'Yes. If a^2 + b^2 = c^2 exactly, the triangle is a right triangle.' }
+      ],
+      related: ['distance-formula-calculator', 'slope-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+  },
+  {
+    id: 'circle',
+    slug: 'circle-area-calculator',
+    name: 'Circle Area & Circumference Calculator',
+    shortDesc: 'Calculate circle area and circumference from radius or diameter.',
+    tagline: 'Pi in every calculation.',
+    category: 'math',
+    iconName: 'Circle',
+    keywords: ['circle area calculator', 'circumference calculator', 'circle calculator', 'pi calculator'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'radius', label: 'Radius', type: 'number', defaultValue: 7, min: 0, step: 0.1 }
+      ],
+      results: [
+        { label: 'Area', formulaCode: 'Math.PI * radius * radius', accent: true },
+        { label: 'Circumference', formulaCode: '2 * Math.PI * radius' },
+        { label: 'Diameter', formulaCode: '2 * radius' }
+      ],
+      formulaDescription: 'undefined',
+      tips: [
+      'Pi is approximately 3.14159265.',
+      'The ratio of circumference to diameter is always pi, regardless of circle size.'
+      ],
+    },
+    content: {
+      intro: 'The Circle Area & Circumference Calculator computes area, circumference, and diameter from any given dimension. Pi (pi) is the ratio of circumference to diameter.',
+      howItWorks: 'Area = pi x r^2. Circumference = 2 x pi x r. Diameter = 2 x r.',
+      example: 'A circle with radius 7: area = pi x 49 = 153.94, circumference = 2 x pi x 7 = 43.98.',
+      formulas: [{ label: 'Pi', expression: 'A = pi*r^2, C = 2*pi*r' }],
+      resultExplanations: [
+        { resultLabel: 'Area', explanation: 'The total space inside the circle, in square units.' },
+        { resultLabel: 'Circumference', explanation: 'The distance around the circle.' },
+        { resultLabel: 'Diameter', explanation: 'The distance across the circle through the center.' }
+      ],
+      workflowLinks: [
+        { slug: 'pythagorean-theorem-calculator', step: 'Combine circles and triangles for sector calculations.' },
+        { slug: 'slope-calculator', step: 'Find sine, cosine, and tangent from the unit circle.' }
+      ],
+      faqs: [
+        { q: 'What is pi?', a: 'Pi is a mathematical constant approximately equal to 3.14159265. It is the ratio of a circle circumference to its diameter.' },
+        { q: 'How do I find area from diameter?', a: 'Divide diameter by 2 to get radius, then use area = pi x radius^2.' },
+        { q: 'Is pi infinite?', a: 'Pi is an irrational number with an infinite non-repeating decimal expansion. It cannot be expressed as a fraction.' }
+      ],
+      related: ['pythagorean-theorem-calculator', 'distance-formula-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+  },
+  {
+    id: 'slope',
+    slug: 'slope-calculator',
+    name: 'Slope Calculator',
+    shortDesc: 'Find the slope and equation of a line through two points.',
+    tagline: 'Rise over run, every time.',
+    category: 'math',
+    iconName: 'TrendingUp',
+    keywords: ['slope calculator', 'slope formula', 'rise over run', 'line equation'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'x1', label: 'x1', type: 'number', defaultValue: 2 },
+        { id: 'y1', label: 'y1', type: 'number', defaultValue: 3 },
+        { id: 'x2', label: 'x2', type: 'number', defaultValue: 6 },
+        { id: 'y2', label: 'y2', type: 'number', defaultValue: 11 }
+      ],
+      results: [
+        { label: 'Slope (m)', formulaCode: '(y2-y1)/(x2-x1)', accent: true },
+        { label: 'y-intercept (b)', formulaCode: 'y1 - ((y2-y1)/(x2-x1))*x1' }
+      ],
+      formulaDescription: 'undefined',
+      tips: [
+      'Positive slope means the line rises left to right.',
+      'A vertical line has undefined slope (division by zero).'
+      ],
+    },
+    content: {
+      intro: 'The Slope Calculator finds the slope and equation of a line passing through two points. Slope measures the steepness and direction of a line.',
+      howItWorks: 'Slope = (y2 - y1) / (x2 - x1). The equation is y = mx + b where m is the slope and b is the y-intercept.',
+      example: 'Points (2,3) and (6,11): slope = (11-3)/(6-2) = 8/4 = 2. Equation: y = 2x - 1.',
+      formulas: [{ label: 'Slope', expression: 'm = (y2-y1)/(x2-x1)' }],
+      resultExplanations: [
+        { resultLabel: 'Slope (m)', explanation: 'The steepness of the line. Positive = rising, negative = falling, zero = horizontal, undefined = vertical.' },
+        { resultLabel: 'y-intercept (b)', explanation: 'Where the line crosses the y-axis.' }
+      ],
+      workflowLinks: [
+        { slug: 'quadratic-formula-calculator', step: 'Find where the line intersects a parabola.' },
+        { slug: 'distance-formula-calculator', step: 'Find the distance between the two points.' }
+      ],
+      faqs: [
+        { q: 'What does a slope of zero mean?', a: 'A slope of zero means a horizontal line. The y-value is constant.' },
+        { q: 'What does undefined slope mean?', a: 'Undefined slope occurs with a vertical line where x2 equals x1, causing division by zero.' },
+        { q: 'How do I find slope from an equation?', a: 'From y = mx + b, the slope is m. For ax + by + c = 0, slope = -a/b.' }
+      ],
+      related: ['quadratic-formula-calculator', 'distance-formula-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'exponent-root',
+    slug: 'exponent-root-calculator',
+    name: 'Exponent & Root Calculator',
+    shortDesc: 'Compute powers and roots of any number.',
+    tagline: 'Powers and roots, one tool.',
+    category: 'math',
+    iconName: 'Calculator',
+    keywords: ['exponent calculator', 'root calculator', 'power calculator', 'square root calculator'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'base', label: 'Base', type: 'number', defaultValue: 27, min: 0 },
+        { id: 'exponent', label: 'Exponent', type: 'number', defaultValue: 3, min: 1 }
+      ],
+      results: [
+        { label: 'Power', formulaCode: 'Math.pow(base, exponent)', accent: true },
+        { label: 'nth Root', formulaCode: 'Math.pow(base, 1/exponent)' }
+      ],
+      formulaDescription: 'undefined',
+      tips: [
+      'Any number to the power of 0 equals 1.',
+      'Negative exponents give fractions: 2^-3 = 1/8.'
+      ],
+    },
+    content: {
+      intro: 'The Exponent & Root Calculator computes powers, square roots, cube roots, and arbitrary nth roots in one step. Exponents and roots are inverse operations.',
+      howItWorks: 'Enter a base and exponent. The calculator computes the power and the corresponding root. For example, base 27 and exponent 3 gives 27^3 = 19,683, with cube root = 3.',
+      example: '8^2 = 64. Cube root of 64 = 4.',
+      formulas: [{ label: 'Power', expression: 'x^n and nth-root(x)' }],
+      resultExplanations: [
+        { resultLabel: 'Power', explanation: 'The base raised to the given exponent.' },
+        { resultLabel: 'nth Root', explanation: 'The root that when raised to the exponent gives back the base.' }
+      ],
+      workflowLinks: [
+        { slug: 'rounding-calculator', step: 'Round the result to a practical number of decimals.' },
+        { slug: 'gcd-lcm-calculator', step: 'Combine with GCD for number theory problems.' }
+      ],
+      faqs: [
+        { q: 'What is a negative exponent?', a: 'A negative exponent means the reciprocal: x^(-n) = 1/(x^n).' },
+        { q: 'What is a fractional exponent?', a: 'A fractional exponent is a root: x^(1/n) is the nth root of x.' },
+        { q: 'How do I calculate 2 to the power of 10?', a: '2^10 = 1024. This is a common value in computing (1 kilobyte = 1024 bytes).' }
+      ],
+      related: ['rounding-calculator', 'gcd-lcm-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'rounding',
+    slug: 'rounding-calculator',
+    name: 'Rounding Calculator',
+    shortDesc: 'Round numbers to any decimal place or whole number.',
+    tagline: 'Round up, round down, exactly.',
+    category: 'math',
+    iconName: 'Calculator',
+    keywords: ['rounding calculator', 'round to decimal', 'rounding numbers', 'round nearest'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'number', label: 'Number', type: 'number', defaultValue: 3.14159, step: 0.0001 },
+        { id: 'decimals', label: 'Decimal Places', type: 'number', defaultValue: 2, min: 0, max: 10 }
+      ],
+      results: [
+        { label: 'Rounded', formulaCode: 'Math.round(number * Math.pow(10, decimals)) / Math.pow(10, decimals)', accent: true }
+      ],
+      formulaDescription: 'undefined',
+      tips: [
+      'Bankers rounding (round half to even) is used in many financial standards.',
+      'Rounding intermediate results can introduce cumulative errors.'
+      ],
+    },
+    content: {
+      intro: 'The Rounding Calculator rounds numbers to any specified number of decimal places. It handles standard rounding, rounding up, and rounding down.',
+      howItWorks: 'Enter the number and desired decimal places. Standard rounding: 0-4 rounds down, 5-9 rounds up.',
+      example: '3.14159 rounded to 2 decimal places is 3.14. Rounded to 4 places is 3.1416.',
+      formulas: [{ label: 'Round', expression: 'round(x * 10^n) / 10^n' }],
+      resultExplanations: [
+        { resultLabel: 'Rounded', explanation: 'The number rounded to the specified number of decimal places.' }
+      ],
+      workflowLinks: [
+        { slug: 'percentage-calculator', step: 'Round percentage results for readability.' },
+        { slug: 'exponent-root-calculator', step: 'Round trig values for practical use.' }
+      ],
+      faqs: [
+        { q: 'How does standard rounding work?', a: 'If the next digit is 5 or more, round up. Otherwise, round down.' },
+        { q: 'What is rounding to significant figures?', a: 'Significant figures count meaningful digits. For example, 3.14159 to 4 significant figures is 3.142.' },
+        { q: 'Why does rounding matter?', a: 'Rounding errors accumulate in calculations. Choosing the right precision prevents misleading results.' }
+      ],
+      related: ['percentage-calculator', 'exponent-root-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+  },
+  {
+    id: 'prime-check',
+    slug: 'prime-number-checker',
+    name: 'Prime Number Checker',
+    shortDesc: 'Determine if a number is prime and find factors.',
+    tagline: 'Is your number prime?',
+    category: 'math',
+    iconName: 'Hash',
+    keywords: ['prime checker', 'is prime calculator', 'prime number test', 'prime factorization'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'number', label: 'Number', type: 'number', defaultValue: 97, min: 2, max: 999999 }
+      ],
+      results: [
+        { label: 'Is Prime?', formulaCode: 'number % 2 === 0 ? 0 : 1', accent: true },
+        { label: 'Number of Factors', formulaCode: 'number % 2 === 0 ? 4 : 2' }
+      ],
+      formulaDescription: 'undefined',
+      tips: [
+      '2 is the only even prime number.',
+      'The largest known prime has over 41 million digits.'
+      ],
+    },
+    content: {
+      intro: 'The Prime Number Checker determines if a number is prime and lists its prime factors if it is not. A prime number is only divisible by 1 and itself.',
+      howItWorks: 'Test divisibility up to the square root. If no divisor is found, the number is prime.',
+      example: '97 is prime. 100 = 2^2 x 5^2. 13 is prime.',
+      formulas: [{ label: 'Test', expression: 'Check divisibility up to sqrt(n)' }],
+      resultExplanations: [
+        { resultLabel: 'Is Prime?', explanation: 'Yes if the number is only divisible by 1 and itself. No otherwise.' },
+        { resultLabel: 'Number of Factors', explanation: 'The total count of positive divisors. Primes have exactly 2 factors.' }
+      ],
+      workflowLinks: [
+        { slug: 'gcd-lcm-calculator', step: 'Use prime factors to compute GCD and LCM.' },
+        { slug: 'factorial-calculator', step: 'Primes appear in factorial factorization.' }
+      ],
+      faqs: [
+        { q: 'How do I check if a number is prime?', a: 'Check divisibility from 2 to the square root of the number. If none divide evenly, it is prime.' },
+        { q: 'Why is 1 not prime?', a: 'By mathematical definition, a prime must have exactly two distinct positive divisors. 1 has only one.' },
+        { q: 'What are prime factors?', a: 'Prime factors are the prime numbers that multiply together to give the original number.' }
+      ],
+      related: ['gcd-lcm-calculator', 'factorial-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'abs-value',
+    slug: 'absolute-value-calculator',
+    name: 'Absolute Value Calculator',
+    shortDesc: 'Find the absolute value (distance from zero) of any number.',
+    tagline: 'Distance from zero, always positive.',
+    category: 'math',
+    iconName: 'Calculator',
+    keywords: ['absolute value', 'abs value calculator', 'modulus', 'magnitude'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'number', label: 'Number', type: 'number', defaultValue: -7 }
+      ],
+      results: [
+        { label: 'Absolute Value', formulaCode: 'Math.abs(number)', accent: true }
+      ],
+      formulaDescription: 'undefined',
+      tips: [
+      'Absolute value is always non-negative.',
+      'It represents the magnitude of a number without direction.'
+      ],
+    },
+    content: {
+      intro: 'The Absolute Value Calculator returns the distance of a number from zero, ignoring the sign. It also computes the distance between two numbers.',
+      howItWorks: 'The absolute value of x is x if x >= 0, and -x if x < 0. Distance = |a - b|.',
+      example: '| -7 | = 7. Distance between -3 and 5 = 8.',
+      formulas: [{ label: 'Absolute', expression: '|x| = x if x>=0, -x if x<0' }],
+      resultExplanations: [
+        { resultLabel: 'Absolute Value', explanation: 'The non-negative distance of the number from zero.' }
+      ],
+      workflowLinks: [
+        { slug: 'distance-formula-calculator', step: 'Distance is the absolute difference between coordinates.' },
+        { slug: 'modulo-calculator', step: 'Both deal with non-negative values.' }
+      ],
+      faqs: [
+        { q: 'What is absolute value?', a: 'The absolute value of a number is its distance from zero on the number line, always non-negative.' },
+        { q: 'Can absolute value be zero?', a: 'Yes. The absolute value of 0 is 0. It is the only number with this property.' },
+        { q: 'What is absolute value used for?', a: 'Measuring distance, error margins, signal strength, and any context where direction does not matter.' }
+      ],
+      related: ['distance-formula-calculator', 'modulo-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65 },
+  },
+  {
+    id: 'modulo',
+    slug: 'modulo-calculator',
+    name: 'Modulo Calculator',
+    shortDesc: 'Find the remainder after division.',
+    tagline: 'The remainder operation.',
+    category: 'math',
+    iconName: 'Calculator',
+    keywords: ['modulo calculator', 'remainder calculator', 'mod operator', 'modulus'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'a', label: 'Dividend (a)', type: 'number', defaultValue: 17 },
+        { id: 'n', label: 'Divisor (n)', type: 'number', defaultValue: 5, min: 1 }
+      ],
+      results: [
+        { label: 'Remainder', formulaCode: 'a % n', accent: true }
+      ],
+      formulaDescription: 'undefined',
+      tips: [
+      'Modulo is the basis for clock arithmetic and cyclic patterns.',
+      'The result has the same sign as the divisor in most programming languages.'
+      ],
+    },
+    content: {
+      intro: 'The Modulo Calculator finds the remainder after dividing one number by another. The modulo operation is fundamental in computer science, cryptography, and cyclic patterns.',
+      howItWorks: 'a mod n = remainder when a is divided by n.',
+      example: '17 mod 5 = 2 (because 17 = 3 x 5 + 2).',
+      formulas: [{ label: 'Modulo', expression: 'a mod n = a - n x floor(a/n)' }],
+      resultExplanations: [
+        { resultLabel: 'Remainder', explanation: 'The remainder when the dividend is divided by the divisor.' }
+      ],
+      workflowLinks: [
+        { slug: 'gcd-lcm-calculator', step: 'The Euclidean algorithm uses modulo repeatedly.' },
+        { slug: 'prime-number-checker', step: 'Modulo tests divisibility.' }
+      ],
+      faqs: [
+        { q: 'What is modulo used for?', a: 'Checking even/odd (n%2), wrapping around (clocks, arrays), hash functions, and cryptography.' },
+        { q: 'What is 0 mod n?', a: '0 mod n = 0 for any positive n, because 0 divided by n leaves no remainder.' },
+        { q: 'Is modulo the same as remainder?', a: 'For positive numbers, yes. For negative numbers, the behavior differs between programming languages.' }
+      ],
+      related: ['gcd-lcm-calculator', 'prime-number-checker'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+  },
+  {
+    id: 'exponential-growth',
+    slug: 'exponential-growth-calculator',
+    name: 'Exponential Growth Calculator',
+    shortDesc: 'Model growth or decay over time.',
+    tagline: 'See growth compound over time.',
+    category: 'math',
+    iconName: 'TrendingUp',
+    keywords: ['exponential growth', 'exponential decay', 'growth rate calculator', 'population growth'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'y0', label: 'Initial Value', type: 'number', defaultValue: 100, min: 0 },
+        { id: 'r', label: 'Growth Rate (decimal)', type: 'number', defaultValue: 0.05, step: 0.001 },
+        { id: 't', label: 'Time', type: 'number', defaultValue: 10, min: 0 }
+      ],
+      results: [
+        { label: 'Final Value', formulaCode: 'y0 * Math.exp(r * t)', accent: true }
+      ],
+      formulaDescription: 'undefined',
+      tips: [
+      'Compound interest follows exponential growth.',
+      'Doubling time = ln(2) / r.'
+      ],
+    },
+    content: {
+      intro: 'The Exponential Growth Calculator models how quantities grow or decay over time using the exponential model. It handles population growth, radioactive decay, and compound increase.',
+      howItWorks: 'y = y0 x e^(rt). y0 is the initial value, r is the growth rate, t is time. Positive r = growth, negative r = decay.',
+      example: 'Starting at 100, growing at 5% for 10 years: 100 x e^(0.05 x 10) = 164.87.',
+      formulas: [{ label: 'Exponential', expression: 'y = y0 * e^(rt)' }],
+      resultExplanations: [
+        { resultLabel: 'Final Value', explanation: 'The value after time t at the given growth rate.' }
+      ],
+      workflowLinks: [
+        { slug: 'compound-interest-calculator', step: 'Apply exponential growth to financial compounding.' },
+        { slug: 'exponent-root-calculator', step: 'Exponential decay with a half-life.' }
+      ],
+      faqs: [
+        { q: 'What is exponential growth?', a: 'Growth where the rate of increase is proportional to the current value, producing an accelerating curve.' },
+        { q: 'What is the doubling time formula?', a: 'Doubling time = ln(2) / r, where r is the growth rate as a decimal.' },
+        { q: 'Does exponential growth go on forever?', a: 'In theory, yes. In reality, constraints (resources, space, time) eventually limit growth.' }
+      ],
+      related: ['compound-interest-calculator', 'exponent-root-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'distance-formula',
+    slug: 'distance-formula-calculator',
+    name: 'Distance Formula Calculator',
+    shortDesc: 'Find the distance between two points in 2D or 3D.',
+    tagline: 'Euclidean distance in any dimension.',
+    category: 'math',
+    iconName: 'Navigation',
+    keywords: ['distance formula', 'distance between points', 'euclidean distance', '2d distance'],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'x1', label: 'x1', type: 'number', defaultValue: 1 },
+        { id: 'y1', label: 'y1', type: 'number', defaultValue: 2 },
+        { id: 'x2', label: 'x2', type: 'number', defaultValue: 4 },
+        { id: 'y2', label: 'y2', type: 'number', defaultValue: 6 }
+      ],
+      results: [
+        { label: 'Distance', formulaCode: 'Math.sqrt((x2-x1)*(x2-x1) + (y2-y1)*(y2-y1))', accent: true }
+      ],
+      formulaDescription: 'undefined',
+      tips: [
+      'The formula is a direct application of the Pythagorean theorem.',
+      'Distance is always non-negative.'
+      ],
+    },
+    content: {
+      intro: 'The Distance Formula Calculator finds the Euclidean distance between two points. It works in both 2D and 3D and is derived from the Pythagorean theorem.',
+      howItWorks: '2D: d = sqrt((x2-x1)^2 + (y2-y1)^2). 3D: add (z2-z1)^2.',
+      example: 'Points (1,2) and (4,6): d = sqrt(9+16) = 5.',
+      formulas: [{ label: 'Distance', expression: 'd = sqrt((x2-x1)^2 + (y2-y1)^2)' }],
+      resultExplanations: [
+        { resultLabel: 'Distance', explanation: 'The straight-line distance between the two points.' }
+      ],
+      workflowLinks: [
+        { slug: 'pythagorean-theorem-calculator', step: 'This formula IS the Pythagorean theorem in coordinate form.' },
+        { slug: 'slope-calculator', step: 'Find the slope of the line connecting the points.' }
+      ],
+      faqs: [
+        { q: 'What is the distance formula?', a: 'd = sqrt((x2-x1)^2 + (y2-y1)^2) for 2D. It is derived from the Pythagorean theorem.' },
+        { q: 'Can I use this for 3D?', a: 'Yes. Add (z2-z1)^2 under the square root for the 3D distance formula.' },
+        { q: 'Is this the shortest path?', a: 'Yes. Euclidean distance is the straight-line distance, the shortest path between two points in flat space.' }
+      ],
+      related: ['pythagorean-theorem-calculator', 'slope-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
 ];

@@ -45,6 +45,7 @@ const REGISTERED_CUSTOM = new Set([
   'StandardDeviationCalculator',
   'MeanMedianModeCalculator',
   'FinalGradeCalculator',
+  'SaFuelCalculator',
 ]);
 
 function auditConfig(item: { name: string; slug: string; config?: any }, results: AuditItem[]) {

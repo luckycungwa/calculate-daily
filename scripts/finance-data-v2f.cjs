@@ -1,0 +1,67 @@
+module.exports = [
+  {
+    id: 'debt-consolidation', slug: 'debt-consolidation-calculator', name: 'Debt Consolidation Calculator',
+    shortDesc: 'Compare consolidation options and see how much you could save.',
+    tagline: 'Simplify your debt payoff.', icon: 'Calculator', priority: 0.85,
+    keywords: ['debt consolidation', 'consolidation calculator', 'combine debt'],
+    intro: 'The Debt Consolidation Calculator compares your current debt payments with a consolidated loan to show potential savings in interest and payoff time. It helps you decide if combining multiple debts into one payment makes financial sense.',
+    howItWorks: 'Enter each debt with its balance, interest rate, and monthly payment. Then enter the proposed consolidation loan terms. The calculator compares total interest paid under both scenarios.',
+    example: 'Three credit cards totaling $12,000 at rates of 18%, 22%, and 15% with combined payments of $500/month cost $3,200 in interest. A consolidation loan at 9% for 36 months costs $1,720 in interest, saving $1,480.',
+    formulaLabel: 'Savings', formulaExpr: 'Savings = Current Interest - Consolidation Interest',
+    formulaDesc: 'Compares total interest under current debts versus a consolidated loan.',
+    fields: [
+      { id: 'totalDebt', label: 'Total Debt Amount', type: 'number', defaultValue: 12000, min: 0, prefix: '$' },
+      { id: 'currentRate', label: 'Current Average APR', type: 'number', defaultValue: 18, min: 0, suffix: '%' },
+      { id: 'currentPayment', label: 'Current Monthly Payment', type: 'number', defaultValue: 500, min: 1, prefix: '$' },
+      { id: 'newRate', label: 'Consolidation APR', type: 'number', defaultValue: 9, min: 0, suffix: '%' },
+      { id: 'newPayment', label: 'Proposed Monthly Payment', type: 'number', defaultValue: 400, min: 1, prefix: '$' },
+    ],
+    results: [
+      { label: 'Current Total Interest', formulaCode: '(function(){ var m = 0; var bal = totalDebt; var r = currentRate/12/100; while(bal > 0 && m < 600) { var int = bal * r; bal = bal + int - currentPayment; m++; } return m * currentPayment - totalDebt; })()', prefix: '$', accent: true },
+      { label: 'New Total Interest', formulaCode: '(function(){ var m = 0; var bal = totalDebt; var r = newRate/12/100; while(bal > 0 && m < 600) { var int = bal * r; bal = bal + int - newPayment; m++; } return m * newPayment - totalDebt; })()', prefix: '$' },
+    ],
+    resultExplanations: [
+      { label: 'Current Total Interest', explanation: 'How much interest you pay keeping your current debt structure.' },
+      { label: 'New Total Interest', explanation: 'Interest paid under the consolidation loan.' },
+    ],
+    workflow: [['credit-card-payoff-calculator', 'See individual card payoff times.'], ['budget-calculator', 'Find room for higher payments.']],
+    faqs: [
+      { q: 'Should I consolidate my debt?', a: 'If the new rate is lower and you can pay it off faster, consolidation saves money. Watch for origination fees.' },
+      { q: 'Does consolidation hurt my credit?', a: 'Initially it may lower your score slightly, but consistent on-time payments on the new loan help your score over time.' },
+      { q: 'What debts can I consolidate?', a: 'Credit cards, personal loans, medical bills, and some student loans. Secured debts like mortgages are typically not consolidated.' },
+    ],
+    related: ['credit-card-payoff-calculator', 'budget-calculator', 'loan-payment-calculator'],
+  },
+  {
+    id: 'retirement', slug: 'retirement-calculator', name: 'Retirement Savings Calculator',
+    shortDesc: 'Estimate if your current savings will be enough for retirement.',
+    tagline: 'Plan your future self.', icon: 'Calculator', priority: 0.95,
+    keywords: ['retirement calculator', 'retirement savings', 'how much to retire', 'retirement planning'],
+    intro: 'The Retirement Savings Calculator projects whether your current savings and contributions will fund your desired retirement lifestyle. It accounts for inflation, investment returns, and Social Security to give a realistic picture.',
+    howItWorks: 'The calculator projects your savings growth based on current balance, monthly contributions, expected return, and years until retirement. It compares the projected nest egg against your retirement income needs.',
+    example: 'You have $50,000 saved, contribute $500/month, expect 7% returns, and plan to retire in 25 years. You will have about $536,000. With 4% withdrawal rate, that provides $21,440/year from savings plus Social Security.',
+    formulaLabel: 'Future Value', formulaExpr: 'FV = PV(1+r)^n + PMT x [(1+r)^n - 1] / r',
+    formulaDesc: 'FV = PV(1+r)^n + PMT x [(1+r)^n - 1] / r',
+    fields: [
+      { id: 'currentSavings', label: 'Current Savings', type: 'number', defaultValue: 50000, min: 0, prefix: '$' },
+      { id: 'monthly', label: 'Monthly Contribution', type: 'number', defaultValue: 500, min: 0, prefix: '$' },
+      { id: 'returnRate', label: 'Expected Annual Return', type: 'number', defaultValue: 7, min: 0, suffix: '%' },
+      { id: 'yearsToRetire', label: 'Years Until Retirement', type: 'number', defaultValue: 25, min: 1 },
+    ],
+    results: [
+      { label: 'Projected Nest Egg', formulaCode: '(function(){ var r = returnRate/12/100; var n = yearsToRetire * 12; return currentSavings * Math.pow(1+r, n) + monthly * (Math.pow(1+r, n) - 1) / r; })()', prefix: '$', accent: true },
+      { label: 'Annual Retirement Income', formulaCode: '(function(){ var r = returnRate/12/100; var n = yearsToRetire * 12; var fv = currentSavings * Math.pow(1+r, n) + monthly * (Math.pow(1+r, n) - 1) / r; return fv * 0.04; })()', prefix: '$' },
+    ],
+    resultExplanations: [
+      { label: 'Projected Nest Egg', explanation: 'Your estimated retirement savings at the time you retire.' },
+      { label: 'Annual Retirement Income', explanation: 'Using the 4% safe withdrawal rule, this is your annual income from savings.' },
+    ],
+    workflow: [['compound-interest-calculator', 'Model investment growth.'], ['inflation-adjusted-return', 'Adjust for purchasing power.']],
+    faqs: [
+      { q: 'How much do I need to retire?', a: 'A common target is 25x your annual expenses. If you spend $50,000/year, aim for $1.25 million in savings.' },
+      { q: 'What is the 4% rule?', a: 'The rule says you can safely withdraw 4% of your portfolio annually in retirement without running out of money over 30 years.' },
+      { q: 'Should I include Social Security?', a: 'Yes, but do not rely on it fully. Treat it as supplemental income, not your primary retirement funding source.' },
+    ],
+    related: ['compound-interest-calculator', 'inflation-adjusted-return', 'net-worth-calculator'],
+  },
+];

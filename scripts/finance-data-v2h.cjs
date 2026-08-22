@@ -1,0 +1,66 @@
+module.exports = [
+  {
+    id: 'savings-goal', slug: 'savings-goal-calculator', name: 'Savings Goal Calculator',
+    shortDesc: 'Find out how much to save monthly to reach your financial goal.',
+    tagline: 'Hit your target on time.', icon: 'Calculator', priority: 0.85,
+    keywords: ['savings goal', 'savings calculator', 'how much to save', 'savings plan'],
+    intro: 'The Savings Goal Calculator tells you exactly how much to set aside each month to reach a specific financial target by your deadline. Whether saving for a vacation, down payment, or emergency fund, it gives you a concrete monthly number.',
+    howItWorks: 'Divide the goal amount by the number of months to get a baseline. Then the calculator adjusts for any interest earned in a high-yield savings account, giving you the exact monthly deposit needed.',
+    example: 'You need $10,000 for a down payment in 18 months. At 4.5% APY in a savings account, you need to save $530 per month instead of $556 without interest.',
+    formulaLabel: 'Monthly Savings', formulaExpr: 'Payment = Goal / [(1+r)^n - 1] / r',
+    formulaDesc: 'Payment = Goal / [(1+r)^n - 1] / r',
+    fields: [
+      { id: 'goal', label: 'Savings Goal', type: 'number', defaultValue: 10000, min: 0, prefix: '$' },
+      { id: 'months', label: 'Months Until Goal', type: 'number', defaultValue: 18, min: 1 },
+      { id: 'rate', label: 'Savings APY', type: 'number', defaultValue: 4.5, min: 0, suffix: '%' },
+    ],
+    results: [
+      { label: 'Monthly Savings Needed', formulaCode: '(function(){ var r = rate/12/100; if(r === 0) return goal/months; return goal * r / (Math.pow(1+r, months) - 1); })()', prefix: '$', accent: true },
+      { label: 'Total Deposited', formulaCode: '(function(){ var r = rate/12/100; var p = r === 0 ? goal/months : goal * r / (Math.pow(1+r, months) - 1); return p * months; })()', prefix: '$' },
+    ],
+    resultExplanations: [
+      { label: 'Monthly Savings Needed', explanation: 'The exact amount to deposit each month to reach your goal on time.' },
+      { label: 'Total Deposited', explanation: 'The total you will put in over the saving period. Interest earned is the difference from your goal.' },
+    ],
+    workflow: [['emergency-fund-calculator', 'Set an emergency fund target.'], ['budget-calculator', 'Find room in your budget for savings.']],
+    faqs: [
+      { q: 'What interest rate should I assume?', a: 'Use current high-yield savings rates, typically 4-5% APY. Check your bank for the current rate.' },
+      { q: 'Should I save or invest for short-term goals?', a: 'For goals under 3 years, keep savings in a high-yield account. For longer goals, investing may earn more but with risk.' },
+      { q: 'What if I cannot save enough monthly?', a: 'Extend your timeline, reduce the goal amount, or find ways to increase income temporarily.' },
+    ],
+    related: ['emergency-fund-calculator', 'budget-calculator', 'retirement-calculator'],
+  },
+  {
+    id: 'salary-hourly', slug: 'salary-to-hourly-calculator', name: 'Salary to Hourly Calculator',
+    shortDesc: 'Convert your annual salary to an hourly, daily, weekly, or monthly rate.',
+    tagline: 'Know your real hourly worth.', icon: 'Calculator', priority: 0.85,
+    keywords: ['salary to hourly', 'annual salary to hourly', 'pay calculator', 'hourly rate'],
+    intro: 'The Salary to Hourly Calculator converts your annual salary into hourly, daily, weekly, and monthly pay rates. Useful for comparing job offers, negotiating freelance rates, or understanding what your time is actually worth per hour.',
+    howItWorks: 'Divide the annual salary by 2,080 (40 hours x 52 weeks) for hourly rate. Then derive daily (x8), weekly (x40), and monthly (x40/52 x weeks) from the hourly figure. Assumes a standard 40-hour work week.',
+    example: 'A $75,000 annual salary equals $36.06/hour, $288.46/day, $1,442.31/week, and $6,250/month before taxes.',
+    formulaLabel: 'Hourly Rate', formulaExpr: 'Hourly = Salary / 2,080',
+    formulaDesc: 'Hourly = Salary / 2,080',
+    fields: [
+      { id: 'salary', label: 'Annual Salary', type: 'number', defaultValue: 75000, min: 0, prefix: '$' },
+    ],
+    results: [
+      { label: 'Hourly Rate', formulaCode: 'salary / 2080', prefix: '$', accent: true },
+      { label: 'Daily Rate', formulaCode: 'salary / 2080 * 8', prefix: '$' },
+      { label: 'Weekly Pay', formulaCode: 'salary / 52', prefix: '$' },
+      { label: 'Monthly Pay', formulaCode: 'salary / 12', prefix: '$' },
+    ],
+    resultExplanations: [
+      { label: 'Hourly Rate', explanation: 'Your effective hourly wage assuming a 40-hour work week and 52 weeks per year.' },
+      { label: 'Daily Rate', explanation: 'Based on an 8-hour work day.' },
+      { label: 'Weekly Pay', explanation: 'Gross pay per week before deductions.' },
+      { label: 'Monthly Pay', explanation: 'Gross monthly income before taxes and deductions.' },
+    ],
+    workflow: [['tip-calculator', 'Calculate tips based on your hourly rate.'], ['budget-calculator', 'Build a budget from your salary.']],
+    faqs: [
+      { q: 'Why 2,080 hours?', a: '40 hours per week x 52 weeks = 2,080. This is the standard full-time work year used for salary conversions.' },
+      { q: 'Does this include overtime?', a: 'No. This calculates based on standard hours. If you work overtime, your effective hourly rate is higher.' },
+      { q: 'How do I compare salary vs hourly jobs?', a: 'Convert the salary to hourly using this calculator, then compare. Also consider benefits, stability, and flexibility differences.' },
+    ],
+    related: ['budget-calculator', 'net-worth-calculator'],
+  },
+];

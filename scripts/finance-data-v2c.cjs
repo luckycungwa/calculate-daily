@@ -1,0 +1,66 @@
+module.exports = [
+  {
+    id: 'mortgage-payment', slug: 'mortgage-payment-calculator', name: 'Mortgage Payment Calculator',
+    shortDesc: 'Calculate monthly mortgage payments with principal, interest, taxes, and insurance.',
+    tagline: 'Know what your home really costs.', icon: 'Calculator', priority: 0.95,
+    keywords: ['mortgage payment', 'mortgage calculator', 'monthly payment', 'home loan'],
+    intro: 'The Mortgage Payment Calculator computes your total monthly housing payment including principal, interest, property taxes, and insurance (PITI). Understanding this number is essential before buying a home.',
+    howItWorks: 'Monthly P&I equals the loan amount multiplied by a factor based on rate and term. Add property taxes divided by 12 and annual insurance divided by 12 for total PITI.',
+    example: 'A $300,000 loan at 6.5% for 30 years has a $1,896 monthly P&I payment. Add $300 taxes and $150 insurance for total PITI of $2,346.',
+    formulaLabel: 'Mortgage Payment', formulaExpr: 'M = P[r(1+r)^n] / [(1+r)^n - 1]',
+    formulaDesc: 'M = P[r(1+r)^n] / [(1+r)^n - 1]',
+    fields: [
+      { id: 'loan', label: 'Loan Amount', type: 'number', defaultValue: 300000, min: 0, prefix: '$' },
+      { id: 'rate', label: 'Annual Interest Rate', type: 'number', defaultValue: 6.5, min: 0, suffix: '%' },
+      { id: 'years', label: 'Loan Term (Years)', type: 'number', defaultValue: 30, min: 1 },
+      { id: 'taxes', label: 'Monthly Property Taxes', type: 'number', defaultValue: 300, min: 0, prefix: '$' },
+      { id: 'insurance', label: 'Monthly Insurance', type: 'number', defaultValue: 150, min: 0, prefix: '$' },
+    ],
+    results: [
+      { label: 'Monthly P&I', formulaCode: 'loan * (rate/12/100 * Math.pow(1 + rate/12/100, years*12)) / (Math.pow(1 + rate/12/100, years*12) - 1)', prefix: '$', accent: true },
+      { label: 'Total PITI', formulaCode: 'loan * (rate/12/100 * Math.pow(1 + rate/12/100, years*12)) / (Math.pow(1 + rate/12/100, years*12) - 1) + taxes + insurance', prefix: '$' },
+    ],
+    resultExplanations: [
+      { label: 'Monthly P&I', explanation: 'Principal and interest only, the base mortgage payment.' },
+      { label: 'Total PITI', explanation: 'Complete monthly housing cost including taxes and insurance.' },
+    ],
+    workflow: [['debt-to-income-calculator', 'Check if this payment fits your DTI.'], ['loan-affordability-calculator', 'See how much you can borrow.']],
+    faqs: [
+      { q: 'What is PITI?', a: 'Principal, Interest, Taxes, and Insurance. The four components of a total monthly mortgage payment.' },
+      { q: 'Should I get a 15 or 30 year mortgage?', a: 'A 15-year saves massive interest but has higher payments. A 30-year has lower payments but costs more total interest.' },
+      { q: 'Does this include PMI?', a: 'No. If your down payment is less than 20%, add private mortgage insurance (PMI), typically $100-200/month.' },
+    ],
+    related: ['debt-to-income-calculator', 'loan-affordability-calculator'],
+  },
+  {
+    id: 'tip-calculator-v2', slug: 'tip-split-calculator', name: 'Tip & Bill Split Calculator',
+    shortDesc: 'Calculate tip amounts and split bills evenly for dining out.',
+    tagline: 'Fair tipping made simple.', icon: 'Calculator', priority: 0.9,
+    keywords: ['tip calculator', 'gratuity calculator', 'bill split', 'restaurant tip'],
+    intro: 'The Tip and Bill Split Calculator computes gratuity and splits the total evenly when dining with friends. It handles the math so you know exactly what each person owes without awkward mental math at the table.',
+    howItWorks: 'Enter the bill amount, select a tip percentage, and specify how many people are splitting. The calculator shows the tip amount, total bill, and per-person cost.',
+    example: 'A $120 dinner with 20% tip split 4 ways: tip is $24, total is $144, each person pays $36.',
+    formulaLabel: 'Tip', formulaExpr: 'tip = bill x tip%',
+    formulaDesc: 'tip = bill x tip%',
+    fields: [
+      { id: 'bill', label: 'Bill Amount', type: 'number', defaultValue: 120, min: 0, prefix: '$' },
+      { id: 'tipPct', label: 'Tip Percentage', type: 'number', defaultValue: 20, min: 0, suffix: '%' },
+      { id: 'people', label: 'Number of People', type: 'number', defaultValue: 4, min: 1 },
+    ],
+    results: [
+      { label: 'Tip Amount', formulaCode: 'bill * tipPct / 100', prefix: '$', accent: true },
+      { label: 'Per Person', formulaCode: '(bill + bill * tipPct / 100) / people', prefix: '$' },
+    ],
+    resultExplanations: [
+      { label: 'Tip Amount', explanation: 'The total gratuity added to the bill.' },
+      { label: 'Per Person', explanation: 'What each person pays including their share of the tip.' },
+    ],
+    workflow: [['budget-calculator', 'Track your monthly dining spend.'], ['budget-calculator', 'Plan your overall budget.']],
+    faqs: [
+      { q: 'What is the standard tip in the US?', a: '15-20% for sit-down restaurants. 10-15% for takeout. $1-2 per drink at bars.' },
+      { q: 'Should I tip on the pre-tax or post-tax bill?', a: 'Traditionally on the pre-tax amount. Many people tip on the total for simplicity.' },
+      { q: 'How do I handle large group dining?', a: 'For groups of 8+, some restaurants add automatic gratuity. Check before calculating your own tip.' },
+    ],
+    related: ['budget-calculator'],
+  },
+];

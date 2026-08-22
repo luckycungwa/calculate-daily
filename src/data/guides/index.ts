@@ -1,4 +1,12 @@
 import { Guide } from '../../types';
+import { debtPayoffGuide } from './individual/debt-payoff';
+import { compoundInterestGuide } from './individual/compound-interest';
+import { bmiWeightGuide } from './individual/bmi-weight';
+import { runningTrainingGuide } from './individual/running-training';
+import { homeRenovationGuide } from './individual/home-renovation';
+import { cookingWeightGuide } from './individual/cooking-weight';
+import { percentageGuide } from './individual/percentages';
+import { datePlanningGuide } from './individual/date-planning';
 
 export const GUIDE_REGISTRY: Guide[] = [
   {
@@ -64,8 +72,8 @@ export const GUIDE_REGISTRY: Guide[] = [
       { q: 'What credit score do I need?', a: 'Conventional loans typically require 620+. FHA loans accept 580+. Better credit means better rates. Even a 0.5% rate difference costs tens of thousands over the loan term.' },
     ],
     embeddedCalculators: ['affordability-calculator', 'mortgage-calculator', 'amortization-schedule-calculator', 'down-payment-savings-calculator'],
-    relatedCalculators: ['closing-cost-calculator', 'rent-vs-buy-calculator', 'home-equity-calculator', 'refinance-calculator'],
-    relatedGuides: [],
+    relatedCalculators: ['closing-cost-calculator', 'compound-interest-calculator', 'simple-interest-calculator'],
+    relatedGuides: ['debt-payoff-strategy-guide', 'compound-interest-savings-guide'],
     seo: {
       status: 'index',
       reviewStatus: 'reviewed',
@@ -136,8 +144,8 @@ export const GUIDE_REGISTRY: Guide[] = [
       { q: 'How often should I recalculate TDEE?', a: 'Every 4-6 weeks, or whenever your weight changes by more than 5 pounds. As you lose weight, your TDEE drops, so your calorie target needs to come down too.' },
     ],
     embeddedCalculators: ['tdee-calculator', 'bmr-calculator', 'protein-intake-calculator', 'calories-burned-calculator'],
-    relatedCalculators: ['bmi-calculator', 'body-fat-calculator', 'ideal-weight-calculator', 'water-intake-calculator'],
-    relatedGuides: [],
+    relatedCalculators: ['bmi-calculator', 'body-fat-calculator', 'ideal-weight-calculator'],
+    relatedGuides: ['bmi-body-fat-weight-guide', 'running-pace-training-zones-guide'],
     seo: {
       status: 'index',
       reviewStatus: 'reviewed',
@@ -145,6 +153,14 @@ export const GUIDE_REGISTRY: Guide[] = [
     },
     publishedAt: '2026-08-21',
   },
+  debtPayoffGuide,
+  compoundInterestGuide,
+  bmiWeightGuide,
+  runningTrainingGuide,
+  homeRenovationGuide,
+  cookingWeightGuide,
+  percentageGuide,
+  datePlanningGuide,
 ];
 
 export function getGuideBySlug(slug: string): Guide | undefined {
