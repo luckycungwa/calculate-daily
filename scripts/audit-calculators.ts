@@ -167,12 +167,11 @@ function auditContent(item: { name: string; slug: string; content?: any; seo?: a
     if (!w.slug || !slugSet.has(w.slug)) errors.push(`workflow link "${w?.slug}" does not exist`);
     if (w.slug === item.slug) errors.push(`workflow link "${w?.slug}" self-references`);
   }
-  // SEO gate
-  if (item.seo?.reviewStatus === 'pending') {
-    errors.push('reviewStatus=pending — will be noindexed');
-  }
-  if (item.seo?.status === 'noindex' && !item.seo?.reviewStatus) {
-    errors.push('noindex set but no reviewStatus');
+  // Indexation gate (docs/indexation-policy.md). status=index without a completed review is a
+  // silent trap: the page would be withheld from the sitemap and noindexed (fail-closed).
+  // Unreviewed entries and reviewed-but-noindexed entries are both legitimate states.
+  if (item.seo?.status === 'index' && item.seo?.reviewStatus !== 'reviewed') {
+    errors.push('status=index requires reviewStatus=reviewed');
   }
   results.push({
     name: item.name,
@@ -203,6 +202,110 @@ function main() {
       kind: 'currency-data',
       status: missingRates.length ? 'FAIL' : 'PASS',
       detail: missingRates.length ? `bad fallback rates: ${missingRates.join(', ')}` : `${Object.keys(FALLBACK_RATES).length} fallback rates OK`,
+    });
+  }
+
+  // Slug uniqueness: a duplicate slug renders one entry but emits the same URL twice in the sitemap
+  {
+    const counts = new Map<string, number>();
+    for (const calc of CALCULATOR_CATALOG) {
+      counts.set(calc.slug, (counts.get(calc.slug) ?? 0) + 1);
+    }
+    const duplicates = [...counts.entries()].filter(([, n]) => n > 1);
+    results.push({
+      name: 'catalogue',
+      slug: 'unique-slugs',
+      kind: 'integrity',
+      status: duplicates.length ? 'FAIL' : 'PASS',
+      detail: duplicates.length
+        ? `duplicate slugs: ${duplicates.map(([s, n]) => `${s} x${n}`).join(', ')}`
+        : `${counts.size} unique slugs across ${CALCULATOR_CATALOG.length} entries`,
+    });
+  }
+
+  // Edge-case regressions. These evaluate a single result against overridden inputs,
+  // so they catch maths that is wrong only outside the default values.
+  const evalResult = (slug: string, index: number, overrides: Record<string, number>): number | null => {
+    const calc = CALCULATOR_CATALOG.find((c) => c.slug === slug);
+    if (!calc || calc.kind !== 'config') return null;
+    const spec = calc.config;
+    if (!spec || !spec.fields || !spec.results[index]) return null;
+    const values: Record<string, number> = {};
+    for (const f of spec.fields) values[f.id] = f.defaultValue;
+    Object.assign(values, overrides);
+    const keys = Object.keys(values);
+    try {
+      const fn = new Function(...keys, `"use strict"; return (${spec.results[index].formulaCode});`);
+      return fn(...keys.map((k) => values[k])) as number;
+    } catch {
+      return Number.NaN;
+    }
+  };
+
+  {
+    // A payment that cannot cover the monthly interest must not report a finite payoff.
+    const months = evalResult('credit-card-payoff-calculator', 0, { payment: 1 });
+    const ok = months !== null && !Number.isFinite(months);
+    results.push({
+      name: 'Credit Card Payoff',
+      slug: 'credit-card-payoff-calculator',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok
+        ? 'non-amortising payment returns a non-finite payoff, not a misleading 0'
+        : `expected a non-finite payoff, got ${months}`,
+    });
+  }
+
+  {
+    // 22:00 -> 06:00 is an 8 hour shift that crosses midnight.
+    const hours = evalResult('work-hours-calculator', 0, {
+      startHour: 22,
+      startMin: 0,
+      endHour: 6,
+      endMin: 0,
+      breakMin: 0,
+    });
+    const ok = hours !== null && Math.abs(hours - 8) < 1e-9;
+    results.push({
+      name: 'Work Hours',
+      slug: 'work-hours-calculator',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok ? 'overnight 22:00-06:00 resolves to 8 hours' : `expected 8 hours, got ${hours}`,
+    });
+  }
+
+  {
+    // A 0% loan is a real product, not an error: the payment must be amount / months.
+    const payment = evalResult('loan-payment-calculator', 0, { amount: 20000, annualRate: 0, years: 5 });
+    const ok = payment !== null && Number.isFinite(payment) && Math.abs(payment - 333.3333) < 0.01;
+    results.push({
+      name: 'Loan Payment',
+      slug: 'loan-payment-calculator',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok ? '0% APR resolves to amount / months, not NaN' : `expected 333.33, got ${payment}`,
+    });
+  }
+
+  // Indexation state (docs/indexation-policy.md). Reported, never failed: the three states are all
+  // legitimate. Only the contradiction status=index without reviewed is an error, handled per entry.
+  {
+    const total = CALCULATOR_CATALOG.length;
+    const reviewed = CALCULATOR_CATALOG.filter((c) => c.seo?.reviewStatus === 'reviewed').length;
+    const indexable = CALCULATOR_CATALOG.filter(
+      (c) => c.seo?.status === 'index' && c.seo?.reviewStatus === 'reviewed'
+    ).length;
+    const withheld = CALCULATOR_CATALOG.filter(
+      (c) => c.seo?.reviewStatus === 'reviewed' && c.seo?.status !== 'index'
+    ).length;
+    results.push({
+      name: 'catalogue',
+      slug: 'indexation-policy',
+      kind: 'policy',
+      status: 'PASS',
+      detail: `indexable ${indexable} | reviewed-noindex ${withheld} | unreviewed ${total - reviewed} of ${total}`,
     });
   }
 

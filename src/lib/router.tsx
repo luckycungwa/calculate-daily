@@ -43,6 +43,7 @@ export function parsePath(path: string): Route {
 }
 
 function subscribe(callback: () => void) {
+  if (typeof window === 'undefined') return () => {};
   window.addEventListener('popstate', callback);
   return () => window.removeEventListener('popstate', callback);
 }
@@ -58,7 +59,7 @@ function getServerSearch() {
 export function useRoute(): Route {
   const path = useSyncExternalStore(
     subscribe,
-    () => window.location.pathname,
+    () => (typeof window !== 'undefined' ? window.location.pathname : '/'),
     getServerPath
   );
   return parsePath(path);
@@ -67,7 +68,7 @@ export function useRoute(): Route {
 export function useSearchParams(): URLSearchParams {
   const search = useSyncExternalStore(
     subscribe,
-    () => window.location.search,
+    () => (typeof window !== 'undefined' ? window.location.search : ''),
     getServerSearch
   );
   return new URLSearchParams(search);

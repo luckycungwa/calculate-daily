@@ -21,7 +21,10 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({ slug, onSaveHist
     description: meta?.shortDesc,
     keywords: meta?.keywords,
     canonicalPath: `/calculators/${slug}`,
-    noindex: meta?.seo?.status === 'noindex' || meta?.seo?.reviewStatus === 'pending',
+    noindex:
+      !meta ||
+      meta.seo?.status === 'noindex' ||
+      meta.seo?.reviewStatus === 'pending',
   });
 
   if (!meta) {

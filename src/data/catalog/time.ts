@@ -1,4 +1,4 @@
-﻿import { CalculatorMeta } from '../../types';
+import { CalculatorMeta } from '../../types';
 
 export const TIME_CALCULATORS: CalculatorMeta[] = [
   {
@@ -21,12 +21,13 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
         { id: 'breakMin', label: 'Break Duration', type: 'number', defaultValue: 30, min: 0, suffix: 'min' },
       ],
       results: [
-        { label: 'Hours Worked', formulaCode: '((endHour * 60 + endMin) - (startHour * 60 + startMin) - breakMin) / 60', suffix: 'hours', accent: true },
-        { label: 'Minutes Worked', formulaCode: '(endHour * 60 + endMin) - (startHour * 60 + startMin) - breakMin', suffix: 'min' },
+        { label: 'Hours Worked', formulaCode: '(function(){ var s = startHour * 60 + startMin; var e = endHour * 60 + endMin; if (e < s) { e += 1440; } return Math.max(0, e - s - breakMin) / 60; })()', suffix: 'hours', accent: true },
+        { label: 'Minutes Worked', formulaCode: '(function(){ var s = startHour * 60 + startMin; var e = endHour * 60 + endMin; if (e < s) { e += 1440; } return Math.max(0, e - s - breakMin); })()', suffix: 'min' },
       ],
-      formulaDescription: 'Hours = (End time - Start time - Break) in minutes / 60',
+      formulaDescription: 'Hours = (End time - Start time - Break) in minutes / 60, with an end time earlier than the start treated as the next day',
       tips: [
-        'Use the 24-hour clock so afternoon shifts do not underflow.',
+        'Shifts that cross midnight are handled: 22:00 to 06:00 counts as 8 hours.',
+        'Use the 24-hour clock so afternoon shifts are unambiguous.',
         'Subtract every unpaid break to match payroll.',
       ],
     },
@@ -36,7 +37,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Start and end times convert to total minutes since midnight, the break is subtracted, and the remainder is divided by 60 for decimal hours. The tool also reports the figure in minutes.',
       example:
-        'Working 9:00 AM to 5:30 PM with a 30-minute lunch yields 8.0 hours: (510 - 540 + 30) converted and divided by 60.',
+        'Working 9:00 AM to 5:30 PM with a 30-minute lunch yields 8.0 hours: (1050 - 540 - 30) = 480 minutes, divided by 60.',
       formulas: [
         {
           label: 'Hours Worked',

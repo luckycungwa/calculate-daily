@@ -40,6 +40,8 @@ export function usePageMeta({
   noindex = false,
 }: PageMetaOptions) {
   useEffect(() => {
+    if (typeof document === 'undefined') return;
+
     document.title = title
       ? `${title} | CalculateDaily`
       : 'CalculateDaily - Free Online Calculators & Unit Converters';

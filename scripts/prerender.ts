@@ -5,8 +5,57 @@ import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 
 const distDir = path.join(process.cwd(), 'dist');
-// Production canonical origin. Override per-environment with SITE_URL.
-const SITE_URL = (process.env.SITE_URL || 'https://calculatedaily.com').replace(/\/$/, '');
+
+/**
+ * Canonical origin resolution. A build must never silently canonicalise to a host it is not
+ * actually served from - https://calculatedaily.com currently resolves to a parked page.
+ *
+ *  1. SITE_URL set                    -> use it verbatim (production, or an explicit preview URL).
+ *  2. Vercel preview, no SITE_URL     -> the deployment's own host, in PREVIEW MODE: every page
+ *                                        is noindex and the sitemap advertises nothing.
+ *  3. Vercel production, no SITE_URL  -> fail the build. Never fall back to a guessed domain.
+ *  4. Local build                     -> http://localhost:3000, for inspection only.
+ */
+interface SiteContext {
+  url: string;
+  isPreview: boolean;
+}
+
+function resolveSite(): SiteContext {
+  const explicit = (process.env.SITE_URL || '').trim().replace(/\/+$/, '');
+  const vercelEnv = (process.env.VERCEL_ENV || '').trim();
+  const vercelUrl = (process.env.VERCEL_URL || '').trim().replace(/\/+$/, '');
+
+  if (explicit) {
+    if (!/^https?:\/\/[^/]+/.test(explicit)) {
+      throw new Error(
+        `SITE_URL must be an absolute origin such as https://example.com (received "${explicit}").`
+      );
+    }
+    return { url: explicit, isPreview: false };
+  }
+
+  if (vercelEnv === 'preview' && vercelUrl) {
+    return { url: `https://${vercelUrl}`, isPreview: true };
+  }
+
+  if (vercelEnv === 'production') {
+    throw new Error(
+      'SITE_URL is required for production builds. Set it in the Vercel project settings ' +
+        '(for example https://calculatedaily.com). Refusing to guess a canonical host.'
+    );
+  }
+
+  if (vercelUrl) {
+    return { url: `https://${vercelUrl}`, isPreview: true };
+  }
+
+  return { url: 'http://localhost:3000', isPreview: false };
+}
+
+const site: SiteContext = resolveSite();
+const SITE_URL = site.url;
+const IS_PREVIEW = site.isPreview;
 // Google Search Console verification token. Set GOOGLE_SITE_VERIFICATION at
 // build time to inject <meta name="google-site-verification"> on every page.
 const GOOGLE_SITE_VERIFICATION = (process.env.GOOGLE_SITE_VERIFICATION || '').trim();
@@ -27,8 +76,12 @@ const esc = (s: string) =>
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
 
-const isIndexable = (calc: any) =>
-  calc.seo?.status !== 'noindex' && calc.seo?.reviewStatus !== 'pending';
+// Review-gated indexation (see docs/indexation-policy.md).
+// A page is indexable ONLY when it explicitly opts in with both status: 'index' and
+// reviewStatus: 'reviewed'. Missing or partial metadata fails CLOSED: the page is
+// rendered with `noindex`, receives no canonical, and is excluded from the sitemap.
+const isIndexable = (page: any) =>
+  page.seo?.status === 'index' && page.seo?.reviewStatus === 'reviewed';
 
 function setMeta(html: string, pattern: RegExp, replacement: string): string {
   if (pattern.test(html)) {
@@ -368,6 +421,7 @@ async function main() {
       file: `guides/${guide.slug}.html`,
       title: `${guide.name} | CalculateDaily Guide`,
       description: guide.shortDesc,
+      noindex: !isIndexable(guide),
       jsonLd: [
         {
           '@context': 'https://schema.org',
@@ -411,7 +465,7 @@ async function main() {
       page.description,
       page.path,
       page.jsonLd || [],
-      page.noindex || false
+      page.noindex || IS_PREVIEW
     );
     const outPath = path.join(distDir, page.file);
     fs.mkdirSync(path.dirname(outPath), { recursive: true });
@@ -428,20 +482,24 @@ async function main() {
     'Page Not Found - CalculateDaily',
     'The page you requested does not exist. Browse free calculators and unit converters on CalculateDaily.',
     '/404.html',
-    []
+    [],
+    true
   );
   fs.writeFileSync(path.join(distDir, '404.html'), notFoundHtml);
 
   // Static SEO files (replaces what the Express server used to generate)
-  fs.writeFileSync(
-    path.join(distDir, 'robots.txt'),
-    `User-agent: *
+  const robotsTxt = IS_PREVIEW
+    ? `# Preview build - not intended for indexing.
+User-agent: *
+Disallow: /
+`
+    : `User-agent: *
 Allow: /
 Disallow: /api/
 
 Sitemap: ${SITE_URL}/sitemap.xml
-`
-  );
+`;
+  fs.writeFileSync(path.join(distDir, 'robots.txt'), robotsTxt);
 
   const sitemapUrls: string[] = [
     `${SITE_URL}/`,
@@ -457,7 +515,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
   CALCULATOR_CATALOG.filter(isIndexable).forEach((calc) =>
     sitemapUrls.push(`${SITE_URL}/calculators/${calc.slug}`)
   );
-  GUIDE_REGISTRY.forEach((guide) =>
+  GUIDE_REGISTRY.filter(isIndexable).forEach((guide) =>
     sitemapUrls.push(`${SITE_URL}/guides/${guide.slug}`)
   );
 
@@ -485,7 +543,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 
   const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapUrls.map((u) => {
+${(IS_PREVIEW ? [] : sitemapUrls).map((u) => {
   const pathname = new URL(u).pathname;
   const prio = pagePriority[pathname] ?? 0.6;
   return `  <url>\n    <loc>${u}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${prio}</priority>\n  </url>`;
@@ -493,7 +551,12 @@ ${sitemapUrls.map((u) => {
 </urlset>`;
   fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemapXml);
 
-  console.log(`Prerendered ${rendered} pages + 404.html + robots.txt + sitemap.xml into ${distDir}`);
+  const sitemapCount = IS_PREVIEW ? 0 : sitemapUrls.length;
+  console.log(
+    `Prerendered ${rendered} pages + 404.html + robots.txt + sitemap.xml into ${distDir}\n` +
+      `  canonical origin: ${SITE_URL}\n` +
+      `  sitemap: ${sitemapCount} urls${IS_PREVIEW ? ' (preview mode: every page noindex, sitemap intentionally empty)' : ''}`
+  );
 }
 
 main().catch((err) => {

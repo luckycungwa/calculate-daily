@@ -384,9 +384,9 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
         { id: 'years', label: 'Loan Term', type: 'number', defaultValue: 5, min: 1, suffix: 'yrs' },
       ],
       results: [
-        { label: 'Monthly Payment', formulaCode: '(amount * ((annualRate / 100 / 12) * Math.pow(1 + annualRate / 100 / 12, years * 12))) / (Math.pow(1 + annualRate / 100 / 12, years * 12) - 1)', prefix: '$', accent: true },
-        { label: 'Total Paid Over Term', formulaCode: '((amount * ((annualRate / 100 / 12) * Math.pow(1 + annualRate / 100 / 12, years * 12))) / (Math.pow(1 + annualRate / 100 / 12, years * 12) - 1)) * years * 12', prefix: '$' },
-        { label: 'Total Interest', formulaCode: '(((amount * ((annualRate / 100 / 12) * Math.pow(1 + annualRate / 100 / 12, years * 12))) / (Math.pow(1 + annualRate / 100 / 12, years * 12) - 1)) * years * 12) - amount', prefix: '$' },
+        { label: 'Monthly Payment', formulaCode: '(function(){ var r = annualRate / 100 / 12; var n = years * 12; var f = Math.pow(1 + r, n); return r === 0 ? amount / n : amount * r * f / (f - 1); })()', prefix: '$', accent: true },
+        { label: 'Total Paid Over Term', formulaCode: '(function(){ var r = annualRate / 100 / 12; var n = years * 12; var f = Math.pow(1 + r, n); var m = r === 0 ? amount / n : amount * r * f / (f - 1); return m * n; })()', prefix: '$' },
+        { label: 'Total Interest', formulaCode: '(function(){ var r = annualRate / 100 / 12; var n = years * 12; var f = Math.pow(1 + r, n); var m = r === 0 ? amount / n : amount * r * f / (f - 1); return m * n - amount; })()', prefix: '$' },
       ],
       formulaDescription: 'M = P x r x (1 + r)^n / ((1 + r)^n - 1)',
       tips: [
@@ -1313,15 +1313,19 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
         { id: 'payment', label: 'Monthly Payment', type: 'number', defaultValue: 200, prefix: '$', min: 1 }
       ],
       results: [
-        { label: 'Months to Pay Off', formulaCode: 'Math.ceil(-Math.log(1 - (balance * apr/12/100) / payment) / Math.log(1 + apr/12/100))', suffix: ' months', accent: true },
-        { label: 'Total Interest', formulaCode: '(function(){ var m = Math.ceil(-Math.log(1 - (balance * apr/12/100) / payment) / Math.log(1 + apr/12/100)); return m * payment - balance; })()', prefix: '$' }
+        { label: 'Months to Pay Off', formulaCode: '(function(){ var r = apr/12/100; if (balance <= 0) { return 0; } if (r === 0) { return Math.ceil(balance / payment); } var i = balance * r; if (payment <= i) { return NaN; } return Math.ceil(-Math.log(1 - i/payment) / Math.log(1 + r)); })()', suffix: ' months', accent: true },
+        { label: 'Total Interest', formulaCode: '(function(){ var r = apr/12/100; if (balance <= 0) { return 0; } var m; if (r === 0) { m = Math.ceil(balance / payment); } else { var i = balance * r; if (payment <= i) { return NaN; } m = Math.ceil(-Math.log(1 - i/payment) / Math.log(1 + r)); } return m * payment - balance; })()', prefix: '$' }
       ],
       formulaDescription: 'Uses logarithmic formula to calculate months to payoff based on balance, rate, and payment.',
+      tips: [
+        'A payment at or below the monthly interest never reduces the balance - the result shows as not calculable.',
+        'Check the monthly interest figure before choosing a payment.',
+      ],
     },
     content: {
       intro: 'The Credit Card Payoff Calculator shows how long it takes to eliminate credit card debt and the total interest paid based on your balance, interest rate, and monthly payment amount. It reveals the true cost of carrying a balance.',
       howItWorks: 'Each month, your payment covers interest first, then reduces the principal. Higher payments dramatically reduce both the time and total interest. The calculator uses an amortization formula to model each payment.',
-      example: 'A $5,000 balance at 19% APR with $200 monthly payments takes 31 months to pay off and costs $934 in interest. Paying $300/month reduces it to 19 months and $564 in interest.',
+      example: 'A $5,000 balance at 19% APR with $200 monthly payments takes 33 months to pay off and costs $1,600 in interest. Paying $300/month reduces it to 20 months and $1,000 in interest.',
       formulas: [{ label: 'Payoff Time', expression: 'Months = -log(1 - (balance x monthlyRate) / payment) / log(1 + monthlyRate)' }],
       resultExplanations: [
         { resultLabel: 'Months to Pay Off', explanation: 'The number of months until your balance reaches zero.' },

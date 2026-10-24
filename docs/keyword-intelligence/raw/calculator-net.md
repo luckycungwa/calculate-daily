@@ -1,0 +1,234 @@
+# calculator.net — captured inventory
+source_urls: https://www.calculator.net/sitemap.html, https://www.calculator.net/sitemap.xml, https://www.calculator.net/financial-calculator.html, https://www.calculator.net/about-us.html
+capture_date: undated (no visible publish date; sitemap <lastmod> is 2026-10-24 for every URL and appears to be a build-time stamp, not a real date; footer reads "© 2008 - 2026")
+total_calculator_pages: 204
+category_counts: Financial=75, Fitness and Health=31, Math=44, Other=54 (sum=204)
+confidence: high
+
+## Financial
+- Mortgage Calculator | https://www.calculator.net/mortgage-calculator.html
+- Loan Calculator | https://www.calculator.net/loan-calculator.html
+- Auto Loan Calculator | https://www.calculator.net/auto-loan-calculator.html
+- Interest Calculator | https://www.calculator.net/interest-calculator.html
+- Payment Calculator | https://www.calculator.net/payment-calculator.html
+- Retirement Calculator | https://www.calculator.net/retirement-calculator.html
+- Amortization Calculator | https://www.calculator.net/amortization-calculator.html
+- Investment Calculator | https://www.calculator.net/investment-calculator.html
+- Currency Calculator | https://www.calculator.net/currency-calculator.html
+- Inflation Calculator | https://www.calculator.net/inflation-calculator.html
+- Finance Calculator | https://www.calculator.net/finance-calculator.html
+- Mortgage Payoff Calculator | https://www.calculator.net/mortgage-payoff-calculator.html
+- Income Tax Calculator | https://www.calculator.net/tax-calculator.html
+- Compound Interest Calculator | https://www.calculator.net/compound-interest-calculator.html
+- Salary Calculator | https://www.calculator.net/salary-calculator.html
+- 401K Calculator | https://www.calculator.net/401k-calculator.html
+- Interest Rate Calculator | https://www.calculator.net/interest-rate-calculator.html
+- Sales Tax Calculator | https://www.calculator.net/sales-tax-calculator.html
+- House Affordability Calculator | https://www.calculator.net/house-affordability-calculator.html
+- Savings Calculator | https://www.calculator.net/savings-calculator.html
+- Rent Calculator | https://www.calculator.net/rent-calculator.html
+- Marriage Tax Calculator | https://www.calculator.net/marriage-calculator.html
+- Estate Tax Calculator | https://www.calculator.net/estate-tax-calculator.html
+- Pension Calculator | https://www.calculator.net/pension-calculator.html
+- Social Security Calculator | https://www.calculator.net/social-security-calculator.html
+- Annuity Calculator | https://www.calculator.net/annuity-calculator.html
+- Annuity Payout Calculator | https://www.calculator.net/annuity-payout-calculator.html
+- Credit Card Calculator | https://www.calculator.net/credit-card-calculator.html
+- Credit Cards Payoff Calculator | https://www.calculator.net/credit-card-payoff-calculator.html
+- Debt Payoff Calculator | https://www.calculator.net/debt-payoff-calculator.html
+- Debt Consolidation Calculator | https://www.calculator.net/debt-consolidation-calculator.html
+- Repayment Calculator | https://www.calculator.net/repayment-calculator.html
+- Student Loan Calculator | https://www.calculator.net/student-loan-calculator.html
+- College Cost Calculator | https://www.calculator.net/college-cost-calculator.html
+- Simple Interest Calculator | https://www.calculator.net/simple-interest-calculator.html
+- CD Calculator | https://www.calculator.net/cd-calculator.html
+- Bond Calculator | https://www.calculator.net/bond-calculator.html
+- Mutual Fund Calculator | https://www.calculator.net/mutual-fund-calculator.html
+- Roth IRA Calculator | https://www.calculator.net/roth-ira-calculator.html
+- IRA Calculator | https://www.calculator.net/ira-calculator.html
+- RMD Calculator | https://www.calculator.net/rmd-calculator.html
+- VAT Calculator | https://www.calculator.net/vat-calculator.html
+- Cash Back or Low Interest Calculator | https://www.calculator.net/cash-back-or-low-interest-calculator.html
+- Auto Lease Calculator | https://www.calculator.net/auto-lease-calculator.html
+- Depreciation Calculator | https://www.calculator.net/depreciation-calculator.html
+- Average Return Calculator | https://www.calculator.net/average-return-calculator.html
+- Margin Calculator | https://www.calculator.net/margin-calculator.html
+- Discount Calculator | https://www.calculator.net/discount-calculator.html
+- Business Loan Calculator | https://www.calculator.net/business-loan-calculator.html
+- Debt-to-Income Ratio Calculator | https://www.calculator.net/debt-ratio-calculator.html
+- Real Estate Calculator | https://www.calculator.net/real-estate-calculator.html
+- Take-Home-Paycheck Calculator | https://www.calculator.net/take-home-pay-calculator.html
+- Personal Loan Calculator | https://www.calculator.net/personal-loan-calculator.html
+- Boat Loan Calculator | https://www.calculator.net/boat-loan-calculator.html
+- Lease Calculator | https://www.calculator.net/lease-calculator.html
+- Refinance Calculator | https://www.calculator.net/refinance-calculator.html
+- Budget Calculator | https://www.calculator.net/budget-calculator.html
+- Rental Property Calculator | https://www.calculator.net/rental-property-calculator.html
+- IRR Calculator | https://www.calculator.net/irr-calculator.html
+- ROI Calculator | https://www.calculator.net/roi-calculator.html
+- APR Calculator | https://www.calculator.net/apr-calculator.html
+- FHA Loan Calculator | https://www.calculator.net/fha-loan-calculator.html
+- VA Mortgage Calculator | https://www.calculator.net/va-mortgage-calculator.html
+- Home Equity Loan Calculator | https://www.calculator.net/home-equity-loan-calculator.html
+- HELOC Calculator | https://www.calculator.net/heloc-calculator.html
+- Down Payment Calculator | https://www.calculator.net/down-payment-calculator.html
+- Rent vs. Buy Calculator | https://www.calculator.net/rent-vs-buy-calculator.html
+- Payback Period Calculator | https://www.calculator.net/payback-period-calculator.html
+- Present Value Calculator | https://www.calculator.net/present-value-calculator.html
+- Future Value Calculator | https://www.calculator.net/future-value-calculator.html
+- Commission Calculator | https://www.calculator.net/commission-calculator.html
+- Mortgage Calculator UK | https://www.calculator.net/mortgage-calculator-uk.html
+- Canadian Mortgage Calculator | https://www.calculator.net/canadian-mortgage-calculator.html
+- Mortgage Amortization Calculator | https://www.calculator.net/mortgage-amortization-calculator.html
+- Percent Off Calculator | https://www.calculator.net/percent-off-calculator.html
+
+## Fitness and Health
+- BMI Calculator | https://www.calculator.net/bmi-calculator.html
+- Calorie Calculator | https://www.calculator.net/calorie-calculator.html
+- Body Fat Calculator | https://www.calculator.net/body-fat-calculator.html
+- BMR Calculator | https://www.calculator.net/bmr-calculator.html
+- Macro Calculator | https://www.calculator.net/macro-calculator.html
+- Ideal Weight Calculator | https://www.calculator.net/ideal-weight-calculator.html
+- Pregnancy Calculator | https://www.calculator.net/pregnancy-calculator.html
+- Pregnancy Weight Gain Calculator | https://www.calculator.net/pregnancy-weight-gain-calculator.html
+- Pregnancy Conception Calculator | https://www.calculator.net/pregnancy-conception-calculator.html
+- Due Date Calculator | https://www.calculator.net/due-date-calculator.html
+- Pace Calculator | https://www.calculator.net/pace-calculator.html
+- Army Body Fat Calculator | https://www.calculator.net/army-body-fat-calculator.html
+- Carbohydrate Calculator | https://www.calculator.net/carbohydrate-calculator.html
+- Lean Body Mass Calculator | https://www.calculator.net/lean-body-mass-calculator.html
+- Healthy Weight Calculator | https://www.calculator.net/healthy-weight-calculator.html
+- Calories Burned Calculator | https://www.calculator.net/calories-burned-calculator.html
+- One Rep Max Calculator | https://www.calculator.net/one-rep-max-calculator.html
+- Target Heart Rate Calculator | https://www.calculator.net/target-heart-rate-calculator.html
+- Protein Calculator | https://www.calculator.net/protein-calculator.html
+- Fat Intake Calculator | https://www.calculator.net/fat-intake-calculator.html
+- TDEE Calculator | https://www.calculator.net/tdee-calculator.html
+- Ovulation Calculator | https://www.calculator.net/ovulation-calculator.html
+- Conception Calculator | https://www.calculator.net/conception-calculator.html
+- Period Calculator | https://www.calculator.net/period-calculator.html
+- GFR Calculator | https://www.calculator.net/gfr-calculator.html
+- Body Type Calculator | https://www.calculator.net/body-type-calculator.html
+- Body Surface Area Calculator | https://www.calculator.net/body-surface-area-calculator.html
+- BAC Calculator | https://www.calculator.net/bac-calculator.html
+- Anorexic BMI Calculator | https://www.calculator.net/anorexic-bmi-calculator.html
+- Weight Watcher Points Calculator | https://www.calculator.net/weight-watchers-points-calculator.html
+- Overweight Calculator | https://www.calculator.net/overweight-calculator.html
+
+## Math
+- Scientific Calculator | https://www.calculator.net/scientific-calculator.html
+- Fraction Calculator | https://www.calculator.net/fraction-calculator.html
+- Percentage Calculator | https://www.calculator.net/percent-calculator.html
+- Triangle Calculator | https://www.calculator.net/triangle-calculator.html
+- Volume Calculator | https://www.calculator.net/volume-calculator.html
+- Standard Deviation Calculator | https://www.calculator.net/standard-deviation-calculator.html
+- Random Number Generator | https://www.calculator.net/random-number-generator.html
+- Number Sequence Calculator | https://www.calculator.net/number-sequence-calculator.html
+- Percent Error Calculator | https://www.calculator.net/percent-error-calculator.html
+- Exponent Calculator | https://www.calculator.net/exponent-calculator.html
+- Binary Calculator | https://www.calculator.net/binary-calculator.html
+- Hex Calculator | https://www.calculator.net/hex-calculator.html
+- Half-Life Calculator | https://www.calculator.net/half-life-calculator.html
+- Quadratic Formula Calculator | https://www.calculator.net/quadratic-formula-calculator.html
+- Slope Calculator | https://www.calculator.net/slope-calculator.html
+- Log Calculator | https://www.calculator.net/log-calculator.html
+- Area Calculator | https://www.calculator.net/area-calculator.html
+- Sample Size Calculator | https://www.calculator.net/sample-size-calculator.html
+- Probability Calculator | https://www.calculator.net/probability-calculator.html
+- Statistics Calculator | https://www.calculator.net/statistics-calculator.html
+- Mean, Median, Mode, Range Calculator | https://www.calculator.net/mean-median-mode-range-calculator.html
+- Permutation and Combination Calculator | https://www.calculator.net/permutation-and-combination-calculator.html
+- Z-score Calculator | https://www.calculator.net/z-score-calculator.html
+- Confidence Interval Calculator | https://www.calculator.net/confidence-interval-calculator.html
+- Ratio Calculator | https://www.calculator.net/ratio-calculator.html
+- Distance Calculator | https://www.calculator.net/distance-calculator.html
+- Circle Calculator | https://www.calculator.net/circle-calculator.html
+- Surface Area Calculator | https://www.calculator.net/surface-area-calculator.html
+- Pythagorean Theorem Calculator | https://www.calculator.net/pythagorean-theorem-calculator.html
+- Right Triangle Calculator | https://www.calculator.net/right-triangle-calculator.html
+- Root Calculator | https://www.calculator.net/root-calculator.html
+- Least Common Multiple Calculator | https://www.calculator.net/lcm-calculator.html
+- Greatest Common Factor Calculator | https://www.calculator.net/gcf-calculator.html
+- Factor Calculator | https://www.calculator.net/factor-calculator.html
+- Rounding Calculator | https://www.calculator.net/rounding-calculator.html
+- Matrix Calculator | https://www.calculator.net/matrix-calculator.html
+- Scientific Notation Calculator | https://www.calculator.net/scientific-notation-calculator.html
+- Big Number Calculator | https://www.calculator.net/big-number-calculator.html
+- Prime Factorization Calculator | https://www.calculator.net/prime-factorization-calculator.html
+- Common Factor Calculator | https://www.calculator.net/common-factor-calculator.html
+- Basic Calculator | https://www.calculator.net/basic-calculator.html
+- Long Division Calculator | https://www.calculator.net/long-division-calculator.html
+- Average Calculator | https://www.calculator.net/average-calculator.html
+- P-value Calculator | https://www.calculator.net/p-value-calculator.html
+
+## Other
+- Age Calculator | https://www.calculator.net/age-calculator.html
+- Date Calculator | https://www.calculator.net/date-calculator.html
+- Time Calculator | https://www.calculator.net/time-calculator.html
+- Hours Calculator | https://www.calculator.net/hours-calculator.html
+- GPA Calculator | https://www.calculator.net/gpa-calculator.html
+- Grade Calculator | https://www.calculator.net/grade-calculator.html
+- Height Calculator | https://www.calculator.net/height-calculator.html
+- Concrete Calculator | https://www.calculator.net/concrete-calculator.html
+- IP Subnet Calculator | https://www.calculator.net/ip-subnet-calculator.html
+- Bra Size Calculator | https://www.calculator.net/bra-size-calculator.html
+- Password Generator | https://www.calculator.net/password-generator.html
+- Dice Roller | https://www.calculator.net/dice-roller.html
+- Conversion Calculator | https://www.calculator.net/conversion-calculator.html
+- Fuel Cost Calculator | https://www.calculator.net/fuel-cost-calculator.html
+- Voltage Drop Calculator | https://www.calculator.net/voltage-drop-calculator.html
+- BTU Calculator | https://www.calculator.net/btu-calculator.html
+- Square Footage Calculator | https://www.calculator.net/square-footage-calculator.html
+- Time Card Calculator | https://www.calculator.net/time-card-calculator.html
+- Time Zone Calculator | https://www.calculator.net/time-zone-calculator.html
+- Love Calculator | https://www.calculator.net/love-calculator.html
+- GDP Calculator | https://www.calculator.net/gdp-calculator.html
+- Gas Mileage Calculator | https://www.calculator.net/gas-mileage-calculator.html
+- Horsepower Calculator | https://www.calculator.net/horsepower-calculator.html
+- Engine Horsepower Calculator | https://www.calculator.net/engine-horsepower-calculator.html
+- Stair Calculator | https://www.calculator.net/stair-calculator.html
+- Resistor Calculator | https://www.calculator.net/resistor-calculator.html
+- Ohms Law Calculator | https://www.calculator.net/ohms-law-calculator.html
+- Electricity Calculator | https://www.calculator.net/electricity-calculator.html
+- Shoe Size Conversion | https://www.calculator.net/shoe-size-conversion.html
+- Tip Calculator | https://www.calculator.net/tip-calculator.html
+- Mileage Calculator | https://www.calculator.net/mileage-calculator.html
+- Density Calculator | https://www.calculator.net/density-calculator.html
+- Mass Calculator | https://www.calculator.net/mass-calculator.html
+- Weight Calculator | https://www.calculator.net/weight-calculator.html
+- Speed Calculator | https://www.calculator.net/speed-calculator.html
+- Molarity Calculator | https://www.calculator.net/molarity-calculator.html
+- Molecular Weight Calculator | https://www.calculator.net/molecular-weight-calculator.html
+- Roman Numeral Converter | https://www.calculator.net/roman-numeral-converter.html
+- Golf Handicap Calculator | https://www.calculator.net/golf-handicap-calculator.html
+- Sleep Calculator | https://www.calculator.net/sleep-calculator.html
+- Tire Size Calculator | https://www.calculator.net/tire-size-calculator.html
+- Roofing Calculator | https://www.calculator.net/roofing-calculator.html
+- Tile Calculator | https://www.calculator.net/tile-calculator.html
+- Mulch Calculator | https://www.calculator.net/mulch-calculator.html
+- Gravel Calculator | https://www.calculator.net/gravel-calculator.html
+- Wind Chill Calculator | https://www.calculator.net/wind-chill-calculator.html
+- Heat Index Calculator | https://www.calculator.net/heat-index-calculator.html
+- Dew Point Calculator | https://www.calculator.net/dew-point-calculator.html
+- Bandwidth Calculator | https://www.calculator.net/bandwidth-calculator.html
+- Base64 Encode / Decode | https://www.calculator.net/base64-encode-decode.html
+- URL Encode / Decode | https://www.calculator.net/url-encode-decode.html
+- Time Duration Calculator | https://www.calculator.net/time-duration-calculator.html
+- Day Counter | https://www.calculator.net/day-counter.html
+- Day of the Week Calculator | https://www.calculator.net/day-of-the-week-calculator.html
+
+## uncertain
+- Mortgage Calculator for Your Site | https://www.calculator.net/mortgage-calculator-for-your-site.html
+- Math Calculator for Your Site | https://www.calculator.net/math-calculator-for-your-site.html
+- Scientific Calculator for Your Site | https://www.calculator.net/scientific-calculator-for-your-site.html
+- Love Calculator for Your Site | https://www.calculator.net/love-calculator-for-your-site.html
+- Concrete Calculator for Your Site | https://www.calculator.net/concrete-calculator-for-your-site.html
+
+## capture notes
+- Counting method: every tool URL listed in https://www.calculator.net/sitemap.html was cross-checked against https://www.calculator.net/sitemap.xml. The two sources agree exactly: 204 unique tool URLs.
+- Excluded from total_calculator_pages (seen in sitemap, not tools): the 4 category hubs (financial-calculator.html, fitness-and-health-calculator.html, math-calculator.html, other-calculator.html), calculators-for-your-site.html, about-us.html, sitemap.html, /projects/ and its 4 widget pages (bmi/love/math/mortgage-calculator-widget.php). The 5 "for your site" embed pages are listed under "uncertain" because each duplicates an existing calculator under a marketing URL and is not counted.
+- Finance sub-taxonomy from the financial hub page (which calls itself "a complete list"): Mortgage and Real Estate 16, Auto 3, Investment 16, Retirement 9, Tax and Salary 5, Other 22 = 71. The hub omits 4 finance pages that the sitemap does list: Mortgage Calculator UK, Canadian Mortgage Calculator, Mortgage Amortization Calculator, Percent Off Calculator. Sitemap (75) is used as the authoritative count.
+- Name/URL mismatches recorded as published: "Marriage Tax Calculator" -> /marriage-calculator.html, "Income Tax Calculator" -> /tax-calculator.html, "Percentage Calculator" -> /percent-calculator.html, "Weight Watcher Points Calculator" -> /weight-watchers-points-calculator.html, "Shoe Size Conversion" -> /shoe-size-conversion.html (not -calculator).
+- 7 of the 204 are generators/converters rather than calculators (Random Number Generator, Password Generator, Dice Roller, Base64 Encode / Decode, URL Encode / Decode, Roman Numeral Converter, Shoe Size Conversion); strictly "calculator"-named pages = 197.
+- Near-duplicate clusters were kept as separate entries because they are separate URLs: Mortgage / Mortgage Amortization / Amortization / Mortgage Payoff / Rent vs. Buy; Interest / Interest Rate / Simple / Compound Interest; Lease / Auto Lease; Credit Card / Credit Cards Payoff / Debt Payoff / Debt Consolidation / Repayment; BMI / Anorexic BMI / Overweight / Healthy Weight / Ideal Weight; Pregnancy / Pregnancy Conception / Conception / Due Date / Period / Ovulation.
+- No search volume, traffic, CPC, or revenue figures were captured or estimated anywhere in this file.

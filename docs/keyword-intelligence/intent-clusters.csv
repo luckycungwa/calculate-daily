@@ -1,0 +1,294 @@
+cluster_id,cluster_name,category,primary_query,action,target_url,competitors_covering,evidence,priority,note
+FIN-01,Mortgage payment,finance,mortgage calculator,extend_existing,mortgage-calculator,6,E2,P1,"Flagship. Absorbs mortgage-payment-calculator. Add chart, extra payments, URL state."
+FIN-02,Mortgage overpayment / extra payments,finance,mortgage overpayment calculator,build_new,mortgage-overpayment-calculator,3,E2,P2,"Calculator.net has 'Mortgage Payoff', omnicalculator and inchcalculator have payoff/extra-payment tools. We have none."
+FIN-03,Amortization schedule,finance,amortization schedule calculator,keep,amortization-schedule-calculator,5,E2,P2,"Add yearly/monthly toggle and export."
+FIN-04,Refinance break-even,finance,refinance calculator,extend_existing,refinance-calculator,4,E3,P2,"Add cash-out mode and break-even months."
+FIN-05,Home affordability,finance,how much house can I afford,extend_existing,mortgage-affordability-calculator,5,E2,P1,"The workflow entry point. Merge loan-affordability here or differentiate it."
+FIN-06,Rent vs buy,finance,rent vs buy calculator,extend_existing,rent-vs-buy-calculator,5,E2,P2,"Add break-even-year chart."
+FIN-07,Down payment,finance,down payment calculator,keep,down-payment-savings-calculator,3,E3,P3,
+FIN-08,Closing costs,finance,closing cost calculator,keep,closing-cost-calculator,3,E3,P3,"Needs regional fee defaults to be credible."
+FIN-09,Property tax,finance,property tax calculator,build_new,property-tax-calculator,1,E3,P3,"Almost nobody covers it directly; regional rate input required. Data-fed risk 2."
+FIN-10,Home insurance cost,finance,home insurance calculator,build_new,home-insurance-calculator,0,E4,P4,"No competitor evidence, region-specific underwriting, high maintenance. Research only."
+FIN-11,Home equity / HELOC,finance,home equity calculator,extend_existing,home-equity-calculator,3,E3,P3,"Add borrowing-capacity mode."
+FIN-12,Loan payment,finance,loan calculator,keep,loan-payment-calculator,7,E2,P2,"Add loan-type presets (auto/personal/student) instead of new pages."
+FIN-13,Loan payoff / early repayment,finance,loan payoff calculator,build_new,loan-payoff-calculator,5,E2,P2,"Clear intent, distinct output (payoff date + interest saved)."
+FIN-14,Car loan,finance,car loan calculator,build_new,car-loan-calculator,6,E2,P1,"High-demand finance intent with no page on a finance-strong site. Auto-specific inputs (price, trade-in, tax, term)."
+FIN-15,Student loan,finance,student loan calculator,build_new,student-loan-calculator,3,E3,P3,"Region-specific repayment rules; US intent dominant."
+FIN-16,Personal loan,finance,personal loan calculator,merge_into,loan-payment-calculator,4,E3,P4,"Same inputs/outputs as loan-payment; becomes a preset."
+FIN-17,Debt payoff snowball vs avalanche,finance,debt payoff calculator,build_new,debt-payoff-calculator,3,E2,P1,"Top-scored opportunity in both prior audits and still unbuilt. Payoff date, interest saved, snowball vs avalanche chart."
+FIN-18,Credit card payoff,finance,credit card payoff calculator,extend_existing,credit-card-payoff-calculator,5,E2,P2,"Add minimum-payment reality and payoff timeline."
+FIN-19,Credit card interest,finance,credit card interest calculator,keep,credit-card-interest-calculator,5,E2,P3,
+FIN-20,Debt consolidation,finance,debt consolidation calculator,keep,debt-consolidation-calculator,3,E3,P3,
+FIN-21,Debt-to-income ratio,finance,debt to income calculator,keep,debt-to-income-calculator,3,E2,P2,"Core step in the home-buying workflow; needs workflow links."
+FIN-22,Credit utilisation,finance,credit utilization calculator,build_new,credit-utilization-calculator,1,E3,P4,"Better as a feature inside credit-card-payoff than a page."
+FIN-23,Compound interest,finance,compound interest calculator,extend_existing,compound-interest-calculator,7,E2,P1,"Flagship. Daily/continuous compounding, chart, compare, URL state."
+FIN-24,Simple interest,finance,simple interest calculator,merge_into,simple-interest-calculator,6,E2,P3,"Redirect the -v2 duplicate; keep one canonical page."
+FIN-25,Present value,finance,present value calculator,keep,present-value-calculator,5,E3,P3,
+FIN-26,Future value,finance,future value calculator,build_new,future-value-calculator,5,E3,P2,"Pairs with present value; distinct inputs (lump sum + annuity)."
+FIN-27,CAGR,finance,cagr calculator,keep,cagr-calculator,5,E3,P3,
+FIN-28,ROI,finance,roi calculator,merge_into,roi-calculator,6,E3,P3,"Two pages exist. Keep one; differentiate investment-roi or redirect it."
+FIN-29,IRR / NPV,finance,irr calculator,research_further,irr-calculator,6,E2,P4,"Saturated (calculatorsoup has 25 TVM variants, gigacalculator 23). Only build with a workflow tie-in."
+FIN-30,Payback period,finance,payback period calculator,build_new,payback-period-calculator,4,E3,P3,"Simple to build; sits naturally next to ROI."
+FIN-31,Inflation,finance,inflation calculator,build_new,inflation-calculator,5,E2,P2,"In the seed list and absent here. Needs a CPI table per region (maintenance 2)."
+FIN-32,Savings goal,finance,savings goal calculator,extend_existing,savings-goal-calculator,4,E3,P2,"Add 'how long to save' solver mode."
+FIN-33,Emergency fund,finance,emergency fund calculator,keep,emergency-fund-calculator,4,E3,P3,"Merge emergency-fund-target into it."
+FIN-34,Retirement,finance,retirement calculator,extend_existing,retirement-calculator,6,E2,P2,"Add withdrawal mode and inflation-adjusted projection chart."
+FIN-35,Pension,finance,pension calculator,dont_build,,2,E3,P4,"UK product rules; data-fed; no differentiation available."
+FIN-36,Social security,finance,social security calculator,dont_build,,2,E3,P4,"US-only, needs official benefit tables, high maintenance."
+FIN-37,401k / IRA,finance,401k calculator,dont_build,,4,E3,P4,"US-only employer-match modelling; saturated by calculator.net."
+FIN-38,Annuity,finance,annuity calculator,research_further,,4,E3,P4,"Saturated and low utility outside advisor workflows."
+FIN-39,Hourly to salary,finance,hourly to salary calculator,keep,hourly-to-annual-salary-calculator,6,E2,P2,"Add pay-period switching and overtime."
+FIN-40,Salary to hourly,finance,salary to hourly calculator,keep,salary-to-hourly-calculator,5,E2,P3,
+FIN-41,Overtime / time and a half,finance,overtime calculator,build_new,overtime-calculator,4,E2,P2,"Payroll intent; trivial config build; pairs with time card."
+FIN-42,Take-home pay,finance,take home pay calculator,build_new,take-home-pay-calculator,4,E2,P2,"Regulatory risk 2 - needs per-jurisdiction tables and a disclaimer. Highest-value regional play."
+FIN-43,Freelance hourly rate,finance,freelance hourly rate calculator,build_new,freelance-rate-calculator,2,E3,P2,"In the seed list; audience is freelancers/agencies; ties to billable-hours."
+FIN-44,Income tax,finance,income tax calculator,research_further,,6,E2,P4,"Regulatory 2 and saturated. Do not build generically; only as a take-home engine."
+FIN-45,Payroll / net pay,finance,payroll calculator,merge_into,take-home-pay-calculator,4,E3,P3,"Same engine as take-home."
+FIN-46,Sales tax,finance,sales tax calculator,keep,discount-sales-tax-calculator,6,E2,P3,
+FIN-47,VAT,finance,vat calculator,add_feature,discount-sales-tax-calculator,5,E2,P3,"VAT is a rate preset + reverse mode, not a new page."
+FIN-48,Capital gains tax,finance,capital gains tax calculator,research_further,,2,E3,P4,"Regulatory 2; jurisdiction-specific and changes yearly."
+FIN-49,Stamp duty / transfer duty,finance,stamp duty calculator,build_new,stamp-duty-calculator,1,E2,P2,"Only calculatequick has a UK one. Genuine multi-region moat (UK/ZA/AU/IN) - regional tables, not new pages per country."
+FIN-50,Rental yield,finance,rental yield calculator,build_new,rental-yield-calculator,2,E2,P2,"In the seed list; calculatequick + one other. Landlord audience, low effort."
+FIN-51,Rental cash flow,finance,rental property cash flow calculator,build_new,rental-cash-flow-calculator,2,E3,P3,"Natural follow-on to rental yield."
+FIN-52,Net worth,finance,net worth calculator,keep,net-worth-calculator,4,E3,P3,"Strong hub page; currently unreviewed."
+FIN-53,Budget 50/30/20,finance,budget calculator,extend_existing,budget-calculator,4,E2,P2,"Add carry-forward from take-home; anchor of the paycheck workflow."
+FIN-54,Cost of living,finance,cost of living calculator,research_further,,2,E3,P4,"City-index data-feed dependency; no defensible edge."
+FIN-55,Subscription audit,finance,subscription cost calculator,keep,subscription-total-calculator,2,E3,P3,
+FIN-56,Commission,finance,commission calculator,build_new,commission-calculator,4,E2,P3,"Covered by 4 competitors, absent here; trivial to build."
+FIN-57,Break-even,finance,break even calculator,build_new,break-even-calculator,1,E2,P2,"Only gigacalculator covers it. Strong small-business intent with no competitive crowding."
+FIN-58,Profit (gross/net),finance,profit calculator,build_new,profit-calculator,3,E2,P3,"Absorb price-increase intent as a mode."
+FIN-59,Markup vs margin,finance,markup calculator,keep,markup-margin-calculator,4,E2,P3,
+FIN-60,Price increase,finance,price increase calculator,merge_into,profit-calculator,2,E4,P4,"Thin standalone; a mode inside profit calculator."
+FIN-61,Discount / percent off,finance,discount calculator,keep,discount-sales-tax-calculator,6,E2,P3,"Add reverse 'find original price' mode."
+FIN-62,ROAS,finance,roas calculator,build_new,roas-calculator,0,E3,P2,"Zero competitor coverage and a real paid-ads audience. Cheap config build."
+FIN-63,Conversion rate,finance,conversion rate calculator,build_new,conversion-rate-calculator,0,E3,P2,"Zero coverage; ecommerce audience; trivial build."
+FIN-64,Ad cost (CPC/CPM),finance,cpm calculator,build_new,cpm-calculator,0,E4,P3,"Zero coverage; pairs with ROAS into a marketing-metrics cluster."
+FIN-65,LTV / CAC,finance,ltv cac calculator,build_new,ltv-cac-calculator,0,E3,P2,"Zero coverage; SaaS/ecommerce operators. Differentiation via a worked example set."
+FIN-66,Inventory turnover,finance,inventory turnover calculator,build_new,inventory-turnover-calculator,1,E3,P3,
+FIN-67,Reorder point,finance,reorder point calculator,build_new,reorder-point-calculator,1,E3,P3,
+FIN-68,Cash flow,finance,cash flow calculator,build_new,cash-flow-calculator,1,E3,P3,
+FIN-69,Business valuation,finance,business valuation calculator,build_new,business-valuation-calculator,2,E3,P3,"Multiple-method output (revenue, EBITDA, DCF-lite) is the differentiator."
+FIN-70,EBITDA,finance,ebitda calculator,build_new,ebitda-calculator,1,E3,P3,
+FIN-71,Enterprise value,finance,enterprise value calculator,dont_build,,2,E3,P4,"Finance-professional niche; saturated at calculatorsoup/omnicalculator from below and above."
+FIN-72,Financial ratios,finance,current ratio calculator,build_new,financial-ratios-calculator,2,E3,P3,"One ratios tool covering current, quick and receivables turnover beats three thin pages."
+FIN-73,Shipping cost,finance,shipping cost calculator,build_new,shipping-cost-calculator,1,E3,P3,"Ecommerce; pairs with dimensional weight."
+FIN-74,Dimensional weight,finance,dimensional weight calculator,build_new,dimensional-weight-calculator,2,E2,P3,"inchcalculator covers shipping; real ecommerce need."
+FIN-75,Price per unit,finance,price per unit calculator,build_new,price-per-unit-calculator,0,E3,P1,"Zero coverage across all seven. Universal grocery-shopping utility and a true differentiator."
+FIN-76,Labor cost,finance,labor cost calculator,build_new,labor-cost-calculator,1,E3,P3,"Contractor audience; pairs with billable-hours."
+FIN-77,Billable hours / utilisation,finance,billable hours calculator,build_new,billable-hours-calculator,1,E3,P3,"Service-business audience; pairs with freelance rate."
+FIN-78,Currency conversion,finance,currency converter,keep,currency-converter,6,E2,P3,"Already differentiated; add fee-adjusted rate view."
+FIN-79,Crypto staking yield,finance,staking calculator,dont_build,,1,E3,P4,"Volitile-adjacent, no durable utility, regulatory grey area."
+FIN-80,Loan affordability (non-mortgage),finance,loan affordability calculator,merge_into,mortgage-affordability-calculator,2,E3,P4,"Overlaps mortgage affordability; becomes a mode or absorbs it."
+HLT-01,BMI,health,bmi calculator,extend_existing,bmi-calculator,7,E2,P2,"Reviewed. Add child/teen mode and waist context."
+HLT-02,BMR,health,bmr calculator,keep,bmr-calculator,6,E2,P3,
+HLT-03,TDEE,health,tdee calculator,extend_existing,tdee-calculator,5,E2,P1,"Highest-value health anchor, currently unreviewed and unexpanded. Add activity presets + goal timeline."
+HLT-04,Calorie intake,health,calorie calculator,extend_existing,tdee-calculator,6,E2,P2,"Same engine as TDEE; one page, several modes."
+HLT-05,Macros,health,macro calculator,extend_existing,macro-calculator,4,E2,P2,"Absorb carb/fat/protein single-nutrient pages."
+HLT-06,Body fat,health,body fat calculator,keep,body-fat-calculator,5,E2,P3,
+HLT-07,Lean body mass,health,lean body mass calculator,keep,lean-body-mass-calculator,4,E3,P3,
+HLT-08,Ideal weight,health,ideal weight calculator,keep,ideal-weight-calculator,5,E2,P3,
+HLT-09,Water intake,health,water intake calculator,keep,water-intake-calculator,3,E2,P3,
+HLT-10,Protein intake,health,protein intake calculator,keep,protein-intake-calculator,3,E2,P3,
+HLT-11,Waist ratios,health,waist to height ratio calculator,keep,waist-to-height-ratio-calculator,4,E2,P3,"Consolidate the three waist pages onto this one."
+HLT-12,Pregnancy due date,health,due date calculator,build_new,due-date-calculator,6,E2,P1,"The single largest missing health intent. Six competitors cover it; we have zero."
+HLT-13,Conception date,health,conception calculator,build_new,conception-calculator,5,E2,P3,"Distinct output (conception window) and a natural extension of due date."
+HLT-14,Ovulation / fertile window,health,ovulation calculator,build_new,ovulation-calculator,5,E2,P2,"Pairs with due date into a fertility workflow."
+HLT-15,Pregnancy week by week,health,pregnancy week calculator,build_new,pregnancy-week-calculator,3,E3,P3,
+HLT-16,Pregnancy weight gain,health,pregnancy weight gain calculator,build_new,pregnancy-weight-gain-calculator,3,E2,P3,"calculator.net and calculatorsoup both have it; needs clinical sourcing."
+HLT-17,Sleep cycle,health,sleep cycle calculator,extend_existing,sleep-cycle-calculator,4,E2,P2,"Absorb bedtime-calculator; add a cycle timeline chart."
+HLT-18,Sleep debt,health,sleep debt calculator,keep,sleep-debt-calculator,3,E2,P3,
+HLT-19,Steps to distance,health,steps to miles calculator,keep,steps-to-miles-calculator,4,E2,P2,"Add km and calorie variants as modes."
+HLT-20,Calories burned,health,calories burned calculator,extend_existing,calories-burned-calculator,6,E2,P3,"Absorb running-calories; add an activity library."
+HLT-21,One rep max,health,one rep max calculator,keep,one-rep-max-calculator,5,E2,P3,
+HLT-22,Target heart rate,health,target heart rate calculator,keep,target-heart-rate-calculator,5,E2,P3,
+HLT-23,VO2 max,health,vo2 max calculator,keep,vo2-max-calculator,3,E3,P4,
+HLT-24,Blood pressure category,health,blood pressure calculator,keep,blood-pressure-calculator,3,E3,P3,"YMYL: needs cited guidance (AHA/ESC) before promotion."
+HLT-25,A1C conversion,health,a1c calculator,keep,a1c-calculator,2,E3,P4,"Clinical YMYL; source required; low consumer value."
+HLT-26,Body surface area,health,body surface area calculator,keep,body-surface-area-calculator,3,E3,P4,"Clinical niche."
+HLT-27,Caffeine limit,health,caffeine calculator,keep,caffeine-limit-calculator,2,E3,P4,"Needs an authoritative limit citation."
+HLT-28,Alcohol units,health,alcohol units calculator,keep,alcohol-units-calculator,2,E3,P3,"Cite national guidance; keep disclaimers."
+HLT-29,Ideal body fat,health,ideal body fat calculator,merge_into,body-fat-calculator,3,E3,P4,
+HLT-30,Waist circumference,health,waist circumference calculator,merge_into,waist-to-height-ratio-calculator,2,E3,P4,
+HLT-31,Dog age,health,dog age calculator,keep,dog-age-calculator,3,E2,P3,"Pet cluster entry point."
+HLT-32,Pet calorie needs,health,pet calorie calculator,build_new,pet-calorie-calculator,2,E3,P3,"Seed list intent; thin competitor coverage; cheap build."
+HLT-33,Dog food portion,health,dog food calculator,build_new,dog-food-calculator,1,E3,P3,"Natural follow-on; pairs with pet calorie."
+MAT-01,Percentage,math,percentage calculator,extend_existing,percentage-calculator,7,E2,P1,"Reviewed but shallow vs calculator.net. Add what-is-X%-of, X-is-what-%-of, reverse and change modes in one page."
+MAT-02,Percent change / increase,math,percentage increase calculator,add_feature,percentage-calculator,6,E2,P2,"A mode of percentage, not a new page."
+MAT-03,Fraction arithmetic,math,fraction calculator,build_new,fraction-calculator,6,E2,P2,"calculator.net has 12 fraction tools; we have none. One good tool with add/subtract/multiply/divide + simplify."
+MAT-04,Simplify fractions,math,simplify fractions calculator,add_feature,fraction-calculator,5,E2,P4,"A mode inside fraction calculator."
+MAT-05,Decimal to fraction,math,decimal to fraction calculator,build_new,decimal-to-fraction-calculator,5,E2,P3,"Navigational pair intent; keep as its own page with a conversion table."
+MAT-06,Scientific calculator,math,scientific calculator,extend_existing,scientific-calculator,5,E2,P2,"Unreviewed and thin. Needs trig/log/memory documentation and keyboard support to compete."
+MAT-07,Standard deviation,math,standard deviation calculator,extend_existing,standard-deviation-calculator,6,E2,P2,"Reviewed path: add population/sample toggle explanation, chart, CSV paste."
+MAT-08,Mean median mode,math,mean median mode calculator,extend_existing,mean-median-mode-calculator,6,E2,P3,"Add range, IQR and outlier note."
+MAT-09,Variance,math,variance calculator,merge_into,standard-deviation-calculator,4,E3,P4,"Output of the std-dev tool."
+MAT-10,Z-score,math,z score calculator,build_new,z-score-calculator,5,E2,P2,"Easy build, clear intent, five competitors cover it."
+MAT-11,Confidence interval,math,confidence interval calculator,build_new,confidence-interval-calculator,4,E2,P2,"Students and researchers; guided mode beats calculatorsoup's raw form."
+MAT-12,Sample size,math,sample size calculator,build_new,sample-size-calculator,4,E2,P2,"Survey/research intent; distinct inputs (margin, confidence, population)."
+MAT-13,Margin of error,math,margin of error calculator,build_new,margin-of-error-calculator,4,E3,P3,
+MAT-14,P-value,math,p value calculator,research_further,,4,E2,P4,"Heavy statistics UX; four competitors already own it."
+MAT-15,Percentile / quartile,math,percentile calculator,build_new,percentile-calculator,5,E2,P3,"Combine percentile + IQR in one tool."
+MAT-16,Probability,math,probability calculator,build_new,probability-calculator,4,E2,P3,
+MAT-17,Combinations and permutations,math,combination calculator,keep,combinations-permutations-calculator,5,E2,P4,"Reviewed to cover; low commercial value."
+MAT-18,Normal distribution,math,normal distribution calculator,build_new,normal-distribution-calculator,5,E2,P3,"Distinct output (probability between values); needs a distribution chart."
+MAT-19,Binomial distribution,math,binomial distribution calculator,build_new,binomial-distribution-calculator,3,E3,P3,
+MAT-20,Bayes theorem,math,bayes theorem calculator,research_further,,3,E3,P4,"Low everyday utility."
+MAT-21,Correlation / regression,math,correlation calculator,build_new,correlation-calculator,4,E2,P3,"Pairs with a scatter chart; add linear regression output."
+MAT-22,Expected value,math,expected value calculator,merge_into,probability-calculator,3,E4,P4,
+MAT-23,Triangle (SSS/SAS/ASA),math,triangle calculator,build_new,triangle-calculator,6,E2,P2,"Six competitors; standard homework intent; medium effort (trig logic)."
+MAT-24,Circle area and circumference,math,circle calculator,keep,circle-area-calculator,6,E2,P3,
+MAT-25,Surface area,math,surface area calculator,build_new,surface-area-calculator,5,E2,P3,"Shape selector (cube, cylinder, sphere, cone)."
+MAT-26,Volume of shapes,math,volume calculator,build_new,volume-calculator,5,E2,P2,"Seed list; six shape intents collapse into one tool with a shape selector."
+MAT-27,Right triangle / trigonometry,math,right triangle calculator,build_new,right-triangle-calculator,5,E2,P3,"Pairs with triangle and pythagorean."
+MAT-28,Pythagorean theorem,math,pythagorean theorem calculator,keep,pythagorean-theorem-calculator,6,E2,P3,
+MAT-29,Perimeter,math,perimeter calculator,merge_into,room-area-calculator,4,E4,P4,"A mode of the shape tools."
+MAT-30,Slope / line equation,math,slope calculator,extend_existing,slope-calculator,5,E2,P3,"Add y=mx+b output and two-point/city-block modes."
+MAT-31,GCD and LCM,math,gcd calculator,keep,gcd-lcm-calculator,5,E2,P4,
+MAT-32,Prime factorization,math,prime factorization calculator,build_new,prime-factorization-calculator,5,E2,P3,"Absorbs prime-number-checker intent."
+MAT-33,Roots / logs / order of operations,math,square root calculator,add_feature,exponent-root-calculator,5,E2,P3,"Three thin intents; fold into one algebra-utility tool with modes."
+MAT-34,Significant figures,math,significant figures calculator,build_new,significant-figures-calculator,3,E3,P3,"Chemistry-lab intent; low competition."
+MAT-35,Scientific notation,math,scientific notation calculator,build_new,scientific-notation-calculator,4,E2,P3,"Seed list; converter + calculator in one."
+MAT-36,Rounding,math,rounding calculator,keep,rounding-calculator,4,E3,P4,
+MAT-37,Equation solver,math,equation solver,build_new,equation-solver,5,E2,P3,"Linear + system; extend quadratic into a family later."
+MAT-38,Quadratic formula,math,quadratic formula calculator,keep,quadratic-formula-calculator,5,E2,P3,
+MAT-39,GPA,math,gpa calculator,extend_existing,gpa-calculator,6,E2,P3,"Add weighted, college-credit and grade-scale modes."
+MAT-40,Final grade needed,math,what do i need on my final,keep,final-grade-calculator,5,E2,P3,"Unreviewed; 4.5/5-grade scales need documenting."
+MAT-41,Word counter,math,word counter,build_new,word-counter,0,E3,P3,"Zero competitor coverage, common student/writer need, trivial build; differentiation via reading-time and character stats."
+MAT-42,Reading time,math,reading time calculator,build_new,reading-time-calculator,0,E4,P4,"Absorb into word counter."
+MAT-43,Typing speed,math,typing speed calculator,build_new,typing-speed-calculator,2,E3,P4,"Novelty-adjacent; only worthwhile as part of a student cluster."
+MAT-44,Matrix,math,matrix calculator,build_new,matrix-calculator,3,E3,P4,"High effort, low utility for our audience."
+MAT-45,Ratio,math,ratio calculator,keep,ratio-proportion-calculator,5,E2,P3,
+MAT-46,Absolute value / modulo,math,absolute value calculator,merge_into,modulo-calculator,2,E4,P4,"Two thin tools; one page with modes or retire both."
+TME-01,Age,time,age calculator,extend_existing,age-calculator,7,E2,P1,"Enormous generic demand and currently unreviewed. Add next-birthday countdown and date-of-birth reverse mode."
+TME-02,Date difference / days between,time,days between dates calculator,extend_existing,date-difference-calculator,6,E2,P2,"Add business-day mode and inclusive/exclusive toggle."
+TME-03,Days until / countdown,time,days until calculator,extend_existing,days-until-calculator,5,E2,P2,"Add named events and shareable URL."
+TME-04,Add or subtract dates,time,add days to date calculator,keep,add-days-to-date,5,E2,P3,
+TME-05,Business / working days,time,business days calculator,build_new,business-days-calculator,5,E2,P2,"Five competitors cover it; region holiday lists required (maintenance 2)."
+TME-06,Time zone converter,time,time zone converter,extend_existing,time-zone-converter,1,E2,P2,"Only one competitor does it properly - a genuine gap. Needs a real tz database and DST handling."
+TME-07,Time duration / hours and minutes,time,time duration calculator,extend_existing,time-adder,5,E2,P3,"Absorb seconds-to-time and hours-until."
+TME-08,Time card / timesheet,time,time card calculator,build_new,time-card-calculator,4,E2,P1,"Payroll intent with clear utility; multi-day grid plus pay total. Highest-value time build."
+TME-09,Decimal hours,time,decimal hours calculator,keep,decimal-hours-calculator,3,E3,P4,
+TME-10,Unix timestamp,time,unix timestamp converter,build_new,unix-timestamp-converter,0,E3,P3,"Zero coverage; developer intent; trivial build."
+TME-11,Week number / ISO date,time,week number calculator,build_new,week-number-calculator,2,E3,P3,
+TME-12,Age difference,time,age difference calculator,build_new,age-difference-calculator,3,E3,P3,"Pairs with age calculator."
+TME-13,Weeks between dates,time,weeks between dates calculator,merge_into,date-difference-calculator,3,E4,P4,
+TME-14,Deadline planner,time,deadline calculator,dont_build,,1,E4,P4,"No distinct maths; weak intent."
+CON-01,Room area,construction,room area calculator,keep,room-area-calculator,6,E2,P2,"Add multiple-room summing and cost per m2/ft2."
+CON-02,Room volume,construction,room volume calculator,keep,room-volume-calculator,5,E2,P3,
+CON-03,Concrete,construction,concrete calculator,extend_existing,concrete-calculator,7,E2,P1,"Reviewed and covered by all seven, but ours lacks slab/footing/column shapes, bag counts and cost. Depth is the play."
+CON-04,Concrete bags,construction,how many bags of concrete do I need,add_feature,concrete-calculator,5,E2,P2,"High-intent question; a mode of concrete, not a new page."
+CON-05,Paint,construction,paint calculator,extend_existing,paint-calculator,5,E2,P2,"Add coats, primer, ceiling and trim; output litres+gallons."
+CON-06,Flooring,construction,flooring calculator,extend_existing,flooring-calculator,6,E2,P2,"Add wastage %, cost, and plank/box maths."
+CON-07,Tile,construction,tile calculator,build_new,tile-calculator,7,E2,P1,"High demand, zero coverage here, clear output (tiles + boxes + wastage + cost)."
+CON-08,Roofing / shingles,construction,roofing calculator,build_new,roofing-calculator,6,E2,P1,"All major competitors cover it; we have nothing. Pitch + area + bundles + underlayment."
+CON-09,Roof pitch,construction,roof pitch calculator,build_new,roof-pitch-calculator,4,E2,P2,"Pairs with roofing; rise/run angle multiplier table."
+CON-10,Drywall,construction,drywall calculator,build_new,drywall-calculator,4,E2,P2,"Sheets + mud + tape + screws; strong DIY intent."
+CON-11,Fence,construction,fence calculator,build_new,fence-calculator,6,E2,P2,"Posts, rails, pickets, concrete per post, cost."
+CON-12,Deck,construction,deck calculator,build_new,deck-calculator,4,E2,P3,"Boards + joists + footings."
+CON-13,Stair,construction,stair calculator,build_new,stair-calculator,5,E2,P2,"Rise/run compliance output (max riser) is the differentiator."
+CON-14,Lumber / board foot,construction,board foot calculator,keep,lumber-calculator,5,E2,P3,
+CON-15,Asphalt,construction,asphalt calculator,build_new,asphalt-calculator,4,E2,P3,
+CON-16,Gravel,construction,gravel calculator,build_new,gravel-calculator,7,E2,P1,"Seed-list flagship question with zero coverage here."
+CON-17,Mulch,construction,mulch calculator,build_new,mulch-calculator,7,E2,P1,"All seven cover it; high seasonal intent."
+CON-18,Topsoil / soil,construction,topsoil calculator,build_new,topsoil-calculator,5,E2,P2,"Absorbs garden-soil intent."
+CON-19,Excavation,construction,excavation calculator,build_new,excavation-calculator,2,E3,P3,"Volume + swell factor + haul loads."
+CON-20,Retaining wall,construction,retaining wall calculator,build_new,retaining-wall-calculator,3,E2,P3,"Blocks + cap + gravel + geogrid."
+CON-21,Insulation,construction,insulation calculator,build_new,insulation-calculator,4,E2,P2,"R-value by cavity; bags/batts."
+CON-22,Siding,construction,siding calculator,build_new,siding-calculator,4,E2,P2,"Squares + waste + trim."
+CON-23,Wall/ceiling area,construction,wall area calculator,add_feature,paint-calculator,3,E3,P3,"Mode inside paint/room area."
+CON-24,Fence post spacing,construction,fence post calculator,add_feature,fence-calculator,3,E3,P4,
+CON-25,BTU / HVAC sizing,construction,btu calculator,build_new,btu-calculator,3,E2,P2,"Room BTU + AC tonnage; seasonal demand."
+CON-26,Renovation cost estimator,construction,home renovation cost calculator,research_further,,3,E3,P4,"Needs regional cost data; high maintenance."
+CON-27,Concrete column/footing/steps,construction,concrete column calculator,add_feature,concrete-calculator,4,E2,P3,"Shape modes inside concrete."
+CNV-01,Temperature,conversion,temperature converter,keep,temperature-converter,7,E2,P3,
+CNV-02,Length,conversion,length converter,keep,length-converter,7,E2,P3,
+CNV-03,Weight,conversion,weight converter,keep,weight-converter,7,E2,P3,
+CNV-04,Volume,conversion,volume converter,keep,volume-converter,6,E2,P3,
+CNV-05,Area,conversion,area converter,keep,area-converter,6,E2,P3,
+CNV-06,Speed,conversion,speed converter,keep,speed-converter,6,E2,P3,
+CNV-07,Data storage,conversion,data storage converter,keep,data-storage-converter,6,E2,P3,
+CNV-08,Time units,conversion,time converter,keep,hours-to-minutes-calculator,5,E2,P3,
+CNV-09,Pressure group,conversion,pressure converter,add_new_group,pressure-converter,6,E2,P2,"Generic pressure group is missing; only a single psi-bar pair exists."
+CNV-10,Energy group,conversion,energy converter,add_new_group,energy-converter,5,E2,P2,
+CNV-11,Power group,conversion,power converter,add_new_group,power-converter,5,E2,P2,
+CNV-12,Force group,conversion,force converter,add_new_group,force-converter,4,E3,P3,
+CNV-13,Angle group,conversion,angle converter,add_new_group,angle-converter,4,E3,P3,
+CNV-14,Fuel consumption group,conversion,fuel consumption converter,add_new_group,fuel-consumption-converter,4,E2,P2,"L/100km vs mpg; regional relevance (ZA/UK)."
+CNV-15,Frequency group,conversion,frequency converter,add_new_group,frequency-converter,4,E3,P3,
+CNV-16,Torque group,conversion,torque converter,add_new_group,torque-converter,3,E3,P3,
+CNV-17,Density & substance group,conversion,density converter,add_new_group,density-converter,3,E3,P3,
+CNV-18,Cooking converter (ingredient-aware),conversion,grams to cups converter,build_new,cooking-converter,6,E2,P1,"The biggest differentiation opportunity: one density-aware tool replacing 20+ static pair pages. Only thecalculatorsite and gigacalculator have breadth, and both are page-per-pair."
+CNV-19,Oven temperature,conversion,oven temperature converter,add_feature,cooking-converter,3,E2,P2,"Gas mark / fan / conventional table; a mode in the cooking converter."
+CNV-20,Air fryer conversion,conversion,air fryer conversion calculator,build_new,air-fryer-converter,2,E3,P2,"thecalculatorsite and inchcalculator only; rising appliance intent."
+CNV-21,Butter sticks,conversion,butter converter,add_feature,cooking-converter,3,E2,P3,"Sticks/cups/grams; a mode."
+CNV-22,Cooking pair pages (tbsp/tsp/ml),conversion,tablespoons to teaspoons converter,keep,tablespoons-to-teaspoons-calculator,5,E2,P3,"Keep only as modes/short pages; do not expand into 20 pair URLs."
+CNV-23,Weight to volume,conversion,grams to ml converter,build_new,grams-to-ml-converter,4,E3,P3,"Density-driven; belongs in the cooking converter as a mode."
+FOD-01,Recipe scaling,food,recipe scaler,extend_existing,recipe-scaling-calculator,5,E2,P2,"Add pan-size and cooking-time notes; ties to cooking converter."
+FOD-02,Serving size,food,serving size calculator,build_new,serving-size-calculator,2,E3,P3,"Portion maths + calorie split."
+FOD-03,Cost per meal,food,food cost calculator,keep,meal-cost-calculator,2,E3,P3,
+FOD-04,Recipe cost,food,recipe cost calculator,merge_into,meal-cost-calculator,2,E3,P4,"Same inputs as cost-per-meal."
+FOD-05,Pizza dough / hydration,food,pizza dough calculator,build_new,pizza-dough-calculator,2,E3,P3,"Baker's percentage; enthusiastic niche with repeat use."
+FOD-06,Coffee ratio,food,coffee ratio calculator,keep,coffee-ratio-calculator,3,E2,P3,"Add brew-method presets; links to cooking converter."
+FOD-07,Brewing,food,brewing calculator,merge_into,coffee-ratio-calculator,2,E4,P4,
+FOD-08,Calories in a recipe,food,calories in recipe calculator,build_new,recipe-calorie-calculator,2,E3,P3,"Ingredient-level calorie sum; sizeable effort."
+FOD-09,Flour/butter conversion,food,flour conversion calculator,merge_into,cooking-converter,4,E2,P4,"Ingredient presets inside the cooking converter."
+AUT-01,Fuel cost,auto,fuel cost calculator,extend_existing,fuel-cost-calculator,6,E2,P2,"Add L/100km, price per mile, and round-trip."
+AUT-02,Gas mileage / MPG,auto,gas mileage calculator,build_new,gas-mileage-calculator,4,E2,P2,"Distinct inputs (distance, fuel used) from fuel cost."
+AUT-03,L/100km economy,auto,liters per 100km calculator,add_feature,gas-mileage-calculator,4,E2,P3,"Regional mode."
+AUT-04,Car depreciation,auto,car depreciation calculator,build_new,car-depreciation-calculator,5,E2,P2,"Five competitors; strong used-car buyer intent."
+AUT-05,EV charging cost,auto,ev charging cost calculator,build_new,ev-charging-cost-calculator,3,E2,P2,"Home vs public charging modes; rising intent."
+AUT-06,Trip cost,auto,trip cost calculator,build_new,trip-cost-calculator,4,E2,P2,"Fuel + tolls + per-day; ties to commute and fuel."
+AUT-07,Travel time,auto,travel time calculator,add_feature,trip-cost-calculator,4,E3,P3,
+AUT-08,Tire size,auto,tire size calculator,build_new,tire-size-calculator,4,E2,P3,"Compare old vs new diameter and speed error."
+AUT-09,Car lease,auto,car lease calculator,build_new,car-lease-calculator,4,E3,P3,"Region-specific tax treatment."
+AUT-10,Vehicle registration cost,auto,vehicle registration calculator,research_further,,1,E4,P4,"Jurisdiction data; no defensible edge."
+AUT-11,Commute cost,auto,commute cost calculator,keep,daily-commute-cost-calculator,2,E3,P3,"Absorb parking-cost."
+AUT-12,EV vs petrol running cost,auto,electric car savings calculator,build_new,ev-vs-petrol-calculator,2,E3,P3,"Regional electricity + fuel prices."
+SCN-01,Molarity,chemistry,molarity calculator,build_new,molarity-calculator,5,E2,P3,"Lab intent; five competitors; easy build."
+SCN-02,Molecular weight,chemistry,molecular weight calculator,build_new,molecular-weight-calculator,3,E3,P3,
+SCN-03,Dilution,chemistry,dilution calculator,build_new,dilution-calculator,3,E3,P3,
+SCN-04,pH,chemistry,ph calculator,build_new,ph-calculator,3,E3,P3,
+SCN-05,Half-life,chemistry,half life calculator,build_new,half-life-calculator,5,E2,P3,"Absorbs radiometric-dating intent."
+SCN-06,Density,physics,density calculator,build_new,density-calculator,6,E2,P2,"Covered by all of the science-strong sites; mass/volume/density solved for any variable."
+SCN-07,Ideal gas law,chemistry,ideal gas law calculator,build_new,ideal-gas-law-calculator,5,E2,P3,
+SCN-08,Physics lab bundle (force/energy/momentum),physics,force calculator,research_further,,4,E3,P4,"Six thin intents; only worth one bundle page if a student cluster is chosen."
+PET-01,Livestock feed,agriculture,livestock feed calculator,build_new,livestock-feed-calculator,0,E4,P3,"Zero coverage. Smallholder/farm audience; regional feed values."
+PET-02,Fertilizer,agriculture,fertilizer calculator,build_new,fertilizer-calculator,1,E3,P3,"N-P-K rate maths; garden/farm utility."
+PET-03,Grass seed,agriculture,grass seed calculator,build_new,grass-seed-calculator,1,E3,P3,"inchcalculator only."
+PET-04,Rainwater collection,agriculture,rainwater collection calculator,build_new,rainwater-harvest-calculator,0,E4,P3,"Roof area x rainfall; zero coverage, strong ZA/water-scarcity relevance."
+PET-05,Irrigation,agriculture,irrigation calculator,build_new,irrigation-calculator,0,E4,P3,"Emitter flow x area x time."
+PET-06,Pond volume,agriculture,pond volume calculator,build_new,pond-volume-calculator,1,E3,P3,
+PET-07,Aquarium volume,agriculture,aquarium volume calculator,build_new,aquarium-volume-calculator,2,E3,P3,
+PET-08,Firewood / cord,agriculture,firewood calculator,build_new,firewood-calculator,0,E4,P3,"Cords vs cubic metres; heating-cost tie-in."
+PET-09,Tree height,agriculture,tree height calculator,build_new,tree-height-calculator,0,E4,P4,"Shadow/angle trigonometry; low direct utility."
+PET-10,Lawn mowing cost,agriculture,lawn mowing cost calculator,build_new,lawn-mowing-cost-calculator,1,E3,P4,"Service-pricing intent; thin."
+PET-11,Garden soil,agriculture,garden soil calculator,merge_into,topsoil-calculator,5,E2,P4,"Same intent as topsoil (CON-18)."
+DEV-01,IP subnet / CIDR,technology,ip subnet calculator,research_further,ip-subnet-calculator,2,E2,P3,"Fragmented coverage (calculator.net, calculatequick). Differentiation case required per decision D17."
+DEV-02,URL encode / decode,technology,url encoder decoder,build_new,url-encoder-decoder,1,E3,P3,"Developer utility; trivial; calculator.net only."
+DEV-03,Base64,technology,base64 encoder,build_new,base64-encoder-decoder,2,E3,P3,
+DEV-04,Hash generator,technology,sha256 generator,build_new,hash-generator,1,E3,P3,"SHA-256/MD5; client-side only, no data leaves the browser."
+DEV-05,Hex / binary / roman,technology,hex to decimal converter,build_new,number-base-converter,3,E2,P3,"One base converter beats three thin pages; absorbs roman numerals."
+DEV-06,Aspect ratio,technology,aspect ratio calculator,build_new,aspect-ratio-calculator,2,E3,P3,"Video/image intent."
+DEV-07,PPI / DPI,technology,ppi calculator,build_new,ppi-calculator,2,E3,P3,
+DEV-08,CSS clamp,technology,css clamp calculator,build_new,css-clamp-calculator,0,E4,P3,"Zero coverage; small but loyal developer audience; strong differentiation (live preview)."
+DEV-09,Rem to px,technology,rem to px converter,build_new,rem-to-px-converter,0,E4,P3,"Zero coverage; trivial build; pairs with CSS clamp."
+DEV-10,Bandwidth / download time,technology,download time calculator,build_new,download-time-calculator,2,E3,P3,"calculator.net bandwidth + gigacalculator data units."
+DEV-11,JSON / timestamp utilities,technology,json formatter,dont_build,,2,E4,P4,"Not a calculation; dev-tool adjacent and off-brand."
+DEV-12,Password generator / entropy,technology,password generator,dont_build,,1,E3,P4,"Security-adjacent, not a calculator, and implies a safety promise we cannot audit."
+SPR-01,Running pace,fitness,running pace calculator,extend_existing,running-pace-calculator,5,E2,P2,"Add pace<->speed both directions and split table."
+SPR-02,Race time prediction,fitness,marathon time calculator,add_feature,running-pace-calculator,3,E2,P2,"Riegel formula; a mode inside running pace."
+SPR-03,Swimming pace,fitness,swimming pace calculator,build_new,swimming-pace-calculator,1,E4,P4,"Per-100m pace; niche."
+SPR-04,Cycling speed,fitness,cycling speed calculator,build_new,cycling-speed-calculator,2,E4,P4,
+SPR-05,Golf handicap,fitness,golf handicap calculator,build_new,golf-handicap-calculator,1,E4,P4,"Governing-body formula changes; maintenance."
+SPR-06,Games and betting odds,fitness,poker odds calculator,dont_build,,2,E4,P4,"Brand misfit per decision D01."
+HOM-01,Electricity cost,home,electricity cost calculator,extend_existing,electricity-cost-calculator,4,E2,P3,"Add tariff tiers (ZA blocks) and appliance library."
+HOM-02,Appliance running cost,home,appliance running cost calculator,add_feature,electricity-cost-calculator,2,E3,P3,"Appliance preset library; mode."
+HOM-03,Water usage,home,water usage calculator,build_new,water-usage-calculator,1,E4,P4,"Household audit intent; weak competition; low commercial value."
+HOM-04,Moving cost,home,moving cost calculator,build_new,moving-cost-calculator,1,E4,P3,"Volume + distance + labour estimate."
+HOM-05,Solar panel / payback,home,solar panel calculator,build_new,solar-panel-calculator,2,E3,P3,"Regional tariff + irradiance inputs."
+HOM-06,Home renovation cost,home,renovation cost calculator,research_further,,3,E3,P4,"Cost-data dependency."
+HOM-07,Energy savings,home,energy savings calculator,add_feature,electricity-cost-calculator,2,E3,P4,
+HOM-08,Room heating / BTU,home,room heating calculator,merge_into,btu-calculator,2,E3,P4,"Same intent as CON-25."
+EDU-01,Study time,education,study time calculator,build_new,study-time-calculator,0,E4,P4,"Zero coverage; low value."
+EDU-02,Citation generator,education,citation generator,dont_build,,1,E3,P4,"Not a calculation and crowded by purpose-built tools."
+EDU-03,Word count / reading time,education,word count calculator,merge_into,word-counter,0,E3,P4,"Same page as MAT-41."
+TIP-01,Tip and bill split,daily,tip calculator,extend_existing,tip-calculator,6,E2,P3,"Four competitors cover tips and we have three overlapping tip pages (tip-calculator plus two tip-split duplicates). Consolidate to one tool with rounding presets and a service-charge mode."

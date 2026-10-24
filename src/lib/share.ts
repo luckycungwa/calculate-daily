@@ -27,7 +27,7 @@ export function decodeStateParams(search: string): Record<string, string> {
 }
 
 export function buildShareUrl(path: string, state: Record<string, string | number | boolean>): string {
-  const base = `${window.location.origin}${path}`;
+  const base = typeof window !== 'undefined' ? `${window.location.origin}${path}` : path;
   const qs = encodeStateParams(state);
   return qs ? `${base}?${qs}` : base;
 }

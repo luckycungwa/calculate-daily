@@ -1,4 +1,4 @@
-﻿import { CalculatorMeta } from '../../types';
+import { CalculatorMeta } from '../../types';
 
 export const FOOD_CALCULATORS: CalculatorMeta[] = [
   {
@@ -905,56 +905,6 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       related: ['boiling-point-calculator', 'temperature-converter'],
     },
     seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.6 },
-  },
-  {
-    id: 'tip-split',
-    slug: 'tip-split-calculator',
-    name: 'Tip & Split Calculator',
-    shortDesc: 'Calculate tip and split the bill among friends.',
-    tagline: 'Split fairly. Tip properly.',
-    category: 'daily',
-    iconName: 'Receipt',
-    keywords: ['tip calculator', 'split bill', 'tip split', 'bill calculator'],
-    kind: 'config',
-    config: {
-      fields: [
-        { id: 'billAmount', label: 'Bill Amount ($)', type: 'number', defaultValue: 120, min: 0 },
-        { id: 'tipPercent', label: 'Tip (%)', type: 'number', defaultValue: 18, min: 0, max: 50, step: 1 },
-        { id: 'people', label: 'Number of People', type: 'number', defaultValue: 4, min: 1, max: 50 }
-      ],
-      results: [
-        { label: 'Tip Amount', formulaCode: 'billAmount*tipPercent/100', suffix: '$', accent: true },
-        { label: 'Per Person', formulaCode: 'billAmount*(1+tipPercent/100)/people', suffix: '$' },
-        { label: 'Total Bill', formulaCode: 'billAmount*(1+tipPercent/100)', suffix: '$' }
-      ],
-      formulaDescription: 'undefined',
-      tips: [
-      'In the US, 15% is standard, 18-20% is good service.',
-      'In many countries, tip is included in the bill.'
-      ],
-    },
-    content: {
-      intro: 'The Tip and Split Calculator computes the tip amount and divides the total bill evenly among any number of people.',
-      howItWorks: 'Tip = Bill x Tip%. Total = Bill + Tip. Per person = Total / People.',
-      example: 'A $120 bill with 18% tip split 4 ways: $120 x 1.18 / 4 = $35.40 each.',
-      formulas: [{ label: 'Split', expression: 'Per person = Bill x (1 + Tip%) / People' }],
-      resultExplanations: [
-        { resultLabel: 'Tip Amount', explanation: 'The total tip amount at the selected percentage.' },
-        { resultLabel: 'Per Person', explanation: 'Each person share including tip.' },
-        { resultLabel: 'Total Bill', explanation: 'The total bill including tip.' }
-      ],
-      workflowLinks: [
-        { slug: 'budget-calculator', step: 'Track dining expenses.' },
-        { slug: 'subscription-total-calculator', step: 'Compare dining costs to subscriptions.' }
-      ],
-      faqs: [
-        { q: 'How much should I tip?', a: 'In the US: 15-20% for sit-down restaurants, 10-15% for takeout, $1-2 per drink at bars.' },
-        { q: 'Do I tip on the pre-tax amount?', a: 'Traditionally yes, tip on the pre-tax bill. Many people tip on the total for simplicity.' },
-        { q: 'Is tipping mandatory?', a: 'In the US, tip is not legally required but is expected. In many other countries, service charge replaces tipping.' }
-      ],
-      related: ['budget-calculator', 'subscription-total-calculator'],
-    },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
   },
   {
     id: 'sa-fuel',

@@ -1,0 +1,790 @@
+id,keyword,cluster_id,category,intent_type,geo,demand_evidence,competitors_covering,current_cover,target_url,action,priority
+K0001,mortgage calculator,FIN-01,finance,calculator,global,seed+comp,6,exact,/mortgage-calculator,extend_existing,P1
+K0002,home loan calculator,FIN-01,finance,calculator,global,seed+comp,6,exact,/mortgage-calculator,extend_existing,P1
+K0003,mortgage payment calculator,FIN-01,finance,calculator,global,seed+comp,6,exact,/mortgage-calculator,extend_existing,P1
+K0004,mortgage repayment calculator,FIN-01,finance,calculator,global,consensus,5,exact,/mortgage-calculator,extend_existing,P1
+K0005,calculate my mortgage payment,FIN-01,finance,question,global,inferred,4,exact,/mortgage-calculator,extend_existing,P1
+K0006,mortgage interest calculator,FIN-01,finance,calculator,global,consensus,5,exact,/mortgage-calculator,extend_existing,P1
+K0007,mortgage overpayment calculator,FIN-02,finance,calculator,global,seed+comp,3,none,/mortgage-overpayment-calculator,build_new,P2
+K0008,extra mortgage payment calculator,FIN-02,finance,calculator,global,consensus,3,none,/mortgage-overpayment-calculator,build_new,P2
+K0009,mortgage payoff calculator,FIN-02,finance,calculator,global,seed+comp,4,none,/mortgage-overpayment-calculator,build_new,P2
+K0010,overpaying my mortgage,FIN-02,finance,question,global,inferred,2,none,/mortgage-overpayment-calculator,build_new,P2
+K0011,mortgage early repayment calculator,FIN-02,finance,calculator,global,inferred,2,none,/mortgage-overpayment-calculator,build_new,P2
+K0012,amortization schedule calculator,FIN-03,finance,calculator,global,seed+comp,5,exact,/amortization-schedule-calculator,keep,P2
+K0013,amortization calculator,FIN-03,finance,calculator,global,seed+comp,5,exact,/amortization-schedule-calculator,keep,P2
+K0014,loan amortization schedule,FIN-03,finance,calculator,global,consensus,5,exact,/amortization-schedule-calculator,keep,P2
+K0015,mortgage amortization table,FIN-03,finance,calculator,global,consensus,4,exact,/amortization-schedule-calculator,keep,P2
+K0016,refinance calculator,FIN-04,finance,calculator,global,seed+comp,4,exact,/refinance-calculator,extend_existing,P2
+K0017,mortgage refinance calculator,FIN-04,finance,calculator,global,consensus,4,exact,/refinance-calculator,extend_existing,P2
+K0018,should I refinance my mortgage,FIN-04,finance,question,global,inferred,2,exact,/refinance-calculator,extend_existing,P2
+K0019,refinance break even calculator,FIN-04,finance,calculator,global,consensus,4,exact,/refinance-calculator,extend_existing,P2
+K0020,mortgage affordability calculator,FIN-05,finance,calculator,global,seed+comp,5,exact,/mortgage-affordability-calculator,extend_existing,P1
+K0021,how much house can I afford,FIN-05,finance,question,global,seed+comp,5,exact,/mortgage-affordability-calculator,extend_existing,P1
+K0022,home affordability calculator,FIN-05,finance,calculator,global,seed+comp,5,exact,/mortgage-affordability-calculator,extend_existing,P1
+K0023,how much mortgage can I afford,FIN-05,finance,question,global,seed+comp,4,exact,/mortgage-affordability-calculator,extend_existing,P1
+K0024,mortgage affordability based on income,FIN-05,finance,question,global,inferred,3,exact,/mortgage-affordability-calculator,extend_existing,P1
+K0025,rent vs buy calculator,FIN-06,finance,comparison,global,seed+comp,5,exact,/rent-vs-buy-calculator,extend_existing,P2
+K0026,should I rent or buy a house,FIN-06,finance,question,global,consensus,4,exact,/rent-vs-buy-calculator,extend_existing,P2
+K0027,renting vs buying a house calculator,FIN-06,finance,comparison,global,inferred,4,exact,/rent-vs-buy-calculator,extend_existing,P2
+K0028,down payment calculator,FIN-07,finance,calculator,global,seed+comp,3,exact,/down-payment-savings-calculator,keep,P3
+K0029,how much down payment do I need,FIN-07,finance,question,global,consensus,3,exact,/down-payment-savings-calculator,keep,P3
+K0030,down payment savings calculator,FIN-07,finance,calculator,global,seed+comp,3,exact,/down-payment-savings-calculator,keep,P3
+K0031,20 percent down payment calculator,FIN-07,finance,calculator,global,inferred,2,exact,/down-payment-savings-calculator,keep,P3
+K0032,closing cost calculator,FIN-08,finance,calculator,global,seed+comp,3,exact,/closing-cost-calculator,keep,P3
+K0033,closing costs on a house,FIN-08,finance,question,global,consensus,3,exact,/closing-cost-calculator,keep,P3
+K0034,how much are closing costs,FIN-08,finance,question,global,inferred,3,exact,/closing-cost-calculator,keep,P3
+K0035,property tax calculator,FIN-09,finance,calculator,global,seed+comp,1,none,/property-tax-calculator,build_new,P3
+K0036,property tax rate calculator,FIN-09,finance,calculator,US,consensus,1,none,/property-tax-calculator,build_new,P3
+K0037,how much is property tax,FIN-09,finance,question,US,inferred,1,none,/property-tax-calculator,build_new,P3
+K0038,home insurance calculator,FIN-10,finance,estimator,global,seed,0,none,/home-insurance-calculator,build_new,P4
+K0039,homeowners insurance cost calculator,FIN-10,finance,estimator,US,seed,0,none,/home-insurance-calculator,build_new,P4
+K0040,house insurance estimate,FIN-10,finance,estimator,global,inferred,0,none,/home-insurance-calculator,build_new,P4
+K0041,home equity calculator,FIN-11,finance,calculator,global,seed+comp,3,exact,/home-equity-calculator,extend_existing,P3
+K0042,heloc calculator,FIN-11,finance,calculator,US,consensus,3,exact,/home-equity-calculator,extend_existing,P3
+K0043,home equity loan calculator,FIN-11,finance,calculator,global,consensus,3,exact,/home-equity-calculator,extend_existing,P3
+K0044,how much equity do I have in my house,FIN-11,finance,question,global,inferred,2,exact,/home-equity-calculator,extend_existing,P3
+K0045,loan calculator,FIN-12,finance,calculator,global,seed+comp,7,exact,/loan-payment-calculator,keep,P2
+K0046,loan payment calculator,FIN-12,finance,calculator,global,seed+comp,7,exact,/loan-payment-calculator,keep,P2
+K0047,personal loan calculator,FIN-12,finance,calculator,global,seed+comp,6,exact,/loan-payment-calculator,keep,P2
+K0048,monthly payment calculator,FIN-12,finance,calculator,global,consensus,6,exact,/loan-payment-calculator,keep,P2
+K0049,loan repayment calculator,FIN-12,finance,calculator,global,consensus,6,exact,/loan-payment-calculator,keep,P2
+K0050,loan payoff calculator,FIN-13,finance,calculator,global,seed+comp,5,none,/loan-payoff-calculator,build_new,P2
+K0051,how long to pay off a loan,FIN-13,finance,question,global,consensus,4,none,/loan-payoff-calculator,build_new,P2
+K0052,extra payment calculator,FIN-13,finance,calculator,global,consensus,4,none,/loan-payoff-calculator,build_new,P2
+K0053,loan payoff date calculator,FIN-13,finance,calculator,global,inferred,3,none,/loan-payoff-calculator,build_new,P2
+K0054,car loan calculator,FIN-14,finance,calculator,global,seed+comp,6,none,/car-loan-calculator,build_new,P1
+K0055,auto loan calculator,FIN-14,finance,calculator,US,seed+comp,6,none,/car-loan-calculator,build_new,P1
+K0056,car finance calculator,FIN-14,finance,calculator,global,consensus,5,none,/car-loan-calculator,build_new,P1
+K0057,vehicle loan calculator,FIN-14,finance,calculator,global,consensus,5,none,/car-loan-calculator,build_new,P1
+K0058,monthly car payment calculator,FIN-14,finance,calculator,global,consensus,5,none,/car-loan-calculator,build_new,P1
+K0059,car payment estimator,FIN-14,finance,estimator,global,inferred,4,none,/car-loan-calculator,build_new,P1
+K0060,student loan calculator,FIN-15,finance,calculator,global,seed+comp,3,none,/student-loan-calculator,build_new,P3
+K0061,student loan repayment calculator,FIN-15,finance,calculator,US,consensus,3,none,/student-loan-calculator,build_new,P3
+K0062,student loan interest calculator,FIN-15,finance,calculator,US,inferred,2,none,/student-loan-calculator,build_new,P3
+K0063,personal loan interest calculator,FIN-16,finance,calculator,global,consensus,4,partial,/loan-payment-calculator,merge_into,P4
+K0064,personal loan rate calculator,FIN-16,finance,calculator,global,inferred,3,partial,/loan-payment-calculator,merge_into,P4
+K0065,debt payoff calculator,FIN-17,finance,calculator,global,seed+comp,3,partial,/debt-payoff-calculator,build_new,P1
+K0066,debt snowball calculator,FIN-17,finance,calculator,global,consensus,3,partial,/debt-payoff-calculator,build_new,P1
+K0067,debt avalanche calculator,FIN-17,finance,calculator,global,consensus,3,partial,/debt-payoff-calculator,build_new,P1
+K0068,debt free date calculator,FIN-17,finance,calculator,global,inferred,2,partial,/debt-payoff-calculator,build_new,P1
+K0069,how to pay off debt faster,FIN-17,finance,question,global,consensus,3,partial,/debt-payoff-calculator,build_new,P1
+K0070,credit card payoff calculator,FIN-18,finance,calculator,global,seed+comp,5,exact,/credit-card-payoff-calculator,extend_existing,P2
+K0071,credit card payment calculator,FIN-18,finance,calculator,global,consensus,5,exact,/credit-card-payoff-calculator,extend_existing,P2
+K0072,how long to pay off credit card,FIN-18,finance,question,global,inferred,4,exact,/credit-card-payoff-calculator,extend_existing,P2
+K0073,credit card interest calculator,FIN-19,finance,calculator,global,seed+comp,5,exact,/credit-card-interest-calculator,keep,P3
+K0074,credit card interest rate calculator,FIN-19,finance,calculator,global,consensus,4,exact,/credit-card-interest-calculator,keep,P3
+K0075,debt consolidation calculator,FIN-20,finance,calculator,global,seed+comp,3,exact,/debt-consolidation-calculator,keep,P3
+K0076,debt consolidation loan calculator,FIN-20,finance,calculator,global,consensus,3,exact,/debt-consolidation-calculator,keep,P3
+K0077,debt to income calculator,FIN-21,finance,calculator,global,seed+comp,3,exact,/debt-to-income-calculator,keep,P2
+K0078,dti calculator,FIN-21,finance,calculator,US,seed+comp,3,exact,/debt-to-income-calculator,keep,P2
+K0079,debt to income ratio calculator,FIN-21,finance,calculator,global,consensus,3,exact,/debt-to-income-calculator,keep,P2
+K0080,credit utilization calculator,FIN-22,finance,calculator,US,inferred,1,none,/credit-card-payoff-calculator,merge_into,P4
+K0081,credit utilization ratio,FIN-22,finance,feature,US,inferred,1,none,/credit-card-payoff-calculator,merge_into,P4
+K0082,compound interest calculator,FIN-23,finance,calculator,global,seed+comp,7,exact,/compound-interest-calculator,extend_existing,P1
+K0083,compound interest formula,FIN-23,finance,question,global,consensus,6,exact,/compound-interest-calculator,extend_existing,P1
+K0084,daily compound interest calculator,FIN-23,finance,calculator,global,consensus,5,exact,/compound-interest-calculator,extend_existing,P1
+K0085,compound interest with monthly contributions,FIN-23,finance,calculator,global,consensus,4,exact,/compound-interest-calculator,extend_existing,P1
+K0086,continuous compounding calculator,FIN-23,finance,calculator,global,inferred,3,exact,/compound-interest-calculator,extend_existing,P1
+K0087,simple interest calculator,FIN-24,finance,calculator,global,seed+comp,6,exact,/simple-interest-calculator,merge_into,P3
+K0088,simple interest formula,FIN-24,finance,question,global,consensus,6,exact,/simple-interest-calculator,merge_into,P3
+K0089,simple vs compound interest,FIN-24,finance,comparison,global,consensus,5,exact,/simple-interest-calculator,merge_into,P3
+K0090,present value calculator,FIN-25,finance,calculator,global,seed+comp,5,exact,/present-value-calculator,keep,P3
+K0091,present value formula,FIN-25,finance,question,global,consensus,4,exact,/present-value-calculator,keep,P3
+K0092,pv calculator,FIN-25,finance,calculator,global,inferred,3,exact,/present-value-calculator,keep,P3
+K0093,future value calculator,FIN-26,finance,calculator,global,seed+comp,5,none,/future-value-calculator,build_new,P2
+K0094,future value of money,FIN-26,finance,question,global,consensus,4,none,/future-value-calculator,build_new,P2
+K0095,fv calculator,FIN-26,finance,calculator,global,inferred,3,none,/future-value-calculator,build_new,P2
+K0096,cagr calculator,FIN-27,finance,calculator,global,seed+comp,5,exact,/cagr-calculator,keep,P3
+K0097,compound annual growth rate calculator,FIN-27,finance,calculator,global,consensus,5,exact,/cagr-calculator,keep,P3
+K0098,cagr formula,FIN-27,finance,question,global,consensus,4,exact,/cagr-calculator,keep,P3
+K0099,roi calculator,FIN-28,finance,calculator,global,seed+comp,6,exact,/roi-calculator,merge_into,P3
+K0100,return on investment calculator,FIN-28,finance,calculator,global,consensus,6,exact,/roi-calculator,merge_into,P3
+K0101,roi formula,FIN-28,finance,question,global,consensus,5,exact,/roi-calculator,merge_into,P3
+K0102,irr calculator,FIN-29,finance,calculator,global,seed+comp,6,none,,do_not_target,P4
+K0103,internal rate of return calculator,FIN-29,finance,calculator,global,consensus,6,none,,do_not_target,P4
+K0104,npv calculator,FIN-29,finance,calculator,global,seed+comp,6,none,,do_not_target,P4
+K0105,net present value calculator,FIN-29,finance,calculator,global,consensus,6,none,,do_not_target,P4
+K0106,payback period calculator,FIN-30,finance,calculator,global,consensus,4,none,/payback-period-calculator,build_new,P3
+K0107,payback period formula,FIN-30,finance,question,global,inferred,3,none,/payback-period-calculator,build_new,P3
+K0108,inflation calculator,FIN-31,finance,calculator,global,seed+comp,5,none,/inflation-calculator,build_new,P2
+K0109,inflation rate calculator,FIN-31,finance,calculator,global,consensus,4,none,/inflation-calculator,build_new,P2
+K0110,purchasing power calculator,FIN-31,finance,calculator,global,inferred,3,none,/inflation-calculator,build_new,P2
+K0111,future value with inflation,FIN-31,finance,feature,global,inferred,2,none,/inflation-calculator,build_new,P2
+K0112,savings goal calculator,FIN-32,finance,calculator,global,seed+comp,4,exact,/savings-goal-calculator,extend_existing,P2
+K0113,how long to save,FIN-32,finance,question,global,consensus,4,exact,/savings-goal-calculator,extend_existing,P2
+K0114,savings calculator,FIN-32,finance,calculator,global,seed+comp,5,exact,/savings-goal-calculator,extend_existing,P2
+K0115,how much should I save each month,FIN-32,finance,question,global,inferred,3,exact,/savings-goal-calculator,extend_existing,P2
+K0116,emergency fund calculator,FIN-33,finance,calculator,global,seed+comp,4,exact,/emergency-fund-calculator,keep,P3
+K0117,how much emergency fund do I need,FIN-33,finance,question,global,consensus,3,exact,/emergency-fund-calculator,keep,P3
+K0118,3 to 6 months of expenses,FIN-33,finance,question,global,inferred,2,exact,/emergency-fund-calculator,keep,P3
+K0119,retirement calculator,FIN-34,finance,calculator,global,seed+comp,6,exact,/retirement-calculator,extend_existing,P2
+K0120,retirement savings calculator,FIN-34,finance,calculator,global,consensus,5,exact,/retirement-calculator,extend_existing,P2
+K0121,how much do I need to retire,FIN-34,finance,question,global,consensus,5,exact,/retirement-calculator,extend_existing,P2
+K0122,retirement withdrawal calculator,FIN-34,finance,calculator,global,consensus,3,exact,/retirement-calculator,extend_existing,P2
+K0123,fire calculator,FIN-34,finance,calculator,global,inferred,2,exact,/retirement-calculator,extend_existing,P2
+K0124,pension calculator,FIN-35,finance,calculator,UK,seed+comp,2,none,,do_not_target,P4
+K0125,pension pot calculator,FIN-35,finance,calculator,UK,inferred,1,none,,do_not_target,P4
+K0126,social security calculator,FIN-36,finance,calculator,US,consensus,2,none,,do_not_target,P4
+K0127,social security benefit calculator,FIN-36,finance,calculator,US,inferred,2,none,,do_not_target,P4
+K0128,401k calculator,FIN-37,finance,calculator,US,consensus,4,none,,do_not_target,P4
+K0129,roth ira calculator,FIN-37,finance,calculator,US,inferred,3,none,,do_not_target,P4
+K0130,annuity calculator,FIN-38,finance,calculator,global,consensus,4,none,,do_not_target,P4
+K0131,annuity payout calculator,FIN-38,finance,calculator,global,inferred,3,none,,do_not_target,P4
+K0132,hourly to salary calculator,FIN-39,finance,calculator,global,seed+comp,6,exact,/hourly-to-annual-salary-calculator,keep,P2
+K0133,hourly wage to annual salary,FIN-39,finance,question,global,consensus,6,exact,/hourly-to-annual-salary-calculator,keep,P2
+K0134,hourly rate to yearly salary,FIN-39,finance,calculator,global,consensus,5,exact,/hourly-to-annual-salary-calculator,keep,P2
+K0135,salary to hourly calculator,FIN-40,finance,calculator,global,seed+comp,5,exact,/salary-to-hourly-calculator,keep,P3
+K0136,annual salary to hourly rate,FIN-40,finance,calculator,global,consensus,5,exact,/salary-to-hourly-calculator,keep,P3
+K0137,salary to hourly wage,FIN-40,finance,calculator,global,consensus,4,exact,/salary-to-hourly-calculator,keep,P3
+K0138,overtime calculator,FIN-41,finance,calculator,global,seed+comp,4,none,/overtime-calculator,build_new,P2
+K0139,time and a half calculator,FIN-41,finance,calculator,US,consensus,3,none,/overtime-calculator,build_new,P2
+K0140,overtime pay calculator,FIN-41,finance,calculator,global,consensus,4,none,/overtime-calculator,build_new,P2
+K0141,how is overtime calculated,FIN-41,finance,question,global,inferred,3,none,/overtime-calculator,build_new,P2
+K0142,take home pay calculator,FIN-42,finance,calculator,global,seed+comp,4,none,/take-home-pay-calculator,build_new,P2
+K0143,salary after tax calculator,FIN-42,finance,calculator,global,consensus,4,none,/take-home-pay-calculator,build_new,P2
+K0144,net pay calculator,FIN-42,finance,calculator,global,consensus,4,none,/take-home-pay-calculator,build_new,P2
+K0145,paycheck calculator,FIN-42,finance,calculator,US,consensus,4,none,/take-home-pay-calculator,build_new,P2
+K0146,freelance hourly rate calculator,FIN-43,finance,calculator,global,seed+comp,2,none,/freelance-rate-calculator,build_new,P2
+K0147,how much should I charge per hour,FIN-43,finance,question,global,seed+comp,2,none,/freelance-rate-calculator,build_new,P2
+K0148,freelance rate calculator,FIN-43,finance,calculator,global,inferred,2,none,/freelance-rate-calculator,build_new,P2
+K0149,consulting rate calculator,FIN-43,finance,calculator,global,inferred,1,none,/freelance-rate-calculator,build_new,P2
+K0150,income tax calculator,FIN-44,finance,calculator,global,seed+comp,6,none,,do_not_target,P4
+K0151,tax calculator,FIN-44,finance,calculator,global,consensus,6,none,,do_not_target,P4
+K0152,payroll calculator,FIN-45,finance,calculator,global,seed+comp,4,partial,/take-home-pay-calculator,merge_into,P3
+K0153,payroll tax calculator,FIN-45,finance,calculator,global,consensus,4,partial,/take-home-pay-calculator,merge_into,P3
+K0154,sales tax calculator,FIN-46,finance,calculator,global,seed+comp,6,exact,/discount-sales-tax-calculator,keep,P3
+K0155,sales tax rate calculator,FIN-46,finance,calculator,US,consensus,5,exact,/discount-sales-tax-calculator,keep,P3
+K0156,vat calculator,FIN-47,finance,calculator,global,seed+comp,5,partial,/discount-sales-tax-calculator,add_feature,P3
+K0157,vat inclusive price calculator,FIN-47,finance,calculator,UK,consensus,4,partial,/discount-sales-tax-calculator,add_feature,P3
+K0158,remove vat from price,FIN-47,finance,question,UK,inferred,3,partial,/discount-sales-tax-calculator,add_feature,P3
+K0159,capital gains tax calculator,FIN-48,finance,calculator,global,seed+comp,2,none,,do_not_target,P4
+K0160,cgt calculator,FIN-48,finance,calculator,UK,inferred,2,none,,do_not_target,P4
+K0161,stamp duty calculator,FIN-49,finance,calculator,UK,seed+comp,1,none,/stamp-duty-calculator,build_new,P2
+K0162,transfer duty calculator,FIN-49,finance,calculator,ZA,inferred,0,none,/stamp-duty-calculator,build_new,P2
+K0163,property transfer tax calculator,FIN-49,finance,calculator,AU,inferred,1,none,/stamp-duty-calculator,build_new,P2
+K0164,stamp duty land tax calculator,FIN-49,finance,calculator,UK,consensus,1,none,/stamp-duty-calculator,build_new,P2
+K0165,rental yield calculator,FIN-50,finance,calculator,global,seed+comp,2,none,/rental-yield-calculator,build_new,P2
+K0166,gross rental yield calculator,FIN-50,finance,calculator,global,inferred,2,none,/rental-yield-calculator,build_new,P2
+K0167,net rental yield calculator,FIN-50,finance,calculator,global,inferred,2,none,/rental-yield-calculator,build_new,P2
+K0168,rental property yield,FIN-50,finance,question,global,consensus,2,none,/rental-yield-calculator,build_new,P2
+K0169,rental cash flow calculator,FIN-51,finance,calculator,global,inferred,2,none,/rental-cash-flow-calculator,build_new,P3
+K0170,rental property cash flow,FIN-51,finance,question,global,inferred,2,none,/rental-cash-flow-calculator,build_new,P3
+K0171,net worth calculator,FIN-52,finance,calculator,global,seed+comp,4,exact,/net-worth-calculator,keep,P3
+K0172,how to calculate net worth,FIN-52,finance,question,global,consensus,4,exact,/net-worth-calculator,keep,P3
+K0173,budget calculator,FIN-53,finance,calculator,global,seed+comp,4,exact,/budget-calculator,extend_existing,P2
+K0174,50 30 20 budget calculator,FIN-53,finance,calculator,global,consensus,3,exact,/budget-calculator,extend_existing,P2
+K0175,monthly budget calculator,FIN-53,finance,calculator,global,consensus,4,exact,/budget-calculator,extend_existing,P2
+K0176,cost of living calculator,FIN-54,finance,calculator,global,seed,2,none,,do_not_target,P4
+K0177,subscription cost calculator,FIN-55,finance,calculator,global,inferred,2,exact,/subscription-total-calculator,keep,P3
+K0178,subscription tracker calculator,FIN-55,finance,calculator,global,inferred,1,exact,/subscription-total-calculator,keep,P3
+K0179,commission calculator,FIN-56,finance,calculator,global,seed+comp,4,none,/commission-calculator,build_new,P3
+K0180,real estate commission calculator,FIN-56,finance,calculator,US,consensus,3,none,/commission-calculator,build_new,P3
+K0181,sales commission calculator,FIN-56,finance,calculator,global,consensus,4,none,/commission-calculator,build_new,P3
+K0182,break even calculator,FIN-57,finance,calculator,global,seed+comp,3,none,/break-even-calculator,build_new,P2
+K0183,break even point calculator,FIN-57,finance,calculator,global,consensus,3,none,/break-even-calculator,build_new,P2
+K0184,break even analysis calculator,FIN-57,finance,calculator,global,inferred,3,none,/break-even-calculator,build_new,P2
+K0185,how to calculate break even,FIN-57,finance,question,global,consensus,3,none,/break-even-calculator,build_new,P2
+K0186,profit calculator,FIN-58,finance,calculator,global,seed+comp,3,none,/profit-calculator,build_new,P3
+K0187,gross profit calculator,FIN-58,finance,calculator,global,seed+comp,3,none,/profit-calculator,build_new,P3
+K0188,net profit calculator,FIN-58,finance,calculator,global,seed+comp,3,none,/profit-calculator,build_new,P3
+K0189,markup calculator,FIN-59,finance,calculator,global,seed+comp,4,exact,/markup-margin-calculator,keep,P3
+K0190,profit margin calculator,FIN-59,finance,calculator,global,seed+comp,4,exact,/markup-margin-calculator,keep,P3
+K0191,markup vs margin,FIN-59,finance,comparison,global,consensus,4,exact,/markup-margin-calculator,keep,P3
+K0192,price increase calculator,FIN-60,finance,calculator,global,seed,2,none,/profit-calculator,merge_into,P4
+K0193,percentage price increase,FIN-60,finance,feature,global,inferred,1,none,/profit-calculator,merge_into,P4
+K0194,discount calculator,FIN-61,finance,calculator,global,seed+comp,6,exact,/discount-sales-tax-calculator,keep,P3
+K0195,percent off calculator,FIN-61,finance,calculator,global,consensus,6,exact,/discount-sales-tax-calculator,keep,P3
+K0196,original price calculator,FIN-61,finance,calculator,global,inferred,3,exact,/discount-sales-tax-calculator,keep,P3
+K0197,roas calculator,FIN-62,finance,calculator,global,seed,1,none,/roas-calculator,build_new,P2
+K0198,return on ad spend calculator,FIN-62,finance,calculator,global,inferred,1,none,/roas-calculator,build_new,P2
+K0199,what is a good roas,FIN-62,finance,question,global,inferred,1,none,/roas-calculator,build_new,P2
+K0200,break even roas calculator,FIN-62,finance,calculator,global,inferred,0,none,/roas-calculator,build_new,P2
+K0201,conversion rate calculator,FIN-63,finance,calculator,global,seed,0,none,/conversion-rate-calculator,build_new,P2
+K0202,sales conversion rate calculator,FIN-63,finance,calculator,global,inferred,0,none,/conversion-rate-calculator,build_new,P2
+K0203,ecommerce conversion rate,FIN-63,finance,question,global,inferred,0,none,/conversion-rate-calculator,build_new,P2
+K0204,cpm calculator,FIN-64,finance,calculator,global,inferred,0,none,/cpm-calculator,build_new,P3
+K0205,cpc calculator,FIN-64,finance,calculator,global,inferred,0,none,/cpm-calculator,build_new,P3
+K0206,cost per click calculator,FIN-64,finance,calculator,global,inferred,0,none,/cpm-calculator,build_new,P3
+K0207,ltv cac calculator,FIN-65,finance,calculator,global,inferred,1,none,/ltv-cac-calculator,build_new,P2
+K0208,customer lifetime value calculator,FIN-65,finance,calculator,global,inferred,1,none,/ltv-cac-calculator,build_new,P2
+K0209,cac calculator,FIN-65,finance,calculator,global,inferred,1,none,/ltv-cac-calculator,build_new,P2
+K0210,inventory turnover calculator,FIN-66,finance,calculator,global,seed+comp,1,none,/inventory-turnover-calculator,build_new,P3
+K0211,inventory turnover ratio,FIN-66,finance,question,global,inferred,1,none,/inventory-turnover-calculator,build_new,P3
+K0212,reorder point calculator,FIN-67,finance,calculator,global,seed,1,none,/reorder-point-calculator,build_new,P3
+K0213,safety stock calculator,FIN-67,finance,calculator,global,inferred,1,none,/reorder-point-calculator,build_new,P3
+K0214,cash flow calculator,FIN-68,finance,calculator,global,seed,1,none,/cash-flow-calculator,build_new,P3
+K0215,operating cash flow calculator,FIN-68,finance,calculator,global,inferred,1,none,/cash-flow-calculator,build_new,P3
+K0216,business valuation calculator,FIN-69,finance,calculator,global,seed+comp,2,none,/business-valuation-calculator,build_new,P3
+K0217,how to value a business,FIN-69,finance,question,global,inferred,2,none,/business-valuation-calculator,build_new,P3
+K0218,ebitda calculator,FIN-70,finance,calculator,global,seed,1,none,/ebitda-calculator,build_new,P3
+K0219,ebitda margin calculator,FIN-70,finance,calculator,global,inferred,1,none,/ebitda-calculator,build_new,P3
+K0220,enterprise value calculator,FIN-71,finance,calculator,global,seed+comp,2,none,,do_not_target,P4
+K0221,current ratio calculator,FIN-72,finance,calculator,global,seed+comp,2,none,/financial-ratios-calculator,build_new,P3
+K0222,quick ratio calculator,FIN-72,finance,calculator,global,seed+comp,2,none,/financial-ratios-calculator,build_new,P3
+K0223,receivables turnover calculator,FIN-72,finance,calculator,global,inferred,1,none,/financial-ratios-calculator,build_new,P3
+K0224,shipping cost calculator,FIN-73,finance,calculator,global,seed,1,none,/shipping-cost-calculator,build_new,P3
+K0225,freight cost calculator,FIN-73,finance,calculator,global,inferred,1,none,/shipping-cost-calculator,build_new,P3
+K0226,dimensional weight calculator,FIN-74,finance,calculator,global,seed+comp,2,none,/dimensional-weight-calculator,build_new,P3
+K0227,dim weight calculator,FIN-74,finance,calculator,global,inferred,2,none,/dimensional-weight-calculator,build_new,P3
+K0228,volumetric weight calculator,FIN-74,finance,calculator,global,inferred,1,none,/dimensional-weight-calculator,build_new,P3
+K0229,price per unit calculator,FIN-75,finance,calculator,global,seed,0,none,/price-per-unit-calculator,build_new,P1
+K0230,unit price calculator,FIN-75,finance,calculator,global,inferred,0,none,/price-per-unit-calculator,build_new,P1
+K0231,price per ounce calculator,FIN-75,finance,calculator,US,inferred,0,none,/price-per-unit-calculator,build_new,P1
+K0232,cost per 100g calculator,FIN-75,finance,calculator,global,inferred,0,none,/price-per-unit-calculator,build_new,P1
+K0233,compare package sizes price,FIN-75,finance,comparison,global,inferred,0,none,/price-per-unit-calculator,build_new,P1
+K0234,labor cost calculator,FIN-76,finance,calculator,global,seed,1,none,/labor-cost-calculator,build_new,P3
+K0235,labor cost per hour,FIN-76,finance,question,global,inferred,1,none,/labor-cost-calculator,build_new,P3
+K0236,billable hours calculator,FIN-77,finance,calculator,global,seed,1,none,/billable-hours-calculator,build_new,P3
+K0237,utilization rate calculator,FIN-77,finance,calculator,global,seed,1,none,/billable-hours-calculator,build_new,P3
+K0238,currency converter,FIN-78,conversion,converter,global,seed+comp,6,exact,/currency-converter,keep,P3
+K0239,usd to eur converter,FIN-78,conversion,converter,global,consensus,5,exact,/currency-converter,keep,P3
+K0240,exchange rate calculator,FIN-78,conversion,calculator,global,consensus,5,exact,/currency-converter,keep,P3
+K0241,crypto staking calculator,FIN-79,finance,calculator,global,inferred,1,none,,do_not_target,P4
+K0242,staking apy calculator,FIN-79,finance,calculator,global,inferred,1,none,,do_not_target,P4
+K0243,loan affordability calculator,FIN-80,finance,calculator,global,inferred,2,partial,/mortgage-affordability-calculator,merge_into,P4
+K0244,how much can I borrow,FIN-80,finance,question,global,consensus,2,partial,/mortgage-affordability-calculator,merge_into,P4
+K0245,bmi calculator,HLT-01,health,calculator,global,seed+comp,7,exact,/bmi-calculator,extend_existing,P2
+K0246,body mass index calculator,HLT-01,health,calculator,global,consensus,6,exact,/bmi-calculator,extend_existing,P2
+K0247,am I overweight,HLT-01,health,question,global,inferred,3,exact,/bmi-calculator,extend_existing,P2
+K0248,bmi chart,HLT-01,health,feature,global,consensus,4,exact,/bmi-calculator,extend_existing,P2
+K0249,bmr calculator,HLT-02,health,calculator,global,seed+comp,6,exact,/bmr-calculator,keep,P3
+K0250,basal metabolic rate calculator,HLT-02,health,calculator,global,consensus,6,exact,/bmr-calculator,keep,P3
+K0251,mifflin st jeor calculator,HLT-02,health,calculator,global,inferred,3,exact,/bmr-calculator,keep,P3
+K0252,tdee calculator,HLT-03,health,calculator,global,seed+comp,5,exact,/tdee-calculator,extend_existing,P1
+K0253,total daily energy expenditure,HLT-03,health,calculator,global,consensus,5,exact,/tdee-calculator,extend_existing,P1
+K0254,how many calories do I burn a day,HLT-03,health,question,global,consensus,4,exact,/tdee-calculator,extend_existing,P1
+K0255,maintenance calories calculator,HLT-03,health,calculator,global,consensus,4,exact,/tdee-calculator,extend_existing,P1
+K0256,calorie calculator,HLT-04,health,calculator,global,seed+comp,6,exact,/tdee-calculator,extend_existing,P2
+K0257,how many calories should I eat,HLT-04,health,question,global,seed+comp,6,exact,/tdee-calculator,extend_existing,P2
+K0258,daily calorie intake calculator,HLT-04,health,calculator,global,consensus,5,exact,/tdee-calculator,extend_existing,P2
+K0259,calorie deficit calculator,HLT-04,health,calculator,global,seed+comp,4,exact,/calorie-deficit-calculator,extend_existing,P2
+K0260,macro calculator,HLT-05,health,calculator,global,seed+comp,4,exact,/macro-calculator,extend_existing,P2
+K0261,macros calculator weight loss,HLT-05,health,calculator,global,consensus,3,exact,/macro-calculator,extend_existing,P2
+K0262,carb protein fat ratio calculator,HLT-05,health,calculator,global,inferred,3,exact,/macro-calculator,extend_existing,P2
+K0263,body fat calculator,HLT-06,health,calculator,global,seed+comp,5,exact,/body-fat-calculator,keep,P3
+K0264,body fat percentage calculator,HLT-06,health,calculator,global,consensus,5,exact,/body-fat-calculator,keep,P3
+K0265,navy body fat calculator,HLT-06,health,calculator,US,consensus,3,exact,/body-fat-calculator,keep,P3
+K0266,lean body mass calculator,HLT-07,health,calculator,global,consensus,4,exact,/lean-body-mass-calculator,keep,P3
+K0267,ideal weight calculator,HLT-08,health,calculator,global,seed+comp,5,exact,/ideal-weight-calculator,keep,P3
+K0268,ideal weight for height,HLT-08,health,question,global,consensus,4,exact,/ideal-weight-calculator,keep,P3
+K0269,water intake calculator,HLT-09,health,calculator,global,seed+comp,3,exact,/water-intake-calculator,keep,P3
+K0270,how much water should I drink,HLT-09,health,question,global,consensus,3,exact,/water-intake-calculator,keep,P3
+K0271,protein intake calculator,HLT-10,health,calculator,global,seed+comp,3,exact,/protein-intake-calculator,keep,P3
+K0272,how much protein do I need,HLT-10,health,question,global,consensus,3,exact,/protein-intake-calculator,keep,P3
+K0273,waist to height ratio calculator,HLT-11,health,calculator,global,seed+comp,4,exact,/waist-to-height-ratio-calculator,keep,P3
+K0274,waist to hip ratio calculator,HLT-11,health,calculator,global,seed+comp,4,exact,/waist-to-hip-ratio-calculator,keep,P3
+K0275,waist circumference calculator,HLT-30,health,calculator,global,inferred,2,partial,/waist-to-height-ratio-calculator,merge_into,P4
+K0276,due date calculator,HLT-12,health,calculator,global,seed+comp,4,none,/due-date-calculator,build_new,P1
+K0277,pregnancy due date calculator,HLT-12,health,calculator,global,seed+comp,4,none,/due-date-calculator,build_new,P1
+K0278,when is my baby due,HLT-12,health,question,global,consensus,4,none,/due-date-calculator,build_new,P1
+K0279,estimated due date calculator,HLT-12,health,calculator,global,consensus,3,none,/due-date-calculator,build_new,P1
+K0280,how many weeks pregnant am I,HLT-12,health,question,global,consensus,3,none,/due-date-calculator,build_new,P1
+K0281,conception calculator,HLT-13,health,calculator,global,consensus,2,none,/conception-calculator,build_new,P3
+K0282,conception date calculator,HLT-13,health,calculator,global,consensus,2,none,/conception-calculator,build_new,P3
+K0283,when did I conceive,HLT-13,health,question,global,inferred,2,none,/conception-calculator,build_new,P3
+K0284,ovulation calculator,HLT-14,health,calculator,global,seed+comp,2,none,/ovulation-calculator,build_new,P2
+K0285,fertile window calculator,HLT-14,health,calculator,global,inferred,2,none,/ovulation-calculator,build_new,P2
+K0286,when am I most fertile,HLT-14,health,question,global,inferred,2,none,/ovulation-calculator,build_new,P2
+K0287,pregnancy week calculator,HLT-15,health,calculator,global,seed+comp,3,none,/pregnancy-week-calculator,build_new,P3
+K0288,pregnancy week by week,HLT-15,health,feature,global,consensus,3,none,/pregnancy-week-calculator,build_new,P3
+K0289,pregnancy weight gain calculator,HLT-16,health,calculator,global,consensus,2,none,/pregnancy-weight-gain-calculator,build_new,P3
+K0290,how much weight should I gain in pregnancy,HLT-16,health,question,global,inferred,2,none,/pregnancy-weight-gain-calculator,build_new,P3
+K0291,sleep cycle calculator,HLT-17,health,calculator,global,seed+comp,3,exact,/sleep-cycle-calculator,extend_existing,P2
+K0292,what time should I go to bed,HLT-17,health,question,global,consensus,3,exact,/sleep-cycle-calculator,extend_existing,P2
+K0293,best time to wake up,HLT-17,health,question,global,inferred,2,exact,/sleep-cycle-calculator,extend_existing,P2
+K0294,sleep debt calculator,HLT-18,health,calculator,global,seed+comp,3,exact,/sleep-debt-calculator,keep,P3
+K0295,sleep hours calculator,HLT-18,health,calculator,global,seed+comp,3,exact,/sleep-debt-calculator,keep,P3
+K0296,steps to miles calculator,HLT-19,health,calculator,global,seed+comp,2,exact,/steps-to-miles-calculator,extend_existing,P2
+K0297,steps to km calculator,HLT-19,health,calculator,global,inferred,2,exact,/steps-to-miles-calculator,extend_existing,P2
+K0298,how many steps in a mile,HLT-19,health,question,global,consensus,3,exact,/steps-to-miles-calculator,extend_existing,P2
+K0299,calories burned calculator,HLT-20,health,calculator,global,seed+comp,6,exact,/calories-burned-calculator,extend_existing,P3
+K0300,calories burned walking,HLT-20,health,question,global,consensus,5,exact,/calories-burned-calculator,extend_existing,P3
+K0301,running calories calculator,HLT-20,health,calculator,global,consensus,4,exact,/running-calories-calculator,extend_existing,P3
+K0302,one rep max calculator,HLT-21,health,calculator,global,seed+comp,5,exact,/one-rep-max-calculator,keep,P3
+K0303,1rm calculator,HLT-21,health,calculator,global,consensus,4,exact,/one-rep-max-calculator,keep,P3
+K0304,target heart rate calculator,HLT-22,health,calculator,global,seed+comp,5,exact,/target-heart-rate-calculator,keep,P3
+K0305,heart rate zones calculator,HLT-22,health,calculator,global,consensus,4,exact,/target-heart-rate-calculator,keep,P3
+K0306,vo2 max calculator,HLT-23,health,calculator,global,consensus,3,exact,/vo2-max-calculator,keep,P4
+K0307,blood pressure category calculator,HLT-24,health,calculator,global,consensus,3,exact,/blood-pressure-calculator,keep,P3
+K0308,is my blood pressure normal,HLT-24,health,question,global,inferred,2,exact,/blood-pressure-calculator,keep,P3
+K0309,a1c calculator,HLT-25,health,calculator,global,consensus,2,exact,/a1c-calculator,keep,P4
+K0310,a1c to average blood sugar,HLT-25,health,calculator,global,inferred,2,exact,/a1c-calculator,keep,P4
+K0311,body surface area calculator,HLT-26,health,calculator,global,consensus,3,exact,/body-surface-area-calculator,keep,P4
+K0312,caffeine calculator,HLT-27,health,calculator,global,inferred,2,exact,/caffeine-limit-calculator,keep,P4
+K0313,how much caffeine is safe,HLT-27,health,question,global,inferred,2,exact,/caffeine-limit-calculator,keep,P4
+K0314,alcohol units calculator,HLT-28,health,calculator,global,inferred,2,exact,/alcohol-units-calculator,keep,P3
+K0315,units of alcohol per week,HLT-28,health,question,UK,inferred,2,exact,/alcohol-units-calculator,keep,P3
+K0316,ideal body fat calculator,HLT-29,health,calculator,global,inferred,3,partial,/body-fat-calculator,merge_into,P4
+K0317,dog age calculator,HLT-31,health,calculator,global,seed+comp,3,exact,/dog-age-calculator,keep,P3
+K0318,dog years to human years,HLT-31,health,question,global,consensus,3,exact,/dog-age-calculator,keep,P3
+K0319,cat age calculator,HLT-31,health,calculator,global,inferred,2,exact,/dog-age-calculator,extend_existing,P3
+K0320,pet calorie calculator,HLT-32,health,calculator,global,seed,0,none,/pet-calorie-calculator,build_new,P3
+K0321,dog calorie calculator,HLT-32,health,calculator,global,inferred,0,none,/pet-calorie-calculator,build_new,P3
+K0322,how many calories should my dog eat,HLT-32,health,question,global,inferred,0,none,/pet-calorie-calculator,build_new,P3
+K0323,cat calorie calculator,HLT-32,health,calculator,global,inferred,0,none,/pet-calorie-calculator,build_new,P3
+K0324,dog food calculator,HLT-33,health,calculator,global,seed,1,none,/dog-food-calculator,build_new,P3
+K0325,how much to feed my dog,HLT-33,health,question,global,inferred,1,none,/dog-food-calculator,build_new,P3
+K0326,dog feeding chart calculator,HLT-33,health,feature,global,inferred,1,none,/dog-food-calculator,build_new,P3
+K0327,percentage calculator,MAT-01,math,calculator,global,seed+comp,7,exact,/percentage-calculator,extend_existing,P1
+K0328,what is x percent of y,MAT-01,math,question,global,consensus,6,exact,/percentage-calculator,extend_existing,P1
+K0329,percentage formula,MAT-01,math,question,global,consensus,6,exact,/percentage-calculator,extend_existing,P1
+K0330,how to calculate percentage,MAT-01,math,question,global,consensus,5,exact,/percentage-calculator,extend_existing,P1
+K0331,reverse percentage calculator,MAT-01,math,calculator,global,inferred,4,exact,/percentage-calculator,extend_existing,P1
+K0332,x is what percent of y,MAT-01,math,question,global,consensus,4,exact,/percentage-calculator,extend_existing,P1
+K0333,percentage change calculator,MAT-02,math,calculator,global,seed+comp,6,partial,/percentage-calculator,add_feature,P2
+K0334,percentage increase calculator,MAT-02,math,calculator,global,seed+comp,6,partial,/percentage-calculator,add_feature,P2
+K0335,percentage decrease calculator,MAT-02,math,calculator,global,consensus,5,partial,/percentage-calculator,add_feature,P2
+K0336,percentage difference calculator,MAT-02,math,calculator,global,consensus,4,partial,/percentage-calculator,add_feature,P2
+K0337,fraction calculator,MAT-03,math,calculator,global,seed+comp,6,none,/fraction-calculator,build_new,P2
+K0338,adding fractions calculator,MAT-03,math,calculator,global,consensus,5,none,/fraction-calculator,build_new,P2
+K0339,multiplying fractions calculator,MAT-03,math,calculator,global,consensus,4,none,/fraction-calculator,build_new,P2
+K0340,mixed number calculator,MAT-03,math,calculator,global,consensus,4,none,/fraction-calculator,build_new,P2
+K0341,simplify fractions calculator,MAT-04,math,calculator,global,seed+comp,5,partial,/fraction-calculator,add_feature,P4
+K0342,reduce fractions calculator,MAT-04,math,calculator,global,consensus,4,partial,/fraction-calculator,add_feature,P4
+K0343,decimal to fraction calculator,MAT-05,math,calculator,global,seed+comp,5,none,/decimal-to-fraction-calculator,build_new,P3
+K0344,fraction to decimal calculator,MAT-05,math,calculator,global,seed+comp,5,partial,/decimal-to-fraction-calculator,build_new,P3
+K0345,0.375 as a fraction,MAT-05,math,question,global,inferred,2,none,/decimal-to-fraction-calculator,build_new,P3
+K0346,scientific calculator,MAT-06,math,calculator,global,seed+comp,5,exact,/scientific-calculator,extend_existing,P2
+K0347,online scientific calculator,MAT-06,math,calculator,global,consensus,5,exact,/scientific-calculator,extend_existing,P2
+K0348,standard deviation calculator,MAT-07,math,calculator,global,seed+comp,6,exact,/standard-deviation-calculator,extend_existing,P2
+K0349,sample standard deviation calculator,MAT-07,math,calculator,global,consensus,5,exact,/standard-deviation-calculator,extend_existing,P2
+K0350,how to calculate standard deviation,MAT-07,math,question,global,consensus,5,exact,/standard-deviation-calculator,extend_existing,P2
+K0351,mean median mode calculator,MAT-08,math,calculator,global,seed+comp,6,exact,/mean-median-mode-calculator,extend_existing,P3
+K0352,average calculator,MAT-08,math,calculator,global,consensus,5,exact,/mean-median-mode-calculator,extend_existing,P3
+K0353,median calculator,MAT-08,math,calculator,global,consensus,4,exact,/mean-median-mode-calculator,extend_existing,P3
+K0354,variance calculator,MAT-09,math,calculator,global,seed+comp,4,partial,/standard-deviation-calculator,merge_into,P4
+K0355,z score calculator,MAT-10,math,calculator,global,seed+comp,5,none,/z-score-calculator,build_new,P2
+K0356,z score formula,MAT-10,math,question,global,consensus,4,none,/z-score-calculator,build_new,P2
+K0357,how to calculate z score,MAT-10,math,question,global,inferred,3,none,/z-score-calculator,build_new,P2
+K0358,confidence interval calculator,MAT-11,math,calculator,global,seed+comp,4,none,/confidence-interval-calculator,build_new,P2
+K0359,95 confidence interval calculator,MAT-11,math,calculator,global,inferred,3,none,/confidence-interval-calculator,build_new,P2
+K0360,sample size calculator,MAT-12,math,calculator,global,seed+comp,4,none,/sample-size-calculator,build_new,P2
+K0361,survey sample size calculator,MAT-12,math,calculator,global,inferred,3,none,/sample-size-calculator,build_new,P2
+K0362,margin of error calculator,MAT-13,math,calculator,global,seed+comp,4,none,/margin-of-error-calculator,build_new,P3
+K0363,p value calculator,MAT-14,math,calculator,global,seed+comp,4,none,,do_not_target,P4
+K0364,p value from z score,MAT-14,math,calculator,global,inferred,3,none,,do_not_target,P4
+K0365,percentile calculator,MAT-15,math,calculator,global,seed+comp,5,none,/percentile-calculator,build_new,P3
+K0366,quartile calculator,MAT-15,math,calculator,global,seed+comp,4,none,/percentile-calculator,build_new,P3
+K0367,iqr calculator,MAT-15,math,calculator,global,inferred,3,none,/percentile-calculator,build_new,P3
+K0368,probability calculator,MAT-16,math,calculator,global,seed+comp,4,none,/probability-calculator,build_new,P3
+K0369,coin flip probability,MAT-16,math,question,global,inferred,2,none,/probability-calculator,build_new,P3
+K0370,combination calculator,MAT-17,math,calculator,global,seed+comp,5,exact,/combinations-permutations-calculator,keep,P4
+K0371,permutation calculator,MAT-17,math,calculator,global,seed+comp,5,exact,/combinations-permutations-calculator,keep,P4
+K0372,normal distribution calculator,MAT-18,math,calculator,global,seed+comp,5,none,/normal-distribution-calculator,build_new,P3
+K0373,bell curve calculator,MAT-18,math,calculator,global,inferred,3,none,/normal-distribution-calculator,build_new,P3
+K0374,binomial probability calculator,MAT-19,math,calculator,global,seed+comp,3,none,/binomial-distribution-calculator,build_new,P3
+K0375,bayes theorem calculator,MAT-20,math,calculator,global,seed,3,none,,do_not_target,P4
+K0376,correlation coefficient calculator,MAT-21,math,calculator,global,seed+comp,4,none,/correlation-calculator,build_new,P3
+K0377,linear regression calculator,MAT-21,math,calculator,global,seed+comp,4,none,/correlation-calculator,build_new,P3
+K0378,expected value calculator,MAT-22,math,calculator,global,seed,3,partial,/probability-calculator,merge_into,P4
+K0379,triangle calculator,MAT-23,math,calculator,global,seed+comp,6,none,/triangle-calculator,build_new,P2
+K0380,area of a triangle calculator,MAT-23,math,calculator,global,seed+comp,5,none,/triangle-calculator,build_new,P2
+K0381,triangle side calculator,MAT-23,math,calculator,global,inferred,3,none,/triangle-calculator,build_new,P2
+K0382,circle calculator,MAT-24,math,calculator,global,seed+comp,6,exact,/circle-area-calculator,keep,P3
+K0383,circumference calculator,MAT-24,math,calculator,global,consensus,5,exact,/circle-area-calculator,keep,P3
+K0384,area of a circle calculator,MAT-24,math,calculator,global,seed+comp,5,exact,/circle-area-calculator,keep,P3
+K0385,surface area calculator,MAT-25,math,calculator,global,seed+comp,5,none,/surface-area-calculator,build_new,P3
+K0386,surface area of a cylinder,MAT-25,math,question,global,inferred,3,none,/surface-area-calculator,build_new,P3
+K0387,volume calculator,MAT-26,math,calculator,global,seed+comp,5,none,/volume-calculator,build_new,P2
+K0388,cylinder volume calculator,MAT-26,math,calculator,global,seed+comp,5,none,/volume-calculator,build_new,P2
+K0389,cone volume calculator,MAT-26,math,calculator,global,seed+comp,4,none,/volume-calculator,build_new,P2
+K0390,sphere volume calculator,MAT-26,math,calculator,global,seed+comp,4,none,/volume-calculator,build_new,P2
+K0391,right triangle calculator,MAT-27,math,calculator,global,seed+comp,5,none,/right-triangle-calculator,build_new,P3
+K0392,trigonometry calculator,MAT-27,math,calculator,global,inferred,3,none,/right-triangle-calculator,build_new,P3
+K0393,sohcahtoa calculator,MAT-27,math,calculator,global,inferred,2,none,/right-triangle-calculator,build_new,P3
+K0394,pythagorean theorem calculator,MAT-28,math,calculator,global,seed+comp,6,exact,/pythagorean-theorem-calculator,keep,P3
+K0395,hypotenuse calculator,MAT-28,math,calculator,global,consensus,4,exact,/pythagorean-theorem-calculator,keep,P3
+K0396,perimeter calculator,MAT-29,math,calculator,global,seed+comp,4,partial,/room-area-calculator,merge_into,P4
+K0397,slope calculator,MAT-30,math,calculator,global,seed+comp,5,exact,/slope-calculator,extend_existing,P3
+K0398,slope intercept form calculator,MAT-30,math,calculator,global,consensus,4,exact,/slope-calculator,extend_existing,P3
+K0399,gcd calculator,MAT-31,math,calculator,global,seed+comp,5,exact,/gcd-lcm-calculator,keep,P4
+K0400,lcm calculator,MAT-31,math,calculator,global,seed+comp,5,exact,/gcd-lcm-calculator,keep,P4
+K0401,greatest common factor calculator,MAT-31,math,calculator,global,seed+comp,4,exact,/gcd-lcm-calculator,keep,P4
+K0402,prime factorization calculator,MAT-32,math,calculator,global,seed+comp,5,none,/prime-factorization-calculator,build_new,P3
+K0403,factor calculator,MAT-32,math,calculator,global,consensus,4,partial,/prime-factorization-calculator,build_new,P3
+K0404,square root calculator,MAT-33,math,calculator,global,seed+comp,5,partial,/exponent-root-calculator,add_feature,P3
+K0405,logarithm calculator,MAT-33,math,calculator,global,seed+comp,4,partial,/exponent-root-calculator,add_feature,P3
+K0406,order of operations calculator,MAT-33,math,calculator,global,seed+comp,3,partial,/exponent-root-calculator,add_feature,P3
+K0407,significant figures calculator,MAT-34,math,calculator,global,seed+comp,3,none,/significant-figures-calculator,build_new,P3
+K0408,sig fig counter,MAT-34,math,calculator,global,inferred,3,none,/significant-figures-calculator,build_new,P3
+K0409,scientific notation calculator,MAT-35,math,calculator,global,seed+comp,4,none,/scientific-notation-calculator,build_new,P3
+K0410,scientific notation converter,MAT-35,math,converter,global,seed+comp,4,none,/scientific-notation-calculator,build_new,P3
+K0411,rounding calculator,MAT-36,math,calculator,global,seed+comp,4,exact,/rounding-calculator,keep,P4
+K0412,round to nearest hundredth,MAT-36,math,question,global,inferred,2,exact,/rounding-calculator,keep,P4
+K0413,equation solver,MAT-37,math,solver,global,seed+comp,5,none,/equation-solver,build_new,P3
+K0414,system of equations solver,MAT-37,math,solver,global,seed+comp,4,none,/equation-solver,build_new,P3
+K0415,linear equation calculator,MAT-37,math,solver,global,seed+comp,4,none,/equation-solver,build_new,P3
+K0416,quadratic formula calculator,MAT-38,math,calculator,global,seed+comp,5,exact,/quadratic-formula-calculator,keep,P3
+K0417,quadratic equation solver,MAT-38,math,solver,global,consensus,4,exact,/quadratic-formula-calculator,keep,P3
+K0418,gpa calculator,MAT-39,math,calculator,global,seed+comp,6,exact,/gpa-calculator,extend_existing,P3
+K0419,college gpa calculator,MAT-39,math,calculator,US,seed+comp,4,exact,/gpa-calculator,extend_existing,P3
+K0420,weighted gpa calculator,MAT-39,math,calculator,US,seed+comp,4,exact,/gpa-calculator,extend_existing,P3
+K0421,high school gpa calculator,MAT-39,math,calculator,US,inferred,3,exact,/gpa-calculator,extend_existing,P3
+K0422,final grade calculator,MAT-40,math,calculator,global,seed+comp,5,exact,/final-grade-calculator,keep,P3
+K0423,what do I need on my final,MAT-40,math,question,global,consensus,4,exact,/final-grade-calculator,keep,P3
+K0424,grade calculator,MAT-40,math,calculator,global,seed+comp,5,exact,/test-score-percentage-calculator,keep,P3
+K0425,word counter,MAT-41,math,generator,global,seed,0,none,/word-counter,build_new,P3
+K0426,character counter,MAT-41,math,generator,global,inferred,0,none,/word-counter,build_new,P3
+K0427,word count tool,MAT-41,math,generator,global,inferred,0,none,/word-counter,build_new,P3
+K0428,how many words is this text,MAT-41,math,question,global,inferred,0,none,/word-counter,build_new,P3
+K0429,reading time calculator,MAT-42,math,calculator,global,seed,0,none,/word-counter,build_new,P4
+K0430,speaking time calculator,MAT-42,math,calculator,global,inferred,0,none,/word-counter,build_new,P4
+K0431,typing speed calculator,MAT-43,math,calculator,global,seed,2,none,/typing-speed-calculator,build_new,P4
+K0432,wpm test,MAT-43,math,generator,global,inferred,2,none,/typing-speed-calculator,build_new,P4
+K0433,matrix calculator,MAT-44,math,calculator,global,seed,3,none,/matrix-calculator,build_new,P4
+K0434,matrix multiplication calculator,MAT-44,math,calculator,global,inferred,3,none,/matrix-calculator,build_new,P4
+K0435,ratio calculator,MAT-45,math,calculator,global,seed+comp,5,exact,/ratio-proportion-calculator,keep,P3
+K0436,proportion calculator,MAT-45,math,calculator,global,consensus,4,exact,/ratio-proportion-calculator,keep,P3
+K0437,ratio simplifier,MAT-45,math,calculator,global,inferred,3,exact,/ratio-proportion-calculator,keep,P3
+K0438,absolute value calculator,MAT-46,math,calculator,global,seed,2,partial,/modulo-calculator,merge_into,P4
+K0439,modulo calculator,MAT-46,math,calculator,global,inferred,2,exact,/modulo-calculator,merge_into,P4
+K0440,age calculator,TME-01,time,calculator,global,seed+comp,7,exact,/age-calculator,extend_existing,P1
+K0441,how old am I,TME-01,time,question,global,consensus,6,exact,/age-calculator,extend_existing,P1
+K0442,age in days calculator,TME-01,time,calculator,global,consensus,5,exact,/age-calculator,extend_existing,P1
+K0443,birthday calculator,TME-01,time,calculator,global,consensus,4,exact,/age-calculator,extend_existing,P1
+K0444,date of birth calculator,TME-01,time,calculator,global,consensus,4,exact,/age-calculator,extend_existing,P1
+K0445,date difference calculator,TME-02,time,calculator,global,seed+comp,6,exact,/date-difference-calculator,extend_existing,P2
+K0446,days between dates calculator,TME-02,time,calculator,global,seed+comp,6,exact,/date-difference-calculator,extend_existing,P2
+K0447,days between two dates,TME-02,time,question,global,consensus,5,exact,/date-difference-calculator,extend_existing,P2
+K0448,days until calculator,TME-03,time,calculator,global,seed+comp,5,exact,/days-until-calculator,extend_existing,P2
+K0449,days until christmas,TME-03,time,question,global,consensus,4,exact,/days-until-calculator,extend_existing,P2
+K0450,countdown calculator,TME-03,time,calculator,global,seed+comp,4,exact,/days-until-calculator,extend_existing,P2
+K0451,how many days until,TME-03,time,question,global,consensus,4,exact,/days-until-calculator,extend_existing,P2
+K0452,add days to date calculator,TME-04,time,calculator,global,consensus,5,exact,/add-days-to-date,keep,P3
+K0453,90 days from today,TME-04,time,question,global,consensus,4,exact,/add-days-to-date,keep,P3
+K0454,date calculator add and subtract,TME-04,time,calculator,global,consensus,4,exact,/add-days-to-date,keep,P3
+K0455,business days calculator,TME-05,time,calculator,global,seed+comp,5,none,/business-days-calculator,build_new,P2
+K0456,working days calculator,TME-05,time,calculator,global,seed+comp,5,none,/business-days-calculator,build_new,P2
+K0457,add business days,TME-05,time,calculator,global,inferred,3,none,/business-days-calculator,build_new,P2
+K0458,time zone converter,TME-06,time,converter,global,seed+comp,1,exact,/time-zone-converter,extend_existing,P2
+K0459,time difference between cities,TME-06,time,question,global,inferred,1,exact,/time-zone-converter,extend_existing,P2
+K0460,what time is it in,TME-06,time,question,global,consensus,1,exact,/time-zone-converter,extend_existing,P2
+K0461,time duration calculator,TME-07,time,calculator,global,seed+comp,5,exact,/time-adder,extend_existing,P3
+K0462,hours and minutes calculator,TME-07,time,calculator,global,seed+comp,5,exact,/time-adder,extend_existing,P3
+K0463,add hours and minutes,TME-07,time,calculator,global,consensus,4,exact,/time-adder,extend_existing,P3
+K0464,time card calculator,TME-08,time,calculator,global,seed+comp,4,none,/time-card-calculator,build_new,P1
+K0465,timesheet calculator,TME-08,time,calculator,global,consensus,4,none,/time-card-calculator,build_new,P1
+K0466,hours worked calculator,TME-08,time,calculator,global,consensus,4,none,/time-card-calculator,build_new,P1
+K0467,weekly timesheet calculator,TME-08,time,calculator,global,inferred,3,none,/time-card-calculator,build_new,P1
+K0468,decimal hours calculator,TME-09,time,converter,global,consensus,3,exact,/decimal-hours-calculator,keep,P4
+K0469,hours to decimal converter,TME-09,time,converter,global,inferred,3,exact,/decimal-hours-calculator,keep,P4
+K0470,unix timestamp converter,TME-10,time,converter,global,seed+comp,2,none,/unix-timestamp-converter,build_new,P3
+K0471,epoch converter,TME-10,time,converter,global,inferred,2,none,/unix-timestamp-converter,build_new,P3
+K0472,timestamp to date,TME-10,time,converter,global,inferred,2,none,/unix-timestamp-converter,build_new,P3
+K0473,week number calculator,TME-11,time,calculator,global,inferred,2,none,/week-number-calculator,build_new,P3
+K0474,what week number is it,TME-11,time,question,global,inferred,2,none,/week-number-calculator,build_new,P3
+K0475,age difference calculator,TME-12,time,calculator,global,seed+comp,3,none,/age-difference-calculator,build_new,P3
+K0476,age gap calculator,TME-12,time,calculator,global,inferred,2,none,/age-difference-calculator,build_new,P3
+K0477,weeks between dates calculator,TME-13,time,calculator,global,seed+comp,3,partial,/date-difference-calculator,merge_into,P4
+K0478,deadline calculator,TME-14,time,calculator,global,inferred,1,none,,do_not_target,P4
+K0479,room area calculator,CON-01,construction,calculator,global,seed+comp,6,exact,/room-area-calculator,keep,P2
+K0480,square footage calculator,CON-01,construction,calculator,global,seed+comp,6,exact,/room-area-calculator,keep,P2
+K0481,square meters calculator,CON-01,construction,calculator,global,seed+comp,5,exact,/room-area-calculator,keep,P2
+K0482,area of a room calculator,CON-01,construction,calculator,global,consensus,4,exact,/room-area-calculator,keep,P2
+K0483,room volume calculator,CON-02,construction,calculator,global,seed+comp,5,exact,/room-volume-calculator,keep,P3
+K0484,cubic feet calculator,CON-02,construction,calculator,global,seed+comp,5,exact,/room-volume-calculator,keep,P3
+K0485,cubic yards calculator,CON-02,construction,calculator,global,seed+comp,5,exact,/room-volume-calculator,keep,P3
+K0486,volume of a room,CON-02,construction,question,global,inferred,3,exact,/room-volume-calculator,keep,P3
+K0487,concrete calculator,CON-03,construction,calculator,global,seed+comp,7,exact,/concrete-calculator,extend_existing,P1
+K0488,how much concrete do I need,CON-03,construction,question,global,seed+comp,7,exact,/concrete-calculator,extend_existing,P1
+K0489,concrete slab calculator,CON-03,construction,calculator,global,consensus,5,exact,/concrete-calculator,extend_existing,P1
+K0490,concrete yardage calculator,CON-03,construction,calculator,global,consensus,4,exact,/concrete-calculator,extend_existing,P1
+K0491,how many bags of concrete do I need,CON-04,construction,question,global,seed+comp,5,exact,/concrete-calculator,add_feature,P2
+K0492,80 lb bag concrete coverage,CON-04,construction,question,global,inferred,3,exact,/concrete-calculator,add_feature,P2
+K0493,paint calculator,CON-05,construction,calculator,global,seed+comp,5,exact,/paint-calculator,extend_existing,P2
+K0494,how much paint do I need,CON-05,construction,question,global,seed+comp,5,exact,/paint-calculator,extend_existing,P2
+K0495,paint coverage calculator,CON-05,construction,calculator,global,consensus,4,exact,/paint-calculator,extend_existing,P2
+K0496,flooring calculator,CON-06,construction,calculator,global,seed+comp,6,exact,/flooring-calculator,extend_existing,P3
+K0497,how much flooring do I need,CON-06,construction,question,global,seed+comp,5,exact,/flooring-calculator,extend_existing,P3
+K0498,laminate flooring calculator,CON-06,construction,calculator,global,inferred,3,exact,/flooring-calculator,extend_existing,P3
+K0499,tile calculator,CON-07,construction,calculator,global,seed+comp,5,none,/tile-calculator,build_new,P2
+K0500,how many tiles do I need,CON-07,construction,question,global,seed+comp,5,none,/tile-calculator,build_new,P2
+K0501,tile square footage calculator,CON-07,construction,calculator,global,consensus,3,none,/tile-calculator,build_new,P2
+K0502,roofing calculator,CON-08,construction,calculator,global,seed+comp,5,none,/roofing-calculator,build_new,P2
+K0503,how many shingles do I need,CON-08,construction,question,global,consensus,4,none,/roofing-calculator,build_new,P2
+K0504,roof area calculator,CON-08,construction,calculator,global,consensus,4,none,/roofing-calculator,build_new,P2
+K0505,roofing squares calculator,CON-08,construction,calculator,global,consensus,3,none,/roofing-calculator,build_new,P2
+K0506,roof pitch calculator,CON-09,construction,calculator,global,seed+comp,2,none,/roof-pitch-calculator,build_new,P2
+K0507,roof angle calculator,CON-09,construction,calculator,global,inferred,2,none,/roof-pitch-calculator,build_new,P2
+K0508,4 12 pitch in degrees,CON-09,construction,question,global,inferred,1,none,/roof-pitch-calculator,build_new,P2
+K0509,drywall calculator,CON-10,construction,calculator,global,seed+comp,2,none,/drywall-calculator,build_new,P2
+K0510,how many sheets of drywall,CON-10,construction,question,global,inferred,2,none,/drywall-calculator,build_new,P2
+K0511,drywall mud calculator,CON-10,construction,calculator,global,inferred,1,none,/drywall-calculator,build_new,P2
+K0512,fence calculator,CON-11,construction,calculator,global,seed+comp,4,none,/fence-calculator,build_new,P2
+K0513,fence material calculator,CON-11,construction,calculator,global,inferred,2,none,/fence-calculator,build_new,P2
+K0514,how many fence posts do I need,CON-11,construction,question,global,inferred,2,none,/fence-calculator,build_new,P2
+K0515,deck calculator,CON-12,construction,calculator,global,seed+comp,2,none,/deck-calculator,build_new,P3
+K0516,deck board calculator,CON-12,construction,calculator,global,inferred,2,none,/deck-calculator,build_new,P3
+K0517,stair calculator,CON-13,construction,calculator,global,seed+comp,5,none,/stair-calculator,build_new,P2
+K0518,stair stringer calculator,CON-13,construction,calculator,global,inferred,3,none,/stair-calculator,build_new,P2
+K0519,staircase calculator,CON-13,construction,calculator,global,inferred,2,none,/stair-calculator,build_new,P2
+K0520,lumber calculator,CON-14,construction,calculator,global,seed+comp,5,exact,/lumber-calculator,keep,P3
+K0521,board foot calculator,CON-14,construction,calculator,global,seed+comp,4,exact,/lumber-calculator,keep,P3
+K0522,asphalt calculator,CON-15,construction,calculator,global,seed+comp,4,none,/asphalt-calculator,build_new,P3
+K0523,how much asphalt do I need,CON-15,construction,question,global,inferred,3,none,/asphalt-calculator,build_new,P3
+K0524,gravel calculator,CON-16,construction,calculator,global,seed+comp,7,none,/gravel-calculator,build_new,P1
+K0525,how much gravel do I need,CON-16,construction,question,global,seed+comp,7,none,/gravel-calculator,build_new,P1
+K0526,gravel coverage calculator,CON-16,construction,calculator,global,consensus,4,none,/gravel-calculator,build_new,P1
+K0527,mulch calculator,CON-17,construction,calculator,global,seed+comp,7,none,/mulch-calculator,build_new,P1
+K0528,how much mulch do I need,CON-17,construction,question,global,seed+comp,7,none,/mulch-calculator,build_new,P1
+K0529,bags of mulch calculator,CON-17,construction,calculator,global,inferred,3,none,/mulch-calculator,build_new,P1
+K0530,topsoil calculator,CON-18,construction,calculator,global,seed+comp,5,none,/topsoil-calculator,build_new,P2
+K0531,how much soil do I need,CON-18,construction,question,global,seed+comp,5,none,/topsoil-calculator,build_new,P2
+K0532,garden soil calculator,CON-18,construction,calculator,global,seed+comp,4,none,/topsoil-calculator,build_new,P2
+K0533,excavation calculator,CON-19,construction,calculator,global,seed+comp,2,none,/excavation-calculator,build_new,P3
+K0534,cut and fill calculator,CON-19,construction,calculator,global,inferred,1,none,/excavation-calculator,build_new,P3
+K0535,retaining wall calculator,CON-20,construction,calculator,global,seed+comp,3,none,/retaining-wall-calculator,build_new,P3
+K0536,retaining wall block calculator,CON-20,construction,calculator,global,inferred,2,none,/retaining-wall-calculator,build_new,P3
+K0537,insulation calculator,CON-21,construction,calculator,global,seed+comp,1,none,/insulation-calculator,build_new,P2
+K0538,how much insulation do I need,CON-21,construction,question,global,inferred,1,none,/insulation-calculator,build_new,P2
+K0539,siding calculator,CON-22,construction,calculator,global,seed+comp,2,none,/siding-calculator,build_new,P2
+K0540,how much siding do I need,CON-22,construction,question,global,inferred,2,none,/siding-calculator,build_new,P2
+K0541,wall area calculator,CON-23,construction,calculator,global,inferred,3,exact,/paint-calculator,add_feature,P3
+K0542,wall square footage calculator,CON-23,construction,calculator,global,inferred,2,exact,/paint-calculator,add_feature,P3
+K0543,fence post spacing calculator,CON-24,construction,calculator,global,inferred,3,exact,/fence-calculator,add_feature,P4
+K0544,btu calculator,CON-25,construction,calculator,global,seed+comp,4,none,/btu-calculator,build_new,P2
+K0545,how many btu do I need,CON-25,construction,question,global,consensus,4,none,/btu-calculator,build_new,P2
+K0546,ac tonnage calculator,CON-25,construction,calculator,global,inferred,3,none,/btu-calculator,build_new,P2
+K0547,room heating calculator,CON-25,construction,calculator,global,seed,2,none,/btu-calculator,build_new,P2
+K0548,home renovation cost calculator,CON-26,construction,estimator,global,seed+comp,3,none,,do_not_target,P4
+K0549,renovation budget calculator,CON-26,construction,estimator,global,inferred,3,none,,do_not_target,P4
+K0550,concrete column calculator,CON-27,construction,calculator,global,inferred,2,exact,/concrete-calculator,add_feature,P3
+K0551,concrete footing calculator,CON-27,construction,calculator,global,inferred,2,exact,/concrete-calculator,add_feature,P3
+K0552,concrete steps calculator,CON-27,construction,calculator,global,inferred,2,exact,/concrete-calculator,add_feature,P3
+K0553,temperature converter,CNV-01,conversion,converter,global,seed+comp,7,exact,/temperature-converter,keep,P3
+K0554,celsius to fahrenheit,CNV-01,conversion,converter,global,seed+comp,6,exact,/celsius-to-fahrenheit-calculator,keep,P3
+K0555,fahrenheit to celsius,CNV-01,conversion,converter,global,seed+comp,6,exact,/fahrenheit-to-celsius-calculator,keep,P3
+K0556,c to f converter,CNV-01,conversion,converter,global,inferred,4,exact,/celsius-to-fahrenheit-calculator,keep,P3
+K0557,length converter,CNV-02,conversion,converter,global,seed+comp,6,exact,/length-converter,keep,P3
+K0558,cm to inches,CNV-02,conversion,converter,global,seed+comp,6,exact,/cm-to-inches-calculator,keep,P3
+K0559,inches to cm,CNV-02,conversion,converter,global,seed+comp,6,exact,/inches-to-cm-calculator,keep,P3
+K0560,meters to feet,CNV-02,conversion,converter,global,seed+comp,5,exact,/meters-to-feet-calculator,keep,P3
+K0561,feet to meters,CNV-02,conversion,converter,global,seed+comp,5,exact,/feet-to-meters-calculator,keep,P3
+K0562,weight converter,CNV-03,conversion,converter,global,seed+comp,7,exact,/weight-converter,keep,P3
+K0563,kg to lbs,CNV-03,conversion,converter,global,seed+comp,6,exact,/kg-to-lbs-calculator,keep,P3
+K0564,lbs to kg,CNV-03,conversion,converter,global,seed+comp,6,exact,/pounds-to-kg-calculator,keep,P3
+K0565,stone to kg,CNV-03,conversion,converter,UK,consensus,4,exact,/stone-to-pounds-calculator,keep,P3
+K0566,volume converter,CNV-04,conversion,converter,global,seed+comp,6,exact,/volume-converter,keep,P3
+K0567,gallons to liters,CNV-04,conversion,converter,global,seed+comp,5,exact,/gallons-to-liters-calculator,keep,P3
+K0568,liters to gallons,CNV-04,conversion,converter,global,seed+comp,5,exact,/liters-to-gallons-calculator,keep,P3
+K0569,cups to ml,CNV-04,conversion,converter,global,consensus,4,exact,/cups-to-ml-calculator,keep,P3
+K0570,area converter,CNV-05,conversion,converter,global,seed+comp,6,exact,/area-converter,keep,P3
+K0571,acres to square feet,CNV-05,conversion,converter,global,seed+comp,4,exact,/acres-to-square-feet-calculator,keep,P3
+K0572,square feet to acres,CNV-05,conversion,converter,global,consensus,4,exact,/square-feet-to-acres-calculator,keep,P3
+K0573,speed converter,CNV-06,conversion,converter,global,seed+comp,6,exact,/speed-converter,keep,P3
+K0574,mph to kph,CNV-06,conversion,converter,global,consensus,5,exact,/mph-to-kph-calculator,keep,P3
+K0575,kmh to mph,CNV-06,conversion,converter,global,inferred,4,exact,/mph-to-kph-calculator,keep,P3
+K0576,data storage converter,CNV-07,conversion,converter,global,seed+comp,6,exact,/data-storage-converter,keep,P3
+K0577,mb to gb,CNV-07,conversion,converter,global,consensus,5,exact,/mb-to-gb-calculator,keep,P3
+K0578,gb to tb,CNV-07,conversion,converter,global,inferred,4,exact,/gb-to-tb-calculator,keep,P3
+K0579,time converter,CNV-08,conversion,converter,global,seed+comp,5,exact,/hours-to-minutes-calculator,keep,P3
+K0580,hours to minutes,CNV-08,conversion,converter,global,consensus,5,exact,/hours-to-minutes-calculator,keep,P3
+K0581,days to hours,CNV-08,conversion,converter,global,consensus,4,exact,/days-to-hours-calculator,keep,P3
+K0582,pressure converter,CNV-09,conversion,converter,global,seed+comp,6,none,/pressure-converter,add_feature,P3
+K0583,psi to bar,CNV-09,conversion,converter,global,seed+comp,5,exact,/psi-to-bar-calculator,add_feature,P3
+K0584,kpa to psi,CNV-09,conversion,converter,global,consensus,4,none,/pressure-converter,add_feature,P3
+K0585,energy converter,CNV-10,conversion,converter,global,seed+comp,5,none,/energy-converter,add_feature,P3
+K0586,joules to calories,CNV-10,conversion,converter,global,consensus,4,none,/energy-converter,add_feature,P3
+K0587,power converter,CNV-11,conversion,converter,global,consensus,5,none,/power-converter,add_feature,P3
+K0588,watts to horsepower,CNV-11,conversion,converter,global,inferred,3,none,/power-converter,add_feature,P3
+K0589,force converter,CNV-12,conversion,converter,global,inferred,4,none,/force-converter,add_feature,P3
+K0590,newtons to kg,CNV-12,conversion,converter,global,inferred,3,none,/force-converter,add_feature,P3
+K0591,angle converter,CNV-13,conversion,converter,global,inferred,4,none,/angle-converter,add_feature,P3
+K0592,degrees to radians,CNV-13,conversion,converter,global,inferred,3,none,/angle-converter,add_feature,P3
+K0593,fuel consumption converter,CNV-14,conversion,converter,global,seed+comp,2,none,/fuel-consumption-converter,add_feature,P2
+K0594,mpg to l/100km,CNV-14,conversion,converter,global,seed+comp,2,none,/fuel-consumption-converter,add_feature,P2
+K0595,l/100km to mpg,CNV-14,conversion,converter,global,inferred,2,none,/fuel-consumption-converter,add_feature,P2
+K0596,frequency converter,CNV-15,conversion,converter,global,inferred,4,none,/frequency-converter,add_feature,P3
+K0597,hz to khz,CNV-15,conversion,converter,global,inferred,3,none,/frequency-converter,add_feature,P3
+K0598,torque converter,CNV-16,conversion,converter,global,inferred,3,none,/torque-converter,add_feature,P3
+K0599,nm to ft lbs,CNV-16,conversion,converter,global,inferred,2,none,/torque-converter,add_feature,P3
+K0600,density converter,CNV-17,conversion,converter,global,inferred,3,none,/density-converter,add_feature,P3
+K0601,grams to cups,CNV-18,conversion,converter,global,seed+comp,6,partial,/cooking-converter,build_new,P1
+K0602,cups to grams,CNV-18,conversion,converter,global,seed+comp,6,partial,/cooking-converter,build_new,P1
+K0603,cooking measurement converter,CNV-18,conversion,converter,global,seed+comp,5,partial,/cooking-converter,build_new,P1
+K0604,ounces to cups,CNV-18,conversion,converter,global,seed+comp,5,partial,/cooking-converter,build_new,P1
+K0605,how many grams in a cup,CNV-18,conversion,question,global,consensus,4,partial,/cooking-converter,build_new,P1
+K0606,oven temperature converter,CNV-19,conversion,converter,global,seed+comp,2,partial,/cooking-converter,add_feature,P2
+K0607,gas mark to celsius,CNV-19,conversion,converter,UK,inferred,2,partial,/cooking-converter,add_feature,P2
+K0608,fan oven conversion,CNV-19,conversion,converter,UK,inferred,1,partial,/cooking-converter,add_feature,P2
+K0609,air fryer conversion calculator,CNV-20,conversion,calculator,global,inferred,2,none,/air-fryer-converter,build_new,P2
+K0610,oven to air fryer conversion,CNV-20,conversion,converter,global,inferred,2,none,/air-fryer-converter,build_new,P2
+K0611,butter converter,CNV-21,conversion,converter,global,seed+comp,3,partial,/cooking-converter,add_feature,P3
+K0612,sticks of butter to cups,CNV-21,conversion,converter,US,inferred,2,partial,/cooking-converter,add_feature,P3
+K0613,tablespoons to teaspoons,CNV-22,conversion,converter,global,seed+comp,5,exact,/tablespoons-to-teaspoons-calculator,keep,P3
+K0614,cups to tablespoons,CNV-22,conversion,converter,global,consensus,4,partial,/cooking-converter,add_feature,P3
+K0615,teaspoons to ml,CNV-22,conversion,converter,global,consensus,3,partial,/cooking-converter,add_feature,P3
+K0616,grams to ml,CNV-23,conversion,converter,global,inferred,3,partial,/cooking-converter,build_new,P3
+K0617,ml to grams,CNV-23,conversion,converter,global,inferred,2,partial,/cooking-converter,build_new,P3
+K0618,grams to ounces,CNV-23,conversion,converter,global,seed+comp,5,exact,/grams-to-ounces-calculator,keep,P3
+K0619,recipe scaler,FOD-01,food,calculator,global,seed+comp,5,exact,/recipe-scaling-calculator,extend_existing,P2
+K0620,recipe converter,FOD-01,food,converter,global,seed+comp,4,exact,/recipe-scaling-calculator,extend_existing,P2
+K0621,scale recipe calculator,FOD-01,food,calculator,global,consensus,4,exact,/recipe-scaling-calculator,extend_existing,P2
+K0622,half recipe calculator,FOD-01,food,calculator,global,inferred,2,exact,/recipe-scaling-calculator,extend_existing,P2
+K0623,serving size calculator,FOD-02,food,calculator,global,seed,2,none,/serving-size-calculator,build_new,P3
+K0624,portion calculator,FOD-02,food,calculator,global,inferred,2,none,/serving-size-calculator,build_new,P3
+K0625,how many servings per person,FOD-02,food,question,global,inferred,1,none,/serving-size-calculator,build_new,P3
+K0626,cost per meal calculator,FOD-03,food,calculator,global,seed+comp,2,exact,/meal-cost-calculator,keep,P3
+K0627,meal cost calculator,FOD-03,food,calculator,global,inferred,2,exact,/meal-cost-calculator,keep,P3
+K0628,recipe cost calculator,FOD-04,food,calculator,global,seed,2,partial,/meal-cost-calculator,merge_into,P4
+K0629,cost per serving calculator,FOD-04,food,calculator,global,inferred,2,partial,/meal-cost-calculator,merge_into,P4
+K0630,pizza dough calculator,FOD-05,food,calculator,global,seed,2,none,/pizza-dough-calculator,build_new,P3
+K0631,dough hydration calculator,FOD-05,food,calculator,global,seed,2,none,/pizza-dough-calculator,build_new,P3
+K0632,bakers percentage calculator,FOD-05,food,calculator,global,inferred,2,none,/pizza-dough-calculator,build_new,P3
+K0633,coffee ratio calculator,FOD-06,food,calculator,global,seed+comp,3,exact,/coffee-ratio-calculator,keep,P3
+K0634,coffee to water ratio,FOD-06,food,question,global,consensus,3,exact,/coffee-ratio-calculator,keep,P3
+K0635,cold brew ratio calculator,FOD-06,food,calculator,global,inferred,2,exact,/coffee-ratio-calculator,keep,P3
+K0636,brewing calculator,FOD-07,food,calculator,global,seed,2,partial,/coffee-ratio-calculator,merge_into,P4
+K0637,calories in recipe calculator,FOD-08,food,calculator,global,seed,2,none,/recipe-calorie-calculator,build_new,P3
+K0638,recipe nutrition calculator,FOD-08,food,calculator,global,inferred,2,none,/recipe-calorie-calculator,build_new,P3
+K0639,flour conversion calculator,FOD-09,food,converter,global,seed+comp,3,partial,/cooking-converter,merge_into,P4
+K0640,grams of flour to cups,FOD-09,food,converter,global,inferred,2,partial,/cooking-converter,merge_into,P4
+K0641,fuel cost calculator,AUT-01,auto,calculator,global,seed+comp,6,exact,/fuel-cost-calculator,extend_existing,P2
+K0642,gas cost for trip,AUT-01,auto,calculator,global,consensus,5,exact,/fuel-cost-calculator,extend_existing,P2
+K0643,petrol cost calculator,AUT-01,auto,calculator,global,consensus,4,exact,/fuel-cost-calculator,extend_existing,P2
+K0644,gas mileage calculator,AUT-02,auto,calculator,global,seed+comp,2,none,/gas-mileage-calculator,build_new,P2
+K0645,mpg calculator,AUT-02,auto,calculator,global,seed+comp,3,none,/gas-mileage-calculator,build_new,P2
+K0646,fuel consumption calculator,AUT-02,auto,calculator,global,consensus,4,none,/gas-mileage-calculator,build_new,P2
+K0647,l/100km calculator,AUT-03,auto,calculator,global,inferred,2,none,/gas-mileage-calculator,add_feature,P3
+K0648,car depreciation calculator,AUT-04,auto,calculator,global,seed+comp,3,none,/car-depreciation-calculator,build_new,P2
+K0649,vehicle depreciation calculator,AUT-04,auto,calculator,global,inferred,2,none,/car-depreciation-calculator,build_new,P2
+K0650,how much will my car depreciate,AUT-04,auto,question,global,inferred,2,none,/car-depreciation-calculator,build_new,P2
+K0651,ev charging cost calculator,AUT-05,auto,calculator,global,seed+comp,2,none,/ev-charging-cost-calculator,build_new,P2
+K0652,cost to charge electric car,AUT-05,auto,question,global,inferred,2,none,/ev-charging-cost-calculator,build_new,P2
+K0653,home charging cost calculator,AUT-05,auto,calculator,global,inferred,1,none,/ev-charging-cost-calculator,build_new,P2
+K0654,trip cost calculator,AUT-06,auto,calculator,global,seed+comp,2,none,/trip-cost-calculator,build_new,P2
+K0655,road trip cost calculator,AUT-06,auto,calculator,global,consensus,2,none,/trip-cost-calculator,build_new,P2
+K0656,how much will my trip cost,AUT-06,auto,question,global,seed+comp,2,none,/trip-cost-calculator,build_new,P2
+K0657,travel time calculator,AUT-07,auto,calculator,global,seed+comp,4,partial,/trip-cost-calculator,add_feature,P3
+K0658,driving time calculator,AUT-07,auto,calculator,global,inferred,3,partial,/trip-cost-calculator,add_feature,P3
+K0659,tire size calculator,AUT-08,auto,calculator,global,seed+comp,4,none,/tire-size-calculator,build_new,P3
+K0660,tire size comparison calculator,AUT-08,auto,comparison,global,inferred,2,none,/tire-size-calculator,build_new,P3
+K0661,tire size conversion,AUT-08,auto,converter,global,inferred,2,none,/tire-size-calculator,build_new,P3
+K0662,car lease calculator,AUT-09,auto,calculator,global,consensus,4,none,/car-lease-calculator,build_new,P3
+K0663,lease vs buy car calculator,AUT-09,auto,comparison,global,consensus,2,none,/car-lease-calculator,build_new,P3
+K0664,vehicle registration cost calculator,AUT-10,auto,calculator,global,seed,1,none,,do_not_target,P4
+K0665,commute cost calculator,AUT-11,auto,calculator,global,seed+comp,2,exact,/daily-commute-cost-calculator,keep,P3
+K0666,daily commute cost,AUT-11,auto,question,global,inferred,2,exact,/daily-commute-cost-calculator,keep,P3
+K0667,parking cost calculator,AUT-11,auto,calculator,global,inferred,2,exact,/parking-cost-calculator,keep,P3
+K0668,electric car savings calculator,AUT-12,auto,calculator,global,seed+comp,2,none,/ev-vs-petrol-calculator,build_new,P3
+K0669,ev vs petrol cost comparison,AUT-12,auto,comparison,global,inferred,2,none,/ev-vs-petrol-calculator,build_new,P3
+K0670,is an electric car cheaper to run,AUT-12,auto,question,global,inferred,1,none,/ev-vs-petrol-calculator,build_new,P3
+K0671,molarity calculator,SCN-01,chemistry,calculator,global,seed+comp,3,none,/molarity-calculator,build_new,P3
+K0672,molarity formula,SCN-01,chemistry,question,global,consensus,3,none,/molarity-calculator,build_new,P3
+K0673,how to calculate molarity,SCN-01,chemistry,question,global,inferred,3,none,/molarity-calculator,build_new,P3
+K0674,molecular weight calculator,SCN-02,chemistry,calculator,global,seed+comp,3,none,/molecular-weight-calculator,build_new,P3
+K0675,molar mass calculator,SCN-02,chemistry,calculator,global,inferred,3,none,/molecular-weight-calculator,build_new,P3
+K0676,dilution calculator,SCN-03,chemistry,calculator,global,seed+comp,3,none,/dilution-calculator,build_new,P3
+K0677,c1v1 c2v2 calculator,SCN-03,chemistry,calculator,global,inferred,2,none,/dilution-calculator,build_new,P3
+K0678,ph calculator,SCN-04,chemistry,calculator,global,seed+comp,3,none,/ph-calculator,build_new,P3
+K0679,ph from molarity,SCN-04,chemistry,calculator,global,inferred,2,none,/ph-calculator,build_new,P3
+K0680,half life calculator,SCN-05,chemistry,calculator,global,seed+comp,4,none,/half-life-calculator,build_new,P3
+K0681,half life formula,SCN-05,chemistry,question,global,consensus,4,none,/half-life-calculator,build_new,P3
+K0682,density calculator,SCN-06,physics,calculator,global,seed+comp,6,none,/density-calculator,build_new,P2
+K0683,density formula,SCN-06,physics,question,global,consensus,5,none,/density-calculator,build_new,P2
+K0684,mass volume density calculator,SCN-06,physics,calculator,global,inferred,4,none,/density-calculator,build_new,P2
+K0685,ideal gas law calculator,SCN-07,chemistry,calculator,global,seed+comp,5,none,/ideal-gas-law-calculator,build_new,P3
+K0686,pv nrt calculator,SCN-07,chemistry,calculator,global,inferred,3,none,/ideal-gas-law-calculator,build_new,P3
+K0687,force calculator,SCN-08,physics,calculator,global,seed+comp,4,none,,do_not_target,P4
+K0688,kinetic energy calculator,SCN-08,physics,calculator,global,seed+comp,3,none,,do_not_target,P4
+K0689,momentum calculator,SCN-08,physics,calculator,global,seed+comp,3,none,,do_not_target,P4
+K0690,lost volume calculator,PET-01,agriculture,calculator,global,inferred,0,none,/livestock-feed-calculator,build_new,P3
+K0691,feed ration calculator,PET-01,agriculture,calculator,global,inferred,0,none,/livestock-feed-calculator,build_new,P3
+K0692,fertilizer calculator,PET-02,agriculture,calculator,global,seed+comp,1,none,/fertilizer-calculator,build_new,P3
+K0693,npk calculator,PET-02,agriculture,calculator,global,inferred,1,none,/fertilizer-calculator,build_new,P3
+K0694,how much fertilizer per acre,PET-02,agriculture,question,global,inferred,1,none,/fertilizer-calculator,build_new,P3
+K0695,grass seed calculator,PET-03,agriculture,calculator,global,seed,1,none,/grass-seed-calculator,build_new,P3
+K0696,how much grass seed do I need,PET-03,agriculture,question,global,inferred,1,none,/grass-seed-calculator,build_new,P3
+K0697,rainwater collection calculator,PET-04,agriculture,calculator,global,seed,0,none,/rainwater-harvest-calculator,build_new,P3
+K0698,rainwater harvesting calculator,PET-04,agriculture,calculator,global,inferred,0,none,/rainwater-harvest-calculator,build_new,P3
+K0699,irrigation calculator,PET-05,agriculture,calculator,global,seed,0,none,/irrigation-calculator,build_new,P3
+K0700,sprinkler flow calculator,PET-05,agriculture,calculator,global,inferred,0,none,/irrigation-calculator,build_new,P3
+K0701,pond volume calculator,PET-06,agriculture,calculator,global,seed+comp,1,none,/pond-volume-calculator,build_new,P3
+K0702,pond liner calculator,PET-06,agriculture,calculator,global,inferred,1,none,/pond-volume-calculator,build_new,P3
+K0703,aquarium volume calculator,PET-07,agriculture,calculator,global,seed+comp,2,none,/aquarium-volume-calculator,build_new,P3
+K0704,fish tank volume calculator,PET-07,agriculture,calculator,global,inferred,2,none,/aquarium-volume-calculator,build_new,P3
+K0705,tank size calculator,PET-07,agriculture,calculator,global,inferred,1,none,/aquarium-volume-calculator,build_new,P3
+K0706,firewood calculator,PET-08,agriculture,calculator,global,seed,0,none,/firewood-calculator,build_new,P3
+K0707,cord of wood calculator,PET-08,agriculture,calculator,global,inferred,0,none,/firewood-calculator,build_new,P3
+K0708,tree height calculator,PET-09,agriculture,calculator,global,seed,0,none,/tree-height-calculator,build_new,P4
+K0709,lawn mowing cost calculator,PET-10,agriculture,calculator,global,seed,1,none,/lawn-mowing-cost-calculator,build_new,P4
+K0710,garden soil calculator,PET-11,agriculture,calculator,global,seed,5,partial,/topsoil-calculator,merge_into,P4
+K0711,ip subnet calculator,DEV-01,technology,calculator,global,seed+comp,3,none,,do_not_target,P3
+K0712,cidr calculator,DEV-01,technology,calculator,global,seed+comp,3,none,,do_not_target,P3
+K0713,subnet mask calculator,DEV-01,technology,calculator,global,inferred,3,none,,do_not_target,P3
+K0714,url encoder decoder,DEV-02,technology,converter,global,seed,1,none,/url-encoder-decoder,build_new,P3
+K0715,url encode online,DEV-02,technology,converter,global,inferred,1,none,/url-encoder-decoder,build_new,P3
+K0716,base64 encoder,DEV-03,technology,converter,global,inferred,2,none,/base64-encoder-decoder,build_new,P3
+K0717,base64 decode,DEV-03,technology,converter,global,inferred,2,none,/base64-encoder-decoder,build_new,P3
+K0718,sha256 generator,DEV-04,technology,generator,global,inferred,1,none,/hash-generator,build_new,P3
+K0719,md5 hash calculator,DEV-04,technology,generator,global,inferred,1,none,/hash-generator,build_new,P3
+K0720,hex to decimal,DEV-05,technology,converter,global,seed+comp,3,partial,/number-base-converter,build_new,P3
+K0721,binary to decimal,DEV-05,technology,converter,global,seed+comp,3,partial,/number-base-converter,build_new,P3
+K0722,roman numerals converter,DEV-05,technology,converter,global,consensus,3,partial,/number-base-converter,build_new,P3
+K0723,aspect ratio calculator,DEV-06,technology,calculator,global,seed+comp,2,none,/aspect-ratio-calculator,build_new,P3
+K0724,16 9 aspect ratio calculator,DEV-06,technology,calculator,global,inferred,2,none,/aspect-ratio-calculator,build_new,P3
+K0725,ppi calculator,DEV-07,technology,calculator,global,seed+comp,2,none,/ppi-calculator,build_new,P3
+K0726,dpi calculator,DEV-07,technology,calculator,global,inferred,2,none,/ppi-calculator,build_new,P3
+K0727,css clamp calculator,DEV-08,technology,calculator,global,seed,0,none,/css-clamp-calculator,build_new,P3
+K0728,clamp generator,DEV-08,technology,generator,global,inferred,0,none,/css-clamp-calculator,build_new,P3
+K0729,rem to px converter,DEV-09,technology,converter,global,seed,0,none,/rem-to-px-converter,build_new,P3
+K0730,px to rem,DEV-09,technology,converter,global,inferred,0,none,/rem-to-px-converter,build_new,P3
+K0731,download time calculator,DEV-10,technology,calculator,global,seed+comp,2,none,/download-time-calculator,build_new,P3
+K0732,bandwidth calculator,DEV-10,technology,calculator,global,seed+comp,2,none,/download-time-calculator,build_new,P3
+K0733,file transfer time calculator,DEV-10,technology,calculator,global,inferred,1,none,/download-time-calculator,build_new,P3
+K0734,json formatter,DEV-11,technology,generator,global,seed,2,none,,do_not_target,P4
+K0735,password generator,DEV-12,technology,generator,global,seed+comp,3,none,,do_not_target,P4
+K0736,password entropy calculator,DEV-12,technology,calculator,global,seed,1,none,,do_not_target,P4
+K0737,running pace calculator,SPR-01,fitness,calculator,global,seed+comp,5,exact,/running-pace-calculator,extend_existing,P2
+K0738,pace calculator,SPR-01,fitness,calculator,global,seed+comp,5,exact,/running-pace-calculator,extend_existing,P2
+K0739,running splits calculator,SPR-01,fitness,calculator,global,inferred,3,exact,/running-pace-calculator,extend_existing,P2
+K0740,marathon time calculator,SPR-02,fitness,calculator,global,seed+comp,3,partial,/running-pace-calculator,add_feature,P2
+K0741,race time predictor,SPR-02,fitness,calculator,global,inferred,2,partial,/running-pace-calculator,add_feature,P2
+K0742,swimming pace calculator,SPR-03,fitness,calculator,global,consensus,1,none,/swimming-pace-calculator,build_new,P4
+K0743,cycling speed calculator,SPR-04,fitness,calculator,global,seed,2,none,/cycling-speed-calculator,build_new,P4
+K0744,golf handicap calculator,SPR-05,fitness,calculator,global,seed+comp,1,none,/golf-handicap-calculator,build_new,P4
+K0745,poker odds calculator,SPR-06,fitness,calculator,global,seed,2,none,,do_not_target,P4
+K0746,electricity cost calculator,HOM-01,home,calculator,global,seed+comp,4,exact,/electricity-cost-calculator,extend_existing,P3
+K0747,electricity bill calculator,HOM-01,home,calculator,global,seed+comp,4,exact,/electricity-cost-calculator,extend_existing,P3
+K0748,kwh cost calculator,HOM-01,home,calculator,global,consensus,4,exact,/electricity-cost-calculator,extend_existing,P3
+K0749,appliance running cost calculator,HOM-02,home,calculator,global,seed,2,partial,/electricity-cost-calculator,add_feature,P3
+K0750,energy cost per appliance,HOM-02,home,question,global,inferred,1,partial,/electricity-cost-calculator,add_feature,P3
+K0751,water usage calculator,HOM-03,home,calculator,global,seed,1,none,/water-usage-calculator,build_new,P4
+K0752,moving cost calculator,HOM-04,home,estimator,global,seed,1,none,/moving-cost-calculator,build_new,P3
+K0753,cost to move house,HOM-04,home,question,global,inferred,1,none,/moving-cost-calculator,build_new,P3
+K0754,solar panel calculator,HOM-05,home,calculator,global,seed+comp,2,none,/solar-panel-calculator,build_new,P3
+K0755,solar payback calculator,HOM-05,home,calculator,global,seed,2,none,/solar-panel-calculator,build_new,P3
+K0756,solar savings calculator,HOM-05,home,calculator,global,inferred,2,none,/solar-panel-calculator,build_new,P3
+K0757,home renovation cost calculator,HOM-06,home,estimator,global,seed+comp,3,none,,do_not_target,P4
+K0758,energy savings calculator,HOM-07,home,calculator,global,seed,2,partial,/electricity-cost-calculator,add_feature,P4
+K0759,room heating calculator,HOM-08,home,calculator,global,seed,2,partial,/btu-calculator,merge_into,P4
+K0760,study time calculator,EDU-01,education,calculator,global,seed,0,none,/study-time-calculator,build_new,P4
+K0761,citation generator,EDU-02,education,generator,global,seed,1,none,,do_not_target,P4
+K0762,word count calculator,EDU-03,education,calculator,global,seed,0,partial,/word-counter,merge_into,P4
+K0763,how much concrete for a 10x10 slab,CON-03,construction,question,global,inferred,4,exact,/concrete-calculator,extend_existing,P1
+K0764,how much paint for a room,CON-05,construction,question,global,seed,4,exact,/paint-calculator,extend_existing,P2
+K0765,how many tiles for a bathroom,CON-07,construction,question,global,inferred,3,none,/tile-calculator,build_new,P2
+K0766,how much gravel for a driveway,CON-16,construction,question,global,inferred,4,none,/gravel-calculator,build_new,P1
+K0767,how much mulch for a garden bed,CON-17,construction,question,global,inferred,3,none,/mulch-calculator,build_new,P1
+K0768,how much topsoil for a lawn,CON-18,construction,question,global,inferred,3,none,/topsoil-calculator,build_new,P2
+K0769,how much sand for pavers,CON-18,construction,question,global,inferred,2,none,/topsoil-calculator,build_new,P2
+K0770,how much concrete for fence posts,CON-11,construction,question,global,inferred,2,none,/fence-calculator,build_new,P2
+K0771,how much water should I drink to lose weight,HLT-09,health,question,global,inferred,3,exact,/water-intake-calculator,keep,P3
+K0772,how many calories to lose a pound,HLT-04,health,question,global,inferred,4,exact,/calorie-deficit-calculator,extend_existing,P2
+K0773,how many steps to lose weight,HLT-19,health,question,global,inferred,3,exact,/steps-to-miles-calculator,extend_existing,P2
+K0774,how much protein after a workout,HLT-10,health,question,global,inferred,3,exact,/protein-intake-calculator,keep,P3
+K0775,how long to pay off my credit card,FIN-18,finance,question,global,inferred,4,exact,/credit-card-payoff-calculator,extend_existing,P2
+K0776,how much will my loan cost,FIN-13,finance,question,global,seed,4,none,/loan-payoff-calculator,build_new,P2
+K0777,how much house can I afford with my salary,FIN-05,finance,question,global,inferred,4,exact,/mortgage-affordability-calculator,extend_existing,P1
+K0778,how much electricity does this appliance use,HOM-02,home,question,global,seed,1,partial,/electricity-cost-calculator,add_feature,P3
+K0779,how many bags of concrete for a slab,CON-04,construction,question,global,inferred,4,exact,/concrete-calculator,add_feature,P2
+K0780,how much flooring for a room,CON-06,construction,question,global,inferred,3,exact,/flooring-calculator,extend_existing,P3
+K0781,how many roof shingles per square,CON-08,construction,question,global,inferred,3,none,/roofing-calculator,build_new,P2
+K0782,how much insulation in a loft,CON-21,construction,question,global,inferred,2,none,/insulation-calculator,build_new,P2
+K0783,tip calculator,TIP-01,daily,calculator,global,seed+comp,6,exact,/tip-calculator,extend_existing,P3
+K0784,how much should I tip,TIP-01,daily,question,global,consensus,5,exact,/tip-calculator,extend_existing,P3
+K0785,restaurant tip calculator,TIP-01,daily,calculator,global,consensus,5,exact,/tip-calculator,extend_existing,P3
+K0786,tip percentage calculator,TIP-01,daily,calculator,global,consensus,4,exact,/tip-calculator,extend_existing,P3
+K0787,bill split calculator,TIP-01,daily,calculator,global,consensus,4,exact,/tip-calculator,extend_existing,P3
+K0788,split the bill calculator,TIP-01,daily,calculator,global,inferred,3,exact,/tip-calculator,extend_existing,P3
+K0789,service charge calculator,TIP-01,daily,calculator,global,inferred,2,exact,/tip-calculator,extend_existing,P3
