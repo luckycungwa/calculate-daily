@@ -16,6 +16,7 @@ import {
 import { ExportModal } from '../common/ExportModal';
 import { ShareButton } from '../common/ShareButton';
 import { BarChart } from '../charts';
+import { GaugeStack, GaugeTrack, LinearGauge } from '../gauge';
 import { useCurrency } from '../../lib/currency';
 import { useUrlState, parseParamNumber } from '../../lib/share';
 import { buildAmortization } from '../../lib/mortgage';
@@ -67,6 +68,11 @@ export const AmortizationScheduleCalculator: React.FC<AmortizationScheduleProps>
       interest: Math.round(a.interest),
     }));
   }, [results.rows]);
+
+  // Split of everything paid: what went to the balance vs what went to the
+  // lender. Both come from the schedule, so they always add up.
+  const principalPaid = Math.max(0, results.totalPayment - results.totalInterest);
+  const principalShare = results.totalPayment > 0 ? principalPaid / results.totalPayment : 0;
 
   const handleReset = () => {
     setPrincipal(initial.principal);
@@ -224,6 +230,46 @@ export const AmortizationScheduleCalculator: React.FC<AmortizationScheduleProps>
                   </div>
                 </div>
               </div>
+
+              {/* Every payment split into balance and interest */}
+              {results.totalPayment > 0 && (
+                <div className="pt-3 border-t border-zinc-800">
+                  <p className="text-[10px] font-mono uppercase tracking-wider text-zinc-400 font-semibold mb-1.5">
+                    Where every payment goes
+                  </p>
+                  <LinearGauge
+                    value={100}
+                    min={0}
+                    max={100}
+                    length={600}
+                    padding={{ top: 8, bottom: 8, left: 8, right: 8 }}
+                    transition={false}
+                    className="text-white"
+                    role="img"
+                    aria-label={`Of the total paid, ${Math.round(principalShare * 100)} percent goes to the balance and ${Math.round((1 - principalShare) * 100)} percent to interest.`}
+                  >
+                    <GaugeTrack width={12} opacity={0.12} />
+                    <GaugeStack
+                      parts={[
+                        { weight: principalShare, color: '#34d399' },
+                        { weight: 1 - principalShare, color: '#fb7185' },
+                      ]}
+                      width={12}
+                      cap="round"
+                    />
+                  </LinearGauge>
+                  <div className="mt-2 flex items-center justify-between gap-3 text-[10px] font-mono font-medium">
+                    <span className="flex items-center gap-1.5 text-zinc-300">
+                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                      Principal {Math.round(principalShare * 100)}%
+                    </span>
+                    <span className="flex items-center gap-1.5 text-zinc-300">
+                      <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-rose-400" />
+                      Interest {Math.round((1 - principalShare) * 100)}%
+                    </span>
+                  </div>
+                </div>
+              )}
 
               <div className="pt-3 border-t border-zinc-800">
                 <Button

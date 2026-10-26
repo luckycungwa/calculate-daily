@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Theme is driven by the `dark` class that ThemeProvider toggles, not by the
+   operating system. Without this, `dark:` utilities follow
+   prefers-color-scheme while the CSS variables follow the class, so the theme
+   switch only half-applies. */
+@custom-variant dark (&:is(.dark *));
+
 @theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

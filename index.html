@@ -43,8 +43,23 @@
         // Silently handle if property definition is restricted
       }
     </script>
+    <script>
+      // Apply the saved (or system) theme before first paint so dark-mode
+      // visitors never see a flash of the light palette.
+      (function () {
+        try {
+          var stored = localStorage.getItem('calculate_daily_theme');
+          var dark = stored
+            ? stored === 'dark'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {
+          /* ignore */
+        }
+      })();
+    </script>
   </head>
-  <body class="bg-slate-50 text-gray-900 selection:bg-emerald-500 selection:text-white">
+  <body class="bg-background text-foreground selection:bg-emerald-500 selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

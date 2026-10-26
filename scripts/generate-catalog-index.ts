@@ -114,6 +114,17 @@ function main(): void {
     .map(toCard);
   const total = summaries.length;
 
+  // Counts per category for navigation menus. Computed here so the header can
+  // show them without importing the full index.
+  const categoryCounts: Record<string, number> = {};
+  for (const summary of summaries) {
+    categoryCounts[summary.category] = (categoryCounts[summary.category] ?? 0) + 1;
+  }
+  const sortedCategoryCounts: Record<string, number> = {};
+  for (const key of Object.keys(categoryCounts).sort()) {
+    sortedCategoryCounts[key] = categoryCounts[key];
+  }
+
   // A slug → name/icon projection for related-tool links. Calculator pages use
   // this instead of the full index so they never download the whole directory.
   const links: Record<string, { name: string; iconName: string; shortDesc: string }> = {};
@@ -167,6 +178,8 @@ export const HOME_CALCULATOR_COUNT = ${total};
 export const HOME_FEATURED: CalculatorCardModel[] = ${JSON.stringify(featured)};
 
 export const HOME_POPULAR: CalculatorCardModel[] = ${JSON.stringify(popular)};
+
+export const HOME_CATEGORY_COUNTS: Record<string, number> = ${JSON.stringify(sortedCategoryCounts)};
 `;
 
   fs.writeFileSync(path.join(process.cwd(), 'src', 'data', 'catalogIndex.generated.ts'), out, 'utf8');
