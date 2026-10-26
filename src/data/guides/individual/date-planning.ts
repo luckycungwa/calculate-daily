@@ -39,7 +39,7 @@ export const datePlanningGuide: Guide = {
       {
         heading: 'Work Hours and Scheduling',
         body: [
-          'Work hours calculators convert clock time to decimal hours for payroll. 8 hours and 45 minutes is 8.75 hours. This is what most payroll systems use to calculate pay.',
+          'Work-hours calculators can convert clock time to decimal hours for payroll or billing. 8 hours and 45 minutes is 8.75 hours; employers may use different rounding and timekeeping rules.',
           'For freelancers and contractors, tracking work in decimal hours is essential. If your rate is $50/hour and you work 8 hours and 36 minutes on a project, that is 8.6 hours = $430, not $400 or $450.',
           'When planning work weeks, account for breaks and non-productive time. An 8-hour workday typically has 6-7 hours of focused work. Planning at 100% utilization guarantees missed deadlines.',
         ],

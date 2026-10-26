@@ -3,57 +3,19 @@ import fs from 'fs';
 import path from 'path';
 import * as React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
+import { resolveSite } from '../src/lib/siteConfig';
+import { parsePath } from '../src/lib/router';
+import { PAGE_SOURCES } from '../src/lib/pageRegistry';
+import { withBrand, DEFAULT_TITLE } from '../src/lib/pageTitle';
+import { CATALOG_CHUNK_BY_SLUG } from '../src/data/catalogChunks.generated';
 
 const distDir = path.join(process.cwd(), 'dist');
 
-/**
- * Canonical origin resolution. A build must never silently canonicalise to a host it is not
- * actually served from - https://calculatedaily.com currently resolves to a parked page.
- *
- *  1. SITE_URL set                    -> use it verbatim (production, or an explicit preview URL).
- *  2. Vercel preview, no SITE_URL     -> the deployment's own host, in PREVIEW MODE: every page
- *                                        is noindex and the sitemap advertises nothing.
- *  3. Vercel production, no SITE_URL  -> fail the build. Never fall back to a guessed domain.
- *  4. Local build                     -> http://localhost:3000, for inspection only.
- */
-interface SiteContext {
-  url: string;
-  isPreview: boolean;
-}
-
-function resolveSite(): SiteContext {
-  const explicit = (process.env.SITE_URL || '').trim().replace(/\/+$/, '');
-  const vercelEnv = (process.env.VERCEL_ENV || '').trim();
-  const vercelUrl = (process.env.VERCEL_URL || '').trim().replace(/\/+$/, '');
-
-  if (explicit) {
-    if (!/^https?:\/\/[^/]+/.test(explicit)) {
-      throw new Error(
-        `SITE_URL must be an absolute origin such as https://example.com (received "${explicit}").`
-      );
-    }
-    return { url: explicit, isPreview: false };
-  }
-
-  if (vercelEnv === 'preview' && vercelUrl) {
-    return { url: `https://${vercelUrl}`, isPreview: true };
-  }
-
-  if (vercelEnv === 'production') {
-    throw new Error(
-      'SITE_URL is required for production builds. Set it in the Vercel project settings ' +
-        '(for example https://calculatedaily.com). Refusing to guess a canonical host.'
-    );
-  }
-
-  if (vercelUrl) {
-    return { url: `https://${vercelUrl}`, isPreview: true };
-  }
-
-  return { url: 'http://localhost:3000', isPreview: false };
-}
-
-const site: SiteContext = resolveSite();
+const site = resolveSite({
+  SITE_URL: process.env.SITE_URL,
+  VERCEL_ENV: process.env.VERCEL_ENV,
+  VERCEL_URL: process.env.VERCEL_URL,
+});
 const SITE_URL = site.url;
 const IS_PREVIEW = site.isPreview;
 // Google Search Console verification token. Set GOOGLE_SITE_VERIFICATION at
@@ -97,9 +59,10 @@ function buildShell(
   description: string,
   canonicalPath: string,
   jsonLd: object[],
-  noindex = false
+  noindex = false,
+  preloads: string[] = []
 ): string {
-  let html = shell;
+  let html = shell.replace(/<meta name="robots" content="[^"]*" \/>/g, '');
 
   html = setMeta(
     html,
@@ -143,7 +106,7 @@ function buildShell(
   );
 
   const robotsMeta = noindex
-    ? `<meta name="robots" content="noindex" />`
+    ? `<meta name="robots" content="noindex"${IS_PREVIEW ? ' data-preview="true"' : ''} />`
     : '';
 
   const headExtra = [
@@ -153,6 +116,7 @@ function buildShell(
       : '',
     noindex ? '' : `<link rel="canonical" href="${SITE_URL}${canonicalPath}" />`,
     noindex ? '' : `<meta property="og:url" content="${SITE_URL}${canonicalPath}" />`,
+    ...preloads.map((file) => `<link rel="modulepreload" crossorigin href="/${file}" />`),
     ...jsonLd.map(
       (obj) =>
         `<script type="application/ld+json">${JSON.stringify(obj).replace(/</g, '\\u003c')}</script>`
@@ -189,6 +153,16 @@ async function main() {
   const { preloadCalculatorComponents } = await import(
     '../src/components/calculators/CalculatorRenderer'
   );
+  const { preloadAllCatalogData } = await import('../src/data/catalogRuntime');
+  const { preloadAllPages } = await import('../src/lib/pageRegistry');
+
+  // Route modules are split into per-page chunks for the browser. Node needs
+  // them resolved before `renderToStaticMarkup`, which cannot await Suspense.
+  await preloadAllPages();
+
+  // The browser loads one content chunk per calculator; Node needs every entry
+  // synchronously so renderToStaticMarkup can emit the tool and prose markup.
+  await preloadAllCatalogData();
 
   // Resolve all lazily-loaded calculator components up front so
   // renderToStaticMarkup emits full calculator markup (no loading fallbacks).
@@ -196,15 +170,68 @@ async function main() {
 
   const shell = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
 
+  // Vite's manifest maps source modules to hashed chunk files. We use it to
+  // emit modulepreload tags for the current route's page chunk and catalogue
+  // chunk so they download in parallel with the entry instead of after it.
+  const manifest = JSON.parse(
+    fs.readFileSync(path.join(distDir, '.vite', 'manifest.json'), 'utf8')
+  ) as Record<string, { file: string; imports?: string[] }>;
+
+  const shellFiles = new Set<string>();
+  const collectShell = (key: string) => {
+    const entry = manifest[key];
+    if (!entry || shellFiles.has(entry.file)) return;
+    shellFiles.add(entry.file);
+    (entry.imports || []).forEach(collectShell);
+  };
+  collectShell('index.html');
+
+  const filesForChunk = (key: string, seen = new Set<string>()): string[] => {
+    const entry = manifest[key];
+    if (!entry || seen.has(entry.file)) return [];
+    seen.add(entry.file);
+    const files = [entry.file];
+    (entry.imports || []).forEach((imp) => files.push(...filesForChunk(imp, seen)));
+    return files;
+  };
+
+  const preloadFilesFor = (pathname: string): string[] => {
+    const route = parsePath(pathname);
+    if (route.name === 'not-found') return [];
+
+    const sources: string[] = [PAGE_SOURCES[route.name]];
+
+    if (route.name === 'calculator' || route.name === 'embed') {
+      const chunk = CATALOG_CHUNK_BY_SLUG[route.slug];
+      if (chunk) sources.push(`src/data/catalog/${chunk}.ts`);
+    }
+
+    if (route.name === 'guide') {
+      const guide = GUIDE_REGISTRY.find((g) => g.slug === route.slug);
+      for (const slug of guide?.embeddedCalculators || []) {
+        const chunk = CATALOG_CHUNK_BY_SLUG[slug];
+        if (chunk) sources.push(`src/data/catalog/${chunk}.ts`);
+      }
+    }
+
+    const files = new Set<string>();
+    for (const source of sources) {
+      for (const file of filesForChunk(source)) {
+        if (!shellFiles.has(file)) files.add(file);
+      }
+    }
+    return [...files];
+  };
+
   const pages: PageDefinition[] = [];
 
   // Home
   pages.push({
     path: '/',
     file: 'index.html',
-    title: 'CalculateDaily - Free Online Calculators & Unit Converters',
+    title: DEFAULT_TITLE,
     description:
-      'Free online calculators and unit converters for math, finance, health, construction, cooking, and everyday life. Split bills, check BMI, compare mortgages, convert units, plan savings, and more. Fast, private, and accurate.',
+      'Free online calculators and unit converters for math, finance, health, construction, cooking, and everyday life. Split bills, check BMI, compare mortgages, convert units, plan savings, and more. Fast browser-based tools with clear examples.',
     jsonLd: [
       {
         '@context': 'https://schema.org',
@@ -232,7 +259,7 @@ async function main() {
   pages.push({
     path: '/calculators',
     file: 'calculators.html',
-    title: 'All Calculators & Unit Converters',
+    title: withBrand('All Calculators'),
     description:
       'Browse every free online calculator and unit converter on CalculateDaily, including percentage, BMI, mortgage, savings, temperature, length, weight, and more.',
     jsonLd: [
@@ -265,7 +292,7 @@ async function main() {
     pages.push({
       path: `/calculators/${calc.slug}`,
       file: `calculators/${calc.slug}.html`,
-      title: `${calc.name} - Free Online Calculator`,
+      title: withBrand(calc.name),
       description: `${calc.shortDesc} Use the free ${calc.name} to get accurate results instantly, with a worked example and answers to common questions.`,
       noindex: !indexable,
       jsonLd: [
@@ -301,14 +328,27 @@ async function main() {
     });
   });
 
+  // Embeddable calculator shells. They are framed by other sites rather than
+  // ranked, so every one is noindex and none enters the sitemap. Prerendering
+  // still matters: an iframe navigates directly to the file, and a static host
+  // cannot fall back to the app shell for a missing document.
+  CALCULATOR_CATALOG.filter(isIndexable).forEach((calc) => {
+    pages.push({
+      path: `/embed/${calc.slug}`,
+      file: `embed/${calc.slug}.html`,
+      title: withBrand(`${calc.name} (Embed)`),
+      description: `Embeddable ${calc.name}: ${calc.shortDesc}`,
+      noindex: true,
+    });
+  });
+
   // Per-category pages
-  CATEGORIES.forEach((cat) => {
-    const url = `${SITE_URL}/categories/${cat.id}`;
+  CATEGORIES.forEach((cat) => {    const url = `${SITE_URL}/categories/${cat.id}`;
     const tools = CALCULATOR_CATALOG.filter((c) => c.category === cat.id);
     pages.push({
       path: `/categories/${cat.id}`,
       file: `categories/${cat.id}.html`,
-      title: `${CATEGORY_LABELS[cat.id] || cat.label} Calculators`,
+      title: withBrand(`${CATEGORY_LABELS[cat.id] || cat.label} Calculators`),
       description: `${cat.description} Explore free ${(CATEGORY_LABELS[cat.id] || cat.label).toLowerCase()} calculators with accurate formulas, examples, and FAQs.`,
       jsonLd: [
         {
@@ -340,7 +380,7 @@ async function main() {
     {
       path: '/savings-goal',
       file: 'savings-goal.html',
-      title: 'Daily Savings Goal Challenge',
+      title: withBrand('Daily Savings Goal Challenge'),
       description:
         'Break a large savings target into a realistic daily, weekly, and monthly deposit pace. See the habit-sized number you need to save every day.',
       jsonLd: [
@@ -357,28 +397,28 @@ async function main() {
     {
       path: '/about',
       file: 'about.html',
-      title: 'About & Methodology',
+      title: withBrand('About & Methodology'),
       description:
-        'About CalculateDaily: fast, private, browser-native calculators for finance, health, construction, and everyday math. Learn how our tools work.',
+        'About CalculateDaily: browser-based calculators for finance, health, construction, and everyday math. Learn how our tools and checks work.',
     },
     {
       path: '/privacy',
       file: 'privacy.html',
-      title: 'Privacy Policy',
+      title: withBrand('Privacy Policy'),
       description:
-        'How CalculateDaily handles your data: all calculations run locally in your browser, with no account, tracking, or data sharing.',
+        'How CalculateDaily handles calculator inputs, browser storage, optional analytics, and third-party services.',
     },
     {
       path: '/terms',
       file: 'terms.html',
-      title: 'Terms of Service',
+      title: withBrand('Terms of Service'),
       description:
         'The terms governing your use of CalculateDaily free online calculators and unit converters.',
     },
     {
       path: '/contact',
       file: 'contact.html',
-      title: 'Contact Us',
+      title: withBrand('Contact Us'),
       description:
         'Get in touch with the CalculateDaily team about our calculators, converters, or partnership opportunities.',
     }
@@ -388,7 +428,7 @@ async function main() {
   pages.push({
     path: '/guides',
     file: 'guides.html',
-    title: 'Guides & Articles | Learn Math, Finance, Health, and More',
+    title: withBrand('Guides & Articles'),
     description:
       'In-depth guides for using calculators effectively. Learn about mortgages, BMI, unit conversions, and everyday math with practical examples.',
     jsonLd: [
@@ -419,7 +459,7 @@ async function main() {
     pages.push({
       path: `/guides/${guide.slug}`,
       file: `guides/${guide.slug}.html`,
-      title: `${guide.name} | CalculateDaily Guide`,
+      title: withBrand(guide.name),
       description: guide.shortDesc,
       noindex: !isIndexable(guide),
       jsonLd: [
@@ -465,7 +505,8 @@ async function main() {
       page.description,
       page.path,
       page.jsonLd || [],
-      page.noindex || IS_PREVIEW
+      page.noindex || IS_PREVIEW,
+      preloadFilesFor(page.path)
     );
     const outPath = path.join(distDir, page.file);
     fs.mkdirSync(path.dirname(outPath), { recursive: true });

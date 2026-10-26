@@ -1,4 +1,4 @@
-import {
+﻿import {
   CalculatorMeta,
   CalculatorCategory,
   CategoryMeta,
@@ -10,6 +10,11 @@ import { CONVERSION_CALCULATORS } from './catalog/conversion';
 import { TIME_CALCULATORS } from './catalog/time';
 import { CONSTRUCTION_CALCULATORS } from './catalog/construction';
 import { FOOD_CALCULATORS, FITNESS_CALCULATORS, DAILY_CALCULATORS } from './catalog/other';
+import { TECH_CALCULATORS } from './catalog/tech';
+import { SCIENCE_CALCULATORS } from './catalog/science';
+import { FOOD_AND_AUTO_CALCULATORS } from './catalog/foodAndAuto';
+import { SPORTS_AND_HOME_CALCULATORS } from './catalog/sportsAndHome';
+import { AI_CALCULATORS } from './catalog/ai';
 
 export const CALCULATOR_CATALOG: CalculatorMeta[] = [
   ...MATH_CALCULATORS,
@@ -20,74 +25,18 @@ export const CALCULATOR_CATALOG: CalculatorMeta[] = [
   ...CONSTRUCTION_CALCULATORS,
   ...FOOD_CALCULATORS,
   ...FITNESS_CALCULATORS,
+  ...TECH_CALCULATORS,
+  ...SCIENCE_CALCULATORS,
+  ...FOOD_AND_AUTO_CALCULATORS,
+  ...SPORTS_AND_HOME_CALCULATORS,
+  ...AI_CALCULATORS,
   ...DAILY_CALCULATORS,
 ];
 
-export const CATEGORIES: CategoryMeta[] = [
-  {
-    id: 'math',
-    label: 'Math',
-    description: 'Percentages, ratios, grades, and everyday arithmetic.',
-  },
-  {
-    id: 'finance',
-    label: 'Finance & Money',
-    description: 'Loans, savings, salaries, interest, and budgeting.',
-  },
-  {
-    id: 'health',
-    label: 'Health & Fitness',
-    description: 'BMI, calories, macros, heart rate, and wellness metrics.',
-  },
-  {
-    id: 'conversion',
-    label: 'Unit Conversion',
-    description: 'Temperature, length, weight, volume, currency, and more.',
-  },
-  {
-    id: 'time',
-    label: 'Time & Schedule',
-    description: 'Work hours, decimal time, and timeline planning.',
-  },
-  {
-    id: 'construction',
-    label: 'Construction & DIY',
-    description: 'Room area, concrete, paint, flooring, and lumber estimates.',
-  },
-  {
-    id: 'food',
-    label: 'Food & Cooking',
-    description: 'Recipe scaling and per-serving meal costs.',
-  },
-  {
-    id: 'fitness',
-    label: 'Sports & Strength',
-    description: 'Running pace and one-rep-max strength estimates.',
-  },
-  {
-    id: 'daily',
-    label: 'Everyday Tools',
-    description: 'Tips, bills, and daily life math.',
-  },
-  {
-    id: 'misc',
-    label: 'Automotive & Home',
-    description: 'Fuel and electricity running costs.',
-  },
-];
 
-export const CATEGORY_LABELS: Record<Exclude<CalculatorCategory, 'all' | 'ai'>, string> = {
-  math: 'Math',
-  finance: 'Finance & Money',
-  health: 'Health & Fitness',
-  conversion: 'Unit Conversion',
-  time: 'Time & Schedule',
-  construction: 'Construction & DIY',
-  food: 'Food & Cooking',
-  fitness: 'Sports & Strength',
-  daily: 'Everyday Tools',
-  misc: 'Automotive & Home',
-};
+// CATEGORIES / CATEGORY_LABELS live in ./categories so navigation can import them
+// without pulling in the calculator catalogue.
+export { CATEGORIES, CATEGORY_LABELS, getCategoryById } from './categories';
 
 export function getCalculatorById(id: string): CalculatorMeta | undefined {
   return CALCULATOR_CATALOG.find((c) => c.id === id);
@@ -104,8 +53,4 @@ export function getCalculatorsByCategory(category: CalculatorCategory): Calculat
 
 export function getFeaturedCalculators(): CalculatorMeta[] {
   return CALCULATOR_CATALOG.filter((c) => c.featured);
-}
-
-export function getCategoryById(id: string): CategoryMeta | undefined {
-  return CATEGORIES.find((c) => c.id === id);
 }

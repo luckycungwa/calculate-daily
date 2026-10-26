@@ -22,7 +22,7 @@ export const percentageGuide: Guide = {
       {
         heading: 'Discounts: What You Actually Pay',
         body: [
-          'A 20% discount on a $100 item saves you $20. You pay $80. Simple. But retailers use tricks: "up to 50% off" means most items are 10-20% off.',
+          'A 20% discount on a $100 item saves you $20, so you pay $80 before tax. A promotion that says "up to 50% off" states a maximum discount; check the actual price of the item you want.',
           'Stacking discounts: 20% off plus an additional 10% off is not 30% off. The second discount applies to the already-reduced price. 20% off $100 is $80. Then 10% off $80 is $72. Total savings: 28%, not 30%.',
           'The percentage you save on a clearance item depends on the original price, not the marked-down price. A "50% off" item that was first marked up 100% is actually sold at full price. Check the original price before getting excited.',
         ],

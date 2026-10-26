@@ -7,34 +7,34 @@ export const PrivacyPage: React.FC = () => {
   usePageMeta({
     title: 'Privacy Policy',
     description:
-      'How CalculateDaily handles your data: all calculations run locally in your browser, with no account, tracking, or data sharing.',
+      'How CalculateDaily handles calculator inputs, browser storage, optional analytics, and third-party services.',
     canonicalPath: '/privacy',
   });
 
   const sections = [
     {
-      title: 'Calculations Stay on Your Device',
-      body: 'All calculator formulas execute entirely in your browser. Financial figures, health measurements, and any numbers you enter never leave your device and are not transmitted to our servers.',
+      title: 'Calculator Inputs',
+      body: 'The built-in calculator formulas run in your browser. The calculation logic does not send the values you enter to CalculateDaily servers. If you choose to save a result, its summary is stored in your browser; copying or sharing a result uses your device clipboard.',
     },
     {
-      title: 'Local Storage Only',
-      body: 'Your theme preference and calculation history are saved in your browser local storage solely to restore your settings on your next visit. You can clear them at any time through your browser settings.',
+      title: 'Browser Storage',
+      body: 'CalculateDaily stores your theme and currency preferences and the calculation summaries you choose to save in browser local storage. These entries remain on your device unless your browser or an extension synchronizes them. Clear them through the site controls where available or your browser settings.',
     },
     {
-      title: 'No Personal Data Collection',
-      body: 'We do not require an account, do not ask for your name or email, and do not collect personal information to use the calculators. We do not sell or share data with third parties.',
+      title: 'Optional Analytics',
+      body: 'If a Google Analytics measurement ID is configured for a deployment, the site loads Google Analytics and sends page-view events containing the page path, page title, and page URL without its query string. No analytics events are sent when the measurement ID is absent. The application does not currently provide an analytics-consent prompt; do not enable analytics in places where prior consent is required until an appropriate consent flow is in place.',
     },
     {
-      title: 'Third-Party Data',
-      body: 'The currency converter fetches live exchange rates from a third-party API (open.er-api.com) when you open that tool. No personal data is sent in that request. Only the base currency code needed to return rates.',
+      title: 'Third-Party Services',
+      body: 'The site loads fonts from Google Fonts, which means your browser requests font files from Google. The currency converter also requests reference exchange rates from open.er-api.com; the request uses a fixed USD base and does not include the amount or currencies you select. These providers receive ordinary connection information needed to serve the request. Their handling of that information is governed by their own policies.',
     },
     {
-      title: 'Cookies and Advertising',
-      body: 'This site currently uses no advertising cookies. If advertising is added in the future, we will update this policy and provide a consent notice before any tracking takes place.',
+      title: 'Accounts, Advertising, and Hosting',
+      body: 'An account is not required. No advertising scripts are currently included in the application. Analytics, when enabled, may use cookies or similar identifiers according to the Google tag configuration. The hosting provider may process standard request and security logs when pages are served. If advertising or additional tracking is introduced, this policy and any required consent controls must be updated before enabling it.',
     },
     {
       title: 'Contact',
-      body: 'For any privacy questions, use the contact page. We respond promptly to requests about this policy or your data.',
+      body: 'For privacy questions, use the contact details on the Contact page.',
     },
   ];
 
@@ -49,7 +49,7 @@ export const PrivacyPage: React.FC = () => {
           Privacy Policy
         </h1>
         <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          Last updated: August 15, 2026
+          Last updated: October 24, 2026
         </p>
       </div>
 

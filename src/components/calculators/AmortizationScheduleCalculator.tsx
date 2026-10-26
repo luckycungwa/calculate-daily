@@ -102,7 +102,7 @@ export const AmortizationScheduleCalculator: React.FC<AmortizationScheduleProps>
             </Badge>
             <span className="text-xs font-mono text-zinc-500">Monthly Breakdown</span>
           </div>
-          <CardTitle className="text-xl">Amortization Schedule</CardTitle>
+          <CardTitle className="text-xl">Loan Prepayment &amp; Amortization Schedule</CardTitle>
           <CardDescription>
             Every monthly payment, principal, interest, and balance across the full loan term.
           </CardDescription>

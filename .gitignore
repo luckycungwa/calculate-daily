@@ -6,3 +6,18 @@ coverage/
 *.log
 .env*
 !.env.example
+
+# Generated from src/data/catalog/*.ts by `npm run catalog:index`
+# (runs automatically on `npm run dev` and `npm run build`).
+src/data/*.generated.ts
+
+# Local scratch files
+.vscode/
+docs/.slugs.tmp
+docs/.write-probe
+
+# Internal research kept local: competitor scrapes, keyword exports, and the
+# opportunity/backlink registers.
+docs/keyword-intelligence/raw/
+docs/backlink-opportunities.csv
+docs/opportunity-register.csv

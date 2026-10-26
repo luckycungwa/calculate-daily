@@ -4,6 +4,7 @@ export type Route =
   | { name: 'home' }
   | { name: 'calculators'; category?: string }
   | { name: 'calculator'; slug: string }
+  | { name: 'embed'; slug: string }
   | { name: 'category'; category: string }
   | { name: 'savings-goal' }
   | { name: 'about' }
@@ -15,28 +16,38 @@ export type Route =
   | { name: 'not-found' };
 
 export function parsePath(path: string): Route {
+  if (path !== '/' && (path.endsWith('/') || path.includes('//'))) {
+    return { name: 'not-found' };
+  }
+
   const segments = path.split('/').filter(Boolean);
 
   if (segments.length === 0) return { name: 'home' };
 
   if (segments[0] === 'calculators') {
     if (segments.length === 1) return { name: 'calculators' };
-    if (segments.length >= 2) return { name: 'calculator', slug: segments[1] };
+    if (segments.length === 2) return { name: 'calculator', slug: segments[1] };
   }
 
-  if (segments[0] === 'categories' && segments[1]) {
+  // Embeddable calculator shell: the same tool, no site chrome, noindex, with
+  // an attribution link back to the canonical page.
+  if (segments[0] === 'embed' && segments.length === 2) {
+    return { name: 'embed', slug: segments[1] };
+  }
+
+  if (segments[0] === 'categories' && segments.length === 2) {
     return { name: 'category', category: segments[1] };
   }
 
-  if (segments[0] === 'savings-goal') return { name: 'savings-goal' };
-  if (segments[0] === 'about') return { name: 'about' };
-  if (segments[0] === 'privacy') return { name: 'privacy' };
-  if (segments[0] === 'terms') return { name: 'terms' };
-  if (segments[0] === 'contact') return { name: 'contact' };
+  if (segments.length === 1 && segments[0] === 'savings-goal') return { name: 'savings-goal' };
+  if (segments.length === 1 && segments[0] === 'about') return { name: 'about' };
+  if (segments.length === 1 && segments[0] === 'privacy') return { name: 'privacy' };
+  if (segments.length === 1 && segments[0] === 'terms') return { name: 'terms' };
+  if (segments.length === 1 && segments[0] === 'contact') return { name: 'contact' };
 
   if (segments[0] === 'guides') {
     if (segments.length === 1) return { name: 'guides' };
-    if (segments.length >= 2) return { name: 'guide', slug: segments[1] };
+    if (segments.length === 2) return { name: 'guide', slug: segments[1] };
   }
 
   return { name: 'not-found' };

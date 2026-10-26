@@ -8,9 +8,10 @@ import {
   FunctionSquare,
   GitBranch,
   Info,
+  FileText,
 } from 'lucide-react';
-import { ToolContent, CalculatorMeta } from '../../types';
-import { getCalculatorBySlug } from '../../data/calculators';
+import { ToolContent } from '../../types';
+import { getCalculatorLink } from '../../data/catalogLinks';
 import { getIcon } from './iconMap';
 import { Link } from '../../lib/router';
 import { Card, CardContent } from '../ui/card';
@@ -22,13 +23,16 @@ interface ToolInfoSectionProps {
 
 export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, currentSlug }) => {
   const related = (content.related || [])
-    .map((slug) => getCalculatorBySlug(slug))
-    .filter((c): c is CalculatorMeta => Boolean(c))
+    .map((slug) => {
+      const link = getCalculatorLink(slug);
+      return link ? { slug, ...link } : undefined;
+    })
+    .filter((c): c is { slug: string; name: string; iconName: string; shortDesc: string } => Boolean(c))
     .filter((c) => c.slug !== currentSlug);
 
   const workflow = (content.workflowLinks || [])
-    .map((w) => ({ ...w, meta: getCalculatorBySlug(w.slug) }))
-    .filter((w) => w.meta && w.meta.slug !== currentSlug);
+    .map((w) => ({ ...w, meta: getCalculatorLink(w.slug) }))
+    .filter((w) => w.meta && w.slug !== currentSlug);
 
   return (
     <div className="space-y-5">
@@ -108,6 +112,37 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
         </Card>
       )}
 
+      {content.sources && content.sources.length > 0 && (
+        <Card>
+          <CardContent className="p-6 space-y-4">
+            <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-500">
+              <FileText className="w-4 h-4" />
+              <h2 className="text-base font-bold text-zinc-950 dark:text-zinc-50">Sources and References</h2>
+            </div>
+            <ul className="space-y-3">
+              {content.sources.map((source, idx) => (
+                <li
+                  key={idx}
+                  className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950"
+                >
+                  <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">{source.label}</p>
+                  <p className="mt-1 font-mono text-[11px] uppercase tracking-wider text-zinc-500">
+                    {source.expression}
+                  </p>
+                  {source.note && (
+                    <p className="mt-1.5 text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">{source.note}</p>
+                  )}
+                </li>
+              ))}
+            </ul>
+            <p className="text-[11px] text-zinc-500 dark:text-zinc-500">
+              References identify the method or data behind this calculator. Where a standard or tariff changes, the
+              current edition applies, and the assumptions stated above take precedence over a remembered figure.
+            </p>
+          </CardContent>
+        </Card>
+      )}
+
       {workflow.length > 0 && (
         <Card>
           <CardContent className="p-6 space-y-4">
@@ -121,7 +156,7 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
                 return (
                   <Link
                     key={idx}
-                    to={`/calculators/${w.meta!.slug}`}
+                    to={`/calculators/${w.slug}`}
                     className="flex items-start gap-3 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-500 dark:hover:border-emerald-500 transition-colors group"
                   >
                     <div className="w-8 h-8 rounded-md bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center shrink-0">
@@ -171,7 +206,7 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
                 const Icon = getIcon(c.iconName);
                 return (
                   <Link
-                    key={c.id}
+                    key={c.slug}
                     to={`/calculators/${c.slug}`}
                     className="flex items-center gap-3 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-500 dark:hover:border-emerald-500 transition-colors group"
                   >

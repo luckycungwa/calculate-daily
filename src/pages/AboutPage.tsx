@@ -6,7 +6,7 @@ export const AboutPage: React.FC = () => {
   usePageMeta({
     title: 'About & Methodology',
     description:
-      'About CalculateDaily: fast, private, browser-native calculators for finance, health, construction, and everyday math. Learn how our tools work.',
+      'About CalculateDaily: browser-based calculators for finance, health, construction, and everyday math. Learn how our tools and checks work.',
     canonicalPath: '/about',
   });
 

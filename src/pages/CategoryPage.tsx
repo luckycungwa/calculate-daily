@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
-import { getCalculatorsByCategory, getCategoryById, CATEGORIES } from '../data/calculators';
+import { getCalculatorsByCategory, getCategoryById, CATEGORIES } from '../data/catalogIndex';
 import { usePageMeta } from '../lib/seo';
 import { Link } from '../lib/router';
 import { CalculatorCard } from '../components/common/CalculatorCard';
@@ -15,9 +15,11 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
   const tools = category ? getCalculatorsByCategory(category.id) : [];
 
   usePageMeta({
-    title: category ? `${category.label} Calculators` : 'Category',
-    description: category?.description,
+    title: category ? `${category.label} Calculators` : 'Category Not Found',
+    description:
+      category?.description ?? 'The calculator category you requested does not exist.',
     canonicalPath: `/categories/${categoryId}`,
+    noindex: !category,
   });
 
   if (!category) {

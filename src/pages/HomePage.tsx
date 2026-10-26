@@ -1,10 +1,11 @@
 import React from 'react';
 import { Search, Zap, ArrowRight, Target, Layers } from 'lucide-react';
 import {
-  getFeaturedCalculators,
-  CATEGORIES,
-  CALCULATOR_CATALOG,
-} from '../data/calculators';
+  HOME_CALCULATOR_COUNT,
+  HOME_FEATURED,
+  HOME_POPULAR,
+} from '../data/homeIndex.generated';
+import { CATEGORIES } from '../data/categories';
 import { usePageMeta } from '../lib/seo';
 import { Link, navigate } from '../lib/router';
 import { CalculatorCard } from '../components/common/CalculatorCard';
@@ -16,11 +17,12 @@ const heroImg = '/hero-bg.jpg';
 export const HomePage: React.FC = () => {
   usePageMeta({
     description:
-      'Free online calculators and unit converters for math, finance, health, construction, cooking, and everyday life. Fast, private, and accurate.',
+      'Free online calculators and unit converters for math, finance, health, construction, cooking, and everyday life. Split bills, check BMI, compare mortgages, convert units, plan savings, and more. Fast browser-based tools with clear examples.',
+    canonicalPath: '/',
   });
 
-  const featured = getFeaturedCalculators();
-  const popular = [...CALCULATOR_CATALOG].sort((a, b) => (b.badge ? 1 : 0) - (a.badge ? 1 : 0)).slice(0, 12);
+  const featured = HOME_FEATURED;
+  const popular = HOME_POPULAR;
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -40,7 +42,7 @@ export const HomePage: React.FC = () => {
         <div className="relative z-10 py-6 px-4">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono font-medium bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 mb-5">
           <Zap className="w-3 h-3 text-emerald-600 dark:text-emerald-500" />
-          Zero Latency • Local Execution • {CALCULATOR_CATALOG.length} Free Tools
+          Browser-Based Tools • {HOME_CALCULATOR_COUNT} Free Calculators
         </div>
 
         <h1 className="text-3xl sm:text-5xl font-bold text-zinc-950 dark:text-zinc-50 tracking-tight leading-[1.15]">
@@ -49,7 +51,7 @@ export const HomePage: React.FC = () => {
 
         <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-400 mt-3 max-w-2xl mx-auto leading-relaxed">
           Split bills, check BMI, compare mortgages, convert units, plan savings, and more.
-          Everything runs in your browser. No account, no wait.
+          Calculations run in your browser. No account required.
         </p>
 
         <form onSubmit={handleSearch} className="mt-6 max-w-md mx-auto">
@@ -144,7 +146,7 @@ export const HomePage: React.FC = () => {
             <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-400 mb-2">
               <Layers className="w-4 h-4" />
               <Badge variant="outline" className="text-[10px] font-mono">
-                {CALCULATOR_CATALOG.length} Tools
+                {HOME_CALCULATOR_COUNT} Tools
               </Badge>
             </div>
             <h3 className="text-base font-bold">Browse All Calculators</h3>

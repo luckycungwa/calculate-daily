@@ -8,6 +8,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui
 import { ExportModal } from '../common/ExportModal';
 import { useCurrency } from '../../lib/currency';
 import { useToast } from '../ui/toast';
+import { calculateCompoundInterest } from '../../lib/compoundInterest';
 
 interface CompoundInterestCalculatorProps {
   onSaveHistory?: (summary: string) => void;
@@ -20,45 +21,22 @@ export const CompoundInterestCalculator: React.FC<CompoundInterestCalculatorProp
   const [monthlyContribution, setMonthlyContribution] = useState<string>('250');
   const [annualRate, setAnnualRate] = useState<string>('8');
   const [years, setYears] = useState<number>(10);
-  const [frequency] = useState<number>(12);
   const [copied, setCopied] = useState<boolean>(false);
   const [isExportOpen, setIsExportOpen] = useState<boolean>(false);
 
   const results = useMemo(() => {
-    const P = Math.max(0, parseFloat(principal) || 0);
-    const PMT = Math.max(0, parseFloat(monthlyContribution) || 0);
-    const r = Math.max(0, parseFloat(annualRate) || 0) / 100;
-    const n = frequency;
-    const t = Math.max(1, years || 1);
-
-    const fvPrincipal = P * Math.pow(1 + r / n, n * t);
-
-    const mRate = r / 12;
-    const totalMonths = t * 12;
-    let fvContributions = 0;
-    if (mRate > 0) {
-      fvContributions = PMT * ((Math.pow(1 + mRate, totalMonths) - 1) / mRate);
-    } else {
-      fvContributions = PMT * totalMonths;
-    }
-
-    const futureValue = fvPrincipal + fvContributions;
-    const totalDeposited = P + PMT * totalMonths;
-    const totalInterestEarned = Math.max(0, futureValue - totalDeposited);
-
-    const interestRatio = futureValue > 0 ? (totalInterestEarned / futureValue) * 100 : 0;
-    const principalRatio = 100 - interestRatio;
-
+    const projection = calculateCompoundInterest(
+      parseFloat(principal) || 0,
+      parseFloat(monthlyContribution) || 0,
+      parseFloat(annualRate) || 0,
+      years || 1
+    );
     return {
-      P,
-      PMT,
-      futureValue,
-      totalDeposited,
-      totalInterestEarned,
-      interestRatio,
-      principalRatio,
+      ...projection,
+      P: projection.principal,
+      PMT: projection.monthlyContribution,
     };
-  }, [principal, monthlyContribution, annualRate, years, frequency]);
+  }, [principal, monthlyContribution, annualRate, years]);
 
   const handleCopy = () => {
     const text = `Compound Growth Projector:\nStarting: ${currency}${results.P.toLocaleString()} + ${currency}${results.PMT}/mo\nIn ${years} years @ ${annualRate}%:\nEnding Balance: ${currency}${results.futureValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}\nTotal Interest Earned: ${currency}${results.totalInterestEarned.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -87,9 +65,9 @@ export const CompoundInterestCalculator: React.FC<CompoundInterestCalculatorProp
             </Badge>
             <span className="text-xs font-mono text-zinc-500">Monthly Compounding</span>
           </div>
-          <CardTitle className="text-xl">Compound Interest Calculator</CardTitle>
+          <CardTitle className="text-xl">Compound Interest &amp; SIP Projection</CardTitle>
           <CardDescription>
-            Simulate recurring monthly capital contributions and long-term exponential yield.
+            Model fixed monthly contributions using an assumed constant rate; actual investment returns vary.
           </CardDescription>
         </div>
 

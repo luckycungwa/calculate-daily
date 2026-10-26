@@ -17,7 +17,7 @@ jobs:
   checks:
     name: audit / typecheck / build
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
 
     env:
       # Deterministic, non-production canonical origin. This is a reserved TLD
@@ -28,22 +28,59 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: npm
 
       - name: Install dependencies
-        run: npm ci
+        run: bun install --frozen-lockfile
+
+      # The catalog index modules are generated from src/data/catalog/*.ts.
+      # They are git-ignored, so a fresh checkout has none until this runs.
+      - name: Generate catalog index
+        run: bun run catalog:index
 
       - name: Audit calculators (content + integrity + edge cases)
-        run: npm run audit
+        run: bun run audit
 
       - name: Typecheck
-        run: npx tsc --noEmit
+        run: bun run lint
+
+      - name: Calculator formula tests
+        run: bun run test:calculators
+
+      - name: SEO routing and environment tests
+        run: bun run test:seo
 
       - name: Build (vite + prerender)
-        run: npm run build
+        run: bun run build
+
+      - name: Assert calculator pages have rendered markup
+        run: |
+          node -e '
+            const fs = require("fs");
+            const path = require("path");
+            const { JSDOM } = require("jsdom");
+            const dir = "dist/calculators";
+            const files = fs.readdirSync(dir).filter((name) => name.endsWith(".html") && name !== "index.html");
+            const empty = [];
+            const skeletons = [];
+            for (const file of files) {
+              const html = fs.readFileSync(path.join(dir, file), "utf8");
+              const root = new JSDOM(html).window.document.querySelector("#root");
+              if (!root || !root.textContent.trim()) empty.push(file);
+              if (root?.querySelector(".animate-pulse.rounded-xl.p-6.space-y-4")) skeletons.push(file);
+            }
+            console.log({ calculatorPages: files.length, empty, skeletons });
+            if (files.length < 168 || empty.length || skeletons.length) {
+              console.error("calculator prerender is incomplete");
+              process.exit(1);
+            }
+          '
 
       - name: Assert sitemap has no duplicate URLs
         run: |
@@ -66,7 +103,10 @@ jobs:
             const unique = new Set(calcs).size;
             console.log("calculator urls:", calcs.length, "unique:", unique);
             if (calcs.length !== unique) { console.error("duplicate calculator URLs"); process.exit(1); }
-            if (calcs.length === 0) { console.error("no calculator URLs found"); process.exit(1); }
+            if (calcs.length < 168) {
+              console.error("expected at least 168 calculator URLs, found", calcs.length);
+              process.exit(1);
+            }
           '
 
       - name: Assert 404 is noindex with no canonical
@@ -75,9 +115,13 @@ jobs:
             const fs = require("fs");
             const h = fs.readFileSync("dist/404.html", "utf8");
             const noindex = /name="robots" content="noindex"/.test(h);
+            const robotsTags = [...h.matchAll(/<meta name="robots"/g)].length;
             const canonical = /rel="canonical"/.test(h);
-            console.log({ noindex, canonical });
-            if (!noindex || canonical) { console.error("404 SEO regression"); process.exit(1); }
+            console.log({ noindex, robotsTags, canonical });
+            if (!noindex || robotsTags !== 1 || canonical) {
+              console.error("404 SEO regression");
+              process.exit(1);
+            }
           '
 
       - name: Assert canonical host matches SITE_URL
@@ -85,7 +129,13 @@ jobs:
           node -e '
             const fs = require("fs");
             const expected = process.env.SITE_URL;
-            for (const f of ["dist/index.html", "dist/calculators/mortgage-calculator.html"]) {
+            for (const f of [
+              "dist/index.html",
+              "dist/calculators/mortgage-calculator.html",
+              "dist/calculators/graphing-calculator.html",
+              "dist/calculators/z-score-calculator.html",
+              "dist/calculators/solid-volume-calculator.html",
+            ]) {
               const h = fs.readFileSync(f, "utf8");
               const m = h.match(/rel="canonical" href="([^"]+)"/);
               if (!m) { console.error("missing canonical in", f); process.exit(1); }
@@ -104,19 +154,78 @@ jobs:
           VERCEL_ENV: preview
           VERCEL_URL: ci-preview.vercel.app
         run: |
-          npm run build
+          bun run build
           node -e '
             const fs = require("fs");
             const sitemap = fs.readFileSync("dist/sitemap.xml", "utf8");
             if (/<loc>/.test(sitemap)) { console.error("preview sitemap must be empty"); process.exit(1); }
             const page = fs.readFileSync("dist/calculators/mortgage-calculator.html", "utf8");
+            const graphPage = fs.readFileSync("dist/calculators/graphing-calculator.html", "utf8");
+            const zScorePage = fs.readFileSync("dist/calculators/z-score-calculator.html", "utf8");
+            const volumePage = fs.readFileSync("dist/calculators/solid-volume-calculator.html", "utf8");
             if (!/name="robots" content="noindex"/.test(page)) {
               console.error("preview page must be noindex"); process.exit(1);
+            }
+            if (!/name="robots" content="noindex"/.test(graphPage)) {
+              console.error("preview graphing page must be noindex"); process.exit(1);
             }
             if (/rel="canonical"/.test(page)) {
               console.error("preview page must not emit a canonical"); process.exit(1);
             }
+            if (/rel="canonical"/.test(graphPage)) {
+              console.error("preview graphing page must not emit a canonical"); process.exit(1);
+            }
+            if (!/name="robots" content="noindex"/.test(zScorePage) ||
+                !/name="robots" content="noindex"/.test(volumePage) ||
+                /rel="canonical"/.test(zScorePage) ||
+                /rel="canonical"/.test(volumePage)) {
+              console.error("preview opportunity pages must be noindex and canonical-free"); process.exit(1);
+            }
             console.log("preview mode: noindex, no canonical, empty sitemap");
+          '
+
+      - name: Build preview with SITE_URL set and assert it stays non-indexable
+        env:
+          SITE_URL: https://ci-preview.calculatedaily.test
+          VERCEL_ENV: preview
+          VERCEL_URL: ci-preview.vercel.app
+        run: |
+          bun run build
+          node -e '
+            const fs = require("fs");
+            const sitemap = fs.readFileSync("dist/sitemap.xml", "utf8");
+            const robots = fs.readFileSync("dist/robots.txt", "utf8");
+            const page = fs.readFileSync("dist/calculators/mortgage-calculator.html", "utf8");
+            const graphPage = fs.readFileSync("dist/calculators/graphing-calculator.html", "utf8");
+            const zScorePage = fs.readFileSync("dist/calculators/z-score-calculator.html", "utf8");
+            const volumePage = fs.readFileSync("dist/calculators/solid-volume-calculator.html", "utf8");
+            const noindex = /name="robots" content="noindex" data-preview="true"/.test(page);
+            const graphNoindex = /name="robots" content="noindex" data-preview="true"/.test(graphPage);
+            const robotsTags = [...page.matchAll(/<meta name="robots"/g)].length;
+            const canonical = /rel="canonical"/.test(page);
+            const graphRobotsTags = [...graphPage.matchAll(/<meta name="robots"/g)].length;
+            const graphCanonical = /rel="canonical"/.test(graphPage);
+            const opportunityPagesSafe = [zScorePage, volumePage].every((html) =>
+              /name="robots" content="noindex" data-preview="true"/.test(html) &&
+              [...html.matchAll(/<meta name="robots"/g)].length === 1 &&
+              !/rel="canonical"/.test(html)
+            );
+            const disallowed = /Disallow: \//.test(robots);
+            if (/<loc>/.test(sitemap) || !noindex || robotsTags !== 1 || canonical || !graphNoindex || graphRobotsTags !== 1 || graphCanonical || !opportunityPagesSafe || !disallowed) {
+              console.error({
+                sitemapHasUrls: /<loc>/.test(sitemap),
+                noindex,
+                robotsTags,
+                canonical,
+                graphNoindex,
+                graphRobotsTags,
+                graphCanonical,
+                opportunityPagesSafe,
+                disallowed,
+              });
+              process.exit(1);
+            }
+            console.log("preview SITE_URL: noindex, no canonical, disallowed robots, empty sitemap");
           '
 
       - name: Assert production build without SITE_URL fails loudly
@@ -125,7 +234,7 @@ jobs:
           VERCEL_ENV: production
           VERCEL_URL: example.vercel.app
         run: |
-          if npm run build > /tmp/prod-guard.log 2>&1; then
+          if bun run build > /tmp/prod-guard.log 2>&1; then
             echo "BUILD SHOULD HAVE FAILED without SITE_URL in production"
             tail -n 40 /tmp/prod-guard.log
             exit 1

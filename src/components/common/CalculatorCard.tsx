@@ -1,14 +1,14 @@
 import React from 'react';
 import { ArrowRight, Layers } from 'lucide-react';
-import { CalculatorMeta } from '../../types';
-import { CATEGORY_LABELS } from '../../data/calculators';
+import { CalculatorCardModel } from '../../types';
+import { CATEGORY_LABELS } from '../../data/categories';
 import { getIcon } from './iconMap';
 import { Link } from '../../lib/router';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/card';
 import { Badge } from '../ui/badge';
 
 interface CalculatorCardProps {
-  calc: CalculatorMeta;
+  calc: CalculatorCardModel;
 }
 
 export const CalculatorCard: React.FC<CalculatorCardProps> = ({ calc }) => {

@@ -10,11 +10,11 @@ export const AboutSection: React.FC = () => {
         <Badge variant="outline" className="text-[11px] font-mono">
           System Overview
         </Badge>
-        <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 dark:text-zinc-50 tracking-tight">
+        <h1 className="text-2xl sm:text-3xl font-bold text-zinc-950 dark:text-zinc-50 tracking-tight">
           Deterministic Calculations for Everyday Decisions
-        </h2>
+        </h1>
         <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed">
-          Calculate Daily delivers instantaneous, browser-native mathematical computations without network delay, intrusive ads, or remote telemetry.
+          Calculate Daily provides browser-based calculators with visible assumptions and practical examples. See the Privacy Policy for optional analytics and third-party services.
         </p>
       </div>
 
@@ -38,7 +38,7 @@ export const AboutSection: React.FC = () => {
             </div>
             <h4 className="font-bold text-zinc-900 dark:text-zinc-100 text-sm">Strict Client Privacy</h4>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Financial figures, loan amounts, and health records persist only in your device's local storage.
+              Calculator inputs are processed in your browser. Saved history stays in browser storage; optional analytics and live currency rates are described in the Privacy Policy.
             </p>
           </CardContent>
         </Card>
@@ -60,9 +60,9 @@ export const AboutSection: React.FC = () => {
             <div className="w-8 h-8 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 flex items-center justify-center border border-zinc-200 dark:border-zinc-700">
               <ClipboardCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
             </div>
-            <h4 className="font-bold text-zinc-900 dark:text-zinc-100 text-sm">Verified Formulas</h4>
+            <h4 className="font-bold text-zinc-900 dark:text-zinc-100 text-sm">Transparent Methods</h4>
             <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
-              Each tool uses a recognized standard formula, audited at build time for correctness.
+              Formula notes and assumptions are shown where available. Automated checks cover catalogue integrity and selected calculation edge cases, not every possible result.
             </p>
           </CardContent>
         </Card>
@@ -72,7 +72,7 @@ export const AboutSection: React.FC = () => {
         <h3 className="text-lg font-bold text-zinc-950 dark:text-zinc-50">Methodology</h3>
         <div className="space-y-2 text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
           <p>
-            Every calculator on this site applies a named, published formula so results are reproducible and verifiable. Examples include:
+            Where applicable, pages describe the calculation method and assumptions so results can be checked. Examples include:
           </p>
           <ul className="list-disc pl-5 space-y-1">
             <li>Compound growth: FV = P × (1 + r/n)^(n×t), plus the standard annuity term for recurring contributions.</li>
@@ -83,7 +83,7 @@ export const AboutSection: React.FC = () => {
             <li>Unit conversions: exact factors, e.g. 1 inch = 2.54 cm, 1 US gallon = 3.78541 L.</li>
           </ul>
           <p>
-            All computations run deterministically in your browser. Results are estimates for general information and are not professional financial, medical, legal, or construction advice. Confirm critical decisions with a qualified professional.
+            Calculator arithmetic runs in your browser. The currency converter requests exchange rates, and optional analytics may be configured; see the Privacy Policy for details. Results are estimates for general information and are not professional financial, medical, legal, or construction advice. Confirm critical decisions with a qualified professional.
           </p>
         </div>
       </div>

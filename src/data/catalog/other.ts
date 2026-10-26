@@ -861,52 +861,6 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
     seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
   },
   {
-    id: 'water-temperature',
-    slug: 'water-temperature-converter',
-    name: 'Water Temperature Converter',
-    shortDesc: 'Convert between Celsius, Fahrenheit, and Kelvin for water.',
-    tagline: 'Every water temperature scale.',
-    category: 'daily',
-    iconName: 'Thermometer',
-    keywords: ['water temperature', 'temperature converter', 'Celsius to Fahrenheit', 'boiling freezing'],
-    kind: 'config',
-    config: {
-      fields: [
-        { id: 'celsius', label: 'Temperature (C)', type: 'number', defaultValue: 37, min: -273, max: 1000, step: 0.1 }
-      ],
-      results: [
-        { label: 'Fahrenheit', formulaCode: 'celsius*9/5+32', suffix: 'F', accent: true },
-        { label: 'Kelvin', formulaCode: 'celsius+273.15', suffix: 'K' }
-      ],
-      formulaDescription: 'undefined',
-      tips: [
-      'Water freezes at 0 degrees C / 32 degrees F / 273.15 K.',
-      'Water boils at 100 degrees C / 212 degrees F / 373.15 K.'
-      ],
-    },
-    content: {
-      intro: 'The Water Temperature Converter converts between Celsius, Fahrenheit, and Kelvin, showing the physical state of water at each temperature.',
-      howItWorks: 'F = C x 9/5 + 32. K = C + 273.15.',
-      example: 'Body temperature 37 degrees C = 98.6 degrees F = 310.15 K.',
-      formulas: [{ label: 'Convert', expression: 'F = C x 9/5 + 32, K = C + 273.15' }],
-      resultExplanations: [
-        { resultLabel: 'Fahrenheit', explanation: 'Temperature in Fahrenheit scale.' },
-        { resultLabel: 'Kelvin', explanation: 'Temperature in Kelvin (absolute scale).' }
-      ],
-      workflowLinks: [
-        { slug: 'boiling-point-calculator', step: 'Find boiling point at your altitude.' },
-        { slug: 'temperature-converter', step: 'Convert between other temperature units.' }
-      ],
-      faqs: [
-        { q: 'What is absolute zero?', a: 'Absolute zero is -273.15 degrees C, the lowest possible temperature where all molecular motion stops.' },
-        { q: 'Why does water freeze at 0 degrees C?', a: 'That is the defined freezing point of water at standard atmospheric pressure.' },
-        { q: 'Which scale is used in science?', a: 'Kelvin is the standard in scientific research because it starts at absolute zero.' }
-      ],
-      related: ['boiling-point-calculator', 'temperature-converter'],
-    },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.6 },
-  },
-  {
     id: 'sa-fuel',
     slug: 'south-africa-fuel-calculator',
     name: 'South Africa Fuel Calculator',
@@ -949,4 +903,182 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
     },
     seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
   },
+  {
+    id: 'gas-mileage',
+    slug: 'gas-mileage-calculator',
+    name: 'Gas Mileage & Fuel Economy Calculator',
+    shortDesc: 'Calculate vehicle fuel economy and convert between US MPG, Imperial MPG, and L/100 km.',
+    tagline: 'Track gas mileage and convert fuel efficiency across US, UK, and metric standards.',
+    category: 'daily',
+    iconName: 'Car',
+    badge: 'Popular',
+    keywords: ['gas mileage calculator', 'mpg calculator', 'fuel economy calculator', 'liters per 100km calculator', 'fuel consumption calculator', 'miles per gallon'],
+    kind: 'custom',
+    componentId: 'FuelEconomyCalculator',
+    content: {
+      intro: 'The Gas Mileage & Fuel Economy Calculator computes vehicle fuel efficiency from distance traveled and fuel consumed. It displays equivalent ratings across US miles per gallon (MPG), UK Imperial miles per gallon, and metric liters per 100 kilometers (L/100 km).',
+      howItWorks: 'Distance and fuel volume are converted to standard units. US MPG is miles divided by US gallons. Imperial MPG is miles divided by UK imperial gallons (1 Imperial gallon ≈ 1.20095 US gallons). L/100 km is calculated as (liters / kilometers) × 100.',
+      example: 'Driving 300 miles on 10 US gallons of gasoline yields 30.00 US MPG, 36.03 Imperial MPG, and 7.84 L/100 km.',
+      formulas: [
+        { label: 'US MPG', expression: 'US MPG = Miles / US Gallons' },
+        { label: 'Imperial MPG', expression: 'Imperial MPG = Miles / Imperial Gallons = US MPG × 1.20095' },
+        { label: 'Liters per 100 km', expression: 'L/100 km = 235.215 / US MPG = (Liters / Kilometers) × 100' },
+      ],
+      resultExplanations: [
+        { resultLabel: 'US miles per gallon', explanation: 'Standard American fuel efficiency rating indicating distance covered per US liquid gallon.' },
+        { resultLabel: 'Imperial miles per gallon', explanation: 'United Kingdom and Commonwealth fuel rating based on the larger Imperial gallon (4.546 liters).' },
+        { resultLabel: 'Liters per 100 km', explanation: 'Standard metric fuel consumption figure indicating fuel volume needed to travel 100 kilometers.' },
+      ],
+      workflowLinks: [
+        { slug: 'fuel-cost-calculator', step: 'Estimate trip fuel expense using your vehicle fuel economy.' },
+        { slug: 'daily-commute-cost-calculator', step: 'Calculate monthly and annual commuting costs based on gas consumption.' },
+      ],
+      faqs: [
+        { q: 'Why is UK MPG higher than US MPG?', a: 'A UK Imperial gallon is about 20% larger than a US liquid gallon (4.546 liters vs 3.785 liters), so a car travels more miles per Imperial gallon.' },
+        { q: 'How do I accurately measure my car MPG?', a: 'Fill your tank completely and reset the trip odometer. Drive normally until your next fill-up, fill to full again, and divide the trip miles by the exact gallons pumped.' },
+        { q: 'Why is a lower L/100 km number better?', a: 'L/100 km measures consumption (fuel used per distance), whereas MPG measures efficiency (distance per fuel). Lower consumption means better fuel economy.' },
+      ],
+      related: ['fuel-cost-calculator', 'daily-commute-cost-calculator', 'speed-converter'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'word-counter',
+    slug: 'word-counter',
+    name: 'Word & Character Counter',
+    shortDesc: 'Count words, characters with and without spaces, sentences, paragraphs, and estimated reading time.',
+    tagline: 'Detailed text metrics and customizable reading time estimation.',
+    category: 'daily',
+    iconName: 'Receipt',
+    keywords: ['word counter', 'character counter', 'word count tool', 'reading time calculator', 'sentence counter', 'text analyzer'],
+    kind: 'custom',
+    componentId: 'WordCounterCalculator',
+    content: {
+      intro: 'The Word & Character Counter provides real-time text statistics including word count, character count (with and without spaces), sentence count, paragraph count, and an estimated reading time based on an adjustable words-per-minute speed.',
+      howItWorks: 'Text is parsed using Unicode whitespace patterns to isolate words. Sentences are counted using terminal punctuation markers (. ! ?), paragraphs are separated by newlines, and reading duration is calculated by dividing total words by the reading speed (defaulting to 238 words per minute).',
+      example: 'Pasting a 500-word essay reveals 3,150 characters with spaces, 2,650 characters without spaces, 24 sentences, 5 paragraphs, and an estimated reading time of 2.1 minutes at 238 WPM.',
+      formulas: [
+        { label: 'Word Count', expression: 'Words = Count of non-empty whitespace-separated tokens' },
+        { label: 'Reading Time', expression: 'Reading Minutes = Words / Reading Speed (WPM)' },
+      ],
+      resultExplanations: [
+        { resultLabel: 'Words', explanation: 'Total count of individual words in the entered text.' },
+        { resultLabel: 'Characters with spaces', explanation: 'Total byte length and typography count including all spaces, tabs, and line breaks.' },
+        { resultLabel: 'Estimated reading time', explanation: 'Projected minutes required for an average adult to read the passage at the selected reading speed.' },
+      ],
+      workflowLinks: [
+        { slug: 'time-card-calculator', step: 'Log client writing, editing, or transcription project hours.' },
+        { slug: 'percentage-calculator', step: 'Calculate target keyword densities or length ratios.' },
+      ],
+      faqs: [
+        { q: 'What is the average adult reading speed?', a: 'Standard research indicates most adults read non-technical prose at approximately 200 to 250 words per minute (commonly standardized at 238 WPM).' },
+        { q: 'Are hyphenated words counted as one word or two?', a: 'Standard tokenization treats hyphenated compound words without internal spaces as a single lexical word unit.' },
+        { q: 'Does this tool store or upload my text?', a: 'No. All counting, text analysis, and reading time estimation happen 100% locally in your browser session.' },
+      ],
+      related: ['screen-time-cost-calculator', 'scientific-calculator', 'percentage-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'dimensional-weight',
+    slug: 'dimensional-weight-calculator',
+    name: 'Dimensional Weight Calculator',
+    shortDesc: 'Calculate billable parcel weight from carton dimensions, carrier divisor, and actual weight.',
+    tagline: 'A light box can still be a heavy shipment.',
+    category: 'daily',
+    iconName: 'Truck',
+    badge: 'Shipping',
+    featured: false,
+    keywords: [
+      'dimensional weight calculator',
+      'dim weight calculator',
+      'how to calculate dimensional weight',
+      'billable weight calculator',
+      'ups dimensional weight',
+      'fedex dimensional weight',
+    ],
+    kind: 'custom',
+    componentId: 'DimensionalWeightCalculator',
+    content: {
+      intro:
+        'The Dimensional Weight Calculator works out what a parcel is billed at when its size, rather than its scale weight, decides the price. Enter the carton dimensions, the actual weight, and the carrier divisor, and it returns the dimensional weight, the billable weight, and how far the parcel is above its actual weight.',
+      howItWorks:
+        'Carton volume is length x width x height in the carrier unit. Dividing volume by the carrier divisor gives dimensional weight in pounds or kilograms. The billable weight is the greater of that figure and the actual weight. A parcel whose dimensional weight exceeds its actual weight is described as being billed by dimension, and the difference is the weight it is effectively paying for but does not weigh.',
+      example:
+        'A carton measuring 20 x 16 x 12 inches has a volume of 3,840 cubic inches. Under the UPS and FedEx daily-rate divisor of 139, its dimensional weight is 3,840 / 139 = 27.6 lb. A 10 lb parcel is therefore billed at 27.6 lb, about 176% above its actual weight. The same carton under the 166 retail divisor is 23.1 lb.',
+      formulas: [
+        { label: 'Carton volume', expression: 'length x width x height' },
+        { label: 'Dimensional weight', expression: 'volume / carrier divisor' },
+        { label: 'Billable weight', expression: 'max(actual weight, dimensional weight)' },
+        {
+          label: 'Over actual weight',
+          expression: '(billable weight - actual weight) / actual weight x 100',
+          note: 'Shown only when actual weight is above zero.',
+        },
+      ],
+      sources: [
+        {
+          label: 'UPS - Dimensional Weight',
+          expression: 'Daily-rate and retail divisors for parcel billing',
+          note: 'UPS publishes 139 for daily rates and 166 for retail rates in the US. Service and country can change the rule.',
+        },
+        {
+          label: 'FedEx - Dimensional Weight',
+          expression: 'How FedEx calculates dimensional weight',
+          note: 'FedEx uses a 139 divisor for US domestic parcel services. Confirm the current tariff before quoting a shipment.',
+        },
+        {
+          label: 'USPS - Dimensional Weight',
+          expression: 'When USPS applies dimensional weight',
+          note: 'USPS uses a 166 divisor and applies dimensional weight to specified services and sizes. Not every parcel is affected.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Billable weight',
+          explanation:
+            'The weight the carrier prices. It is the greater of the dimensional and actual figures, before any rounding up to the next whole pound or kilogram.',
+        },
+        {
+          resultLabel: 'Dimensional weight',
+          explanation:
+            'The hypothetical weight of the space the carton occupies. It is a billing convention, not a physical property of the parcel.',
+        },
+        {
+          resultLabel: 'Over actual weight',
+          explanation:
+            'How much larger the billable weight is than the scale weight. A high percentage means the packaging, not the product, is driving the shipping cost.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'price-per-unit-calculator', step: 'Compare the shipping cost per item across pack sizes.' },
+        { slug: 'trip-cost-calculator', step: 'Price a delivery run or a market trip that includes tolls and parking.' },
+        { slug: 'room-volume-calculator', step: 'Measure a larger space when the shipment is furniture or equipment.' },
+      ],
+      faqs: [
+        {
+          q: 'Why is my parcel billed at a higher weight than I measured?',
+          a: 'The carrier is charging for the space the carton occupies, not just its mass. A large box filled mostly with air still takes up room in a van or aircraft. Reducing the carton size is often the fastest way to lower the bill.',
+        },
+        {
+          q: 'Which divisor should I use?',
+          a: 'Match the carrier and service on your label. In the US, UPS and FedEx daily rates use 139, retail rates and USPS use 166, and metric air tariffs commonly use 5,000 or 6,000. The divisor is a commercial term, so confirm it in the current tariff rather than assuming it never changes.',
+        },
+        {
+          q: 'Does dimensional weight apply to every parcel?',
+          a: 'No. Carriers apply it to specific services and above certain sizes, and some small or flat-rate services are exempt. The calculator always shows the comparison, so you can see whether dimension actually governs for the entered profile.',
+        },
+        {
+          q: 'How do carriers round the result?',
+          a: 'Most round up to the next whole pound or kilogram, and some apply a minimum billable weight. This calculator shows the exact figure so you can see how close the parcel is to the next step, then check the carrier rule for the service you are using.',
+        },
+        {
+          q: 'How can I reduce dimensional weight?',
+          a: 'Use the smallest carton that protects the product, remove void fill where a shorter box will do, and consider a poly mailer for soft goods. Do not trade protection for size: a damaged parcel costs more than the weight difference.',
+        },
+      ],
+      related: ['price-per-unit-calculator', 'trip-cost-calculator', 'room-volume-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.86 },
+  }
 ];
