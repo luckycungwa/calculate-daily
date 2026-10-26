@@ -19,7 +19,7 @@ ending 23 Oct 2026, so the pack is current as of **October 2026**.
 | `scripts/prerender.ts`, `scripts/audit-calculators.ts`, `src/types.ts` | Indexation, sitemap, and audit behaviour | Established what is *actually* indexable vs. merely intended |
 | `docs/research-and-roadmap.md` (670 lines) | Prior competitive research (4 competitors) | Reused as prior evidence, re-verified where it made counts |
 | `docs/keyword-intelligence/raw/*.md` | Fresh sitemap captures of 7 competitors | The only evidence used for coverage claims |
-| Google Trends exports | **See §3 — none were supplied for this site** | Excluded |
+| Google Trends exports | Two user-supplied Worldwide top and rising query exports; see `trends-execution-2026-10-24.md` | Relative prioritization only; not volume or first-party performance |
 
 ## 2. Phase 1 — verifying the inventory
 
@@ -80,10 +80,11 @@ Three tests were applied to all 170 tools:
 Verdict: **8 redirect/merge candidates and 13 overlap candidates** are flagged in
 `tool-inventory.csv` (`intent_role` + `action`).
 
-## 3. Phase 2 — the Google Trends position (the honest answer)
+## 3. Phase 2 — Google Trends evidence and limits
 
-The brief assumes supplied Trends exports. **No Trends data about calculators exists in this
-workspace.**
+Two user-supplied Worldwide top and rising query exports cover 2021-10-24 through 2026-10-24.
+The original data is preserved in `raw/`; implementation decisions and query mappings are in
+[`trends-execution-2026-10-24.md`](./trends-execution-2026-10-24.md).
 
 23 Google Trends CSV exports were found in `H:\website assets`. Every one is geography **ZA** and
 every query is SASSA / SRD social-grant related (payment dates, status checks, R350/R370), e.g.
@@ -92,18 +93,19 @@ every query is SASSA / SRD social-grant related (payment dates, status checks, R
 `sassa appeal`, `srd grant`, `sassa online application`, `sassa login`, `sassa gold card`,
 `SASSA Status Check`). They belong to a different project in the same assets folder.
 
-**Decision: excluded from this analysis**, because (a) they contain zero calculator, converter,
-estimator, or solver queries, and (b) importing a neighbouring project's trend lines would
-manufacture false demand evidence for this site.
+The separate ZA SASSA/SRD exports remain excluded from calculator prioritization because they
+contain no calculator, converter, estimator, or solver queries. They belong to another project.
+The two supplied Worldwide exports are relevant but are not absolute demand data: their search
+interest scores are relative, and their percent changes do not predict future traffic.
 
 Consequences that are honoured throughout this pack:
 
-- **No search volume, CPC, RPM, or keyword-difficulty number appears anywhere.** They are marked
-  `unknown` and never estimated.
-- No cluster can claim `demand_evidence = measured`. The strongest tier available is
-  **multi-source competitor corroboration** (see §5).
-- The Trends analysis in `report.md` §2 states what the supplied data *does* show, why it was
-  excluded, and the exact export recipe needed to run Phase 2 properly.
+- **No monthly search volume, CPC, RPM, or keyword-difficulty number is available** from these
+   exports. Those fields remain `unknown` and are never inferred from relative interest scores.
+- The exports can guide query-cluster prioritization, but they do not establish impressions, clicks,
+   rankings, or first-party demand. No cluster is labeled as having measured Search Console demand.
+- See `trends-execution-2026-10-24.md` for the executed page mapping, rejected brand terms, and
+   indexation safeguards.
 
 ## 4. Phase 3–4 — keyword discovery and competitor capture
 

@@ -23,6 +23,12 @@
 
 ---
 
+> **Living execution records:** the open-ended [opportunity register](./opportunity-register.csv),
+> [growth-loop status](./growth-loop-status.md), [growth measurement plan](./growth-measurement-plan.md),
+> and [backlink opportunity hypotheses](./backlink-opportunities.csv) track implementation,
+> evidence limits, measurement, and ethical link-earning opportunities. These records supplement
+> this research snapshot; they do not convert competitor estimates into demand data.
+
 ## A. Competitor Coverage Matrix
 
 ### A.1 Inventory — calculator.net (~215 unique tools)

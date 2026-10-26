@@ -1,8 +1,13 @@
 # Indexation Policy — review-gated
 
-> **Status: implemented in source, UNVERIFIED — BUILD NOT RUN.** The shell cannot start
-> (`SetNamedSecurityInfoW failed (Win32 5): grantWrite`), so no build, audit or type-check has run.
-> Nothing in this document is a claim that the site builds or that the sitemap is correct.
+> **Counts are superseded.** The audit figures below are from a 168-calculator run. The current
+> catalogue is 290 calculators, 287 indexable and 3 unreviewed; 4 of 10 guides are indexable. The
+> rule itself is unchanged. See `docs/launch-checklist.md` for current build numbers.
+
+> **Status: implemented and locally verified; hosted behavior remains unverified.** The latest local
+> audit passed 168 calculators and 10 guides (359 checks); the production prerender audit passed for
+> 197 HTML files and 190 sitemap URLs. Hosted CI, Vercel redirect responses, and HTTP 404 behavior
+> have not been verified.
 
 ---
 
@@ -65,9 +70,10 @@ is treated as **not indexable**, and `npm run audit` fails the entry with
 To **withhold** a reviewed tool without deleting it, set `status: 'noindex'` and keep
 `reviewStatus: 'reviewed'`. The page stays reachable and listed; it is simply not advertised.
 
-**Unpublishing is reversible and non-destructive.** No calculator is deleted, renamed or hidden from
-the UI by this policy. The 169 entries remain in `CALCULATOR_CATALOG`, in the directory, in category
-pages and in internal links.
+**Withholding an individual page is reversible and non-destructive.** A reviewed tool can remain
+reachable while being noindexed and excluded from the sitemap. Separately, eight confirmed
+duplicate-intent catalog entries were consolidated; their old URLs have permanent Vercel redirects
+to the canonical calculators.
 
 ## 5. Schema assessment — no change required
 
@@ -83,9 +89,10 @@ the **predicate**, which inverted the meaning of absence.
 
 **Recommended future hardening (not applied):** make `status` and `reviewStatus` required *inside*
 `seo` (`seo?: { status: SeoStatus; reviewStatus: ReviewStatus; priority?: number }`). Every one of the
-169 entries and 10 guides already supplies both, so this would compile as a no-op today and would make
+168 entries and 10 guides already supplies both, so this would compile as a no-op today and would make
 a partial `seo` block a type error rather than an audit failure. It is deliberately deferred because
-it cannot be type-checked in this environment.
+the existing audit already rejects contradictory indexability states, and a schema change is not
+needed to address a confirmed defect.
 
 ## 6. What is in the sitemap
 
@@ -112,25 +119,29 @@ Verified in this pass:
 
 | Check | Count |
 |---|---|
-| Catalogue entries | **169** |
-| `status: 'index'` occurrences | **169** |
-| `reviewStatus: 'reviewed'` occurrences | **169** |
-| `seo: {` block openers | **169** |
-| Guides with `status: 'index'` + `reviewStatus: 'reviewed'` | **10** (8 individual + 2 inline) |
+| Catalogue entries | **168** |
+| `status: 'index'` occurrences | **168** |
+| `reviewStatus: 'reviewed'` occurrences | **168** |
+| `seo: {` block openers | **168** |
+| Guides with `status: 'index'` + `reviewStatus: 'reviewed'` | **4** |
 
-**Every calculator and every guide was already explicitly reviewed and indexable.** The review-gated
-policy therefore changes **zero published pages today**. Its value is prospective: a future entry
-that omits metadata now fails closed instead of silently publishing.
+**All 168 remaining calculators are explicitly reviewed and indexable.** Of the 10 guides, four are
+reviewed and indexable while six are pending and noindex. The policy keeps those six guides out of
+the sitemap until their source and editorial checks are complete; a future entry that omits metadata
+also fails closed instead of silently publishing.
 
 This also retires the "review the 113 tools" recommendation in
-`docs/keyword-intelligence/validation-findings.md` (decision D14) — there was nothing to review.
+`docs/keyword-intelligence/validation-findings.md` (decision D14) — the earlier count was a
+line-formatting error; the current calculator catalog has been audited and every remaining tool is
+explicitly reviewed.
 
 ## 8. Consequences for the release gate
 
-- **Sitemap count** changes by exactly **−1** versus the last build: the duplicate
-  `/calculators/tip-split-calculator` URL disappears. Expected: **169** calculator URLs
-  (169 entries, 169 unique slugs, all indexable).
-- **All calculator and guide pages keep their canonical URLs.** No page loses indexability.
-- **The gate must confirm**, not assume, that `indexable 169 | reviewed-noindex 0 | unreviewed 0` is
+- **The latest local sitemap** contains 190 unique URLs, including **168** calculator URLs. Eight
+  duplicate-intent calculator URLs were removed from the catalog and now redirect to canonical
+  routes on Vercel. Confirm those redirects against a hosted preview.
+- **All 168 remaining calculators are explicitly reviewed and indexable.** Six guides are
+  intentionally pending and noindex until their source/reviewer checks are complete.
+- **The gate must confirm**, not assume, that `indexable 168 | reviewed-noindex 0 | unreviewed 0` is
   what the audit prints. If any page shifts state, the fail-closed rule is the reason and it must be
   investigated before release.

@@ -3,6 +3,10 @@
 **Research run: October 2026. Read-only.** No production code, route, or catalog entry was changed.
 Everything below is a proposal until it is accepted into `docs/research-and-roadmap.md`.
 
+> **Updated 2026-10-25:** two Worldwide search-trend exports were supplied after this read-only
+> report was prepared. The original findings below describe the earlier evidence snapshot. See
+> [`trends-execution-2026-10-24.md`](./trends-execution-2026-10-24.md) for the new data, decisions,
+> completed implementations, and current indexation status.
 > **CORRECTED — read [`validation-findings.md`](./validation-findings.md) alongside this file.**
 > A later validation pass found that several coverage claims in this report (§3, §5, §6, §8) were
 > overstated: intents described here as "zero coverage" or "whitespace" are in fact served by 1–3
@@ -26,10 +30,11 @@ Supporting data: [`tool-inventory.csv`](./tool-inventory.csv) · [`keyword-maste
    *indexable*. Expansion is not the most urgent problem; **indexation hygiene is.**
 2. **Eight URLs are genuine duplicates**, including two pages both titled "Simple Interest
    Calculator" and three tip pages. This is our own cannibalisation, not a competitor's.
-3. **No Google Trends data for this site exists.** The 23 export files in the assets folder are all
-   South African SASSA grant queries from a different project. I excluded them rather than
-   manufacture demand evidence, so **no volume, CPC, or difficulty number appears anywhere in this
-   pack** — they are marked `unknown` with instructions to obtain them.
+3. **No calculator-related Google Trends data was available during this original research run.**
+   The 23 export files then present in the assets folder were all South African SASSA grant queries
+   from a different project and were excluded. Two relevant Worldwide exports have since been
+   supplied; they provide relative interest and change percentages, not absolute volume, CPC, or
+   difficulty. See the dated update above.
 4. **The competitive field is far bigger than the old roadmap assumed** — 204 + 187 + 417 + 420 +
    711 + ~2,270 tools across seven sites — but nearly all of that growth is *breadth*: pairwise
    converters, clinical scoring instruments, machining metrology. Almost nobody builds **workflow,
