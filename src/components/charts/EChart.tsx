@@ -21,39 +21,96 @@ export const EChart: React.FC<EChartProps> = ({ option, className, style, onRead
   useEffect(() => {
     let disposed = false;
     let chart: EChartsType | null = null;
+    let started = false;
+    let recheck: ReturnType<typeof setTimeout> | undefined;
     const observers: { disconnect: () => void }[] = [];
+    const container = containerRef.current;
+    if (!container) return;
 
-    // echarts is heavy (~700 kB min). Load it lazily so it only downloads
-    // when a chart actually mounts, keeping the initial bundle small.
-    import('../../lib/charts/core')
-      .then(({ echarts }) => {
-        if (disposed || !containerRef.current) return;
-        chart = echarts.init(containerRef.current);
-        chartRef.current = chart;
-        chart.setOption(option);
-        setIsLoading(false);
+    // echarts is ~640 kB minified. Load it lazily *and* only once the chart is
+    // near the viewport: guide pages embed several calculators, and downloading
+    // every chart module for charts the visitor never scrolls to is wasted work.
+    const start = () => {
+      if (started || disposed) return;
+      started = true;
 
-        const observer = new ResizeObserver(() => chart!.resize());
-        observer.observe(containerRef.current);
-        observers.push(observer);
+      import('../../lib/charts/core')
+        .then(({ echarts }) => {
+          if (disposed || !containerRef.current) return;
+          chart = echarts.init(containerRef.current);
+          chartRef.current = chart;
+          chart.setOption(option);
+          setIsLoading(false);
 
-        const onThemeChange = () => {
-          const dark = document.documentElement.classList.contains('dark');
-          if (dark !== prevDark) {
-            setPrevDark(dark);
-            requestAnimationFrame(() => chart!.resize());
-          }
-        };
-        const observer2 = new MutationObserver(onThemeChange);
-        observer2.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-        observers.push(observer2);
-      })
-      .catch((err) => {
-        console.error('Failed to load chart module', err);
-      });
+          const observer = new ResizeObserver(() => chart!.resize());
+          observer.observe(containerRef.current);
+          observers.push(observer);
+
+          const onThemeChange = () => {
+            const dark = document.documentElement.classList.contains('dark');
+            if (dark !== prevDark) {
+              setPrevDark(dark);
+              requestAnimationFrame(() => chart!.resize());
+            }
+          };
+          const observer2 = new MutationObserver(onThemeChange);
+          observer2.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+          observers.push(observer2);
+        })
+        .catch((err) => {
+          console.error('Failed to load chart module', err);
+        });
+    };
+
+    // A chart is worth loading echarts only when it is about to be seen. The
+    // 600 px margin starts the download shortly before the chart scrolls into
+    // view, so it is ready when it arrives without paying 640 kB up front for
+    // charts further down a long guide.
+    const nearViewport = () => {
+      const rect = container.getBoundingClientRect();
+      const margin = 600;
+      return rect.top < window.innerHeight + margin && rect.bottom > -margin;
+    };
+
+    const reevaluate = () => {
+      if (!started && !disposed && nearViewport()) start();
+    };
+
+    let removeListeners = () => {};
+
+    if (nearViewport()) {
+      start();
+    } else {
+      // Layout can shift after mount (results, fonts, images), and a nested
+      // scroll container may be what actually moves the chart, so listen on the
+      // window in the capture phase and re-check after a beat. The scroll handler
+      // is throttled by time rather than requestAnimationFrame so it still works
+      // while the tab is backgrounded.
+      let lastCheck = 0;
+      const onScroll = () => {
+        if (started || disposed) return;
+        const now = Date.now();
+        if (now - lastCheck < 100) return;
+        lastCheck = now;
+        reevaluate();
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true, capture: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      window.addEventListener('load', reevaluate);
+      removeListeners = () => {
+        window.removeEventListener('scroll', onScroll, true);
+        window.removeEventListener('resize', onScroll);
+        window.removeEventListener('load', reevaluate);
+      };
+
+      recheck = setTimeout(reevaluate, 1000);
+    }
 
     return () => {
       disposed = true;
+      if (recheck !== undefined) clearTimeout(recheck);
+      removeListeners();
       observers.forEach((o) => o.disconnect());
       chart?.dispose();
       chartRef.current = null;

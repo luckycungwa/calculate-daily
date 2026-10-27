@@ -16,17 +16,17 @@ export const runningTrainingGuide: Guide = {
         body: [
           'Pace is minutes per mile (or kilometer). Speed is miles per hour. Runners think in pace because it directly translates to race times. A 9:00/mile pace finishes a half-marathon in about 1:58.',
           'Your easy pace should feel conversational. If you cannot speak in full sentences, you are running too fast. Most runners run their easy days too hard and their hard days too easy, which produces mediocre results and frequent injuries.',
-          'A good rule: your easy pace is roughly 2-3 minutes per mile slower than your current 5K race pace. If you run a 25-minute 5K (8:03/mile pace), your easy pace should be 10:00-11:00/mile.',
+          'Pace ranges are individual and depend on training history, terrain, weather, and health. A recent race result can provide context, but it should not be used as a universal prescription for easy pace.',
         ],
       },
       {
         heading: 'Heart Rate Training Zones',
         body: [
           'Zone 1 (50-60% max HR): Recovery, warm-up. Very easy effort. Zone 2 (60-70%): Aerobic base, fat burning. The pace where you could hold a conversation. Zone 3 (70-80%): Tempo, threshold. Comfortably hard. Zone 4 (80-90%): Anaerobic, intervals. Hard effort for 3-10 minutes. Zone 5 (90-100%): Maximum effort, sprints.',
-          'Most of your running (80%) should be in Zone 2. This builds aerobic capacity, mitochondrial density, and capillary networks. The 20% hard work (Zone 3-5) builds speed and VO2 max.',
-          'Calculate max HR: the simplest method is 220 minus your age, but this has wide individual variation. A better approach is a time trial: warm up well, run a hard 1-mile effort, and note your peak heart rate. That is approximately your true max.',
+          'Training-zone percentages are approximate and vary by method and individual. Many training plans emphasize easier sessions, but the appropriate distribution depends on goals, experience, and recovery.',
+          'The estimate 220 minus age is a rough population estimate, not a measurement of an individual maximum heart rate. Do not perform an all-out test based on this guide; seek qualified supervision if an exercise test is needed, especially if you have health concerns.',
         ],
-        callout: '80% of your running should be easy (Zone 2). The most common training mistake is running easy days too hard.',
+        callout: 'Use heart-rate zones as estimates, not medical measurements. The talk test is another practical way to monitor perceived effort.',
       },
       {
         heading: 'Calculating Your Training Paces',
@@ -39,22 +39,22 @@ export const runningTrainingGuide: Guide = {
       {
         heading: 'Calories Burned Running',
         body: [
-          'Running burns roughly 100 calories per mile for a 180-pound person, regardless of pace. A 5-mile run burns about 500 calories whether you run it in 40 minutes or 50 minutes. Pace changes the intensity, not the total burn.',
-          'Body weight matters heavily. A 220-pound person burns roughly 130 calories per mile. A 140-pound person burns about 83 calories per mile. The formula is approximately 0.75 calories per pound per mile.',
-          'Do not eat back all your exercise calories if fat loss is the goal. Exercise calorie estimates from watches are notoriously inaccurate, often overestimating by 30-50%. Use a consistent estimate and adjust based on results.',
+          'A distance-based calorie estimate is only a rough guide. Actual energy use varies with body size, running economy, terrain, and measurement method; pace and conditions can also matter.',
+          'A simple approximation of about 0.6 calories per pound per mile gives roughly 108 calories per mile for a 180-pound runner, 132 for 220 pounds, and 84 for 140 pounds. These values are examples, not precise measurements.',
+          'Wearables and exercise calculators provide estimates, not exact energy measurements. Do not use this guide alone to set a nutrition or weight-loss plan.',
         ],
-        callout: 'Running burns approximately 100 calories per mile for an average adult. Distance matters more than speed for total calorie burn.',
+        callout: 'Treat exercise-calorie estimates as approximate; individual results vary.',
       },
       {
         heading: 'Building a Weekly Training Plan',
         body: [
-          'A beginner plan: 3-4 runs per week, all easy pace, 2-3 miles each. Total weekly volume: 8-12 miles. Increase total weekly mileage by no more than 10% per week to avoid injury.',
+          'A beginner schedule should reflect current activity, health, and recovery. Increase training gradually rather than relying on a fixed weekly percentage; stop and seek advice for concerning symptoms.',
           'An intermediate plan: 4-5 runs per week including one long run (easy pace), one tempo run, one interval session, and 1-2 easy runs. Total weekly volume: 20-35 miles.',
           'The long run is the foundation. It teaches your body to burn fat efficiently and builds endurance. Keep it at easy pace. Speed comes from the hard days, not from making every run hard.',
         ],
       },
     ],
-    conclusion: 'Start with an easy pace you can hold a conversation at, run 3-4 times per week, and increase volume by 10% per week. Use heart rate or the talk test to stay honest on easy days. The fitness follows the consistency.',
+    conclusion: 'Start at a comfortable effort and progress in a way that fits your experience and health. The paces and heart-rate zones here are general estimates, not individualized training or medical advice.',
   },
   faqs: [
     { q: 'How fast should my easy pace be?', a: 'Easy pace should feel genuinely easy. For most people this is 2-3 minutes per mile slower than 5K race pace. If you cannot hold a conversation, slow down. There is no shame in running slowly on easy days.' },
@@ -66,8 +66,8 @@ export const runningTrainingGuide: Guide = {
   relatedCalculators: ['protein-intake-calculator', 'bmr-calculator', 'water-intake-calculator'],
   relatedGuides: ['tdee-macros-complete-guide', 'bmi-body-fat-weight-guide'],
   seo: {
-    status: 'index',
-    reviewStatus: 'reviewed',
+    status: 'noindex',
+    reviewStatus: 'pending',
     priority: 0.85,
   },
   publishedAt: '2026-08-22',

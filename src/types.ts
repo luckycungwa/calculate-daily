@@ -9,6 +9,8 @@ export type CalculatorCategory =
   | 'construction'
   | 'food'
   | 'fitness'
+  | 'tech'
+  | 'science'
   | 'daily'
   | 'misc'
   | 'all';
@@ -40,6 +42,37 @@ export interface ConfigCalculatorSpec {
   formulaDescription: string;
   tips?: string[];
 }
+
+/**
+ * The listing/search projection of a calculator.
+ *
+ * Everything a directory card, a search result, a related-links list, or a
+ * category page needs — and nothing that only the calculator page needs.
+ * `content` (prose, FAQs, sources) and `config` (formula spec) are deliberately
+ * absent: they are the bulk of the catalogue and are loaded per content area
+ * only when a calculator page actually renders.
+ */
+export type CalculatorSummary = Pick<
+  CalculatorMeta,
+  | 'id'
+  | 'slug'
+  | 'name'
+  | 'shortDesc'
+  | 'tagline'
+  | 'category'
+  | 'iconName'
+  | 'badge'
+  | 'featured'
+  | 'keywords'
+  | 'kind'
+  | 'seo'
+>;
+
+/** The minimum a directory card needs — used by the home page's curated lists. */
+export type CalculatorCardModel = Pick<
+  CalculatorSummary,
+  'id' | 'slug' | 'name' | 'shortDesc' | 'category' | 'iconName' | 'badge'
+>;
 
 export interface FaqItem {
   q: string;

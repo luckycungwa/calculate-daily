@@ -7,6 +7,7 @@ import { Badge } from '../ui/badge';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/card';
 import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
 import { ExportModal } from '../common/ExportModal';
+import { DialGauge } from '../common/DialGauge';
 import { useToast } from '../ui/toast';
 
 interface BmiCalculatorProps {
@@ -14,6 +15,29 @@ interface BmiCalculatorProps {
 }
 
 type UnitMode = 'metric' | 'imperial';
+
+/**
+ * WHO cut-offs. The coloured band on the dial and the legend below share this
+ * one list so the two can never disagree.
+ */
+const BMI_ZONES = [
+  { id: 'under', label: 'Under', range: '< 18.5', color: '#0ea5e9' },
+  { id: 'normal', label: 'Normal', range: '18.5 - 24.9', color: '#10b981' },
+  { id: 'over', label: 'Over', range: '25 - 29.9', color: '#f59e0b' },
+  { id: 'obese', label: 'Obese', range: '30+', color: '#f43f5e' },
+] as const;
+
+const BMI_DIAL_ZONES = BMI_ZONES.map((zone) => ({
+  to: zone.id === 'under' ? 18.5 : zone.id === 'normal' ? 25 : zone.id === 'over' ? 30 : 40,
+  color: zone.color,
+}));
+
+const BMI_CATEGORY_ID: Record<string, string> = {
+  Underweight: 'under',
+  'Normal weight': 'normal',
+  Overweight: 'over',
+  Obese: 'obese',
+};
 
 export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) => {
   const { toast } = useToast();
@@ -52,7 +76,6 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
       return {
         bmi: 0,
         category: 'Enter measurements',
-        gaugePercentage: 0,
         minHealthyWeightKg: 0,
         maxHealthyWeightKg: 0,
         minHealthyWeightLbs: 0,
@@ -81,7 +104,6 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
       advice = 'Consulting a primary healthcare provider can help tailor sustainable metabolic health goals.';
     }
 
-    const gaugePercentage = Math.min(100, Math.max(0, ((bmiFormatted - 15) / (35 - 15)) * 100));
     const minHealthyKg = 18.5 * (heightInMeters * heightInMeters);
     const maxHealthyKg = 24.9 * (heightInMeters * heightInMeters);
 
@@ -89,7 +111,6 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
       bmi: bmiFormatted,
       category,
       advice,
-      gaugePercentage,
       minHealthyWeightKg: parseFloat(minHealthyKg.toFixed(1)),
       maxHealthyWeightKg: parseFloat(maxHealthyKg.toFixed(1)),
       minHealthyWeightLbs: parseFloat((minHealthyKg * 2.20462).toFixed(1)),
@@ -332,15 +353,30 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
           {/* Results Card */}
           <div className="lg:col-span-6 flex flex-col justify-between space-y-4">
             <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-6 flex flex-col items-center text-center">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-600 dark:text-zinc-400 font-semibold mb-1">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-600 dark:text-zinc-400 font-semibold">
                 Calculated Score
               </span>
 
-              <div className="text-5xl font-bold font-mono tracking-tight text-zinc-950 dark:text-zinc-50 my-1 tabular-nums">
-                {results.bmi > 0 ? results.bmi : '--'}
+              <div className="mt-1 w-full max-w-[19rem]">
+                {results.bmi > 0 ? (
+                  <DialGauge
+                    value={results.bmi}
+                    min={10}
+                    max={40}
+                    zones={BMI_DIAL_ZONES}
+                    accent="#10b981"
+                    ticks={3}
+                    caption="BMI"
+                    ariaLabel={`Body mass index ${results.bmi.toFixed(1)}, ${results.category}. The scale runs from 10 to 40.`}
+                  />
+                ) : (
+                  <div className="flex h-40 items-center justify-center font-mono text-5xl font-bold text-zinc-300 dark:text-zinc-700">
+                    --
+                  </div>
+                )}
               </div>
 
-              <div className="mt-1 mb-3">
+              <div className="mt-2 mb-3">
                 <Badge variant={results.category === 'Normal weight' ? 'success' : 'outline'} className="font-mono text-xs font-bold">
                   {results.category}
                 </Badge>
@@ -350,25 +386,38 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
                 {results.advice}
               </p>
 
-              {/* Segmented scale bar */}
-              <div className="w-full mt-5">
-                <div className="h-2.5 w-full rounded-full bg-zinc-200 dark:bg-zinc-800 relative overflow-hidden">
-                  {results.bmi > 0 && (
-                    <div
-                      className="absolute top-0 bottom-0 w-2.5 bg-emerald-600 dark:bg-emerald-400 rounded-full transform -translate-x-1/2 transition-all duration-300 shadow-xs"
-                      style={{ left: `${results.gaugePercentage}%` }}
-                    />
-                  )}
-                </div>
-
-                {/* Gauge labels */}
-                <div className="flex justify-between text-[10px] font-mono font-semibold text-zinc-600 dark:text-zinc-400 mt-1.5">
-                  <span>&lt;18.5 Under</span>
-                  <span>18.5-24.9 Normal</span>
-                  <span>25-29.9 Over</span>
-                  <span>30+ Obese</span>
-                </div>
-              </div>
+              {/* Zone legend: the same bands the dial paints */}
+              <ul className="mt-5 grid w-full grid-cols-2 gap-x-3 gap-y-2 text-left">
+                {BMI_ZONES.map((zone) => {
+                  const active = BMI_CATEGORY_ID[results.category] === zone.id;
+                  return (
+                    <li
+                      key={zone.id}
+                      className={`flex items-center gap-2 ${active ? '' : 'opacity-55'}`}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="h-1.5 w-1.5 shrink-0 rounded-full"
+                        style={{ backgroundColor: zone.color }}
+                      />
+                      <span className="min-w-0">
+                        <span
+                          className={`block text-[11px] leading-tight ${
+                            active
+                              ? 'font-bold text-zinc-900 dark:text-zinc-50'
+                              : 'font-medium text-zinc-600 dark:text-zinc-400'
+                          }`}
+                        >
+                          {zone.label}
+                        </span>
+                        <span className="block font-mono text-[10px] leading-tight text-zinc-500 dark:text-zinc-500">
+                          {zone.range}
+                        </span>
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
 
             {/* Target Range Box */}

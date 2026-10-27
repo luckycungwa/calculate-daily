@@ -1,4 +1,4 @@
-﻿import { CalculatorMeta } from '../../types';
+import { CalculatorMeta } from '../../types';
 
 export const TIME_CALCULATORS: CalculatorMeta[] = [
   {
@@ -21,12 +21,13 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
         { id: 'breakMin', label: 'Break Duration', type: 'number', defaultValue: 30, min: 0, suffix: 'min' },
       ],
       results: [
-        { label: 'Hours Worked', formulaCode: '((endHour * 60 + endMin) - (startHour * 60 + startMin) - breakMin) / 60', suffix: 'hours', accent: true },
-        { label: 'Minutes Worked', formulaCode: '(endHour * 60 + endMin) - (startHour * 60 + startMin) - breakMin', suffix: 'min' },
+        { label: 'Hours Worked', formulaCode: '(function(){ var s = startHour * 60 + startMin; var e = endHour * 60 + endMin; if (e < s) { e += 1440; } return Math.max(0, e - s - breakMin) / 60; })()', suffix: 'hours', accent: true },
+        { label: 'Minutes Worked', formulaCode: '(function(){ var s = startHour * 60 + startMin; var e = endHour * 60 + endMin; if (e < s) { e += 1440; } return Math.max(0, e - s - breakMin); })()', suffix: 'min' },
       ],
-      formulaDescription: 'Hours = (End time - Start time - Break) in minutes / 60',
+      formulaDescription: 'Hours = (End time - Start time - Break) in minutes / 60, with an end time earlier than the start treated as the next day',
       tips: [
-        'Use the 24-hour clock so afternoon shifts do not underflow.',
+        'Shifts that cross midnight are handled: 22:00 to 06:00 counts as 8 hours.',
+        'Use the 24-hour clock so afternoon shifts are unambiguous.',
         'Subtract every unpaid break to match payroll.',
       ],
     },
@@ -36,7 +37,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Start and end times convert to total minutes since midnight, the break is subtracted, and the remainder is divided by 60 for decimal hours. The tool also reports the figure in minutes.',
       example:
-        'Working 9:00 AM to 5:30 PM with a 30-minute lunch yields 8.0 hours: (510 - 540 + 30) converted and divided by 60.',
+        'Working 9:00 AM to 5:30 PM with a 30-minute lunch yields 8.0 hours: (1050 - 540 - 30) = 480 minutes, divided by 60.',
       formulas: [
         {
           label: 'Hours Worked',
@@ -61,7 +62,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       faqs: [
         { q: 'How do I calculate hours worked by hand?', a: 'Convert both times to minutes since midnight, subtract the break, then divide by 60. For example, 9 to 5:30 with a 30-minute lunch is 8 hours.' },
-        { q: 'Does it handle overnight shifts?', a: 'Not automatically. For overnight work, add 24 hours to the end time or split the shift into two segments.' },
+        { q: 'Does it handle overnight shifts?', a: 'Yes. If the end time is earlier than the start time, the calculator treats the shift as ending the next day.' },
         { q: 'Should breaks be included?', a: 'Only unpaid breaks should be subtracted. Paid 15-minute breaks stay within working hours.' },
       ],
       related: ['decimal-hours-calculator', 'days-to-weeks-calculator', 'hourly-to-annual-salary-calculator'],
@@ -396,62 +397,16 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       workflowLinks: [
         { slug: 'weekly-hours-calculator', step: 'Schedule meetings across time zones.' },
-        { slug: 'bedtime-calculator', step: 'Set a bedtime that accounts for time zones.' }
+        { slug: 'sleep-cycle-calculator', step: 'Plan sleep around a target wake time.' }
       ],
       faqs: [
         { q: 'How do I find my UTC offset?', a: 'UTC offset is your hours ahead of or behind UTC. EST is UTC-5, GMT is UTC+0, JST is UTC+9.' },
         { q: 'Does this handle daylight saving?', a: 'Enter the current DST-adjusted offset. The calculator applies the difference between source and target offsets.' },
         { q: 'Can I convert between any two zones?', a: 'Yes. Enter the UTC offsets for both source and target zones.' }
       ],
-      related: ['weekly-hours-calculator', 'bedtime-calculator'],
+      related: ['weekly-hours-calculator', 'sleep-cycle-calculator'],
     },
     seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
-  },
-  {
-    id: 'bedtime',
-    slug: 'bedtime-calculator',
-    name: 'Bedtime Calculator',
-    shortDesc: 'Find the ideal bedtime based on when you need to wake up.',
-    tagline: 'Wake up on time. Sleep on schedule.',
-    category: 'time',
-    iconName: 'Moon',
-    keywords: ['bedtime calculator', 'what time should i go to bed', 'sleep calculator', 'wake up time'],
-    kind: 'config',
-    config: {
-      fields: [
-        { id: 'wakeHour', label: 'Wake Hour (0-23)', type: 'number', defaultValue: 7, min: 0, max: 23 },
-        { id: 'wakeMinute', label: 'Wake Minute', type: 'number', defaultValue: 0, min: 0, max: 59 },
-        { id: 'cycles', label: 'Sleep Cycles', type: 'number', defaultValue: 5, min: 3, max: 6 }
-      ],
-      results: [
-        { label: 'Total Sleep', formulaCode: 'cycles * 90', suffix: 'min', accent: true }
-      ],
-      formulaDescription: 'undefined',
-      tips: [
-      'Most adults need 4-6 sleep cycles per night.',
-      'Go to bed 15 minutes before the calculated time to allow for falling asleep.'
-      ],
-    },
-    content: {
-      intro: 'The Bedtime Calculator recommends an ideal bedtime based on your required wake-up time and the number of sleep cycles you want to complete. Each cycle is approximately 90 minutes.',
-      howItWorks: 'Enter your wake-up time and the number of sleep cycles desired. Subtract 90 minutes per cycle. Add 15 minutes to fall asleep.',
-      example: 'Wake at 7:00 AM, want 5 cycles: 7:00 - 7.5h - 15min = 11:15 PM.',
-      formulas: [{ label: 'Sleep', expression: 'Bedtime = Wake - (Cycles x 90 min) - 15 min' }],
-      resultExplanations: [
-        { resultLabel: 'Total Sleep', explanation: 'Total sleep time without the falling-asleep buffer.' }
-      ],
-      workflowLinks: [
-        { slug: 'sleep-debt-calculator', step: 'Check if you have accumulated sleep debt.' },
-        { slug: 'time-zone-converter', step: 'Adjust bedtime for a different time zone.' }
-      ],
-      faqs: [
-        { q: 'How long is a sleep cycle?', a: 'About 90 minutes on average, though it varies between 80-100 minutes per person.' },
-        { q: 'Is 5 sleep cycles enough?', a: 'Five cycles equals 7.5 hours of sleep, which is sufficient for most adults.' },
-        { q: 'Why 15 minutes to fall asleep?', a: 'Most people take 10-20 minutes to fall asleep. This buffer ensures you are actually asleep by the target time.' }
-      ],
-      related: ['sleep-debt-calculator', 'time-zone-converter'],
-    },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
   },
   {
     id: 'seconds-to-time',
@@ -585,7 +540,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
         { resultLabel: 'Remaining Minutes', explanation: 'The leftover minutes after extracting full hours.' }
       ],
       workflowLinks: [
-        { slug: 'bedtime-calculator', step: 'Count hours until your ideal bedtime.' },
+        { slug: 'sleep-cycle-calculator', step: 'Plan sleep around your target wake time.' },
         { slug: 'weekly-hours-calculator', step: 'Count working hours until a deadline.' }
       ],
       faqs: [
@@ -593,7 +548,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
         { q: 'Can I use this for deadlines?', a: 'Yes. Enter the deadline hour and minute as the target.' },
         { q: 'Does it handle multi-day differences?', a: 'Yes. Use the days-ahead field for targets more than one day away.' }
       ],
-      related: ['bedtime-calculator', 'weekly-hours-calculator'],
+      related: ['sleep-cycle-calculator', 'weekly-hours-calculator'],
     },
     seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
   },
@@ -686,7 +641,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
         { resultLabel: 'Sleep Minutes', explanation: 'The remaining minutes of sleep.' }
       ],
       workflowLinks: [
-        { slug: 'bedtime-calculator', step: 'Plan the ideal bedtime for your wake time.' },
+        { slug: 'sleep-cycle-calculator', step: 'Plan sleep around your target wake time.' },
         { slug: 'sleep-debt-calculator', step: 'Check if you are accumulating a deficit.' }
       ],
       faqs: [
@@ -694,7 +649,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
         { q: 'Does this include time to fall asleep?', a: 'This measures the time in bed. Actual sleep time is typically 10-20 minutes less.' },
         { q: 'Can I use this for naps?', a: 'Yes. Enter the nap start and end times to get the duration.' }
       ],
-      related: ['bedtime-calculator', 'sleep-debt-calculator'],
+      related: ['sleep-cycle-calculator', 'sleep-debt-calculator'],
     },
     seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
   },
@@ -794,4 +749,77 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
     },
     seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
   },
+  {
+    id: 'timesheet',
+    slug: 'time-card-calculator',
+    name: 'Weekly Timesheet Calculator',
+    shortDesc: 'Total weekly shift hours, overtime, unpaid breaks, and estimated gross pay.',
+    tagline: 'Add up a week of shifts and separate regular from overtime hours.',
+    category: 'time',
+    iconName: 'Clock',
+    keywords: ['timesheet calculator', 'time card calculator', 'weekly time card', 'weekly hours and pay', 'overtime hours calculator'],
+    kind: 'custom',
+    componentId: 'TimesheetCalculator',
+    content: {
+      intro: 'The Weekly Timesheet Calculator totals up to seven daily shifts, subtracts unpaid breaks, and estimates regular hours, overtime, and gross pay. Overnight shifts are supported by treating an end time earlier than the start as the following day.',
+      howItWorks: 'Each shift duration is calculated in minutes, adjusted for a midnight crossing, and reduced by the unpaid break. Weekly hours up to the entered threshold are paid at the base rate; additional hours use the overtime multiplier.',
+      example: 'Five 09:00-17:00 shifts with 30-minute unpaid breaks total 37.5 hours; at 20 per hour, estimated gross pay is 750. A 45-hour week with a 40-hour threshold and 1.5 overtime multiplier estimates 950.',
+      formulas: [
+        { label: 'Shift Hours', expression: '(End − Start, plus 24 hours if overnight − unpaid break) / 60' },
+        { label: 'Gross Pay', expression: '(Regular hours × rate) + (Overtime hours × rate × multiplier)' },
+      ],
+      resultExplanations: [
+        { resultLabel: 'Weekly Total', explanation: 'The sum of each completed shift after unpaid breaks are removed.' },
+        { resultLabel: 'Estimated Gross Pay', explanation: 'A simple estimate using your entered weekly overtime threshold and multiplier, before taxes or other deductions.' },
+      ],
+      workflowLinks: [
+        { slug: 'work-hours-calculator', step: 'Calculate a single shift in more detail.' },
+        { slug: 'salary-to-hourly-calculator', step: 'Compare an hourly rate with an annual salary.' },
+      ],
+      faqs: [
+        { q: 'Does the timesheet handle overnight shifts?', a: 'Yes. If an end time is earlier than the start time, the calculator treats the shift as crossing midnight.' },
+        { q: 'How is overtime calculated?', a: 'This tool applies overtime only to weekly hours above your entered threshold. Legal rules vary by location and may also count daily overtime.' },
+        { q: 'Should I subtract paid breaks?', a: 'No. Enter only unpaid break minutes; paid breaks remain part of the hours worked.' },
+        { q: 'What if the break is longer than the shift?', a: 'The calculator shows a validation message rather than producing a negative shift duration.' },
+      ],
+      related: ['work-hours-calculator', 'weekly-hours-calculator', 'salary-to-hourly-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'unix-timestamp',
+    slug: 'unix-timestamp-converter',
+    name: 'Unix Timestamp Converter',
+    shortDesc: 'Convert Unix epoch seconds or milliseconds to UTC ISO 8601 strings and local browser dates.',
+    tagline: 'Translate epoch timestamps into readable human date formats instantly.',
+    category: 'time',
+    iconName: 'Clock',
+    keywords: ['unix timestamp converter', 'epoch converter', 'unix time converter', 'epoch to date', 'timestamp to date', 'epoch timestamp'],
+    kind: 'custom',
+    componentId: 'UnixTimestampCalculator',
+    content: {
+      intro: 'The Unix Timestamp Converter translates Unix epoch time (the number of seconds or milliseconds elapsed since January 1, 1970 UTC) into standard ISO 8601 UTC date-time representations and localized browser time.',
+      howItWorks: 'The numeric epoch input is validated against valid JavaScript date ranges (-100,000,000 to +100,000,000 days). Seconds are scaled by 1,000 into milliseconds. A UTC ISO string is generated alongside local time adjusted for your browser time zone and daylight-saving offset.',
+      example: 'A timestamp of 1700000000 seconds converts to 2023-11-14T22:13:20.000Z in UTC and provides the corresponding local time for your region.',
+      formulas: [
+        { label: 'Milliseconds to Seconds', expression: 'Seconds = Floor(Milliseconds / 1000)' },
+        { label: 'Epoch Time Basis', expression: 'Elapsed time since 1970-01-01T00:00:00.000Z' },
+      ],
+      resultExplanations: [
+        { resultLabel: 'UTC ISO 8601', explanation: 'The universal, standardized date and time string in UTC without timezone bias.' },
+        { resultLabel: 'Local browser time', explanation: 'The date and time formatted for your device current timezone and locale.' },
+      ],
+      workflowLinks: [
+        { slug: 'date-difference-calculator', step: 'Calculate elapsed days, months, and years between converted dates.' },
+        { slug: 'days-until-calculator', step: 'Count down to an upcoming timestamp milestone.' },
+      ],
+      faqs: [
+        { q: 'What is Unix epoch time?', a: 'Unix time is a system for tracking time as a single running count of seconds that have passed since 00:00:00 UTC on 1 January 1970 (the Unix epoch).' },
+        { q: 'What is the Year 2038 problem?', a: 'Older 32-bit systems store timestamps as signed 32-bit integers, which overflow on 19 January 2038. Modern 64-bit platforms and this browser tool support dates billions of years in the future.' },
+        { q: 'How do I know if my timestamp is in seconds or milliseconds?', a: '10-digit timestamps (e.g. 1700000000) are in seconds; 13-digit timestamps (e.g. 1700000000000) are in milliseconds.' },
+      ],
+      related: ['date-difference-calculator', 'time-card-calculator', 'days-until-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  }
 ];

@@ -9,31 +9,31 @@ export const bmiWeightGuide: Guide = {
   iconName: 'Scale',
   keywords: ['bmi', 'body fat percentage', 'ideal weight', 'weight categories', 'body composition', 'health weight'],
   content: {
-    hook: 'BMI says a muscular 200-pound man is overweight. Body fat percentage says he is at 12% and in excellent shape. Neither number alone tells the full story. You need both.',
+    hook: 'BMI is a height-and-weight screening measure, not a diagnosis or a direct measure of body fat. It can be less informative for some individuals, including people with unusually high muscle mass, and should be interpreted in context.',
     sections: [
       {
         heading: 'What BMI Actually Measures',
         body: [
           'Body Mass Index is your weight in kilograms divided by your height in meters squared. It is a simple ratio that does not distinguish between muscle, fat, bone, or water. It is a screening tool, not a diagnosis.',
           'BMI categories: Underweight (below 18.5), Normal (18.5-24.9), Overweight (25-29.9), Obese (30+). These ranges work well as population-level indicators but break down for individuals.',
-          'BMI was never designed for individual health assessment. It was created in the 1830s for statistical analysis of populations. Using it as your sole health metric is like using your zip code to determine your income.',
+          'BMI was developed as a population-level measure and is used as one screening indicator. It should not be treated as a complete individual health assessment or interpreted without other relevant information.',
         ],
       },
       {
         heading: 'Why BMI Fails for Active People',
         body: [
           'Muscle is denser than fat. A 200-pound man who lifts weights regularly can have a BMI of 28 (overweight) while carrying only 12% body fat. A sedentary 200-pound man with the same BMI might carry 30% body fat.',
-          'Athletes, bodybuilders, and anyone with above-average muscle mass will almost always register as overweight or obese by BMI alone. This does not mean they are unhealthy.',
-          'Conversely, some people with normal BMI carry excessive visceral fat (thin outside, fat inside). This metabolically obese but normal weight condition is arguably more dangerous than being overweight with low body fat.',
+          'People with higher-than-average muscle mass may have a higher BMI without the measure distinguishing lean mass from fat mass. The result alone does not establish whether someone is healthy or unhealthy.',
+          'BMI also does not show where body fat is distributed. A clinician may consider other measures and health factors when interpreting a result.',
         ],
         callout: 'BMI is a starting point, not a conclusion. If your BMI is elevated, check body fat percentage before assuming you are unhealthy.',
       },
       {
         heading: 'Body Fat Percentage: The Better Metric',
         body: [
-          'Body fat percentage measures what portion of your total weight is fat. For men, 10-20% is healthy; 6-10% is athletic; 2-5% is essential minimum. For women, 18-28% is healthy; 14-20% is athletic; 10-13% is essential minimum.',
-          'Methods to measure: DEXA scan (most accurate, $50-150), hydrostatic weighing (very accurate, rare), bioelectrical impedance (scales and handheld devices, less accurate but convenient), and skinfold calipers (moderate accuracy, consistent when done by same person).',
-          'Body fat percentage is more predictive of health outcomes than BMI. People with high body fat and normal BMI have higher all-cause mortality risk than people with normal body fat and high BMI.',
+          'Body-fat estimates depend on the measurement method and population. Reference ranges are not interchangeable or diagnostic; discuss health concerns and interpretation with a qualified clinician.',
+          'Available methods include imaging, impedance devices, and skinfold measurements. Each has limitations and measurement error, so results from different methods may not be directly comparable.',
+          'Body-fat percentage and BMI each describe different things. Neither number alone establishes health risk, and other clinical measures may be important.',
         ],
       },
       {
@@ -45,7 +45,7 @@ export const bmiWeightGuide: Guide = {
         ],
       },
     ],
-    conclusion: 'Use BMI as a quick screening tool, then dig deeper with body fat percentage and waist circumference. A healthy weight is one where your body fat is in the healthy range and you feel strong and energized.',
+    conclusion: 'Use BMI only as a screening measure, not as a diagnosis or a standalone health target. This guide is educational and does not replace individualized advice from a qualified health professional.',
   },
   faqs: [
     { q: 'Is BMI accurate for older adults?', a: 'Less accurate. As people age, they lose muscle mass and may gain visceral fat. An older adult can have normal BMI but unhealthy body composition. Body fat percentage and waist circumference are better metrics for this group.' },
@@ -55,10 +55,10 @@ export const bmiWeightGuide: Guide = {
   ],
   embeddedCalculators: ['bmi-calculator', 'body-fat-calculator', 'ideal-weight-calculator', 'bmr-calculator'],
   relatedCalculators: ['tdee-calculator', 'protein-intake-calculator', 'calories-burned-calculator'],
-  relatedGuides: ['tdee-macros-complete-guide', 'running-training-guide'],
+  relatedGuides: ['tdee-macros-complete-guide', 'running-pace-training-zones-guide'],
   seo: {
-    status: 'index',
-    reviewStatus: 'reviewed',
+    status: 'noindex',
+    reviewStatus: 'pending',
     priority: 0.85,
   },
   publishedAt: '2026-08-22',

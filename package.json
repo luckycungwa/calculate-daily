@@ -5,8 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && tsx scripts/prerender.ts",
+    "predev": "npm run catalog:index",
+    "build": "npm run catalog:index && npm run audit && vite build && tsx scripts/prerender.ts && tsx scripts/audit-prerender.ts",
     "audit": "tsx scripts/audit-calculators.ts",
+    "catalog:index": "tsx scripts/generate-catalog-index.ts",
+    "test:graph": "tsx --test src/lib/graphExpression.test.ts",
+    "test:calculators": "tsx --test src/lib/graphExpression.test.ts src/lib/mathOpportunityCalculations.test.ts src/lib/compoundInterest.test.ts src/lib/carLoanCalculations.test.ts src/lib/loanOpportunityCalculations.test.ts src/lib/scaleOpportunityCalculations.test.ts src/lib/academicAndHealthCalculations.test.ts src/lib/advancedMath.test.ts src/lib/financialMath.test.ts src/lib/devTools.test.ts src/lib/chemistry.test.ts src/lib/electrical.test.ts src/lib/foodAndAuto.test.ts src/lib/sportsAndHome.test.ts src/lib/practicalCalculations.test.ts src/lib/catalogFormulas.test.ts",
+    "test:seo": "tsx --test src/lib/router.test.ts src/lib/siteConfig.test.ts src/lib/pageTitle.test.ts",
     "start": "vite preview --port 3000",
     "clean": "rm -rf dist",
     "lint": "tsc --noEmit"

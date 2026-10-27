@@ -1,0 +1,169 @@
+id,cluster_id,tool_name,category,proposed_url,action,evidence,covering,gap,utility,diff,effort,maint,dup_risk,thin_risk,regulatory,score,band
+O001,FIN-17,Debt payoff (snowball vs avalanche),finance,/debt-payoff-calculator,build_new,E2,3,2,3,2,2,0,1,0,1,60.0,P1
+O002,FIN-50,Rental yield,finance,/rental-yield-calculator,build_new,E2,2,3,2,2,1,1,1,0,0,62.0,P1
+O003,FIN-75,Price per unit,finance,/price-per-unit-calculator,build_new,E3,0,3,3,3,1,0,0,0,0,65.0,P1
+O004,FIN-57,Break-even,finance,/break-even-calculator,build_new,E2,1,3,2,2,1,0,1,0,0,65.0,P1
+O005,FIN-14,Car loan,finance,/car-loan-calculator,build_new,E2,6,1,3,1,1,0,2,0,1,55.0,P1
+O006,FIN-13,Loan payoff,finance,/loan-payoff-calculator,build_new,E2,5,1,3,2,2,0,2,0,0,53.4,P1
+O007,FIN-41,Overtime / time and a half,finance,/overtime-calculator,build_new,E2,4,2,2,1,1,0,2,0,0,54.9,P1
+O008,FIN-43,Freelance hourly rate,finance,/freelance-rate-calculator,build_new,E3,2,3,2,2,1,0,1,0,0,55.0,P1
+O009,FIN-49,Stamp / transfer duty,finance,/stamp-duty-calculator,build_new,E2,1,3,2,3,2,2,1,0,2,52.3,P1
+O010,FIN-62,ROAS,finance,/roas-calculator,build_new,E3,0,3,2,3,1,0,0,0,1,58.3,P1
+O011,FIN-63,Conversion rate,finance,/conversion-rate-calculator,build_new,E3,0,3,2,3,1,0,0,0,1,58.3,P1
+O012,FIN-65,LTV / CAC,finance,/ltv-cac-calculator,build_new,E3,0,3,2,2,1,0,0,0,1,55.0,P1
+O013,FIN-74,Dimensional weight,finance,/dimensional-weight-calculator,build_new,E2,2,3,1,2,1,0,1,0,0,58.4,P1
+O014,FIN-77,Billable hours / utilisation,finance,/billable-hours-calculator,build_new,E3,1,3,2,2,1,0,0,0,0,55.0,P1
+O015,FIN-31,Inflation,finance,/inflation-calculator,build_new,E2,5,1,2,1,1,2,1,0,1,42.3,P2
+O016,FIN-02,Mortgage overpayment,finance,/mortgage-overpayment-calculator,build_new,E3,3,2,2,2,2,0,2,0,0,43.3,P2
+O017,FIN-51,Rental property cash flow,finance,/rental-cash-flow-calculator,build_new,E3,2,3,1,2,1,1,1,0,1,48.4,P2
+O018,FIN-56,Commission,finance,/commission-calculator,build_new,E2,4,2,1,1,1,0,1,0,0,48.3,P2
+O019,FIN-58,Profit (gross / net),finance,/profit-calculator,build_new,E3,3,2,2,1,1,0,2,0,0,44.9,P2
+O020,FIN-66,Inventory turnover,finance,/inventory-turnover-calculator,build_new,E3,1,3,1,2,1,0,0,0,0,48.4,P2
+O021,FIN-67,Reorder point,finance,/reorder-point-calculator,build_new,E3,1,3,1,2,1,0,0,0,0,48.4,P2
+O022,FIN-68,Cash flow,finance,/cash-flow-calculator,build_new,E3,1,3,1,1,1,0,1,0,1,45.0,P2
+O023,FIN-70,EBITDA,finance,/ebitda-calculator,build_new,E3,1,3,1,1,1,0,0,0,1,45.0,P2
+O024,FIN-72,Financial ratios,finance,/financial-ratios-calculator,build_new,E3,2,3,1,2,1,0,1,0,1,48.4,P2
+O025,FIN-76,Labor cost,finance,/labor-cost-calculator,build_new,E3,1,3,1,1,1,0,0,0,1,45.0,P2
+O026,FIN-30,Payback period,finance,/payback-period-calculator,build_new,E3,4,2,1,1,1,0,1,0,0,38.3,P3
+O027,FIN-26,Future value,finance,/future-value-calculator,build_new,E3,5,1,2,1,1,0,2,0,0,38.3,P3
+O028,FIN-09,Property tax,finance,/property-tax-calculator,build_new,E3,1,3,2,1,1,2,1,1,1,40.6,P3
+O029,FIN-15,Student loan,finance,/student-loan-calculator,build_new,E3,3,2,2,1,1,1,1,0,1,36.6,P3
+O030,FIN-42,Take-home pay,finance,/take-home-pay-calculator,build_new,E2,4,2,3,2,3,2,1,0,2,39.0,P3
+O031,FIN-69,Business valuation,finance,/business-valuation-calculator,build_new,E3,2,3,1,2,2,1,1,0,1,40.4,P3
+O032,FIN-73,Shipping cost,finance,/shipping-cost-calculator,build_new,E3,1,3,1,1,2,1,1,0,0,37.0,P3
+O033,FIN-64,CPM / CPC,finance,/cpm-calculator,build_new,E4,0,3,1,3,1,0,0,0,1,41.7,P3
+O034,FIN-10,Home insurance,finance,/home-insurance-calculator,build_new,E4,0,3,1,1,1,2,1,0,2,19.0,P4
+O035,FIN-29,IRR / NPV,finance,/irr-calculator,research_further,E2,6,0,2,1,2,0,2,0,1,27.0,P4
+O036,FIN-44,Income tax,finance,/income-tax-calculator,research_further,E2,6,0,2,1,3,2,2,0,2,19.0,P4
+O037,FIN-48,Capital gains tax,finance,/capital-gains-tax-calculator,research_further,E3,2,3,2,1,2,2,1,0,2,30.6,P4
+O038,FIN-38,Annuity,finance,/annuity-calculator,research_further,E3,4,2,1,1,2,0,2,0,1,24.9,P4
+O039,FIN-54,Cost of living,finance,/cost-of-living-calculator,research_further,E3,2,3,2,1,2,2,1,0,1,33.6,P3
+O040,HLT-12,Pregnancy due date,health,/due-date-calculator,build_new,E2,6,1,3,2,2,0,2,0,1,53.4,P1
+O041,HLT-32,Pet calorie needs,health,/pet-calorie-calculator,build_new,E3,2,3,2,2,1,0,1,0,1,55.0,P1
+O042,HLT-33,Dog food portion,health,/dog-food-calculator,build_new,E3,1,3,2,2,1,0,1,0,1,55.0,P1
+O043,HLT-14,Ovulation / fertile window,health,/ovulation-calculator,build_new,E2,5,1,2,2,1,0,2,0,1,51.7,P2
+O044,HLT-13,Conception date,health,/conception-calculator,build_new,E2,5,1,2,1,1,0,3,0,1,48.3,P2
+O045,HLT-15,Pregnancy week by week,health,/pregnancy-week-calculator,build_new,E3,3,2,2,1,1,0,2,0,1,44.9,P2
+O046,HLT-16,Pregnancy weight gain,health,/pregnancy-weight-gain-calculator,build_new,E2,3,2,1,1,1,0,2,0,2,43.3,P2
+O047,MAT-03,Fraction calculator,math,/fraction-calculator,build_new,E2,6,1,3,2,2,0,2,0,0,53.4,P1
+O048,MAT-11,Confidence interval,math,/confidence-interval-calculator,build_new,E2,4,2,2,2,2,0,1,0,0,53.3,P1
+O049,MAT-12,Sample size,math,/sample-size-calculator,build_new,E2,4,2,2,2,2,0,1,0,0,53.3,P1
+O050,MAT-41,Word counter,math,/word-counter,build_new,E3,0,3,2,2,1,0,0,0,0,55.0,P1
+O051,MAT-10,Z-score,math,/z-score-calculator,build_new,E2,5,1,2,1,1,0,2,0,0,48.3,P2
+O052,MAT-15,Percentile / quartile,math,/percentile-calculator,build_new,E2,5,1,2,1,1,0,1,0,0,48.3,P2
+O053,MAT-35,Scientific notation,math,/scientific-notation-calculator,build_new,E2,4,2,1,1,1,0,2,0,0,48.3,P2
+O054,MAT-26,Volume of shapes,math,/volume-calculator,build_new,E2,5,1,2,1,1,0,2,0,0,48.3,P2
+O055,MAT-13,Margin of error,math,/margin-of-error-calculator,build_new,E2,4,2,1,1,1,0,1,0,0,48.3,P2
+O056,MAT-18,Normal distribution,math,/normal-distribution-calculator,build_new,E2,5,1,2,2,2,0,1,0,0,46.7,P2
+O057,MAT-21,Correlation / regression,math,/correlation-calculator,build_new,E2,4,2,1,2,2,0,1,0,0,46.7,P2
+O058,MAT-23,Triangle,math,/triangle-calculator,build_new,E2,6,1,2,1,2,0,2,0,0,43.3,P2
+O059,MAT-37,Equation solver,math,/equation-solver,build_new,E2,5,1,2,1,2,0,2,0,0,43.3,P2
+O060,MAT-16,Probability,math,/probability-calculator,build_new,E2,4,2,1,1,2,0,2,0,0,43.3,P2
+O061,MAT-43,Typing speed,math,/typing-speed-calculator,build_new,E3,2,3,1,1,1,0,0,0,0,45.0,P2
+O062,MAT-05,Decimal to fraction,math,/decimal-to-fraction-calculator,build_new,E2,5,1,2,1,1,0,3,1,0,39.3,P3
+O063,MAT-25,Surface area,math,/surface-area-calculator,build_new,E2,5,1,1,1,1,0,2,0,0,41.7,P3
+O064,MAT-27,Right triangle,math,/right-triangle-calculator,build_new,E2,5,1,1,1,1,0,3,1,0,36.7,P3
+O065,MAT-32,Prime factorization,math,/prime-factorization-calculator,build_new,E2,5,1,1,1,1,0,3,1,0,36.7,P3
+O066,MAT-34,Significant figures,math,/significant-figures-calculator,build_new,E3,3,2,1,2,1,0,1,0,0,41.7,P3
+O067,MAT-19,Binomial distribution,math,/binomial-distribution-calculator,build_new,E3,3,2,1,1,2,0,1,0,0,33.3,P3
+O068,MAT-42,Reading time,math,/reading-time-calculator,build_new,E4,0,3,1,2,1,0,0,0,0,38.4,P3
+O069,MAT-44,Matrix,math,/matrix-calculator,build_new,E3,3,2,1,1,2,0,1,0,0,33.3,P3
+O070,TME-08,Time card / timesheet,time,/time-card-calculator,build_new,E2,4,2,3,2,2,0,2,0,0,60.0,P1
+O071,TME-06,Time zone converter,time,/time-zone-converter,extend_existing,E2,1,3,2,3,1,2,2,0,0,62.3,P1
+O072,TME-10,Unix timestamp,time,/unix-timestamp-converter,build_new,E3,0,3,2,2,1,0,1,0,0,55.0,P1
+O073,TME-05,Business / working days,time,/business-days-calculator,build_new,E2,5,1,2,2,2,2,1,0,0,40.7,P3
+O074,TME-11,Week number,time,/week-number-calculator,build_new,E3,2,3,1,1,1,0,1,0,0,45.0,P2
+O075,TME-12,Age difference,time,/age-difference-calculator,build_new,E3,3,2,1,1,1,0,2,0,0,38.3,P3
+O076,CON-08,Roofing / shingles,construction,/roofing-calculator,build_new,E2,6,1,3,2,2,0,2,0,0,53.4,P1
+O077,CON-09,Roof pitch,construction,/roof-pitch-calculator,build_new,E2,4,2,2,2,1,0,1,0,0,58.3,P1
+O078,CON-10,Drywall,construction,/drywall-calculator,build_new,E2,4,2,2,2,2,0,1,0,0,53.3,P1
+O079,CON-12,Deck,construction,/deck-calculator,build_new,E2,4,2,2,2,2,0,1,0,0,53.3,P1
+O080,CON-21,Insulation,construction,/insulation-calculator,build_new,E2,4,2,2,1,1,0,1,0,0,54.9,P1
+O081,CON-22,Siding,construction,/siding-calculator,build_new,E2,4,2,2,1,1,0,1,0,0,54.9,P1
+O082,CON-25,BTU / HVAC sizing,construction,/btu-calculator,build_new,E2,3,2,2,2,1,1,1,0,0,55.3,P1
+O083,CON-07,Tile,construction,/tile-calculator,build_new,E2,7,0,3,2,2,0,2,0,0,46.7,P2
+O084,CON-11,Fence,construction,/fence-calculator,build_new,E2,6,1,2,2,2,0,2,0,0,46.7,P2
+O085,CON-13,Stair,construction,/stair-calculator,build_new,E2,5,1,2,2,2,0,1,0,1,46.7,P2
+O086,CON-16,Gravel,construction,/gravel-calculator,build_new,E2,7,0,3,2,1,0,3,1,0,41.7,P3
+O087,CON-17,Mulch,construction,/mulch-calculator,build_new,E2,7,0,2,2,1,0,3,1,0,35.0,P3
+O088,CON-18,Topsoil,construction,/topsoil-calculator,build_new,E2,5,1,2,1,1,0,3,1,0,36.7,P3
+O089,CON-19,Excavation,construction,/excavation-calculator,build_new,E3,2,3,1,2,1,0,0,0,0,48.4,P2
+O090,CON-20,Retaining wall,construction,/retaining-wall-calculator,build_new,E2,3,2,1,2,1,0,1,0,0,51.7,P2
+O091,CON-15,Asphalt,construction,/asphalt-calculator,build_new,E2,4,2,1,1,1,0,2,0,0,48.3,P2
+O092,CNV-18,Cooking converter (ingredient-aware),conversion,/cooking-converter,build_new,E2,6,1,3,3,2,1,1,0,0,53.7,P1
+O093,CNV-20,Air fryer conversion,conversion,/air-fryer-converter,build_new,E3,2,3,2,2,1,0,0,0,0,55.0,P1
+O094,CNV-09,Pressure converter,conversion,/pressure-converter,build_new,E2,6,1,2,1,1,0,2,0,0,48.3,P2
+O095,CNV-14,Fuel consumption converter,conversion,/fuel-consumption-converter,build_new,E2,4,2,2,1,1,1,2,0,0,51.9,P2
+O096,CNV-10,Energy converter,conversion,/energy-converter,build_new,E2,5,1,1,1,1,0,2,0,0,41.7,P3
+O097,CNV-11,Power converter,conversion,/power-converter,build_new,E2,5,1,1,1,1,0,2,0,0,41.7,P3
+O098,CNV-12,Force converter,conversion,/force-converter,build_new,E3,4,2,1,1,1,0,1,0,0,38.3,P3
+O099,CNV-13,Angle converter,conversion,/angle-converter,build_new,E3,4,2,1,1,1,0,1,0,0,38.3,P3
+O100,CNV-15,Frequency converter,conversion,/frequency-converter,build_new,E3,4,2,1,1,1,0,1,0,0,38.3,P3
+O101,CNV-16,Torque converter,conversion,/torque-converter,build_new,E3,3,2,1,1,1,0,1,0,0,35.0,P3
+O102,CNV-17,Density converter,conversion,/density-converter,build_new,E3,3,2,1,1,1,0,1,0,0,35.0,P3
+O103,FOD-02,Serving size,food,/serving-size-calculator,build_new,E3,2,3,2,2,1,0,1,0,0,55.0,P1
+O104,FOD-05,Pizza dough / hydration,food,/pizza-dough-calculator,build_new,E3,2,3,2,2,1,0,1,0,0,55.0,P1
+O105,FOD-08,Calories in a recipe,food,/recipe-calorie-calculator,build_new,E3,2,3,2,2,2,0,1,0,0,50.0,P2
+O106,AUT-02,Gas mileage / MPG,auto,/gas-mileage-calculator,build_new,E2,4,2,3,1,1,0,2,0,0,61.6,P1
+O107,AUT-05,EV charging cost,auto,/ev-charging-cost-calculator,build_new,E2,3,2,2,2,1,1,1,0,0,55.3,P1
+O108,AUT-06,Trip cost,auto,/trip-cost-calculator,build_new,E2,4,2,2,2,1,0,1,0,0,58.3,P1
+O109,AUT-12,EV vs petrol running cost,auto,/ev-vs-petrol-calculator,build_new,E3,2,3,2,2,1,1,1,0,0,52.0,P1
+O110,AUT-04,Car depreciation,auto,/car-depreciation-calculator,build_new,E2,5,1,2,2,1,1,1,0,0,48.7,P2
+O111,AUT-08,Tire size,auto,/tire-size-calculator,build_new,E2,4,2,1,2,2,0,1,0,0,46.7,P2
+O112,AUT-09,Car lease,auto,/car-lease-calculator,build_new,E3,4,2,2,1,2,0,2,0,1,34.9,P3
+O113,SCN-06,Density,chemistry,/density-calculator,build_new,E2,6,1,2,1,1,0,2,0,0,48.3,P2
+O114,SCN-01,Molarity,chemistry,/molarity-calculator,build_new,E2,5,1,1,1,1,0,2,0,0,41.7,P3
+O115,SCN-05,Half-life,chemistry,/half-life-calculator,build_new,E2,5,1,1,1,1,0,1,0,0,41.7,P3
+O116,SCN-07,Ideal gas law,chemistry,/ideal-gas-law-calculator,build_new,E2,5,1,1,1,1,0,1,0,0,41.7,P3
+O117,SCN-02,Molecular weight,chemistry,/molecular-weight-calculator,build_new,E3,3,2,1,1,2,0,1,0,0,33.3,P3
+O118,SCN-03,Dilution,chemistry,/dilution-calculator,build_new,E3,3,2,1,1,1,0,2,0,0,35.0,P3
+O119,SCN-04,pH,chemistry,/ph-calculator,build_new,E3,3,2,1,1,1,0,2,0,0,35.0,P3
+O120,SCN-08,Physics lab bundle,physics,/physics-calculators,research_further,E3,4,2,1,1,3,0,2,0,0,16.3,P4
+O121,PET-02,Fertilizer,agriculture,/fertilizer-calculator,build_new,E3,1,3,2,1,1,0,0,0,0,51.6,P2
+O122,PET-03,Grass seed,agriculture,/grass-seed-calculator,build_new,E3,1,3,2,1,1,0,0,0,0,51.6,P2
+O123,PET-07,Aquarium volume,agriculture,/aquarium-volume-calculator,build_new,E3,2,3,2,1,1,0,1,0,0,51.6,P2
+O124,PET-06,Pond volume,agriculture,/pond-volume-calculator,build_new,E3,1,3,1,2,1,0,1,0,0,48.4,P2
+O125,PET-01,Livestock feed,agriculture,/livestock-feed-calculator,build_new,E4,0,3,2,2,1,0,0,0,0,45.0,P2
+O126,PET-04,Rainwater collection,agriculture,/rainwater-harvest-calculator,build_new,E4,0,3,2,2,1,0,0,0,0,45.0,P2
+O127,PET-05,Irrigation,agriculture,/irrigation-calculator,build_new,E4,0,3,2,1,1,0,0,0,0,41.6,P3
+O128,PET-08,Firewood / cord,agriculture,/firewood-calculator,build_new,E4,0,3,2,1,1,0,1,0,0,41.6,P3
+O129,DEV-05,Number base converter,technology,/number-base-converter,build_new,E2,3,2,1,2,1,0,1,0,0,51.7,P2
+O130,DEV-06,Aspect ratio,technology,/aspect-ratio-calculator,build_new,E3,2,3,2,1,1,0,0,0,0,51.6,P2
+O131,DEV-02,URL encoder / decoder,technology,/url-encoder-decoder,build_new,E3,1,3,1,1,1,0,0,0,0,45.0,P2
+O132,DEV-03,Base64,technology,/base64-encoder-decoder,build_new,E3,2,3,1,1,1,0,1,0,0,45.0,P2
+O133,DEV-04,Hash generator,technology,/hash-generator,build_new,E3,1,3,1,1,1,0,1,0,0,45.0,P2
+O134,DEV-07,PPI / DPI,technology,/ppi-calculator,build_new,E3,2,3,1,1,1,0,1,0,0,45.0,P2
+O135,DEV-10,Download time / bandwidth,technology,/download-time-calculator,build_new,E3,2,3,1,1,1,0,1,0,0,45.0,P2
+O136,DEV-08,CSS clamp,technology,/css-clamp-calculator,build_new,E4,0,3,1,3,1,0,0,0,0,41.7,P3
+O137,DEV-09,Rem to px,technology,/rem-to-px-converter,build_new,E4,0,3,1,2,1,0,0,0,0,38.4,P3
+O138,DEV-01,IP subnet / CIDR,technology,/ip-subnet-calculator,research_further,E2,2,3,2,2,3,0,1,0,0,33.4,P3
+O139,SPR-03,Swimming pace,fitness,/swimming-pace-calculator,build_new,E4,1,3,1,1,1,0,0,0,0,35.0,P3
+O140,SPR-04,Cycling speed,fitness,/cycling-speed-calculator,build_new,E4,2,3,1,1,1,0,0,0,0,35.0,P3
+O141,SPR-05,Golf handicap,fitness,/golf-handicap-calculator,build_new,E4,1,3,1,1,1,2,0,0,0,29.0,P4
+O142,HOM-05,Solar panel / payback,home,/solar-panel-calculator,build_new,E3,2,3,2,2,1,2,1,0,1,49.0,P2
+O143,HOM-04,Moving cost,home,/moving-cost-calculator,build_new,E4,1,3,2,1,1,0,0,0,0,41.6,P3
+O144,HOM-03,Water usage,home,/water-usage-calculator,build_new,E4,1,3,1,1,1,0,0,0,0,35.0,P3
+O145,FIN-01,Mortgage tool depth (chart/extra payment),finance,/mortgage-calculator,extend_existing,E2,6,1,3,2,1,0,0,0,0,58.4,P1
+O146,HLT-03,TDEE depth + goal timeline,health,/tdee-calculator,extend_existing,E2,5,1,3,2,1,0,0,0,0,58.4,P1
+O147,TME-02,Date difference modes,time,/date-difference-calculator,extend_existing,E2,6,1,3,2,1,0,0,0,0,58.4,P1
+O148,HLT-19,Steps to distance modes,health,/steps-to-miles-calculator,extend_existing,E2,4,2,2,2,1,0,2,0,0,58.3,P1
+O149,MAT-01,Percentage multi-mode,math,/percentage-calculator,extend_existing,E2,7,0,3,2,1,0,0,0,0,51.7,P2
+O150,TME-01,Age calculator depth,time,/age-calculator,extend_existing,E2,7,0,3,2,1,0,0,0,0,51.7,P2
+O151,CON-03,Concrete shape + bag modes,construction,/concrete-calculator,extend_existing,E2,7,0,3,2,1,0,0,0,0,51.7,P2
+O152,FIN-23,Compound interest chart + compare,finance,/compound-interest-calculator,extend_existing,E2,7,0,3,2,1,0,0,0,0,51.7,P2
+O153,FIN-05,Affordability workflow,finance,/mortgage-affordability-calculator,extend_existing,E2,5,1,2,2,1,0,1,0,0,51.7,P2
+O154,CON-05,Paint coats + ceiling mode,construction,/paint-calculator,extend_existing,E2,5,1,2,2,1,0,0,0,0,51.7,P2
+O155,SPR-01,Running pace + race prediction,fitness,/running-pace-calculator,extend_existing,E2,5,1,2,2,1,0,0,0,0,51.7,P2
+O156,AUT-01,Fuel cost regional modes,auto,/fuel-cost-calculator,extend_existing,E2,6,1,2,2,1,1,0,0,0,51.7,P2
+O157,FOD-01,Recipe scaler pan-size mode,food,/recipe-scaling-calculator,extend_existing,E2,5,1,2,2,1,0,0,0,0,51.7,P2
+O158,HLT-04,Calorie calculator goal modes,health,/tdee-calculator,extend_existing,E2,6,1,2,1,1,0,0,0,0,48.3,P2
+O159,MAT-07,Standard deviation UX,math,/standard-deviation-calculator,extend_existing,E2,6,1,2,1,1,0,0,0,0,48.3,P2
+O160,MAT-39,GPA weighted modes,math,/gpa-calculator,extend_existing,E2,6,1,2,1,1,0,0,0,0,48.3,P2
+O161,HLT-05,Macro consolidation,health,/macro-calculator,extend_existing,E2,4,2,2,2,1,0,0,0,0,58.3,P1
+O162,FIN-18,Credit card payoff timeline,finance,/credit-card-payoff-calculator,extend_existing,E2,5,1,2,2,2,0,0,0,0,46.7,P2
+O163,FIN-34,Retirement withdrawal chart,finance,/retirement-calculator,extend_existing,E2,6,1,2,2,2,0,0,0,0,46.7,P2
+O164,CON-06,Flooring wastage + cost,construction,/flooring-calculator,extend_existing,E2,6,1,2,2,1,0,0,0,0,51.7,P2
+O165,FIN-32,Savings 'how long' solver,finance,/savings-goal-calculator,extend_existing,E3,4,2,2,2,1,0,0,0,0,51.6,P2
+O166,MAT-06,Scientific calculator UX,math,/scientific-calculator,extend_existing,E2,5,1,2,2,2,0,0,0,0,46.7,P2
+O167,HLT-17,Sleep cycle + bedtime merge,health,/sleep-cycle-calculator,extend_existing,E2,4,2,2,2,1,0,1,0,0,58.3,P1
+O168,FIN-53,Budget carry-forward,finance,/budget-calculator,extend_existing,E2,4,2,2,2,1,0,0,0,0,58.3,P1

@@ -1,0 +1,169 @@
+id,cluster_id,tool,type,cov_before,cov_after,coverage_status,verification,dup_check,score_before,score_after,band,action_now,flags
+O001,FIN-17,Debt payoff (snowball vs avalanche),new,3,3,verified_coverage,not_re_verified,adjacent:credit-card-payoff-calculator;loans,60.0,60.0,P1,build_now,
+O002,FIN-50,Rental yield,new,2,2,limited_coverage,not_re_verified,clear,62.0,62.0,P1,build_now,DATA-FEED
+O003,FIN-75,Price per unit,new,0,2,limited_coverage,re_verified,adjacent:meal-cost-calculator,65.0,65.0,P1,build_now,FORMERLY-CLAIMED-ZERO
+O004,FIN-57,Break-even,new,1,2,limited_coverage,re_verified,clear,65.0,65.0,P1,build_now,FORMERLY-CLAIMED-ZERO
+O005,FIN-14,Car loan,new,6,6,verified_coverage,not_re_verified,adjacent:loan-payment-calculator,55.0,55.0,P1,build_now,
+O006,FIN-13,Loan payoff,new,5,5,verified_coverage,not_re_verified,adjacent:amortization-schedule-calculator,53.4,53.4,P1,build_now,
+O007,FIN-41,Overtime,new,4,4,verified_coverage,not_re_verified,adjacent:work-hours-calculator,54.9,54.9,P1,build_now,
+O008,FIN-43,Freelance hourly rate,new,2,2,limited_coverage,not_re_verified,adjacent:billable-hours (O014),55.0,55.0,P1,build_now,
+O009,FIN-49,Stamp / transfer duty,new,1,1,limited_coverage,not_re_verified,clear,52.3,52.3,P1,build_now,TAX-DATA-FEED
+O010,FIN-62,ROAS,new,0,1,limited_coverage,re_verified,clear,58.3,58.3,P1,build_now,FORMERLY-CLAIMED-ZERO
+O011,FIN-63,Conversion rate,new,0,2,limited_coverage,re_verified,clear,58.3,58.3,P1,build_now,FORMERLY-CLAIMED-ZERO
+O012,FIN-65,LTV / CAC,new,0,1,limited_coverage,re_verified,clear,55.0,55.0,P1,build_now,FORMERLY-CLAIMED-ZERO
+O013,FIN-74,Dimensional weight,new,2,2,limited_coverage,not_re_verified,clear,58.4,58.4,P1,build_now,
+O014,FIN-77,Billable hours,new,1,1,limited_coverage,not_re_verified,adjacent:freelance-rate (O008),55.0,55.0,P1,build_now,
+O015,FIN-31,Inflation,new,5,5,verified_coverage,not_re_verified,clear,42.3,42.3,P2,build_next,DATA-FEED-CPI
+O016,FIN-02,Mortgage overpayment,new,3,3,verified_coverage,not_re_verified,adjacent:amortization-schedule-calculator,43.3,43.3,P2,build_next,
+O017,FIN-51,Rental cash flow,new,2,2,limited_coverage,not_re_verified,adjacent:rental-yield (O002),48.4,48.4,P2,build_next,
+O018,FIN-56,Commission,new,4,4,verified_coverage,not_re_verified,clear,48.3,48.3,P2,build_next,
+O019,FIN-58,Profit (gross / net),new,3,3,verified_coverage,not_re_verified,adjacent:markup-margin-calculator,44.9,44.9,P2,build_next,
+O020,FIN-66,Inventory turnover,new,1,1,limited_coverage,not_re_verified,clear,48.4,48.4,P2,build_next,
+O021,FIN-67,Reorder point,new,1,1,limited_coverage,not_re_verified,clear,48.4,48.4,P2,build_next,
+O022,FIN-68,Cash flow,new,1,1,limited_coverage,not_re_verified,clear,45.0,45.0,P2,build_next,
+O023,FIN-70,EBITDA,new,1,1,limited_coverage,not_re_verified,clear,45.0,45.0,P2,build_next,
+O024,FIN-72,Financial ratios,new,2,2,limited_coverage,not_re_verified,clear,48.4,48.4,P2,build_next,
+O025,FIN-76,Labor cost,new,1,1,limited_coverage,not_re_verified,clear,45.0,45.0,P2,build_next,
+O026,FIN-30,Payback period,new,4,4,verified_coverage,not_re_verified,clear,38.3,38.3,P3,defer,
+O027,FIN-26,Future value,new,5,5,verified_coverage,not_re_verified,DUP-RISK:compound-interest-future-value exists and is slated for merge,38.3,38.3,P3,merge_first,
+O028,FIN-09,Property tax,new,1,1,limited_coverage,not_re_verified,clear,40.6,40.6,P3,defer,TAX-DATA-FEED
+O029,FIN-15,Student loan,new,3,3,verified_coverage,not_re_verified,clear,36.6,36.6,P3,defer,
+O030,FIN-42,Take-home pay,new,4,4,verified_coverage,not_re_verified,adjacent:payroll-calculator (absent),39.0,39.0,P3,needs_source,TAX-DATA-FEED
+O031,FIN-69,Business valuation,new,2,2,limited_coverage,not_re_verified,clear,40.4,40.4,P3,defer,
+O032,FIN-73,Shipping cost,new,1,1,limited_coverage,not_re_verified,adjacent:dimensional-weight (O013),37.0,37.0,P3,defer,
+O033,FIN-64,CPM / CPC,new,0,0,unverified,re_verified,adjacent:roas (O010),41.7,41.7,P3,defer,
+O034,FIN-10,Home insurance,new,0,0,unverified,not_re_verified,clear,19.0,19.0,P4,defer,DATA-FEED
+O035,FIN-29,IRR / NPV,research,6,6,verified_coverage,not_re_verified,clear,27.0,27.0,P4,do_not_target,
+O036,FIN-44,Income tax,research,6,6,verified_coverage,not_re_verified,clear,19.0,19.0,P4,do_not_target,TAX-DATA-FEED
+O037,FIN-48,Capital gains tax,research,2,2,limited_coverage,not_re_verified,clear,30.6,30.6,P4,do_not_target,TAX-DATA-FEED
+O038,FIN-38,Annuity,research,4,4,verified_coverage,not_re_verified,clear,24.9,24.9,P4,do_not_target,
+O039,FIN-54,Cost of living,research,2,2,limited_coverage,not_re_verified,clear,33.6,33.6,P3,defer,DATA-FEED
+O040,HLT-12,Pregnancy due date,new,6,4,verified_coverage,re_verified,clear,53.4,60.0,P1,build_now,YMYL-SOURCE
+O041,HLT-32,Pet calorie needs,new,2,2,limited_coverage,not_re_verified,clear,55.0,55.0,P1,build_now,SOURCE
+O042,HLT-33,Dog food portion,new,1,1,limited_coverage,not_re_verified,adjacent:pet-calorie (O041),55.0,55.0,P1,build_now,SOURCE
+O043,HLT-14,Ovulation / fertile window,new,5,2,limited_coverage,re_verified,clear,51.7,65.0,P1,build_now,YMYL-SOURCE
+O044,HLT-13,Conception date,new,5,2,limited_coverage,re_verified,adjacent:ovulation (O043);due-date (O040),48.3,61.6,P1,build_now,YMYL-SOURCE
+O045,HLT-15,Pregnancy week by week,new,3,3,verified_coverage,not_re_verified,adjacent:due-date (O040),44.9,44.9,P2,build_next,YMYL-SOURCE
+O046,HLT-16,Pregnancy weight gain,new,3,2,limited_coverage,re_verified,clear,43.3,50.0,P2,build_next,YMYL-SOURCE
+O047,MAT-03,Fraction calculator,new,6,6,verified_coverage,not_re_verified,adjacent:fraction-to-percent-calculator,53.4,53.4,P1,build_now,
+O048,MAT-11,Confidence interval,new,4,4,verified_coverage,not_re_verified,adjacent:sample-size (O049),53.3,53.3,P1,build_now,
+O049,MAT-12,Sample size,new,4,4,verified_coverage,not_re_verified,adjacent:confidence-interval (O048),53.3,53.3,P1,build_now,
+O050,MAT-41,Word counter,new,0,1,limited_coverage,re_verified,adjacent:reading-time (O068) shares the same URL,55.0,55.0,P1,build_now,FORMERLY-CLAIMED-ZERO
+O051,MAT-10,Z-score,new,5,5,verified_coverage,not_re_verified,clear,48.3,48.3,P2,build_next,
+O052,MAT-15,Percentile / quartile,new,5,5,verified_coverage,not_re_verified,clear,48.3,48.3,P2,build_next,
+O053,MAT-35,Scientific notation,new,4,4,verified_coverage,not_re_verified,clear,48.3,48.3,P2,build_next,
+O054,MAT-26,Volume of shapes,new,5,5,verified_coverage,not_re_verified,adjacent:room-volume-calculator,48.3,48.3,P2,build_next,
+O055,MAT-13,Margin of error,new,4,4,verified_coverage,not_re_verified,adjacent:CI (O048);sample-size (O049),48.3,48.3,P2,build_next,
+O056,MAT-18,Normal distribution,new,5,5,verified_coverage,not_re_verified,clear,46.7,46.7,P2,build_next,
+O057,MAT-21,Correlation / regression,new,4,4,verified_coverage,not_re_verified,clear,46.7,46.7,P2,build_next,
+O058,MAT-23,Triangle,new,6,6,verified_coverage,not_re_verified,DUP-RISK:right-triangle (O064) overlaps,43.3,43.3,P2,merge_first,
+O059,MAT-37,Equation solver,new,5,5,verified_coverage,not_re_verified,adjacent:quadratic-formula-calculator,43.3,43.3,P2,build_next,
+O060,MAT-16,Probability,new,4,4,verified_coverage,not_re_verified,clear,43.3,43.3,P2,build_next,
+O061,MAT-43,Typing speed,new,2,2,limited_coverage,not_re_verified,clear,45.0,45.0,P2,build_next,
+O062,MAT-05,Decimal to fraction,new,5,5,verified_coverage,not_re_verified,adjacent:fraction-calculator (O047),39.3,39.3,P3,defer,
+O063,MAT-25,Surface area,new,5,5,verified_coverage,not_re_verified,adjacent:volume (O054),41.7,41.7,P3,defer,
+O064,MAT-27,Right triangle,new,5,5,verified_coverage,not_re_verified,DUP-RISK:triangle (O058) overlaps,36.7,36.7,P3,merge_first,
+O065,MAT-32,Prime factorization,new,5,5,verified_coverage,not_re_verified,adjacent:prime-number-checker;gcd-lcm,36.7,36.7,P3,defer,
+O066,MAT-34,Significant figures,new,3,3,verified_coverage,not_re_verified,clear,41.7,41.7,P3,defer,
+O067,MAT-19,Binomial distribution,new,3,3,verified_coverage,not_re_verified,clear,33.3,33.3,P3,defer,
+O068,MAT-42,Reading time,new,0,0,unverified,not_re_verified,adjacent:word-counter (O050) same URL,38.4,38.4,P3,defer,
+O069,MAT-44,Matrix,new,3,3,verified_coverage,not_re_verified,clear,33.3,33.3,P3,defer,
+O070,TME-08,Time card / timesheet,new,4,4,verified_coverage,not_re_verified,adjacent:work-hours-calculator;weekly-hours,60.0,60.0,P1,build_now,
+O071,TME-06,Time zone converter,improve,1,3,verified_coverage,re_verified,clear,62.3,55.6,P1,build_now,FORMERLY-CLAIMED-GAP
+O072,TME-10,Unix timestamp,new,0,2,limited_coverage,re_verified,clear,55.0,55.0,P1,build_now,FORMERLY-CLAIMED-ZERO
+O073,TME-05,Business / working days,new,5,5,verified_coverage,not_re_verified,adjacent:date-difference-calculator,40.7,40.7,P3,defer,DATA-FEED-HOLIDAYS
+O074,TME-11,Week number,new,2,2,limited_coverage,not_re_verified,clear,45.0,45.0,P2,build_next,
+O075,TME-12,Age difference,new,3,3,verified_coverage,not_re_verified,adjacent:age-calculator,38.3,38.3,P3,defer,
+O076,CON-08,Roofing / shingles,new,6,6,verified_coverage,not_re_verified,clear,53.4,53.4,P1,build_now,
+O077,CON-09,Roof pitch,new,4,4,verified_coverage,not_re_verified,adjacent:roofing (O076);slope-calculator,58.3,58.3,P1,build_now,
+O078,CON-10,Drywall,new,4,4,verified_coverage,not_re_verified,clear,53.3,53.3,P1,build_now,
+O079,CON-12,Deck,new,4,4,verified_coverage,not_re_verified,clear,53.3,53.3,P1,build_now,
+O080,CON-21,Insulation,new,4,4,verified_coverage,not_re_verified,clear,54.9,54.9,P1,build_now,
+O081,CON-22,Siding,new,4,4,verified_coverage,not_re_verified,clear,54.9,54.9,P1,build_now,
+O082,CON-25,BTU / HVAC sizing,new,3,3,verified_coverage,not_re_verified,clear,55.3,55.3,P1,build_now,
+O083,CON-07,Tile,new,7,7,verified_coverage,not_re_verified,adjacent:flooring-calculator,46.7,46.7,P2,build_next,
+O084,CON-11,Fence,new,6,6,verified_coverage,not_re_verified,clear,46.7,46.7,P2,build_next,
+O085,CON-13,Stair,new,5,5,verified_coverage,not_re_verified,clear,46.7,46.7,P2,build_next,
+O086,CON-16,Gravel,new,7,7,verified_coverage,not_re_verified,adjacent:room-volume-calculator,41.7,41.7,P3,defer,
+O087,CON-17,Mulch,new,7,7,verified_coverage,not_re_verified,adjacent:gravel (O086);topsoil (O088),35.0,35.0,P3,defer,
+O088,CON-18,Topsoil,new,5,5,verified_coverage,not_re_verified,adjacent:garden-soil merge candidate,36.7,36.7,P3,defer,
+O089,CON-19,Excavation,new,2,2,limited_coverage,not_re_verified,clear,48.4,48.4,P2,build_next,
+O090,CON-20,Retaining wall,new,3,3,verified_coverage,not_re_verified,clear,51.7,51.7,P2,build_next,
+O091,CON-15,Asphalt,new,4,4,verified_coverage,not_re_verified,clear,48.3,48.3,P2,build_next,
+O092,CNV-18,Cooking converter (ingredient-aware),new,6,6,verified_coverage,not_re_verified,adjacent:cups-to-grams-calculator;oz-to-cups-calculator (both to be absorbed),53.7,53.7,P1,build_now,DIFFERENTIATOR
+O093,CNV-20,Air fryer conversion,new,2,2,limited_coverage,not_re_verified,adjacent:oven-temperature mode,55.0,55.0,P1,build_now,SOURCE
+O094,CNV-09,Pressure converter,new,6,6,verified_coverage,not_re_verified,adjacent:psi-to-bar-calculator,48.3,48.3,P2,build_next,
+O095,CNV-14,Fuel consumption converter,new,4,4,verified_coverage,not_re_verified,DUP-RISK:gas-mileage (O106) overlaps,51.9,51.9,P2,merge_first,
+O096,CNV-10,Energy converter,new,5,5,verified_coverage,not_re_verified,clear,41.7,41.7,P3,defer,
+O097,CNV-11,Power converter,new,5,5,verified_coverage,not_re_verified,clear,41.7,41.7,P3,defer,
+O098,CNV-12,Force converter,new,4,4,verified_coverage,not_re_verified,clear,38.3,38.3,P3,defer,
+O099,CNV-13,Angle converter,new,4,4,verified_coverage,not_re_verified,clear,38.3,38.3,P3,defer,
+O100,CNV-15,Frequency converter,new,4,4,verified_coverage,not_re_verified,clear,38.3,38.3,P3,defer,
+O101,CNV-16,Torque converter,new,3,3,verified_coverage,not_re_verified,clear,35.0,35.0,P3,defer,
+O102,CNV-17,Density converter,new,3,3,verified_coverage,not_re_verified,DUP-RISK:density calculator (O113) is a different tool; name collision,35.0,35.0,P3,defer,
+O103,FOD-02,Serving size,new,2,2,limited_coverage,not_re_verified,adjacent:recipe-scaling-calculator,55.0,55.0,P1,build_now,
+O104,FOD-05,Pizza dough / hydration,new,2,2,limited_coverage,not_re_verified,clear,55.0,55.0,P1,build_now,
+O105,FOD-08,Calories in a recipe,new,2,2,limited_coverage,not_re_verified,adjacent:meal-cost-calculator,50.0,50.0,P2,build_next,SOURCE
+O106,AUT-02,Gas mileage / MPG,new,2,2,limited_coverage,not_re_verified,DUP-RISK:fuel-consumption-converter (O095) overlaps,61.6,61.6,P1,build_now,
+O107,AUT-05,EV charging cost,new,3,3,verified_coverage,not_re_verified,adjacent:ev-vs-petrol (O109),55.3,55.3,P1,build_now,DATA-FEED-TARIFFS
+O108,AUT-06,Trip cost,new,2,2,limited_coverage,not_re_verified,adjacent:fuel-cost-calculator,58.3,58.3,P1,build_now,
+O109,AUT-12,EV vs petrol running cost,new,2,2,limited_coverage,not_re_verified,adjacent:ev-charging (O107);fuel-cost,52.0,52.0,P1,build_now,DATA-FEED-TARIFFS
+O110,AUT-04,Car depreciation,new,3,3,verified_coverage,not_re_verified,clear,48.7,48.7,P2,build_next,
+O111,AUT-08,Tire size,new,4,4,verified_coverage,not_re_verified,clear,46.7,46.7,P2,build_next,
+O112,AUT-09,Car lease,new,4,4,verified_coverage,not_re_verified,clear,34.9,34.9,P3,defer,
+O113,SCN-06,Density,new,6,6,verified_coverage,not_re_verified,DUP-RISK:name collides with density converter (O102),48.3,48.3,P2,build_next,
+O114,SCN-01,Molarity,new,3,3,verified_coverage,not_re_verified,clear,41.7,41.7,P3,defer,
+O115,SCN-05,Half-life,new,4,4,verified_coverage,not_re_verified,clear,41.7,41.7,P3,defer,
+O116,SCN-07,Ideal gas law,new,5,5,verified_coverage,not_re_verified,clear,41.7,41.7,P3,defer,
+O117,SCN-02,Molecular weight,new,3,3,verified_coverage,not_re_verified,clear,33.3,33.3,P3,defer,
+O118,SCN-03,Dilution,new,3,3,verified_coverage,not_re_verified,clear,35.0,35.0,P3,defer,
+O119,SCN-04,pH,new,3,3,verified_coverage,not_re_verified,clear,35.0,35.0,P3,defer,
+O120,SCN-08,Physics lab bundle,research,4,4,verified_coverage,not_re_verified,clear,16.3,16.3,P4,do_not_target,
+O121,PET-02,Fertilizer,new,1,1,limited_coverage,re_verified,clear,51.6,51.6,P2,build_next,FORMERLY-CLAIMED-ZERO
+O122,PET-03,Grass seed,new,1,2,limited_coverage,re_verified,clear,51.6,51.6,P2,build_next,
+O123,PET-07,Aquarium volume,new,2,2,limited_coverage,not_re_verified,clear,51.6,51.6,P2,build_next,
+O124,PET-06,Pond volume,new,1,1,limited_coverage,not_re_verified,clear,48.4,48.4,P2,build_next,
+O125,PET-01,Livestock feed,new,0,0,unverified,re_verified,clear,45.0,45.0,P2,research_further,
+O126,PET-04,Rainwater collection,new,0,0,unverified,re_verified,clear,45.0,45.0,P2,research_further,
+O127,PET-05,Irrigation,new,0,0,unverified,re_verified,clear,41.6,41.6,P3,research_further,
+O128,PET-08,Firewood / cord,new,0,1,limited_coverage,re_verified,clear,41.6,41.6,P3,defer,FORMERLY-CLAIMED-ZERO
+O129,DEV-05,Number base converter,new,3,3,verified_coverage,not_re_verified,adjacent:prime-number-checker,51.7,51.7,P2,build_next,
+O130,DEV-06,Aspect ratio,new,2,2,limited_coverage,not_re_verified,clear,51.6,51.6,P2,build_next,
+O131,DEV-02,URL encoder / decoder,new,1,1,limited_coverage,not_re_verified,clear,45.0,45.0,P2,build_next,
+O132,DEV-03,Base64,new,2,2,limited_coverage,not_re_verified,clear,45.0,45.0,P2,build_next,
+O133,DEV-04,Hash generator,new,1,2,limited_coverage,re_verified,clear,45.0,45.0,P2,build_next,
+O134,DEV-07,PPI / DPI,new,2,2,limited_coverage,not_re_verified,adjacent:aspect-ratio (O130),45.0,45.0,P2,build_next,
+O135,DEV-10,Download time / bandwidth,new,2,2,limited_coverage,not_re_verified,clear,45.0,45.0,P2,build_next,
+O136,DEV-08,CSS clamp,new,0,0,unverified,re_verified,clear,41.7,41.7,P3,research_further,
+O137,DEV-09,Rem to px,new,0,0,unverified,re_verified,clear,38.4,38.4,P3,research_further,
+O138,DEV-01,IP subnet / CIDR,research,2,2,limited_coverage,not_re_verified,clear,33.4,33.4,P3,do_not_target,
+O139,SPR-03,Swimming pace,new,1,1,limited_coverage,not_re_verified,adjacent:running-pace-calculator,35.0,35.0,P3,defer,
+O140,SPR-04,Cycling speed,new,2,2,limited_coverage,not_re_verified,adjacent:running-pace-calculator,35.0,35.0,P3,defer,
+O141,SPR-05,Golf handicap,new,1,1,limited_coverage,not_re_verified,clear,29.0,29.0,P4,defer,DATA-FEED-RULES
+O142,HOM-05,Solar panel / payback,new,2,2,limited_coverage,not_re_verified,clear,49.0,49.0,P2,build_next,DATA-FEED-TARIFFS
+O143,HOM-04,Moving cost,new,1,1,limited_coverage,not_re_verified,clear,41.6,41.6,P3,defer,DATA-FEED
+O144,HOM-03,Water usage,new,1,1,limited_coverage,not_re_verified,clear,35.0,35.0,P3,defer,
+O145,FIN-01,Mortgage tool depth,improve,6,6,verified_coverage,not_re_verified,adjacent:mortgage-payment-calculator (merge first),58.4,58.4,P1,build_now,
+O146,HLT-03,TDEE depth + goal timeline,improve,5,5,verified_coverage,not_re_verified,adjacent:bmr-calculator;macro-calculator,58.4,58.4,P1,build_now,SOURCE
+O147,TME-02,Date difference modes,improve,6,6,verified_coverage,not_re_verified,adjacent:days-between converters,58.4,58.4,P1,build_now,
+O148,HLT-19,Steps to distance modes,improve,4,4,verified_coverage,not_re_verified,adjacent:running-calories;calories-burned,58.3,58.3,P1,build_now,SOURCE
+O149,MAT-01,Percentage multi-mode,improve,7,7,verified_coverage,not_re_verified,adjacent:percentage-change mode,51.7,51.7,P2,build_next,
+O150,TME-01,Age calculator depth,improve,7,7,verified_coverage,not_re_verified,adjacent:date-difference;age-difference,51.7,51.7,P2,build_next,
+O151,CON-03,Concrete shape + bag modes,improve,7,7,verified_coverage,not_re_verified,adjacent:concrete bags intent,51.7,51.7,P2,build_next,
+O152,FIN-23,Compound interest chart + compare,improve,7,7,verified_coverage,not_re_verified,adjacent:compound-interest-future-value (merge first),51.7,51.7,P2,build_next,
+O153,FIN-05,Affordability workflow,improve,5,5,verified_coverage,not_re_verified,adjacent:loan-affordability-calculator (merge first),51.7,51.7,P2,build_next,
+O154,CON-05,Paint coats + ceiling mode,improve,5,5,verified_coverage,not_re_verified,clear,51.7,51.7,P2,build_next,
+O155,SPR-01,Running pace + race prediction,improve,5,5,verified_coverage,not_re_verified,clear,51.7,51.7,P2,build_next,
+O156,AUT-01,Fuel cost regional modes,improve,6,6,verified_coverage,not_re_verified,adjacent:south-africa-fuel-calculator,51.7,51.7,P2,build_next,
+O157,FOD-01,Recipe scaler pan-size mode,improve,5,5,verified_coverage,not_re_verified,adjacent:serving-size (O103),51.7,51.7,P2,build_next,
+O158,HLT-04,Calorie calculator goal modes,improve,6,6,verified_coverage,not_re_verified,adjacent:tdee (O146),48.3,48.3,P2,build_next,SOURCE
+O159,MAT-07,Standard deviation UX,improve,6,6,verified_coverage,not_re_verified,adjacent:mean-median-mode;variance,48.3,48.3,P2,build_next,
+O160,MAT-39,GPA weighted modes,improve,6,6,verified_coverage,not_re_verified,adjacent:test-score-percentage,48.3,48.3,P2,build_next,
+O161,HLT-05,Macro consolidation,improve,4,4,verified_coverage,not_re_verified,adjacent:carb-intake;fat-intake;protein-intake (absorb),58.3,58.3,P1,build_now,SOURCE
+O162,FIN-18,Credit card payoff timeline,improve,5,5,verified_coverage,not_re_verified,adjacent:credit-card-interest-calculator,46.7,46.7,P2,build_next,
+O163,FIN-34,Retirement withdrawal chart,improve,6,6,verified_coverage,not_re_verified,clear,46.7,46.7,P2,build_next,FIN-ADV
+O164,CON-06,Flooring wastage + cost,improve,6,6,verified_coverage,not_re_verified,adjacent:tile (O083),51.7,51.7,P2,build_next,
+O165,FIN-32,Savings 'how long' solver,improve,4,4,verified_coverage,not_re_verified,adjacent:savings-goal;emergency-fund,51.6,51.6,P2,build_next,
+O166,MAT-06,Scientific calculator UX,improve,5,5,verified_coverage,not_re_verified,clear,46.7,46.7,P2,build_next,
+O167,HLT-17,Sleep cycle + bedtime merge,improve,4,4,verified_coverage,not_re_verified,adjacent:bedtime-calculator (merge first),58.3,58.3,P1,build_now,SOURCE
+O168,FIN-53,Budget carry-forward,improve,4,4,verified_coverage,not_re_verified,adjacent:take-home (O030),58.3,58.3,P1,build_now,

@@ -4,7 +4,7 @@ import {
   CALCULATOR_CATALOG,
   CATEGORIES,
   getCalculatorsByCategory,
-} from '../data/calculators';
+} from '../data/catalogIndex';
 import { CalculatorCategory } from '../types';
 import { usePageMeta } from '../lib/seo';
 import { useSearchParams, navigate } from '../lib/router';

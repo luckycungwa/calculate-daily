@@ -57,9 +57,9 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
           `"use strict"; return (${r.formulaCode});`
         );
         const out = evaluator(...vals);
-        return typeof out === 'number' && Number.isFinite(out) ? out : 0;
+        return typeof out === 'number' ? out : NaN;
       } catch {
-        return 0;
+        return NaN;
       }
     });
   }, [formValues, spec.results]);
@@ -84,6 +84,7 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
   };
 
   const formatResult = (num: number, r: { prefix?: string; suffix?: string }) => {
+    if (!Number.isFinite(num)) return 'Not calculable';
     const formatted = num.toLocaleString('en-US', { maximumFractionDigits: 2 });
     return `${applyCurrency(r.prefix, currency) || ''}${formatted}${r.suffix ? ` ${r.suffix}` : ''}`;
   };

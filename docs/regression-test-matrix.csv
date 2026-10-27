@@ -1,0 +1,44 @@
+case_id,area,case_description,inputs,expected,automated_in_audit,source_verified,run_status,notes
+CFG-01,ConfigCalculator,Non-finite primary result renders as text,any config tool whose formula returns NaN,Primary shows Not calculable,no,yes,NOT RUN,formatResult guards Number.isFinite before toLocaleString
+CFG-02,ConfigCalculator,Infinity renders as text,division by a zero input,Shows Not calculable,no,yes,NOT RUN,Same guard covers Infinity
+CFG-03,ConfigCalculator,Throwing formula renders as text,malformed formulaCode,Shows Not calculable,no,yes,NOT RUN,catch branch returns NaN
+CFG-04,ConfigCalculator,Finite results unchanged,loan default 20000/7/5,396.05 monthly,no,yes,NOT RUN,Regression guard for the shared change
+CFG-05,ConfigCalculator,Export and copy paths format non-finite,any NaN result,Exported value reads Not calculable,no,yes,NOT RUN,exportData and handleCopy both use formatResult
+PAY-01,Credit card payoff,Default scenario,balance 5000; apr 19; payment 200,33 months and 1600 interest,yes,yes,NOT RUN,Editorial example also corrected to these figures
+PAY-02,Credit card payoff,Higher payment,balance 5000; apr 19; payment 300,20 months and 1000 interest,no,yes,NOT RUN,
+PAY-03,Credit card payoff,Non-amortising payment,balance 5000; apr 19; payment 1,Not calculable,yes,yes,NOT RUN,payment <= monthly interest guard
+PAY-04,Credit card payoff,Zero APR,balance 5000; apr 0; payment 200,25 months and 0 interest,no,yes,NOT RUN,r === 0 branch
+PAY-05,Credit card payoff,Zero balance,balance 0; apr 19; payment 200,0 months and 0 interest,no,yes,NOT RUN,balance <= 0 guard
+PAY-06,Credit card payoff,Negative balance,balance -1000; apr 19; payment 200,0 months and 0 interest,no,yes,NOT RUN,Previously produced -4 months
+PAY-07,Credit card payoff,Zero payment,balance 5000; apr 19; payment 0,Not calculable,no,yes,NOT RUN,min attribute does not block manual entry
+LOAN-01,Loan payment,Default scenario,amount 20000; annualRate 7; years 5,About 396.05 monthly,no,yes,NOT RUN,Cross-check that the formula reproduces the documented example
+LOAN-02,Loan payment,Zero APR,amount 20000; annualRate 0; years 5,333.33 monthly,yes,yes,NOT RUN,Previously 0/0 -> NaN
+LOAN-03,Loan payment,Zero APR one year,amount 20000; annualRate 0; years 1,1666.67 monthly,no,yes,NOT RUN,
+LOAN-04,Loan payment,Total paid and interest at zero APR,amount 20000; annualRate 0; years 5,Total paid 20000; interest 0,no,yes,NOT RUN,
+TIME-01,Work hours,Overnight shift,start 22:00; end 06:00; break 0,8 hours and 480 minutes,yes,yes,NOT RUN,Previously -16 hours
+TIME-02,Work hours,Same-day shift with break,start 09:00; end 17:30; break 30,8 hours and 480 minutes,no,yes,NOT RUN,Must remain unchanged by the fix
+TIME-03,Work hours,Identical start and end,start 09:00; end 09:00; break 0,0 hours,no,yes,NOT RUN,e < s not <= so it does not become 24 hours
+TIME-04,Work hours,Break longer than shift,start 09:00; end 10:00; break 120,0 hours,no,yes,NOT RUN,Math.max clamp prevents negative hours
+TIME-05,Work hours,Short overnight,start 23:30; end 00:30; break 0,1 hour,no,yes,NOT RUN,
+TIME-06,Work hours,Overnight with break,start 22:00; end 06:00; break 30,7.5 hours,no,yes,NOT RUN,
+TIME-07,Work hours,Hours and minutes agree,any input,Hours times 60 equals minutes,no,yes,NOT RUN,Both results share the same branches
+IDX-01,Indexation,Audit three-state report,full catalogue,indexable 169; reviewed-noindex 0; unreviewed 0,yes,yes,NOT RUN,policy line in npm run audit
+IDX-02,Indexation,Sitemap calculator URLs,built sitemap,169 calculator URLs and 169 unique,no,yes,NOT RUN,node one-liner in the gate
+IDX-03,Indexation,No calculator page without canonical,built output,Every eligible calculator page has rel=canonical,no,yes,NOT RUN,Sample check in the gate
+IDX-04,Indexation,Guides are gated,built output,10 guide pages indexable with canonical,no,yes,NOT RUN,Guide gate newly applied
+IDX-05,Indexation,Entry with no seo block,add a test entry without seo,Renders noindex and is absent from sitemap,no,yes,NOT RUN,Requires a temporary entry; cannot test without editing data
+IDX-06,Indexation,Contradictory metadata,status index with reviewStatus pending,audit FAIL status=index requires reviewStatus=reviewed,yes,yes,NOT RUN,Requires a temporary entry to exercise
+IDX-07,Indexation,Reviewed but withheld,status noindex with reviewStatus reviewed,Renders noindex and is absent from sitemap,no,yes,NOT RUN,Legitimate state; no entry currently uses it
+ERR-01,404,Prerendered 404 page,dist/404.html,Contains robots noindex and no canonical,no,yes,NOT RUN,buildShell called with true
+ERR-02,404,Deployed 404 status,GET a nonexistent path on the live host,HTTP 404 response,no,no,NOT RUN,vercel.json has no rewrites; live behaviour unconfirmed
+ERR-03,Unknown calculator slug,GET /calculators/does-not-exist,Runtime render,Noindex and no canonical,no,yes,NOT RUN,CalculatorPage !meta branch
+ERR-04,Unknown route,Client navigation to an unknown path,Runtime render,Title Page Not Found and noindex,no,yes,NOT RUN,NotFoundPage component
+ERR-05,Unknown route,Unknown path absent from sitemap,built sitemap,No such URL,no,yes,NOT RUN,Sitemap built only from catalogue and guides
+ERR-06,Unknown route,Stale canonical on client navigation,navigate from a calculator to an unknown path,Previous canonical may persist,no,yes,NOT RUN,Known residual; usePageMeta never removes an existing canonical
+SLUG-01,Catalogue,Unique slugs,full catalogue,169 unique slugs across 169 entries,yes,yes,NOT RUN,integrity check
+SLUG-02,Catalogue,No duplicate sitemap URL,built sitemap,Zero duplicate loc values,no,yes,NOT RUN,node one-liner in the gate
+SLUG-03,Catalogue,Former duplicate removed,src/data/catalog,tip-split-calculator declared once (finance.ts),no,yes,NOT RUN,grep across src returns 1
+SLUG-04,Catalogue,Entry count,catalogue length,169,no,yes,NOT RUN,post-removal count
+SLUG-05,Catalogue,No dangling internal links,full catalogue,Every related and workflowLinks target exists,yes,yes,NOT RUN,pre-existing auditContent check
+DOC-01,Content,Credit-card payoff example reproduces,5000/19/200,33 months and 1600 interest,no,yes,NOT RUN,Prose corrected to match
+DOC-02,Content,Work-hours example arithmetic,09:00 to 17:30 break 30,(1050-540-30)/60 = 8.0,no,yes,NOT RUN,Prose corrected from the 510-540+30 form

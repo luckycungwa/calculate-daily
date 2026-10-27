@@ -1,8 +1,8 @@
-import React from 'react';
+﻿import React from 'react';
 import { Calculator, ArrowUp, Layers } from 'lucide-react';
 import { Button } from './ui/button';
 import { Link } from '../lib/router';
-import { CATEGORIES } from '../data/calculators';
+import { CATEGORIES } from '../data/categories';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -116,7 +116,7 @@ export const Footer: React.FC = () => {
         <div className="mt-8 pt-6 border-t border-zinc-800 text-xs text-zinc-500 font-mono space-y-3">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              Calculate Daily • All calculations performed locally
+              Calculate Daily â€¢ All calculations performed locally
             </div>
             <Button
               variant="outline"

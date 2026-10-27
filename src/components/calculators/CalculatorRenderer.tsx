@@ -23,13 +23,75 @@ const LAZY_COMPONENTS: Record<string, () => Promise<Record<string, unknown>>> = 
   DateDifferenceCalculator: () => import('./DateCalculators'),
   DaysUntilCalculator: () => import('./DateCalculators'),
   ScientificCalculator: () => import('./ScientificCalculator'),
+  GraphingCalculator: () => import('./GraphingCalculator'),
   TdeeCalculator: () => import('./HealthCalculators'),
   SleepCycleCalculator: () => import('./HealthCalculators'),
   StepsToMilesCalculator: () => import('./HealthCalculators'),
   StandardDeviationCalculator: () => import('./StatisticsCalculators'),
   MeanMedianModeCalculator: () => import('./StatisticsCalculators'),
   FinalGradeCalculator: () => import('./StatisticsCalculators'),
-  SaFuelCalculator: () => import('./SaFuelCalculator'),
+  ZScoreCalculator: () => import('./MathOpportunityCalculators'),
+  SolidVolumeCalculator: () => import('./MathOpportunityCalculators'),
+  SaFuelCalculator: () =>
+    import('./SaFuelCalculator').then((mod) => ({ SaFuelCalculator: mod.default })),
+  PricePerUnitCalculator: () => import('./OpportunityCalculators'),
+  BreakEvenCalculator: () => import('./OpportunityCalculators'),
+  FractionCalculator: () => import('./OpportunityCalculators'),
+  TimesheetCalculator: () => import('./OpportunityCalculators'),
+  CarLoanCalculator: () => import('./CarLoanCalculator'),
+  PersonalLoanCalculator: () => import('./LoanOpportunityCalculators'),
+  GoldLoanCalculator: () => import('./LoanOpportunityCalculators'),
+  DebtPayoffCalculator: () => import('./ScaleOpportunityCalculators'),
+  TileCalculator: () => import('./ScaleOpportunityCalculators'),
+  LandscapeMaterialCalculator: () => import('./ScaleOpportunityCalculators'),
+  RoofingCalculator: () => import('./ScaleOpportunityCalculators'),
+  RentalYieldCalculator: () => import('./ScaleOpportunityCalculators'),
+  CommissionCalculator: () => import('./ScaleOpportunityCalculators'),
+  FuelEconomyCalculator: () => import('./ScaleOpportunityCalculators'),
+  UnixTimestampCalculator: () => import('./ScaleOpportunityCalculators'),
+  WordCounterCalculator: () => import('./ScaleOpportunityCalculators'),
+  DensityCalculator: () => import('./ScaleOpportunityCalculators'),
+  ApsCalculator: () => import('./AcademicCalculators'),
+  ConfidenceIntervalCalculator: () => import('./AcademicCalculators'),
+  SampleSizeCalculator: () => import('./AcademicCalculators'),
+  DueDateCalculator: () => import('./PregnancyCalculators'),
+  OvulationCalculator: () => import('./PregnancyCalculators'),
+  ConceptionCalculator: () => import('./PregnancyCalculators'),
+  PregnancyWeekCalculator: () => import('./PregnancyCalculators'),
+  VarianceCalculator: () => import('./AdvancedMathCalculators'),
+  PercentileCalculator: () => import('./AdvancedMathCalculators'),
+  NormalDistributionCalculator: () => import('./AdvancedMathCalculators'),
+  TriangleCalculator: () => import('./AdvancedMathCalculators'),
+  FractionToDecimalCalculator: () => import('./AdvancedMathCalculators'),
+  VatCalculator: () => import('./TaxAndInvestmentCalculators'),
+  NpvCalculator: () => import('./TaxAndInvestmentCalculators'),
+  IrrCalculator: () => import('./TaxAndInvestmentCalculators'),
+  InflationCalculator: () => import('./TaxAndInvestmentCalculators'),
+  IpSubnetCalculator: () => import('./DeveloperCalculators'),
+  NumberBaseConverter: () => import('./DeveloperCalculators'),
+  PasswordEntropyCalculator: () => import('./DeveloperCalculators'),
+  UrlEncoderDecoder: () => import('./DeveloperCalculators'),
+  ColorConverter: () => import('./DeveloperCalculators'),
+  ContrastRatioCalculator: () => import('./DeveloperCalculators'),
+  MolecularWeightCalculator: () => import('./ScienceCalculators'),
+  PhCalculator: () => import('./ScienceCalculators'),
+  OhmsLawCalculator: () => import('./ScienceCalculators'),
+  ResistorColorCodeCalculator: () => import('./ScienceCalculators'),
+  IngredientWeightConverter: () => import('./FoodAndAutoCalculators'),
+  ButterConverter: () => import('./FoodAndAutoCalculators'),
+  FlourConverter: () => import('./FoodAndAutoCalculators'),
+  OvenTemperatureConverter: () => import('./FoodAndAutoCalculators'),
+  SpeedDistanceTimeCalculator: () => import('./FoodAndAutoCalculators'),
+  RaceTimePredictor: () => import('./SportsAndHomeCalculators'),
+  GolfHandicapCalculator: () => import('./SportsAndHomeCalculators'),
+  PetCalorieCalculator: () => import('./SportsAndHomeCalculators'),
+  ConversionRateCalculator: () => import('./PracticalToolkitCalculators'),
+  DimensionalWeightCalculator: () => import('./PracticalToolkitCalculators'),
+  FreelanceRateCalculator: () => import('./PracticalToolkitCalculators'),
+  EvChargingCostCalculator: () => import('./PracticalToolkitCalculators'),
+  TripCostCalculator: () => import('./PracticalToolkitCalculators'),
+  BtuCalculator: () => import('./PracticalToolkitCalculators'),
+  InsulationCalculator: () => import('./PracticalToolkitCalculators'),
 };
 
 const LOADED: Record<string, CalculatorComponent | undefined> = {};
@@ -37,6 +99,19 @@ const PENDING: Record<string, Promise<void>> = {};
 
 export function preloadCalculatorComponents(): Promise<unknown> {
   return Promise.all(Object.keys(LAZY_COMPONENTS).map((id) => ensureLoaded(id)));
+}
+
+/**
+ * Resolve the component a single calculator needs before the browser hydrates,
+ * so the first render matches the prerendered tool markup instead of flashing a
+ * skeleton. Returns immediately for config and converter tools, whose
+ * components are already part of this module.
+ */
+export function preloadCalculatorComponent(meta: CalculatorMeta): Promise<unknown> {
+  if (meta.kind === 'custom' && meta.componentId && LAZY_COMPONENTS[meta.componentId]) {
+    return ensureLoaded(meta.componentId);
+  }
+  return Promise.resolve();
 }
 
 function ensureLoaded(id: string): Promise<void> {

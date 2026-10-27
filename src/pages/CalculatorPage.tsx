@@ -1,11 +1,14 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
-import { getCalculatorBySlug, getCategoryById } from '../data/calculators';
+import { getCategoryById } from '../data/categories';
+import { getCalculatorLink } from '../data/catalogLinks';
+import { useCalculatorEntry } from '../lib/useCalculatorEntry';
 import { usePageMeta } from '../lib/seo';
 import { Link } from '../lib/router';
 import { getIcon } from '../components/common/iconMap';
 import { CalculatorRenderer } from '../components/calculators/CalculatorRenderer';
 import { ToolInfoSection } from '../components/common/ToolInfoSection';
+import { EmbedCard } from '../components/common/EmbedCard';
 import { Badge } from '../components/ui/badge';
 
 interface CalculatorPageProps {
@@ -13,18 +16,38 @@ interface CalculatorPageProps {
   onSaveHistory?: (summary: string) => void;
 }
 
+/**
+ * The content chunk carries only the entry for the requested calculator, so the
+ * page can paint its header, breadcrumb, and SEO metadata from the compact link
+ * map while the formula spec and prose arrive.
+ */
+const ToolSkeleton: React.FC = () => (
+  <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 space-y-4 animate-pulse">
+    <div className="h-5 w-40 rounded bg-zinc-200 dark:bg-zinc-800" />
+    <div className="h-10 w-full rounded bg-zinc-100 dark:bg-zinc-800" />
+    <div className="h-10 w-full rounded bg-zinc-100 dark:bg-zinc-800" />
+    <div className="h-24 w-full rounded bg-zinc-100 dark:bg-zinc-800" />
+  </div>
+);
+
 export const CalculatorPage: React.FC<CalculatorPageProps> = ({ slug, onSaveHistory }) => {
-  const meta = getCalculatorBySlug(slug);
+  const link = getCalculatorLink(slug);
+  const { entry, loading } = useCalculatorEntry(slug);
+
+  const name = entry?.name ?? link?.name;
+  const iconName = entry?.iconName ?? link?.iconName;
 
   usePageMeta({
-    title: meta?.name,
-    description: meta?.shortDesc,
-    keywords: meta?.keywords,
+    title: name ?? 'Calculator Not Found',
+    description:
+      entry?.shortDesc ??
+      'The calculator page you requested does not exist. Browse all calculators.',
+    keywords: entry?.keywords,
     canonicalPath: `/calculators/${slug}`,
-    noindex: meta?.seo?.status === 'noindex' || meta?.seo?.reviewStatus === 'pending',
+    noindex: !entry || entry.seo?.status !== 'index' || entry.seo?.reviewStatus !== 'reviewed',
   });
 
-  if (!meta) {
+  if (!link) {
     return (
       <div className="max-w-2xl mx-auto py-20 text-center space-y-4">
         <h1 className="text-2xl font-bold text-zinc-950 dark:text-zinc-50">Calculator Not Found</h1>
@@ -39,8 +62,8 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({ slug, onSaveHist
     );
   }
 
-  const Icon = getIcon(meta.iconName);
-  const category = getCategoryById(meta.category);
+  const Icon = getIcon(iconName);
+  const category = entry ? getCategoryById(entry.category) : undefined;
 
   return (
     <div className="space-y-6">
@@ -62,7 +85,7 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({ slug, onSaveHist
           </>
         )}
         <ChevronRight className="w-3 h-3" />
-        <span className="text-zinc-900 dark:text-zinc-100 font-semibold">{meta.name}</span>
+        <span className="text-zinc-900 dark:text-zinc-100 font-semibold">{name}</span>
       </nav>
 
       {/* Header */}
@@ -74,24 +97,32 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({ slug, onSaveHist
           <div>
             <div className="flex items-center gap-2 flex-wrap">
               <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-                {meta.name}
+                {name}
               </h1>
-              {meta.badge && (
+              {entry?.badge && (
                 <Badge variant="outline" className="text-[10px] font-mono">
-                  {meta.badge}
+                  {entry.badge}
                 </Badge>
               )}
             </div>
-            <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">{meta.tagline}</p>
+            {entry?.tagline && (
+              <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-1">{entry.tagline}</p>
+            )}
           </div>
         </div>
       </div>
 
-      {/* The calculator itself */}
-      <CalculatorRenderer meta={meta} onSaveHistory={onSaveHistory} />
-
-      {/* SEO content */}
-      <ToolInfoSection content={meta.content} currentSlug={meta.slug} />
+      {entry ? (
+        <>
+          <CalculatorRenderer meta={entry} onSaveHistory={onSaveHistory} />
+          {entry.seo?.status === 'index' && entry.seo?.reviewStatus === 'reviewed' && (
+            <EmbedCard slug={entry.slug} name={entry.name} />
+          )}
+          <ToolInfoSection content={entry.content} currentSlug={entry.slug} />
+        </>
+      ) : loading ? (
+        <ToolSkeleton />
+      ) : null}
     </div>
   );
 };

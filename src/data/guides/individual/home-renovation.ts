@@ -22,7 +22,7 @@ export const homeRenovationGuide: Guide = {
       {
         heading: 'Paint Coverage and Ordering',
         body: [
-          'One gallon of interior paint covers 350-400 square feet of smooth wall. Textured surfaces absorb 15-20% more paint. Ceilings count separately from walls.',
+          'A paint can commonly lists coverage in the range of a few hundred square feet per gallon, but actual coverage depends on the product, surface, and application. Follow the manufacturer’s label, especially for textured or previously unpainted surfaces.',
           'To calculate wall area: measure the perimeter of the room and multiply by ceiling height. A 12x14 room with 8-foot walls has a perimeter of 52 feet, giving 416 square feet of wall area. Subtract windows (15 sq ft each) and doors (21 sq ft each).',
           'Always buy 10% extra for touch-ups and waste. Two coats are standard for good coverage. Buy all paint from the same batch to ensure color consistency.',
         ],
@@ -39,11 +39,11 @@ export const homeRenovationGuide: Guide = {
       {
         heading: 'Concrete and Material Volume',
         body: [
-          'Concrete is ordered by cubic yards. One cubic yard covers 81 square feet at 4 inches thick (standard slab). Calculate: length x width x thickness (in feet), then divide by 27 to get cubic yards.',
-          'A 20x20 patio at 4 inches thick needs: 20 x 20 x 0.33 = 132 cubic feet, divided by 27 = 4.89 cubic yards. Order 5 cubic yards. Always round up because you cannot order partial yards.',
-          'Add 5-10% for settling, spillage, and uneven subgrade. Concrete cannot be returned. Running short means a cold joint (visible line where new concrete meets old), which is both ugly and structurally weak.',
+          'Concrete volume is commonly estimated in cubic yards. One cubic yard covers 81 square feet at exactly 4 inches thick. Calculate length × width × thickness in feet, then divide by 27 to get cubic yards.',
+          'A 20 × 20 foot patio at 4 inches thick needs 20 × 20 × (4/12) = about 133.33 cubic feet, or about 4.94 cubic yards. Ask the supplier about order increments and allow for site conditions before placing an order.',
+          'The required allowance depends on the project, formwork, and subgrade; confirm it with the supplier or a qualified contractor. A delay that creates a cold joint may affect appearance or performance depending on the design and installation.',
         ],
-        callout: 'Concrete is ordered by cubic yards. Length x width x thickness (in feet) divided by 27 equals cubic yards needed. Always round up.',
+        callout: 'Convert thickness to feet before calculating. Confirm ordering increments and any material allowance with the supplier.',
       },
       {
         heading: 'Budgeting with Markup and Contingency',
@@ -57,9 +57,9 @@ export const homeRenovationGuide: Guide = {
     conclusion: 'Accurate measurements prevent budget blowouts. Calculate room area, wall area, and material volume before ordering anything. Add waste factors and contingency. The math takes 15 minutes and saves thousands.',
   },
   faqs: [
-    { q: 'How much paint do I need for a 12x12 room?', a: 'A 12x12 room with 8-foot walls has about 384 square feet of wall area. Subtract 57 sq ft for a door and window, leaving roughly 327 sq ft. One gallon covers 350 sq ft, so one gallon is enough for one coat. Buy two gallons for two coats.' },
+    { q: 'How much paint do I need for a 12x12 room?', a: 'A 12 × 12 foot room with 8-foot walls has about 384 square feet of wall area before openings. Measure the actual doors and windows, then compare the remaining area with the coverage on the paint can. Two coats may require about twice the paint of one coat.' },
     { q: 'How do I calculate flooring for an L-shaped room?', a: 'Break the L into two rectangles. Calculate each area separately and add them together. Then add the waste factor (10-15% depending on installation pattern).' },
-    { q: 'Can I return unused concrete?', a: 'No. Concrete is a custom-mixed product that cannot be returned. Always order 5-10% more than your calculation. Running short creates a cold joint that weakens the slab.' },
+    { q: 'Can I return unused concrete?', a: 'Ask the supplier about its policy and any return or disposal fees before ordering. Avoid choosing an allowance from a generic percentage alone; site conditions and project design matter.' },
     { q: 'What is the biggest hidden cost in renovations?', a: 'Unforeseen structural or code issues. Old homes may have knob-and-tube wiring, lead paint, asbestos, or water damage that must be addressed before cosmetic work begins. Budget 15-20% contingency for these surprises.' },
   ],
   embeddedCalculators: ['room-area-calculator', 'paint-calculator', 'flooring-calculator', 'concrete-calculator'],

@@ -1,11 +1,13 @@
-import React from 'react';
+﻿import React from 'react';
 import { BookOpen, ChevronRight, ArrowLeft, Share2, Copy, Check } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Button } from '../components/ui/button';
 import { Link, navigate } from '../lib/router';
 import { getGuideBySlug, getAllGuides } from '../data/guides';
-import { getCalculatorBySlug, CATEGORY_LABELS } from '../data/calculators';
+import { getCalculatorLink } from '../data/catalogLinks';
+import { CATEGORY_LABELS } from '../data/categories';
+import { useCalculatorEntry } from '../lib/useCalculatorEntry';
 import { CalculatorRenderer } from '../components/calculators/CalculatorRenderer';
 import { usePageMeta } from '../lib/seo';
 import { useToast } from '../components/ui/toast';
@@ -14,6 +16,33 @@ import { getIcon } from '../components/common/iconMap';
 interface GuideDetailPageProps {
   slug: string;
 }
+
+function requireGuideCalculator(calcSlug: string, guideSlug: string) {
+  const calculator = getCalculatorLink(calcSlug);
+  if (!calculator) {
+    throw new Error(`Guide "${guideSlug}" references missing calculator "${calcSlug}".`);
+  }
+  return { slug: calcSlug, ...calculator };
+}
+
+/**
+ * Embedded tools live in their own content chunk, so the guide copy renders
+ * immediately and each tool arrives when its chunk does.
+ */
+const GuideCalculatorEmbed: React.FC<{ slug: string }> = ({ slug }) => {
+  const { entry, known } = useCalculatorEntry(slug);
+  if (!known) return null;
+  if (!entry) {
+    return (
+      <div className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 space-y-3 animate-pulse">
+        <div className="h-5 w-40 rounded bg-zinc-200 dark:bg-zinc-800" />
+        <div className="h-10 w-full rounded bg-zinc-100 dark:bg-zinc-800" />
+        <div className="h-10 w-full rounded bg-zinc-100 dark:bg-zinc-800" />
+      </div>
+    );
+  }
+  return <CalculatorRenderer meta={entry} />;
+};
 
 export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ slug }) => {
   const guide = getGuideBySlug(slug);
@@ -26,9 +55,14 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ slug }) => {
           title: guide.name,
           description: guide.shortDesc,
           canonicalPath: `/guides/${guide.slug}`,
+          noindex:
+            guide.seo?.status !== 'index' ||
+            guide.seo?.reviewStatus !== 'reviewed',
         }
       : {
           title: 'Guide Not Found',
+          description:
+            'The guide page you requested does not exist. Browse all CalculateDaily guides.',
           canonicalPath: `/guides/${slug}`,
           noindex: true,
         }
@@ -64,7 +98,7 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ slug }) => {
     <div className="max-w-4xl mx-auto space-y-8">
       <div className="space-y-1">
         <button onClick={() => navigate('/guides')} className="text-xs font-mono text-zinc-400 hover:text-emerald-600 transition-colors">
-          ← All Guides
+          â† All Guides
         </button>
       </div>
 
@@ -160,11 +194,10 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ slug }) => {
             Use these tools to apply what you learned. All calculations run in your browser.
           </p>
           {guide.embeddedCalculators.map((calcSlug) => {
-            const calc = getCalculatorBySlug(calcSlug);
-            if (!calc) return null;
+            const calc = requireGuideCalculator(calcSlug, guide.slug);
             return (
               <div key={calc.slug} id={calc.slug}>
-                <CalculatorRenderer meta={calc} />
+                <GuideCalculatorEmbed slug={calc.slug} />
               </div>
             );
           })}
@@ -176,8 +209,7 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ slug }) => {
           <h3 className="text-sm font-bold text-zinc-950 dark:text-zinc-50">Related Calculators</h3>
           <div className="flex flex-wrap gap-2">
             {guide.relatedCalculators.map((calcSlug) => {
-              const calc = getCalculatorBySlug(calcSlug);
-              if (!calc) return null;
+              const calc = requireGuideCalculator(calcSlug, guide.slug);
               return (
                 <Link key={calc.slug} to={`/calculators/${calc.slug}`}>
                   <Badge variant="outline" className="text-[11px] font-mono hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors cursor-pointer">

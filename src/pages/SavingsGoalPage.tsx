@@ -8,7 +8,7 @@ interface SavingsGoalPageProps {
 
 export const SavingsGoalPage: React.FC<SavingsGoalPageProps> = ({ onSaveHistory }) => {
   usePageMeta({
-    title: 'Daily Savings Goal Challenge | Break Big Targets Into Small Steps',
+    title: 'Daily Savings Goal Challenge',
     description:
       'Turn any savings target into a daily, weekly, and monthly deposit plan. See exactly how much to save each day to reach your goal without stress.',
     canonicalPath: '/savings-goal',

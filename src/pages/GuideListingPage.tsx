@@ -1,15 +1,15 @@
-import React from 'react';
+﻿import React from 'react';
 import { BookOpen, Clock } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { Link } from '../lib/router';
 import { getAllGuides } from '../data/guides';
-import { CATEGORY_LABELS } from '../data/calculators';
+import { CATEGORY_LABELS } from '../data/categories';
 import { usePageMeta } from '../lib/seo';
 
 export const GuideListingPage: React.FC = () => {
   usePageMeta({
-    title: 'Guides & Articles | Learn Math, Finance, Health, and More',
+    title: 'Guides & Articles',
     description: 'In-depth guides for using calculators effectively. Learn about mortgages, BMI, unit conversions, and everyday math with practical examples.',
     canonicalPath: '/guides',
   });

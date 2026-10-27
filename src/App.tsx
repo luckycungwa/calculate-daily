@@ -3,25 +3,49 @@ import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { CalculationHistoryModal } from './components/CalculationHistoryModal';
 import { KeyboardShortcutsModal } from './components/common/KeyboardShortcutsModal';
-import { HomePage } from './pages/HomePage';
-import { AllCalculatorsPage } from './pages/AllCalculatorsPage';
-import { CalculatorPage } from './pages/CalculatorPage';
-import { CategoryPage } from './pages/CategoryPage';
-import { SavingsGoalPage } from './pages/SavingsGoalPage';
-import { AboutPage } from './pages/AboutPage';
-import { PrivacyPage } from './pages/PrivacyPage';
-import { TermsPage } from './pages/TermsPage';
-import { ContactPage } from './pages/ContactPage';
-import { GuideListingPage } from './pages/GuideListingPage';
-import { GuideDetailPage } from './pages/GuideDetailPage';
 import { useRoute } from './lib/router';
+import { getPage, loadPage, type PageRouteName } from './lib/pageRegistry';
+import { usePageMeta } from './lib/seo';
 import { useTheme } from './lib/theme';
 import { useToast } from './components/ui/toast';
 import { CalculationHistoryItem } from './types';
 import { Link } from './lib/router';
 
+/** Shown for the one chunk request after in-app navigation to a cold route. */
+const PageSkeleton: React.FC = () => (
+  <div className="max-w-3xl mx-auto py-16 space-y-4 animate-pulse">
+    <div className="h-7 w-2/3 rounded bg-zinc-200 dark:bg-zinc-800" />
+    <div className="h-4 w-full rounded bg-zinc-100 dark:bg-zinc-800" />
+    <div className="h-4 w-5/6 rounded bg-zinc-100 dark:bg-zinc-800" />
+    <div className="h-40 w-full rounded-xl bg-zinc-100 dark:bg-zinc-800" />
+  </div>
+);
+
+// Unknown routes must never inherit the previous page's title or canonical URL.
+const NotFoundPage: React.FC = () => {
+  usePageMeta({
+    title: 'Page Not Found',
+    description:
+      'The page you requested does not exist. Browse free calculators and unit converters on CalculateDaily.',
+    noindex: true,
+  });
+  return (
+    <div className="max-w-2xl mx-auto py-20 text-center space-y-4">
+      <h1 className="text-2xl font-bold text-zinc-950 dark:text-zinc-50">Page Not Found</h1>
+      <p className="text-sm text-zinc-500">The page you requested does not exist.</p>
+      <Link
+        to="/"
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 text-white text-xs font-bold"
+      >
+        Back to Home
+      </Link>
+    </div>
+  );
+};
+
 export default function App() {
   const route = useRoute();
+  const activePath = typeof window !== 'undefined' ? window.location.pathname : '/';
   const { isDark: isDarkMode, toggle: toggleDarkMode } = useTheme();
   const { toast } = useToast();
 
@@ -36,6 +60,23 @@ export default function App() {
   });
   const [isHistoryModalOpen, setIsHistoryModalOpen] = useState<boolean>(false);
   const [isShortcutsModalOpen, setIsShortcutsModalOpen] = useState<boolean>(false);
+
+  // Page modules are route chunks. Initial navigation is preloaded before
+  // hydration; here we cover in-app navigation to a route not yet in memory.
+  const pageName: PageRouteName | null = route.name === 'not-found' ? null : route.name;
+  const Page = pageName ? getPage(pageName) : undefined;
+  const [, setTick] = useState(0);
+
+  useEffect(() => {
+    if (!pageName || Page) return;
+    let active = true;
+    loadPage(pageName).then(() => {
+      if (active) setTick((t) => t + 1);
+    });
+    return () => {
+      active = false;
+    };
+  }, [pageName, Page]);
 
   // Sync history with storage
   useEffect(() => {
@@ -89,50 +130,55 @@ export default function App() {
   };
 
   const renderPage = () => {
+    if (route.name === 'not-found') return <NotFoundPage />;
+    if (!Page) return <PageSkeleton />;
+
     switch (route.name) {
       case 'home':
-        return <HomePage />;
+        return <Page />;
       case 'calculators':
-        return <AllCalculatorsPage />;
+        return <Page />;
       case 'calculator':
-        return <CalculatorPage slug={route.slug} onSaveHistory={handleSaveHistory} />;
+        return <Page slug={route.slug} onSaveHistory={handleSaveHistory} />;
+      case 'embed':
+        return <Page slug={route.slug} />;
       case 'category':
-        return <CategoryPage categoryId={route.category} />;
+        return <Page categoryId={route.category} />;
       case 'savings-goal':
-        return <SavingsGoalPage onSaveHistory={handleSaveHistory} />;
+        return <Page onSaveHistory={handleSaveHistory} />;
       case 'about':
-        return <AboutPage />;
+        return <Page />;
       case 'privacy':
-        return <PrivacyPage />;
+        return <Page />;
       case 'terms':
-        return <TermsPage />;
+        return <Page />;
       case 'contact':
-        return <ContactPage />;
+        return <Page />;
       case 'guides':
-        return <GuideListingPage />;
+        return <Page />;
       case 'guide':
-        return <GuideDetailPage slug={route.slug} />;
+        return <Page slug={route.slug} />;
       default:
-        return (
-          <div className="max-w-2xl mx-auto py-20 text-center space-y-4">
-            <h1 className="text-2xl font-bold text-zinc-950 dark:text-zinc-50">Page Not Found</h1>
-            <p className="text-sm text-zinc-500">The page you requested does not exist.</p>
-            <Link
-              to="/"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 text-white text-xs font-bold"
-            >
-              Back to Home
-            </Link>
-          </div>
-        );
+        return <NotFoundPage />;
     }
   };
+
+  // An embed is framed on a third-party page, so it must not carry the site
+  // header, footer, history UI, or page padding. Direct loads have the page
+  // chunk preloaded in main.tsx, so this branch renders the real calculator.
+  if (route.name === 'embed' && Page) {
+    return (
+      <div className="min-h-screen bg-background text-foreground font-sans antialiased">
+        <Page slug={route.slug} />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground font-sans antialiased">
       {/* Global Header */}
       <Header
-        activePath={window.location.pathname}
+        activePath={activePath}
         onOpenHistory={() => setIsHistoryModalOpen(true)}
         historyCount={history.length}
         isDarkMode={isDarkMode}
@@ -141,7 +187,11 @@ export default function App() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10 scroll-mt-20 outline-none"
+      >
         {renderPage()}
       </main>
 

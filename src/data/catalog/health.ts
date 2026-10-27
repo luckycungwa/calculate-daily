@@ -1262,7 +1262,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
         { resultLabel: 'Total Sleep Debt', explanation: 'The cumulative hours of sleep you owe your body.' }
       ],
       workflowLinks: [
-        { slug: 'bedtime-calculator', step: 'Align bedtimes with sleep cycles for better quality.' },
+        { slug: 'sleep-cycle-calculator', step: 'Plan sleep around your target wake time.' },
         { slug: 'bmr-calculator', step: 'Sleep debt slows metabolism.' }
       ],
       faqs: [
@@ -1270,7 +1270,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
         { q: 'How much sleep debt is dangerous?', a: 'Even 1-2 hours per night for a week impairs reaction time, mood, and immune function.' },
         { q: 'Is it better to sleep more on weekends?', a: 'Extending sleep on weekends helps but is less effective than consistent nightly sleep.' }
       ],
-      related: ['bedtime-calculator', 'bmr-calculator'],
+      related: ['sleep-cycle-calculator', 'bmr-calculator'],
     },
     seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
   },
@@ -1460,51 +1460,6 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
     seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65 },
   },
   {
-    id: 'waist-circumference',
-    slug: 'waist-circumference-calculator',
-    name: 'Waist Circumference Risk Calculator',
-    shortDesc: 'Assess health risk based on waist measurement.',
-    tagline: 'Where you carry fat matters.',
-    category: 'health',
-    iconName: 'Ruler',
-    keywords: ['waist circumference', 'waist measurement', 'abdominal obesity', 'health risk waist'],
-    kind: 'config',
-    config: {
-      fields: [
-        { id: 'waistCm', label: 'Waist (cm)', type: 'number', defaultValue: 90, suffix: 'cm', min: 40 },
-        { id: 'sex', label: 'Sex (1=Male, 0=Female)', type: 'number', defaultValue: 1, min: 0, max: 1, step: 1 }
-      ],
-      results: [
-        { label: 'Waist Circumference', formulaCode: 'waistCm', suffix: 'cm', accent: true }
-      ],
-      formulaDescription: 'undefined',
-      tips: [
-      'Measure at the navel, not at the waistline.',
-      'A waist over 102 cm (men) or 88 cm (women) significantly increases heart disease and diabetes risk.'
-      ],
-    },
-    content: {
-      intro: 'The Waist Circumference Risk Calculator assesses your cardiometabolic risk based on waist measurement. Central obesity is an independent predictor of heart disease, diabetes, and premature mortality.',
-      howItWorks: 'Measure your waist at the navel level. Men above 102 cm (40 inches) and women above 88 cm (35 inches) have elevated risk.',
-      example: 'A man with a 105 cm waist is above the 102 cm threshold and at increased health risk.',
-      formulas: [{ label: 'Risk', expression: 'Men: >102 cm high risk. Women: >88 cm high risk.' }],
-      resultExplanations: [
-        { resultLabel: 'Waist Circumference', explanation: 'Men: <94 cm = low risk, 94-102 cm = moderate risk, >102 cm = high risk. Women: <80 cm = low risk, 80-88 cm = moderate risk, >88 cm = high risk.' }
-      ],
-      workflowLinks: [
-        { slug: 'bmi-calculator', step: 'BMI does not capture abdominal fat specifically.' },
-        { slug: 'waist-to-hip-ratio-calculator', step: 'WHR gives further detail on fat distribution.' }
-      ],
-      faqs: [
-        { q: 'Why is waist circumference important?', a: 'Excess abdominal fat is metabolically active and directly increases the risk of heart disease, diabetes, and stroke.' },
-        { q: 'How do I measure my waist?', a: 'Find the top of your hip bone and the bottom of your rib cage. Measure midway between them, at the navel level.' },
-        { q: 'Can I reduce waist size through exercise?', a: 'Yes. A combination of cardio, strength training, and a calorie deficit reduces waist circumference over time.' }
-      ],
-      related: ['bmi-calculator', 'waist-to-hip-ratio-calculator'],
-    },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
-  },
-  {
     id: 'ideal-body-fat',
     slug: 'ideal-body-fat-calculator',
     name: 'Ideal Body Fat Percentage Calculator',
@@ -1644,5 +1599,749 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       related: ['running-pace-calculator', 'calories-burned-calculator'],
     },
     seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+  },
+  {
+    id: 'due-date',
+    slug: 'due-date-calculator',
+    name: 'Pregnancy Due Date Calculator',
+    shortDesc: 'Estimate your due date from your last period or conception date, with gestational age and trimester.',
+    tagline: 'Naegele-adjusted due date, gestational age, and days to go.',
+    category: 'health',
+    iconName: 'CalendarDays',
+    badge: 'Pregnancy',
+    featured: true,
+    keywords: [
+      'pregnancy due date calculator',
+      'due date calculator',
+      'edd calculator',
+      'estimated due date',
+      'pregnancy calculator',
+      'naegele rule',
+      'how many weeks pregnant',
+    ],
+    kind: 'custom',
+    componentId: 'DueDateCalculator',
+    content: {
+      intro:
+        'The Pregnancy Due Date Calculator estimates when your baby is due from the first day of your last menstrual period (LMP) or a known conception date. It applies Naegele\'s rule, adjusts for cycles that are not 28 days long, and reports gestational age, trimester, and the days remaining.',
+      howItWorks:
+        'An LMP-based estimate adds 280 days (40 weeks) to the first day of your last period, then shifts by the difference between your average cycle length and 28 days because a longer cycle ovulates later. A known conception date adds 266 days (38 weeks). Gestational age is counted from the LMP rather than conception, which is why you are considered about two weeks pregnant on the day of conception.',
+      example:
+        'An LMP of 1 January 2026 with a 28-day cycle gives an estimated due date of 8 October 2026. On 9 April 2026 that is 14 weeks 0 days, in the second trimester, with 182 days remaining. The same LMP with a 35-day cycle moves the estimate to 15 October 2026.',
+      formulas: [
+        {
+          label: 'Naegele\'s rule (LMP)',
+          expression: 'Due date = LMP + 280 days + (cycle length − 28)',
+          note: '280 days is 40 weeks from the first day of the last period.',
+        },
+        {
+          label: 'Known conception date',
+          expression: 'Due date = Conception + 266 days',
+          note: '266 days is 38 weeks, because gestational age includes the two weeks before conception.',
+        },
+        {
+          label: 'Gestational age',
+          expression: 'Weeks = floor((today − LMP) / 7), days = (today − LMP) mod 7',
+        },
+      ],
+      sources: [
+        {
+          label: 'ACOG Committee Opinion 700 — Methods for Estimating the Due Date',
+          expression: '280 days from LMP; 266 days from conception',
+          note: 'ACOG notes that an ultrasound before 14 weeks is the most accurate dating method and that the estimated due date should be revised when scan dating differs materially.',
+        },
+        {
+          label: 'NICE NG201 — Antenatal care',
+          expression: 'Dating scan offered at 11–14 weeks',
+          note: 'UK guidance uses the dating scan to confirm gestational age and the estimated due date.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Estimated due date',
+          explanation:
+            'The 40-week date calculated from your LMP or conception date. It is a midpoint, not an appointment: only about 4% of babies arrive on it.',
+        },
+        {
+          resultLabel: 'Gestational age',
+          explanation:
+            'Weeks and days since the first day of your last period — the convention used in antenatal care, scans, and test windows.',
+        },
+        {
+          resultLabel: 'Estimated conception',
+          explanation:
+            'The date of fertilisation implied by your dates, roughly two weeks after the LMP in a 28-day cycle.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'ovulation-calculator', step: 'See the fertile window that led to conception.' },
+        { slug: 'conception-calculator', step: 'Work backwards from a due date to a conception date.' },
+      ],
+      faqs: [
+        {
+          q: 'How accurate is an estimated due date?',
+          a: 'Only about 4% of births happen on the estimated date. Most arrive within two weeks either side, and first pregnancies often run a little later. An early ultrasound is more accurate than calendar dating, especially with irregular cycles.',
+        },
+        {
+          q: 'Why does cycle length change the due date?',
+          a: 'Naegele\'s rule assumes ovulation on day 14 of a 28-day cycle. If your cycles average 35 days, ovulation is about a week later, so the due date moves about a week later as well.',
+        },
+        {
+          q: 'What if my ultrasound gives a different date?',
+          a: 'Clinicians usually keep the scan date when it differs materially from the calendar estimate, particularly before 14 weeks. Ask your midwife or doctor which date they will use for your care.',
+        },
+        {
+          q: 'Can I calculate a due date without knowing my last period?',
+          a: 'Yes. If you know your conception or ovulation date, use the conception method, which adds 266 days. If you know neither, a dating scan is the reliable route.',
+        },
+      ],
+      related: ['ovulation-calculator', 'conception-calculator', 'date-difference-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+  },
+  {
+    id: 'ovulation',
+    slug: 'ovulation-calculator',
+    name: 'Ovulation & Fertile Window Calculator',
+    shortDesc: 'Predict ovulation, your six-day fertile window, and the next three cycles from your last period.',
+    tagline: 'Find your most fertile days and next period dates.',
+    category: 'health',
+    iconName: 'Heart',
+    badge: 'Fertility',
+    featured: true,
+    keywords: [
+      'ovulation calculator',
+      'fertile window calculator',
+      'ovulation date',
+      'fertile days',
+      'when do i ovulate',
+      'ovulation predictor',
+      'cycle calculator',
+    ],
+    kind: 'custom',
+    componentId: 'OvulationCalculator',
+    content: {
+      intro:
+        'The Ovulation Calculator predicts when you are most likely to ovulate and the six-day window in which conception is possible. It works from the first day of your last period, your average cycle length, and your luteal phase, and it projects the next three cycles.',
+      howItWorks:
+        'Ovulation is estimated by counting backwards from the next expected period: ovulation day equals cycle length minus luteal phase length. In a 28-day cycle with a 14-day luteal phase, that is day 15 by obstetric counting (14 days after the first day of bleeding). The fertile window opens five days before ovulation, because sperm can survive that long, and closes about a day after it, because the egg is viable for roughly 12–24 hours.',
+      example:
+        'With a last period starting on 1 May 2026, a 28-day cycle, and a 14-day luteal phase, ovulation is predicted for 15 May 2026. The fertile window runs 10–16 May, the next period is due 29 May, and the following cycle ovulates around 12 June.',
+      formulas: [
+        {
+          label: 'Ovulation day',
+          expression: 'Ovulation = LMP + (cycle length − luteal phase)',
+          note: 'The luteal phase is usually 12–16 days and is more stable than the follicular phase.',
+        },
+        {
+          label: 'Fertile window',
+          expression: 'Window = ovulation − 5 days to ovulation + 1 day',
+        },
+        {
+          label: 'Next period',
+          expression: 'Next period = LMP + cycle length',
+        },
+      ],
+      sources: [
+        {
+          label: 'ACOG — Fertility awareness and ovulation timing',
+          expression: 'Sperm survive up to 5 days; the egg is viable 12–24 hours',
+          note: 'ACOG patient education describes the fertile window as the five days before ovulation plus ovulation day.',
+        },
+        {
+          label: 'NICE NG201 — Antenatal care',
+          expression: 'Gestational age is counted from the LMP',
+          note: 'The same LMP convention is used here so the cycle dates line up with antenatal dating.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Ovulation date',
+          explanation:
+            'The single most likely day of ovulation. Real ovulation can move by a few days from cycle to cycle, even when your cycles are regular.',
+        },
+        {
+          resultLabel: 'Fertile window',
+          explanation:
+            'The days on which intercourse can lead to conception: five days before ovulation through about one day after.',
+        },
+        {
+          resultLabel: 'Peak fertility',
+          explanation:
+            'The two days with the highest probability — the day before ovulation and ovulation day itself.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'due-date-calculator', step: 'If conception happens, estimate the due date.' },
+        { slug: 'conception-calculator', step: 'Reverse the maths from a known due date.' },
+      ],
+      faqs: [
+        {
+          q: 'How accurate is an ovulation calculator?',
+          a: 'For regular cycles it is typically accurate to within a few days, which is enough to time the fertile window. Irregular cycles, PCOS, thyroid conditions, and recent hormonal contraception make calendar predictions unreliable — ovulation predictor kits, basal body temperature, or cervical mucus tracking are better then.',
+        },
+        {
+          q: 'Does everyone ovulate on day 14?',
+          a: 'No. Day 14 is the midpoint of an idealised 28-day cycle. Ovulation timing varies with cycle length and can shift between cycles, which is why the luteal phase is used to work backwards from the next period.',
+        },
+        {
+          q: 'When is the best time to try to conceive?',
+          a: 'The two days before ovulation and ovulation day carry the highest chance. Intercourse every one to two days across the fertile window covers the peak without relying on a single predicted date.',
+        },
+        {
+          q: 'Can I use this calculator to avoid pregnancy?',
+          a: 'No. Calendar methods are not reliable contraception, because ovulation can occur earlier or later than predicted and sperm survive for days. Use a method recommended by a clinician.',
+        },
+      ],
+      related: ['due-date-calculator', 'conception-calculator', 'date-difference-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+  },
+  {
+    id: 'conception',
+    slug: 'conception-calculator',
+    name: 'Conception Date Calculator',
+    shortDesc: 'Work backwards from a due date or last period to the most likely conception date and intercourse window.',
+    tagline: 'Find the conception date behind a due date.',
+    category: 'health',
+    iconName: 'HeartPulse',
+    badge: 'Pregnancy',
+    keywords: [
+      'conception calculator',
+      'conception date calculator',
+      'when did i conceive',
+      'date of conception',
+      'conception date from due date',
+      'calculate conception',
+    ],
+    kind: 'custom',
+    componentId: 'ConceptionCalculator',
+    content: {
+      intro:
+        'The Conception Date Calculator estimates the date of fertilisation from either an estimated due date or the first day of your last period. It also shows the intercourse window that could have led to conception, plus the implied last period and due date.',
+      howItWorks:
+        'A pregnancy is dated from the last menstrual period, about two weeks before conception. Working backwards, conception is roughly 266 days before the due date, or 14 days after the LMP in a 28-day cycle. Because sperm survive up to five days, the calculator also reports a window from five days before that date to one day after.',
+      example:
+        'For a due date of 8 October 2026, the estimated conception date is 15 January 2026, the likely intercourse window is 10–16 January, and the implied last period is 1 January 2026. With a 30-day cycle starting 1 May 2026, conception is estimated at 17 May 2026.',
+      formulas: [
+        {
+          label: 'From the due date',
+          expression: 'Conception = Due date − 266 days',
+        },
+        {
+          label: 'From the last period',
+          expression: 'Conception = LMP + (cycle length − 14)',
+          note: 'Assumes a 14-day luteal phase; adjust the cycle length rather than the luteal phase.',
+        },
+        {
+          label: 'Likely intercourse window',
+          expression: 'Window = conception − 5 days to conception + 1 day',
+        },
+      ],
+      sources: [
+        {
+          label: 'ACOG Committee Opinion 700 — Methods for Estimating the Due Date',
+          expression: '266 days from conception to due date',
+          note: 'The 280-day LMP rule and the 266-day conception rule describe the same 40-week pregnancy.',
+        },
+        {
+          label: 'NICE NG201 — Antenatal care',
+          expression: 'Dating scan at 11–14 weeks',
+          note: 'Scan dating takes precedence when it differs from calendar estimates.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Conception date',
+          explanation:
+            'The estimated day of fertilisation. It is a statistical midpoint: ovulation, and therefore conception, can occur several days away from it.',
+        },
+        {
+          resultLabel: 'Likely intercourse window',
+          explanation:
+            'The days on which intercourse could plausibly have led to this pregnancy, allowing for sperm survival and egg viability.',
+        },
+        {
+          resultLabel: 'Estimated last period',
+          explanation:
+            'The LMP implied by the dates, useful when you are asked for it at a first antenatal appointment.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'due-date-calculator', step: 'Calculate forward from an LMP or conception date.' },
+        { slug: 'ovulation-calculator', step: 'See the fertile window around a conception date.' },
+      ],
+      faqs: [
+        {
+          q: 'How is the conception date calculated?',
+          a: 'Subtract 266 days from the estimated due date, or add 14 days to the first day of the last period in a 28-day cycle. The result is an estimate of fertilisation, not a precise timestamp.',
+        },
+        {
+          q: 'How precise is a conception date?',
+          a: 'It is typically accurate to within about a week, and less so with irregular cycles. Ultrasound dating, which measures the embryo directly, is more precise than any calendar calculation.',
+        },
+        {
+          q: 'Is the conception date the same as the ovulation date?',
+          a: 'Very close. Fertilisation happens within roughly 24 hours of ovulation, so the two dates are usually the same or one day apart.',
+        },
+        {
+          q: 'Can this calculator establish paternity?',
+          a: 'No. It only estimates dates. Paternity is established by DNA testing, not by calendar arithmetic.',
+        },
+      ],
+      related: ['due-date-calculator', 'ovulation-calculator', 'date-difference-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+  },
+  {
+    id: 'pregnancy-week',
+    slug: 'pregnancy-week-calculator',
+    name: 'Pregnancy Week Calculator',
+    shortDesc: 'See how many weeks and days pregnant you are, the trimester, fetal age, and your next antenatal milestone.',
+    tagline: 'Your current week, trimester, and weeks to go.',
+    category: 'health',
+    iconName: 'CalendarDays',
+    badge: 'Pregnancy',
+    featured: true,
+    keywords: [
+      'pregnancy week calculator',
+      'how many weeks pregnant am i',
+      'pregnancy weeks calculator',
+      'gestational age calculator',
+      'what week of pregnancy am i',
+      'fetal age calculator',
+    ],
+    kind: 'custom',
+    componentId: 'PregnancyWeekCalculator',
+    content: {
+      intro:
+        'The Pregnancy Week Calculator tells you how many weeks and days pregnant you are on any date, counted from the first day of your last period. It also shows the trimester, fetal age, the estimated due date, and weeks remaining.',
+      howItWorks:
+        'Obstetric dating counts from the first day of the last menstrual period, not from conception. Gestational age is the number of days since that date divided into weeks and days. Fetal age is about two weeks less, because ovulation happens roughly two weeks into the cycle. With a known conception date, the calculator converts it to the equivalent LMP before counting.',
+      example:
+        'If your last period began on 1 January 2026, then on 11 April 2026 you are 100 days pregnant — 14 weeks and 2 days. Fetal age is 12 weeks 2 days, the estimated due date is 8 October 2026, and about 26 weeks remain.',
+      formulas: [
+        {
+          label: 'Gestational age',
+          expression: 'Weeks = floor((today − LMP) / 7); Days = (today − LMP) mod 7',
+        },
+        {
+          label: 'Fetal age',
+          expression: 'Fetal age ≈ gestational age − 14 days',
+          note: 'Approximate because it assumes ovulation on cycle day 14.',
+        },
+        {
+          label: 'Weeks remaining',
+          expression: 'Weeks to go = ceil((due date − today) / 7)',
+        },
+      ],
+      sources: [
+        {
+          label: 'ACOG Committee Opinion 700 — Methods for Estimating the Due Date',
+          expression: 'Gestational age is counted from the LMP',
+          note: 'ACOG recommends revising the estimated due date when an early ultrasound differs materially from calendar dating.',
+        },
+        {
+          label: 'NICE NG201 — Antenatal care',
+          expression: 'Dating scan at 11–14 weeks; anomaly scan at 18–22 weeks',
+          note: 'The milestone labels in this tool reflect the usual UK antenatal schedule, not an appointment booking.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Week and days',
+          explanation:
+            'Your gestational age in the format used by midwives and scan reports. \u201CWeek 14 + 2\u201D means 14 completed weeks and 2 days.',
+        },
+        {
+          resultLabel: 'Fetal age',
+          explanation:
+            'Time since fertilisation, about two weeks less than gestational age. It is useful for reading development information, which often uses fetal age.',
+        },
+        {
+          resultLabel: 'Next milestone',
+          explanation:
+            'The next standard antenatal window or trimester boundary. It is a planning marker, not a substitute for the schedule your own clinician gives you.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'due-date-calculator', step: 'Recalculate the due date from an LMP or conception date.' },
+        { slug: 'conception-calculator', step: 'Work backwards to the likely conception date.' },
+        { slug: 'ovulation-calculator', step: 'See the fertile window for a future cycle.' },
+      ],
+      faqs: [
+        {
+          q: 'How do I calculate how many weeks pregnant I am?',
+          a: 'Count the days from the first day of your last period to today, then divide by seven. The whole number is your completed weeks and the remainder is the extra days. This calculator does that and also handles a known conception date.',
+        },
+        {
+          q: 'Why is fetal age two weeks less than gestational age?',
+          a: 'Pregnancy is dated from the last period, but fertilisation happens about two weeks later. So at 14 weeks gestational age, the embryo or fetus has been developing for roughly 12 weeks. The two-week gap is a convention, not a discrepancy.',
+        },
+        {
+          q: 'What if my scan gives a different gestational age?',
+          a: 'An early ultrasound is more accurate than calendar dating, especially with irregular cycles. Clinicians usually revise the due date when the scan differs materially before 14 weeks, so use the scan-derived date for appointments.',
+        },
+        {
+          q: 'Does this calculator tell me if everything is progressing normally?',
+          a: 'No. It only does calendar arithmetic. It cannot assess growth, position, or wellbeing. Any concern about movement, pain, bleeding, or growth should go to your midwife or doctor the same day.',
+        },
+      ],
+      related: ['due-date-calculator', 'conception-calculator', 'ovulation-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+  },
+  {
+    id: 'ldl-cholesterol',
+    slug: 'ldl-cholesterol-calculator',
+    name: 'LDL Cholesterol Calculator',
+    shortDesc: 'Estimate LDL cholesterol with the Friedewald equation and see non-HDL and cholesterol ratios.',
+    tagline: 'Estimate the LDL from a standard lipid panel.',
+    category: 'health',
+    iconName: 'HeartPulse',
+    badge: 'Lipids',
+    featured: false,
+    keywords: [
+      'ldl cholesterol calculator',
+      'friedewald equation calculator',
+      'how to calculate ldl',
+      'ldl from total cholesterol',
+      'non hdl cholesterol calculator',
+      'cholesterol ratio calculator',
+    ],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'totalCholesterol', label: 'Total cholesterol', type: 'number', defaultValue: 200, min: 50, max: 500, suffix: 'mg/dL' },
+        { id: 'hdl', label: 'HDL cholesterol', type: 'number', defaultValue: 50, min: 5, max: 150, suffix: 'mg/dL' },
+        { id: 'triglycerides', label: 'Triglycerides', type: 'number', defaultValue: 150, min: 10, max: 1000, suffix: 'mg/dL' },
+      ],
+      results: [
+        {
+          label: 'Estimated LDL cholesterol',
+          formulaCode: 'totalCholesterol - hdl - triglycerides / 5',
+          suffix: 'mg/dL',
+          accent: true,
+        },
+        { label: 'Non-HDL cholesterol', formulaCode: 'totalCholesterol - hdl', suffix: 'mg/dL' },
+        { label: 'Total cholesterol to HDL ratio', formulaCode: 'totalCholesterol / hdl' },
+        { label: 'Triglyceride to HDL ratio', formulaCode: 'triglycerides / hdl' },
+      ],
+      formulaDescription:
+        'Friedewald LDL = total cholesterol - HDL - triglycerides / 5, all in mg/dL.',
+      tips: [
+        'The Friedewald equation is unreliable when triglycerides are 400 mg/dL or higher or when LDL is very low. Laboratories may use a direct assay or the Martin-Hopkins equation instead.',
+        'Non-HDL cholesterol is total cholesterol minus HDL. It captures all the atherogenic particles and does not need a triglyceride assumption.',
+        'These are arithmetic estimates from a lipid panel, not a risk assessment. Cardiovascular risk also depends on age, blood pressure, diabetes, smoking, and prior events.',
+      ],
+    },
+    content: {
+      intro:
+        'The LDL Cholesterol Calculator estimates LDL cholesterol from total cholesterol, HDL cholesterol, and triglycerides using the Friedewald equation. It also reports non-HDL cholesterol and two common ratios, with the limits of the estimate stated plainly.',
+      howItWorks:
+        'The Friedewald equation treats VLDL cholesterol as triglycerides divided by 5, then subtracts VLDL and HDL from total cholesterol. The result is an LDL estimate in mg/dL. Non-HDL is total minus HDL. The total-to-HDL ratio divides total cholesterol by HDL, and the triglyceride-to-HDL ratio divides triglycerides by HDL. All inputs must be in mg/dL.',
+      example:
+        'Total cholesterol 200, HDL 50, and triglycerides 150 give an estimated LDL of 200 - 50 - 30 = 120 mg/dL. Non-HDL is 150 mg/dL, the total-to-HDL ratio is 4.0, and the triglyceride-to-HDL ratio is 3.0.',
+      formulas: [
+        { label: 'Friedewald LDL', expression: 'total cholesterol - HDL - triglycerides / 5' },
+        { label: 'Non-HDL cholesterol', expression: 'total cholesterol - HDL' },
+        { label: 'Total to HDL ratio', expression: 'total cholesterol / HDL' },
+        { label: 'Triglyceride to HDL ratio', expression: 'triglycerides / HDL' },
+      ],
+      sources: [
+        {
+          label: 'National Cholesterol Education Program - ATP III Guidelines',
+          expression: 'Friedewald equation and lipid targets',
+          note: 'The source of the widely used LDL estimate and the lipid categories it was built around.',
+        },
+        {
+          label: 'American Heart Association - Cholesterol and lipid testing',
+          expression: 'Lipid panel interpretation',
+          note: 'Patient-facing guidance on cholesterol numbers and the need for clinician risk assessment.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Estimated LDL cholesterol',
+          explanation:
+            'A calculated value, not a direct measurement. It is the number most lipid panels report when triglycerides are in the valid range.',
+        },
+        {
+          resultLabel: 'Non-HDL cholesterol',
+          explanation:
+            'Total cholesterol minus HDL, representing cholesterol carried by LDL, VLDL, and other atherogenic particles. It remains meaningful when triglycerides are high.',
+        },
+        {
+          resultLabel: 'Triglyceride to HDL ratio',
+          explanation:
+            'A simple marker associated with insulin resistance and metabolic risk. It is not a diagnosis and should be interpreted with the rest of the panel.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'bmi-calculator', step: 'Check whether weight is a modifiable risk factor.' },
+        { slug: 'blood-pressure-calculator', step: 'Add blood pressure to the cardiovascular picture.' },
+        { slug: 'a1c-calculator', step: 'Review long-term glucose alongside the lipid panel.' },
+      ],
+      faqs: [
+        {
+          q: 'What is the Friedewald equation?',
+          a: 'LDL = total cholesterol - HDL - triglycerides / 5, with all values in mg/dL. It estimates VLDL cholesterol from triglycerides and subtracts it. The equation is inexpensive and widely used, but it becomes unreliable at high triglycerides and very low LDL.',
+        },
+        {
+          q: 'When is the LDL estimate unreliable?',
+          a: 'At triglycerides of 400 mg/dL or more, the VLDL estimate is poor and many laboratories will not report a Friedewald LDL. Very low LDL values, certain genetic lipid disorders, and non-fasting samples can also distort it. A direct LDL assay is more reliable in those cases.',
+        },
+        {
+          q: 'What is non-HDL cholesterol and why does it matter?',
+          a: 'It is total cholesterol minus HDL, so it includes LDL, VLDL, and remnant cholesterol. It does not depend on the triglyceride assumption and is a useful secondary target, especially when triglycerides are elevated. Many guidelines treat it as a co-primary target.',
+        },
+        {
+          q: 'Do I need to fast for a lipid panel?',
+          a: 'Not always. Many guidelines allow non-fasting lipid testing for most people, but triglycerides rise after a meal and the Friedewald estimate is sensitive to them. Follow the instructions from the laboratory and clinician ordering the test.',
+        },
+        {
+          q: 'Can this calculator tell me my heart disease risk?',
+          a: 'No. It only does the lipid arithmetic. A risk estimate needs age, sex, blood pressure, diabetes status, smoking, cholesterol values, and sometimes additional markers. Use a validated risk tool with a clinician rather than a single number.',
+        },
+      ],
+      related: ['bmi-calculator', 'blood-pressure-calculator', 'a1c-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.84 },
+  },
+  {
+    id: 'mean-arterial-pressure',
+    slug: 'mean-arterial-pressure-calculator',
+    name: 'Mean Arterial Pressure Calculator',
+    shortDesc: 'Calculate mean arterial pressure and pulse pressure from systolic and diastolic readings.',
+    tagline: 'The average pressure driving perfusion.',
+    category: 'health',
+    iconName: 'Activity',
+    badge: 'Vitals',
+    featured: false,
+    keywords: [
+      'mean arterial pressure calculator',
+      'map calculator',
+      'how to calculate map',
+      'pulse pressure calculator',
+      'blood pressure map',
+      'map formula',
+    ],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'systolic', label: 'Systolic pressure', type: 'number', defaultValue: 120, min: 40, max: 300, suffix: 'mmHg' },
+        { id: 'diastolic', label: 'Diastolic pressure', type: 'number', defaultValue: 80, min: 20, max: 200, suffix: 'mmHg' },
+      ],
+      results: [
+        {
+          label: 'Mean arterial pressure',
+          formulaCode: 'diastolic + (systolic - diastolic) / 3',
+          suffix: 'mmHg',
+          accent: true,
+        },
+        { label: 'Pulse pressure', formulaCode: 'systolic - diastolic', suffix: 'mmHg' },
+        { label: 'Diastolic share of MAP', formulaCode: 'diastolic / (diastolic + (systolic - diastolic) / 3) * 100', suffix: '%' },
+      ],
+      formulaDescription: 'MAP = diastolic + (systolic - diastolic) / 3.',
+      tips: [
+        'The one-third formula assumes a normal heart rate and waveform. At very high or low heart rates, the true mean pressure can differ.',
+        'A MAP of at least 65 mmHg is a common resuscitation target in sepsis, but targets are individualised by the clinical team.',
+        'Pulse pressure is systolic minus diastolic. A widening pulse pressure can reflect arterial stiffness and is worth discussing with a clinician.',
+      ],
+    },
+    content: {
+      intro:
+        'The Mean Arterial Pressure Calculator converts a systolic and diastolic reading into mean arterial pressure and pulse pressure. MAP approximates the average pressure in the arteries during one cardiac cycle and is used in critical care to judge organ perfusion.',
+      howItWorks:
+        'MAP is estimated as diastolic pressure plus one third of the difference between systolic and diastolic. The weighting reflects the fact that the heart spends about twice as long in diastole as in systole at a normal rate. Pulse pressure is the simple systolic minus diastolic difference, and the diastolic share shows how much of the mean comes from the resting phase.',
+      example:
+        'A reading of 120 over 80 gives a pulse pressure of 40 and a MAP of 80 + 40/3 = 93.3 mmHg. The diastolic share is 80 / 93.3 = 85.7 percent.',
+      formulas: [
+        { label: 'Mean arterial pressure', expression: 'diastolic + (systolic - diastolic) / 3' },
+        { label: 'Pulse pressure', expression: 'systolic - diastolic' },
+        { label: 'Diastolic share', expression: 'diastolic / MAP' },
+      ],
+      sources: [
+        {
+          label: 'American Heart Association - Blood pressure measurement',
+          expression: 'Systolic and diastolic pressure',
+          note: 'Guidance on measuring blood pressure accurately and interpreting the two numbers.',
+        },
+        {
+          label: 'Surviving Sepsis Campaign - Hemodynamic Support',
+          expression: 'MAP target in septic shock',
+          note: 'Recommends an initial MAP target of 65 mmHg, individualised to the patient.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Mean arterial pressure',
+          explanation:
+            'An estimate of average arterial pressure. It is not a replacement for a monitored arterial line in unstable patients.',
+        },
+        {
+          resultLabel: 'Pulse pressure',
+          explanation:
+            'The gap between systolic and diastolic. It reflects stroke volume and arterial compliance and changes with age and disease.',
+        },
+        {
+          resultLabel: 'Diastolic share of MAP',
+          explanation:
+            'How much of the mean comes from diastole. It is a quick check that the one-third approximation is behaving as expected.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'blood-pressure-calculator', step: 'Classify the reading against standard categories.' },
+        { slug: 'target-heart-rate-calculator', step: 'Plan aerobic training zones with a safer cardiovascular picture.' },
+        { slug: 'waist-to-height-ratio-calculator', step: 'Add a central adiposity measure to the risk picture.' },
+      ],
+      faqs: [
+        {
+          q: 'What is a normal mean arterial pressure?',
+          a: 'A resting MAP is commonly around 70-100 mmHg, but the normal range depends on age, activity, and clinical context. In critical care, 65 mmHg is a common lower target for organ perfusion. A single number does not define health or illness.',
+        },
+        {
+          q: 'Why is diastolic weighted more than systolic?',
+          a: 'The cardiac cycle spends roughly twice as long in diastole as in systole at a normal heart rate, so the mean is closer to diastolic. The one-third formula is an approximation; at fast or irregular heart rates the true mean can differ.',
+        },
+        {
+          q: 'Is MAP the same as blood pressure?',
+          a: 'No. Blood pressure is reported as two numbers, systolic and diastolic. MAP collapses them into an average pressure over the cycle. It is useful for perfusion assessment but does not replace either number or a full clinical evaluation.',
+        },
+        {
+          q: 'What does a wide pulse pressure mean?',
+          a: 'A wide gap can reflect arterial stiffness, a high stroke volume, or conditions such as aortic regurgitation. It is not diagnostic on its own. Age, medications, and other findings matter, so discuss a persistent change with a clinician.',
+        },
+        {
+          q: 'Can I use this for exercise or altitude planning?',
+          a: 'It is arithmetic, not a fitness or altitude model. Exercise and altitude change cardiac output and vascular resistance in ways the formula does not capture. Use it to understand a reading, not to set a training or acclimatisation target.',
+        },
+      ],
+      related: ['blood-pressure-calculator', 'target-heart-rate-calculator', 'waist-to-height-ratio-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'pack-years',
+    slug: 'pack-years-calculator',
+    name: 'Pack Years Calculator',
+    shortDesc: 'Convert cigarettes per day and years smoked into pack-years and total cigarettes.',
+    tagline: 'The smoking history number clinicians ask for.',
+    category: 'health',
+    iconName: 'Flame',
+    badge: 'Respiratory',
+    featured: false,
+    keywords: [
+      'pack years calculator',
+      'pack year smoking calculator',
+      'how to calculate pack years',
+      'smoking history calculator',
+      'lung cancer screening pack years',
+      'cigarette pack years',
+    ],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'cigarettesPerDay', label: 'Cigarettes per day', type: 'number', defaultValue: 20, min: 0, max: 100, step: 1 },
+        { id: 'yearsSmoked', label: 'Years smoked', type: 'number', defaultValue: 30, min: 0, max: 100, step: 0.5 },
+      ],
+      results: [
+        {
+          label: 'Pack-years',
+          formulaCode: 'cigarettesPerDay / 20 * yearsSmoked',
+          accent: true,
+        },
+        {
+          label: 'Total cigarettes',
+          formulaCode: 'cigarettesPerDay * 365 * yearsSmoked',
+        },
+        {
+          label: 'Packs per year',
+          formulaCode: 'cigarettesPerDay / 20 * 365',
+        },
+        {
+          label: 'Cigarettes per year',
+          formulaCode: 'cigarettesPerDay * 365',
+        },
+      ],
+      formulaDescription:
+        'Pack-years = (cigarettes per day / 20) x years smoked.',
+      tips: [
+        'A standard pack is 20 cigarettes. If you smoked 10 a day for 20 years, that is 10 pack-years, the same as 20 a day for 10 years.',
+        'For a history with different intensities, calculate each period separately and add the pack-years.',
+        'Pack-years summarise dose, not risk on their own. Current smoking, age, and other exposures still matter for screening and clinical decisions.',
+      ],
+    },
+    content: {
+      intro:
+        'The Pack Years Calculator converts cigarettes per day and years smoked into pack-years, the standard summary of cumulative smoking exposure. It also reports total cigarettes and packs per year so the history is easy to check.',
+      howItWorks:
+        'One pack is 20 cigarettes, so cigarettes per day divided by 20 gives packs per day. Multiplying by years smoked gives pack-years. For example, 20 a day for 30 years is one pack a day for 30 years, or 30 pack-years. Total cigarettes multiplies daily use by 365 and then by years.',
+      example:
+        'Smoking 20 cigarettes a day for 30 years is 1 pack per day x 30 years = 30 pack-years. That is 7,300 cigarettes a year and 219,000 cigarettes in total.',
+      formulas: [
+        { label: 'Packs per day', expression: 'cigarettes per day / 20' },
+        { label: 'Pack-years', expression: 'packs per day x years smoked' },
+        { label: 'Total cigarettes', expression: 'cigarettes per day x 365 x years smoked' },
+      ],
+      sources: [
+        {
+          label: 'US Preventive Services Task Force - Lung Cancer Screening Recommendation',
+          expression: 'Pack-year eligibility criteria',
+          note: 'The 2021 recommendation uses a 20 pack-year history, age 50-80, and current smoking or quitting within 15 years.',
+        },
+        {
+          label: 'US CDC - Smoking and Tobacco Use',
+          expression: 'Health effects of cigarette smoking',
+          note: 'Background on cumulative exposure and cessation benefits.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Pack-years',
+          explanation:
+            'Cumulative exposure in pack-years. It combines intensity and duration into one number but does not capture every pattern of smoking.',
+        },
+        {
+          resultLabel: 'Total cigarettes',
+          explanation:
+            'An arithmetic total based on daily use and years. It is an estimate, because daily consumption and quit periods vary.',
+        },
+        {
+          resultLabel: 'Packs per year',
+          explanation:
+            'How many packs the daily habit amounts to over a year. Useful for comparing the cost of smoking with cessation support.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'alcohol-units-calculator', step: 'Review another common cumulative exposure.' },
+        { slug: 'bmi-calculator', step: 'Add body mass index to the health picture.' },
+        { slug: 'blood-pressure-calculator', step: 'Check blood pressure, another cardiovascular risk factor.' },
+      ],
+      faqs: [
+        {
+          q: 'How do I calculate pack-years if I smoked different amounts?',
+          a: 'Split the history into periods with a steady amount. For each period, divide cigarettes per day by 20 and multiply by the years in that period, then add the results. For example, 10 a day for 10 years plus 20 a day for 10 years is 5 + 10 = 15 pack-years.',
+        },
+        {
+          q: 'Is one pack a day for 20 years the same as two packs a day for 10 years?',
+          a: 'Both are 20 pack-years, but the exposure pattern is different. Pack-years is a useful summary for eligibility and risk conversations, not a perfect biological dose. Tell your clinician about the pattern as well as the total.',
+        },
+        {
+          q: 'Does quitting reset pack-years?',
+          a: 'No. Pack-years records past exposure and does not go down after quitting. The risk of many smoking-related diseases falls after cessation, but the cumulative history remains relevant to screening eligibility and clinical assessment.',
+        },
+        {
+          q: 'Do cigars, pipes, or vaping count?',
+          a: 'Pack-years is defined for cigarettes. Cigar and pipe exposure is usually recorded differently, and vaping has no established pack-year equivalent. Do not convert them silently; describe the actual product and amount to a clinician.',
+        },
+        {
+          q: 'Should I be screened for lung cancer?',
+          a: 'Screening eligibility depends on age, pack-years, current smoking status, and years since quitting, along with other risk factors. The USPSTF recommends annual low-dose CT screening for adults aged 50-80 with at least 20 pack-years who currently smoke or quit within 15 years. Discuss the decision with a clinician.',
+        },
+      ],
+      related: ['alcohol-units-calculator', 'bmi-calculator', 'blood-pressure-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82 },
   }
 ];

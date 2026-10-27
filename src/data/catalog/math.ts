@@ -1273,4 +1273,1163 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
     },
     seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
   },
+  {
+    id: 'fraction',
+    slug: 'fraction-calculator',
+    name: 'Fraction Calculator',
+    shortDesc: 'Add, subtract, multiply, or divide fractions and simplify the result.',
+    tagline: 'Work through fraction arithmetic with clear steps.',
+    category: 'math',
+    iconName: 'Divide',
+    keywords: ['fraction calculator', 'adding fractions', 'subtracting fractions', 'multiplying fractions', 'dividing fractions', 'simplify fractions'],
+    kind: 'custom',
+    componentId: 'FractionCalculator',
+    content: {
+      intro: 'The Fraction Calculator performs addition, subtraction, multiplication, and division on two fractions. It reduces the answer to simplest form and shows the arithmetic used to reach it.',
+      howItWorks: 'For addition and subtraction, the calculator finds a common denominator. For multiplication it multiplies numerators and denominators; for division it multiplies by the reciprocal. It then divides both parts by their greatest common divisor.',
+      example: 'To add 1/2 and 1/3, use a common denominator of 6: (1 × 3 + 1 × 2) / (2 × 3) = 5/6.',
+      formulas: [
+        { label: 'Addition', expression: 'a/b + c/d = (ad + bc) / bd' },
+        { label: 'Multiplication', expression: 'a/b × c/d = ac / bd' },
+        { label: 'Division', expression: 'a/b ÷ c/d = ad / bc, where c ≠ 0' },
+      ],
+      resultExplanations: [
+        { resultLabel: 'Simplified Fraction', explanation: 'The exact result after common factors are removed from numerator and denominator.' },
+        { resultLabel: 'Decimal', explanation: 'The decimal equivalent, rounded for display only; the fraction remains the exact result.' },
+      ],
+      workflowLinks: [
+        { slug: 'fraction-to-percent-calculator', step: 'Convert a fraction into its percentage equivalent.' },
+        { slug: 'ratio-proportion-calculator', step: 'Use ratios to compare and scale quantities.' },
+      ],
+      faqs: [
+        { q: 'How do you add fractions with different denominators?', a: 'Convert both fractions to a shared denominator, add the numerators, then simplify the resulting fraction.' },
+        { q: 'How is a fraction simplified?', a: 'Divide the numerator and denominator by their greatest common divisor. The value stays the same while the numbers become smaller.' },
+        { q: 'Can I enter a negative fraction?', a: 'Yes. Negative numerators or denominators are supported, and the final sign is normalized to the numerator.' },
+        { q: 'Why can a calculation be rejected?', a: 'Denominators cannot be zero, division by zero is undefined, and very large intermediate values may exceed safe exact integer arithmetic.' },
+      ],
+      related: ['fraction-to-percent-calculator', 'ratio-proportion-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'graphing',
+    slug: 'graphing-calculator',
+    name: 'Graphing Calculator',
+    shortDesc: 'Plot and compare explicit functions with an interactive coordinate plane.',
+    tagline: 'Explore functions, ranges, and values on a responsive graph.',
+    category: 'math',
+    iconName: 'TrendingUp',
+    badge: 'New',
+    featured: true,
+    keywords: ['graphing calculator', 'function graph', 'plot a function', 'graph y equals x squared', 'interactive graph'],
+    kind: 'custom',
+    componentId: 'GraphingCalculator',
+    content: {
+      intro:
+        'Plot up to eight explicit functions of x on an interactive coordinate plane. Pan and zoom the view, adjust the visible ranges, inspect coordinates, evaluate functions at an x-value, and generate a table of values without sending expressions to a server.',
+      howItWorks:
+        'Each expression is parsed locally using standard arithmetic precedence and sampled across the visible x-range. Undefined points are left as gaps. The parameter a can be adjusted with a slider; trigonometric functions use the selected radians or degrees mode. Each expression is limited to 160 characters and one hundred tokens.',
+      example:
+        'Enter y = 2x + 1 and y = x^2 to compare a straight line with a parabola. At x = 2, the line returns 5 and the parabola returns 4; use the value table to compare nearby inputs.',
+      formulas: [
+        { label: 'Line example', expression: 'y = 2x + 1' },
+        { label: 'Quadratic example', expression: 'y = x^2' },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Graph',
+          explanation:
+            'A sampled visual plot of each valid explicit y = f(x) expression within the selected viewing window.',
+        },
+        {
+          resultLabel: 'Table values',
+          explanation:
+            'Numerical function outputs at the selected x-values. Undefined values are identified rather than silently replaced.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'quadratic-formula-calculator', step: 'Solve a quadratic equation when you need its roots.' },
+        { slug: 'slope-calculator', step: 'Calculate slope from two coordinate points.' },
+        { slug: 'scientific-calculator', step: 'Evaluate scientific expressions outside the graphing view.' },
+      ],
+      faqs: [
+        {
+          q: 'What expressions can I graph?',
+          a: 'Plot up to eight explicit functions of x. Use arithmetic, powers, parentheses, pi, e, the parameter a, and the listed trigonometric and common math functions. Expressions are limited in length and complexity so evaluation stays responsive.',
+        },
+        {
+          q: 'Does this calculate derivatives or integrals?',
+          a: 'No. It plots sampled explicit functions and evaluates numerical values; it does not provide symbolic algebra, derivatives, integrals, implicit equations, inequalities, regression, or equation solving.',
+        },
+        {
+          q: 'Are my expressions sent to a server?',
+          a: 'No. Parsing, sampling, plotting, and evaluation happen in this browser session; the tool does not call a graphing service.',
+        },
+      ],
+      related: ['quadratic-formula-calculator', 'slope-calculator', 'scientific-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+  },
+  {
+    id: 'z-score',
+    slug: 'z-score-calculator',
+    name: 'Z-Score Calculator',
+    shortDesc: 'Standardize an observation using its mean and standard deviation.',
+    tagline: 'See how far a value sits from the mean in standard-deviation units.',
+    category: 'math',
+    iconName: 'Sigma',
+    keywords: ['z score calculator', 'z-score formula', 'calculate z score', 'standard score'],
+    kind: 'custom',
+    componentId: 'ZScoreCalculator',
+    content: {
+      intro:
+        'Calculate a z-score from an observed value, a mean, and a standard deviation. The result expresses the observation’s signed distance from the mean in standard-deviation units.',
+      howItWorks:
+        'Subtract the mean from the observed value, then divide by the standard deviation: z = (x − μ) / σ. A positive result is above the mean, a negative result is below it, and zero is exactly at the mean. The standard deviation must be greater than zero.',
+      example:
+        'If a score is 85, the mean is 80, and the standard deviation is 5, then z = (85 − 80) / 5 = 1. The score is one standard deviation above the mean.',
+      formulas: [{ label: 'Z-score', expression: 'z = (x − μ) / σ', note: 'x is the observation, μ the mean, and σ the standard deviation.' }],
+      resultExplanations: [{
+        resultLabel: 'Z-score',
+        explanation: 'The signed number of standard deviations between the observation and the mean.',
+      }],
+      workflowLinks: [
+        { slug: 'standard-deviation-calculator', step: 'Calculate a standard deviation from a dataset when it is not already known.' },
+        { slug: 'graphing-calculator', step: 'Explore an explicit function visually when you have one to plot.' },
+      ],
+      faqs: [
+        { q: 'What does a z-score of 1 mean?', a: 'It means the observation is one standard deviation above the mean. A z-score of −2 means it is two standard deviations below the mean.' },
+        { q: 'Can a z-score be negative?', a: 'Yes. Values below the mean produce negative z-scores; values above the mean produce positive z-scores.' },
+        { q: 'Does a z-score tell me a probability?', a: 'Not by itself. Converting a z-score to a probability requires an appropriate distribution model; this calculator only standardizes the value.' },
+      ],
+      related: ['standard-deviation-calculator', 'graphing-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+  },
+  {
+    id: 'solid-volume',
+    slug: 'solid-volume-calculator',
+    name: 'Volume Calculator',
+    shortDesc: 'Calculate the volume of a cube, prism, sphere, cylinder, or cone.',
+    tagline: 'Use clear formulas for five common three-dimensional solids.',
+    category: 'math',
+    iconName: 'Box',
+    keywords: ['volume calculator', 'solid volume calculator', 'cylinder volume calculator', 'sphere volume calculator', 'cone volume calculator'],
+    kind: 'custom',
+    componentId: 'SolidVolumeCalculator',
+    content: {
+      intro:
+        'Find the geometric volume of a cube, rectangular prism, sphere, cylinder, or cone. Enter dimensions in one selected linear unit; the answer is expressed in that unit cubed.',
+      howItWorks:
+        'Choose a solid and enter its required dimensions. The calculator applies the corresponding geometric formula: for example, a cylinder uses V = πr²h and a cone uses one-third of that cylinder volume. It does not estimate material quantities or account for waste.',
+      example:
+        'A cylinder with radius 2 cm and height 5 cm has volume π × 2² × 5 = 20π ≈ 62.83 cm³. The displayed unit is cubic centimetres because the input dimensions are in centimetres.',
+      formulas: [
+        { label: 'Cube', expression: 'V = s³' },
+        { label: 'Rectangular prism', expression: 'V = lwh' },
+        { label: 'Sphere', expression: 'V = 4πr³ / 3' },
+        { label: 'Cylinder', expression: 'V = πr²h' },
+        { label: 'Cone', expression: 'V = πr²h / 3' },
+      ],
+      resultExplanations: [{
+        resultLabel: 'Volume',
+        explanation: 'The three-dimensional space inside the selected ideal geometric solid, expressed in cubic units.',
+      }],
+      workflowLinks: [
+        { slug: 'scientific-calculator', step: 'Evaluate a separate formula when working through a geometry problem.' },
+        { slug: 'graphing-calculator', step: 'Plot explicit functions that describe a two-dimensional cross-section.' },
+      ],
+      faqs: [
+        { q: 'What is the difference between volume and surface area?', a: 'Volume measures the three-dimensional space inside a solid and uses cubic units. Surface area measures the total area of its outside faces or curved surface and uses square units.' },
+        { q: 'Can I mix centimetres and metres for dimensions?', a: 'No. Convert every dimension to the same linear unit first. The result is displayed in the selected unit cubed.' },
+        { q: 'Does this estimate gravel, concrete, or material needed?', a: 'No. It calculates ideal geometric volume only. Construction estimates may require shape-specific adjustments, depth, compaction, waste, and product coverage.' },
+      ],
+      related: ['scientific-calculator', 'graphing-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+  },
+  {
+    id: 'density',
+    slug: 'density-calculator',
+    name: 'Density Calculator',
+    shortDesc: 'Calculate material density from mass in kilograms and volume in liters, with SI conversions.',
+    tagline: 'Find density, kilograms per cubic meter, and grams per cubic centimeter.',
+    category: 'math',
+    iconName: 'Box',
+    keywords: ['density calculator', 'mass volume density', 'how to calculate density', 'density formula', 'kg per cubic meter', 'grams per cubic centimeter'],
+    kind: 'custom',
+    componentId: 'DensityCalculator',
+    content: {
+      intro: 'The Density Calculator calculates physical density from mass in kilograms and volume in liters. It reports standard SI density in kilograms per cubic meter (kg/m³) and laboratory density in grams per cubic centimeter (g/cm³).',
+      howItWorks: 'Density is defined as mass divided by volume (ρ = m / V). One liter equals 0.001 cubic meters, so dividing mass in kg by volume in liters and multiplying by 1,000 gives kg/m³. Dividing kg/m³ by 1,000 gives equivalent g/cm³.',
+      example: 'A sample with mass 5 kg occupying 2 liters of volume has a density of 2,500 kg/m³ (or 2.50 g/cm³), which is roughly comparable to standard glass or aluminum.',
+      formulas: [
+        { label: 'Density Formula', expression: 'ρ = Mass / Volume' },
+        { label: 'SI Units Conversion', expression: '1 kg/L = 1,000 kg/m³ = 1 g/cm³' },
+      ],
+      resultExplanations: [
+        { resultLabel: 'Kilograms per cubic meter', explanation: 'The standard International System of Units (SI) measure for volumetric mass density.' },
+        { resultLabel: 'Grams per cubic centimeter', explanation: 'Commonly used in chemistry and materials science; water at 4°C has a density of 1.0 g/cm³.' },
+      ],
+      workflowLinks: [
+        { slug: 'solid-volume-calculator', step: 'Calculate geometric volume for spheres, cylinders, or prisms first.' },
+        { slug: 'scientific-calculator', step: 'Evaluate multi-step physical formulas and scientific notation.' },
+      ],
+      faqs: [
+        { q: 'What is the density of pure water?', a: 'Pure liquid water at 4°C has a density of 1,000 kg/m³ (1.0 g/cm³ or 1.0 kg/L), serving as the standard reference for specific gravity.' },
+        { q: 'Will an object float or sink in water?', a: 'If an object average density is less than 1.0 g/cm³ (1,000 kg/m³), it will float in water. If its density is greater, it will sink.' },
+        { q: 'How does temperature affect material density?', a: 'Most materials expand when heated, increasing volume and slightly decreasing density. Gases are especially sensitive to temperature and pressure changes.' },
+      ],
+      related: ['solid-volume-calculator', 'scientific-calculator', 'weight-converter'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+  },
+  {
+    id: 'aps-score',
+    slug: 'aps-score-calculator',
+    name: 'APS Score Calculator',
+    shortDesc: 'Convert National Senior Certificate percentages into admission points and check the statutory pass level.',
+    tagline: 'Turn seven subject marks into an admission point score.',
+    category: 'math',
+    iconName: 'GraduationCap',
+    badge: 'Admissions',
+    featured: true,
+    keywords: [
+      'aps score calculator',
+      'aps calculator',
+      'admission point score',
+      'aps score for university',
+      'nsc aps',
+      'university admission points',
+      'aps points calculator',
+    ],
+    kind: 'custom',
+    componentId: 'ApsCalculator',
+    content: {
+      intro:
+        'The APS Score Calculator converts National Senior Certificate (NSC) subject percentages into the seven-point admission scale used by South African universities and colleges. It totals your points, shows the level earned in each subject, and checks the statutory minimum for a Bachelor pass, Diploma, or Higher Certificate.',
+      howItWorks:
+        'Each final mark maps to an NSC achievement level: 80% or more is level 7, 70–79% level 6, 60–69% level 5, 50–59% level 4, 40–49% level 3, 30–39% level 2, and below 30% level 1. Universities total the levels of six subjects, usually excluding Life Orientation or counting it at half weight. The statutory pass check requires a home-language pass plus enough subjects at 50% and 30%.',
+      example:
+        'Marks of 75%, 65%, 82%, 70%, 68%, and 74% give levels 6, 5, 7, 6, 5, and 6 — 35 points with Life Orientation excluded, or 42 with a level 7 in Life Orientation counted in full. That total meets the Bachelor pass minimum, but the programme-specific APS for a degree may still be higher.',
+      formulas: [
+        {
+          label: 'NSC achievement level',
+          expression: '≥80% = 7, ≥70% = 6, ≥60% = 5, ≥50% = 4, ≥40% = 3, ≥30% = 2, else 1',
+        },
+        {
+          label: 'APS total',
+          expression: 'APS = Σ level of the six counted subjects (+ Life Orientation if counted)',
+        },
+        {
+          label: 'Bachelor pass minimum',
+          expression: 'Home language ≥40%, four subjects ≥50%, two other subjects ≥30%',
+          note: 'Statutory minimum only; universities set higher programme requirements.',
+        },
+      ],
+      sources: [
+        {
+          label: 'Department of Basic Education — National Senior Certificate pass requirements',
+          expression: 'Bachelor: 4 subjects at 50%+, home language 40%+, 2 subjects at 30%+',
+          note: 'The statutory pass levels are set nationally; APS scoring is set by each institution.',
+        },
+        {
+          label: 'Universities South Africa — admission requirements',
+          expression: 'Institutions publish programme-specific APS tables',
+          note: 'Life Orientation weighting and required subjects differ by university and faculty.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'APS total',
+          explanation:
+            'The sum of your achievement levels across the counted subjects. Institutions compare this total with the minimum for each programme.',
+        },
+        {
+          resultLabel: 'Qualification pass',
+          explanation:
+            'Whether your subject pattern meets the national minimum for degree, diploma, or higher-certificate study — separate from a university\'s APS cut-off.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'gpa-calculator', step: 'Convert marks into a grade point average for applications abroad.' },
+        { slug: 'test-score-percentage-calculator', step: 'Check the percentage behind each subject mark.' },
+      ],
+      faqs: [
+        {
+          q: 'How is an APS score calculated?',
+          a: 'Convert each final subject percentage to an NSC level from 1 to 7, then add the levels of the six subjects the university counts. Most institutions exclude Life Orientation or count it at half weight, so the same marks can produce different totals at different universities.',
+        },
+        {
+          q: 'What APS score do I need for university?',
+          a: 'There is no single number. Each programme publishes its own minimum — often 30–35 for a Bachelor of Arts or Commerce, and higher for engineering, health sciences, and law. Check the prospectus for the year you are applying.',
+        },
+        {
+          q: 'Do all universities count Life Orientation?',
+          a: 'No. Some exclude it entirely, some count half points, and a few count it in full. This calculator lets you switch between those rules so you can compare your score under each.',
+        },
+        {
+          q: 'Does meeting the APS guarantee a place?',
+          a: 'No. Admission also depends on subject requirements, available places, and selection tests or portfolios for some programmes. The APS is a threshold, not a promise.',
+        },
+      ],
+      related: ['gpa-calculator', 'test-score-percentage-calculator', 'percentage-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+  },
+  {
+    id: 'confidence-interval',
+    slug: 'confidence-interval-calculator',
+    name: 'Confidence Interval Calculator',
+    shortDesc: 'Find the confidence interval for a sample mean, with margin of error, standard error, and critical value.',
+    tagline: 'Put a defensible range around a sample mean.',
+    category: 'math',
+    iconName: 'BarChart3',
+    badge: 'Statistics',
+    keywords: [
+      'confidence interval calculator',
+      'confidence interval',
+      'margin of error calculator',
+      'standard error calculator',
+      '95 confidence interval',
+      'ci calculator',
+    ],
+    kind: 'custom',
+    componentId: 'ConfidenceIntervalCalculator',
+    content: {
+      intro:
+        'The Confidence Interval Calculator turns a sample mean, standard deviation, and sample size into an interval estimate for the population mean. It reports the margin of error, standard error, and critical value at 90%, 95%, 98%, or 99% confidence.',
+      howItWorks:
+        'The standard error is the sample standard deviation divided by the square root of the sample size. Multiply it by the critical value for your confidence level — 1.96 at 95% — to get the margin of error, then add and subtract that from the sample mean. A 95% interval means that 95% of intervals built this way, across repeated samples, would contain the true mean.',
+      example:
+        'A sample of 36 observations with a mean of 100 and a standard deviation of 15 has a standard error of 2.5. At 95% confidence the margin of error is 1.96 × 2.5 = 4.90, so the interval runs from 95.1 to 104.9.',
+      formulas: [
+        {
+          label: 'Standard error',
+          expression: 'SE = s / √n',
+        },
+        {
+          label: 'Margin of error',
+          expression: 'ME = z × SE',
+          note: 'z = 1.645 (90%), 1.960 (95%), 2.326 (98%), 2.576 (99%).',
+        },
+        {
+          label: 'Confidence interval',
+          expression: 'CI = x̄ ± ME',
+        },
+      ],
+      sources: [
+        {
+          label: 'NIST/SEMATECH e-Handbook of Statistical Methods',
+          expression: 'CI = x̄ ± z(1−α/2) · s/√n',
+          note: 'The handbook documents both the normal and t-distribution forms of the interval.',
+        },
+        {
+          label: 'Cochran, W. G. (1977), Sampling Techniques, 3rd ed.',
+          expression: 'Standard error and precision of a sample mean',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Confidence interval',
+          explanation:
+            'The range you would report as the plausible values of the population mean at the chosen confidence level.',
+        },
+        {
+          resultLabel: 'Margin of error',
+          explanation:
+            'Half the width of the interval — how far the estimate could reasonably be from the true mean.',
+        },
+        {
+          resultLabel: 'Standard error',
+          explanation:
+            'The typical distance between a sample mean and the population mean; it shrinks as the sample grows.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'standard-deviation-calculator', step: 'Get the sample standard deviation this interval needs.' },
+        { slug: 'sample-size-calculator', step: 'Plan the sample size for a target margin of error.' },
+      ],
+      faqs: [
+        {
+          q: 'What does a 95% confidence interval actually mean?',
+          a: 'If you repeated the study many times, about 95% of the intervals you built would contain the true population mean. It is not a 95% probability that this particular interval contains it.',
+        },
+        {
+          q: 'Should I use z or t?',
+          a: 'Use t when the population standard deviation is unknown and the sample is small. This calculator uses the normal (z) approximation, which is close to t for samples above roughly 30; for smaller samples a t-based interval is wider and safer.',
+        },
+        {
+          q: 'How do I narrow a confidence interval?',
+          a: 'Increase the sample size or accept a lower confidence level. Reducing random measurement error also helps, because it lowers the standard deviation.',
+        },
+        {
+          q: 'Can I use this for a proportion or a survey percentage?',
+          a: 'This tool is for a continuous mean. For a proportion such as a poll result, use the proportion confidence interval formula, which depends on p(1−p) rather than a standard deviation.',
+        },
+      ],
+      related: ['standard-deviation-calculator', 'z-score-calculator', 'sample-size-calculator', 'mean-median-mode-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'sample-size',
+    slug: 'sample-size-calculator',
+    name: 'Sample Size Calculator',
+    shortDesc: 'Calculate the survey or study sample size needed for a target confidence level and margin of error.',
+    tagline: 'How many responses your study actually needs.',
+    category: 'math',
+    iconName: 'Table',
+    badge: 'Statistics',
+    keywords: [
+      'sample size calculator',
+      'survey sample size',
+      'how many responses do i need',
+      'cochran sample size',
+      'margin of error calculator',
+      'sample size formula',
+    ],
+    kind: 'custom',
+    componentId: 'SampleSizeCalculator',
+    content: {
+      intro:
+        'The Sample Size Calculator estimates how many completed responses a survey or study needs to reach a chosen margin of error at a chosen confidence level. It uses Cochran\'s formula and applies the finite population correction when you know the size of the population.',
+      howItWorks:
+        'Cochran\'s formula multiplies the squared critical value by the expected proportion and its complement, then divides by the squared margin of error. A 95% confidence level and a 5% margin of error with a 50% expected proportion gives about 385 responses. If the population is small, the finite population correction reduces that number.',
+      example:
+        'For 95% confidence, a ±5% margin of error, and a 50% expected proportion, the unadjusted requirement is 385 responses. In a population of 1,000 the finite population correction lowers it to 278; in a population of 100,000 it stays effectively at 385.',
+      formulas: [
+        {
+          label: 'Cochran\'s formula',
+          expression: 'n₀ = z² × p(1 − p) / e²',
+          note: 'p = 0.5 maximises the required sample when no prior estimate exists.',
+        },
+        {
+          label: 'Finite population correction',
+          expression: 'n = n₀ / (1 + (n₀ − 1) / N)',
+        },
+      ],
+      sources: [
+        {
+          label: 'Cochran, W. G. (1977), Sampling Techniques, 3rd ed.',
+          expression: 'n₀ = z²pq/e²',
+          note: 'The standard reference for the sample size formula and its finite population correction.',
+        },
+        {
+          label: 'NIST/SEMATECH e-Handbook of Statistical Methods',
+          expression: 'Sample size for a specified margin of error',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Required sample',
+          explanation:
+            'Completed responses needed. This is not the number of people to invite — divide by your expected response rate to get that.',
+        },
+        {
+          resultLabel: 'Finite population correction',
+          explanation:
+            'A reduction applied when the population is small relative to the sample, because sampling without replacement is more precise.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'confidence-interval-calculator', step: 'Turn the result into an interval once the data arrive.' },
+        { slug: 'percentage-calculator', step: 'Convert raw response counts into percentages.' },
+      ],
+      faqs: [
+        {
+          q: 'What sample size do I need for a survey?',
+          a: 'It depends on the precision you need. For a ±5% margin at 95% confidence, budget about 385 responses regardless of population size; for ±3%, about 1,067. Smaller margins need disproportionately larger samples.',
+        },
+        {
+          q: 'Why does a 50% proportion need the largest sample?',
+          a: 'The term p(1−p) is largest at p = 0.5. If you expect a very one-sided result, the required sample is smaller — but using 50% is the safe choice when you have no prior estimate.',
+        },
+        {
+          q: 'Should I allow for people who do not respond?',
+          a: 'Yes. The figure here is completed responses. If you expect a 20% response rate, invite roughly five times as many people, and monitor whether non-response is biased.',
+        },
+        {
+          q: 'Does a big population always need a bigger sample?',
+          a: 'Not much. Beyond a few thousand, population size barely changes the requirement; the finite population correction matters mainly for small, closed populations such as a single company or school.',
+        },
+      ],
+      related: ['confidence-interval-calculator', 'z-score-calculator', 'percentage-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'variance',
+    slug: 'variance-calculator',
+    name: 'Variance Calculator',
+    shortDesc: 'Calculate sample and population variance, standard deviation, mean, and range from a list of values.',
+    tagline: 'See how spread out your data really is.',
+    category: 'math',
+    iconName: 'BarChart3',
+    badge: 'Statistics',
+    featured: true,
+    keywords: [
+      'variance calculator',
+      'sample variance',
+      'population variance',
+      'variance formula',
+      'standard deviation calculator',
+      'calculate variance',
+    ],
+    kind: 'custom',
+    componentId: 'VarianceCalculator',
+    content: {
+      intro:
+        'The Variance Calculator measures how far a set of numbers spreads around its mean. Paste your data and it returns both sample and population variance, the matching standard deviations, the mean, count, and range.',
+      howItWorks:
+        'Variance is the average squared distance from the mean. For a sample, divide the sum of squared deviations by n − 1 (Bessel\u2019s correction) so the estimate is unbiased for the wider population. For a complete population, divide by n. Standard deviation is the square root of variance, which returns the spread to the original units.',
+      example:
+        'For 12, 15, 18, 22, 25, and 31 the mean is 20.5. The squared deviations sum to 241.5, so the population variance is 241.5 / 6 = 40.25 and the sample variance is 241.5 / 5 = 48.3. The sample standard deviation is about 6.95.',
+      formulas: [
+        {
+          label: 'Sample variance',
+          expression: 's² = Σ(xᵢ − x̄)² / (n − 1)',
+          note: 'Use when the data are a sample drawn from a larger population.',
+        },
+        {
+          label: 'Population variance',
+          expression: 'σ² = Σ(xᵢ − μ)² / N',
+          note: 'Use only when the list contains the entire population.',
+        },
+        {
+          label: 'Standard deviation',
+          expression: 's = √s²',
+        },
+      ],
+      sources: [
+        {
+          label: 'NIST/SEMATECH e-Handbook of Statistical Methods',
+          expression: 's² = Σ(xᵢ − x̄)² / (n − 1)',
+          note: 'Section 1.3.5.6 documents the sample variance and the reason for the n − 1 denominator.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Sample variance',
+          explanation:
+            'The usual choice for experimental or survey data: it corrects for the fact that a sample mean sits closer to its own data than the true population mean does.',
+        },
+        {
+          resultLabel: 'Population variance',
+          explanation:
+            'The variance of the complete list you entered, without the n − 1 correction. It is smaller than the sample variance by the factor (n − 1)/n.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'standard-deviation-calculator', step: 'Convert the variance into the original units.' },
+        { slug: 'mean-median-mode-calculator', step: 'Check whether the centre is being pulled by outliers.' },
+        { slug: 'percentile-calculator', step: 'Describe the spread without assuming a distribution.' },
+      ],
+      faqs: [
+        {
+          q: 'Should I use sample or population variance?',
+          a: 'Use sample variance whenever your numbers are a subset of a larger group you want to describe — which covers most experiments and surveys. Use population variance only when the list is the entire group, such as every score in one class.',
+        },
+        {
+          q: 'Why does variance use squared differences?',
+          a: 'Squaring removes the sign, so distances above and below the mean cannot cancel out. It also makes large deviations count disproportionately more, which is why variance is sensitive to outliers.',
+        },
+        {
+          q: 'What is the difference between variance and standard deviation?',
+          a: 'Standard deviation is the square root of variance. Variance is in squared units (for example, squared centimetres), while standard deviation is back in the original units and is easier to interpret.',
+        },
+        {
+          q: 'Can variance be negative?',
+          a: 'No. Squared deviations are never negative, so variance is zero or positive. A variance of zero means every value is identical.',
+        },
+      ],
+      related: ['standard-deviation-calculator', 'mean-median-mode-calculator', 'percentile-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+  },
+  {
+    id: 'percentile',
+    slug: 'percentile-calculator',
+    name: 'Percentile Calculator',
+    shortDesc: 'Find the value at any percentile, or the percentile rank of a specific value, from a data set.',
+    tagline: 'Where does one value sit in the distribution?',
+    category: 'math',
+    iconName: 'Target',
+    badge: 'Statistics',
+    keywords: [
+      'percentile calculator',
+      'percentile rank calculator',
+      '90th percentile',
+      'percentile formula',
+      'quartile calculator',
+      'percentile rank',
+    ],
+    kind: 'custom',
+    componentId: 'PercentileCalculator',
+    content: {
+      intro:
+        'The Percentile Calculator answers two related questions: which value sits at a given percentile, and what percentile a particular value occupies. It sorts the data, interpolates between observations, and splits ties evenly.',
+      howItWorks:
+        'Percentiles divide a sorted data set into 100 equal parts. This tool uses linear interpolation between the two nearest observations — the same convention as Excel\u2019s PERCENTILE.INC and NumPy\u2019s default \u201Clinear\u201D method. Percentile rank works the other way: count the values below the target, add half of any exact ties, and divide by the number of observations.',
+      example:
+        'For 15, 20, 35, 40, 50, 62, 71, and 80, the 90th percentile has rank (8 − 1) × 0.9 = 6.3, which interpolates to 71 + 0.3 × (80 − 71) = 73.7. The value 62 has five values below it and one tie, so its percentile rank is (5 + 0.5) / 8 = 68.75%.',
+      formulas: [
+        {
+          label: 'Percentile (linear interpolation)',
+          expression: 'rank = (n − 1) × p / 100; value = x⌊rank⌋ + (rank − ⌊rank⌋)(x⌈rank⌉ − x⌊rank⌋)',
+        },
+        {
+          label: 'Percentile rank',
+          expression: 'rank% = (values below + ties / 2) / n × 100',
+        },
+      ],
+      sources: [
+        {
+          label: 'NIST/SEMATECH e-Handbook of Statistical Methods',
+          expression: 'Percentile and quantile definitions',
+          note: 'NIST notes that several percentile conventions exist and that the chosen definition should be stated with the result.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Percentile value',
+          explanation:
+            'The data value at the requested percentile. At P90, roughly 90% of observations fall at or below it.',
+        },
+        {
+          resultLabel: 'Percentile rank',
+          explanation:
+            'The share of observations at or below the value you entered. Ties are split evenly so the rank does not jump when duplicates exist.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'mean-median-mode-calculator', step: 'Compare the median with the mean.' },
+        { slug: 'standard-deviation-calculator', step: 'Add a spread measure based on every value.' },
+        { slug: 'z-score-calculator', step: 'Express one observation in standard deviations.' },
+      ],
+      faqs: [
+        {
+          q: 'What is the difference between a percentile and a percentage?',
+          a: 'A percentage is a fraction of a whole. A percentile is a position in a ranked distribution: the 90th percentile is the value below which 90% of observations fall. A score of 90% and the 90th percentile are unrelated facts.',
+        },
+        {
+          q: 'Why do different calculators give slightly different percentiles?',
+          a: 'There is no single agreed definition. Excel, NumPy, and statistics packages interpolate differently at the edges. This tool uses linear interpolation on rank (n − 1)p, so results match Excel\u2019s PERCENTILE.INC.',
+        },
+        {
+          q: 'How many values do I need?',
+          a: 'Percentiles are meaningful from about eight to ten observations upward. With very small samples the interpolated value sits between real observations and should be read as a rough position, not a precise cut-off.',
+        },
+        {
+          q: 'Is the 50th percentile the median?',
+          a: 'Yes. P50 is the median under this interpolation method. The 25th and 75th percentiles are the first and third quartiles, and their difference is the interquartile range.',
+        },
+      ],
+      related: ['mean-median-mode-calculator', 'standard-deviation-calculator', 'z-score-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+  },
+  {
+    id: 'margin-of-error',
+    slug: 'margin-of-error-calculator',
+    name: 'Margin of Error Calculator',
+    shortDesc: 'Calculate the margin of error and confidence interval for a survey proportion at any confidence level.',
+    tagline: 'How precise is that survey percentage?',
+    category: 'math',
+    iconName: 'Gauge',
+    badge: 'Statistics',
+    keywords: [
+      'margin of error calculator',
+      'margin of error formula',
+      'survey margin of error',
+      'confidence interval proportion',
+      'polling margin of error',
+      'sampling error calculator',
+    ],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'n', label: 'Sample size (n)', type: 'number', defaultValue: 400, min: 1, step: 1 },
+        { id: 'p', label: 'Sample proportion', type: 'number', defaultValue: 50, min: 0, max: 100, suffix: '%' },
+        { id: 'z', label: 'Critical value (z)', type: 'number', defaultValue: 1.96, min: 0.1, step: 0.01 },
+      ],
+      results: [
+        {
+          label: 'Margin of error',
+          formulaCode: 'z * Math.sqrt((p / 100) * (1 - p / 100) / n) * 100',
+          accent: true,
+          suffix: 'percentage points',
+        },
+        {
+          label: 'Lower bound',
+          formulaCode: 'p - z * Math.sqrt((p / 100) * (1 - p / 100) / n) * 100',
+          suffix: '%',
+        },
+        {
+          label: 'Upper bound',
+          formulaCode: 'p + z * Math.sqrt((p / 100) * (1 - p / 100) / n) * 100',
+          suffix: '%',
+        },
+      ],
+      formulaDescription: 'MOE = z × √(p(1 − p) / n), reported in percentage points',
+      tips: [
+        'Use z = 1.645 for 90%, 1.96 for 95%, 2.326 for 98%, and 2.576 for 99% confidence.',
+        'A 50% proportion produces the widest margin of error, so it is the conservative planning assumption.',
+      ],
+    },
+    content: {
+      intro:
+        'The Margin of Error Calculator turns a survey sample size and proportion into a plus-or-minus range at your chosen confidence level. It reports the margin of error in percentage points and the lower and upper bounds of the confidence interval.',
+      howItWorks:
+        'For a proportion, the standard error is the square root of p(1 − p) divided by n. Multiply that by the critical value for your confidence level to get the margin of error. The interval is the sample proportion plus or minus that margin. This is the same arithmetic behind the \u201C±3 points\u201D line in a published poll.',
+      example:
+        'A poll of 400 people finds 50% support. At 95% confidence the margin of error is 1.96 × √(0.5 × 0.5 / 400) = 4.9 percentage points, so the interval runs from 45.1% to 54.9%. Halving the margin to about 2.5 points would need roughly 1,600 respondents.',
+      formulas: [
+        {
+          label: 'Margin of error for a proportion',
+          expression: 'MOE = z × √(p(1 − p) / n)',
+          note: 'Multiply by 100 to express the result in percentage points.',
+        },
+        {
+          label: 'Confidence interval',
+          expression: 'CI = p ± MOE',
+        },
+        {
+          label: 'Sample size for a target MOE',
+          expression: 'n = z² × p(1 − p) / MOE²',
+        },
+      ],
+      sources: [
+        {
+          label: 'NIST/SEMATECH e-Handbook of Statistical Methods',
+          expression: 'Standard error of a proportion',
+          note: 'The handbook gives the large-sample normal approximation used here.',
+        },
+        {
+          label: 'American Association for Public Opinion Research — margin of error',
+          expression: 'MOE describes sampling error only',
+          note: 'AAPOR stresses that margin of error excludes non-response, question wording, and coverage error.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Margin of error',
+          explanation:
+            'The plus-or-minus figure in percentage points. It covers random sampling error at the stated confidence level, not bias from who answered or how the question was asked.',
+        },
+        {
+          resultLabel: 'Lower and upper bounds',
+          explanation:
+            'The ends of the confidence interval around your sample proportion. For a 95% interval, about 95% of samples drawn the same way would produce an interval containing the true value.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'sample-size-calculator', step: 'Plan the sample size for a target margin of error.' },
+        { slug: 'confidence-interval-calculator', step: 'Use the mean-based interval for continuous data.' },
+        { slug: 'percentage-calculator', step: 'Convert raw counts into the proportion.' },
+      ],
+      faqs: [
+        {
+          q: 'What does a 3% margin of error mean?',
+          a: 'If the poll reports 50% with a ±3 point margin at 95% confidence, the true share is plausibly between 47% and 53%. It does not mean the poll is 3% wrong, and it says nothing about systematic bias.',
+        },
+        {
+          q: 'Does margin of error shrink with population size?',
+          a: 'Barely. It depends mainly on sample size. A poll of 1,000 people has roughly the same margin whether the population is a city or a country, which is why national polls can be that small.',
+        },
+        {
+          q: 'Why is the margin widest at 50%?',
+          a: 'The term p(1 − p) peaks at p = 0.5. A race that is close to a tie therefore has the largest margin of error; a 90/10 result has a narrower one with the same sample.',
+        },
+        {
+          q: 'What is not included in the margin of error?',
+          a: 'Non-response bias, question wording, order effects, and coverage gaps. Those are usually larger than sampling error in real surveys, which is why a small margin does not guarantee an accurate poll.',
+        },
+      ],
+      related: ['sample-size-calculator', 'confidence-interval-calculator', 'percentage-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'probability',
+    slug: 'probability-calculator',
+    name: 'Probability Calculator',
+    shortDesc: 'Convert favourable and total outcomes into a probability, decimal, and odds.',
+    tagline: 'Turn a count of outcomes into a probability.',
+    category: 'math',
+    iconName: 'Target',
+    badge: 'Probability',
+    keywords: [
+      'probability calculator',
+      'odds calculator',
+      'probability formula',
+      'chance calculator',
+      'odds in favour',
+      'single event probability',
+    ],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'favourable', label: 'Favourable outcomes', type: 'number', defaultValue: 1, min: 0, step: 1 },
+        { id: 'total', label: 'Total possible outcomes', type: 'number', defaultValue: 6, min: 1, step: 1 },
+      ],
+      results: [
+        { label: 'Probability', formulaCode: '(favourable / total) * 100', accent: true, suffix: '%' },
+        { label: 'Probability as a decimal', formulaCode: 'favourable / total' },
+        { label: 'Odds in favour (per 1 against)', formulaCode: 'favourable / (total - favourable)' },
+        { label: 'Odds against (per 1 in favour)', formulaCode: '(total - favourable) / favourable' },
+      ],
+      formulaDescription: 'P = favourable outcomes / total outcomes',
+      tips: [
+        'Every outcome must be equally likely for this formula to apply.',
+        'Odds are not probabilities: 1:5 odds equals a 1/6 probability, about 16.7%.',
+      ],
+    },
+    content: {
+      intro:
+        'The Probability Calculator converts a count of favourable outcomes and total possible outcomes into a probability, a decimal, and odds in favour and against. It is the single-event case behind dice, cards, raffles, and simple quality checks.',
+      howItWorks:
+        'Classical probability is the number of favourable outcomes divided by the number of equally likely outcomes. Multiply by 100 for a percentage. Odds compare favourable to unfavourable outcomes instead of favourable to total, which is why a probability of 1/6 is stated as 1:5 odds, not 1:6.',
+      example:
+        'Rolling a single six-sided die and wanting a 4: one favourable outcome out of six gives a probability of 1/6 = 16.67%. The odds in favour are 1:5, and the odds against are 5:1.',
+      formulas: [
+        {
+          label: 'Probability',
+          expression: 'P(A) = favourable outcomes / total outcomes',
+          note: 'Requires equally likely outcomes and no overlap between them.',
+        },
+        {
+          label: 'Odds in favour',
+          expression: 'Odds = favourable : unfavourable = f : (n − f)',
+        },
+        {
+          label: 'Complement',
+          expression: 'P(not A) = 1 − P(A)',
+        },
+      ],
+      sources: [
+        {
+          label: 'NIST/SEMATECH e-Handbook of Statistical Methods',
+          expression: 'Probability, odds, and equally likely outcomes',
+          note: 'The handbook distinguishes classical probability from frequency-based estimates.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Probability',
+          explanation:
+            'The chance of the event as a percentage, assuming every listed outcome is equally likely and mutually exclusive.',
+        },
+        {
+          resultLabel: 'Odds in favour',
+          explanation:
+            'The ratio of favourable to unfavourable outcomes. Odds of 1:5 correspond to a probability of 1/6, not 1/5.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'combinations-permutations-calculator', step: 'Count outcomes when order and repetition matter.' },
+        { slug: 'percentage-calculator', step: 'Work with the probability as a share.' },
+        { slug: 'z-score-calculator', step: 'Move from counting outcomes to a continuous distribution.' },
+      ],
+      faqs: [
+        {
+          q: 'What is the difference between probability and odds?',
+          a: 'Probability compares favourable outcomes with all outcomes. Odds compare favourable outcomes with unfavourable ones. A 25% probability is 1:3 odds in favour, because there is one success for every three failures.',
+        },
+        {
+          q: 'Can probability be greater than 1?',
+          a: 'No. A probability runs from 0 (impossible) to 1 (certain). If your calculation exceeds 1, you have counted more favourable outcomes than total outcomes, or an outcome is being counted twice.',
+        },
+        {
+          q: 'Does this work for two events at once?',
+          a: 'No. This is a single-event calculator. For independent events multiply their probabilities; for either of two mutually exclusive events add them. For overlapping events subtract the overlap.',
+        },
+        {
+          q: 'What does it mean for outcomes to be equally likely?',
+          a: 'Each outcome must have the same chance — true for a fair die or a well-shuffled deck, false for a biased coin or a rigged draw. When outcomes are not equally likely, use observed frequencies instead.',
+        },
+      ],
+      related: ['combinations-permutations-calculator', 'percentage-calculator', 'z-score-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'normal-distribution',
+    slug: 'normal-distribution-calculator',
+    name: 'Normal Distribution Calculator',
+    shortDesc: 'Find the probability between two values, z-scores, and the middle 68% and 95% ranges of a normal distribution.',
+    tagline: 'Probability under the bell curve, without a z-table.',
+    category: 'math',
+    iconName: 'LineChart',
+    badge: 'Probability',
+    featured: true,
+    keywords: [
+      'normal distribution calculator',
+      'normal curve calculator',
+      'bell curve calculator',
+      'probability between two values',
+      'z score probability',
+      'standard normal distribution',
+    ],
+    kind: 'custom',
+    componentId: 'NormalDistributionCalculator',
+    content: {
+      intro:
+        'The Normal Distribution Calculator returns the probability that a normally distributed value falls between two bounds. It also reports the matching z-scores, the cumulative probabilities, and the middle 68% and 95% ranges for your mean and standard deviation.',
+      howItWorks:
+        'A normal distribution is defined by its mean and standard deviation. Converting a value to a z-score — (x − μ) / σ — places it on the standard normal curve. The area under the curve between two z-scores is the probability of landing in that range. This calculator evaluates the normal CDF numerically, with an error below 1.5 × 10⁻⁷.',
+      example:
+        'For a mean of 100 and a standard deviation of 15, the probability of a value between 85 and 115 is about 68.27%, because those bounds sit one standard deviation either side of the mean. The middle 95% range runs from about 70.6 to 129.4.',
+      formulas: [
+        {
+          label: 'z-score',
+          expression: 'z = (x − μ) / σ',
+        },
+        {
+          label: 'Probability between bounds',
+          expression: 'P(a < X < b) = Φ((b − μ)/σ) − Φ((a − μ)/σ)',
+          note: 'Φ is the standard normal cumulative distribution function.',
+        },
+        {
+          label: '68–95–99.7 rule',
+          expression: '≈68% within 1σ, ≈95% within 2σ, ≈99.7% within 3σ',
+        },
+      ],
+      sources: [
+        {
+          label: 'NIST/SEMATECH e-Handbook of Statistical Methods',
+          expression: 'Normal distribution and standard normal table',
+          note: 'Section 1.3.6.6 documents the normal PDF, CDF, and the z transformation.',
+        },
+        {
+          label: 'Abramowitz & Stegun, Handbook of Mathematical Functions',
+          expression: 'Error-function approximation 7.1.26',
+          note: 'The approximation used here has a maximum absolute error of 1.5 × 10⁻⁷.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Probability between bounds',
+          explanation:
+            'The area under the normal curve between your two values, expressed as a percentage of all observations.',
+        },
+        {
+          resultLabel: 'Middle 95% range',
+          explanation:
+            'The central interval that contains 95% of values for this mean and standard deviation — the same 1.96σ logic used in confidence intervals.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'z-score-calculator', step: 'Convert a single observation into a z-score.' },
+        { slug: 'standard-deviation-calculator', step: 'Get the standard deviation from raw data.' },
+        { slug: 'confidence-interval-calculator', step: 'Apply the same normal model to a sample mean.' },
+      ],
+      faqs: [
+        {
+          q: 'What is the 68–95–99.7 rule?',
+          a: 'In a normal distribution, about 68% of values lie within one standard deviation of the mean, 95% within two, and 99.7% within three. It is a quick sanity check before using the exact calculation.',
+        },
+        {
+          q: 'Can I use this if my data are not normal?',
+          a: 'The arithmetic still runs, but the probabilities will be wrong. Check a histogram or a normality test first. Income, house prices, and wait times are typically skewed and need a different model or a transformation.',
+        },
+        {
+          q: 'What is the difference between this and a z-score calculator?',
+          a: 'A z-score calculator standardises one value. This calculator integrates the curve between two values to give a probability, and also reports the central 68% and 95% ranges.',
+        },
+        {
+          q: 'Why is the middle 95% range not exactly mean ± 2σ?',
+          a: 'Two standard deviations capture about 95.4%. The exact central 95% interval uses z = ±1.96, which is slightly narrower — the same critical value used in a 95% confidence interval.',
+        },
+      ],
+      related: ['z-score-calculator', 'standard-deviation-calculator', 'confidence-interval-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+  },
+  {
+    id: 'triangle',
+    slug: 'triangle-calculator',
+    name: 'Triangle Calculator',
+    shortDesc: 'Solve SSS, SAS, ASA, and AAS triangles with the law of sines and cosines, including area and perimeter.',
+    tagline: 'Every side, angle, and the area from what you know.',
+    category: 'math',
+    iconName: 'Triangle',
+    badge: 'Geometry',
+    featured: true,
+    keywords: [
+      'triangle calculator',
+      'triangle solver',
+      'law of sines calculator',
+      'law of cosines calculator',
+      'sss triangle',
+      'sas triangle',
+      'triangle area calculator',
+    ],
+    kind: 'custom',
+    componentId: 'TriangleCalculator',
+    content: {
+      intro:
+        'The Triangle Calculator solves a triangle from the information you have: three sides (SSS), two sides and the included angle (SAS), two angles and the side between them (ASA), or two angles and a side opposite one (AAS). It returns every remaining side and angle, plus area and perimeter.',
+      howItWorks:
+        'SSS uses the law of cosines to find each angle from the side lengths. SAS uses the law of cosines to find the third side, then the law of sines for the angles. ASA and AAS use the fact that the angles sum to 180°, then the law of sines to scale the sides. Area comes from Heron\u2019s formula, which needs only the three sides and stays accurate for obtuse triangles.',
+      example:
+        'A 3–4–5 triangle has a right angle opposite the 5. The law of cosines gives angles of about 36.87°, 53.13°, and 90°, an area of 6 square units, and a perimeter of 12. Because all three sides differ, it is scalene.',
+      formulas: [
+        {
+          label: 'Law of cosines',
+          expression: 'c² = a² + b² − 2ab cos C',
+          note: 'Used for SSS and SAS; it reduces to Pythagoras when C = 90°.',
+        },
+        {
+          label: 'Law of sines',
+          expression: 'a / sin A = b / sin B = c / sin C',
+          note: 'Used for ASA and AAS once the third angle is known.',
+        },
+        {
+          label: 'Heron\u2019s formula',
+          expression: 'Area = √(s(s − a)(s − b)(s − c)), s = (a + b + c)/2',
+        },
+      ],
+      sources: [
+        {
+          label: 'NIST Digital Library of Mathematical Functions',
+          expression: 'Law of sines and law of cosines',
+          note: 'DLMF §4.36 and §4.37 give the triangle identities used here.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Sides and angles',
+          explanation:
+            'Side a is opposite angle A, side b opposite B, and side c opposite C. The three angles always sum to 180°.',
+        },
+        {
+          resultLabel: 'Area',
+          explanation:
+            'Computed with Heron\u2019s formula, so no height is needed and obtuse triangles are handled correctly.',
+        },
+        {
+          resultLabel: 'Triangle type',
+          explanation:
+            'Equilateral when all sides match, isosceles when two match, scalene when none do. It describes the shape, not whether the triangle is right-angled.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'pythagorean-theorem-calculator', step: 'Check a right triangle with the simpler a² + b² = c².' },
+        { slug: 'circle-area-calculator', step: 'Move from a triangle to a circumscribed or inscribed circle.' },
+        { slug: 'slope-calculator', step: 'Work out the incline between two points.' },
+      ],
+      faqs: [
+        {
+          q: 'Why can\u2019t I solve a triangle with two sides and a non-included angle?',
+          a: 'That case (SSA) can produce zero, one, or two different triangles — the ambiguous case. A calculator that silently returns one answer can be wrong, so this tool does not offer it. Use the law of sines and check both solutions by hand.',
+        },
+        {
+          q: 'How do I know which side is a, b, or c?',
+          a: 'The convention is that side a is opposite angle A, side b opposite B, and side c opposite C. For ASA, side c is the side between angles A and B. Keep that labelling consistent or the results will not match your diagram.',
+        },
+        {
+          q: 'What does it mean if the calculator rejects my sides?',
+          a: 'The triangle inequality requires every pair of sides to add up to more than the third. If 2, 3, and 8 are entered, no triangle exists, because 2 + 3 is less than 8.',
+        },
+        {
+          q: 'Does the area formula work for obtuse triangles?',
+          a: 'Yes. Heron\u2019s formula depends only on side lengths, so it works for acute, right, and obtuse triangles alike. That is why it is used here instead of the half-base-times-height form.',
+        },
+      ],
+      related: ['pythagorean-theorem-calculator', 'circle-area-calculator', 'slope-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+  },
+  {
+    id: 'fraction-to-decimal',
+    slug: 'fraction-to-decimal-calculator',
+    name: 'Fraction to Decimal Calculator',
+    shortDesc: 'Convert a fraction to a decimal and percentage, and simplify it to lowest terms.',
+    tagline: 'From 3/8 to 0.375 in one step.',
+    category: 'math',
+    iconName: 'Divide',
+    badge: 'Fractions',
+    keywords: [
+      'fraction to decimal calculator',
+      'fraction to decimal',
+      'convert fraction to decimal',
+      'fraction to percentage',
+      'simplify fraction',
+      'decimal equivalent',
+    ],
+    kind: 'custom',
+    componentId: 'FractionToDecimalCalculator',
+    content: {
+      intro:
+        'The Fraction to Decimal Calculator converts any fraction into a decimal and a percentage, and reduces it to lowest terms. It also reports the mixed-number form when the numerator is larger than the denominator.',
+      howItWorks:
+        'A fraction is a division: the numerator divided by the denominator. The decimal is that quotient; multiply by 100 for the percentage. To simplify, divide both parts by their greatest common divisor. A fraction is terminating when the reduced denominator has only 2 and 5 as prime factors, and repeating otherwise.',
+      example:
+        'For 6/8, dividing gives 0.75, which is 75%. The greatest common divisor of 6 and 8 is 2, so the fraction simplifies to 3/4. For 1/3 the decimal is 0.333…, a repeating decimal with no exact finite form.',
+      formulas: [
+        {
+          label: 'Decimal value',
+          expression: 'Decimal = numerator / denominator',
+        },
+        {
+          label: 'Percentage',
+          expression: 'Percent = (numerator / denominator) × 100',
+        },
+        {
+          label: 'Simplification',
+          expression: 'Divide numerator and denominator by gcd(n, d)',
+        },
+      ],
+      sources: [
+        {
+          label: 'NIST Digital Library of Mathematical Functions',
+          expression: 'Rational numbers and repeating decimals',
+          note: 'A reduced fraction has a terminating decimal exactly when its denominator is of the form 2ᵃ5ᵇ.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Decimal',
+          explanation:
+            'The exact quotient when it terminates, or a rounded value when it repeats. The simplified fraction is shown beside it so the exact value is never lost.',
+        },
+        {
+          resultLabel: 'Simplified fraction',
+          explanation:
+            'The same value with the numerator and denominator divided by their greatest common divisor.',
+        },
+        {
+          resultLabel: 'Mixed number',
+          explanation:
+            'The whole-number part and the remaining proper fraction, useful for measurements such as 2 3/4 inches.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'fraction-to-percent-calculator', step: 'Go straight from a fraction to a percentage.' },
+        { slug: 'fraction-calculator', step: 'Add, subtract, multiply, or divide fractions.' },
+        { slug: 'percentage-calculator', step: 'Use the percentage in a discount or markup.' },
+      ],
+      faqs: [
+        {
+          q: 'How do I convert a fraction to a decimal by hand?',
+          a: 'Divide the numerator by the denominator. For 3/8, 8 goes into 3.000 three times (0.3), leaving 0.6, then 7 times (0.07), leaving 0.04, then 5 times (0.005) — giving 0.375.',
+        },
+        {
+          q: 'Which fractions produce repeating decimals?',
+          a: 'Any fraction whose simplified denominator has a prime factor other than 2 or 5. So 1/3, 1/6, and 5/7 repeat, while 1/8, 3/20, and 7/25 terminate.',
+        },
+        {
+          q: 'Can the denominator be negative?',
+          a: 'Mathematically yes, but the usual convention moves the sign to the numerator. This calculator normalises the sign, so 3/−8 is treated as −3/8 and reported as −0.375.',
+        },
+        {
+          q: 'Why simplify a fraction if the decimal is the same?',
+          a: 'Simplified fractions are easier to compare, add, and use in recipes or measurements. 3/4 is immediately readable; 24/32 is not.',
+        },
+      ],
+      related: ['fraction-to-percent-calculator', 'fraction-calculator', 'percentage-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  }
 ];

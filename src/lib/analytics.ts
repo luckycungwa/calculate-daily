@@ -32,9 +32,10 @@ export function initAnalytics(): void {
 
 function sendPageView(): void {
   if (!window.gtag) return;
+  const pageLocation = `${window.location.origin}${window.location.pathname}`;
   window.gtag('event', 'page_view', {
-    page_path: window.location.pathname + window.location.search,
+    page_path: window.location.pathname,
     page_title: document.title,
-    page_location: window.location.href,
+    page_location: pageLocation,
   });
 }
