@@ -134,6 +134,43 @@ export function totalMonthlyPayment(input: {
   };
 }
 
+/**
+ * Rate/term "what-if" scenarios for the mortgage comparison panel. Every
+ * scenario re-prices the same principal through the same `monthlyPayment` +
+ * `buildAmortization` engine as the headline number — no side formulas.
+ */
+export interface LoanScenario {
+  label: string;
+  annualRate: number;
+  years: number;
+  monthlyPI: number;
+  totalInterest: number;
+  totalPaid: number;
+}
+
+export function loanScenarios(input: {
+  principal: number;
+  scenarios: Array<{ label: string; annualRate: number; years: number }>;
+}): LoanScenario[] {
+  return input.scenarios.map((s) => {
+    const years = Math.max(1, s.years);
+    const monthlyPI = monthlyPayment(input.principal, s.annualRate, years);
+    const amort = buildAmortization({
+      principal: input.principal,
+      annualRate: s.annualRate,
+      years,
+    });
+    return {
+      label: s.label,
+      annualRate: s.annualRate,
+      years,
+      monthlyPI: Math.round(monthlyPI * 100) / 100,
+      totalInterest: amort.totalInterest,
+      totalPaid: amort.totalPayment,
+    };
+  });
+}
+
 export interface RefinanceResult {
   currentPayment: number;
   newPayment: number;

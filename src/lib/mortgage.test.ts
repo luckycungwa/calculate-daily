@@ -178,3 +178,47 @@ test('rent vs buy returns aligned series for the requested horizon', () => {
   assert.ok(result.rentCumulative.every((value) => value > 0));
   assert.ok(result.buyEquity.at(-1)! > 0);
 });
+
+import { loanScenarios } from './mortgage';
+
+/**
+ * Comparison-panel regression: every scenario row must re-price through the
+ * same monthlyPayment + buildAmortization engine the headline number uses,
+ * so the chart can never disagree with the answer.
+ */
+test('term scenarios reprice the loan through the shared engine', () => {
+  const scenarios = loanScenarios({
+    principal: 320_000,
+    scenarios: [
+      { label: '15-yr', annualRate: 6.5, years: 15 },
+      { label: '20-yr', annualRate: 6.5, years: 20 },
+      { label: '30-yr', annualRate: 6.5, years: 30 },
+    ],
+  });
+  assert.equal(scenarios.length, 3);
+  for (const s of scenarios) {
+    const direct = monthlyPayment(320_000, s.annualRate, s.years);
+    assert.ok(Math.abs(s.monthlyPI - direct) <= 0.01);
+    assert.ok(Math.abs(s.totalPaid - s.monthlyPI * s.years * 12) < 1); // amortization faithful
+    assert.ok(Math.abs(s.totalInterest - (s.totalPaid - 320_000)) < 1);
+  }
+  // shorter terms always cost less interest but more per month
+  assert.ok(scenarios[0].monthlyPI > scenarios[2].monthlyPI);
+  assert.ok(scenarios[0].totalInterest < scenarios[2].totalInterest);
+});
+
+test('rate scenarios keep the term fixed and move only the price of money', () => {
+  const [low, high] = loanScenarios({
+    principal: 320_000,
+    scenarios: [
+      { label: '6.5%', annualRate: 6.5, years: 30 },
+      { label: '7.5%', annualRate: 7.5, years: 30 },
+    ],
+  });
+  assert.ok(low.monthlyPI < high.monthlyPI);
+  assert.ok(low.totalInterest < high.totalInterest);
+  // zero-rate scenario divides the principal evenly
+  const zero = loanScenarios({ principal: 12_000, scenarios: [{ label: '0%', annualRate: 0, years: 1 }] });
+  assert.ok(Math.abs(zero[0].monthlyPI - 1000) < 0.01);
+  assert.ok(Math.abs(zero[0].totalInterest - 0) < 1);
+});

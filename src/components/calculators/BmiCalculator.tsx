@@ -7,8 +7,17 @@ import { Badge } from '../ui/badge';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/card';
 import { cn } from '../../lib/utils';
 import { ExportModal } from '../common/ExportModal';
-import { DialGauge } from '../common/DialGauge';
 import { useToast } from '../ui/toast';
+import {
+  BMI_DIAL,
+  BMI_ZONES,
+  bmiValue,
+  bmiZoneFor,
+  healthyWeightRange,
+  kgToPounds,
+  poundsToKg,
+} from '../../lib/bmi';
+import { CalculationAssumptions, ResultDataTable, ResultGauge, ResultTableToggle } from '../results/ResultComponents';
 
 interface BmiCalculatorProps {
   onSaveHistory?: (summary: string) => void;
@@ -16,28 +25,18 @@ interface BmiCalculatorProps {
 
 type UnitMode = 'metric' | 'imperial';
 
-/**
- * WHO cut-offs. The coloured band on the dial and the legend below share this
- * one list so the two can never disagree.
- */
-const BMI_ZONES = [
-  { id: 'under', label: 'Under', range: '< 18.5', color: '#0ea5e9' },
-  { id: 'normal', label: 'Normal', range: '18.5 - 24.9', color: '#10b981' },
-  { id: 'over', label: 'Over', range: '25 - 29.9', color: '#f59e0b' },
-  { id: 'obese', label: 'Obese', range: '30+', color: '#f43f5e' },
-] as const;
-
+// Dial geometry comes from the engine so the legend, gauge and table share it.
+// The first band starts at the dial floor; every zone stops at the next WHO cut-off.
 const BMI_DIAL_ZONES = BMI_ZONES.map((zone) => ({
-  to: zone.id === 'under' ? 18.5 : zone.id === 'normal' ? 25 : zone.id === 'over' ? 30 : 40,
+  to: zone.upper === Infinity ? BMI_DIAL.scaleMax : zone.upper,
   color: zone.color,
 }));
 
-const BMI_CATEGORY_ID: Record<string, string> = {
-  Underweight: 'under',
-  'Normal weight': 'normal',
-  Overweight: 'over',
-  Obese: 'obese',
-};
+const BMI_ZONES_LEGEND = BMI_ZONES.map((zone) => ({
+  label: zone.label.replace('weight', ''),
+  range: zone.range,
+  color: zone.color,
+}));
 
 export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) => {
   const { toast } = useToast();
@@ -55,7 +54,7 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
   const [copied, setCopied] = useState<boolean>(false);
   const [isExportOpen, setIsExportOpen] = useState<boolean>(false);
 
-  // Compute BMI
+  // Compute BMI — all formulas live in the engine module, never in the UI.
   const results = useMemo(() => {
     let weightInKg = 0;
     let heightInMeters = 0;
@@ -65,17 +64,17 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
       heightInMeters = Math.max(0, (parseFloat(heightCm) || 0) / 100);
     } else {
       const lbs = Math.max(0, parseFloat(weightLbs) || 0);
-      weightInKg = lbs * 0.45359237;
+      weightInKg = poundsToKg(lbs);
       const ft = Math.max(0, parseFloat(heightFt) || 0);
       const inches = Math.max(0, parseFloat(heightIn) || 0);
-      const totalInches = ft * 12 + inches;
-      heightInMeters = totalInches * 0.0254;
+      heightInMeters = (ft * 12 + inches) * 0.0254;
     }
 
     if (weightInKg <= 0 || heightInMeters <= 0) {
       return {
         bmi: 0,
         category: 'Enter measurements',
+        zoneId: '',
         minHealthyWeightKg: 0,
         maxHealthyWeightKg: 0,
         minHealthyWeightLbs: 0,
@@ -84,37 +83,28 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
       };
     }
 
-    const bmiValue = weightInKg / (heightInMeters * heightInMeters);
-    const bmiFormatted = parseFloat(bmiValue.toFixed(1));
+    const bmiFormatted = parseFloat(bmiValue(weightInKg, heightInMeters).toFixed(1));
+    const zone = bmiZoneFor(bmiFormatted);
+    const healthy = healthyWeightRange(heightInMeters);
 
-    let category = 'Normal weight';
-    let advice = 'Your BMI falls within the healthy standard range. Maintain balanced nutrition and daily movement.';
-
-    if (bmiFormatted < 18.5) {
-      category = 'Underweight';
-      advice = 'BMI indicates underweight. Nutrient-dense whole foods and strength conditioning are recommended.';
-    } else if (bmiFormatted <= 24.9) {
-      category = 'Normal weight';
-      advice = 'Standard recommended weight bracket for your height profile.';
-    } else if (bmiFormatted <= 29.9) {
-      category = 'Overweight';
-      advice = 'Slightly above standard range. Moderate cardiovascular conditioning and portion monitoring recommended.';
-    } else {
-      category = 'Obese';
-      advice = 'Consulting a primary healthcare provider can help tailor sustainable metabolic health goals.';
-    }
-
-    const minHealthyKg = 18.5 * (heightInMeters * heightInMeters);
-    const maxHealthyKg = 24.9 * (heightInMeters * heightInMeters);
+    const advice = {
+      under:
+        'BMI indicates underweight. Nutrient-dense whole foods and strength conditioning are recommended.',
+      normal: 'Standard recommended weight bracket for your height profile.',
+      over: 'Slightly above standard range. Moderate cardiovascular conditioning and portion monitoring recommended.',
+      obese:
+        'Consulting a primary healthcare provider can help tailor sustainable metabolic health goals.',
+    }[zone.id];
 
     return {
       bmi: bmiFormatted,
-      category,
+      category: zone.label,
+      zoneId: zone.id,
       advice,
-      minHealthyWeightKg: parseFloat(minHealthyKg.toFixed(1)),
-      maxHealthyWeightKg: parseFloat(maxHealthyKg.toFixed(1)),
-      minHealthyWeightLbs: parseFloat((minHealthyKg * 2.20462).toFixed(1)),
-      maxHealthyWeightLbs: parseFloat((maxHealthyKg * 2.20462).toFixed(1)),
+      minHealthyWeightKg: healthy.min,
+      maxHealthyWeightKg: healthy.max,
+      minHealthyWeightLbs: kgToPounds(healthy.min),
+      maxHealthyWeightLbs: kgToPounds(healthy.max),
     };
   }, [unitMode, weightKg, heightCm, weightLbs, heightFt, heightIn]);
 
@@ -375,15 +365,23 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
 
               <div className="mt-1 w-full max-w-[19rem]">
                 {results.bmi > 0 ? (
-                  <DialGauge
+                  <ResultGauge
                     value={results.bmi}
-                    min={10}
-                    max={40}
+                    min={BMI_DIAL.scaleMin}
+                    max={BMI_DIAL.scaleMax}
                     zones={BMI_DIAL_ZONES}
                     accent="#10b981"
                     ticks={3}
                     caption="BMI"
-                    ariaLabel={`Body mass index ${results.bmi.toFixed(1)}, ${results.category}. The scale runs from 10 to 40.`}
+                    ariaLabel={`Body mass index ${results.bmi.toFixed(1)}, ${results.category}. The scale runs from ${BMI_DIAL.scaleMin} to ${BMI_DIAL.scaleMax}.`}
+                    legend={BMI_ZONES.map((zone) => ({
+                      label: zone.label,
+                      range: zone.range,
+                      color: zone.color,
+                    }))}
+                    activeZoneId={results.category}
+                    summary={`A BMI of ${results.bmi.toFixed(1)} kg/m² falls in the ${results.category.toLowerCase()} band. The healthy weight range for the height you entered is ${results.minHealthyWeightKg}–${results.maxHealthyWeightKg} kg, shown under the gauge.`}
+                    note="BMI is a screening ratio of weight to height, not a diagnosis. It does not measure body fat and over- or under-estimates it for athletes, older adults, pregnant people, and children — this tool uses WHO adult cut-offs only."
                   />
                 ) : (
                   <div className="flex h-40 items-center justify-center font-mono text-5xl font-bold text-zinc-300 dark:text-zinc-700">
@@ -402,38 +400,18 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
                 {results.advice}
               </p>
 
-              {/* Zone legend: the same bands the dial paints */}
-              <ul className="mt-5 grid w-full grid-cols-2 gap-x-3 gap-y-2 text-left">
-                {BMI_ZONES.map((zone) => {
-                  const active = BMI_CATEGORY_ID[results.category] === zone.id;
-                  return (
-                    <li
-                      key={zone.id}
-                      className={`flex items-center gap-2 ${active ? '' : 'opacity-55'}`}
-                    >
-                      <span
-                        aria-hidden="true"
-                        className="h-1.5 w-1.5 shrink-0 rounded-full"
-                        style={{ backgroundColor: zone.color }}
-                      />
-                      <span className="min-w-0">
-                        <span
-                          className={`block text-[11px] leading-tight ${
-                            active
-                              ? 'font-bold text-zinc-900 dark:text-zinc-50'
-                              : 'font-medium text-zinc-600 dark:text-zinc-400'
-                          }`}
-                        >
-                          {zone.label}
-                        </span>
-                        <span className="block font-mono text-[10px] leading-tight text-zinc-500 dark:text-zinc-500">
-                          {zone.range}
-                        </span>
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
+              {/* Category ranges as a table: the numerical a11y breakdown of the dial */}
+              {results.bmi > 0 && (
+                <div className="mt-4 w-full text-left">
+                  <ResultTableToggle label="View category ranges as a table">
+                    <ResultDataTable
+                      columns={['Category', 'BMI range (kg/m²)']}
+                      rows={BMI_ZONES.map((zone) => [zone.label, zone.range])}
+                      caption="WHO Body Mass Index category ranges for adults 18 and over."
+                    />
+                  </ResultTableToggle>
+                </div>
+              )}
             </div>
 
             {/* Target Range Box */}
@@ -460,6 +438,34 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
             </div>
           </div>
         </div>
+
+        <CalculationAssumptions
+          className="mt-6"
+          items={[
+            {
+              label: 'BMI formula',
+              detail: 'BMI = weight (kg) / height (m)². Imperial inputs are converted exactly (1 lb = 0.45359237 kg, 1 in = 0.0254 m) before the same formula runs.',
+              badge: 'formula',
+            },
+            {
+              label: 'Category cut-offs',
+              detail: 'WHO adult cut-offs for people 18 and over: underweight below 18.5, normal 18.5–24.9, overweight 25–29.9, obese 30 and above. The dial, legend and table above all read these from the same list.',
+              badge: 'published',
+              source: { label: 'WHO classification of BMI', href: 'https://www.who.int/data/gho/indicator-definition-repository/details/indicor-details-page/body-mass-index-(bmi)' },
+            },
+            {
+              label: 'Healthy weight range',
+              detail: 'The span of weights that lands inside the normal band for your height: 18.5 × height² to 24.9 × height².',
+              badge: 'formula',
+            },
+            {
+              label: 'Your measurements',
+              detail: 'Weight and height are user-entered; a wrong or stale measurement shifts everything this tool reports.',
+              badge: 'assumption',
+            },
+          ]}
+          caveat="BMI is one screening number. It does not measure body fat, fitness or health risk, and it is not diagnostic — individual decisions need a healthcare professional."
+        />
       </CardContent>
 
       {/* Export Modal */}

@@ -11,10 +11,11 @@ import {
   PROVINCE_REGIONS,
   getFuelPrice,
   isDiesel,
-  type FuelRegion,
   type FuelType,
   type Province,
 } from '../../data/fuelPrices';
+import { calculateTripCost, tripFuelScenarios } from '../../lib/fuelTrip';
+import { CalculationAssumptions, ResultComparison, ResultTableToggle, ResultDataTable } from '../results/ResultComponents';
 
 const POPULAR_ROUTES: Record<string, number> = {
   'JHB to Durban': 568,
@@ -39,28 +40,51 @@ export default function SaFuelCalculator({ onSaveHistory }: SaFuelCalculatorProp
   const [fuelType, setFuelType] = useState<FuelType>('95ulp');
   const [distance, setDistance] = useState('');
   const [consumption, setConsumption] = useState('7.5');
+  const [overridePrice, setOverridePrice] = useState('');
   const [returnTrip, setReturnTrip] = useState(false);
   const [showRoutes, setShowRoutes] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  const region: FuelRegion = PROVINCE_REGIONS[province];
+  const region = PROVINCE_REGIONS[province];
   const currentPrice = getFuelPrice(region, fuelType);
+
   const parsedDistance = parseFloat(distance);
   const parsedConsumption = parseFloat(consumption);
+  const parsedOverride = parseFloat(overridePrice);
   const hasValidDistance = Number.isFinite(parsedDistance) && parsedDistance > 0;
   const hasValidConsumption = Number.isFinite(parsedConsumption) && parsedConsumption > 0;
   const distanceNum = hasValidDistance ? parsedDistance : 0;
   const consumptionNum = hasValidConsumption ? parsedConsumption : 0;
+  const overrideNum = Number.isFinite(parsedOverride) && parsedOverride > 0 ? parsedOverride : undefined;
   const totalDistance = returnTrip ? distanceNum * 2 : distanceNum;
   const showDistanceError = distance.trim() !== '' && !hasValidDistance;
 
+  // Single source of arithmetic for the headline card, the strip chart and the
+  // copy/export text: the engine in src/lib/fuelTrip.ts. The price shown in
+  // the banner is the published one even when an override is active.
   const results = useMemo(() => {
     if (totalDistance <= 0 || consumptionNum <= 0) return null;
-    const fuelNeeded = (totalDistance * consumptionNum) / 100;
-    const totalCost = fuelNeeded * currentPrice;
-    const costPerKm = totalCost / totalDistance;
-    return { fuelNeeded, totalCost, costPerKm, distance: totalDistance };
-  }, [totalDistance, consumptionNum, currentPrice]);
+    return calculateTripCost({
+      distanceKm: distanceNum,
+      consumptionLPer100km: consumptionNum,
+      pricePerLitre: overrideNum ?? getFuelPrice(region, fuelType),
+      returnTrip,
+    });
+  }, [totalDistance, consumptionNum, distanceNum, overrideNum, returnTrip, region, fuelType]);
+
+  // Every fuel type priced for the same trip — the comparison strip's data.
+  const scenarios = useMemo(
+    () =>
+      tripFuelScenarios({
+        province,
+        fuelTypes: Object.keys(FUEL_LABELS) as FuelType[],
+        distanceKm: distanceNum,
+        consumptionLPer100km: consumptionNum,
+        returnTrip,
+        priceOverride: overrideNum,
+      }),
+    [province, distanceNum, consumptionNum, returnTrip, overrideNum]
+  );
 
   const handleCopy = () => {
     if (!results) return;
@@ -68,10 +92,16 @@ export default function SaFuelCalculator({ onSaveHistory }: SaFuelCalculatorProp
       'South Africa Fuel Calculation',
       `Prices effective: ${FUEL_PRICE_DATA.effectiveLabel}`,
       `Province: ${province} (${region})`,
-      `Fuel: ${FUEL_LABELS[fuelType]} @ R${currentPrice.toFixed(2)}/L${isDiesel(fuelType) ? ' (wholesale baseline)' : ''}`,
-      `Distance: ${results.distance.toLocaleString()} km`,
+      `Fuel: ${FUEL_LABELS[fuelType]} @ R${results.pricePerLitre.toFixed(2)}/L${
+        results.priceSource === 'user-entered'
+          ? ' (your own price, not the published rate)'
+          : isDiesel(fuelType)
+            ? ' (wholesale baseline)'
+            : ''
+      }`,
+      `Distance: ${results.distanceKm.toLocaleString()} km`,
       `Consumption: ${consumptionNum} L/100km`,
-      `Fuel Needed: ${results.fuelNeeded.toFixed(2)} L`,
+      `Fuel Needed: ${results.fuelNeededL.toFixed(2)} L`,
       `Total Cost: R${results.totalCost.toFixed(2)}`,
       `Cost per km: R${results.costPerKm.toFixed(2)}`,
       `Source: ${FUEL_PRICE_DATA.source.url}`,
@@ -80,7 +110,7 @@ export default function SaFuelCalculator({ onSaveHistory }: SaFuelCalculatorProp
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
     toast('Results copied to clipboard', 'success');
-    onSaveHistory?.(`R${results.totalCost.toFixed(2)} for ${results.distance}km ${region} trip`);
+    onSaveHistory?.(`R${results.totalCost.toFixed(2)} for ${results.distanceKm}km ${region} trip`);
   };
 
   const handleReset = () => {
@@ -88,6 +118,7 @@ export default function SaFuelCalculator({ onSaveHistory }: SaFuelCalculatorProp
     setFuelType('95ulp');
     setDistance('');
     setConsumption('7.5');
+    setOverridePrice('');
     setReturnTrip(false);
     setShowRoutes(false);
   };
@@ -118,7 +149,9 @@ export default function SaFuelCalculator({ onSaveHistory }: SaFuelCalculatorProp
           <div>
             <p className="text-sm opacity-80">{FUEL_LABELS[fuelType]}</p>
             <p className="text-4xl font-bold tracking-tight">R{currentPrice.toFixed(2)}</p>
-            <p className="text-sm opacity-80">per litre</p>
+            <p className="text-sm opacity-80">
+              per litre — published{overrideNum ? '; your price overrides it below' : ''}
+            </p>
             {isDiesel(fuelType) && (
               <p className="mt-1 text-[11px] font-medium opacity-90">Wholesale baseline — forecourt price varies</p>
             )}
@@ -274,6 +307,31 @@ export default function SaFuelCalculator({ onSaveHistory }: SaFuelCalculatorProp
         )}
       </div>
 
+      {/* Optional user-entered price. It is always labelled as the visitor's
+          own figure — the banner keeps showing the published DMPR price. */}
+      <div className="rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4 space-y-2">
+        <Label htmlFor="override-price">Your price per litre (optional)</Label>
+        <div className="relative">
+          <Input
+            id="override-price"
+            type="number"
+            min="0"
+            step="0.01"
+            inputMode="decimal"
+            placeholder="Leave empty to use the published price"
+            value={overridePrice}
+            onChange={(e) => setOverridePrice(e.target.value)}
+            className="pl-8"
+          />
+          <span className="absolute left-3 top-2 text-xs font-mono text-zinc-500">R</span>
+        </div>
+        <p className="text-xs text-zinc-500 dark:text-zinc-400">
+          For forecourt diesel or a deal you have negotiated. Anything entered here is{' '}
+          <span className="font-medium text-zinc-700 dark:text-zinc-300">your assumption</span>, never presented as
+          an official rate.
+        </p>
+      </div>
+
       <div className="flex items-center gap-2 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 p-4">
         <input
           id="returnTrip"
@@ -305,7 +363,7 @@ export default function SaFuelCalculator({ onSaveHistory }: SaFuelCalculatorProp
             <div className="rounded-lg bg-primary/5 dark:bg-primary-tint/10 p-4 text-center">
               <p className="text-sm text-primary dark:text-primary-tint">Fuel Needed</p>
               <p className="text-2xl font-bold text-primary dark:text-primary-tint">
-                {results.fuelNeeded.toFixed(2)} L
+                {results.fuelNeededL.toFixed(2)} L
               </p>
             </div>
             <div className="rounded-lg bg-primary/5 dark:bg-primary-tint/10 p-4 text-center">
@@ -323,10 +381,36 @@ export default function SaFuelCalculator({ onSaveHistory }: SaFuelCalculatorProp
             <div className="rounded-lg bg-zinc-100 dark:bg-zinc-800 p-4 text-center">
               <p className="text-sm text-zinc-600 dark:text-zinc-300">Distance</p>
               <p className="text-xl font-bold text-zinc-800 dark:text-zinc-200">
-                {results.distance.toLocaleString()} km
+                {results.distanceKm.toLocaleString()} km
               </p>
             </div>
           </div>
+
+          {/* Same trip, every published fuel type — values straight from the
+              engine scenario strip; the selected fuel type is highlighted. */}
+          <ResultComparison
+            title="Compare fuel types for this trip"
+            items={scenarios.map((s) => ({
+              label: s.label.replace('Diesel ', 'D'),
+              value: s.scenario.totalCost,
+              format: (n: number) => `R${n.toFixed(2)}`,
+            }))}
+            highlightIndex={scenarios.findIndex((s) => FUEL_LABELS[fuelType] === s.label || s.label === `${FUEL_LABELS[fuelType]} (your price)`)}
+            summary={`The same trip costs more or less depending on fuel type. ${FUEL_LABELS[fuelType]} at ${results.priceSource === 'user-entered' ? 'your entered price' : `the published ${region} price of R${results.pricePerLitre.toFixed(2)}/L`} gives R${results.totalCost.toFixed(2)} total and R${results.costPerKm.toFixed(2)} per km. Diesel bars use published wholesale baselines, so real forecourt diesel differs.`}
+            tableLabel="View the fuel-type comparison as a table"
+          />
+          <ResultTableToggle label="View every scenario's litres and price as a table">
+            <ResultDataTable
+              columns={['Fuel type', 'Litres', 'Price per litre', 'Total cost']}
+              rows={scenarios.map((s) => [
+                s.scenario.priceSource === 'user-entered' ? `${s.label} (user price)` : s.label,
+                s.scenario.fuelNeededL.toFixed(2),
+                `R${s.scenario.pricePerLitre.toFixed(2)}`,
+                `R${s.scenario.totalCost.toFixed(2)}`,
+              ])}
+              caption={scenarios.map((s) => s.priceProof).join('; ')}
+            />
+          </ResultTableToggle>
 
           <div className="flex gap-3 pt-2">
             <Button onClick={handleCopy} className="flex-1 bg-primary hover:bg-primary text-white">
@@ -339,6 +423,33 @@ export default function SaFuelCalculator({ onSaveHistory }: SaFuelCalculatorProp
           </div>
         </div>
       )}
+
+      <CalculationAssumptions
+        items={[
+          {
+            label: 'Trip formula',
+            detail: 'Litres = distance × consumption ÷ 100; Total = litres × price per litre; Cost per km = total ÷ distance. Return trips double the distance only.',
+            badge: 'formula',
+          },
+          {
+            label: 'Published fuel prices',
+            detail: `Fuel prices come from the official DMPR schedule: pump prices for petrol, wholesale baselines for diesel, effective ${FUEL_PRICE_DATA.effectiveLabel} (verified ${FUEL_PRICE_DATA.lastVerifiedLabel}). Petrol prices are zone-based: inland vs coastal.`,
+            badge: 'published',
+            source: { label: FUEL_PRICE_DATA.source.label, href: FUEL_PRICE_DATA.source.url },
+          },
+          {
+            label: 'Diesel caveat',
+            detail: 'Diesel forecourt prices are deregulated and vary by station — the schedule supplies a wholesale baseline, so the diesel estimate is a floor.',
+            badge: 'published',
+          },
+          {
+            label: 'Your inputs',
+            detail: 'Trip distance, consumption (L/100km), and optionally your own price per litre. Enter real figures from your car and bill; nothing here assumes them for you.',
+            badge: 'assumption',
+          },
+        ]}
+        caveat="Estimates are for trip planning only. Prices are never projected forward: the tool uses the last officially published schedule and will not claim rates before they exist."
+      />
     </div>
   );
 }
