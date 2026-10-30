@@ -228,20 +228,48 @@ jobs:
             console.log("preview SITE_URL: noindex, no canonical, disallowed robots, empty sitemap");
           '
 
-      - name: Assert production build without SITE_URL fails loudly
+      - name: Assert production build without SITE_URL uses the public domain
         env:
           SITE_URL: ''
           VERCEL_ENV: production
-          VERCEL_URL: example.vercel.app
+          VERCEL_URL: calculate-daily.vercel.app
         run: |
-          if bun run build > /tmp/prod-guard.log 2>&1; then
-            echo "BUILD SHOULD HAVE FAILED without SITE_URL in production"
-            tail -n 40 /tmp/prod-guard.log
+          bun run build
+          node -e '
+            const fs = require("fs");
+
+            const sitemap = fs.readFileSync("dist/sitemap.xml", "utf8");
+            const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+            if (!locs.length) { console.error("sitemap is empty"); process.exit(1); }
+            const bad = locs.filter((u) => !u.startsWith("https://www.totalcalculation.com/"));
+            if (bad.length) {
+              console.error("sitemap advertises the wrong host:", bad.slice(0, 5));
+              process.exit(1);
+            }
+
+            const home = fs.readFileSync("dist/index.html", "utf8");
+            const canonical = (home.match(/rel="canonical" href="([^"]+)"/) || [])[1];
+            if (canonical !== "https://www.totalcalculation.com/") {
+              console.error("wrong canonical:", canonical);
+              process.exit(1);
+            }
+            console.log("production canonical origin ok:", canonical, "-", locs.length, "sitemap urls");
+          '
+
+      - name: Assert a Vercel deployment host in SITE_URL fails the build
+        env:
+          SITE_URL: https://calculate-daily.vercel.app
+          VERCEL_ENV: production
+          VERCEL_URL: calculate-daily.vercel.app
+        run: |
+          if bun run build > /tmp/deployment-host-guard.log 2>&1; then
+            echo "BUILD SHOULD HAVE FAILED with a deployment host in SITE_URL"
+            tail -n 40 /tmp/deployment-host-guard.log
             exit 1
           fi
-          if ! grep -q "SITE_URL is required for production builds" /tmp/prod-guard.log; then
-            echo "build failed but not with the SITE_URL guard"
-            tail -n 40 /tmp/prod-guard.log
+          if ! grep -q "retired host" /tmp/deployment-host-guard.log; then
+            echo "build failed but not with the retired-host guard"
+            tail -n 40 /tmp/deployment-host-guard.log
             exit 1
           fi
-          echo "production guard fired as expected"
+          echo "deployment host rejected before publishing"

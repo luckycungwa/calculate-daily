@@ -155,6 +155,11 @@ How `scripts/prerender.ts` resolves the canonical origin:
 - [ ] Request indexing for top pages (mortgage-calculator, percentage-calculator, bmi-calculator,
       compound-interest-calculator, tip-calculator)
 - [ ] Bing Webmaster Tools: import from GSC
+- [ ] IndexNow: `https://www.totalcalculation.com/6b7f105a7b84cda5355bb95ab3608acf.txt`
+      returns the key (the file is public by design; it is the ownership proof), then the
+      post-deploy `IndexNow` workflow submits the live sitemap — expect 316 URLs accepted.
+      Run it by hand after a manual deploy with `npm run indexnow` (`--dry-run` to preview, or
+      `npm run indexnow:dry`).
 
 ## Continuous integration
 

@@ -165,6 +165,21 @@ if (lastmods.length > 1) {
   }
 }
 
+// Every listed URL must carry a content date, so no page silently drops the
+// signal (that is how the hand-written and listing pages went undated).
+const urlEntries = [...sitemapXml.matchAll(/<url>\s*([\s\S]*?)<\/url>/g)].map((m) => m[1]);
+const undated = urlEntries.filter((entry) => !/<lastmod>/.test(entry));
+if (!site.isPreview && undated.length) {
+  const examples = undated
+    .slice(0, 5)
+    .map((entry) => entry.match(/<loc>([^<]*)<\/loc>/)?.[1] ?? '(unparseable url)')
+    .join(', ');
+  addError(
+    `${undated.length} of ${urlEntries.length} sitemap URLs have no <lastmod> (e.g. ${examples}). ` +
+      'Give the page a content date instead of dropping the field.'
+  );
+}
+
 const robotsTxt = fs.readFileSync(robotsPath, 'utf8');
 if (site.isPreview && !/Disallow:\s*\/\s*(?:\r?\n|$)/m.test(robotsTxt)) {
   addError('Preview robots.txt must disallow crawling.');

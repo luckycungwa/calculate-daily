@@ -570,7 +570,73 @@ Sitemap: ${SITE_URL}/sitemap.xml
     sitemapUrls.push(`${SITE_URL}/guides/${guide.slug}`)
   );
 
-  const lastmod = new Date().toISOString().slice(0, 10);
+  // <lastmod> must reflect a real content change. Stamping the build date on every
+  // URL trains crawlers to ignore the field, and the prerender audit fails such a
+  // sitemap (see docs/domain-migration-audit.md, defect D4). Pages with no recorded
+  // content date emit no <lastmod> at all rather than a fabricated one.
+  //
+  // Sources: calculator and guide dates come from the catalogue (`seo.updatedAt`,
+  // or a guide's `publishedAt`); listing pages take the newest date of the content
+  // they list; hand-written pages use STATIC_PAGE_DATES.
+  const newest = (dates: (string | undefined)[]): string | undefined =>
+    dates.filter((d): d is string => Boolean(d)).sort().pop();
+
+  /**
+   * Pages whose copy is hand-written in a component rather than held in the
+   * catalogue. Each date is the day that page's copy last changed in source
+   * control — bump the entry whenever you edit the page's text, because crawlers
+   * use it to decide whether a page is worth recrawling. `/` is not listed here:
+   * it is derived from the newest content it links to (see listDatesFor below).
+   */
+  const STATIC_PAGE_DATES: Record<string, string> = {
+    '/about': '2026-10-30',
+    '/contact': '2026-10-30',
+    '/privacy': '2026-10-30',
+    '/terms': '2026-10-30',
+    '/savings-goal': '2026-10-30',
+  };
+
+  const contentDateByPath = new Map<string, string>();
+  const listDatesFor = (pathname: string, dates: (string | undefined)[]) => {
+    const date = newest(dates);
+    if (date) contentDateByPath.set(pathname, date);
+  };
+  CALCULATOR_CATALOG.forEach((calc) => {
+    if (calc.seo?.updatedAt) {
+      contentDateByPath.set(`/calculators/${calc.slug}`, calc.seo.updatedAt);
+    }
+  });
+  GUIDE_REGISTRY.forEach((guide) => {
+    const date = guide.seo?.updatedAt ?? guide.publishedAt;
+    if (date) contentDateByPath.set(`/guides/${guide.slug}`, date);
+  });
+
+  // A listing page changes when anything it lists changes.
+  listDatesFor('/calculators', CALCULATOR_CATALOG.map((c) => c.seo?.updatedAt));
+  listDatesFor('/guides', GUIDE_REGISTRY.map((g) => g.seo?.updatedAt ?? g.publishedAt));
+  listDatesFor('/', [
+    ...CALCULATOR_CATALOG.map((c) => c.seo?.updatedAt),
+    ...GUIDE_REGISTRY.map((g) => g.seo?.updatedAt ?? g.publishedAt),
+  ]);
+  CATEGORIES.forEach((cat) => {
+    listDatesFor(
+      `/categories/${cat.id}`,
+      CALCULATOR_CATALOG.filter((c) => c.category === cat.id).map((c) => c.seo?.updatedAt)
+    );
+  });
+  Object.entries(STATIC_PAGE_DATES).forEach(([pathname, date]) => {
+    contentDateByPath.set(pathname, date);
+  });
+
+  const undatedPages = sitemapUrls.filter((u) => !contentDateByPath.has(new URL(u).pathname));
+  if (!IS_PREVIEW && undatedPages.length) {
+    console.warn(
+      `Warning: ${undatedPages.length} sitemap URL(s) have no content date, so they emit no <lastmod>: ${undatedPages
+        .slice(0, 5)
+        .join(', ')}`
+    );
+  }
+
 
   const pagePriority: Record<string, number> = {
     '/': 1.0,
@@ -597,7 +663,9 @@ Sitemap: ${SITE_URL}/sitemap.xml
 ${(IS_PREVIEW ? [] : sitemapUrls).map((u) => {
   const pathname = new URL(u).pathname;
   const prio = pagePriority[pathname] ?? 0.6;
-  return `  <url>\n    <loc>${u}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>weekly</changefreq>\n    <priority>${prio}</priority>\n  </url>`;
+  const lastmod = contentDateByPath.get(pathname);
+  const lastmodXml = lastmod ? `\n    <lastmod>${lastmod}</lastmod>` : '';
+  return `  <url>\n    <loc>${u}</loc>${lastmodXml}\n    <changefreq>weekly</changefreq>\n    <priority>${prio}</priority>\n  </url>`;
 }).join('\n')}
 </urlset>`;
   fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemapXml);

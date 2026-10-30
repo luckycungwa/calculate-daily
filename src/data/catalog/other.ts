@@ -62,6 +62,7 @@ export const FOOD_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-08-22',
     },
   },
   {
@@ -123,6 +124,7 @@ export const FOOD_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
+      updatedAt: '2026-08-21',
     },
   },
 ];
@@ -195,6 +197,7 @@ export const FITNESS_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -264,6 +267,7 @@ export const FITNESS_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
+      updatedAt: '2026-08-22',
     },
   },
 ];
@@ -326,6 +330,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.9,
+      updatedAt: '2026-08-22',
     },
   },
   {
@@ -398,6 +403,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-08-22',
     },
   },
   {
@@ -471,6 +477,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-08-22',
     },
   },
   {
@@ -519,7 +526,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['budget-calculator', 'fuel-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'pet-food',
@@ -566,7 +573,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['budget-calculator', 'savings-goal-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-08-22' },
   },
   {
     id: 'screen-time-cost',
@@ -616,7 +623,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['budget-calculator', 'fuel-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'subscription-total',
@@ -666,7 +673,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['budget-calculator', 'savings-goal-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'alcohol-units',
@@ -714,7 +721,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['calorie-deficit-calculator', 'bmi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'coffee-ratio',
@@ -761,7 +768,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['caffeine-limit-calculator', 'budget-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-08-22' },
   },
   {
     id: 'boiling-point',
@@ -807,7 +814,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['recipe-scaling-calculator', 'temperature-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-08-22' },
   },
   {
     id: 'daily-commute-cost',
@@ -858,7 +865,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['budget-calculator', 'fuel-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
   },
   {
     id: 'sa-fuel',
@@ -914,7 +921,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['fuel-cost-calculator', 'budget-calculator', 'currency-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-30' },
   },
   {
     id: 'gas-mileage',
@@ -953,7 +960,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['fuel-cost-calculator', 'daily-commute-cost-calculator', 'speed-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'word-counter',
@@ -990,7 +997,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['screen-time-cost-calculator', 'scientific-calculator', 'percentage-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'dimensional-weight',
@@ -1092,6 +1099,6 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['price-per-unit-calculator', 'trip-cost-calculator', 'room-volume-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.86 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.86, updatedAt: '2026-10-26' },
   }
 ];

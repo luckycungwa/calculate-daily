@@ -64,6 +64,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.9,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -123,6 +124,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.75,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -197,6 +199,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -268,6 +271,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -342,6 +346,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.75,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -404,6 +409,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -475,6 +481,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -511,7 +518,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['percentage-calculator', 'compound-interest-calculator', 'ratio-proportion-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'std-dev',
@@ -548,7 +555,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['mean-median-mode-calculator', 'percentage-calculator', 'gpa-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
   },
   {
     id: 'mean-median-mode',
@@ -586,7 +593,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['standard-deviation-calculator', 'percentage-calculator', 'gpa-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'final-grade',
@@ -621,7 +628,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['gpa-calculator', 'test-score-percentage-calculator', 'percentage-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'gcd-lcm',
@@ -668,7 +675,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['quadratic-formula-calculator', 'factorial-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'factorial',
@@ -712,7 +719,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['combinations-permutations-calculator', 'quadratic-formula-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'comb-perm',
@@ -759,7 +766,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['factorial-calculator', 'percentage-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'quadratic',
@@ -809,7 +816,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['slope-calculator', 'distance-formula-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'pythagorean',
@@ -854,7 +861,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['distance-formula-calculator', 'slope-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'circle',
@@ -902,7 +909,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['pythagorean-theorem-calculator', 'distance-formula-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'slope',
@@ -951,7 +958,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['quadratic-formula-calculator', 'distance-formula-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'exponent-root',
@@ -998,7 +1005,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['rounding-calculator', 'gcd-lcm-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'rounding',
@@ -1043,7 +1050,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['percentage-calculator', 'exponent-root-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
   },
   {
     id: 'prime-check',
@@ -1089,7 +1096,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['gcd-lcm-calculator', 'factorial-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'abs-value',
@@ -1133,7 +1140,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['distance-formula-calculator', 'modulo-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-08-22' },
   },
   {
     id: 'modulo',
@@ -1178,7 +1185,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['gcd-lcm-calculator', 'prime-number-checker'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
   },
   {
     id: 'exponential-growth',
@@ -1224,7 +1231,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['compound-interest-calculator', 'exponent-root-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'distance-formula',
@@ -1271,7 +1278,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['pythagorean-theorem-calculator', 'slope-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'fraction',
@@ -1309,7 +1316,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['fraction-to-percent-calculator', 'ratio-proportion-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'graphing',
@@ -1368,7 +1375,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['quadratic-formula-calculator', 'slope-calculator', 'scientific-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'z-score',
@@ -1404,7 +1411,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['standard-deviation-calculator', 'graphing-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-10-26' },
   },
   {
     id: 'solid-volume',
@@ -1446,7 +1453,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['scientific-calculator', 'graphing-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-10-26' },
   },
   {
     id: 'density',
@@ -1482,7 +1489,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['solid-volume-calculator', 'scientific-calculator', 'weight-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-10-26' },
   },
   {
     id: 'aps-score',
@@ -1575,7 +1582,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['gpa-calculator', 'test-score-percentage-calculator', 'percentage-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'confidence-interval',
@@ -1670,7 +1677,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['standard-deviation-calculator', 'z-score-calculator', 'sample-size-calculator', 'mean-median-mode-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'sample-size',
@@ -1756,7 +1763,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['confidence-interval-calculator', 'z-score-calculator', 'percentage-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'variance',
@@ -1845,7 +1852,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['standard-deviation-calculator', 'mean-median-mode-calculator', 'percentile-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'percentile',
@@ -1927,7 +1934,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['mean-median-mode-calculator', 'standard-deviation-calculator', 'z-score-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'margin-of-error',
@@ -2048,7 +2055,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['sample-size-calculator', 'confidence-interval-calculator', 'percentage-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'probability',
@@ -2151,7 +2158,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['combinations-permutations-calculator', 'percentage-calculator', 'z-score-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'normal-distribution',
@@ -2244,7 +2251,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['z-score-calculator', 'standard-deviation-calculator', 'confidence-interval-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'triangle',
@@ -2339,7 +2346,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['pythagorean-theorem-calculator', 'circle-area-calculator', 'slope-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'fraction-to-decimal',
@@ -2430,6 +2437,6 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['fraction-to-percent-calculator', 'fraction-calculator', 'percentage-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   }
 ];

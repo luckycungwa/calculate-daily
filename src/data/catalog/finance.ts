@@ -60,6 +60,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.85,
+      updatedAt: '2026-10-26',
     },
   },
   {
@@ -121,6 +122,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.9,
+      updatedAt: '2026-10-30',
     },
   },
   {
@@ -170,6 +172,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.85,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -219,6 +222,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.8,
+      updatedAt: '2026-10-26',
     },
   },
   {
@@ -268,6 +272,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.95,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -317,6 +322,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.9,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -366,6 +372,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.8,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -440,6 +447,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.75,
+      updatedAt: '2026-10-26',
     },
   },
   {
@@ -484,6 +492,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.75,
+      updatedAt: '2026-10-30',
     },
   },
   {
@@ -527,6 +536,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-10-30',
     },
   },
   {
@@ -571,6 +581,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
+      updatedAt: '2026-10-30',
     },
   },
   {
@@ -644,6 +655,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
+      updatedAt: '2026-10-26',
     },
   },
   {
@@ -717,6 +729,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -788,6 +801,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -859,6 +873,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -931,6 +946,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -984,6 +1000,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -1039,6 +1056,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -1082,7 +1100,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['cagr-calculator', 'compound-interest-calculator', 'inflation-adjusted-return'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'present-value',
@@ -1124,7 +1142,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['compound-interest-calculator', 'inflation-adjusted-return', 'retirement-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'cagr',
@@ -1166,7 +1184,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['investment-roi-calculator', 'inflation-adjusted-return'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'debt-to-income',
@@ -1207,7 +1225,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['mortgage-calculator', 'loan-affordability-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'net-worth',
@@ -1248,7 +1266,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['debt-to-income-calculator', 'investment-roi-calculator', 'retirement-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'credit-card-payoff',
@@ -1296,7 +1314,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['debt-consolidation-calculator', 'budget-calculator', 'loan-payment-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-10-24' },
   },
   {
     id: 'loan-affordability',
@@ -1341,7 +1359,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['debt-to-income-calculator', 'mortgage-calculator', 'loan-payment-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'inflation-adjusted',
@@ -1382,7 +1400,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['compound-interest-calculator', 'cagr-calculator', 'investment-roi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'debt-consolidation',
@@ -1428,7 +1446,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['credit-card-payoff-calculator', 'budget-calculator', 'loan-payment-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'retirement',
@@ -1473,7 +1491,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['compound-interest-calculator', 'inflation-adjusted-return', 'net-worth-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-08-22' },
   },
   {
     id: 'budget-50-30-20',
@@ -1517,7 +1535,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['net-worth-calculator', 'credit-card-payoff-calculator', 'retirement-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'savings-goal',
@@ -1561,7 +1579,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['emergency-fund-calculator', 'budget-calculator', 'retirement-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'break-even',
@@ -1599,7 +1617,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['markup-margin-calculator', 'investment-roi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-10-26' },
   },
   {
     id: 'price-per-unit',
@@ -1636,7 +1654,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['discount-sales-tax-calculator', 'meal-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'salary-hourly',
@@ -1682,7 +1700,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['budget-calculator', 'net-worth-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'debt-payoff',
@@ -1722,7 +1740,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['credit-card-payoff-calculator', 'loan-payment-calculator', 'emergency-fund-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'rental-yield',
@@ -1760,7 +1778,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['mortgage-calculator', 'rent-vs-buy-calculator', 'investment-roi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'commission',
@@ -1798,7 +1816,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['markup-margin-calculator', 'percentage-calculator', 'break-even-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-10-26' },
   },
   {
     id: 'take-home-pay',
@@ -1927,7 +1945,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['income-tax-calculator', 'budget-calculator', 'salary-to-hourly-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'vat',
@@ -2020,7 +2038,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['discount-sales-tax-calculator', 'markup-margin-calculator', 'percentage-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'income-tax',
@@ -2144,7 +2162,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['take-home-pay-calculator', 'capital-gains-tax-calculator', 'budget-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'inflation',
@@ -2236,7 +2254,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['inflation-adjusted-return', 'savings-goal-calculator', 'compound-interest-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'capital-gains-tax',
@@ -2374,7 +2392,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['income-tax-calculator', 'property-tax-calculator', 'roi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'property-tax',
@@ -2494,7 +2512,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['mortgage-calculator', 'rental-yield-calculator', 'closing-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'roas',
@@ -2613,7 +2631,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['roi-calculator', 'break-even-calculator', 'markup-margin-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'npv',
@@ -2703,7 +2721,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['irr-calculator', 'present-value-calculator', 'cagr-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'irr',
@@ -2797,7 +2815,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['npv-calculator', 'cagr-calculator', 'roi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'conversion-rate',
@@ -2899,7 +2917,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['roas-calculator', 'break-even-calculator', 'sample-size-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88, updatedAt: '2026-10-26' },
   },
   {
     id: 'freelance-rate',
@@ -2997,7 +3015,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['hourly-to-annual-salary-calculator', 'salary-to-hourly-calculator', 'take-home-pay-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88, updatedAt: '2026-10-26' },
   },
   {
     id: 'overtime',
@@ -3120,7 +3138,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['take-home-pay-calculator', 'salary-to-hourly-calculator', 'hourly-to-annual-salary-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.84 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.84, updatedAt: '2026-10-26' },
   },
   {
     id: 'apr-to-apy',
@@ -3249,7 +3267,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['compound-interest-calculator', 'savings-goal-calculator', 'simple-interest-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82, updatedAt: '2026-10-26' },
   },
   {
     id: 'payback-period',
@@ -3369,7 +3387,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['npv-calculator', 'irr-calculator', 'roi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82, updatedAt: '2026-10-26' },
   },
   {
     id: 'cap-rate',
@@ -3500,7 +3518,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['rental-yield-calculator', 'cash-on-cash-return-calculator', 'property-tax-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.84 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.84, updatedAt: '2026-10-26' },
   },
   {
     id: 'cash-on-cash',
@@ -3637,7 +3655,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['cap-rate-calculator', 'rental-yield-calculator', 'mortgage-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82, updatedAt: '2026-10-26' },
   },
   {
     id: 'house-flip',
@@ -3775,7 +3793,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['closing-cost-calculator', 'moving-cost-calculator', 'roi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82, updatedAt: '2026-10-26' },
   },
   {
     id: 'credit-utilization',
@@ -3908,7 +3926,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['credit-card-payoff-calculator', 'credit-card-interest-calculator', 'debt-to-income-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.84 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.84, updatedAt: '2026-10-26' },
   },
   {
     id: 'severance',
@@ -4040,7 +4058,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['take-home-pay-calculator', 'emergency-fund-calculator', 'budget-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.78 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.78, updatedAt: '2026-10-26' },
   },
   {
     id: 'dividend-yield',
@@ -4175,7 +4193,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['roi-calculator', 'compound-interest-calculator', 'investment-roi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82, updatedAt: '2026-10-26' },
   },
   {
     id: 'basis-points',
@@ -4303,7 +4321,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['apr-to-apy-calculator', 'mortgage-calculator', 'refinance-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'customer-acquisition-cost',
@@ -4372,7 +4390,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['customer-lifetime-value-calculator', 'roas-calculator', 'break-even-calculator', 'markup-margin-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.78 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.78, updatedAt: '2026-10-30' },
   },
   {
     id: 'customer-lifetime-value',
@@ -4446,6 +4464,6 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['customer-acquisition-cost-calculator', 'roas-calculator', 'break-even-calculator', 'markup-margin-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-30' },
   }
 ];

@@ -49,6 +49,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.8,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -111,6 +112,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.75,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -162,6 +164,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.9,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -219,6 +222,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -268,6 +272,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.8,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -317,6 +322,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.75,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -366,6 +372,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -415,6 +422,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -464,6 +472,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -513,6 +522,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -544,7 +554,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['kg-to-lbs-calculator', 'weight-converter', 'bmi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-08-22' },
   },
   {
     id: 'kg-to-lbs',
@@ -574,7 +584,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['pounds-to-kg-calculator', 'weight-converter', 'bmi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'celsius-fahrenheit',
@@ -605,7 +615,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['fahrenheit-to-celsius-calculator', 'temperature-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-08-22' },
   },
   {
     id: 'fahrenheit-celsius',
@@ -635,7 +645,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['celsius-to-fahrenheit-calculator', 'temperature-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'inches-cm',
@@ -665,7 +675,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['cm-to-inches-calculator', 'feet-to-meters-calculator', 'length-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-08-22' },
   },
   {
     id: 'cm-inches',
@@ -695,7 +705,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['inches-to-cm-calculator', 'length-converter', 'feet-to-meters-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'feet-meters',
@@ -725,7 +735,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['meters-to-feet-calculator', 'inches-to-cm-calculator', 'length-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-08-22' },
   },
   {
     id: 'meters-feet',
@@ -755,7 +765,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['feet-to-meters-calculator', 'length-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'miles-km',
@@ -785,7 +795,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['km-to-miles-calculator', 'length-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-08-22' },
   },
   {
     id: 'km-miles',
@@ -815,7 +825,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['miles-to-km-calculator', 'length-converter', 'mph-to-kph-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'gallons-liters',
@@ -845,7 +855,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['liters-to-gallons-calculator', 'volume-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-08-22' },
   },
   {
     id: 'liters-gallons',
@@ -875,7 +885,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['gallons-to-liters-calculator', 'volume-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'ounces-grams',
@@ -905,7 +915,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['grams-to-ounces-calculator', 'weight-converter', 'recipe-scaling-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'grams-ounces',
@@ -935,7 +945,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['ounces-to-grams-calculator', 'weight-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'cups-ml',
@@ -965,7 +975,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['recipe-scaling-calculator', 'volume-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'tbsp-tsp',
@@ -995,7 +1005,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['cups-to-ml-calculator', 'recipe-scaling-calculator', 'volume-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'pints-quarts',
@@ -1025,7 +1035,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['volume-converter', 'gallons-to-liters-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'acres-sqft',
@@ -1055,7 +1065,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['square-feet-to-acres-calculator', 'room-area-calculator', 'area-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'sqft-acres',
@@ -1085,7 +1095,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['acres-to-square-feet-calculator', 'area-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'stone-pounds',
@@ -1115,7 +1125,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['pounds-to-stone-calculator', 'weight-converter', 'bmi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'pounds-stone',
@@ -1145,7 +1155,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['stone-to-pounds-calculator', 'weight-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'mb-gb',
@@ -1175,7 +1185,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['gb-to-tb-calculator', 'data-storage-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'gb-tb',
@@ -1205,7 +1215,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['mb-to-gb-calculator', 'data-storage-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'hours-minutes',
@@ -1235,7 +1245,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['days-to-hours-calculator', 'weeks-to-days-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'days-hours',
@@ -1265,7 +1275,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['weeks-to-days-calculator', 'hours-to-minutes-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'weeks-days',
@@ -1295,7 +1305,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['months-to-days-calculator', 'days-to-hours-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'months-days',
@@ -1325,7 +1335,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['weeks-to-days-calculator', 'years-to-days-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'years-days',
@@ -1355,7 +1365,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['months-to-days-calculator', 'weeks-to-days-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'mph-kph',
@@ -1385,7 +1395,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['speed-converter', 'fuel-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
   },
   {
     id: 'psi-bar',
@@ -1415,6 +1425,6 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['fuel-cost-calculator', 'speed-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   }
 ];

@@ -92,7 +92,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['cups-to-grams-calculator', 'butter-converter', 'recipe-scaling-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'butter',
@@ -181,7 +181,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['ingredient-weight-converter', 'cups-to-grams-calculator', 'recipe-scaling-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'flour',
@@ -270,7 +270,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['ingredient-weight-converter', 'cups-to-grams-calculator', 'pizza-dough-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'oven-temperature',
@@ -363,7 +363,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['temperature-converter', 'pizza-dough-calculator', 'ingredient-weight-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'pizza-dough',
@@ -501,7 +501,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['flour-converter', 'oven-temperature-converter', 'recipe-scaling-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-10-26' },
   },
   {
     id: 'tire-size',
@@ -640,7 +640,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['speed-converter', 'fuel-cost-calculator', 'car-loan-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'car-depreciation',
@@ -770,7 +770,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['car-loan-calculator', 'fuel-cost-calculator', 'percentage-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'speed-distance-time',
@@ -859,7 +859,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['running-pace-calculator', 'fuel-cost-calculator', 'speed-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'ev-charging-cost',
@@ -953,7 +953,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['fuel-cost-calculator', 'trip-cost-calculator', 'gas-mileage-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88, updatedAt: '2026-10-26' },
   },
   {
     id: 'trip-cost',
@@ -1048,7 +1048,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['fuel-cost-calculator', 'gas-mileage-calculator', 'ev-charging-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88, updatedAt: '2026-10-26' },
   },
   {
     id: 'brine',
@@ -1176,7 +1176,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['recipe-scaling-calculator', 'coffee-ratio-calculator', 'meal-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'cake-pan',
@@ -1305,6 +1305,6 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['recipe-scaling-calculator', 'oven-temperature-converter', 'ingredient-weight-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
 ];

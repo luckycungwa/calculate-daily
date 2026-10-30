@@ -150,6 +150,6 @@ export const AI_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['binary-to-decimal-calculator', 'download-time-calculator', 'password-entropy-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
 ];

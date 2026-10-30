@@ -11,6 +11,8 @@
     "audit:domain": "tsx scripts/audit-domain-migration.ts",
     "audit:domain:live": "tsx scripts/audit-domain-migration.ts --live",
     "audit:domain:live:all": "tsx scripts/audit-domain-migration.ts --live --all",
+    "indexnow": "tsx scripts/indexnow.ts",
+    "indexnow:dry": "tsx scripts/indexnow.ts --dry-run",
     "catalog:index": "tsx scripts/generate-catalog-index.ts",
     "test:graph": "tsx --test src/lib/graphExpression.test.ts",
     "test:calculators": "tsx --test src/lib/graphExpression.test.ts src/lib/mathOpportunityCalculations.test.ts src/lib/compoundInterest.test.ts src/lib/carLoanCalculations.test.ts src/lib/loanOpportunityCalculations.test.ts src/lib/scaleOpportunityCalculations.test.ts src/lib/academicAndHealthCalculations.test.ts src/lib/advancedMath.test.ts src/lib/financialMath.test.ts src/lib/devTools.test.ts src/lib/chemistry.test.ts src/lib/electrical.test.ts src/lib/foodAndAuto.test.ts src/lib/sportsAndHome.test.ts src/lib/practicalCalculations.test.ts src/lib/catalogFormulas.test.ts src/lib/mortgage.test.ts src/lib/fuelPrices.test.ts",

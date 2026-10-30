@@ -47,6 +47,13 @@ test('an unconfigured build falls back to the canonical origin, never localhost'
   assert.deepEqual(resolveSite({}), { url: CANONICAL_ORIGIN, isPreview: false });
 });
 
+test('a production deployment without SITE_URL uses the canonical origin, not the deployment host', () => {
+  assert.deepEqual(
+    resolveSite({ VERCEL_ENV: 'production', VERCEL_URL: 'calculate-daily.vercel.app' }),
+    { url: CANONICAL_ORIGIN, isPreview: false }
+  );
+});
+
 test('production requires HTTPS', () => {
   assert.throws(
     () => resolveSite({ SITE_URL: 'http://www.totalcalculation.com', VERCEL_ENV: 'production' }),

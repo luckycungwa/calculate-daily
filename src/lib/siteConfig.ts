@@ -40,7 +40,8 @@ export const APEX_REDIRECT_ORIGIN = 'https://totalcalculation.com';
  * A build that resolves to one of them is a migration failure, not a preference.
  */
 export const RETIRED_HOSTNAMES: readonly string[] = [
-    'totalcalculation.vercel.app',
+  'calculate-daily.vercel.app',
+  'totalcalculation.vercel.app',
   'calculatordaily.com',
   'www.calculatordaily.com',
 ];
@@ -124,6 +125,13 @@ export function resolveSite(env: SiteEnvironment): SiteContext {
     }
     // Non-production local build with an explicit override: honour it for inspection.
     return { url: origin.origin, isPreview: false };
+  }
+
+  // A production deployment with no SITE_URL still serves the real site, so it must
+  // canonicalise to the canonical origin. Falling back to VERCEL_URL here would
+  // publish a *.vercel.app sitemap; going into preview mode would ship noindex pages.
+  if (vercelEnv === 'production') {
+    return { url: CANONICAL_ORIGIN, isPreview: false };
   }
 
   if (vercelUrl) {

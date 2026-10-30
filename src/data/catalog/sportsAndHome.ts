@@ -91,7 +91,7 @@ export const SPORTS_AND_HOME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['running-pace-calculator', 'running-calories-calculator', 'speed-distance-time-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'golf-handicap',
@@ -183,7 +183,7 @@ export const SPORTS_AND_HOME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['percentage-calculator', 'mean-median-mode-calculator', 'confidence-interval-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'pet-calorie',
@@ -275,7 +275,7 @@ export const SPORTS_AND_HOME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['dog-age-calculator', 'pet-food-calculator', 'ideal-weight-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'aquarium-volume',
@@ -418,7 +418,7 @@ export const SPORTS_AND_HOME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['pond-volume-calculator', 'volume-converter', 'room-volume-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'fertilizer',
@@ -565,7 +565,7 @@ export const SPORTS_AND_HOME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['percentage-calculator', 'topsoil-calculator', 'gravel-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'pond-volume',
@@ -699,7 +699,7 @@ export const SPORTS_AND_HOME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['aquarium-volume-calculator', 'volume-converter', 'gravel-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'salary-increase',
@@ -818,7 +818,7 @@ export const SPORTS_AND_HOME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['inflation-calculator', 'take-home-pay-calculator', 'salary-to-hourly-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'moving-cost',
@@ -939,7 +939,7 @@ export const SPORTS_AND_HOME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['salary-increase-calculator', 'fuel-cost-calculator', 'car-depreciation-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'swim-pace',
@@ -1065,6 +1065,6 @@ export const SPORTS_AND_HOME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['running-pace-calculator', 'race-time-predictor', 'calories-burned-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
 ];

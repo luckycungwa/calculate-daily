@@ -113,7 +113,7 @@ export const SCIENCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['molecular-weight-calculator', 'dilution-calculator', 'density-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'molecular-weight',
@@ -211,7 +211,7 @@ export const SCIENCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['molarity-calculator', 'dilution-calculator', 'percentage-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'dilution',
@@ -335,7 +335,7 @@ export const SCIENCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['molarity-calculator', 'molecular-weight-calculator', 'volume-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'ph',
@@ -418,7 +418,7 @@ export const SCIENCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['molarity-calculator', 'dilution-calculator', 'molecular-weight-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'half-life',
@@ -538,7 +538,7 @@ export const SCIENCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['molarity-calculator', 'percentage-calculator', 'density-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'ohms-law',
@@ -625,7 +625,7 @@ export const SCIENCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['voltage-drop-calculator', 'wire-size-calculator', 'resistor-color-code-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-10-26' },
   },
   {
     id: 'voltage-drop',
@@ -759,7 +759,7 @@ export const SCIENCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['wire-size-calculator', 'ohms-law-calculator', 'electricity-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'wire-size',
@@ -905,7 +905,7 @@ export const SCIENCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['voltage-drop-calculator', 'ohms-law-calculator', 'electricity-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'resistor-color-code',
@@ -998,7 +998,7 @@ export const SCIENCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['ohms-law-calculator', 'voltage-drop-calculator', 'wire-size-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'specific-heat',
@@ -1122,7 +1122,7 @@ export const SCIENCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['btu-calculator', 'electricity-cost-calculator', 'boiling-point-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'ideal-gas-law',
@@ -1243,7 +1243,7 @@ export const SCIENCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['molarity-calculator', 'molecular-weight-calculator', 'ph-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'projectile-motion',
@@ -1379,6 +1379,6 @@ export const SCIENCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['distance-formula-calculator', 'speed-distance-time-calculator', 'slope-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
 ];

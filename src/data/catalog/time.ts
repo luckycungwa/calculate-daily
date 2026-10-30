@@ -71,6 +71,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-10-26',
     },
   },
   {
@@ -138,6 +139,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -210,6 +212,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -244,7 +247,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['date-difference-calculator', 'days-until-calculator', 'days-to-weeks-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'date-difference',
@@ -278,7 +281,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['age-calculator', 'days-until-calculator', 'days-to-weeks-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'days-until',
@@ -312,7 +315,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['age-calculator', 'date-difference-calculator', 'days-to-weeks-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
   },
   {
     id: 'time-adder',
@@ -359,7 +362,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['time-zone-converter', 'weekly-hours-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'timezone-converter',
@@ -406,7 +409,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['weekly-hours-calculator', 'sleep-cycle-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'seconds-to-time',
@@ -454,7 +457,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['minutes-to-hours-calculator', 'time-zone-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'minutes-to-hours',
@@ -500,7 +503,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['seconds-to-time-calculator', 'weekly-hours-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'hours-until',
@@ -550,7 +553,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['sleep-cycle-calculator', 'weekly-hours-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-10-26' },
   },
   {
     id: 'weekly-hours',
@@ -602,7 +605,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['work-hours-calculator', 'work-hours-per-year-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
   },
   {
     id: 'sleep-hours',
@@ -651,7 +654,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['sleep-cycle-calculator', 'sleep-debt-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-10-26' },
   },
   {
     id: 'add-days-to-date',
@@ -699,7 +702,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['weekly-hours-calculator', 'hours-until-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
   },
   {
     id: 'work-hours-per-year',
@@ -747,7 +750,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['weekly-hours-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'timesheet',
@@ -784,7 +787,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['work-hours-calculator', 'weekly-hours-calculator', 'salary-to-hourly-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'unix-timestamp',
@@ -820,6 +823,6 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['date-difference-calculator', 'time-card-calculator', 'days-until-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   }
 ];

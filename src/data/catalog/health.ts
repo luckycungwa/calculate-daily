@@ -59,6 +59,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.9,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -135,6 +136,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.8,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -198,6 +200,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.75,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -266,6 +269,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -329,6 +333,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -392,6 +397,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -464,6 +470,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -539,6 +546,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -600,6 +608,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.55,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -639,7 +648,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['bmr-calculator', 'protein-intake-calculator', 'calories-burned-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'sleep-cycle',
@@ -675,7 +684,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['work-hours-calculator', 'bmr-calculator', 'tdee-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'steps-to-miles',
@@ -712,7 +721,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['tdee-calculator', 'bmr-calculator', 'calories-burned-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'waist-to-hip-ratio',
@@ -757,7 +766,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['bmi-calculator', 'body-fat-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
   },
   {
     id: 'waist-to-height-ratio',
@@ -802,7 +811,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['bmi-calculator', 'waist-to-hip-ratio-calculator', 'body-fat-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
   },
   {
     id: 'blood-pressure',
@@ -847,7 +856,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['target-heart-rate-calculator', 'waist-to-hip-ratio-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'a1c-glucose',
@@ -893,7 +902,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['bmi-calculator', 'water-intake-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
   },
   {
     id: 'lean-body-mass',
@@ -941,7 +950,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['body-fat-calculator', 'bmi-calculator', 'protein-intake-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'calorie-deficit',
@@ -989,7 +998,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['bmr-calculator', 'protein-intake-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'body-surface-area',
@@ -1034,7 +1043,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['bmi-calculator', 'lean-body-mass-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-08-22' },
   },
   {
     id: 'vo2-max',
@@ -1079,7 +1088,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['target-heart-rate-calculator', 'calories-burned-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'carb-intake',
@@ -1126,7 +1135,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['tdee-calculator', 'protein-intake-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
   },
   {
     id: 'fat-intake',
@@ -1173,7 +1182,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['tdee-calculator', 'protein-intake-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'macro-calculator',
@@ -1224,7 +1233,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['tdee-calculator', 'protein-intake-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
   },
   {
     id: 'sleep-debt',
@@ -1272,7 +1281,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['sleep-cycle-calculator', 'bmr-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-10-26' },
   },
   {
     id: 'body-frame-size',
@@ -1318,7 +1327,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['ideal-weight-calculator', 'bmi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'metabolic-age',
@@ -1365,7 +1374,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['bmr-calculator', 'tdee-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'caffeine-limit',
@@ -1409,7 +1418,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['bmr-calculator', 'water-intake-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'body-type',
@@ -1457,7 +1466,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['body-fat-calculator', 'bmi-calculator', 'body-frame-size-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-08-22' },
   },
   {
     id: 'ideal-body-fat',
@@ -1504,7 +1513,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['body-fat-calculator', 'bmi-calculator', 'lean-body-mass-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-08-22' },
   },
   {
     id: 'maintain-weight',
@@ -1552,7 +1561,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['bmr-calculator', 'tdee-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
   },
   {
     id: 'running-calories',
@@ -1598,7 +1607,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['running-pace-calculator', 'calories-burned-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
   },
   {
     id: 'due-date',
@@ -1697,7 +1706,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['ovulation-calculator', 'conception-calculator', 'date-difference-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'ovulation',
@@ -1795,7 +1804,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['due-date-calculator', 'conception-calculator', 'date-difference-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'conception',
@@ -1891,7 +1900,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['due-date-calculator', 'ovulation-calculator', 'date-difference-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'pregnancy-week',
@@ -1989,7 +1998,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['due-date-calculator', 'conception-calculator', 'ovulation-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'ldl-cholesterol',
@@ -2106,7 +2115,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['bmi-calculator', 'blood-pressure-calculator', 'a1c-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.84 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.84, updatedAt: '2026-10-26' },
   },
   {
     id: 'mean-arterial-pressure',
@@ -2219,7 +2228,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['blood-pressure-calculator', 'target-heart-rate-calculator', 'waist-to-height-ratio-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'pack-years',
@@ -2342,6 +2351,6 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['alcohol-units-calculator', 'bmi-calculator', 'blood-pressure-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82, updatedAt: '2026-10-26' },
   }
 ];

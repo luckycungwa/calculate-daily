@@ -1,0 +1,49 @@
+name: IndexNow
+
+# Tells participating engines (Bing — and therefore Microsoft Copilot citations —
+# plus Yandex, Naver and Seznam) that the URLs in the live sitemap changed, right
+# after a production deployment. Google ignores IndexNow, so this is a nudge that
+# complements the sitemap; it never replaces it.
+#
+# The submission script reads the DEPLOYED sitemap and refuses to run unless the
+# key file is live at the site root, so it cannot get ahead of a deployment.
+
+on:
+  deployment_status:
+  workflow_run:
+    workflows: ['CI']
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    name: submit live sitemap
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'workflow_run' &&
+       github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main') ||
+      (github.event_name == 'deployment_status' &&
+       github.event.deployment_status.state == 'success' &&
+       contains(github.event.deployment_status.environment_url, 'totalcalculation.com'))
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      # Submits https://www.totalcalculation.com/sitemap.xml to api.indexnow.org.
+      # Non-zero exit fails the job, so a broken key file or an unreachable site
+      # shows up here instead of going unnoticed.
+      - name: Submit sitemap URLs
+        run: bun run indexnow

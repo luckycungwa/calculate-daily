@@ -98,7 +98,7 @@ export const TECH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['binary-to-decimal-calculator', 'download-time-calculator', 'data-storage-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'aspect-ratio',
@@ -222,7 +222,7 @@ export const TECH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['pixels-per-inch-calculator', 'hex-to-rgb-converter', 'contrast-ratio-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'pixels-per-inch',
@@ -340,7 +340,7 @@ export const TECH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['aspect-ratio-calculator', 'download-time-calculator', 'data-storage-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'download-time',
@@ -462,7 +462,7 @@ export const TECH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['data-storage-converter', 'pixels-per-inch-calculator', 'aspect-ratio-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'binary-to-decimal',
@@ -552,7 +552,7 @@ export const TECH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['ip-subnet-calculator', 'password-entropy-calculator', 'hex-to-rgb-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'password-entropy',
@@ -639,7 +639,7 @@ export const TECH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['url-encoder-decoder', 'binary-to-decimal-calculator', 'contrast-ratio-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'url-encoder',
@@ -722,7 +722,7 @@ export const TECH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['binary-to-decimal-calculator', 'password-entropy-calculator', 'download-time-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'hex-to-rgb',
@@ -814,7 +814,7 @@ export const TECH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['contrast-ratio-calculator', 'aspect-ratio-calculator', 'pixels-per-inch-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'contrast-ratio',
@@ -904,7 +904,7 @@ export const TECH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['hex-to-rgb-converter', 'aspect-ratio-calculator', 'pixels-per-inch-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'css-clamp',
@@ -1032,7 +1032,7 @@ export const TECH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['rem-to-px-calculator', 'pixels-per-inch-calculator', 'aspect-ratio-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'rem-to-px',
@@ -1154,7 +1154,7 @@ export const TECH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['css-clamp-calculator', 'pixels-per-inch-calculator', 'contrast-ratio-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.78 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.78, updatedAt: '2026-10-26' },
   },
   {
     id: 'video-file-size',
@@ -1283,6 +1283,6 @@ export const TECH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['download-time-calculator', 'data-storage-converter', 'aspect-ratio-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82, updatedAt: '2026-10-26' },
   },
 ];

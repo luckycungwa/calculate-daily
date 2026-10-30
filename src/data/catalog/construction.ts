@@ -67,6 +67,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -136,6 +137,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -210,6 +212,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -278,6 +281,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -346,6 +350,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -416,6 +421,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
+      updatedAt: '2026-08-21',
     },
   },
   {
@@ -454,7 +460,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['flooring-calculator', 'room-area-calculator', 'area-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'landscape-material',
@@ -491,7 +497,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['concrete-calculator', 'room-area-calculator', 'solid-volume-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'roofing',
@@ -529,7 +535,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['area-converter', 'room-area-calculator', 'flooring-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'roof-pitch',
@@ -635,7 +641,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['roofing-calculator', 'room-area-calculator', 'triangle-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'drywall',
@@ -746,7 +752,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['room-area-calculator', 'paint-calculator', 'lumber-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'siding',
@@ -854,7 +860,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['paint-calculator', 'roofing-calculator', 'room-area-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'gravel',
@@ -964,7 +970,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['landscape-material-calculator', 'topsoil-calculator', 'concrete-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'topsoil',
@@ -1068,7 +1074,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['mulch-calculator', 'gravel-calculator', 'landscape-material-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'mulch',
@@ -1178,7 +1184,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['topsoil-calculator', 'gravel-calculator', 'landscape-material-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
   },
   {
     id: 'fence',
@@ -1291,7 +1297,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['deck-calculator', 'lumber-calculator', 'concrete-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'deck',
@@ -1410,7 +1416,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['lumber-calculator', 'fence-calculator', 'concrete-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'stair',
@@ -1544,7 +1550,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['lumber-calculator', 'deck-calculator', 'triangle-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
   },
   {
     id: 'btu',
@@ -1644,7 +1650,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['insulation-calculator', 'room-area-calculator', 'paint-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88, updatedAt: '2026-10-26' },
   },
   {
     id: 'insulation',
@@ -1743,7 +1749,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['btu-calculator', 'drywall-calculator', 'roofing-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88, updatedAt: '2026-10-26' },
   },
   {
     id: 'gutter',
@@ -1865,7 +1871,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['roofing-calculator', 'siding-calculator', 'rainwater-harvest-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82, updatedAt: '2026-10-26' },
   },
   {
     id: 'wallpaper',
@@ -1991,7 +1997,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['paint-calculator', 'drywall-calculator', 'room-area-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'epoxy-resin',
@@ -2121,7 +2127,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['paint-calculator', 'concrete-calculator', 'tile-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'sod',
@@ -2246,7 +2252,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['topsoil-calculator', 'mulch-calculator', 'landscape-material-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82, updatedAt: '2026-10-26' },
   },
   {
     id: 'paver',
@@ -2376,7 +2382,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['gravel-calculator', 'landscape-material-calculator', 'concrete-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.84 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.84, updatedAt: '2026-10-26' },
   },
   {
     id: 'rainwater-harvest',
@@ -2505,7 +2511,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['roof-pitch-calculator', 'irrigation-calculator', 'gallons-to-liters-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'irrigation',
@@ -2635,7 +2641,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['rainwater-harvest-calculator', 'mulch-calculator', 'topsoil-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'livestock-feed',
@@ -2765,7 +2771,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['price-per-unit-calculator', 'meal-cost-calculator', 'pet-food-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.78 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.78, updatedAt: '2026-10-26' },
   },
   {
     id: 'firewood',
@@ -2876,7 +2882,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['btu-calculator', 'insulation-calculator', 'room-volume-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'solar-panel',
@@ -3012,7 +3018,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['electricity-cost-calculator', 'generator-size-calculator', 'btu-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.84 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.84, updatedAt: '2026-10-26' },
   },
   {
     id: 'generator-size',
@@ -3142,7 +3148,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['electricity-cost-calculator', 'solar-panel-calculator', 'ohms-law-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'rebar',
@@ -3277,7 +3283,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['concrete-calculator', 'post-hole-concrete-calculator', 'lumber-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-26' },
   },
   {
     id: 'post-hole-concrete',
@@ -3410,6 +3416,6 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['concrete-calculator', 'fence-calculator', 'rebar-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82 },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.82, updatedAt: '2026-10-26' },
   }
 ];
