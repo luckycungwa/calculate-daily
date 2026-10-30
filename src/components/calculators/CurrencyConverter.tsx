@@ -115,7 +115,7 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = ({ onSaveHist
                 <Wifi className="w-3 h-3" /> Checking live rates
               </span>
             ) : isLive ? (
-              <span className="inline-flex items-center gap-1 text-[11px] font-mono text-emerald-600 dark:text-emerald-400">
+              <span className="inline-flex items-center gap-1 text-[11px] font-mono text-primary dark:text-primary-tint">
                 <Wifi className="w-3 h-3" /> Live rates
               </span>
             ) : (
@@ -163,7 +163,7 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = ({ onSaveHist
                   id="cc-from"
                   value={fromCode}
                   onChange={(e) => setFromCode(e.target.value)}
-                  className="flex h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-950 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-emerald-600 shadow-xs cursor-pointer"
+                  className="flex h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-950 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary-tint shadow-xs cursor-pointer"
                 >
                   {CURRENCIES.map((c) => (
                     <option key={c.code} value={c.code}>
@@ -190,7 +190,7 @@ export const CurrencyConverter: React.FC<CurrencyConverterProps> = ({ onSaveHist
                   id="cc-to"
                   value={toCode}
                   onChange={(e) => setToCode(e.target.value)}
-                  className="flex h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-950 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-emerald-600 shadow-xs cursor-pointer"
+                  className="flex h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-950 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary-tint shadow-xs cursor-pointer"
                 >
                   {CURRENCIES.map((c) => (
                     <option key={c.code} value={c.code}>

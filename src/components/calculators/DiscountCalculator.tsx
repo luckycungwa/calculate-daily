@@ -191,7 +191,7 @@ export const DiscountCalculator: React.FC<DiscountCalculatorProps> = ({ onSaveHi
               <div className="space-y-1.5 text-xs font-mono text-zinc-300 pt-3 border-t border-zinc-800">
                 <div className="flex justify-between">
                   <span className="text-zinc-500">Total Money Saved:</span>
-                  <span className="font-bold text-emerald-400 tabular-nums">
+                  <span className="font-bold text-primary-on-dark tabular-nums">
                     {currency}{results.totalSaved.toFixed(2)}
                   </span>
                 </div>

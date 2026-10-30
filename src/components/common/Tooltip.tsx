@@ -35,7 +35,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
         <button
           type="button"
           aria-label={content}
-          className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors p-0.5 rounded-full focus:outline-hidden focus:ring-1 focus:ring-emerald-500"
+          className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors p-0.5 rounded-full focus:outline-hidden focus:ring-1 focus:ring-primary-tint"
         >
           <HelpCircle className="w-3.5 h-3.5" />
         </button>

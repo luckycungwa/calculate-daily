@@ -126,7 +126,7 @@ export const PersonalLoanCalculator: React.FC<CalculatorProps> = ({ onSaveHistor
           {error ? <p role="alert" className="text-sm text-amber-300">{error}</p> : result && (
             <>
               <p className="text-xs text-zinc-400">Estimated monthly installment</p>
-              <p className="mt-1 font-mono text-3xl font-bold tabular-nums text-emerald-400">{money(result.monthlyPayment)}</p>
+              <p className="mt-1 font-mono text-3xl font-bold tabular-nums text-primary-on-dark">{money(result.monthlyPayment)}</p>
               <dl className="mt-5 space-y-3">
                 <MoneyRow label="Loan amount" value={money(result.loanAmount)} />
                 <MoneyRow label="Origination fee" value={money(result.originationFee)} />
@@ -225,7 +225,7 @@ export const GoldLoanCalculator: React.FC<CalculatorProps> = ({ onSaveHistory })
           {error ? <p role="alert" className="text-sm text-amber-300">{error}</p> : result && (
             <>
               <p className="text-xs text-zinc-400">Estimated maximum loan using entered LTV</p>
-              <p className="mt-1 font-mono text-3xl font-bold tabular-nums text-emerald-400">{money(result.estimatedMaximumLoan)}</p>
+              <p className="mt-1 font-mono text-3xl font-bold tabular-nums text-primary-on-dark">{money(result.estimatedMaximumLoan)}</p>
               <dl className="mt-5 space-y-3">
                 <MoneyRow label="Fine-gold equivalent" value={`${result.fineGoldEquivalentGrams.toFixed(2)} g`} />
                 <MoneyRow label="Value at entered price" value={money(result.estimatedGoldValue)} />

@@ -26,16 +26,16 @@ const NotFoundPage: React.FC = () => {
   usePageMeta({
     title: 'Page Not Found',
     description:
-      'The page you requested does not exist. Browse free calculators and unit converters on CalculateDaily.',
+      'The page you requested does not exist. Browse free calculators and unit converters on Total Calculation.',
     noindex: true,
   });
   return (
     <div className="max-w-2xl mx-auto py-20 text-center space-y-4">
-      <h1 className="text-2xl font-bold text-zinc-950 dark:text-zinc-50">Page Not Found</h1>
+      <h1 className="font-display text-2xl font-bold text-zinc-950 dark:text-zinc-50">Page Not Found</h1>
       <p className="text-sm text-zinc-500">The page you requested does not exist.</p>
       <Link
         to="/"
-        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 text-white text-xs font-bold"
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-xs font-bold"
       >
         Back to Home
       </Link>

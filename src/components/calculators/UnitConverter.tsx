@@ -124,7 +124,7 @@ export const UnitConverter: React.FC<UnitConverterProps> = ({
                   id={`uc-${unitGroup}-from`}
                   value={fromUnit}
                   onChange={(e) => setFromUnit(e.target.value)}
-                  className="flex h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-950 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-emerald-600 shadow-xs cursor-pointer"
+                  className="flex h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-950 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary-tint shadow-xs cursor-pointer"
                 >
                   {group.units.map((u) => (
                     <option key={u.value} value={u.value}>
@@ -151,7 +151,7 @@ export const UnitConverter: React.FC<UnitConverterProps> = ({
                   id={`uc-${unitGroup}-to`}
                   value={toUnit}
                   onChange={(e) => setToUnit(e.target.value)}
-                  className="flex h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-950 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-emerald-600 shadow-xs cursor-pointer"
+                  className="flex h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 py-1 text-xs text-zinc-950 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50 focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary-tint shadow-xs cursor-pointer"
                 >
                   {group.units.map((u) => (
                     <option key={u.value} value={u.value}>

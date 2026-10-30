@@ -1,10 +1,85 @@
 @import "tailwindcss";
 
+/* Auto-detection must not treat long-form docs as templates: prose and code
+   samples such as `bg-emerald-600` would otherwise emit unused (and sometimes
+   invalid) utility rules into the shipped CSS. */
+@source not "../docs";
+@source not "../AGENTS.md";
+@source not "../DESIGN.md";
+
 /* Theme is driven by the `dark` class that ThemeProvider toggles, not by the
    operating system. Without this, `dark:` utilities follow
    prefers-color-scheme while the CSS variables follow the class, so the theme
    switch only half-applies. */
 @custom-variant dark (&:is(.dark *));
+
+/* Self-hosted brand faces. The families are open-licence (DM Sans and
+   JetBrains Mono are OFL; General Sans is free to self-host under the
+   Fontshare licence), and serving them from /fonts removes the three
+   third-party origins from first paint. Files are latin + latin-ext only;
+   the unicode-range values come from the Google Fonts CSS for these families
+   so a non-latin glyph falls through to the system stack as before. */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/dm-sans-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/dm-sans-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'General Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/general-sans-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'General Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/general-sans-600.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'General Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/general-sans-700.woff2') format('woff2');
+}
 
 @theme {
   --color-background: var(--background);
@@ -15,6 +90,15 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  --color-primary-tint: var(--primary-tint);
+  /* Indigo 400 — the one indigo that keeps AA contrast on the always-dark
+     result panels, independent of the active theme. */
+  --color-primary-on-dark: #818cf8;
+  /* Emerald 500 — the dark-theme --brand value, made static for green text and
+     chips on always-dark result panels. The light-theme #047857 reaches only
+     3.6:1 on near-black, so those panels need the brighter green in both
+     themes (the same reason --primary-on-dark exists). */
+  --color-brand-on-dark: #10b981;
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -26,31 +110,47 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
 }
 
 @layer base {
   :root {
     --background: #fafafa;
-    --foreground: #09090b;
+    --foreground: #0a0a0a;
     --card: #ffffff;
-    --card-foreground: #09090b;
+    --card-foreground: #0a0a0a;
     --popover: #ffffff;
-    --popover-foreground: #09090b;
-    --primary: #059669;
+    --popover-foreground: #0a0a0a;
+    /* Genesis primary is #6366F1; the deeper #4F46E5 is the AA-contrast fill
+       of the same family (genesis "Primary Hover") used for text-on-fill.
+       #6366F1 stays available for rings, tints and focus washes. */
+    --primary: #4f46e5;
     --primary-foreground: #ffffff;
+    --primary-tint: #6366f1;
     --secondary: #f4f4f5;
     --secondary-foreground: #18181b;
     --muted: #f4f4f5;
-    --muted-foreground: #52525b;
+    --muted-foreground: #6b6b6b;
     --accent: #f4f4f5;
     --accent-foreground: #18181b;
-    --destructive: #e11d48;
+    --destructive: #ef4444;
     --destructive-foreground: #ffffff;
-    --border: #e4e4e7;
+    --border: #e8e8ec;
     --input: #d4d4d8;
-    --ring: #059669;
-    --radius: 0.625rem;
-    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --ring: #6366f1;
+    --radius: 0.75rem;
+    /* Brand highlight (the former DESIGN.md emerald, now the shared --brand
+       token). Genesis reserves green for the brand moment and positive data —
+       the wordmark, homepage accent and success states — not for CTAs.
+       #047857 is emerald 700: the Genesis #059669 only reaches 3.77:1 on white,
+       which fails AA for the small success text it also colours. */
+    --brand: #047857;
+    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-display: 'General Sans', 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   }
 
   .dark {
@@ -60,8 +160,9 @@
     --card-foreground: #fafafa;
     --popover: #121215;
     --popover-foreground: #fafafa;
-    --primary: #10b981;
+    --primary: #5f62ee;
     --primary-foreground: #ffffff;
+    --primary-tint: #818cf8;
     --secondary: #27272a;
     --secondary-foreground: #fafafa;
     --muted: #27272a;
@@ -72,7 +173,8 @@
     --destructive-foreground: #ffffff;
     --border: #27272a;
     --input: #3f3f46;
-    --ring: #10b981;
+    --ring: #6366f1;
+    --brand: #10b981;
   }
 
   * {
@@ -95,6 +197,52 @@
 
   .tabular-nums {
     font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Genesis utilities ------------------------------------------------------- */
+
+/* Editorial display face for hero and section headings. Tight tracking per
+   the design system (-0.03em … -0.04em). */
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+}
+
+.font-display-heading {
+  font-family: var(--font-display);
+  letter-spacing: -0.04em;
+}
+
+/* The one decorative element the design system allows: a restrained
+   interactive-feeling dot grid. Purely CSS; no image weight. */
+.dot-grid {
+  background-image: radial-gradient(circle, var(--dot-color, #d4d4d8) 1px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+.dark .dot-grid {
+  --dot-color: #27272a;
+}
+
+/* Card elevation per the design system: flat at rest (1px border only);
+   shadow + 2px lift only on hover. */
+.hover-lift {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.dark .hover-lift:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hover-lift:hover {
+    transform: none;
   }
 }
 

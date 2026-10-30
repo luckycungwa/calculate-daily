@@ -21,7 +21,7 @@ export interface DialGaugeProps {
   /** Colour bands drawn outside the track, in ascending `to` order. The last
    * zone always runs to `max`. */
   zones?: Zone[];
-  /** Colour of the value arc and hub. Defaults to the brand emerald. */
+  /** Colour of the value arc and hub. Defaults to the brand emerald (`--brand`). */
   accent?: string;
   /** Big number in the middle. Defaults to one decimal place. */
   formatValue?: (value: number) => string;

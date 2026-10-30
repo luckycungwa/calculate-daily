@@ -209,7 +209,7 @@ export const RefinanceCalculator: React.FC<RefinanceCalculatorProps> = ({ slug =
 
             <div className="p-3.5 rounded-lg bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 space-y-2 text-xs text-zinc-600 dark:text-zinc-300">
               <div className="flex items-start gap-2.5">
-                <RefreshCcw className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                <RefreshCcw className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                 <span>
                   Break-even is the number of months it takes for your monthly savings to cover the closing costs.
                   If you plan to stay past that point, refinancing usually pays off.
@@ -223,7 +223,7 @@ export const RefinanceCalculator: React.FC<RefinanceCalculatorProps> = ({ slug =
               <div>
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-xs font-mono text-zinc-300">
                   <span>Monthly Savings</span>
-                  <span className="text-emerald-400 font-semibold">
+                  <span className="text-primary-on-dark font-semibold">
                     {currency}{results.monthlySavings.toFixed(2)}/mo
                   </span>
                 </div>
@@ -247,7 +247,7 @@ export const RefinanceCalculator: React.FC<RefinanceCalculatorProps> = ({ slug =
                   </div>
                   <div className="flex justify-between text-zinc-200">
                     <span className="text-zinc-400">New Payment:</span>
-                    <span className="font-bold text-emerald-400 tabular-nums">{currency}{results.newPayment.toFixed(2)}</span>
+                    <span className="font-bold text-primary-on-dark tabular-nums">{currency}{results.newPayment.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-zinc-200">
                     <span className="text-zinc-400">Savings per Year:</span>
@@ -255,7 +255,7 @@ export const RefinanceCalculator: React.FC<RefinanceCalculatorProps> = ({ slug =
                   </div>
                   <div className="flex justify-between text-zinc-200">
                     <span className="text-zinc-400">Lifetime Interest Saved:</span>
-                    <span className="font-bold text-emerald-400 tabular-nums">{currency}{results.interestSavedTotal.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+                    <span className="font-bold text-primary-on-dark tabular-nums">{currency}{results.interestSavedTotal.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
                   </div>
                 </div>
               </div>

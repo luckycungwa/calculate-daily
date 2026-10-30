@@ -189,7 +189,7 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
             </div>
 
             <div className="p-3 bg-zinc-50 dark:bg-zinc-950 rounded-lg border border-zinc-200 dark:border-zinc-800 flex items-start gap-2.5 text-xs text-zinc-700 dark:text-zinc-300">
-              <Code2 className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+              <Code2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
               <div>
                 <span className="font-mono text-[11px] font-bold text-zinc-900 dark:text-white block">
                   Evaluated Formula:

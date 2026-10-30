@@ -25,7 +25,7 @@ import { useToast } from '../ui/toast';
 type CalculatorProps = { onSaveHistory?: (summary: string) => void };
 
 const SELECT_CLASS =
-  'h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50';
+  'h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50';
 
 function formatLongDate(iso: string): string {
   const date = parseIsoDate(iso);
@@ -258,7 +258,7 @@ export const DueDateCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) 
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 text-xl font-bold text-emerald-400">{formatLongDate(value.estimatedDueDate)}</p>
+              <p className="mt-2 text-xl font-bold text-primary-on-dark">{formatLongDate(value.estimatedDueDate)}</p>
               <p className="mt-1 font-mono text-xs text-zinc-400">{value.estimatedDueDate}</p>
 
               <div className="mt-4 grid grid-cols-2 gap-3 border-t border-zinc-800 pt-3 text-xs">
@@ -289,7 +289,7 @@ export const DueDateCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) 
                 </div>
                 <div className="mt-1 h-2 overflow-hidden rounded-full bg-zinc-800">
                   <div
-                    className="h-full rounded-full bg-emerald-500 transition-all"
+                    className="h-full rounded-full bg-primary-tint transition-all"
                     style={{ width: `${value.progressPercent}%` }}
                   />
                 </div>
@@ -413,7 +413,7 @@ export const OvulationCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 text-lg font-bold text-emerald-400">{formatLongDate(value.ovulationDate)}</p>
+              <p className="mt-2 text-lg font-bold text-primary-on-dark">{formatLongDate(value.ovulationDate)}</p>
               <p className="mt-1 text-xs text-zinc-400">Predicted ovulation â€” cycle day {value.ovulationCycleDay}</p>
 
               <dl className="mt-4 space-y-2 border-t border-zinc-800 pt-3 text-xs">
@@ -578,7 +578,7 @@ export const ConceptionCalculator: React.FC<CalculatorProps> = ({ onSaveHistory 
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 text-lg font-bold text-emerald-400">{formatLongDate(value.conceptionDate)}</p>
+              <p className="mt-2 text-lg font-bold text-primary-on-dark">{formatLongDate(value.conceptionDate)}</p>
               <p className="mt-1 font-mono text-xs text-zinc-400">{value.conceptionDate}</p>
 
               <dl className="mt-4 space-y-2 border-t border-zinc-800 pt-3 text-xs">
@@ -739,7 +739,7 @@ export const PregnancyWeekCalculator: React.FC<CalculatorProps> = ({ onSaveHisto
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 Week {value.weekNumber}
                 <span className="ml-2 text-base font-normal text-zinc-400">+{value.daysIntoWeek} days</span>
               </p>
@@ -773,7 +773,7 @@ export const PregnancyWeekCalculator: React.FC<CalculatorProps> = ({ onSaveHisto
                 </div>
                 <div className="mt-1 h-2 overflow-hidden rounded-full bg-zinc-800">
                   <div
-                    className="h-full rounded-full bg-emerald-500 transition-all"
+                    className="h-full rounded-full bg-primary-tint transition-all"
                     style={{ width: `${value.progressPercent}%` }}
                   />
                 </div>
@@ -781,7 +781,7 @@ export const PregnancyWeekCalculator: React.FC<CalculatorProps> = ({ onSaveHisto
 
               {value.nextMilestone && (
                 <p className="mt-3 text-xs text-zinc-300">
-                  Next touchpoint: <span className="font-semibold">week {value.nextMilestone.week}</span> — {value.nextMilestone.label}.
+                  Next touchpoint: <span className="font-semibold">week {value.nextMilestone.week}</span> ï¿½ {value.nextMilestone.label}.
                 </p>
               )}
 

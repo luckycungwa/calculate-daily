@@ -19,13 +19,13 @@ export const GuideListingPage: React.FC = () => {
   return (
     <div className="space-y-8">
       <div className="text-center space-y-3">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800">
-          <BookOpen className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-          <span className="text-[11px] font-mono font-semibold text-emerald-700 dark:text-emerald-400 uppercase tracking-wide">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/5 dark:bg-primary-tint/10 border border-primary/20 dark:border-primary/30">
+          <BookOpen className="w-3.5 h-3.5 text-primary dark:text-primary-tint" />
+          <span className="text-[11px] font-mono font-semibold text-primary dark:text-primary-tint uppercase tracking-wide">
             Guides & Articles
           </span>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-bold text-zinc-950 dark:text-zinc-50">
+        <h1 className="font-display text-2xl sm:text-3xl font-bold text-zinc-950 dark:text-zinc-50">
           Learn the Math Behind the Tools
         </h1>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-xl mx-auto">
@@ -37,7 +37,7 @@ export const GuideListingPage: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {guides.map((guide) => (
           <Link key={guide.id} to={`/guides/${guide.slug}`}>
-            <Card className="hover:border-emerald-300 dark:hover:border-emerald-700 transition-colors cursor-pointer h-full">
+            <Card className="hover:border-primary/40 dark:hover:border-primary/40 transition-colors cursor-pointer h-full">
               <CardHeader>
                 <div className="flex items-center gap-2 mb-2">
                   <Badge variant="outline" className="text-[10px] font-mono">

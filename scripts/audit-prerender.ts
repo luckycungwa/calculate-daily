@@ -50,6 +50,16 @@ if (!fs.existsSync(sitemapPath) || !fs.existsSync(robotsPath)) {
 const sitemapXml = fs.readFileSync(sitemapPath, 'utf8');
 const sitemapUrls = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
 const sitemapSet = new Set(sitemapUrls);
+const currentHost = new URL(site.url).hostname;
+const isStaleDeploymentHost = (value: string) => {
+  try {
+    const host = new URL(value).hostname;
+    return host === 'calculatedaily.com' || host === 'www.calculatedaily.com';
+  } catch {
+    return false;
+  }
+};
+const staleOriginInUse = currentHost !== 'calculatedaily.com' && currentHost !== 'www.calculatedaily.com';
 const duplicateUrls = sitemapUrls.filter((url, index) => sitemapUrls.indexOf(url) !== index);
 if (duplicateUrls.length) addError(`Duplicate sitemap URLs: ${[...new Set(duplicateUrls)].join(', ')}`);
 if (site.isPreview && sitemapUrls.length) addError('Preview sitemap must not contain URLs.');
@@ -75,6 +85,9 @@ for (const url of sitemapUrls) {
     addError(`Sitemap URL uses ${parsed.origin}, expected ${site.url}: ${url}`);
     continue;
   }
+  if (staleOriginInUse && isStaleDeploymentHost(url)) {
+    addError(`Sitemap still uses the old calculatedaily.com origin instead of ${site.url}: ${url}`);
+  }
   if (parsed.search || parsed.hash || (parsed.pathname !== '/' && parsed.pathname.endsWith('/'))) {
     addError(`Sitemap URL is not in preferred canonical format: ${url}`);
   }
@@ -85,22 +98,35 @@ for (const url of sitemapUrls) {
     continue;
   }
 
-  const document = new JSDOM(fs.readFileSync(file, 'utf8')).window.document;
+  const dom = new JSDOM(fs.readFileSync(file, 'utf8'));
+  const document = dom.window.document;
   const canonicals = [...document.querySelectorAll<HTMLLinkElement>('link[rel="canonical"]')];
   if (canonicals.length !== 1 || canonicals[0]?.href !== url) {
     addError(`Sitemap URL and canonical differ or are duplicated: ${url}`);
+  }
+  if (staleOriginInUse && canonicals.some((canonical) => canonical.href && isStaleDeploymentHost(canonical.href))) {
+    addError(`Canonical still uses the old calculatedaily.com origin instead of ${site.url}: ${url}`);
+  }
+  const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.content.trim();
+  if (ogUrl !== url) {
+    addError(`Sitemap URL and og:url differ or are missing: ${url}`);
+  }
+  if (staleOriginInUse && ogUrl && isStaleDeploymentHost(ogUrl)) {
+    addError(`og:url still uses the old calculatedaily.com origin instead of ${site.url}: ${url}`);
   }
   if ([...document.querySelectorAll<HTMLMetaElement>('meta[name="robots"]')].some((meta) =>
     meta.content.toLowerCase().includes('noindex')
   )) {
     addError(`Noindex page appears in the sitemap: ${url}`);
   }
+  dom.window.close();
 }
 
 const htmlFiles = collectHtmlFiles(distDir);
 for (const file of htmlFiles) {
   const relative = path.relative(distDir, file).replace(/\\/g, '/');
-  const document = new JSDOM(fs.readFileSync(file, 'utf8')).window.document;
+  const dom = new JSDOM(fs.readFileSync(file, 'utf8'));
+  const document = dom.window.document;
   const pagePath = relative === '404.html' ? '/404.html' : pagePathFromFile(file);
   const url = `${site.url}${pagePath}`;
   const is404 = relative === '404.html';
@@ -124,6 +150,13 @@ for (const file of htmlFiles) {
     if (noindex) addError(`Indexable page is marked noindex: ${relative}`);
     if (canonicals.length !== 1 || canonicals[0]?.href !== url) {
       addError(`Indexable page canonical is missing, duplicated, or incorrect: ${relative}`);
+    }
+    const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.content.trim();
+    if (ogUrl !== url) {
+      addError(`Indexable page og:url is missing or incorrect: ${relative}`);
+    }
+    if (staleOriginInUse && ogUrl && isStaleDeploymentHost(ogUrl)) {
+      addError(`Indexable page og:url still uses the old calculatedaily.com origin: ${relative}`);
     }
   }
 
@@ -162,6 +195,7 @@ for (const file of htmlFiles) {
       addError(`Internal link has no prerendered destination in ${relative}: ${href}`);
     }
   }
+  dom.window.close();
 }
 
 /**
@@ -181,19 +215,23 @@ for (const slug of embedSlugs) {
     addError(`Indexable calculator has no prerendered embed shell: /embed/${slug}`);
     continue;
   }
-  const embedDocument = new JSDOM(fs.readFileSync(embedFile, 'utf8')).window.document;
+  const embedDom = new JSDOM(fs.readFileSync(embedFile, 'utf8'));
+  const embedDocument = embedDom.window.document;
   if (!embedDocument.querySelector(`a[href="/calculators/${slug}"]`)) {
     addError(`Embed shell has no attribution link to /calculators/${slug}`);
   }
   if (sitemapSet.has(`${site.url}/embed/${slug}`)) {
     addError(`Embed shell appears in the sitemap: /embed/${slug}`);
   }
+  embedDom.window.close();
 }
 
-const notFound = path.join(distDir, '404.html');if (!fs.existsSync(notFound)) {
+const notFound = path.join(distDir, '404.html');
+if (!fs.existsSync(notFound)) {
   addError('Missing generated 404.html.');
 } else {
-  const document = new JSDOM(fs.readFileSync(notFound, 'utf8')).window.document;
+  const notFoundDom = new JSDOM(fs.readFileSync(notFound, 'utf8'));
+  const document = notFoundDom.window.document;
   if (
     ![...document.querySelectorAll<HTMLMetaElement>('meta[name="robots"]')].some((meta) =>
       meta.content.toLowerCase().includes('noindex')
@@ -202,6 +240,7 @@ const notFound = path.join(distDir, '404.html');if (!fs.existsSync(notFound)) {
   ) {
     addError('404.html must be noindex and must not have a canonical.');
   }
+  notFoundDom.window.close();
 }
 
 if (errors.length) {

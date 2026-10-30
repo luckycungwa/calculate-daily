@@ -4,22 +4,28 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import { cn } from '../../lib/utils';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-xs font-semibold ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-3.5 [&_svg]:shrink-0 cursor-pointer active:scale-[0.98]',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium ring-offset-background transition-[background-color,border-color,color,box-shadow,transform] focus-visible:outline-hidden focus-visible:ring-[3px] focus-visible:ring-ring/60 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-3.5 [&_svg]:shrink-0 cursor-pointer hover:-translate-y-px active:translate-y-0 active:scale-[0.98] motion-reduce:transform-none',
   {
     variants: {
       variant: {
-        default: 'bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200 shadow-xs font-bold',
-        primary: 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-xs font-bold',
-        destructive: 'bg-rose-600 text-white hover:bg-rose-700 shadow-xs font-bold',
-        outline: 'border border-zinc-300 bg-white hover:bg-zinc-100 text-zinc-900 dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800 dark:text-zinc-100 shadow-xs font-medium',
-        secondary: 'bg-zinc-100 text-zinc-900 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700 font-medium',
-        ghost: 'hover:bg-zinc-100 text-zinc-800 hover:text-zinc-950 dark:hover:bg-zinc-800 dark:text-zinc-200 dark:hover:text-zinc-50 font-medium',
-        link: 'text-emerald-700 underline-offset-4 hover:underline dark:text-emerald-400 font-semibold',
+        /* Genesis: indigo fill, white text, tinted glow on hover. Fill and
+           hover use the deeper AA-contrast pair of the genesis indigo
+           (#4F46E5 fill / #6366F1 tint); see src/index.css. */
+        primary:
+          'bg-primary text-primary-foreground hover:bg-primary/90 font-semibold shadow-xs hover:shadow-[0_4px_12px_rgba(99,102,241,0.35)]',
+        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-xs font-semibold',
+        default:
+          'bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200 shadow-xs font-semibold',
+        outline:
+          'border border-border bg-card hover:bg-secondary text-foreground dark:bg-zinc-900 shadow-xs font-medium',
+        secondary: 'bg-secondary text-secondary-foreground hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-100 dark:hover:bg-zinc-700 font-medium',
+        ghost: 'hover:bg-secondary text-zinc-800 hover:text-foreground dark:text-zinc-200 font-medium',
+        link: 'text-primary underline-offset-4 hover:underline dark:text-primary-tint font-medium',
       },
       size: {
         default: 'h-9 px-4 py-2',
-        sm: 'h-8 rounded-md px-3 text-xs',
-        lg: 'h-10 rounded-md px-6 text-sm',
+        sm: 'h-8 px-3 text-xs',
+        lg: 'h-10 px-6 text-sm',
         icon: 'h-9 w-9',
       },
     },

@@ -18,7 +18,7 @@ export const SavingsGoalPage: React.FC<SavingsGoalPageProps> = ({ onSaveHistory 
     <div className="space-y-8">
       {/* Hero */}
       <div className="space-y-3">
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+        <h1 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
           Daily Savings Goal Challenge
         </h1>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed">

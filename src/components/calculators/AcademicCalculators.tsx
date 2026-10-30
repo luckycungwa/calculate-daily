@@ -20,7 +20,7 @@ import { useToast } from '../ui/toast';
 type CalculatorProps = { onSaveHistory?: (summary: string) => void };
 
 const SELECT_CLASS =
-  'h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50';
+  'h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50';
 
 function formatNumber(value: number, maximumFractionDigits = 3): string {
   return new Intl.NumberFormat('en', { maximumFractionDigits, minimumFractionDigits: 0 }).format(value);
@@ -229,7 +229,7 @@ export const ApsCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
             ))}
           </div>
 
-          <div className="grid gap-3 rounded-lg border border-dashed border-emerald-300 p-3 dark:border-emerald-800 sm:grid-cols-2">
+          <div className="grid gap-3 rounded-lg border border-dashed border-primary/30 p-3 dark:border-primary/30 sm:grid-cols-2">
             <NumberField
               id="aps-lo-percentage"
               label="Life Orientation mark"
@@ -257,7 +257,7 @@ export const ApsCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 {formatNumber(value.totalAps, 0)}
                 <span className="ml-1 text-sm font-normal text-zinc-400">/ {maxPoints}</span>
               </p>
@@ -373,7 +373,7 @@ export const ConfidenceIntervalCalculator: React.FC<CalculatorProps> = ({ onSave
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 break-all font-mono text-2xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 break-all font-mono text-2xl font-bold tabular-nums text-primary-on-dark">
                 {formatNumber(value.lowerBound, 3)} – {formatNumber(value.upperBound, 3)}
               </p>
               <dl className="mt-4 space-y-2 border-t border-zinc-800 pt-3 text-xs">
@@ -503,7 +503,7 @@ export const SampleSizeCalculator: React.FC<CalculatorProps> = ({ onSaveHistory 
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 {formatNumber(value.requiredSampleSize, 0)}
               </p>
               <p className="mt-1 text-xs text-zinc-400">completed responses</p>

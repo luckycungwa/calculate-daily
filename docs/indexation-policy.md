@@ -1,13 +1,14 @@
 # Indexation Policy — review-gated
 
-> **Counts are superseded.** The audit figures below are from a 168-calculator run. The current
-> catalogue is 290 calculators, 287 indexable and 3 unreviewed; 4 of 10 guides are indexable. The
-> rule itself is unchanged. See `docs/launch-checklist.md` for current build numbers.
+> **Counts are superseded.** The audit figures later in this document are from a 168-calculator run. As of
+> 28 October 2026 the catalogue is **292 calculators, all 292 indexable and reviewed** (the three
+> loan tools previously left `noindex`/`pending` were promoted after review because they already met the
+> content bar); 4 of 10 guides are indexable. The rule itself is unchanged. See
+> `docs/improvement-report-2026-10-28.md` for the current build numbers.
 
 > **Status: implemented and locally verified; hosted behavior remains unverified.** The latest local
-> audit passed 168 calculators and 10 guides (359 checks); the production prerender audit passed for
-> 197 HTML files and 190 sitemap URLs. Hosted CI, Vercel redirect responses, and HTTP 404 behavior
-> have not been verified.
+> production build prerendered 614 pages and passed the prerender audit for 615 HTML files and 316
+> sitemap URLs. Hosted CI, Vercel redirect responses, and HTTP 404 behavior have not been verified.
 
 ---
 

@@ -253,13 +253,13 @@ export const GraphingCalculator: React.FC<GraphingCalculatorProps> = ({ onSaveHi
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <button type="button" onClick={() => onSaveHistory?.(`Graphing expressions: ${expressions.map(({ value }) => value).join('; ')}`)} className="min-h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 px-3 text-sm hover:border-emerald-600">
+          <button type="button" onClick={() => onSaveHistory?.(`Graphing expressions: ${expressions.map(({ value }) => value).join('; ')}`)} className="min-h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 px-3 text-sm hover:border-primary">
             Save expressions
           </button>
           <button type="button" onClick={() => setExpressions([])} className="min-h-11 rounded-lg border border-zinc-300 dark:border-zinc-700 px-3 text-sm hover:border-rose-600">
             Clear all
           </button>
-          <button type="button" onClick={addExpression} disabled={expressions.length >= MAX_EXPRESSIONS} className="min-h-11 rounded-lg bg-emerald-700 px-3 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50">
+          <button type="button" onClick={addExpression} disabled={expressions.length >= MAX_EXPRESSIONS} className="min-h-11 rounded-lg bg-primary px-3 text-sm font-semibold text-white hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-50">
             Add expression
           </button>
         </div>
@@ -286,7 +286,7 @@ export const GraphingCalculator: React.FC<GraphingCalculatorProps> = ({ onSaveHi
                     id={`graph-expression-${expression.id}`}
                     value={expression.value}
                     onChange={(event) => updateExpression(expression.id, event.target.value)}
-                    className="min-h-11 min-w-0 flex-1 rounded-md border border-zinc-300 dark:border-zinc-700 bg-transparent px-2 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-emerald-600"
+                    className="min-h-11 min-w-0 flex-1 rounded-md border border-zinc-300 dark:border-zinc-700 bg-transparent px-2 font-mono text-sm focus:outline-none focus:ring-2 focus:ring-primary-tint"
                     spellCheck={false}
                     autoComplete="off"
                     aria-invalid={Boolean(expression.error)}
@@ -341,7 +341,7 @@ export const GraphingCalculator: React.FC<GraphingCalculatorProps> = ({ onSaveHi
               step="0.1"
               value={parameter}
               onChange={(event) => setParameter(Number(event.target.value))}
-              className="w-full accent-emerald-700"
+              className="w-full accent-primary"
             />
           </label>
 

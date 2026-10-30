@@ -16,5 +16,5 @@ When the user asks to "test if we are production ready", "are we ready to go liv
 - Embeddable widgets live at `/embed/:slug`. They are `noindex` and must stay frameable by third parties, so `vercel.json` deliberately omits `X-Frame-Options` on `/embed/(.*)`; do not add a global `X-Frame-Options` rule.
 - Prerender (`scripts/prerender.ts`) generates all static pages + sitemap + robots at build time from the catalog. New calculators are picked up automatically.
 - Custom calculator components should be added to `LAZY_COMPONENTS` in `src/components/calculators/CalculatorRenderer.tsx` for code splitting.
-- Do not commit unless asked. Keep DESIGN.md palette (emerald accent, zinc neutrals) when building UI.
+- Do not commit unless asked. Follow the Total Calculation design system (`docs/totalcalculation-rebrand.md`): indigo `--primary`/`--primary-tint` for interactive elements and focus rings, emerald `--brand` only for the wordmark and positive/success states, zinc neutrals, 6px controls / 12px cards. `DESIGN.md` is the superseded pre-rebrand system.
 - Roadmap and strategy live in `docs/research-and-roadmap.md`; phase reports in `docs/`.

@@ -8,7 +8,7 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      'rounded-xl border border-zinc-200/90 bg-white text-zinc-950 shadow-xs dark:border-zinc-800 dark:bg-zinc-900/90 dark:text-zinc-50',
+      'rounded-xl border border-border bg-card text-zinc-950 shadow-xs dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-50',
       className
     )}
     {...props}
@@ -32,7 +32,9 @@ const CardTitle = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLHeadingElement>
 >(({ className, ...props }, ref) => (
-  <h3
+  /* h2, not h3: a card title is the first heading below the page h1 on every
+     calculator/listing page, so h3 skipped a level (axe `heading-order`). */
+  <h2
     ref={ref}
     className={cn(
       'text-lg font-bold leading-none tracking-tight text-zinc-950 dark:text-zinc-50',

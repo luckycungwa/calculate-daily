@@ -1,0 +1,32 @@
+# Cloudflare Pages header rules (mirror of vercel.json `headers`).
+# CF Pages cannot wildcard-exclude a path, so the frame-safety rule lives in
+# Content-Security-Policy instead of X-Frame-Options: the catch-all restricts
+# framing to same-origin, and the embed rule (matched last) relaxes it back to
+# any ancestor so third-party widgets keep working.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+
+/robots.txt
+  Cache-Control: public, max-age=3600
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: frame-ancestors 'self'
+
+# Must stay BELOW the catch-all so the embed CSP wins for widget frames.
+/embed/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: frame-ancestors *
+
+/ads.txt
+  Access-Control-Allow-Origin: *

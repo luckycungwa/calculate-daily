@@ -7,18 +7,18 @@ export const PrivacyPage: React.FC = () => {
   usePageMeta({
     title: 'Privacy Policy',
     description:
-      'How CalculateDaily handles calculator inputs, browser storage, optional analytics, and third-party services.',
+      'How Total Calculation handles calculator inputs, browser storage, optional analytics, and third-party services.',
     canonicalPath: '/privacy',
   });
 
   const sections = [
     {
       title: 'Calculator Inputs',
-      body: 'The built-in calculator formulas run in your browser. The calculation logic does not send the values you enter to CalculateDaily servers. If you choose to save a result, its summary is stored in your browser; copying or sharing a result uses your device clipboard.',
+      body: 'The built-in calculator formulas run in your browser. The calculation logic does not send the values you enter to Total Calculation servers. If you choose to save a result, its summary is stored in your browser; copying or sharing a result uses your device clipboard.',
     },
     {
       title: 'Browser Storage',
-      body: 'CalculateDaily stores your theme and currency preferences and the calculation summaries you choose to save in browser local storage. These entries remain on your device unless your browser or an extension synchronizes them. Clear them through the site controls where available or your browser settings.',
+      body: 'Total Calculation stores your theme and currency preferences and the calculation summaries you choose to save in browser local storage. These entries remain on your device unless your browser or an extension synchronizes them. Clear them through the site controls where available or your browser settings.',
     },
     {
       title: 'Optional Analytics',
@@ -27,6 +27,10 @@ export const PrivacyPage: React.FC = () => {
     {
       title: 'Third-Party Services',
       body: 'The site loads fonts from Google Fonts, which means your browser requests font files from Google. The currency converter also requests reference exchange rates from open.er-api.com; the request uses a fixed USD base and does not include the amount or currencies you select. These providers receive ordinary connection information needed to serve the request. Their handling of that information is governed by their own policies.',
+    },
+    {
+      title: 'Who operates this site',
+      body: 'Total Calculation is built and operated by 44Tag Studios, a web design studio in Johannesburg, South Africa. The studio is the data controller for the information described here and answers privacy questions at 44tagstudios@gmail.com.',
     },
     {
       title: 'Accounts, Advertising, and Hosting',
@@ -42,10 +46,10 @@ export const PrivacyPage: React.FC = () => {
     <div className="max-w-3xl mx-auto space-y-6">
       <div className="text-center space-y-2 pb-4 border-b border-zinc-200 dark:border-zinc-800">
         <Badge variant="outline" className="text-[11px] font-mono">
-          <ShieldCheck className="w-3 h-3 mr-1 text-emerald-600 dark:text-emerald-400" />
+          <ShieldCheck className="w-3 h-3 mr-1 text-primary dark:text-primary-tint" />
           Legal
         </Badge>
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+        <h1 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
           Privacy Policy
         </h1>
         <p className="text-xs text-zinc-500 dark:text-zinc-400">

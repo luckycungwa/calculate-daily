@@ -16,10 +16,10 @@ export const CalculatorCard: React.FC<CalculatorCardProps> = ({ calc }) => {
   const href = `/calculators/${calc.slug}`;
 
   return (
-    <Card className="hover:border-zinc-400 dark:hover:border-zinc-700 hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group h-full">
+    <Card className="hover-lift hover:border-ring/60 flex h-full cursor-pointer flex-col justify-between group">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between mb-2">
-          <div className="w-8 h-8 rounded-md bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 flex items-center justify-center border border-zinc-200 dark:border-zinc-700">
+          <div className="w-8 h-8 rounded-md bg-[#f4f4f5] dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 flex items-center justify-center border border-border dark:border-zinc-700">
             <Icon className="w-4 h-4" />
           </div>
           {calc.badge && (
@@ -30,7 +30,7 @@ export const CalculatorCard: React.FC<CalculatorCardProps> = ({ calc }) => {
         </div>
 
         <Link to={href} className="block">
-          <CardTitle className="text-sm font-bold group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+          <CardTitle className="text-sm font-semibold group-hover:text-primary dark:group-hover:text-primary-tint transition-colors">
             {calc.name}
           </CardTitle>
         </Link>
@@ -38,13 +38,13 @@ export const CalculatorCard: React.FC<CalculatorCardProps> = ({ calc }) => {
       </CardHeader>
 
       <CardContent className="pt-0">
-        <div className="pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center justify-between text-xs font-semibold text-zinc-700 dark:text-zinc-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-          <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-400">
+        <div className="pt-3 border-t border-border/70 flex items-center justify-between text-xs font-medium text-zinc-700 dark:text-zinc-300 group-hover:text-primary dark:group-hover:text-primary-tint transition-colors">
+          <span className="font-mono text-[11px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
             {(CATEGORY_LABELS as Record<string, string>)[calc.category] || calc.category}
           </span>
           <Link
             to={href}
-            className="inline-flex items-center gap-1 hover:text-emerald-600 dark:hover:text-emerald-400"
+            className="inline-flex items-center gap-1 group-hover:text-primary dark:group-hover:text-primary-tint"
             onClick={() => undefined}
           >
             Open Tool <ArrowRight className="w-3.5 h-3.5" />

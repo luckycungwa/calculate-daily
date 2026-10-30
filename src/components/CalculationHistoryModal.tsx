@@ -41,7 +41,7 @@ export const CalculationHistoryModal: React.FC<CalculationHistoryModalProps> = (
       <DialogContent className="max-w-md max-h-[85vh] flex flex-col">
         <DialogHeader className="pb-2 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center gap-2">
-            <Clock className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
+            <Clock className="w-4 h-4 text-primary dark:text-primary-tint" />
             <DialogTitle>Calculation History</DialogTitle>
           </div>
           <DialogDescription>
@@ -82,7 +82,7 @@ export const CalculationHistoryModal: React.FC<CalculationHistoryModalProps> = (
                   className="h-7 w-7 shrink-0"
                   title="Copy to clipboard"
                 >
-                  {copiedId === item.id ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                  {copiedId === item.id ? <Check className="w-3.5 h-3.5 text-brand" /> : <Copy className="w-3.5 h-3.5" />}
                 </Button>
               </div>
             ))

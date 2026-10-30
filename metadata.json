@@ -1,6 +1,6 @@
 {
-  "name": "Calculate Daily",
-  "description": "Daily calculators, savings challenge, and smart AI calculator builder.",
+  "name": "Total Calculation",
+  "description": "Free browser-based calculators, converters, and planning tools — finance, health, construction, cooking, and everyday math.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

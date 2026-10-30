@@ -57,7 +57,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
       <DialogContent className="max-w-md">
         <DialogHeader className="pb-2 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center gap-2">
-            <Share2 className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
+            <Share2 className="w-4 h-4 text-primary dark:text-primary-tint" />
             <DialogTitle>Export & Share</DialogTitle>
           </div>
           <DialogDescription>
@@ -67,7 +67,7 @@ export const ExportModal: React.FC<ExportModalProps> = ({
 
         {/* Content Preview */}
         <div className="my-2 p-3.5 rounded-lg bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 font-mono text-xs text-zinc-800 dark:text-zinc-200 space-y-2">
-          <div className="font-bold text-xs text-emerald-600 dark:text-emerald-400 font-sans flex items-center justify-between">
+          <div className="font-bold text-xs text-primary dark:text-primary-tint font-sans flex items-center justify-between">
             <span>{title}</span>
             <Badge variant="outline" className="font-mono text-[10px]">Verified</Badge>
           </div>

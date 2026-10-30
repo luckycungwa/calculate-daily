@@ -16,10 +16,17 @@ import {
 import { ExportModal } from '../common/ExportModal';
 import { ShareButton } from '../common/ShareButton';
 import { AreaChart, BarChart } from '../charts';
+import { useChartThemeColors } from '../charts/EChart';
 import { useCurrency } from '../../lib/currency';
 import { useUrlState, parseParamNumber } from '../../lib/share';
-import { buildAmortization, totalMonthlyPayment } from '../../lib/mortgage';
+import { buildAmortization, loanScenarios, totalMonthlyPayment } from '../../lib/mortgage';
 import { useToast } from '../ui/toast';
+import {
+  CalculationAssumptions,
+  ResultComparison,
+  ResultDataTable,
+  ResultTableToggle,
+} from '../results/ResultComponents';
 
 interface MortgageCalculatorProps {
   slug?: string;
@@ -39,6 +46,7 @@ const initialState: Record<string, string> = {
 export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = 'mortgage-calculator', onSaveHistory }) => {
   const currency = useCurrency();
   const { toast } = useToast();
+  const chartColors = useChartThemeColors();
   const { values: urlValues, syncUrl } = useUrlState(initialState, []);
 
   const [homePrice, setHomePrice] = useState<string>(() => urlValues.price ?? '400000');
@@ -130,6 +138,31 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
       yearly,
     };
   }, [homePrice, downPayment, interestRate, loanTermYears, propertyTaxYearly, homeInsuranceYearly, pmiYearly, extraMonthly, biweekly, includeTaxes]);
+
+  // Comparison scenarios: term options at the current rate, plus a rate
+  // sensitivity row — every value from the shared loanScenarios engine.
+  const parsedRate = Math.max(0, parseFloat(interestRate) || 0);
+  const rateMinusOne = Math.max(0, parsedRate - 1);
+  const ratePlusOne = parsedRate + 1;
+  const comparisonScenarios = useMemo(
+    () =>
+      loanScenarios({
+        principal: results.loanAmount,
+        scenarios: [
+          { label: '15 yrs', annualRate: parsedRate, years: 15 },
+          { label: '20 yrs', annualRate: parsedRate, years: 20 },
+          { label: '30 yrs', annualRate: parsedRate, years: 30 },
+          { label: `${rateMinusOne}% rate`, annualRate: rateMinusOne, years: loanTermYears },
+          { label: `${ratePlusOne}% rate`, annualRate: ratePlusOne, years: loanTermYears },
+        ],
+      }),
+    [results.loanAmount, parsedRate, loanTermYears, rateMinusOne, ratePlusOne]
+  );
+  const termScenarios = comparisonScenarios.slice(0, 3);
+  const rateScenarios = comparisonScenarios.slice(3);
+  const highlightTermIndex = loanTermYears === 15 ? 0 : loanTermYears === 20 ? 1 : 2;
+
+  const formatMoney = (n: number) => `${currency}${n.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
 
   const handleCopy = () => {
     const text = `Mortgage Payment Estimate:\nHome Price: ${currency}${results.price.toLocaleString()} (Down: ${currency}${results.down.toLocaleString()})\nLoan Amount: ${currency}${results.loanAmount.toLocaleString()}\nMonthly P&I: ${currency}${results.monthlyPrincipalInterest.toFixed(2)}\nTotal Monthly (with tax/ins): ${currency}${results.totalMonthlyPayment.toFixed(2)}\nTotal Interest: ${currency}${results.totalInterestPaid.toFixed(2)}`;
@@ -350,7 +383,7 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
                   type="checkbox"
                   checked={includeTaxes}
                   onChange={(e) => setIncludeTaxes(e.target.checked)}
-                  className="rounded border-zinc-300 text-emerald-600 focus:ring-emerald-500"
+                  className="rounded border-zinc-300 accent-primary focus:ring-primary/40"
                 />
                 <Label htmlFor="mortgage-include-taxes" className="cursor-pointer text-xs">
                   Include Property Tax, Insurance & PMI
@@ -427,7 +460,7 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
                 <div className="my-3 space-y-1.5">
                   <div className="flex justify-between text-[11px] font-mono font-semibold text-zinc-300">
                     <span>Principal: {currency}{results.loanAmount.toLocaleString()}</span>
-                    <span className="text-emerald-400">Interest: {currency}{results.totalInterestPaid.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+                    <span className="text-amber-400">Interest: {currency}{results.totalInterestPaid.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
                   </div>
                   <div className="h-2.5 w-full rounded-full bg-zinc-800 overflow-hidden flex">
                     <div
@@ -435,7 +468,7 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
                       style={{ width: `${results.principalPct}%` }}
                     />
                     <div
-                      className="bg-emerald-500 h-full transition-all"
+                      className="bg-amber-400 h-full transition-all"
                       style={{ width: `${results.interestPct}%` }}
                     />
                   </div>
@@ -445,7 +478,7 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
                 <div className="space-y-1.5 pt-3 border-t border-zinc-800 text-xs font-mono">
                   <div className="flex justify-between text-zinc-200">
                     <span className="text-zinc-400">Total Interest Paid:</span>
-                    <span className="font-bold text-emerald-400 tabular-nums">
+                    <span className="font-bold text-amber-400 tabular-nums">
                       {currency}{results.totalInterestPaid.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </span>
                   </div>
@@ -493,6 +526,67 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
           </div>
         </div>
 
+        {/* Compare terms and rates — engine-priced scenarios */}
+        <div className="mt-6 pt-5 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <ResultComparison
+            title="Total interest by loan term"
+            items={termScenarios.map((s) => ({
+              label: s.label,
+              value: s.totalInterest,
+              format: formatMoney,
+            }))}
+            highlightIndex={highlightTermIndex}
+            summary={`Shorter terms raise the monthly payment but cut total interest sharply: at the current ${interestRate}% rate, the ${termScenarios.map((s) => `${s.label} term costs ${formatMoney(s.totalInterest)}`).join(', ')}. The ${termScenarios[highlightTermIndex].label} term (selected above) charges the principal of ${formatMoney(results.loanAmount)}.`}
+            tableLabel="View term comparison as a table"
+          />
+
+          <figure>
+            <figcaption className="mb-2 text-xs font-bold uppercase tracking-wider text-zinc-900 dark:text-white">
+              Rate sensitivity at the {loanTermYears}-yr term
+            </figcaption>
+            <ResultDataTable
+              columns={['Scenario', 'Monthly P&I', 'Δ monthly', 'Δ total interest']}
+              rows={rateScenarios.map((s) => [
+                s.label,
+                formatMoney(s.monthlyPI),
+                formatMoney(s.monthlyPI - termScenarios[2].monthlyPI),
+                formatMoney(s.totalInterest - termScenarios[2].totalInterest),
+              ])}
+              caption={`Monthly payments and total interest at 1 percentage point below and above the current rate, for the same ${currency}${results.loanAmount.toLocaleString()} loan over ${loanTermYears} years.`}
+            />
+            <p className="mt-2 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
+              Each row reprices the same loan through the same amortization engine as the headline number — one
+              percentage point moves the payment and lifetime interest more than most people expect.
+            </p>
+          </figure>
+        </div>
+
+        <CalculationAssumptions
+          className="mt-6"
+          items={[
+            {
+              label: 'Payment formula',
+              detail: 'M = P × r × (1+r)ⁿ / ((1+r)ⁿ − 1), with r the monthly rate (annual ÷ 12) and n the term in months.',
+              badge: 'formula',
+            },
+            {
+              label: 'Amortization schedule',
+              detail: 'Each month interest accrues on the outstanding balance first; the rest of the fixed payment retires principal. Extra payments and the biweekly mode (13 full payments a year) shorten the term.',
+              badge: 'formula',
+            },
+            {
+              label: 'Taxes, insurance, PMI',
+              detail: 'Your annual figures divided by 12, included only when the toggle is on. They are user-entered and vary by property and lender.',
+              badge: 'assumption',
+            },
+            {
+              label: 'Not a lender quote',
+              detail: 'Real quotes carry different rates, fees and escrow specifics; compare actual offers before signing.',
+              badge: 'assumption',
+            },
+          ]}
+        />
+
         {/* Amortization Charts */}
         {showAmortization && (
           <div className="mt-6 pt-5 border-t border-zinc-200 dark:border-zinc-800 space-y-6">
@@ -501,7 +595,7 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
                 Remaining Balance Over Time
               </h3>
               <AreaChart
-                series={[{ name: 'Balance', points: balanceChartPoints, type: 'area', color: '#059669' }]}
+                series={[{ name: 'Balance', points: balanceChartPoints, type: 'area' }]}
                 xLabels={chartYearLabels}
                 height={220}
                 showLegend={false}
@@ -514,8 +608,8 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
               </h3>
               <BarChart
                 series={[
-                  { name: 'Principal', points: principalChartPoints, type: 'bar', color: '#10B981' },
-                  { name: 'Interest', points: interestChartPoints, type: 'bar', color: '#d4d4d8' },
+                  { name: 'Principal', points: principalChartPoints, type: 'bar' },
+                  { name: 'Interest', points: interestChartPoints, type: 'bar', color: chartColors.grid },
                 ]}
                 xLabels={chartYearLabels}
                 height={240}
@@ -540,7 +634,7 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
                       <TableCell className="tabular-nums">
                         {currency}{row.principal.toLocaleString('en-US', { maximumFractionDigits: 0 })}
                       </TableCell>
-                      <TableCell className="text-emerald-600 dark:text-emerald-400 tabular-nums">
+                      <TableCell className="text-brand tabular-nums">
                         {currency}{row.interest.toLocaleString('en-US', { maximumFractionDigits: 0 })}
                       </TableCell>
                       <TableCell className="font-bold tabular-nums">

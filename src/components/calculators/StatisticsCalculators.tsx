@@ -99,7 +99,7 @@ export const StandardDeviationCalculator: React.FC<CalculatorProps> = ({ onSaveH
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Enter numbers separated by commas, spaces, or new lines..."
                 rows={6}
-                className="w-full rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-2 text-sm font-mono font-bold tabular-nums placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"
+                className="w-full rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-2 text-sm font-mono font-bold tabular-nums placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-primary-tint focus:border-transparent resize-none"
               />
             </div>
             <div className="grid grid-cols-2 gap-2">
@@ -120,13 +120,13 @@ export const StandardDeviationCalculator: React.FC<CalculatorProps> = ({ onSaveH
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-xs font-mono text-zinc-300">
                   <span>Analysis Results</span>
                   <span className="inline-flex items-center gap-1 text-zinc-200 font-semibold">
-                    <Sigma className="w-3.5 h-3.5 text-emerald-400" /> n={results.count}
+                    <Sigma className="w-3.5 h-3.5 text-primary-on-dark" /> n={results.count}
                   </span>
                 </div>
                 <div className="my-4 text-center">
                   <p className="text-[11px] font-mono uppercase tracking-wider text-zinc-300 mb-1 font-semibold">Sample Std Deviation</p>
                   <div className="text-3xl sm:text-4xl font-bold text-white font-mono tracking-tight tabular-nums">{results.count > 0 ? results.sampleStdDev : '--'}</div>
-                  <p className="text-[11px] text-emerald-400 font-mono mt-1 font-semibold">Most commonly used</p>
+                  <p className="text-[11px] text-primary-on-dark font-mono mt-1 font-semibold">Most commonly used</p>
                 </div>
                 <div className="space-y-2 pt-3 border-t border-zinc-800 text-xs font-mono">
                   <div className="flex justify-between text-zinc-200"><span className="text-zinc-400">Count:</span><span className="font-bold tabular-nums">{results.count}</span></div>
@@ -236,7 +236,7 @@ export const MeanMedianModeCalculator: React.FC<CalculatorProps> = ({ onSaveHist
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Enter numbers separated by commas, spaces, or new lines..."
                 rows={6}
-                className="w-full rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-2 text-sm font-mono font-bold tabular-nums placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent resize-none"
+                className="w-full rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-3 py-2 text-sm font-mono font-bold tabular-nums placeholder:text-zinc-400 focus:outline-none focus:ring-2 focus:ring-primary-tint focus:border-transparent resize-none"
               />
             </div>
             <div className="grid grid-cols-2 gap-2">
@@ -257,18 +257,18 @@ export const MeanMedianModeCalculator: React.FC<CalculatorProps> = ({ onSaveHist
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-xs font-mono text-zinc-300">
                   <span>Central Tendency</span>
                   <span className="inline-flex items-center gap-1 text-zinc-200 font-semibold">
-                    <Sigma className="w-3.5 h-3.5 text-emerald-400" /> n={results.count}
+                    <Sigma className="w-3.5 h-3.5 text-primary-on-dark" /> n={results.count}
                   </span>
                 </div>
                 <div className="my-4 text-center">
                   <p className="text-[11px] font-mono uppercase tracking-wider text-zinc-300 mb-1 font-semibold">Mean (Average)</p>
                   <div className="text-3xl sm:text-4xl font-bold text-white font-mono tracking-tight tabular-nums">{results.count > 0 ? results.mean : '--'}</div>
-                  <p className="text-[11px] text-emerald-400 font-mono mt-1 font-semibold">Arithmetic average</p>
+                  <p className="text-[11px] text-primary-on-dark font-mono mt-1 font-semibold">Arithmetic average</p>
                 </div>
                 <div className="space-y-2 pt-3 border-t border-zinc-800 text-xs font-mono">
                   <div className="flex justify-between text-zinc-200"><span className="text-zinc-400">Count:</span><span className="font-bold tabular-nums">{results.count}</span></div>
                   <div className="flex justify-between text-zinc-200"><span className="text-zinc-400">Mean:</span><span className="font-bold tabular-nums">{results.mean}</span></div>
-                  <div className="flex justify-between text-zinc-200"><span className="text-zinc-400">Median:</span><span className="font-bold text-emerald-400 tabular-nums">{results.median}</span></div>
+                  <div className="flex justify-between text-zinc-200"><span className="text-zinc-400">Median:</span><span className="font-bold text-primary-on-dark tabular-nums">{results.median}</span></div>
                   <div className="flex justify-between text-zinc-200 pt-2 border-t border-zinc-800">
                     <span className="text-zinc-400">Mode:</span>
                     <span className="font-bold tabular-nums">{results.modes.length > 0 ? results.modes.join(', ') : 'No mode'}</span>
@@ -448,7 +448,7 @@ export const FinalGradeCalculator: React.FC<CalculatorProps> = ({ onSaveHistory 
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-xs font-mono text-zinc-300">
                   <span>Grade Projection</span>
                   <span className="inline-flex items-center gap-1 text-zinc-200 font-semibold">
-                    <GraduationCap className="w-3.5 h-3.5 text-emerald-400" /> Final Exam
+                    <GraduationCap className="w-3.5 h-3.5 text-primary-on-dark" /> Final Exam
                   </span>
                 </div>
 
@@ -473,7 +473,7 @@ export const FinalGradeCalculator: React.FC<CalculatorProps> = ({ onSaveHistory 
                   <div className="flex justify-between text-zinc-200"><span className="text-zinc-400">Final Weight:</span><span className="font-bold tabular-nums">{results.weight}%</span></div>
                   <div className="flex justify-between text-zinc-200 pt-2 border-t border-zinc-800">
                     <span className="text-zinc-400">Grade Gap:</span>
-                    <span className={`font-bold tabular-nums ${results.gap > 0 ? 'text-amber-400' : 'text-emerald-400'}`}>{results.gap > 0 ? '+' : ''}{results.gap}%</span>
+                    <span className={`font-bold tabular-nums ${results.gap > 0 ? 'text-amber-400' : 'text-brand-on-dark'}`}>{results.gap > 0 ? '+' : ''}{results.gap}%</span>
                   </div>
                   <div className="flex justify-between text-zinc-100 pt-2 border-t border-zinc-800">
                     <span className="font-semibold">Score Needed:</span>

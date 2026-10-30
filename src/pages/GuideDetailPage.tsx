@@ -62,7 +62,7 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ slug }) => {
       : {
           title: 'Guide Not Found',
           description:
-            'The guide page you requested does not exist. Browse all CalculateDaily guides.',
+            'The guide page you requested does not exist. Browse all Total Calculation guides.',
           canonicalPath: `/guides/${slug}`,
           noindex: true,
         }
@@ -71,7 +71,7 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ slug }) => {
   if (!guide) {
     return (
       <div className="max-w-2xl mx-auto py-20 text-center space-y-4">
-        <h1 className="text-2xl font-bold text-zinc-950 dark:text-zinc-50">Guide Not Found</h1>
+        <h1 className="font-display text-2xl font-bold text-zinc-950 dark:text-zinc-50">Guide Not Found</h1>
         <p className="text-sm text-zinc-500">The guide you are looking for does not exist.</p>
         <Button onClick={() => navigate('/guides')} variant="outline" size="sm">
           <ArrowLeft className="w-3.5 h-3.5 mr-1" /> Back to Guides
@@ -97,15 +97,15 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ slug }) => {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       <div className="space-y-1">
-        <button onClick={() => navigate('/guides')} className="text-xs font-mono text-zinc-400 hover:text-emerald-600 transition-colors">
+        <button onClick={() => navigate('/guides')} className="text-xs font-mono text-zinc-400 hover:text-primary dark:hover:text-primary-tint transition-colors">
           â† All Guides
         </button>
       </div>
 
       <header className="space-y-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-emerald-100 dark:bg-emerald-900/30 flex items-center justify-center">
-            <Icon className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+          <div className="w-10 h-10 rounded-lg bg-primary/10 dark:bg-primary-tint/10 flex items-center justify-center">
+            <Icon className="w-5 h-5 text-primary dark:text-primary-tint" />
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -118,7 +118,7 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ slug }) => {
             </div>
           </div>
         </div>
-        <h1 className="text-2xl sm:text-3xl font-bold text-zinc-950 dark:text-zinc-50 leading-tight">
+        <h1 className="font-display text-2xl sm:text-3xl font-bold text-zinc-950 dark:text-zinc-50 leading-tight">
           {guide.name}
         </h1>
         <p className="text-sm text-zinc-500 dark:text-zinc-400">{guide.shortDesc}</p>
@@ -149,14 +149,14 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ slug }) => {
               <ul className="space-y-1.5 my-3">
                 {section.list.map((item, k) => (
                   <li key={k} className="text-sm text-zinc-600 dark:text-zinc-400 flex items-start gap-2">
-                    <ChevronRight className="w-3.5 h-3.5 mt-0.5 text-emerald-500 flex-shrink-0" />
+                    <ChevronRight className="w-3.5 h-3.5 mt-0.5 text-primary flex-shrink-0" />
                     {item}
                   </li>
                 ))}
               </ul>
             )}
             {section.callout && (
-              <div className="my-4 p-4 rounded-lg bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-200 dark:border-emerald-800 text-sm text-emerald-800 dark:text-emerald-300">
+              <div className="my-4 p-4 rounded-lg bg-primary/5 dark:bg-primary-tint/10 border border-primary/20 dark:border-primary/30 text-sm text-primary dark:text-primary-tint">
                 {section.callout}
               </div>
             )}
@@ -212,7 +212,7 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ slug }) => {
               const calc = requireGuideCalculator(calcSlug, guide.slug);
               return (
                 <Link key={calc.slug} to={`/calculators/${calc.slug}`}>
-                  <Badge variant="outline" className="text-[11px] font-mono hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-colors cursor-pointer">
+                  <Badge variant="outline" className="text-[11px] font-mono hover:bg-primary/5 dark:hover:bg-primary/10 transition-colors cursor-pointer">
                     {calc.name}
                   </Badge>
                 </Link>
@@ -228,7 +228,7 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ slug }) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {relatedGuides.slice(0, 2).map((rg) => (
               <Link key={rg.id} to={`/guides/${rg.slug}`}>
-                <Card className="hover:border-emerald-300 dark:hover:border-emerald-700 transition-colors cursor-pointer">
+                <Card className="hover:border-primary/40 dark:hover:border-primary/40 transition-colors cursor-pointer">
                   <CardHeader className="p-4">
                     <CardTitle className="text-sm">{rg.name}</CardTitle>
                   </CardHeader>

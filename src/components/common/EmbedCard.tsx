@@ -58,7 +58,7 @@ export const EmbedCard: React.FC<EmbedCardProps> = ({ slug, name }) => {
   return (
     <Card>
       <CardContent className="space-y-3 p-6">
-        <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-500">
+        <div className="flex items-center gap-2 text-primary dark:text-primary-tint">
           <Code2 className="h-4 w-4" />
           <h2 className="text-base font-bold text-zinc-950 dark:text-zinc-50">Embed this calculator</h2>
         </div>

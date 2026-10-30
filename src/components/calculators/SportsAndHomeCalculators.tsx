@@ -87,7 +87,7 @@ function useCopy(onSaveHistory?: (summary: string) => void) {
 }
 
 const SELECT_CLASS =
-  'h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50';
+  'h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50';
 
 // ==========================================
 // Race time predictor
@@ -161,7 +161,7 @@ export const RaceTimePredictor: React.FC<CalculatorProps> = ({ onSaveHistory }) 
                   key={race.label}
                   type="button"
                   onClick={() => setTargetDistance(String(race.km))}
-                  className="rounded-md border border-zinc-300 bg-white px-2 py-1 text-[11px] text-zinc-700 transition-colors hover:border-emerald-600 hover:text-emerald-700 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:text-emerald-400"
+                  className="rounded-md border border-zinc-300 bg-white px-2 py-1 text-[11px] text-zinc-700 transition-colors hover:border-primary hover:text-primary dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:text-primary-tint"
                 >
                   {race.label}
                 </button>
@@ -184,7 +184,7 @@ export const RaceTimePredictor: React.FC<CalculatorProps> = ({ onSaveHistory }) 
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 {formatDuration(value.prediction.seconds)}
               </p>
               <p className="mt-1 text-xs text-zinc-400">
@@ -369,7 +369,7 @@ export const GolfHandicapCalculator: React.FC<CalculatorProps> = ({ onSaveHistor
             <p role="alert" className="mt-3 text-sm text-amber-300">{indexResult.error}</p>
           ) : indexResult.value && (
             <>
-              <p className="mt-2 font-mono text-5xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-5xl font-bold tabular-nums text-primary-on-dark">
                 {indexResult.value.index === null ? '—' : format(indexResult.value.index, 1)}
               </p>
               <p className="mt-1 text-xs text-zinc-400">
@@ -545,7 +545,7 @@ export const PetCalorieCalculator: React.FC<CalculatorProps> = ({ onSaveHistory 
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 {format(value.maintenance, 0)}
                 <span className="ml-1 text-base font-normal text-zinc-400">kcal/day</span>
               </p>

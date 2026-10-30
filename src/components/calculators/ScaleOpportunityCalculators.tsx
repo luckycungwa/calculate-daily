@@ -67,7 +67,7 @@ function ResultPanel({
       <h3 className="mb-4 text-sm font-semibold">{title}</h3>
       {error ? <p role="alert" className="text-sm text-amber-300">{error}</p> : (
         <>
-          {primary && <><p className="text-xs text-zinc-400">{primary.label}</p><p className="mt-1 font-mono text-3xl font-bold tabular-nums text-emerald-400">{primary.value}</p></>}
+          {primary && <><p className="text-xs text-zinc-400">{primary.label}</p><p className="mt-1 font-mono text-3xl font-bold tabular-nums text-primary-on-dark">{primary.value}</p></>}
           <dl className="mt-5 space-y-3">
             {rows.map((row) => (
               <div key={row.label} className="flex justify-between gap-3 border-b border-zinc-800 pb-2 text-sm last:border-0">
@@ -367,7 +367,7 @@ export const WordCounterCalculator: React.FC<CalculatorProps> = () => {
       <CardContent className="grid gap-5 p-5 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-4">
           <label htmlFor="word-counter-text" className="block space-y-1.5 text-sm font-medium">Text
-            <textarea id="word-counter-text" value={text} onChange={(event) => setText(event.target.value)} rows={12} className="w-full resize-y rounded-lg border border-zinc-300 bg-white p-3 text-sm text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50" />
+            <textarea id="word-counter-text" value={text} onChange={(event) => setText(event.target.value)} rows={12} className="w-full resize-y rounded-lg border border-zinc-300 bg-white p-3 text-sm text-zinc-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50" />
           </label>
           <NumericField id="word-counter-speed" label="Estimated reading speed (words per minute)" value={speed} onChange={setSpeed} min={1} max={2000} />
         </div>

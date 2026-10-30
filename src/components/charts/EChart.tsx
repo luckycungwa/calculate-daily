@@ -138,15 +138,18 @@ export function useChartThemeColors(dark?: boolean) {
   const isDark = dark ?? (typeof document !== 'undefined' && document.documentElement.classList.contains('dark'));
   return {
     isDark,
-    text: isDark ? '#d4d4d8' : '#52525b',
-    subtext: isDark ? '#a1a1aa' : '#71717a',
-    axisLine: isDark ? '#3f3f46' : '#d4d4d8',
-    splitLine: isDark ? '#27272a' : '#e4e4e7',
+    text: isDark ? '#d4d4d8' : '#6b6b6b',
+    subtext: isDark ? '#a1a1aa' : '#9c9c9c',
+    axisLine: isDark ? '#3f3f46' : '#e8e8ec',
+    splitLine: isDark ? '#27272a' : '#e8e8ec',
     tooltipBg: isDark ? '#18181b' : '#ffffff',
-    tooltipBorder: isDark ? '#27272a' : '#e4e4e7',
-    tooltipText: isDark ? '#fafafa' : '#18181b',
-    accent: isDark ? '#10b981' : '#059669',
-    accentLight: isDark ? 'rgba(16,185,129,0.22)' : 'rgba(5,150,105,0.14)',
+    tooltipBorder: isDark ? '#27272a' : '#e8e8ec',
+    tooltipText: isDark ? '#fafafa' : '#0a0a0a',
+    // Genesis indigo is the default series color; green stays available for
+    // positive-delta data (growth, progress) and the brand accent.
+    accent: isDark ? '#818cf8' : '#6366f1',
+    accentLight: isDark ? 'rgba(129,140,248,0.22)' : 'rgba(99,102,241,0.14)',
+    green: isDark ? '#10b981' : '#20970b',
     grid: isDark ? '#3f3f46' : '#d4d4d8',
     charcoal: isDark ? '#e4e4e7' : '#18181b',
   };

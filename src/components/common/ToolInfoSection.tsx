@@ -38,7 +38,7 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
     <div className="space-y-5">
       <Card>
         <CardContent className="p-6 space-y-4">
-          <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-500">
+          <div className="flex items-center gap-2 text-primary dark:text-primary-tint">
             <BookOpen className="w-4 h-4" />
             <h2 className="text-base font-bold text-zinc-950 dark:text-zinc-50">What This Calculator Does</h2>
           </div>
@@ -48,7 +48,7 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
 
       <Card>
         <CardContent className="p-6 space-y-4">
-          <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-500">
+          <div className="flex items-center gap-2 text-primary dark:text-primary-tint">
             <Lightbulb className="w-4 h-4" />
             <h2 className="text-base font-bold text-zinc-950 dark:text-zinc-50">How It Works</h2>
           </div>
@@ -58,7 +58,7 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
 
       <Card>
         <CardContent className="p-6 space-y-4">
-          <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-500">
+          <div className="flex items-center gap-2 text-primary dark:text-primary-tint">
             <PlayCircle className="w-4 h-4" />
             <h2 className="text-base font-bold text-zinc-950 dark:text-zinc-50">Example</h2>
           </div>
@@ -69,7 +69,7 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
       {content.formulas && content.formulas.length > 0 && (
         <Card>
           <CardContent className="p-6 space-y-4">
-            <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-500">
+            <div className="flex items-center gap-2 text-primary dark:text-primary-tint">
               <FunctionSquare className="w-4 h-4" />
               <h2 className="text-base font-bold text-zinc-950 dark:text-zinc-50">Formula</h2>
             </div>
@@ -96,7 +96,7 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
       {content.resultExplanations && content.resultExplanations.length > 0 && (
         <Card>
           <CardContent className="p-6 space-y-4">
-            <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-500">
+            <div className="flex items-center gap-2 text-primary dark:text-primary-tint">
               <Info className="w-4 h-4" />
               <h2 className="text-base font-bold text-zinc-950 dark:text-zinc-50">Reading the Results</h2>
             </div>
@@ -115,7 +115,7 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
       {content.sources && content.sources.length > 0 && (
         <Card>
           <CardContent className="p-6 space-y-4">
-            <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-500">
+            <div className="flex items-center gap-2 text-primary dark:text-primary-tint">
               <FileText className="w-4 h-4" />
               <h2 className="text-base font-bold text-zinc-950 dark:text-zinc-50">Sources and References</h2>
             </div>
@@ -146,7 +146,7 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
       {workflow.length > 0 && (
         <Card>
           <CardContent className="p-6 space-y-4">
-            <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-500">
+            <div className="flex items-center gap-2 text-primary dark:text-primary-tint">
               <GitBranch className="w-4 h-4" />
               <h2 className="text-base font-bold text-zinc-950 dark:text-zinc-50">Continue the Workflow</h2>
             </div>
@@ -157,10 +157,10 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
                   <Link
                     key={idx}
                     to={`/calculators/${w.slug}`}
-                    className="flex items-start gap-3 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-500 dark:hover:border-emerald-500 transition-colors group"
+                    className="flex items-start gap-3 p-4 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-primary-tint dark:hover:border-primary-tint transition-colors group"
                   >
                     <div className="w-8 h-8 rounded-md bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center shrink-0">
-                      <Icon className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                      <Icon className="w-4 h-4 text-primary dark:text-primary-tint" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="text-xs font-bold text-zinc-900 dark:text-zinc-100">
@@ -168,7 +168,7 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
                       </div>
                       <div className="text-[11px] text-zinc-500 mt-0.5 leading-relaxed">{w.step}</div>
                     </div>
-                    <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-emerald-500 shrink-0 mt-1" />
+                    <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-primary-tint shrink-0 mt-1" />
                   </Link>
                 );
               })}
@@ -179,7 +179,7 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
 
       <Card>
         <CardContent className="p-6 space-y-4">
-          <div className="flex items-center gap-2 text-emerald-600 dark:text-emerald-500">
+          <div className="flex items-center gap-2 text-primary dark:text-primary-tint">
             <HelpCircle className="w-4 h-4" />
             <h2 className="text-base font-bold text-zinc-950 dark:text-zinc-50">Frequently Asked Questions</h2>
           </div>
@@ -208,10 +208,10 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
                   <Link
                     key={c.slug}
                     to={`/calculators/${c.slug}`}
-                    className="flex items-center gap-3 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-emerald-500 dark:hover:border-emerald-500 transition-colors group"
+                    className="flex items-center gap-3 p-3 rounded-lg border border-zinc-200 dark:border-zinc-800 hover:border-primary-tint dark:hover:border-primary-tint transition-colors group"
                   >
                     <div className="w-8 h-8 rounded-md bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center shrink-0">
-                      <Icon className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                      <Icon className="w-4 h-4 text-primary dark:text-primary-tint" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="text-xs font-bold text-zinc-900 dark:text-zinc-100 truncate">
@@ -219,7 +219,7 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
                       </div>
                       <div className="text-[11px] text-zinc-500 truncate">{c.shortDesc}</div>
                     </div>
-                    <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-emerald-500 shrink-0" />
+                    <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-primary-tint shrink-0" />
                   </Link>
                 );
               })}

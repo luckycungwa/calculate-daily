@@ -23,7 +23,7 @@ export const AllCalculatorsPage: React.FC = () => {
   usePageMeta({
     title: 'All Calculators',
     description:
-      'Browse every free online calculator and unit converter on CalculateDaily, including percentage, BMI, mortgage, savings, temperature, length, weight, and more.',
+      'Browse every free online calculator and unit converter on Total Calculation, including percentage, BMI, mortgage, savings, temperature, length, weight, and more.',
     canonicalPath: '/calculators',
   });
 
@@ -52,7 +52,7 @@ export const AllCalculatorsPage: React.FC = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+        <h1 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
           Calculator Directory
         </h1>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">

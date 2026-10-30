@@ -125,7 +125,7 @@ export const CarLoanCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) 
           ) : result && (
             <>
               <p className="text-xs font-medium text-zinc-400">Estimated monthly payment</p>
-              <p className="mt-1 font-mono text-3xl font-bold tabular-nums text-emerald-400">{formatMoney(result.monthlyPayment)}</p>
+              <p className="mt-1 font-mono text-3xl font-bold tabular-nums text-primary-on-dark">{formatMoney(result.monthlyPayment)}</p>
               <dl className="mt-5 space-y-3 text-sm">
                 <div className="flex justify-between gap-3 border-b border-zinc-800 pb-2">
                   <dt className="text-zinc-400">Amount financed</dt>

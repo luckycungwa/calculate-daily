@@ -48,8 +48,12 @@ export function buildAmortization(input: LoanInputs): AmortizationSummary {
   const baseYears = Math.max(1, input.years ?? 30);
   const r = annualRate / 100 / 12;
   const base = monthlyPayment(principal, annualRate, baseYears);
-  const baseMonthly = base + Math.max(0, input.extraMonthly ?? 0);
-  const monthly = input.biweekly ? baseMonthly / 2 : baseMonthly;
+  // A biweekly plan makes 26 half-payments a year, which is 13 full monthly
+  // payments. Modelling that as 13/12 of the scheduled monthly amount keeps the
+  // table monthly while correctly shortening the term. The extra monthly amount
+  // stays a monthly addition in either mode.
+  const accelerated = input.biweekly ? base * (13 / 12) : base;
+  const monthly = accelerated + Math.max(0, input.extraMonthly ?? 0);
 
   const rows: AmortizationRow[] = [];
   let balance = principal;
@@ -128,6 +132,43 @@ export function totalMonthlyPayment(input: {
     monthlyPmi: Math.round(p * 100) / 100,
     total: Math.round((pi + t + i + p) * 100) / 100,
   };
+}
+
+/**
+ * Rate/term "what-if" scenarios for the mortgage comparison panel. Every
+ * scenario re-prices the same principal through the same `monthlyPayment` +
+ * `buildAmortization` engine as the headline number — no side formulas.
+ */
+export interface LoanScenario {
+  label: string;
+  annualRate: number;
+  years: number;
+  monthlyPI: number;
+  totalInterest: number;
+  totalPaid: number;
+}
+
+export function loanScenarios(input: {
+  principal: number;
+  scenarios: Array<{ label: string; annualRate: number; years: number }>;
+}): LoanScenario[] {
+  return input.scenarios.map((s) => {
+    const years = Math.max(1, s.years);
+    const monthlyPI = monthlyPayment(input.principal, s.annualRate, years);
+    const amort = buildAmortization({
+      principal: input.principal,
+      annualRate: s.annualRate,
+      years,
+    });
+    return {
+      label: s.label,
+      annualRate: s.annualRate,
+      years,
+      monthlyPI: Math.round(monthlyPI * 100) / 100,
+      totalInterest: amort.totalInterest,
+      totalPaid: amort.totalPayment,
+    };
+  });
 }
 
 export interface RefinanceResult {

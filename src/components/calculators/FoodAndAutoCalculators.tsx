@@ -97,11 +97,11 @@ function useCopy(onSaveHistory?: (summary: string) => void) {
 }
 
 const SELECT_CLASS =
-  'h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50';
+  'h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50';
 
 const SEGMENT_BASE =
-  'flex-1 rounded-lg border px-3 py-2 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600';
-const SEGMENT_ON = 'border-emerald-600 bg-emerald-600 text-white';
+  'flex-1 rounded-lg border px-3 py-2 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint';
+const SEGMENT_ON = 'border-primary bg-primary text-white';
 const SEGMENT_OFF =
   'border-zinc-300 bg-white text-zinc-600 hover:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300';
 
@@ -254,7 +254,7 @@ export const IngredientWeightConverter: React.FC<CalculatorProps> = ({ onSaveHis
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 {mode === 'volume' ? format(value.grams, 1) : format(value.cups, 3)}
                 <span className="ml-1 text-base font-normal text-zinc-400">
                   {mode === 'volume' ? 'g' : 'cups'}
@@ -383,7 +383,7 @@ export const ButterConverter: React.FC<CalculatorProps> = ({ onSaveHistory }) =>
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 {format(value.grams, 1)}
                 <span className="ml-1 text-base font-normal text-zinc-400">g</span>
               </p>
@@ -542,7 +542,7 @@ export const FlourConverter: React.FC<CalculatorProps> = ({ onSaveHistory }) => 
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 {mode === 'cups' ? format(value.grams, 1) : format(value.cups, 3)}
                 <span className="ml-1 text-base font-normal text-zinc-400">
                   {mode === 'cups' ? 'g' : 'cups'}
@@ -697,7 +697,7 @@ export const OvenTemperatureConverter: React.FC<CalculatorProps> = ({ onSaveHist
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : converted && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 {format(converted.celsius, 0)}
                 <span className="ml-1 text-base font-normal text-zinc-400">°C</span>
               </p>
@@ -870,7 +870,7 @@ export const SpeedDistanceTimeCalculator: React.FC<CalculatorProps> = ({ onSaveH
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 {mode === 'distance'
                   ? `${format(value.distanceKm, 2)} km`
                   : mode === 'speed'

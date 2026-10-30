@@ -254,10 +254,10 @@ export const ScientificCalculator: React.FC<ScientificCalculatorProps> = ({ onSa
     const isOp = ['+', '-', '×', '÷', 'x²', 'xʸ'].includes(val);
 
     let cls = 'h-11 sm:h-12 rounded-lg font-mono text-sm font-semibold transition-colors active:scale-95 ';
-    if (isAction) cls += 'bg-emerald-600 hover:bg-emerald-500 text-white col-span-1';
+    if (isAction) cls += 'bg-primary hover:bg-primary/90 text-white col-span-1';
     else if (isClear) cls += 'bg-red-900/30 hover:bg-red-900/50 text-red-400';
     else if (isBackspace) cls += 'bg-red-900/30 hover:bg-red-900/50 text-red-400';
-    else if (isFunc || isConst) cls += 'bg-emerald-900/20 hover:bg-emerald-900/40 text-emerald-400 text-xs';
+    else if (isFunc || isConst) cls += 'bg-primary-on-dark/10 hover:bg-primary-on-dark/20 text-primary-on-dark text-xs';
     else if (isOp) cls += 'bg-zinc-700 hover:bg-zinc-600 text-zinc-200';
     else cls += 'bg-zinc-800 hover:bg-zinc-700 text-zinc-100';
 
@@ -335,7 +335,7 @@ export const ScientificCalculator: React.FC<ScientificCalculatorProps> = ({ onSa
                 </span>
                 <button
                   onClick={() => setAngleMode(m => m === 'deg' ? 'rad' : 'deg')}
-                  className={`text-[11px] font-mono px-2 py-0.5 rounded ${angleMode === 'deg' ? 'bg-emerald-900/40 text-emerald-400' : 'bg-zinc-800 text-zinc-400'}`}
+                  className={`text-[11px] font-mono px-2 py-0.5 rounded ${angleMode === 'deg' ? 'bg-primary-on-dark/20 text-primary-on-dark' : 'bg-zinc-800 text-zinc-400'}`}
                 >
                   {angleMode.toUpperCase()}
                 </button>

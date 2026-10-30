@@ -185,7 +185,7 @@ export const SolidVolumeCalculator: React.FC<CalculatorProps> = ({ onSaveHistory
               onChange={(event) => {
                 if (isSolidShape(event.target.value)) setShape(event.target.value);
               }}
-              className="h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
+              className="h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
             >
               {Object.entries(SHAPE_LABELS).map(([value, label]) => (
                 <option key={value} value={value}>{label}</option>
@@ -200,7 +200,7 @@ export const SolidVolumeCalculator: React.FC<CalculatorProps> = ({ onSaveHistory
               onChange={(event) => {
                 if (isVolumeUnit(event.target.value)) setUnit(event.target.value);
               }}
-              className="h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
+              className="h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-sm text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
             >
               {VOLUME_UNITS.map((option) => <option key={option} value={option}>{option}</option>)}
             </select>

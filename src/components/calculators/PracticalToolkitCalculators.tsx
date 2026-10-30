@@ -143,7 +143,7 @@ function SelectField({
         id={id}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
+        className="h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
       >
         {children}
       </select>
@@ -170,7 +170,7 @@ function Toggle({
         type="checkbox"
         checked={checked}
         onChange={(event) => onChange(event.target.checked)}
-        className="h-4 w-4 rounded border-zinc-300 text-emerald-600 focus:ring-emerald-600 dark:border-zinc-600 dark:bg-zinc-900"
+        className="h-4 w-4 rounded border-zinc-300 text-primary focus:ring-primary-tint dark:border-zinc-600 dark:bg-zinc-900"
       />
       {label}
     </label>
@@ -335,7 +335,7 @@ export const ConversionRateCalculator: React.FC<CalculatorProps> = ({ onSaveHist
             <div className="mt-4"><ErrorNote message={result.error} /></div>
           ) : result.value && (
             <>
-              <div className="mt-3 font-mono text-4xl font-semibold tabular-nums text-emerald-400">
+              <div className="mt-3 font-mono text-4xl font-semibold tabular-nums text-primary-on-dark">
                 {format(result.value.ratePct)}%
               </div>
               <div className="mt-1 text-[11px] text-zinc-400">
@@ -467,7 +467,7 @@ export const DimensionalWeightCalculator: React.FC<CalculatorProps> = ({ onSaveH
             <div className="mt-4"><ErrorNote message={result.error} /></div>
           ) : result.value && (
             <>
-              <div className="mt-3 font-mono text-4xl font-semibold tabular-nums text-emerald-400">
+              <div className="mt-3 font-mono text-4xl font-semibold tabular-nums text-primary-on-dark">
                 {format(result.value.billableWeight)} <span className="text-lg text-zinc-400">{weightUnit}</span>
               </div>
               <div className="mt-1 text-[11px] text-zinc-400">
@@ -587,7 +587,7 @@ export const FreelanceRateCalculator: React.FC<CalculatorProps> = ({ onSaveHisto
             <div className="mt-4"><ErrorNote message={result.error} /></div>
           ) : result.value && (
             <>
-              <div className="mt-3 font-mono text-4xl font-semibold tabular-nums text-emerald-400">
+              <div className="mt-3 font-mono text-4xl font-semibold tabular-nums text-primary-on-dark">
                 {money(result.value.hourlyRate, currency)}
               </div>
               <div className="mt-1 text-[11px] text-zinc-400">per billable hour</div>
@@ -729,7 +729,7 @@ export const EvChargingCostCalculator: React.FC<CalculatorProps> = ({ onSaveHist
             <div className="mt-4"><ErrorNote message={result.error} /></div>
           ) : result.value && (
             <>
-              <div className="mt-3 font-mono text-3xl font-semibold tabular-nums text-emerald-400">
+              <div className="mt-3 font-mono text-3xl font-semibold tabular-nums text-primary-on-dark">
                 {money(result.value.homeCost, currency)}
               </div>
               <div className="mt-1 text-[11px] text-zinc-400">home charge for this session</div>
@@ -893,7 +893,7 @@ export const TripCostCalculator: React.FC<CalculatorProps> = ({ onSaveHistory })
             <div className="mt-4"><ErrorNote message={result.error} /></div>
           ) : result.value && (
             <>
-              <div className="mt-3 font-mono text-3xl font-semibold tabular-nums text-emerald-400">
+              <div className="mt-3 font-mono text-3xl font-semibold tabular-nums text-primary-on-dark">
                 {money(result.value.total, currency)}
               </div>
               <div className="mt-1 text-[11px] text-zinc-400">
@@ -1019,7 +1019,7 @@ export const BtuCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
             <div className="mt-4"><ErrorNote message={result.error} /></div>
           ) : result.value && (
             <>
-              <div className="mt-3 font-mono text-4xl font-semibold tabular-nums text-emerald-400">
+              <div className="mt-3 font-mono text-4xl font-semibold tabular-nums text-primary-on-dark">
                 {format(result.value.btuPerHour, 0)} <span className="text-lg text-zinc-400">BTU/h</span>
               </div>
               <div className="mt-1 text-[11px] text-zinc-400">
@@ -1157,14 +1157,14 @@ export const InsulationCalculator: React.FC<CalculatorProps> = ({ onSaveHistory 
             <>
               {result.value.meetsTarget ? (
                 <>
-                  <div className="mt-3 font-mono text-2xl font-semibold text-emerald-400">Already meets target</div>
+                  <div className="mt-3 font-mono text-2xl font-semibold text-brand-on-dark">Already meets target</div>
                   <div className="mt-1 text-[11px] text-zinc-400">
                     Existing R-{format(toNumber(existingR), 0)} against a target of R-{format(toNumber(targetR), 0)}.
                   </div>
                 </>
               ) : (
                 <>
-                  <div className="mt-3 font-mono text-4xl font-semibold tabular-nums text-emerald-400">
+                  <div className="mt-3 font-mono text-4xl font-semibold tabular-nums text-primary-on-dark">
                     {result.value.packages} <span className="text-lg text-zinc-400">packages</span>
                   </div>
                   <div className="mt-1 text-[11px] text-zinc-400">
