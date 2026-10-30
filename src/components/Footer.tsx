@@ -30,7 +30,7 @@ export const Footer: React.FC = () => {
                 <rect width="32" height="32" rx="8" fill="#f4f4f5" />
                 <path d="M9 12.4h14" stroke="#09090b" strokeWidth="2.6" strokeLinecap="round" />
                 <path d="M9 19.6h8.5" stroke="#09090b" strokeWidth="2.6" strokeLinecap="round" />
-                <circle cx="22.5" cy="19.6" r="2.9" fill="#10b981" />
+                <circle cx="22.5" cy="19.6" r="2.9" fill="#6366f1" />
               </svg>
               <span>Formula<span className="text-brand-on-dark">Tap</span></span>
             </div>

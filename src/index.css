@@ -98,7 +98,7 @@
      chips on always-dark result panels. The light-theme #047857 reaches only
      3.6:1 on near-black, so those panels need the brighter green in both
      themes (the same reason --primary-on-dark exists). */
-  --color-brand-on-dark: #10b981;
+  --color-brand-on-dark: #6366f1;
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -174,7 +174,7 @@
     --border: #27272a;
     --input: #3f3f46;
     --ring: #6366f1;
-    --brand: #10b981;
+    --brand: #6366f1;
   }
 
   * {

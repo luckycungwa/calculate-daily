@@ -49,7 +49,7 @@ export const EmbedPage: React.FC<EmbedPageProps> = ({ slug }) => {
       // third-party embeds listen for this exact type. Renaming it would
       // silently break height sync on every live embed. Accept both names
       // so a future totalcalculation:height can be introduced without breaking.
-      if (height > 0) window.parent.postMessage({ type: 'calculatedaily:height', height }, '*');
+      if (height > 0) window.parent.postMessage({ type: 'totalcalculation:height', height }, '*');
     };
 
     // Debounce resize storms while a visitor drags a slider or types.

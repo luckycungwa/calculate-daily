@@ -297,7 +297,7 @@ What changed:
 
 Titles are composed by one helper (`src/lib/pageTitle.ts`) used by both `usePageMeta` and the
 prerenderer. Previously the static HTML said "... - Free Online Calculator" while the hydrated page
-said "... | CalculateDaily", splitting the title signal; the two now match on every route.
+said "... | totalcalculation", splitting the title signal; the two now match on every route.
 
 Remaining costs, stated plainly: `/calculators` still loads a 110 kB listing projection to support
 search and category filtering; calculator pages carry their 35-140 kB content chunk (formula, prose,
@@ -376,7 +376,7 @@ reviewed tool on its own page with a copy-paste snippet.
 | Piece | Where | Behaviour |
 |---|---|---|
 | Embed route | `/embed/:slug` in `src/lib/router.tsx`, page in `src/pages/EmbedPage.tsx` | Calculator only: no site header, footer, history UI, or page padding |
-| Attribution | Rendered inside the embed document | "Free calculator by CalculateDaily" plus a link to the canonical `/calculators/:slug` page |
+| Attribution | Rendered inside the embed document | "Free calculator by totalcalculation" plus a link to the canonical `/calculators/:slug` page |
 | Sizing | `postMessage` from the embed to its parent | Reports content height on mount and on `ResizeObserver` changes, so the frame is not clipped |
 | Snippet card | `src/components/common/EmbedCard.tsx` on every reviewed calculator page | Copyable iframe plus the height listener, a preview link, and the attribution condition |
 | Prerendering | `scripts/prerender.ts` | 252 embed shells, one per indexable calculator; not in the sitemap |
@@ -410,7 +410,7 @@ Run on the final build:
   `/embed`, `/embed//x`, and `/embed/x/` rejections.
 - `npm run build` - 537 pages (285 site pages plus 252 embed shells), 276 sitemap URLs, and the
   prerender audit passes over 538 HTML files.
-- Direct load of `/embed/bmi-calculator`: title `BMI & Body Health (Embed) | CalculateDaily`,
+- Direct load of `/embed/bmi-calculator`: title `BMI & Body Health (Embed) | totalcalculation`,
   `noindex` present, no canonical, no header or footer, two hydrated inputs, attribution link
   pointing at the canonical page.
 - Host-page simulation: an iframe pointing at `/embed/trip-cost-calculator` posted a height of 1,239
@@ -509,7 +509,7 @@ Run on the final build:
   matching the hand calculation. Embed card present.
 - Interaction check on `/calculators/css-clamp-calculator` with 16 / 24 / 320 / 1200 / 768:
   20.07 px at the preview viewport, 0.91 vw slope, 13.09 px intercept, matching the hand calculation.
-- Direct load of `/embed/gutter-calculator`: title `Gutter Calculator (Embed) | CalculateDaily`,
+- Direct load of `/embed/gutter-calculator`: title `Gutter Calculator (Embed) | totalcalculation`,
   `noindex` present, no canonical, no header or footer, 5 hydrated inputs, attribution link to the
   canonical page.
 

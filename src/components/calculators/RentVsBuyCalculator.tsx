@@ -348,7 +348,7 @@ export const RentVsBuyCalculator: React.FC<RentVsBuyCalculatorProps> = ({
             series={[
               { name: 'Rent (cumulative)', points: rentSeries, color: '#a1a1aa' },
               { name: 'Buy (cumulative)', points: buySeries, color: '#059669' },
-              { name: 'Equity', points: equitySeries, color: '#10B981' },
+              { name: 'Equity', points: equitySeries, color: '#6366f1' },
             ]}
             xLabels={results.labels}
             height={260}

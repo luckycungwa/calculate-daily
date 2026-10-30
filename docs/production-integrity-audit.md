@@ -27,8 +27,8 @@ command (§7). Nothing in this document claims a build, type-check, or test pass
 | Catalogue: **7 files, 170 entries, 169 unique slugs** | `^    slug: '` grep → 170 matches; duplicate scan §5 |
 | Content enforcement: `scripts/audit-calculators.ts` (not a test — a content/self-consistency checker) | file read |
 | Route types: `home`, `calculators`, `calculator/:slug`, `category/:id`, `savings-goal`, `about`, `privacy`, `terms`, `contact`, `guides`, `guide/:slug`, `not-found` | `src/lib/router.tsx:3-15` |
-| **Deployment: NOT live.** `https://calculatedaily.com/sitemap.xml` returns a one-URL sitemap pointing at `/lander` (a domain-parking page) | live fetch during this audit |
-| `SITE_URL` defaults to `https://calculatedaily.com`; overridable by env | `scripts/prerender.ts:9` |
+| **Deployment: NOT live.** `https://totalcalculation.com/sitemap.xml` returns a one-URL sitemap pointing at `/lander` (a domain-parking page) | live fetch during this audit |
+| `SITE_URL` defaults to `https://totalcalculation.com`; overridable by env | `scripts/prerender.ts:9` |
 
 The deployment finding matters for everything below: **no indexation damage can have occurred yet**,
 because nothing is published. This is the cheapest possible moment to fix the gate.
@@ -317,7 +317,7 @@ predicate in one deliberate commit.
 **Deployment / indexing risks, ranked**
 
 1. **`SITE_URL` mismatch.** If deployed without setting `SITE_URL`, every canonical and the entire
-   sitemap point at `https://calculatedaily.com`, which currently serves a parking page. Total
+   sitemap point at `https://totalcalculation.com`, which currently serves a parking page. Total
    indexing failure. Must be set and re-built.
 2. **113 unreviewed tools** would go live indexable (§3.1). Not yet damage — nothing is deployed.
 3. **`404.html` indexable** (§4 I3) if the host rewrites to it with a 200.

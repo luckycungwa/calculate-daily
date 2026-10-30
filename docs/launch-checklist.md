@@ -5,7 +5,7 @@
 > 8 SEO tests, TypeScript, and a production-origin local build (614 pages / 316 sitemap URLs) pass.
 > The catalogue is 292 indexable and 0 unreviewed; 4 guides are indexable and 6 remain `noindex`.
 > `npm audit` reports zero vulnerabilities.
-> The 2026-10-28 build was run with `SITE_URL=https://calculate-daily.vercel.app`, so canonicals,
+> The 2026-10-28 build was run with `SITE_URL=https://www.totalcalculation.com`, so canonicals,
 > `og:url`, sitemap, and robots all use the production origin; the prerender audit validated 615 HTML
 > files. This is still a local build, not a hosted deployment.
 > Eight confirmed duplicate-intent URLs permanently redirect to canonical pages in Vercel
@@ -48,7 +48,7 @@
       undici, and source-map-js.
 - [x] `npx tsc --noEmit` — clean TypeScript check.
 - [x] Production-mode `npm run build` with `SITE_URL` — run 2026-10-28 with
-      `SITE_URL=https://calculate-daily.vercel.app` and `VERCEL_ENV=production`: 614 prerendered pages,
+      `SITE_URL=https://www.totalcalculation.com` and `VERCEL_ENV=production`: 614 prerendered pages,
       316 sitemap URLs, 615 HTML files audited, exit code 0. Canonicals and `og:url` use the production
       origin. Still a local build; the hosted deploy is a separate item.
 - [x] Production guard check — a production build without `SITE_URL` failed with the expected
@@ -81,7 +81,7 @@
 
 | Variable | Environment | Purpose |
 |---|---|---|
-| `SITE_URL` | **Production (required)** | Canonical origin, e.g. `https://calculatedaily.com`. **The production build fails without it** — it will not fall back to a guessed host. |
+| `SITE_URL` | **Production (required)** | Canonical origin, e.g. `https://totalcalculation.com`. **The production build fails without it** — it will not fall back to a guessed host. |
 | `SITE_URL` | Preview (optional) | Leave **unset** to use `https://$VERCEL_URL`; if set, it supplies the preview origin only. Preview builds remain noindex and emit no canonicals either way. |
 | `VITE_GA4_ID` | All | GA4 measurement ID (`G-XXXXXXXXXX`) |
 | `GOOGLE_SITE_VERIFICATION` | Production | Search Console token; injects the verification meta tag |
@@ -124,7 +124,7 @@ How `scripts/prerender.ts` resolves the canonical origin:
       `/calculators/work-hours-calculator` (22:00→06:00), `/calculators/loan-payment-calculator` (0% APR)
 - [ ] Exercise: `/calculators/price-per-unit-calculator`, `/calculators/break-even-calculator`,
       `/calculators/fraction-calculator`, and `/calculators/time-card-calculator`
-- [ ] **Do not** point `calculatedaily.com` at the preview
+- [ ] **Do not** point `totalcalculation.com` at the preview
 
 ## Deploy to production (manual, only after the preview passes)
 

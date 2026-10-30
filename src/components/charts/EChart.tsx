@@ -149,7 +149,7 @@ export function useChartThemeColors(dark?: boolean) {
     // positive-delta data (growth, progress) and the brand accent.
     accent: isDark ? '#818cf8' : '#6366f1',
     accentLight: isDark ? 'rgba(129,140,248,0.22)' : 'rgba(99,102,241,0.14)',
-    green: isDark ? '#10b981' : '#20970b',
+    green: isDark ? '#6366f1' : '#20970b',
     grid: isDark ? '#3f3f46' : '#d4d4d8',
     charcoal: isDark ? '#e4e4e7' : '#18181b',
   };

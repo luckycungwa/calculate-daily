@@ -6,7 +6,7 @@ steps). `totalcalculation.com` is bought but not yet attached. The repository
 is prepared for both hosts: Vercel config stays valid, and the Pages-side
 `_redirects`, `_headers`, and `ads.txt` files are inert under Vercel. — no code changes.
 
-The code currently emits `https://calculate-daily.vercel.app` for every
+The code currently emits `https://www.totalcalculation.com` for every
 canonical, `og:url`, JSON-LD URL, sitemap and robots.txt entry via the
 `SITE_URL` build variable. That stays until step 4 below is possible.
 
@@ -15,7 +15,7 @@ canonical, `og:url`, JSON-LD URL, sitemap and robots.txt entry via the
 1. **totalcalculation.com is bought** — keep it in the same registrar/DNS account stack
    you can actually change.
 2. Decide the mailbox plan BEFORE announcing the new brand address. Today the
-   site publishes `hello@calculatedaily.com`, which works. Either keep the old
+   site publishes `hello@totalcalculation.com`, which works. Either keep the old
    address as a forwarding account after cutover, or verify the new mailbox is
    live before swapping the address.
 3. Confirm the Vercel project name/ownership for the production alias, and
@@ -82,7 +82,7 @@ global X-Frame-Options rule regress it (see AGENTS.md).
 
 - GSC: crawl errors, indexing (pages should re-crawl across properties),
   404 trend (must be ~zero; the slug set is unchanged).
-- `site:calculatedaily.vercel.app` should wither; `site:totalcalculation.com`
+- `site:totalcalculation.vercel.app` should wither; `site:totalcalculation.com`
   should grow.
 - 3rd-party embeds: they keep working (iframe src unchanged if you keep the
   old host serving `/embed/*`; if the old host is decommissioned, published

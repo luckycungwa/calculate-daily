@@ -11,14 +11,14 @@ established the patterns; Stage E applied them mechanically (see §7).
 - The canonical origin is resolved **only** from the `SITE_URL` build-time env
   var (`src/lib/siteConfig.ts`, `scripts/prerender.ts`, `.env.example`). Nothing
   in this session changed it: production builds still emit
-  `https://calculate-daily.vercel.app` everywhere canonicals are written.
+  `https://www.totalcalculation.com` everywhere canonicals are written.
 - No canonical, sitemap, OG or JSON-LD URL references totalcalculation.com. The
   owned domain exists only as documentation in `src/lib/brand.ts` and
   `docs/totalcalculation-domain-cutover.md`.
-- `hello@calculatedaily.com` is deliberately unchanged: the mailbox exists
+- `hello@totalcalculation.com` is deliberately unchanged: the mailbox exists
   today; a totalcalculation.com address would bounce until the domain is actually
   connected.
-- The embed height-report protocol (`calculatedaily:height`) is deliberately
+- The embed height-report protocol (`totalcalculation:height`) is deliberately
   unchanged: already-published third-party embeds listen for it.
 
 ## 2. Brand configuration (single source of truth)
@@ -40,7 +40,7 @@ embed postMessage protocol, the repo folder, internal identifiers.
 | Primary #6366F1 for interactive elements | `--primary-tint` token in `src/index.css`; rings/washes/active-link tints use it |
 | Primary Hover #4F46E5 | Used as the **fill** (`--primary`) for AA text-on-fill contrast; #6366F1 stays `--primary-tint` for rings and washes (`--ring`) |
 | Background #FAFAFA, Surface #FFFFFF, Text #0A0A0A/#6B6B6B, Border #E8E8EC | `--background/--card/--foreground/--muted-foreground/--border` |
-| Secondary green reserved for the DESIGN.md brand highlight | `--brand` (`#059669` light / `#10B981` dark) — used only in the wordmark ("Total Calculation"), the homepage hero accent, and positive-delta data (Success green, per Genesis: interest earned, savings challenge) |
+| Secondary green reserved for the DESIGN.md brand highlight | `--brand` (`#059669` light / `#6366f1` dark) — used only in the wordmark ("Total Calculation"), the homepage hero accent, and positive-delta data (Success green, per Genesis: interest earned, savings challenge) |
 | Warning #F59E0B, Error #EF4444 | mortgage interest cost renders amber (cost ≠ success); destructive stays rose/red |
 | Display: General Sans (Fontshare), Body: DM Sans, Code/numeric: JetBrains Mono | Self-hosted from `/fonts` (7 woff2 files, latin + latin-ext; see §6a) — no third-party font origins at runtime; `--font-display` (`-0.03em`/`-0.04em` tracking via `.font-display`/`.font-display-heading`), `--font-sans`, `--font-mono` |
 | Radii 4/6/8/12px | buttons+inputs `rounded-md` (6px), cards `rounded-xl` (12px), chips `rounded-full` |
@@ -191,11 +191,11 @@ not display copy.
 - `npm test` → 166 calculator/lib tests + 8 SEO/router tests, 0 failures
   (was 164; +2 for the yearly-series regression tests).
 - `npx tsc --noEmit` → clean.
-- Production build with `SITE_URL=https://calculate-daily.vercel.app` +
+- Production build with `SITE_URL=https://www.totalcalculation.com` +
   `VERCEL_ENV=production`: 614 static pages, 316 sitemap URLs, prerender SEO
   audit passed.
-- `dist/` contains no case-sensitive "CalculateDaily" remnant; the only
-  case-insensitive hit is the intentional `hello@calculatedaily.com` mailbox.
+- `dist/` contains no case-sensitive "totalcalculation" remnant; the only
+  case-insensitive hit is the intentional `hello@totalcalculation.com` mailbox.
 - Stage E: zero `emerald-*` utility classes remain in `src/` (only three
   explanatory comments mention emerald); generated CSS contains
   `text-primary-on-dark`, `bg-brand/10`, `bg-brand/15`,
@@ -224,10 +224,10 @@ not display copy.
 - Accessibility pass on the tool pages:
   - `--brand` in light mode is `#047857` (emerald 700) — the Genesis `#059669`
     only reached 3.77:1 on white, below AA for the small success text it also
-    colours. Dark mode keeps `#10b981`.
+    colours. Dark mode keeps `#6366f1`.
   - Dark `--primary` is `#5f62ee`, not `#6366f1`: white 12px button text on
     `#6366f1` measured 4.46:1, just under AA.
-  - New `--color-brand-on-dark` (`#10b981`) for green text and chips on the
+  - New `--color-brand-on-dark` (`#6366f1`) for green text and chips on the
     always-dark result panels (footer wordmark, amortization, compound interest,
     daily savings, down payment, statistics, tax/NPV, developer, science,
     opportunity). The light-theme `#047857` only reaches 3.6:1 on near-black.
