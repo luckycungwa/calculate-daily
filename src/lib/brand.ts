@@ -4,18 +4,20 @@
  * name so a future rename touches this file, not a hundred call sites.
  *
  * IMPORTANT: this file covers the *brand* (names shown to users). The
- * *canonical origin* is a separate concern: it is resolved at build time from
- * the SITE_URL environment variable by src/lib/siteConfig.ts and the prerender
- * step. totalcalculation.com is owned but not attached yet, so builds keep
- * emitting the live origin until the cutover — see
- * docs/totalcalculation-domain-cutover.md.
+ * *canonical origin* is a separate concern and lives in src/lib/siteConfig.ts as
+ * the `CANONICAL_ORIGIN` constant, because it is an SEO invariant that must not
+ * be overridable by a stale hosting environment variable. The values below are
+ * documentation only — nothing here generates a URL.
+ *
+ * Canonical production origin: https://www.totalcalculation.com (www, because the
+ * apex redirects to it). See docs/domain-migration-audit.md.
  */
 export const BRAND = {
   name: 'Total Calculation',
-  /** Legacy origin that serves the site today. Used only for documentation. */
+  /** The origin that serves production. Mirrors siteConfig CANONICAL_ORIGIN. */
   currentCanonicalOrigin: 'https://www.totalcalculation.com',
-  /** Owned domain, awaiting DNS + Vercel attachment. Set SITE_URL to this at cutover. */
-  intendedDomain: 'https://totalcalculation.com',
+  /** Same origin, kept under the historical field name for existing references. */
+  intendedDomain: 'https://www.totalcalculation.com',
   tagline: 'Free Online Calculators & Unit Converters',
   shortTagline: 'Free calculators & unit converters',
   /** Existing mailbox. A totalcalculation.com address needs mail configured first. */

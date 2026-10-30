@@ -133,6 +133,8 @@ export interface CalculatorMeta {
     status?: SeoStatus;
     reviewStatus?: ReviewStatus;
     priority?: number;
+    /** Real date (YYYY-MM-DD) of the last meaningful content change. Feeds <lastmod>. */
+    updatedAt?: string;
   };
 }
 
@@ -177,6 +179,8 @@ export interface Guide {
     status?: SeoStatus;
     reviewStatus?: ReviewStatus;
     priority?: number;
+    /** Real date (YYYY-MM-DD) of the last meaningful content edit. Feeds <lastmod>. */
+    updatedAt?: string;
   };
   publishedAt: string;
 }

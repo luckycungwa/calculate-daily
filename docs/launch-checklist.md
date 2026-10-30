@@ -1,23 +1,37 @@
 # Go-Live Checklist
 
-> **Status: PARTIALLY VERIFIED — NOT READY FOR PUBLIC LAUNCH.** Counts refreshed 2026-10-28. The
-> local audit passes for 292 calculators and 10 guides (620 checks, 620 pass); 166 calculator tests,
-> 8 SEO tests, TypeScript, and a production-origin local build (614 pages / 316 sitemap URLs) pass.
-> The catalogue is 292 indexable and 0 unreviewed; 4 guides are indexable and 6 remain `noindex`.
-> `npm audit` reports zero vulnerabilities.
-> The 2026-10-28 build was run with `SITE_URL=https://www.totalcalculation.com`, so canonicals,
-> `og:url`, sitemap, and robots all use the production origin; the prerender audit validated 615 HTML
-> files. This is still a local build, not a hosted deployment.
-> Eight confirmed duplicate-intent URLs permanently redirect to canonical pages in Vercel
-> configuration. Hosted CI, hosted redirects, and hosted unknown-route HTTP 404 remain unverified.
-> Local Vite preview returns HTTP 200 for an unknown path; this does not establish Vercel behavior.
-> 2026-10-26 push-prep fixes: stale `bun.lock` regenerated (CI frozen install would have failed),
-> generated catalog index files git-ignored with a CI generation step (fresh-clone typecheck would
-> have failed), and the global `X-Frame-Options` removed from `/embed/(.*)` (it would have blocked
-> third-party embeds on Vercel). All three need the hosted run to confirm.
-> 2026-10-28 blockers are content/identity, not code: publisher legal details, a reviewable address,
-> reviewer credentials, and the contact-mailbox/domain decisions are outstanding and tracked in
-> `docs/owner-supplied-info.md`. None were invented to make a page look complete.
+> **Status: BLOCKED — live domain migration is not correct.**
+> Verified 2026-10-30 against production: `https://www.totalcalculation.com/sitemap.xml`
+> returns HTTP 200 with **316 URLs, all on the retired host `calculate-daily.vercel.app`**,
+> and that host returns **HTTP 404** ("deployment could not be found"). Production
+> `robots.txt` declares the same retired-host sitemap. The apex
+> `https://totalcalculation.com` 301s to the www host but **drops the path**, so every
+> apex deep link lands on the homepage. Full evidence and owner actions:
+> [`domain-migration-audit.md`](./domain-migration-audit.md).
+>
+> The canonical origin is **`https://www.totalcalculation.com`** (www, because the apex
+> redirects to it). It is now a code constant, not just an environment variable — a
+> non-canonical production build fails instead of shipping.
+>
+> **No build, test, type-check or audit has been run against these changes.** The shell
+> in the auditing session failed at sandbox provisioning
+> (`SetNamedSecurityInfoW failed (Win32 5)`), so all code work is source-inspected only.
+> The historical results below are from earlier runs and do not cover the migration work.
+
+## Domain migration gate — must pass before anything else
+
+- [ ] `SITE_URL=https://www.totalcalculation.com` (or unset — the build now defaults to
+      the canonical origin). Never the apex, never the old host: both are rejected.
+- [ ] Cloudflare Pages redeployed after the code fix
+- [ ] `npm run audit:domain` passes on a fresh `npm run build`
+- [ ] `npm run audit:domain:live:all` passes — live sitemap, robots, canonicals, no redirects
+- [ ] Apex redirect preserves path **and** query:
+      `curl -sI 'https://totalcalculation.com/calculators/mortgage-calculator?a=1'` →
+      `location: https://www.totalcalculation.com/calculators/mortgage-calculator?a=1`
+- [ ] Old host `calculate-daily.vercel.app` 301s per path, or is knowingly accepted as a 404
+- [ ] Footer renders "Total Calculation", not the previous "FormulaTap" brand
+- [ ] GSC domain property verified and `https://www.totalcalculation.com/sitemap.xml` submitted
+- [ ] Old-domain and new-domain indexation checked (not assumed)
 
 ## Build & Code — run these, then tick
 

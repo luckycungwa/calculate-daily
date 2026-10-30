@@ -1,5 +1,25 @@
-# Legacy duplicate-intent routes, ported from vercel.json `redirects`.
-# Cloudflare Pages reads this file (first match wins) before asset lookup.
+# Cloudflare Pages redirect rules (first match wins, evaluated before asset lookup).
+#
+# Two separate concerns live here; only one is expressible in this file.
+#
+# 1. Legacy duplicate-intent routes (below) — the 8 permanent 301s ported from
+#    vercel.json. Every target is a real prerendered page, verified by
+#    scripts/audit-domain-migration.ts.
+#
+# 2. Host-level canonicalisation — NOT expressible here. Cloudflare `_redirects`
+#    matches paths on the host that serves the file; it cannot match "the apex
+#    host". The apex totalcalculation.com -> www.totalcalculation.com redirect is
+#    a Cloudflare Redirect Rule on the zone, and it MUST preserve the path and the
+#    query string. The rule that shipped first dropped both and sent every apex
+#    URL to the homepage. See docs/domain-migration-audit.md §5 for the exact
+#    expression and the verification check.
+#
+# Do not add a catch-all `/* https://www.totalcalculation.com/:splat` rule here:
+# this same file is served on the www host, so that rule would loop.
+#
+# Verified live 2026-10-30: https://totalcalculation.com/about 301 ->
+# https://www.totalcalculation.com (path NOT preserved — owner action required).
+
 /calculators/mortgage-payment-calculator /calculators/mortgage-calculator 301
 /calculators/tip-split-calculator /calculators/tip-calculator 301
 /calculators/simple-interest-calculator-v2 /calculators/simple-interest-calculator 301
