@@ -227,7 +227,7 @@ export const DownPaymentSavingsCalculator: React.FC<DownPaymentSavingsProps> = (
             </div>
 
             <div className="p-3.5 rounded-lg bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 flex items-start gap-2.5 text-xs text-zinc-600 dark:text-zinc-300">
-              <PiggyBank className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+              <PiggyBank className="w-4 h-4 text-primary shrink-0 mt-0.5" />
               <span>
                 Small regular deposits beat occasional lump sums. A 20% down payment also avoids private
                 mortgage insurance, which can save hundreds a month.
@@ -240,7 +240,7 @@ export const DownPaymentSavingsCalculator: React.FC<DownPaymentSavingsProps> = (
               <div>
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-xs font-mono text-zinc-300">
                   <span>Remaining to Save</span>
-                  <span className="text-emerald-400 font-semibold tabular-nums">{currency}{results.remaining.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+                  <span className="text-primary-on-dark font-semibold tabular-nums">{currency}{results.remaining.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
                 </div>
 
                 <div className="my-4 text-center">
@@ -266,7 +266,7 @@ export const DownPaymentSavingsCalculator: React.FC<DownPaymentSavingsProps> = (
                   </div>
                   <div className="flex justify-between text-zinc-200">
                     <span className="text-zinc-400">Projected at {years} yrs:</span>
-                    <span className={`font-bold tabular-nums ${onTrack ? 'text-emerald-400' : 'text-amber-400'}`}>
+                    <span className={`font-bold tabular-nums ${onTrack ? 'text-brand-on-dark' : 'text-amber-400'}`}>
                       {currency}{results.projected.toLocaleString('en-US', { maximumFractionDigits: 0 })}
                     </span>
                   </div>

@@ -45,7 +45,7 @@ export const ShareButton: React.FC<ShareButtonProps> = ({
   return (
     <div className="flex items-center gap-2">
       <Button variant="outline" size="sm" onClick={handleShare} className={className}>
-        {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Share2 className="w-3.5 h-3.5" />}
+        {copied ? <Check className="w-3.5 h-3.5 text-brand" /> : <Share2 className="w-3.5 h-3.5" />}
         {copied ? 'Copied' : label}
       </Button>
       {showPrint && (

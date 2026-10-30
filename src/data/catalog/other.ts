@@ -864,7 +864,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
     id: 'sa-fuel',
     slug: 'south-africa-fuel-calculator',
     name: 'South Africa Fuel Calculator',
-    shortDesc: 'Calculate trip fuel costs with current August 2026 SA petrol and diesel prices by province.',
+    shortDesc: 'Calculate trip fuel costs with official October 2026 SA petrol and diesel prices by province.',
     tagline: 'Know your fuel cost before you hit the N1.',
     category: 'daily',
     iconName: 'Fuel',
@@ -875,11 +875,11 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
     componentId: 'SaFuelCalculator',
     content: {
       intro:
-        'The South Africa Fuel Calculator estimates your trip fuel cost using the latest DMRE-regulated petrol and diesel prices for all nine provinces. Select your province, pick your fuel type, enter the distance and your car consumption, and instantly see how many litres you need and what the trip will cost in Rand.',
+        'The South Africa Fuel Calculator estimates your trip fuel cost using the official DMPR-regulated petrol and diesel prices effective 7 October 2026. Select your province, pick your fuel type, enter the distance and your car consumption, and instantly see how many litres you need and what the trip will cost in Rand. Petrol prices are regulated pump prices; diesel figures are official wholesale baselines, and forecourt diesel prices vary by station.',
       howItWorks:
-        'Choose your province to load the correct inland or coastal pump price. Enter trip distance and fuel consumption in litres per 100 kilometres. The calculator divides distance by consumption to get litres needed, then multiplies by the current price per litre to produce total cost and cost per kilometre.',
+        'Choose your province to load the correct inland or coastal price. Enter trip distance and fuel consumption in litres per 100 kilometres. Litres needed equal distance multiplied by consumption and divided by 100, then multiplied by the price per litre to produce total cost and cost per kilometre.',
       example:
-        'Johannesburg to Durban is 568 km. At 7.5 L/100km on 95 Unleaded (R25.58/L inland), you need 42.6 litres costing R1,089.89 total, or R1.92 per kilometre.',
+        'Johannesburg to Durban is 568 km. At 7.5 L/100km on 95 Unleaded (R30.25/L inland, effective 7 October 2026), you need 42.6 litres costing R1,288.65 total, or about R2.27 per kilometre.',
       formulas: [
         { label: 'Litres Needed', expression: 'Litres = Distance x Consumption / 100' },
         { label: 'Total Cost', expression: 'Cost = Litres x Price per Litre' },
@@ -895,9 +895,22 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
         { slug: 'currency-converter', step: 'Convert fuel costs to other currencies for cross-border trips.' },
       ],
       faqs: [
-        { q: 'How often do South African fuel prices change?', a: 'The DMRE adjusts fuel prices on the first Wednesday of every month based on international oil prices, the rand/dollar exchange rate, and local levies.' },
-        { q: 'Why are inland prices higher than coastal?', a: 'Inland prices include the cost of transporting fuel from coastal ports and refineries to inland regions, adding roughly 60 to 75 cents per litre.' },
-        { q: 'What is the difference between Diesel 50ppm and 500ppm?', a: 'Diesel 50ppm has lower sulphur content (50 parts per million) and is typically more expensive. It is required for newer engines with advanced emissions systems.' },
+        { q: 'How often do South African fuel prices change?', a: 'The Department of Mineral and Petroleum Resources (DMPR) adjusts fuel prices on the first Wednesday of every month based on international oil prices, the rand/dollar exchange rate, transport costs, and local levies. The prices in this tool are effective 7 October 2026; the next scheduled adjustment is 4 November 2026 and was not yet published when the data was last verified on 28 October 2026.' },
+        { q: 'Why are inland prices higher than coastal?', a: 'Inland prices include the cost of transporting fuel from coastal ports and refineries to inland regions. In the October 2026 schedule the inland petrol price is 87 cents per litre above the coastal price.' },
+        { q: 'What is the difference between Diesel 50ppm and 500ppm?', a: 'Diesel 50ppm has lower sulphur content (50 parts per million) and is typically more expensive. It is required for newer engines with advanced emissions systems. The official DMPR diesel figures are wholesale baselines; forecourt diesel prices are deregulated and vary by station.' },
+        { q: 'Are these prices official?', a: 'The petrol prices are the regulated retail prices published by the DMPR effective 7 October 2026. The diesel figures are that schedule’s wholesale baselines. Always confirm the price at the pump, which can differ for diesel and can change at any time.' },
+      ],
+      sources: [
+        {
+          label: 'Department of Mineral and Petroleum Resources (DMPR)',
+          expression: 'Official fuel prices effective 7 October 2026',
+          note: 'https://www.dmpr.gov.za/Services/Petroleum-Resources/Fuel-Prices — the primary schedule used for every price in this calculator.',
+        },
+        {
+          label: 'Petrol Price October 2026',
+          expression: 'Secondary confirmation of the DMPR October 2026 figures',
+          note: 'https://petrolprice.co.za/petrol-price-october-2026/ — used to cross-check the effective date, zone differentials, and product changes.',
+        },
       ],
       related: ['fuel-cost-calculator', 'budget-calculator', 'currency-converter'],
     },

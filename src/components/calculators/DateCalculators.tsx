@@ -180,7 +180,7 @@ export const AgeCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-xs font-mono text-zinc-300">
                   <span>Age Breakdown</span>
                   <span className="inline-flex items-center gap-1 text-zinc-200 font-semibold">
-                    <CalendarDays className="w-3.5 h-3.5 text-emerald-400" /> {results.valid ? results.zodiac : '\u2014'}
+                    <CalendarDays className="w-3.5 h-3.5 text-primary-on-dark" /> {results.valid ? results.zodiac : '\u2014'}
                   </span>
                 </div>
                 {results.valid ? (
@@ -192,7 +192,7 @@ export const AgeCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
                         {results.months} <span className="text-lg text-zinc-400">mo</span>{' '}
                         {results.days} <span className="text-lg text-zinc-400">d</span>
                       </div>
-                      <p className="text-[11px] text-emerald-400 font-mono mt-1 font-semibold">
+                      <p className="text-[11px] text-primary-on-dark font-mono mt-1 font-semibold">
                         {results.totalDays.toLocaleString()} total days lived
                       </p>
                     </div>
@@ -215,15 +215,15 @@ export const AgeCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
                       </div>
                       <div className="flex justify-between text-zinc-200">
                         <span className="text-zinc-400">Zodiac Sign:</span>
-                        <span className="font-bold text-emerald-400 tabular-nums">{results.zodiac}</span>
+                        <span className="font-bold text-primary-on-dark tabular-nums">{results.zodiac}</span>
                       </div>
                       <div className="flex justify-between text-zinc-300 pt-2 border-t border-zinc-800">
                         <span className="text-zinc-400">Next Birthday:</span>
-                        <span className="font-mono tabular-nums text-emerald-300 font-bold">{results.nextBirthday}</span>
+                        <span className="font-mono tabular-nums text-primary-on-dark font-bold">{results.nextBirthday}</span>
                       </div>
                       <div className="flex justify-between text-zinc-300">
                         <span className="text-zinc-400">Days Until Next Bday:</span>
-                        <span className="font-mono tabular-nums text-emerald-300 font-bold">
+                        <span className="font-mono tabular-nums text-primary-on-dark font-bold">
                           {results.daysUntilNext === 0 ? 'Today!' : `${results.daysUntilNext} days`}
                         </span>
                       </div>
@@ -398,7 +398,7 @@ export const DateDifferenceCalculator: React.FC<CalculatorProps> = ({ onSaveHist
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-xs font-mono text-zinc-300">
                   <span>Difference Breakdown</span>
                   <span className="inline-flex items-center gap-1 text-zinc-200 font-semibold">
-                    <ArrowRightLeft className="w-3.5 h-3.5 text-emerald-400" /> {results.valid ? `${results.totalDaysAbs} days` : '\u2014'}
+                    <ArrowRightLeft className="w-3.5 h-3.5 text-primary-on-dark" /> {results.valid ? `${results.totalDaysAbs} days` : '\u2014'}
                   </span>
                 </div>
                 {results.valid ? (
@@ -408,7 +408,7 @@ export const DateDifferenceCalculator: React.FC<CalculatorProps> = ({ onSaveHist
                       <div className="text-3xl sm:text-4xl font-bold text-white font-mono tracking-tight tabular-nums">
                         {results.totalDaysAbs.toLocaleString()}
                       </div>
-                      <p className="text-[11px] text-emerald-400 font-mono mt-1 font-semibold">
+                      <p className="text-[11px] text-primary-on-dark font-mono mt-1 font-semibold">
                         {results.businessDays.toLocaleString()} business days (Mon-Fri)
                       </p>
                     </div>
@@ -427,11 +427,11 @@ export const DateDifferenceCalculator: React.FC<CalculatorProps> = ({ onSaveHist
                       </div>
                       <div className="flex justify-between text-zinc-300 pt-2 border-t border-zinc-800">
                         <span className="text-zinc-400">Business Days:</span>
-                        <span className="font-mono tabular-nums text-emerald-300 font-bold">{results.businessDays.toLocaleString()}</span>
+                        <span className="font-mono tabular-nums text-primary-on-dark font-bold">{results.businessDays.toLocaleString()}</span>
                       </div>
                       <div className="flex justify-between text-zinc-300">
                         <span className="text-zinc-400">Weekend Days:</span>
-                        <span className="font-mono tabular-nums text-emerald-300 font-bold">{results.totalDaysAbs - results.businessDays}</span>
+                        <span className="font-mono tabular-nums text-primary-on-dark font-bold">{results.totalDaysAbs - results.businessDays}</span>
                       </div>
                     </div>
                   </>
@@ -565,7 +565,7 @@ export const DaysUntilCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }
             {results.valid && (
               <div className="p-3 rounded-lg bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800">
                 <div className="flex items-center gap-2 mb-1">
-                  <Timer className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
+                  <Timer className="w-3.5 h-3.5 text-primary dark:text-primary-tint" />
                   <span className="text-xs font-mono font-semibold text-zinc-700 dark:text-zinc-300">Target falls on</span>
                 </div>
                 <span className="text-sm font-mono font-bold text-zinc-900 dark:text-zinc-100">{results.dayOfWeek}</span>
@@ -579,7 +579,7 @@ export const DaysUntilCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-xs font-mono text-zinc-300">
                   <span>Countdown</span>
                   <span className="inline-flex items-center gap-1 text-zinc-200 font-semibold">
-                    <Timer className="w-3.5 h-3.5 text-emerald-400" /> {results.valid ? results.dayOfWeek : '\u2014'}
+                    <Timer className="w-3.5 h-3.5 text-primary-on-dark" /> {results.valid ? results.dayOfWeek : '\u2014'}
                   </span>
                 </div>
                 {results.valid ? (
@@ -589,8 +589,8 @@ export const DaysUntilCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }
                         {results.isToday ? 'Target is Today!' : results.isPast ? 'Days Ago' : 'Days Remaining'}
                       </p>
                       {results.isToday ? (
-                        <div className="text-3xl sm:text-4xl font-bold text-emerald-400 font-mono tracking-tight tabular-nums">
-                          <PartyPopper className="w-8 h-8 mx-auto mb-2 text-emerald-400" />
+                        <div className="text-3xl sm:text-4xl font-bold text-primary-on-dark font-mono tracking-tight tabular-nums">
+                          <PartyPopper className="w-8 h-8 mx-auto mb-2 text-primary-on-dark" />
                           Today!
                         </div>
                       ) : (
@@ -598,7 +598,7 @@ export const DaysUntilCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }
                           {results.daysRemaining.toLocaleString()} <span className="text-lg text-zinc-400">{results.daysRemaining === 1 ? 'day' : 'days'}</span>
                         </div>
                       )}
-                      <p className="text-[11px] text-emerald-400 font-mono mt-1 font-semibold">
+                      <p className="text-[11px] text-primary-on-dark font-mono mt-1 font-semibold">
                         {results.isPast ? `Occurred ${results.weeks}w ${results.remDays}d ago` : `${results.weeks} weeks, ${results.remDays} days from now`}
                       </p>
                     </div>
@@ -609,7 +609,7 @@ export const DaysUntilCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }
                       </div>
                       <div className="flex justify-between text-zinc-200">
                         <span className="text-zinc-400">Day of Week:</span>
-                        <span className="font-bold text-emerald-400 tabular-nums">{results.dayOfWeek}</span>
+                        <span className="font-bold text-primary-on-dark tabular-nums">{results.dayOfWeek}</span>
                       </div>
                       <div className="flex justify-between text-zinc-200 pt-2 border-t border-zinc-800">
                         <span className="text-zinc-400">Target Date:</span>
@@ -617,7 +617,7 @@ export const DaysUntilCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }
                       </div>
                       <div className="flex justify-between text-zinc-300">
                         <span className="text-zinc-400">Status:</span>
-                        <span className="font-mono tabular-nums text-emerald-300 font-bold">
+                        <span className="font-mono tabular-nums text-primary-on-dark font-bold">
                           {results.isToday ? 'Today' : results.isPast ? 'Past' : 'Upcoming'}
                         </span>
                       </div>

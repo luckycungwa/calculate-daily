@@ -50,11 +50,11 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({ slug, onSaveHist
   if (!link) {
     return (
       <div className="max-w-2xl mx-auto py-20 text-center space-y-4">
-        <h1 className="text-2xl font-bold text-zinc-950 dark:text-zinc-50">Calculator Not Found</h1>
+        <h1 className="font-display text-2xl font-bold text-zinc-950 dark:text-zinc-50">Calculator Not Found</h1>
         <p className="text-sm text-zinc-500">We could not find the tool you are looking for.</p>
         <Link
           to="/calculators"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-600 text-white text-xs font-bold"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-primary text-white text-xs font-bold"
         >
           Browse All Calculators
         </Link>
@@ -69,17 +69,17 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({ slug, onSaveHist
     <div className="space-y-6">
       {/* Breadcrumb */}
       <nav className="flex items-center gap-1.5 text-[11px] font-mono text-zinc-500">
-        <Link to="/" className="hover:text-emerald-600">
+        <Link to="/" className="hover:text-primary dark:hover:text-primary-tint">
           Home
         </Link>
         <ChevronRight className="w-3 h-3" />
-        <Link to="/calculators" className="hover:text-emerald-600">
+        <Link to="/calculators" className="hover:text-primary dark:hover:text-primary-tint">
           Calculators
         </Link>
         {category && (
           <>
             <ChevronRight className="w-3 h-3" />
-            <Link to={`/categories/${category.id}`} className="hover:text-emerald-600">
+            <Link to={`/categories/${category.id}`} className="hover:text-primary dark:hover:text-primary-tint">
               {category.label}
             </Link>
           </>
@@ -92,11 +92,11 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({ slug, onSaveHist
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="flex items-start gap-3 max-w-3xl">
           <div className="w-11 h-11 rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center shrink-0">
-            <Icon className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+            <Icon className="w-5 h-5 text-primary dark:text-primary-tint" />
           </div>
           <div>
             <div className="flex items-center gap-2 flex-wrap">
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+              <h1 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
                 {name}
               </h1>
               {entry?.badge && (

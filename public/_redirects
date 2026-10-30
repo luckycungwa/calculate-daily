@@ -1,0 +1,10 @@
+# Legacy duplicate-intent routes, ported from vercel.json `redirects`.
+# Cloudflare Pages reads this file (first match wins) before asset lookup.
+/calculators/mortgage-payment-calculator /calculators/mortgage-calculator 301
+/calculators/tip-split-calculator /calculators/tip-calculator 301
+/calculators/simple-interest-calculator-v2 /calculators/simple-interest-calculator 301
+/calculators/compound-interest-future-value /calculators/compound-interest-calculator 301
+/calculators/emergency-fund-target-calculator /calculators/emergency-fund-calculator 301
+/calculators/water-temperature-converter /calculators/temperature-converter 301
+/calculators/bedtime-calculator /calculators/sleep-cycle-calculator 301
+/calculators/waist-circumference-calculator /calculators/waist-to-height-ratio-calculator 301

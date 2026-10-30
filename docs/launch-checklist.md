@@ -1,12 +1,13 @@
 # Go-Live Checklist
 
-> **Status: PARTIALLY VERIFIED — NOT READY FOR PUBLIC LAUNCH.** Counts refreshed 2026-10-26 after
-> Wave 11. The local audit passes for 290 calculators and 10 guides (616 checks, 616 pass); 141
-> calculator tests, 8 SEO tests, TypeScript, and the local build (607 pages / 311 sitemap URLs) pass.
-> The catalogue is 287 indexable and 3 unreviewed; 4 guides are indexable and 6 remain `noindex`.
+> **Status: PARTIALLY VERIFIED — NOT READY FOR PUBLIC LAUNCH.** Counts refreshed 2026-10-28. The
+> local audit passes for 292 calculators and 10 guides (620 checks, 620 pass); 166 calculator tests,
+> 8 SEO tests, TypeScript, and a production-origin local build (614 pages / 316 sitemap URLs) pass.
+> The catalogue is 292 indexable and 0 unreviewed; 4 guides are indexable and 6 remain `noindex`.
 > `npm audit` reports zero vulnerabilities.
-> The last full build was local and therefore emitted `http://localhost:3000` canonicals; a
-> production-origin build with `SITE_URL` must be re-run before launch and is unchecked below.
+> The 2026-10-28 build was run with `SITE_URL=https://calculate-daily.vercel.app`, so canonicals,
+> `og:url`, sitemap, and robots all use the production origin; the prerender audit validated 615 HTML
+> files. This is still a local build, not a hosted deployment.
 > Eight confirmed duplicate-intent URLs permanently redirect to canonical pages in Vercel
 > configuration. Hosted CI, hosted redirects, and hosted unknown-route HTTP 404 remain unverified.
 > Local Vite preview returns HTTP 200 for an unknown path; this does not establish Vercel behavior.
@@ -14,6 +15,9 @@
 > generated catalog index files git-ignored with a CI generation step (fresh-clone typecheck would
 > have failed), and the global `X-Frame-Options` removed from `/embed/(.*)` (it would have blocked
 > third-party embeds on Vercel). All three need the hosted run to confirm.
+> 2026-10-28 blockers are content/identity, not code: publisher legal details, a reviewable address,
+> reviewer credentials, and the contact-mailbox/domain decisions are outstanding and tracked in
+> `docs/owner-supplied-info.md`. None were invented to make a page look complete.
 
 ## Build & Code — run these, then tick
 
@@ -21,10 +25,10 @@
       (it was stale: it had no entries for `echarts`, `jsdom`, or `@types/jsdom`, so the frozen install
       in CI would have failed) and `bun install --frozen-lockfile --dry-run` now exits 0. Local checks
       still run on npm; a real Bun install is exercised by CI.
-- [x] `npm run audit` — **`Total tools: 290 | Guides: 10 | Audited: 616 | PASS: 616 | FAIL: 0`**; the
-      repository script completed successfully (run 2026-10-26).
-  - `OK [integrity] catalogue  290 unique slugs across 290 entries`
-  - `OK [integrity] catalogue  290 unique normalized display names`
+- [x] `npm run audit` — **`Total tools: 292 | Guides: 10 | Audited: 620 | PASS: 620 | FAIL: 0`**; the
+      repository script completed successfully (run 2026-10-28).
+  - `OK [integrity] catalogue  292 unique slugs across 292 entries`
+  - `OK [integrity] catalogue  292 unique normalized display names`
   - `OK [integrity] Vercel calculator redirects  8 permanent redirects target existing calculators`
   - `OK [edge-case] Credit Card Payoff  non-amortising payment returns a non-finite payoff, not a misleading 0`
   - `OK [edge-case] Work Hours  overnight 22:00-06:00 resolves to 8 hours`
@@ -33,30 +37,35 @@
   - `OK [edge-case] Break-Even ...`
   - `OK [edge-case] Fraction Calculator ...`
   - `OK [edge-case] Weekly Timesheet ...`
-  - `OK [policy] catalogue  indexable 287 | reviewed-noindex 0 | unreviewed 3 of 290`
+  - `OK [policy] catalogue  indexable 292 | reviewed-noindex 0 | unreviewed 0 of 292`
 - [x] `npm run lint` — clean TypeScript check (`tsc --noEmit`)
-- [x] `npm run test:calculators` — **141 passed, 0 failed**, including graph parsing, z-score,
-      compound-interest, solid-volume edge cases, and 36 multi-input formula cases for the Wave 11
-      config calculators.
+- [x] `npm run test:calculators` — **166 passed, 0 failed**, including graph parsing, z-score,
+      compound-interest, solid-volume edge cases, mortgage amortisation (monthly and biweekly), SA
+      fuel-price data, and 37 hand-computed multi-input formula cases for config calculators.
 - [x] `npm run test:seo` — **8 passed, 0 failed**, including exact-route parsing, the `/embed/:slug`
       cases, and production/preview origin safeguards.
 - [x] `npm audit` — final result **0 vulnerabilities** after compatible lockfile updates for Vite,
       undici, and source-map-js.
 - [x] `npx tsc --noEmit` — clean TypeScript check.
-- [ ] Production-mode `npm run build` with `SITE_URL` — **must be re-run.** The last full build was
-      local and emitted `http://localhost:3000` canonicals: 607 pages and 311 sitemap URLs, with the
-      prerender SEO audit passing. That is not evidence for a production-origin build.
+- [x] Production-mode `npm run build` with `SITE_URL` — run 2026-10-28 with
+      `SITE_URL=https://calculate-daily.vercel.app` and `VERCEL_ENV=production`: 614 prerendered pages,
+      316 sitemap URLs, 615 HTML files audited, exit code 0. Canonicals and `og:url` use the production
+      origin. Still a local build; the hosted deploy is a separate item.
 - [x] Production guard check — a production build without `SITE_URL` failed with the expected
       `SITE_URL is required for production builds` message (verified before Wave 11; the guard code is
       unchanged, but re-confirm on the launch candidate).
-- [x] Catalogue count is **290 entries / 290 unique slugs and display names** (calculator audit)
+- [x] Catalogue count is **292 entries / 292 unique slugs and display names** (calculator audit)
 - [x] Six guides remain intentionally noindex pending source/editorial review; four are indexable.
 - [x] Browser inspection confirmed graphing, z-score, and volume pages render; at 390 px they had
       no horizontal overflow. Example z-score and cone-volume results matched the checked formulas.
-- [x] `dist/sitemap.xml` has **no duplicate `<loc>`** and **287** `/calculators/` URLs; 311 URLs total
-      (287 calculators, 4 guides, 12 categories, 8 static)
+      2026-10-28 re-check: `/about`, `/contact`, `/calculators/mortgage-calculator`, and
+      `/calculators/south-africa-fuel-calculator` render with no console errors and no horizontal
+      overflow at a 994 px viewport; the fuel page shows the effective date, pending adjustment,
+      source link, and fuel prices.
+- [x] `dist/sitemap.xml` has **no duplicate `<loc>`** and **292** `/calculators/` URLs; 316 URLs total
+      (292 calculators, 4 guides, 12 categories, 8 static)
 - [x] `dist/404.html` contains `robots: noindex` and **no** `rel="canonical"`
-- [x] All 290 prerendered calculator pages contain non-empty calculator markup and no lazy-component loading skeleton
+- [x] All 292 prerendered calculator pages contain non-empty calculator markup and no lazy-component loading skeleton
 - [x] The catalog audit verifies eight permanent Vercel redirects point to existing canonical calculator slugs
 - [x] `src/data/*.generated.ts` is git-ignored and CI generates it with `bun run catalog:index` before
       audit/typecheck. Verified that a checkout without those files fails `tsc --noEmit` (six

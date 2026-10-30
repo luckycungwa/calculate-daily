@@ -269,7 +269,7 @@ export const RentVsBuyCalculator: React.FC<RentVsBuyCalculatorProps> = ({
             </div>
 
             <div className="p-3.5 rounded-lg bg-zinc-50 dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800 flex items-start gap-2.5 text-xs text-zinc-600 dark:text-zinc-300">
-              <Scale className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+              <Scale className="w-4 h-4 text-primary shrink-0 mt-0.5" />
               <span>
                 Renting costs only what you pay monthly; buying requires a down payment up front but builds
                 equity. This tool compares total cash spent over your horizon, subtracting equity from the
@@ -283,7 +283,7 @@ export const RentVsBuyCalculator: React.FC<RentVsBuyCalculatorProps> = ({
               <div>
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-xs font-mono text-zinc-300">
                   <span>Over {horizon} Years</span>
-                  <span className="text-emerald-400 font-semibold">{winner} wins</span>
+                  <span className="text-primary-on-dark font-semibold">{winner} wins</span>
                 </div>
 
                 <div className="my-4 text-center">
@@ -309,7 +309,7 @@ export const RentVsBuyCalculator: React.FC<RentVsBuyCalculatorProps> = ({
                   </div>
                   <div className="flex justify-between text-zinc-200">
                     <span className="text-zinc-400">Equity Gained:</span>
-                    <span className="font-bold text-emerald-400 tabular-nums">{currency}{finalEquity.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+                    <span className="font-bold text-primary-on-dark tabular-nums">{currency}{finalEquity.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
                   </div>
                   <div className="flex justify-between text-zinc-200">
                     <span className="text-zinc-400">Buy-Payback Crossover:</span>

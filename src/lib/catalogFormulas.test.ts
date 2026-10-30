@@ -430,6 +430,37 @@ const CASES: FormulaCase[] = [
     },
     tolerance: 0.001,
   },
+  {
+    slug: 'customer-acquisition-cost-calculator',
+    inputs: {
+      marketingSpend: 30000,
+      salesSpend: 10000,
+      newCustomers: 200,
+      annualRevenuePerCustomer: 2400,
+    },
+    expected: {
+      'Total acquisition spend': 40000,
+      'Customer acquisition cost': 200,
+      'CAC payback': 1,
+    },
+  },
+  {
+    slug: 'customer-lifetime-value-calculator',
+    inputs: {
+      averageOrderValue: 200,
+      grossMargin: 50,
+      purchasesPerYear: 6,
+      lifespanYears: 4,
+      customerAcquisitionCost: 300,
+    },
+    expected: {
+      'Annual revenue per customer': 1200,
+      'Annual gross profit per customer': 600,
+      'Customer lifetime value': 2400,
+      'LTV to CAC ratio': 8,
+      'CAC payback': 6,
+    },
+  },
 ];
 
 function evaluate(slug: string, inputs: Record<string, number>): Record<string, number> {

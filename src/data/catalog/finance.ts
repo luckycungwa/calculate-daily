@@ -81,7 +81,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Monthly payments come from the standard amortization formula M = P x r x (1+r)^n / ((1+r)^n - 1), where r is the monthly rate and n the number of payments. Annual taxes and insurance are divided by 12 and added on top.',
       example:
-        'A R400,000 home with R80,000 down at 6.5% over 30 years produces a principal-and-interest payment near R2,023, climbing to about R2,356 when taxes and insurance are included.',
+        '$400,000 home with $80,000 down at 6.5% over 30 years produces a principal-and-interest payment of $2,022.62, or $2,455.95 when $4,000 annual property tax and $1,200 annual insurance are included.',
       formulas: [
         {
           label: 'Monthly Payment',
@@ -481,8 +481,8 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       related: ['loan-payment-calculator', 'amortization-schedule-calculator', 'mortgage-calculator'],
     },
     seo: {
-      status: 'noindex',
-      reviewStatus: 'pending',
+      status: 'index',
+      reviewStatus: 'reviewed',
       priority: 0.75,
     },
   },
@@ -524,8 +524,8 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       related: ['loan-payment-calculator', 'amortization-schedule-calculator', 'debt-to-income-calculator'],
     },
     seo: {
-      status: 'noindex',
-      reviewStatus: 'pending',
+      status: 'index',
+      reviewStatus: 'reviewed',
       priority: 0.7,
     },
   },
@@ -568,8 +568,8 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       related: ['loan-payment-calculator', 'personal-loan-emi-calculator', 'amortization-schedule-calculator'],
     },
     seo: {
-      status: 'noindex',
-      reviewStatus: 'pending',
+      status: 'index',
+      reviewStatus: 'reviewed',
       priority: 0.65,
     },
   },
@@ -4302,6 +4302,149 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
         },
       ],
       related: ['apr-to-apy-calculator', 'mortgage-calculator', 'refinance-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
+  },
+  {
+    id: 'customer-acquisition-cost',
+    slug: 'customer-acquisition-cost-calculator',
+    name: 'Customer Acquisition Cost (CAC) Calculator',
+    shortDesc: 'Calculate customer acquisition cost from marketing and sales spend, then see the payback period.',
+    tagline: 'What does each new customer actually cost you?',
+    category: 'finance',
+    iconName: 'Target',
+    badge: 'Marketing',
+    featured: false,
+    keywords: [
+      'customer acquisition cost calculator',
+      'CAC calculator',
+      'cost per acquisition',
+      'customer acquisition cost formula',
+      'CAC payback period',
+      'marketing cost per customer',
+    ],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'marketingSpend', label: 'Marketing spend', type: 'number', defaultValue: 12000, min: 0, step: 100, prefix: '$' },
+        { id: 'salesSpend', label: 'Sales spend', type: 'number', defaultValue: 8000, min: 0, step: 100, prefix: '$' },
+        { id: 'newCustomers', label: 'New customers acquired', type: 'number', defaultValue: 100, min: 1, step: 1 },
+        { id: 'annualRevenuePerCustomer', label: 'Annual revenue per customer', type: 'number', defaultValue: 1200, min: 1, step: 50, prefix: '$' },
+      ],
+      results: [
+        { label: 'Total acquisition spend', formulaCode: 'marketingSpend + salesSpend', prefix: '$' },
+        { label: 'Customer acquisition cost', formulaCode: '(marketingSpend + salesSpend) / newCustomers', prefix: '$', accent: true },
+        { label: 'CAC payback', formulaCode: '((marketingSpend + salesSpend) / newCustomers) / (annualRevenuePerCustomer / 12)', suffix: 'months' },
+      ],
+      formulaDescription: 'CAC = (Marketing spend + Sales spend) / New customers; Payback = CAC / Monthly revenue per customer',
+      tips: [
+        'Include the fully loaded cost of the marketing and sales team, tools, agencies, and ad spend, not just media budget.',
+        'CAC payback is not the same as profit: it compares cost with revenue, before gross margin and operating costs.',
+        'Track CAC by channel and cohort. A blended average can hide a channel that is losing money.',
+      ],
+    },
+    content: {
+      intro:
+        'The Customer Acquisition Cost Calculator divides combined marketing and sales spend by the number of new customers won in the same period. It then estimates CAC payback, the months of revenue needed to recover the cost of acquiring one customer. Use it to compare channels, cohorts, and time periods on the same basis.',
+      howItWorks:
+        'Total acquisition spend is marketing spend plus sales spend. CAC is that total divided by new customers acquired. CAC payback divides CAC by monthly revenue per customer, which is annual revenue per customer divided by 12. The result is a revenue payback estimate, not a profitability measure.',
+      example:
+        '$12,000 of marketing spend plus $8,000 of sales spend is $20,000. If that produces 100 new customers, CAC is $200. At $1,200 of annual revenue per customer, monthly revenue is $100, so CAC payback is 2 months.',
+      formulas: [
+        { label: 'Customer acquisition cost', expression: 'CAC = (Marketing spend + Sales spend) / New customers' },
+        { label: 'CAC payback', expression: 'Payback months = CAC / (Annual revenue per customer / 12)' },
+      ],
+      resultExplanations: [
+        { resultLabel: 'Customer acquisition cost', explanation: 'The average marketing and sales cost of winning one new customer in the period entered.' },
+        { resultLabel: 'CAC payback', explanation: 'How many months of revenue from one customer are needed to recover the average acquisition cost, before margin and operating costs.' },
+        { resultLabel: 'Total acquisition spend', explanation: 'The combined marketing and sales spend used in the calculation.' },
+      ],
+      workflowLinks: [
+        { slug: 'customer-lifetime-value-calculator', step: 'Compare CAC with the gross profit a customer generates over their lifetime.' },
+        { slug: 'roas-calculator', step: 'Check whether the same campaign revenue covers its ad spend and margin.' },
+        { slug: 'break-even-calculator', step: 'Translate acquisition costs into the sales volume needed to break even.' },
+      ],
+      faqs: [
+        { q: 'What should be included in CAC?', a: 'Include the costs of acquiring new customers in the period: media spend, agency and freelancer fees, marketing software, sales salaries and commissions, and allocated overhead. Exclude costs that are not related to acquisition, such as customer support or fulfilment.' },
+        { q: 'Is CAC the same as cost per acquisition (CPA)?', a: 'They are often used interchangeably, but CPA usually refers to a single conversion event or channel, while CAC normally covers the fully loaded cost of winning a new customer across marketing and sales. State which definition you are using when comparing benchmarks.' },
+        { q: 'What is a good CAC payback?', a: 'It depends on your margins, cash position, and contract length. Many subscription businesses target payback within 12 months, and some investors look for less than 18 months. A long payback is riskier because more cash is tied up before the customer becomes profitable.' },
+        { q: 'Does a low CAC always mean efficient growth?', a: 'No. Very low CAC can reflect underinvestment, a narrow channel, or a short measurement window. Pair CAC with conversion quality, retention, gross margin, and lifetime value before judging efficiency.' },
+      ],
+      related: ['customer-lifetime-value-calculator', 'roas-calculator', 'break-even-calculator', 'markup-margin-calculator'],
+    },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.78 },
+  },
+  {
+    id: 'customer-lifetime-value',
+    slug: 'customer-lifetime-value-calculator',
+    name: 'Customer Lifetime Value (LTV) Calculator',
+    shortDesc: 'Estimate customer lifetime value from order value, margin, purchase frequency, lifespan, and CAC.',
+    tagline: 'How much gross profit does a customer generate?',
+    category: 'finance',
+    iconName: 'TrendingUp',
+    badge: 'Marketing',
+    featured: false,
+    keywords: [
+      'customer lifetime value calculator',
+      'LTV calculator',
+      'CLV calculator',
+      'lifetime value formula',
+      'LTV to CAC ratio',
+      'customer profitability',
+    ],
+    kind: 'config',
+    config: {
+      fields: [
+        { id: 'averageOrderValue', label: 'Average order value', type: 'number', defaultValue: 120, min: 0, step: 10, prefix: '$' },
+        { id: 'grossMargin', label: 'Gross margin', type: 'number', defaultValue: 60, min: 0, max: 100, step: 1, suffix: '%' },
+        { id: 'purchasesPerYear', label: 'Purchases per year', type: 'number', defaultValue: 4, min: 0.1, step: 0.1 },
+        { id: 'lifespanYears', label: 'Customer lifespan', type: 'number', defaultValue: 3, min: 0.1, step: 0.5, suffix: 'yrs' },
+        { id: 'customerAcquisitionCost', label: 'Customer acquisition cost', type: 'number', defaultValue: 200, min: 1, step: 10, prefix: '$' },
+      ],
+      results: [
+        { label: 'Annual revenue per customer', formulaCode: 'averageOrderValue * purchasesPerYear', prefix: '$' },
+        { label: 'Annual gross profit per customer', formulaCode: 'averageOrderValue * purchasesPerYear * grossMargin / 100', prefix: '$' },
+        { label: 'Customer lifetime value', formulaCode: 'averageOrderValue * purchasesPerYear * grossMargin / 100 * lifespanYears', prefix: '$', accent: true },
+        { label: 'LTV to CAC ratio', formulaCode: '(averageOrderValue * purchasesPerYear * grossMargin / 100 * lifespanYears) / customerAcquisitionCost', suffix: ':1' },
+        { label: 'CAC payback', formulaCode: 'customerAcquisitionCost / (averageOrderValue * purchasesPerYear * grossMargin / 100 / 12)', suffix: 'months' },
+      ],
+      formulaDescription: 'LTV = Average order value x Purchases per year x Gross margin x Lifespan; LTV:CAC = LTV / CAC',
+      tips: [
+        'Use gross profit, not revenue, for LTV. Revenue ignores the cost of delivering what you sell.',
+        'A common planning benchmark is an LTV:CAC ratio of at least 3:1, but it depends on margins, payback, and risk.',
+        'Shorten payback before chasing a higher headline LTV; cash timing can matter more than a long projected lifespan.',
+      ],
+    },
+    content: {
+      intro:
+        'The Customer Lifetime Value Calculator estimates the gross profit a customer generates over their relationship with your business, then compares it with acquisition cost. It reports LTV, the LTV:CAC ratio, and CAC payback so you can judge whether growth is creating value or just buying revenue.',
+      howItWorks:
+        'Annual revenue per customer is average order value multiplied by purchases per year. Applying gross margin gives annual gross profit. Multiplying that by the expected customer lifespan gives lifetime value on a gross-profit basis. Dividing LTV by CAC gives the LTV:CAC ratio, and dividing CAC by monthly gross profit gives payback in months.',
+      example:
+        'A customer spends $120 per order, four times a year, at a 60% gross margin, and stays for three years. Annual revenue is $480, annual gross profit is $288, and LTV is $864. With a $200 CAC, the LTV:CAC ratio is 4.32:1 and payback is about 8.3 months.',
+      formulas: [
+        { label: 'Annual revenue per customer', expression: 'Revenue = Average order value x Purchases per year' },
+        { label: 'Customer lifetime value', expression: 'LTV = Average order value x Purchases per year x Gross margin x Lifespan' },
+        { label: 'LTV to CAC ratio', expression: 'LTV:CAC = Customer lifetime value / Customer acquisition cost' },
+        { label: 'CAC payback', expression: 'Payback months = CAC / (Annual gross profit / 12)' },
+      ],
+      resultExplanations: [
+        { resultLabel: 'Customer lifetime value', explanation: 'Estimated gross profit from one customer over the entered lifespan, after the cost of goods but before operating overhead.' },
+        { resultLabel: 'LTV to CAC ratio', explanation: 'Gross profit generated per unit of acquisition cost. A ratio above 1 means the customer is expected to return more gross profit than it cost to acquire them.' },
+        { resultLabel: 'CAC payback', explanation: 'Months of gross profit needed to recover acquisition cost. Shorter payback reduces the cash tied up in growth.' },
+      ],
+      workflowLinks: [
+        { slug: 'customer-acquisition-cost-calculator', step: 'Calculate the acquisition cost that feeds this LTV comparison.' },
+        { slug: 'roas-calculator', step: 'Connect lifetime value to campaign-level return on ad spend.' },
+        { slug: 'break-even-calculator', step: 'Set the sales volume needed to cover fixed costs and acquisition spend.' },
+      ],
+      faqs: [
+        { q: 'Should LTV use revenue or gross profit?', a: 'Gross profit is more useful for decisions because it accounts for the cost of delivering the product or service. Revenue-based LTV can make an unprofitable customer look valuable. State which definition you use when comparing with benchmarks.' },
+        { q: 'What is a good LTV:CAC ratio?', a: 'A common planning benchmark is at least 3:1, meaning lifetime gross profit is three times acquisition cost. The right target depends on margins, payback period, retention, and how much risk the business can carry.' },
+        { q: 'How do I estimate customer lifespan?', a: 'Use observed retention or churn for a comparable cohort. A simple approximation is 1 divided by annual churn rate. Avoid assuming a long lifespan without retention data, and test a shorter lifespan to see how sensitive the result is.' },
+        { q: 'Does this calculator account for discounting?', a: 'No. It sums undiscounted gross profit over the lifespan. For a present-value view, discount each year’s gross profit at an appropriate rate; a dollar of profit three years from now is worth less than a dollar today.' },
+      ],
+      related: ['customer-acquisition-cost-calculator', 'roas-calculator', 'break-even-calculator', 'markup-margin-calculator'],
     },
     seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8 },
   }

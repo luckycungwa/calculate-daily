@@ -90,7 +90,7 @@ export const DailySavingsChallenge: React.FC<DailySavingsChallengeProps> = ({ on
           <CardHeader className="pb-4 border-b border-zinc-100 dark:border-zinc-800">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Target className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
+                <Target className="w-4 h-4 text-brand" />
                 <CardTitle className="text-base">Configure Savings Target</CardTitle>
               </div>
               <Badge variant="outline" className="text-[10px] font-mono">
@@ -181,10 +181,10 @@ export const DailySavingsChallenge: React.FC<DailySavingsChallengeProps> = ({ on
                 <div className="text-[11px] font-mono uppercase tracking-wider text-zinc-400">Required Daily Allocation</div>
                 <div className="text-3xl sm:text-4xl font-bold tracking-tight text-white font-mono my-1 tabular-nums">
                   {currency}{results.dailyNeeded.toFixed(2)}
-                  <span className="text-xs font-sans font-normal text-emerald-400"> / day</span>
+                  <span className="text-xs font-sans font-normal text-brand-on-dark"> / day</span>
                 </div>
                 <div className="inline-flex items-center gap-1.5 text-xs bg-zinc-900 border border-zinc-800 px-3 py-1 rounded-full text-zinc-300 font-mono mt-1">
-                  <Coffee className="w-3.5 h-3.5 text-emerald-400" />
+                  <Coffee className="w-3.5 h-3.5 text-brand-on-dark" />
                   <span>{results.comparison}</span>
                 </div>
               </div>
@@ -203,7 +203,7 @@ export const DailySavingsChallenge: React.FC<DailySavingsChallengeProps> = ({ on
 
               <div className="pt-2 border-t border-zinc-800 flex items-center justify-between">
                 <span className="text-xs text-zinc-400">Your pace:</span>
-                <span className="text-xs font-mono text-emerald-400 font-bold tabular-nums">
+                <span className="text-xs font-mono text-brand-on-dark font-bold tabular-nums">
                   {currency}{results.dailyNeeded.toFixed(2)} / day for {results.days} days
                 </span>
               </div>

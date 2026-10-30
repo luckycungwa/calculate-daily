@@ -148,7 +148,7 @@ export const TipCalculator: React.FC<TipCalculatorProps> = ({ onSaveHistory }) =
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <Label>Gratuity Rate ({activeTipPercent}%)</Label>
-                <span className="text-xs text-emerald-600 dark:text-emerald-400 font-mono font-bold">
+                <span className="text-xs text-primary dark:text-primary-tint font-mono font-bold">
                   Tip: {currency}{results.tipAmount.toFixed(2)}
                 </span>
               </div>
@@ -245,7 +245,7 @@ export const TipCalculator: React.FC<TipCalculatorProps> = ({ onSaveHistory }) =
                   type="checkbox"
                   checked={roundUp}
                   onChange={(e) => setRoundUp(e.target.checked)}
-                  className="rounded border-zinc-300 text-emerald-600 focus:ring-emerald-500"
+                  className="rounded border-zinc-300 text-primary focus:ring-primary-tint"
                 />
                 <Label htmlFor="tip-round-up-toggle" className="cursor-pointer text-xs font-medium">
                   Round up grand total to next whole dollar
@@ -266,7 +266,7 @@ export const TipCalculator: React.FC<TipCalculatorProps> = ({ onSaveHistory }) =
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-xs font-mono text-zinc-300">
                   <span>Per Person Breakdown</span>
                   <span className="inline-flex items-center gap-1 text-zinc-200 font-semibold">
-                    <Users className="w-3.5 h-3.5 text-emerald-400" /> {results.people} {results.people === 1 ? 'diner' : 'diners'}
+                    <Users className="w-3.5 h-3.5 text-primary-on-dark" /> {results.people} {results.people === 1 ? 'diner' : 'diners'}
                   </span>
                 </div>
 
@@ -278,7 +278,7 @@ export const TipCalculator: React.FC<TipCalculatorProps> = ({ onSaveHistory }) =
                   <div className="text-3xl sm:text-4xl font-bold text-white font-mono tracking-tight tabular-nums">
                     {currency}{results.totalPerPerson.toFixed(2)}
                   </div>
-                  <p className="text-[11px] text-emerald-400 font-mono mt-1 font-semibold">
+                  <p className="text-[11px] text-primary-on-dark font-mono mt-1 font-semibold">
                     Includes {currency}{results.tipPerPerson.toFixed(2)} tip share
                   </p>
                 </div>
@@ -291,7 +291,7 @@ export const TipCalculator: React.FC<TipCalculatorProps> = ({ onSaveHistory }) =
                   </div>
                   <div className="flex justify-between text-zinc-200">
                     <span className="text-zinc-400">Tip Share ({results.effectiveTipPercent.toFixed(1)}%):</span>
-                    <span className="font-bold text-emerald-400 tabular-nums">{currency}{results.tipPerPerson.toFixed(2)}</span>
+                    <span className="font-bold text-primary-on-dark tabular-nums">{currency}{results.tipPerPerson.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-zinc-100 pt-2 border-t border-zinc-800">
                     <span className="font-semibold">Full Check Total:</span>
@@ -299,7 +299,7 @@ export const TipCalculator: React.FC<TipCalculatorProps> = ({ onSaveHistory }) =
                   </div>
                   <div className="flex justify-between text-zinc-300 text-[11px]">
                     <span className="text-zinc-400">Total Tip Combined:</span>
-                    <span className="font-mono tabular-nums text-emerald-300 font-bold">{currency}{results.tipAmount.toFixed(2)}</span>
+                    <span className="font-mono tabular-nums text-primary-on-dark font-bold">{currency}{results.tipAmount.toFixed(2)}</span>
                   </div>
                 </div>
               </div>

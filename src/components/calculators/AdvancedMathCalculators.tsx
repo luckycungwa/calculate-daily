@@ -78,7 +78,7 @@ function TextAreaField({
         rows={rows}
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="w-full resize-y rounded-lg border border-zinc-300 bg-white px-3 py-2 font-mono text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
+        className="w-full resize-y rounded-lg border border-zinc-300 bg-white px-3 py-2 font-mono text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
       />
       {hint && <p className="text-[11px] text-zinc-500">{hint}</p>}
     </div>
@@ -147,7 +147,7 @@ export const VarianceCalculator: React.FC<CalculatorProps> = ({ onSaveHistory })
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-3xl font-bold tabular-nums text-emerald-400">{format(value.sampleVariance)}</p>
+              <p className="mt-2 font-mono text-3xl font-bold tabular-nums text-primary-on-dark">{format(value.sampleVariance)}</p>
               <dl className="mt-4 space-y-1.5 border-t border-zinc-800 pt-3 text-xs">
                 {[
                   ['Sample standard deviation', format(value.sampleStandardDeviation)],
@@ -234,7 +234,7 @@ export const PercentileCalculator: React.FC<CalculatorProps> = ({ onSaveHistory 
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-3xl font-bold tabular-nums text-emerald-400">{format(value.valueAt)}</p>
+              <p className="mt-2 font-mono text-3xl font-bold tabular-nums text-primary-on-dark">{format(value.valueAt)}</p>
               <p className="mt-1 text-xs text-zinc-400">is the P{format(toNumber(p), 1)} value</p>
               <dl className="mt-4 space-y-1.5 border-t border-zinc-800 pt-3 text-xs">
                 <div className="flex justify-between gap-3">
@@ -343,7 +343,7 @@ export const NormalDistributionCalculator: React.FC<CalculatorProps> = ({ onSave
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-3xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-3xl font-bold tabular-nums text-primary-on-dark">
                 {format(value.range.percent, 2)}%
               </p>
               <dl className="mt-4 space-y-1.5 border-t border-zinc-800 pt-3 text-xs">
@@ -412,7 +412,7 @@ const TRIANGLE_MODES: Array<{ value: TriangleMode; label: string }> = [
 ];
 
 const SELECT_CLASS =
-  'h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50';
+  'h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50';
 
 export const TriangleCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
   const copy = useCopy(onSaveHistory);
@@ -494,7 +494,7 @@ export const TriangleCalculator: React.FC<CalculatorProps> = ({ onSaveHistory })
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 text-sm font-semibold text-emerald-400">{value.type}</p>
+              <p className="mt-2 text-sm font-semibold text-primary-on-dark">{value.type}</p>
               <div className="mt-3 grid grid-cols-3 gap-2 text-center text-[11px]">
                 {[
                   ['a', value.a],
@@ -564,7 +564,7 @@ export const TriangleCalculator: React.FC<CalculatorProps> = ({ onSaveHistory })
 // ==========================================
 
 function formatDecimal(value: number, places: number): string {
-  if (!Number.isFinite(value)) return '—';
+  if (!Number.isFinite(value)) return 'ï¿½';
   const fixed = value.toFixed(Math.min(12, Math.max(0, places)));
   return fixed.includes('.') ? fixed.replace(/0+$/, '').replace(/\.$/, '') : fixed;
 }
@@ -622,7 +622,7 @@ export const FractionToDecimalCalculator: React.FC<CalculatorProps> = ({ onSaveH
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 break-all font-mono text-3xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 break-all font-mono text-3xl font-bold tabular-nums text-primary-on-dark">
                 {formatDecimal(value.decimal, decimalPlaces)}
               </p>
               <p className="mt-1 text-xs text-zinc-400">
@@ -645,7 +645,7 @@ export const FractionToDecimalCalculator: React.FC<CalculatorProps> = ({ onSaveH
                   <dd className="font-mono text-zinc-100">
                     {Math.abs(value.decimal) >= 1
                       ? `${value.mixedWhole} ${value.mixedNumerator}/${value.mixedDenominator}`
-                      : '—'}
+                      : 'ï¿½'}
                   </dd>
                 </div>
               </dl>

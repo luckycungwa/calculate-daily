@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { calculateCompoundInterest } from './compoundInterest';
+import { calculateCompoundInterest, compoundInterestYearlySeries } from './compoundInterest';
 
 test('calculates the compound-interest calculator example with end-of-month deposits', () => {
   const result = calculateCompoundInterest(5000, 250, 8, 10);
@@ -23,4 +23,31 @@ test('matches the documented early-start and later-start projections', () => {
 
   assert.ok(Math.abs(early - 280968.4805114839) < 1e-7);
   assert.ok(Math.abs(later - 243994.19915518895) < 1e-7);
+});
+
+test('yearly series ends exactly on the calculator result and grows monotonically', () => {
+  const result = calculateCompoundInterest(5000, 250, 8, 10);
+  const series = compoundInterestYearlySeries(5000, 250, 8, 10);
+
+  assert.equal(series.length, 10);
+  const last = series[series.length - 1];
+  assert.ok(Math.abs(last.balance - result.futureValue) < 1e-9);
+  assert.ok(Math.abs(last.interestEarned - result.totalInterestEarned) < 1e-9);
+
+  // Deposited is a straight contribution line independent of the rate.
+  for (const point of series) {
+    assert.ok(Math.abs(point.deposited - (5000 + 250 * point.year * 12)) < 1e-9);
+    assert.ok(point.interestEarned >= -1e-9);
+  }
+  for (let i = 1; i < series.length; i++) {
+    assert.ok(series[i].balance > series[i - 1].balance);
+    assert.ok(Math.abs(series[i].interestEarned - series[i - 1].interestEarned) > -1);
+  }
+});
+
+test('yearly series handles zero rate cleanly', () => {
+  const series = compoundInterestYearlySeries(1000, 100, 0, 3);
+  assert.equal(series.length, 3);
+  assert.ok(Math.abs(series[2].balance - 4600) < 1e-9);
+  assert.equal(series[2].interestEarned, 0);
 });

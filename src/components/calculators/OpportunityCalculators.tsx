@@ -134,7 +134,7 @@ export const PricePerUnitCalculator: React.FC<CalculatorProps> = ({ onSaveHistor
                   id={`unit-kind-${index}`}
                   value={item.unit}
                   onChange={(e) => updateProduct(index, { unit: e.target.value as PriceUnit })}
-                  className="h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
+                  className="h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
                 >
                   {UNIT_OPTIONS.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
                 </select>
@@ -152,7 +152,7 @@ export const PricePerUnitCalculator: React.FC<CalculatorProps> = ({ onSaveHistor
               <ol className="space-y-3">
                 {result.value.items.map((item, index) => (
                   <li key={index} className="flex justify-between gap-3 border-b border-zinc-800 pb-2 text-sm">
-                    <span>{item.name || `Product ${index + 1}`}{index === result.value!.bestIndex && <span className="ml-2 text-emerald-400">Best value</span>}</span>
+                    <span>{item.name || `Product ${index + 1}`}{index === result.value!.bestIndex && <span className="ml-2 text-brand-on-dark">Best value</span>}</span>
                     <strong className="font-mono">{currency}{item.pricePerDisplayUnit.toFixed(2)}</strong>
                   </li>
                 ))}
@@ -319,7 +319,7 @@ export const FractionCalculator: React.FC<CalculatorProps> = ({ onSaveHistory })
               id="fraction-operation"
               value={operation}
               onChange={(e) => setOperation(e.target.value as FractionOperation)}
-              className="h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
+              className="h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
             >
               <option value="add">Add (+)</option><option value="subtract">Subtract (−)</option>
               <option value="multiply">Multiply (×)</option><option value="divide">Divide (÷)</option>

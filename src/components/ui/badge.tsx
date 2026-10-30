@@ -16,7 +16,7 @@ const badgeVariants = cva(
         outline:
           'text-zinc-800 border-zinc-300 bg-zinc-50 dark:text-zinc-200 dark:border-zinc-700 dark:bg-zinc-900 font-medium',
         success:
-          'border-emerald-300 bg-emerald-50 text-emerald-900 dark:border-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-200 font-semibold',
+          'border-brand/30 bg-brand/10 text-brand font-semibold',
       },
     },
     defaultVariants: {

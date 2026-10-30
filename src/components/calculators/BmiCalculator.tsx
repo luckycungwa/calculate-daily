@@ -5,7 +5,7 @@ import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Badge } from '../ui/badge';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/card';
-import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
+import { cn } from '../../lib/utils';
 import { ExportModal } from '../common/ExportModal';
 import { DialGauge } from '../common/DialGauge';
 import { useToast } from '../ui/toast';
@@ -161,16 +161,32 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
 
         {/* Unit Toggle & Actions */}
         <div className="flex items-center gap-2">
-          <Tabs value={unitMode} onValueChange={(val) => setUnitMode(val as UnitMode)}>
-            <TabsList className="h-8">
-              <TabsTrigger value="metric" className="text-xs py-1">
-                Metric
-              </TabsTrigger>
-              <TabsTrigger value="imperial" className="text-xs py-1">
-                Imperial
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
+          {/* Unit toggle. Was a Radix Tabs list with no TabsContent, which left
+              every trigger pointing aria-controls at an element that never
+              existed. A pressed-button group carries the same meaning without
+              inventing a tab panel. */}
+          <div
+            role="group"
+            aria-label="Unit system"
+            className="inline-flex items-center gap-1 rounded-lg border border-zinc-200 bg-zinc-100 p-1 dark:border-zinc-700/60 dark:bg-zinc-800"
+          >
+            {(['metric', 'imperial'] as const).map((mode) => (
+              <button
+                key={mode}
+                type="button"
+                aria-pressed={unitMode === mode}
+                onClick={() => setUnitMode(mode)}
+                className={cn(
+                  'cursor-pointer rounded-md px-3 py-1 text-xs font-semibold transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+                  unitMode === mode
+                    ? 'bg-white text-zinc-950 shadow-2xs dark:bg-zinc-900 dark:text-zinc-50'
+                    : 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50'
+                )}
+              >
+                {mode === 'metric' ? 'Metric' : 'Imperial'}
+              </button>
+            ))}
+          </div>
 
           <Button
             variant="outline"
@@ -218,7 +234,7 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
                       onChange={(e) => setWeightKg(e.target.value)}
                       className="font-mono font-bold text-sm pr-9 tabular-nums"
                     />
-                    <span className="absolute right-3 top-2 text-xs font-mono font-bold text-zinc-400">kg</span>
+                    <span className="absolute right-3 top-2 text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400">kg</span>
                   </div>
                 </div>
 
@@ -239,7 +255,7 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
                       onChange={(e) => setHeightCm(e.target.value)}
                       className="font-mono font-bold text-sm pr-9 tabular-nums"
                     />
-                    <span className="absolute right-3 top-2 text-xs font-mono font-bold text-zinc-400">cm</span>
+                    <span className="absolute right-3 top-2 text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400">cm</span>
                   </div>
                 </div>
               </>
@@ -262,7 +278,7 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
                       onChange={(e) => setWeightLbs(e.target.value)}
                       className="font-mono font-bold text-sm pr-9 tabular-nums"
                     />
-                    <span className="absolute right-3 top-2 text-xs font-mono font-bold text-zinc-400">lbs</span>
+                    <span className="absolute right-3 top-2 text-xs font-mono font-bold text-zinc-500 dark:text-zinc-400">lbs</span>
                   </div>
                 </div>
 
@@ -281,7 +297,7 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
                         placeholder="Feet"
                         className="font-mono font-bold text-sm pr-8 tabular-nums"
                       />
-                      <span className="absolute right-3 top-2 text-xs font-mono text-zinc-400">ft</span>
+                      <span className="absolute right-3 top-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">ft</span>
                     </div>
                     <div className="relative">
                       <Input
@@ -294,7 +310,7 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
                         placeholder="Inches"
                         className="font-mono font-bold text-sm pr-8 tabular-nums"
                       />
-                      <span className="absolute right-3 top-2 text-xs font-mono text-zinc-400">in</span>
+                      <span className="absolute right-3 top-2 text-xs font-mono text-zinc-500 dark:text-zinc-400">in</span>
                     </div>
                   </div>
                 </div>
@@ -424,7 +440,7 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
             <div className="bg-white dark:bg-zinc-900 rounded-lg p-3.5 border border-zinc-200 dark:border-zinc-800 text-xs flex items-center justify-between">
               <div>
                 <span className="text-zinc-600 dark:text-zinc-400 text-[11px] block font-mono font-semibold">Normal Weight Range:</span>
-                <span className="font-mono tabular-nums text-emerald-700 dark:text-emerald-400 font-bold text-sm">
+                <span className="font-mono tabular-nums text-brand font-bold text-sm">
                   {unitMode === 'metric'
                     ? `${results.minHealthyWeightKg} kg – ${results.maxHealthyWeightKg} kg`
                     : `${results.minHealthyWeightLbs} lbs – ${results.maxHealthyWeightLbs} lbs`}
@@ -438,7 +454,7 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
                 onClick={handleCopy}
                 className="text-xs h-7"
               >
-                {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                {copied ? <Check className="w-3.5 h-3.5 text-brand" /> : <Copy className="w-3.5 h-3.5" />}
                 {copied ? 'Copied' : 'Copy'}
               </Button>
             </div>

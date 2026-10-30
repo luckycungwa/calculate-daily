@@ -16,6 +16,7 @@ import {
 import { ExportModal } from '../common/ExportModal';
 import { ShareButton } from '../common/ShareButton';
 import { AreaChart, BarChart } from '../charts';
+import { useChartThemeColors } from '../charts/EChart';
 import { useCurrency } from '../../lib/currency';
 import { useUrlState, parseParamNumber } from '../../lib/share';
 import { buildAmortization, totalMonthlyPayment } from '../../lib/mortgage';
@@ -39,6 +40,7 @@ const initialState: Record<string, string> = {
 export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = 'mortgage-calculator', onSaveHistory }) => {
   const currency = useCurrency();
   const { toast } = useToast();
+  const chartColors = useChartThemeColors();
   const { values: urlValues, syncUrl } = useUrlState(initialState, []);
 
   const [homePrice, setHomePrice] = useState<string>(() => urlValues.price ?? '400000');
@@ -350,7 +352,7 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
                   type="checkbox"
                   checked={includeTaxes}
                   onChange={(e) => setIncludeTaxes(e.target.checked)}
-                  className="rounded border-zinc-300 text-emerald-600 focus:ring-emerald-500"
+                  className="rounded border-zinc-300 accent-primary focus:ring-primary/40"
                 />
                 <Label htmlFor="mortgage-include-taxes" className="cursor-pointer text-xs">
                   Include Property Tax, Insurance & PMI
@@ -427,7 +429,7 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
                 <div className="my-3 space-y-1.5">
                   <div className="flex justify-between text-[11px] font-mono font-semibold text-zinc-300">
                     <span>Principal: {currency}{results.loanAmount.toLocaleString()}</span>
-                    <span className="text-emerald-400">Interest: {currency}{results.totalInterestPaid.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
+                    <span className="text-amber-400">Interest: {currency}{results.totalInterestPaid.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
                   </div>
                   <div className="h-2.5 w-full rounded-full bg-zinc-800 overflow-hidden flex">
                     <div
@@ -435,7 +437,7 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
                       style={{ width: `${results.principalPct}%` }}
                     />
                     <div
-                      className="bg-emerald-500 h-full transition-all"
+                      className="bg-amber-400 h-full transition-all"
                       style={{ width: `${results.interestPct}%` }}
                     />
                   </div>
@@ -445,7 +447,7 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
                 <div className="space-y-1.5 pt-3 border-t border-zinc-800 text-xs font-mono">
                   <div className="flex justify-between text-zinc-200">
                     <span className="text-zinc-400">Total Interest Paid:</span>
-                    <span className="font-bold text-emerald-400 tabular-nums">
+                    <span className="font-bold text-amber-400 tabular-nums">
                       {currency}{results.totalInterestPaid.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
                     </span>
                   </div>
@@ -501,7 +503,7 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
                 Remaining Balance Over Time
               </h3>
               <AreaChart
-                series={[{ name: 'Balance', points: balanceChartPoints, type: 'area', color: '#059669' }]}
+                series={[{ name: 'Balance', points: balanceChartPoints, type: 'area' }]}
                 xLabels={chartYearLabels}
                 height={220}
                 showLegend={false}
@@ -514,8 +516,8 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
               </h3>
               <BarChart
                 series={[
-                  { name: 'Principal', points: principalChartPoints, type: 'bar', color: '#10B981' },
-                  { name: 'Interest', points: interestChartPoints, type: 'bar', color: '#d4d4d8' },
+                  { name: 'Principal', points: principalChartPoints, type: 'bar' },
+                  { name: 'Interest', points: interestChartPoints, type: 'bar', color: chartColors.grid },
                 ]}
                 xLabels={chartYearLabels}
                 height={240}
@@ -540,7 +542,7 @@ export const MortgageCalculator: React.FC<MortgageCalculatorProps> = ({ slug = '
                       <TableCell className="tabular-nums">
                         {currency}{row.principal.toLocaleString('en-US', { maximumFractionDigits: 0 })}
                       </TableCell>
-                      <TableCell className="text-emerald-600 dark:text-emerald-400 tabular-nums">
+                      <TableCell className="text-brand tabular-nums">
                         {currency}{row.interest.toLocaleString('en-US', { maximumFractionDigits: 0 })}
                       </TableCell>
                       <TableCell className="font-bold tabular-nums">

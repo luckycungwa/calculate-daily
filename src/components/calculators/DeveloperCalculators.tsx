@@ -89,10 +89,10 @@ function useCopy(onSaveHistory?: (summary: string) => void) {
 }
 
 const MONO_TEXTAREA =
-  'w-full resize-y rounded-lg border border-zinc-300 bg-white px-3 py-2 font-mono text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50';
+  'w-full resize-y rounded-lg border border-zinc-300 bg-white px-3 py-2 font-mono text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50';
 
 const SELECT_CLASS =
-  'h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50';
+  'h-9 w-full rounded-lg border border-zinc-300 bg-white px-3 text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50';
 
 // ==========================================
 // IPv4 subnet
@@ -157,7 +157,7 @@ export const IpSubnetCalculator: React.FC<CalculatorProps> = ({ onSaveHistory })
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-3xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-3xl font-bold tabular-nums text-primary-on-dark">
                 {value.network}/{value.prefix}
               </p>
 
@@ -305,7 +305,7 @@ export const NumberBaseConverter: React.FC<CalculatorProps> = ({ onSaveHistory }
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 break-all font-mono text-3xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 break-all font-mono text-3xl font-bold tabular-nums text-primary-on-dark">
                 {value.decimal}
               </p>
               <p className="mt-1 text-xs text-zinc-400">Decimal value</p>
@@ -365,8 +365,8 @@ function strengthLabel(bits: number): { label: string; tone: string } {
   if (bits < 28) return { label: 'Very weak', tone: 'bg-red-500/15 text-red-300' };
   if (bits < 40) return { label: 'Weak', tone: 'bg-amber-500/15 text-amber-300' };
   if (bits < 60) return { label: 'Reasonable', tone: 'bg-yellow-500/15 text-yellow-200' };
-  if (bits < 80) return { label: 'Strong', tone: 'bg-emerald-500/15 text-emerald-300' };
-  return { label: 'Very strong', tone: 'bg-emerald-500/20 text-emerald-200' };
+  if (bits < 80) return { label: 'Strong', tone: 'bg-brand-on-dark/15 text-brand-on-dark' };
+  return { label: 'Very strong', tone: 'bg-brand-on-dark/20 text-brand-on-dark' };
 }
 
 export const PasswordEntropyCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
@@ -422,7 +422,7 @@ export const PasswordEntropyCalculator: React.FC<CalculatorProps> = ({ onSaveHis
                     onClick={() => setSets((current) => ({ ...current, [toggle.key]: !current[toggle.key] }))}
                     className={`flex items-center justify-between rounded-lg border px-3 py-2 text-left text-xs transition-colors ${
                       active
-                        ? 'border-emerald-600 bg-emerald-50 text-emerald-900 dark:bg-emerald-950 dark:text-emerald-100'
+                        ? 'border-primary bg-primary/5 text-primary dark:bg-primary-tint/10 dark:text-primary-tint'
                         : 'border-zinc-300 bg-white text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300'
                     }`}
                   >
@@ -448,7 +448,7 @@ export const PasswordEntropyCalculator: React.FC<CalculatorProps> = ({ onSaveHis
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && strength && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 {format(value.entropyBits, 1)}
                 <span className="ml-1 text-base font-normal text-zinc-400">bits</span>
               </p>
@@ -539,7 +539,7 @@ export const UrlEncoderDecoder: React.FC<CalculatorProps> = ({ onSaveHistory }) 
                 onClick={() => setMode('encode')}
                 className={`flex-1 rounded-lg border px-3 py-2 text-xs font-medium ${
                   mode === 'encode'
-                    ? 'border-emerald-600 bg-emerald-600 text-white'
+                    ? 'border-primary bg-primary text-white'
                     : 'border-zinc-300 bg-white text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300'
                 }`}
               >
@@ -551,7 +551,7 @@ export const UrlEncoderDecoder: React.FC<CalculatorProps> = ({ onSaveHistory }) 
                 onClick={() => setMode('decode')}
                 className={`flex-1 rounded-lg border px-3 py-2 text-xs font-medium ${
                   mode === 'decode'
-                    ? 'border-emerald-600 bg-emerald-600 text-white'
+                    ? 'border-primary bg-primary text-white'
                     : 'border-zinc-300 bg-white text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300'
                 }`}
               >
@@ -589,7 +589,7 @@ export const UrlEncoderDecoder: React.FC<CalculatorProps> = ({ onSaveHistory }) 
                 readOnly
                 rows={6}
                 value={result.value}
-                className="mt-2 w-full resize-y rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 font-mono text-xs text-emerald-300"
+                className="mt-2 w-full resize-y rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 font-mono text-xs text-primary-on-dark"
               />
               <p className="mt-2 text-[11px] text-zinc-500">{result.value.length} characters</p>
               <Button
@@ -754,7 +754,7 @@ function ThresholdRow({
       </div>
       <span
         className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[10px] font-medium ${
-          passes ? 'bg-emerald-500/15 text-emerald-300' : 'bg-red-500/15 text-red-300'
+          passes ? 'bg-brand-on-dark/15 text-brand-on-dark' : 'bg-red-500/15 text-red-300'
         }`}
       >
         {passes ? <Check className="h-3 w-3" /> : <X className="h-3 w-3" />}
@@ -870,7 +870,7 @@ export const ContrastRatioCalculator: React.FC<CalculatorProps> = ({ onSaveHisto
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 {value.ratio.toFixed(2)}
                 <span className="ml-1 text-base font-normal text-zinc-400">:1</span>
               </p>

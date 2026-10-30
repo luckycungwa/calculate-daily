@@ -118,9 +118,10 @@ export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSa
 
               <div className="space-y-2">
                 <div className="space-y-1">
-                  <Label className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 font-semibold">Percentage (%)</Label>
+                  <Label htmlFor="pct-m1-rate" className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 font-semibold">Percentage (%)</Label>
                   <div className="relative">
                     <Input
+                      id="pct-m1-rate"
                       type="number"
                       value={m1Pct}
                       onChange={(e) => setM1Pct(e.target.value)}
@@ -131,8 +132,9 @@ export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSa
                 </div>
 
                 <div className="space-y-1">
-                  <Label className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 font-semibold">Base Number</Label>
+                  <Label htmlFor="pct-m1-base" className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 font-semibold">Base Number</Label>
                   <Input
+                    id="pct-m1-base"
                     type="number"
                     value={m1Val}
                     onChange={(e) => setM1Val(e.target.value)}
@@ -154,7 +156,7 @@ export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSa
                 onClick={() => handleCopy(1, `${m1Pct}% of ${m1Val} = ${m1Result.toFixed(2)}`)}
                 className="w-full text-xs h-7 mt-2"
               >
-                {copiedMode === 1 ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                {copiedMode === 1 ? <Check className="w-3 h-3 text-brand" /> : <Copy className="w-3 h-3" />}
                 {copiedMode === 1 ? 'Copied' : 'Copy'}
               </Button>
             </div>
@@ -172,8 +174,9 @@ export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSa
 
               <div className="space-y-2">
                 <div className="space-y-1">
-                  <Label className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 font-semibold">Part (Numerator)</Label>
+                  <Label htmlFor="pct-m2-part" className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 font-semibold">Part (Numerator)</Label>
                   <Input
+                    id="pct-m2-part"
                     type="number"
                     value={m2Val1}
                     onChange={(e) => setM2Val1(e.target.value)}
@@ -182,8 +185,9 @@ export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSa
                 </div>
 
                 <div className="space-y-1">
-                  <Label className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 font-semibold">Total (Denominator)</Label>
+                  <Label htmlFor="pct-m2-total" className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 font-semibold">Total (Denominator)</Label>
                   <Input
+                    id="pct-m2-total"
                     type="number"
                     value={m2Val2}
                     onChange={(e) => setM2Val2(e.target.value)}
@@ -205,7 +209,7 @@ export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSa
                 onClick={() => handleCopy(2, `${m2Val1} is ${m2Result.toFixed(2)}% of ${m2Val2}`)}
                 className="w-full text-xs h-7 mt-2"
               >
-                {copiedMode === 2 ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                {copiedMode === 2 ? <Check className="w-3 h-3 text-brand" /> : <Copy className="w-3 h-3" />}
                 {copiedMode === 2 ? 'Copied' : 'Copy'}
               </Button>
             </div>
@@ -223,8 +227,9 @@ export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSa
 
               <div className="space-y-2">
                 <div className="space-y-1">
-                  <Label className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 font-semibold">Initial Value (From)</Label>
+                  <Label htmlFor="pct-m3-from" className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 font-semibold">Initial Value (From)</Label>
                   <Input
+                    id="pct-m3-from"
                     type="number"
                     value={m3Val1}
                     onChange={(e) => setM3Val1(e.target.value)}
@@ -233,8 +238,9 @@ export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSa
                 </div>
 
                 <div className="space-y-1">
-                  <Label className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 font-semibold">Final Value (To)</Label>
+                  <Label htmlFor="pct-m3-to" className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 font-semibold">Final Value (To)</Label>
                   <Input
+                    id="pct-m3-to"
                     type="number"
                     value={m3Val2}
                     onChange={(e) => setM3Val2(e.target.value)}
@@ -246,10 +252,10 @@ export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSa
 
             <div className="pt-3 border-t border-zinc-200 dark:border-zinc-800">
               <div className="text-[11px] font-mono text-zinc-600 dark:text-zinc-400 font-semibold uppercase flex items-center gap-1">
-                {isIncrease ? <TrendingUp className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> : <TrendingDown className="w-3.5 h-3.5 text-rose-600 dark:text-rose-400" />}
+                {isIncrease ? <TrendingUp className="w-3.5 h-3.5 text-brand" /> : <TrendingDown className="w-3.5 h-3.5 text-rose-600 dark:text-rose-400" />}
                 <span className="font-bold">{isIncrease ? 'Increase' : 'Decrease'}</span>
               </div>
-              <div className={`text-2xl font-bold font-mono my-1 tabular-nums ${isIncrease ? 'text-emerald-700 dark:text-emerald-400' : 'text-rose-700 dark:text-rose-400'}`}>
+              <div className={`text-2xl font-bold font-mono my-1 tabular-nums ${isIncrease ? 'text-brand' : 'text-rose-700 dark:text-rose-400'}`}>
                 {isIncrease ? '+' : ''}{m3Pct.toFixed(2)}%
               </div>
               <Button
@@ -259,7 +265,7 @@ export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSa
                 onClick={() => handleCopy(3, `Change from ${m3Val1} to ${m3Val2} = ${m3Pct.toFixed(2)}%`)}
                 className="w-full text-xs h-7 mt-2"
               >
-                {copiedMode === 3 ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                {copiedMode === 3 ? <Check className="w-3 h-3 text-brand" /> : <Copy className="w-3 h-3" />}
                 {copiedMode === 3 ? 'Copied' : 'Copy'}
               </Button>
             </div>

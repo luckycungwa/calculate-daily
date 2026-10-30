@@ -7,14 +7,14 @@ export const TermsPage: React.FC = () => {
   usePageMeta({
     title: 'Terms of Service',
     description:
-      'The terms governing your use of CalculateDaily free online calculators and unit converters.',
+      'The terms governing your use of Total Calculation free online calculators and unit converters.',
     canonicalPath: '/terms',
   });
 
   const sections = [
     {
       title: 'Free Use',
-      body: 'CalculateDaily provides its calculators and unit converters free of charge for personal and professional use. You may use, link to, and share the tools without permission, provided you do not misrepresent the site.',
+      body: 'Total Calculation provides its calculators and unit converters free of charge for personal and professional use. You may use, link to, and share the tools without permission, provided you do not misrepresent the site.',
     },
     {
       title: 'Results Are Estimates',
@@ -30,7 +30,7 @@ export const TermsPage: React.FC = () => {
     },
     {
       title: 'Intellectual Property',
-      body: 'The site design, text, and original content belong to CalculateDaily. Formulas are common mathematical knowledge and remain freely usable by everyone.',
+      body: 'The site design, text, and original content belong to Total Calculation. Formulas are common mathematical knowledge and remain freely usable by everyone.',
     },
     {
       title: 'Changes',
@@ -42,10 +42,10 @@ export const TermsPage: React.FC = () => {
     <div className="max-w-3xl mx-auto space-y-6">
       <div className="text-center space-y-2 pb-4 border-b border-zinc-200 dark:border-zinc-800">
         <Badge variant="outline" className="text-[11px] font-mono">
-          <ScrollText className="w-3 h-3 mr-1 text-emerald-600 dark:text-emerald-400" />
+          <ScrollText className="w-3 h-3 mr-1 text-primary dark:text-primary-tint" />
           Legal
         </Badge>
-        <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
+        <h1 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
           Terms of Service
         </h1>
         <p className="text-xs text-zinc-500 dark:text-zinc-400">

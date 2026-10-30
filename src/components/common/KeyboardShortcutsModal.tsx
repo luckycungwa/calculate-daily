@@ -32,7 +32,7 @@ export const KeyboardShortcutsModal: React.FC<KeyboardShortcutsModalProps> = ({
       <DialogContent className="max-w-md">
         <DialogHeader className="pb-2 border-b border-zinc-100 dark:border-zinc-800">
           <div className="flex items-center gap-2">
-            <Command className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
+            <Command className="w-4 h-4 text-primary dark:text-primary-tint" />
             <DialogTitle>Keyboard Shortcuts</DialogTitle>
           </div>
           <DialogDescription>

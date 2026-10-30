@@ -21,7 +21,7 @@ export function useToast(): ToastContextValue {
 }
 
 const TOAST_ICONS: Record<ToastKind, React.ReactNode> = {
-  success: <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />,
+  success: <CheckCircle2 className="w-3.5 h-3.5 text-brand" />,
   info: <Info className="w-3.5 h-3.5 text-zinc-400" />,
   warning: <AlertTriangle className="w-3.5 h-3.5 text-amber-500" />,
 };

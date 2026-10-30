@@ -6,6 +6,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { resolveSite } from '../src/lib/siteConfig';
 import { parsePath } from '../src/lib/router';
 import { PAGE_SOURCES } from '../src/lib/pageRegistry';
+import { BRAND_NAME, PUBLISHER } from '../src/lib/brand';
 import { withBrand, DEFAULT_TITLE } from '../src/lib/pageTitle';
 import { CATALOG_CHUNK_BY_SLUG } from '../src/data/catalogChunks.generated';
 
@@ -236,8 +237,13 @@ async function main() {
       {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        name: 'CalculateDaily',
+        name: BRAND_NAME,
         url: `${SITE_URL}/`,
+        publisher: {
+          '@type': 'Organization',
+          name: PUBLISHER.name,
+          url: PUBLISHER.url,
+        },
         description:
           'Free online calculators and unit converters for math, finance, health, construction, cooking, and everyday life.',
       },
@@ -261,7 +267,7 @@ async function main() {
     file: 'calculators.html',
     title: withBrand('All Calculators'),
     description:
-      'Browse every free online calculator and unit converter on CalculateDaily, including percentage, BMI, mortgage, savings, temperature, length, weight, and more.',
+      'Browse every free online calculator and unit converter on Total Calculation, including percentage, BMI, mortgage, savings, temperature, length, weight, and more.',
     jsonLd: [
       {
         '@context': 'https://schema.org',
@@ -399,28 +405,28 @@ async function main() {
       file: 'about.html',
       title: withBrand('About & Methodology'),
       description:
-        'About CalculateDaily: browser-based calculators for finance, health, construction, and everyday math. Learn how our tools and checks work.',
+        'About Total Calculation: browser-based calculators for finance, health, construction, and everyday math. Learn how our tools and checks work.',
     },
     {
       path: '/privacy',
       file: 'privacy.html',
       title: withBrand('Privacy Policy'),
       description:
-        'How CalculateDaily handles calculator inputs, browser storage, optional analytics, and third-party services.',
+        'How Total Calculation handles calculator inputs, browser storage, optional analytics, and third-party services.',
     },
     {
       path: '/terms',
       file: 'terms.html',
       title: withBrand('Terms of Service'),
       description:
-        'The terms governing your use of CalculateDaily free online calculators and unit converters.',
+        'The terms governing your use of Total Calculation free online calculators and unit converters.',
     },
     {
       path: '/contact',
       file: 'contact.html',
       title: withBrand('Contact Us'),
       description:
-        'Get in touch with the CalculateDaily team about our calculators, converters, or partnership opportunities.',
+        'Get in touch with the Total Calculation team about our calculators, converters, or partnership opportunities.',
     }
   );
 
@@ -470,7 +476,11 @@ async function main() {
           description: guide.shortDesc,
           url: `${SITE_URL}/guides/${guide.slug}`,
           datePublished: guide.publishedAt,
-          publisher: { '@type': 'Organization', name: 'CalculateDaily' },
+          publisher: {
+            '@type': 'Organization',
+            name: PUBLISHER.name,
+            url: PUBLISHER.url,
+          },
         },
         {
           '@context': 'https://schema.org',
@@ -520,8 +530,8 @@ async function main() {
   const notFoundHtml = buildShell(
     shell,
     notFoundContent,
-    'Page Not Found - CalculateDaily',
-    'The page you requested does not exist. Browse free calculators and unit converters on CalculateDaily.',
+    `Page Not Found - ${BRAND_NAME}`,
+    'The page you requested does not exist. Browse free calculators and unit converters on Total Calculation.',
     '/404.html',
     [],
     true

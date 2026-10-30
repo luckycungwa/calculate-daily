@@ -96,7 +96,7 @@ export const ScenarioCompare: React.FC<ScenarioCompareProps> = ({ spec, classNam
     <Card className={className}>
       <CardHeader className="pb-4 border-b border-zinc-100 dark:border-zinc-800">
         <div className="flex items-center gap-2">
-          <GitCompareArrows className="w-4 h-4 text-emerald-600 dark:text-emerald-500" />
+          <GitCompareArrows className="w-4 h-4 text-primary dark:text-primary-tint" />
           <CardTitle className="text-base">Scenario Compare</CardTitle>
           <Badge variant="outline" className="text-[10px] font-mono">
             Side-by-Side
@@ -172,7 +172,7 @@ export const ScenarioCompare: React.FC<ScenarioCompareProps> = ({ spec, classNam
                         key={ri}
                         className={`text-right p-3 tabular-nums ${
                           ri === 0
-                            ? 'text-emerald-700 dark:text-emerald-400 font-bold'
+                            ? 'text-primary dark:text-primary-tint font-bold'
                             : 'text-zinc-800 dark:text-zinc-200'
                         }`}
                       >

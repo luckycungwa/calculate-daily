@@ -45,6 +45,10 @@ export const EmbedPage: React.FC<EmbedPageProps> = ({ slug }) => {
           containerRef.current?.scrollHeight ?? 0
         )
       );
+      // Legacy wire protocol, intentionally unchanged: already-published
+      // third-party embeds listen for this exact type. Renaming it would
+      // silently break height sync on every live embed. Accept both names
+      // so a future totalcalculation:height can be introduced without breaking.
       if (height > 0) window.parent.postMessage({ type: 'calculatedaily:height', height }, '*');
     };
 
@@ -88,12 +92,12 @@ export const EmbedPage: React.FC<EmbedPageProps> = ({ slug }) => {
         <>
           <CalculatorRenderer meta={entry} />
           <div className="mt-3 flex flex-wrap items-center justify-between gap-2 border-t border-zinc-200 pt-2 text-[11px] text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
-            <span>Free calculator by CalculateDaily</span>
+            <span>Free calculator by Total Calculation</span>
             <a
               href={`/calculators/${entry.slug}`}
               target="_blank"
               rel="noopener"
-              className="inline-flex items-center gap-1 font-semibold text-emerald-700 hover:underline dark:text-emerald-400"
+              className="inline-flex items-center gap-1 font-semibold text-primary hover:underline dark:text-primary-tint"
             >
               {entry.name}
               <ArrowUpRight className="h-3 w-3" />
@@ -113,7 +117,7 @@ export const EmbedPage: React.FC<EmbedPageProps> = ({ slug }) => {
           <p className="mt-2 text-xs text-zinc-500">
             {known
               ? 'This calculator is still loading. Refresh the page to try again.'
-              : 'That slug does not match a calculator on CalculateDaily.'}
+              : 'That slug does not match a calculator on Total Calculation.'}
           </p>
         </div>
       )}

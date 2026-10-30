@@ -1,8 +1,9 @@
 ﻿import React from 'react';
-import { Calculator, ArrowUp, Layers } from 'lucide-react';
+import { ArrowUp, Layers } from 'lucide-react';
 import { Button } from './ui/button';
 import { Link } from '../lib/router';
 import { CATEGORIES } from '../data/categories';
+import { PUBLISHER } from '../lib/brand';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -25,10 +26,13 @@ export const Footer: React.FC = () => {
           {/* Col 1: Brand */}
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-white font-bold text-base">
-              <div className="w-6 h-6 rounded-md bg-zinc-800 border border-zinc-700 flex items-center justify-center text-white">
-                <Calculator className="w-3.5 h-3.5" />
-              </div>
-              <span>Calculate<span className="text-emerald-500">Daily</span></span>
+              <svg viewBox="0 0 32 32" className="h-6 w-6 shrink-0" aria-hidden="true">
+                <rect width="32" height="32" rx="8" fill="#f4f4f5" />
+                <path d="M9 12.4h14" stroke="#09090b" strokeWidth="2.6" strokeLinecap="round" />
+                <path d="M9 19.6h8.5" stroke="#09090b" strokeWidth="2.6" strokeLinecap="round" />
+                <circle cx="22.5" cy="19.6" r="2.9" fill="#10b981" />
+              </svg>
+              <span>Formula<span className="text-brand-on-dark">Tap</span></span>
             </div>
             <p className="text-xs text-zinc-400 leading-relaxed">
               Deterministic, fast calculators for finance, health, construction, cooking, and everyday planning.
@@ -37,13 +41,13 @@ export const Footer: React.FC = () => {
 
           {/* Col 2: Top Tools */}
           <div>
-            <h4 className="text-zinc-200 text-xs font-mono uppercase tracking-wider mb-3">
+            <h2 className="text-zinc-200 text-xs font-mono uppercase tracking-wider mb-3">
               Top Tools
-            </h4>
+            </h2>
             <ul className="space-y-1.5 text-xs">
               {topTools.map((tool) => (
                 <li key={tool.slug}>
-                  <Link to={`/calculators/${tool.slug}`} className="hover:text-zinc-100 transition-colors">
+                  <Link to={`/calculators/${tool.slug}`} className="inline-block py-1 hover:text-zinc-100 transition-colors">
                     {tool.label}
                   </Link>
                 </li>
@@ -53,13 +57,13 @@ export const Footer: React.FC = () => {
 
           {/* Col 3: Categories */}
           <div>
-            <h4 className="text-zinc-200 text-xs font-mono uppercase tracking-wider mb-3">
+            <h2 className="text-zinc-200 text-xs font-mono uppercase tracking-wider mb-3">
               Categories
-            </h4>
+            </h2>
             <ul className="space-y-1.5 text-xs">
               {CATEGORIES.slice(0, 6).map((cat) => (
                 <li key={cat.id}>
-                  <Link to={`/categories/${cat.id}`} className="hover:text-zinc-100 transition-colors">
+                  <Link to={`/categories/${cat.id}`} className="inline-block py-1 hover:text-zinc-100 transition-colors">
                     {cat.label}
                   </Link>
                 </li>
@@ -69,42 +73,42 @@ export const Footer: React.FC = () => {
 
           {/* Col 4: Navigation & Info */}
           <div>
-            <h4 className="text-zinc-200 text-xs font-mono uppercase tracking-wider mb-3">
+            <h2 className="text-zinc-200 text-xs font-mono uppercase tracking-wider mb-3">
               System
-            </h4>
+            </h2>
             <ul className="space-y-1.5 text-xs">
               <li>
-                <Link to="/" className="hover:text-zinc-100">
+                <Link to="/" className="inline-block py-1 hover:text-zinc-100">
                   Overview
                 </Link>
               </li>
               <li>
-                <Link to="/calculators" className="hover:text-zinc-100 inline-flex items-center gap-1">
+                <Link to="/calculators" className="inline-flex py-1 hover:text-zinc-100 items-center gap-1">
                   <Layers className="w-3 h-3" /> Directory
                 </Link>
               </li>
               <li>
-                <Link to="/savings-goal" className="hover:text-zinc-100">
+                <Link to="/savings-goal" className="inline-block py-1 hover:text-zinc-100">
                   Savings Challenge
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="hover:text-zinc-100">
+                <Link to="/about" className="inline-block py-1 hover:text-zinc-100">
                   Documentation
                 </Link>
               </li>
               <li className="pt-2 mt-2 border-t border-zinc-800">
-                <Link to="/privacy" className="hover:text-zinc-100">
+                <Link to="/privacy" className="inline-block py-1 hover:text-zinc-100">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link to="/terms" className="hover:text-zinc-100">
+                <Link to="/terms" className="inline-block py-1 hover:text-zinc-100">
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link to="/contact" className="hover:text-zinc-100">
+                <Link to="/contact" className="inline-block py-1 hover:text-zinc-100">
                   Contact Us
                 </Link>
               </li>
@@ -113,10 +117,21 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 pt-6 border-t border-zinc-800 text-xs text-zinc-500 font-mono space-y-3">
+        <div className="mt-8 pt-6 border-t border-zinc-800 text-xs text-zinc-400 font-mono space-y-3">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              Calculate Daily â€¢ All calculations performed locally
+              Total Calculation • All calculations performed locally
+              <span className="mt-1 block">
+                Built and published by{' '}
+                <a
+                  href={PUBLISHER.url}
+                  rel="noopener"
+                  className="inline-block py-1 text-zinc-300 underline-offset-2 hover:text-white hover:underline"
+                >
+                  {PUBLISHER.name}
+                </a>
+                , {PUBLISHER.locality}
+              </span>
             </div>
             <Button
               variant="outline"
@@ -127,7 +142,7 @@ export const Footer: React.FC = () => {
               <ArrowUp className="w-3 h-3" /> Top
             </Button>
           </div>
-          <p className="text-zinc-600 leading-relaxed max-w-3xl">
+          <p className="text-zinc-400 leading-relaxed max-w-3xl">
             Results are estimates for general informational purposes and are not professional financial, medical, legal, or construction advice. Consult a qualified professional before making decisions based on these calculations.
           </p>
         </div>

@@ -4,7 +4,6 @@ import {
   Activity,
   ArrowRight,
   BookOpen,
-  Calculator,
   CarFront,
   ChevronDown,
   Cpu,
@@ -255,7 +254,7 @@ export const Header: React.FC<HeaderProps> = ({
     >
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-md focus:bg-emerald-600 focus:px-3 focus:py-2 focus:text-xs focus:font-bold focus:text-white"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-xs focus:font-bold focus:text-white"
       >
         Skip to main content
       </a>
@@ -263,11 +262,14 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="relative mx-auto max-w-7xl px-4">
         <div className="flex h-14 items-center gap-2">
           <Link to="/" className="flex shrink-0 items-center gap-2.5" id="brand-logo">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-600">
-              <Calculator className="h-4 w-4 text-white" />
-            </span>
+            {/* Brand mark: an open formula bar with the arriving "tap" — the
+                glyph pairs the words Formula + Tap. The green dot is the one
+                brand-highlight accent the design system reserves. */}
+            {/* logo from public img /web-app-manifest-192x192.png*/}
+            <img src="/web-app-manifest-192x192.png" alt="Total Calculation logo" className="h-8 w-8" />
+            
             <span className="text-base font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-              Calculate<span className="text-emerald-600 dark:text-emerald-500">Daily</span>
+              Total <span className="text-brand">Calculation</span>
             </span>
           </Link>
 
@@ -293,7 +295,7 @@ export const Header: React.FC<HeaderProps> = ({
                 }}
                 className={`flex h-8 items-center gap-1 rounded-md px-2.5 text-sm font-medium transition-colors ${
                   megaOpen || isActive('/calculators')
-                    ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400'
+                    ? 'bg-primary-tint/10 text-primary dark:text-primary-tint'
                     : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50'
                 }`}
               >
@@ -322,7 +324,7 @@ export const Header: React.FC<HeaderProps> = ({
                                 onClick={closeAll}
                                 className="group flex items-start gap-2.5 rounded-md px-2 py-2 transition-colors hover:bg-zinc-100 dark:hover:bg-zinc-900"
                               >
-                                <Icon className="mt-0.5 h-4 w-4 shrink-0 text-emerald-600 dark:text-emerald-500" />
+                                <Icon className="mt-0.5 h-4 w-4 shrink-0 text-primary dark:text-primary-tint" />
                                 <span className="min-w-0">
                                   <span className="flex items-baseline gap-1.5">
                                     <span className="truncate text-sm font-medium text-zinc-900 dark:text-zinc-100">
@@ -362,7 +364,7 @@ export const Header: React.FC<HeaderProps> = ({
                       <Link
                         to="/calculators"
                         onClick={closeAll}
-                        className="mt-3 flex items-center justify-between gap-2 rounded-md bg-emerald-600 px-3 py-2 text-xs font-bold text-white transition-colors hover:bg-emerald-700"
+                        className="mt-3 flex items-center justify-between gap-2 rounded-md bg-primary px-3 py-2 text-xs font-bold text-white transition-colors hover:bg-primary/90"
                       >
                         All {HOME_CALCULATOR_COUNT} calculators
                         <ArrowRight className="h-3.5 w-3.5" />
@@ -395,7 +397,7 @@ export const Header: React.FC<HeaderProps> = ({
                 to={item.path}
                 className={`flex h-8 items-center gap-1 rounded-md px-2.5 text-sm font-medium transition-colors ${
                   isActive(item.path)
-                    ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400'
+                    ? 'bg-primary-tint/10 text-primary dark:text-primary-tint'
                     : 'text-zinc-700 hover:bg-zinc-100 hover:text-zinc-950 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50'
                 }`}
               >
@@ -413,7 +415,7 @@ export const Header: React.FC<HeaderProps> = ({
               onChange={(event) => setCurrencySymbol(event.target.value)}
               title="Currency symbol"
               aria-label="Currency symbol"
-              className="hidden h-8 cursor-pointer rounded-md border border-zinc-200 bg-zinc-100 px-1.5 font-mono text-xs font-bold text-zinc-700 transition-colors hover:border-emerald-500 focus:border-emerald-500 focus:outline-none sm:block dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+              className="hidden h-8 cursor-pointer rounded-md border border-zinc-200 bg-zinc-100 px-1.5 font-mono text-xs font-bold text-zinc-700 transition-colors hover:border-ring dark:hover:border-ring focus:border-ring focus:outline-none sm:block dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
             >
               {CURRENCY_SYMBOLS.map((symbol) => (
                 <option key={symbol} value={symbol}>
@@ -433,7 +435,7 @@ export const Header: React.FC<HeaderProps> = ({
             >
               <History className="h-4 w-4" />
               {historyCount > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-emerald-600 px-1 font-mono text-[9px] font-bold leading-none text-white">
+                <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 font-mono text-[9px] font-bold leading-none text-white">
                   {historyCount > 99 ? '99+' : historyCount}
                 </span>
               )}
@@ -529,7 +531,7 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={() => setMobileOpen(false)}
                   className={`flex items-center gap-2.5 rounded-md px-2.5 py-2 text-sm font-medium transition-colors ${
                     activePath === '/'
-                      ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400'
+                      ? 'bg-primary-tint/10 text-primary dark:text-primary-tint'
                       : 'text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900'
                   }`}
                 >
@@ -541,7 +543,7 @@ export const Header: React.FC<HeaderProps> = ({
                   onClick={() => setMobileOpen(false)}
                   className={`flex items-center gap-2.5 rounded-md px-2.5 py-2 text-sm font-medium transition-colors ${
                     isActive('/calculators')
-                      ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400'
+                      ? 'bg-primary-tint/10 text-primary dark:text-primary-tint'
                       : 'text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900'
                   }`}
                 >
@@ -558,7 +560,7 @@ export const Header: React.FC<HeaderProps> = ({
                     onClick={() => setMobileOpen(false)}
                     className={`flex items-center gap-2.5 rounded-md px-2.5 py-2 text-sm font-medium transition-colors ${
                       isActive(item.path)
-                        ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400'
+                        ? 'bg-primary-tint/10 text-primary dark:text-primary-tint'
                         : 'text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900'
                     }`}
                   >
@@ -580,11 +582,11 @@ export const Header: React.FC<HeaderProps> = ({
                         onClick={() => setMobileOpen(false)}
                         className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-[12px] font-medium leading-tight transition-colors ${
                           isActive(`/categories/${category.id}`)
-                            ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400'
+                            ? 'bg-primary-tint/10 text-primary dark:text-primary-tint'
                             : 'text-zinc-700 hover:bg-zinc-100 dark:text-zinc-300 dark:hover:bg-zinc-900'
                         }`}
                       >
-                        <Icon className="h-3.5 w-3.5 shrink-0 text-emerald-600 dark:text-emerald-500" />
+                        <Icon className="h-3.5 w-3.5 shrink-0 text-primary dark:text-primary-tint" />
                         <span className="min-w-0">{category.label}</span>
                       </Link>
                     );
@@ -637,7 +639,7 @@ export const Header: React.FC<HeaderProps> = ({
                   <History className="h-3.5 w-3.5" />
                   History
                   {historyCount > 0 && (
-                    <span className="ml-auto rounded-full bg-emerald-600 px-1.5 font-mono text-[9px] font-bold leading-4 text-white">
+                    <span className="ml-auto rounded-full bg-primary px-1.5 font-mono text-[9px] font-bold leading-4 text-white">
                       {historyCount > 99 ? '99+' : historyCount}
                     </span>
                   )}
@@ -662,7 +664,7 @@ export const Header: React.FC<HeaderProps> = ({
                   onChange={(event) => setCurrencySymbol(event.target.value)}
                   title="Currency symbol"
                   aria-label="Currency symbol"
-                  className="h-8 flex-1 cursor-pointer rounded-md border border-zinc-300 bg-white px-2 font-mono text-xs font-bold text-zinc-800 focus:border-emerald-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+                  className="h-8 flex-1 cursor-pointer rounded-md border border-zinc-300 bg-white px-2 font-mono text-xs font-bold text-zinc-800 focus:border-ring focus:outline-none dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
                 >
                   {CURRENCY_SYMBOLS.map((symbol) => (
                     <option key={symbol} value={symbol}>

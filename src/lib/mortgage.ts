@@ -48,8 +48,12 @@ export function buildAmortization(input: LoanInputs): AmortizationSummary {
   const baseYears = Math.max(1, input.years ?? 30);
   const r = annualRate / 100 / 12;
   const base = monthlyPayment(principal, annualRate, baseYears);
-  const baseMonthly = base + Math.max(0, input.extraMonthly ?? 0);
-  const monthly = input.biweekly ? baseMonthly / 2 : baseMonthly;
+  // A biweekly plan makes 26 half-payments a year, which is 13 full monthly
+  // payments. Modelling that as 13/12 of the scheduled monthly amount keeps the
+  // table monthly while correctly shortening the term. The extra monthly amount
+  // stays a monthly addition in either mode.
+  const accelerated = input.biweekly ? base * (13 / 12) : base;
+  const monthly = accelerated + Math.max(0, input.extraMonthly ?? 0);
 
   const rows: AmortizationRow[] = [];
   let balance = principal;

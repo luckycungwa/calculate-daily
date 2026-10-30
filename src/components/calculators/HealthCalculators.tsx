@@ -230,7 +230,7 @@ export const TdeeCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => 
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-xs font-mono text-zinc-300">
                   <span>Daily Calorie Targets</span>
                   <span className="inline-flex items-center gap-1 text-zinc-200 font-semibold">
-                    <Flame className="w-3.5 h-3.5 text-emerald-400" /> BMR {results.bmr}
+                    <Flame className="w-3.5 h-3.5 text-primary-on-dark" /> BMR {results.bmr}
                   </span>
                 </div>
 
@@ -242,7 +242,7 @@ export const TdeeCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => 
                     {results.tdee > 0 ? results.tdee.toLocaleString() : '--'}
                     <span className="text-lg ml-1 text-zinc-400">kcal</span>
                   </div>
-                  <p className="text-[11px] text-emerald-400 font-mono mt-1 font-semibold">
+                  <p className="text-[11px] text-primary-on-dark font-mono mt-1 font-semibold">
                     Maintenance level
                   </p>
                 </div>
@@ -258,7 +258,7 @@ export const TdeeCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => 
                   </div>
                   <div className="flex justify-between text-zinc-200">
                     <span className="text-zinc-400">Weight Loss (−500):</span>
-                    <span className="font-bold text-emerald-400 tabular-nums">{results.weightLoss > 0 ? results.weightLoss.toLocaleString() : '--'} kcal</span>
+                    <span className="font-bold text-primary-on-dark tabular-nums">{results.weightLoss > 0 ? results.weightLoss.toLocaleString() : '--'} kcal</span>
                   </div>
                   <div className="flex justify-between text-zinc-100 pt-2 border-t border-zinc-800">
                     <span className="font-semibold">Lean Bulk (+300):</span>
@@ -514,7 +514,7 @@ export const SleepCycleCalculator: React.FC<CalculatorProps> = ({ onSaveHistory 
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-xs font-mono text-zinc-300">
                   <span>Sleep Summary</span>
                   <span className="inline-flex items-center gap-1 text-zinc-200 font-semibold">
-                    <Moon className="w-3.5 h-3.5 text-emerald-400" /> {results.length} options
+                    <Moon className="w-3.5 h-3.5 text-primary-on-dark" /> {results.length} options
                   </span>
                 </div>
 
@@ -525,7 +525,7 @@ export const SleepCycleCalculator: React.FC<CalculatorProps> = ({ onSaveHistory 
                   <div className="text-3xl sm:text-4xl font-bold text-white font-mono tracking-tight tabular-nums">
                     {results[0]?.time || '--'}
                   </div>
-                  <p className="text-[11px] text-emerald-400 font-mono mt-1 font-semibold">
+                  <p className="text-[11px] text-primary-on-dark font-mono mt-1 font-semibold">
                     {results[0]?.cycles} cycles — {results[0]?.duration}
                   </p>
                 </div>
@@ -541,7 +541,7 @@ export const SleepCycleCalculator: React.FC<CalculatorProps> = ({ onSaveHistory 
                   </div>
                   <div className="flex justify-between text-zinc-200">
                     <span className="text-zinc-400">Recommended:</span>
-                    <span className="font-bold text-emerald-400 tabular-nums">4–6 cycles</span>
+                    <span className="font-bold text-primary-on-dark tabular-nums">4–6 cycles</span>
                   </div>
                   <div className="flex justify-between text-zinc-100 pt-2 border-t border-zinc-800">
                     <span className="font-semibold">Optimal Sleep:</span>
@@ -764,7 +764,7 @@ export const StepsToMilesCalculator: React.FC<CalculatorProps> = ({ onSaveHistor
                 <div className="flex items-center justify-between pb-3 border-b border-zinc-800 text-xs font-mono text-zinc-300">
                   <span>Distance & Energy</span>
                   <span className="inline-flex items-center gap-1 text-zinc-200 font-semibold">
-                    <Footprints className="w-3.5 h-3.5 text-emerald-400" /> {(parseInt(steps) || 0).toLocaleString()} steps
+                    <Footprints className="w-3.5 h-3.5 text-primary-on-dark" /> {(parseInt(steps) || 0).toLocaleString()} steps
                   </span>
                 </div>
 
@@ -776,7 +776,7 @@ export const StepsToMilesCalculator: React.FC<CalculatorProps> = ({ onSaveHistor
                     {results.distanceMiles > 0 ? results.distanceMiles : '--'}
                     <span className="text-lg ml-1 text-zinc-400">mi</span>
                   </div>
-                  <p className="text-[11px] text-emerald-400 font-mono mt-1 font-semibold">
+                  <p className="text-[11px] text-primary-on-dark font-mono mt-1 font-semibold">
                     {results.distanceKm > 0 ? `${results.distanceKm} km` : '-- km'}
                   </p>
                 </div>
@@ -792,7 +792,7 @@ export const StepsToMilesCalculator: React.FC<CalculatorProps> = ({ onSaveHistor
                   </div>
                   <div className="flex justify-between text-zinc-200">
                     <span className="text-zinc-400">Est. Calories:</span>
-                    <span className="font-bold text-emerald-400 tabular-nums">{results.calories > 0 ? `~${results.calories} kcal` : '--'}</span>
+                    <span className="font-bold text-primary-on-dark tabular-nums">{results.calories > 0 ? `~${results.calories} kcal` : '--'}</span>
                   </div>
                   <div className="flex justify-between text-zinc-100 pt-2 border-t border-zinc-800">
                     <span className="font-semibold">Cal per Step:</span>

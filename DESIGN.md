@@ -1,5 +1,13 @@
 # Design System: Calculate Daily
 
+> **Superseded — read `docs/totalcalculation-rebrand.md` first.** This document
+> describes the pre-rebrand "Cockpit Dense" system (emerald as the functional
+> primary, Plus Jakarta Sans). The live Total Calculation system uses indigo
+> `--primary`/`--primary-tint` for interactive elements and reserves emerald
+> `--brand` for the wordmark and positive states; General Sans + DM Sans +
+> JetBrains Mono. The structure, density and tabular-numeric rules below still
+> apply. Update this file only to keep it from misleading implementers.
+
 ## 1. Visual Theme & Atmosphere
 Calculate Daily adopts a disciplined, high-density utility aesthetic ("Cockpit Dense", Density 7, Variance 4, Motion 4). The visual atmosphere is stripped of gratuitous decoration, neon glowing shadows, and AI gradient fills. Every screen is engineered around instantaneous mathematical feedback, monospace tabular precision, high-contrast typography, and tactile structural borders.
 

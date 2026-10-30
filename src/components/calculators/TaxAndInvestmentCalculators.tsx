@@ -83,8 +83,8 @@ function useCopy(onSaveHistory?: (summary: string) => void) {
 }
 
 const SEGMENT_BASE =
-  'flex-1 rounded-lg border px-3 py-2 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600';
-const SEGMENT_ON = 'border-emerald-600 bg-emerald-600 text-white';
+  'flex-1 rounded-lg border px-3 py-2 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint';
+const SEGMENT_ON = 'border-primary bg-primary text-white';
 const SEGMENT_OFF =
   'border-zinc-300 bg-white text-zinc-600 hover:border-zinc-400 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300';
 
@@ -188,7 +188,7 @@ export const VatCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 {format(value.gross)}
               </p>
               <p className="mt-1 text-xs text-zinc-400">Gross total including VAT</p>
@@ -294,7 +294,7 @@ export const NpvCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
               rows={4}
               value={flows}
               onChange={(event) => setFlows(event.target.value)}
-              className="w-full resize-y rounded-lg border border-zinc-300 bg-white px-3 py-2 font-mono text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
+              className="w-full resize-y rounded-lg border border-zinc-300 bg-white px-3 py-2 font-mono text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
             />
             <p className="text-[11px] text-zinc-500">
               Period 0 first — normally the negative initial outlay. Separate values with commas, spaces, or semicolons.
@@ -316,7 +316,7 @@ export const NpvCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
         <ResultPanel>
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wide text-zinc-400">
             {value && value.npv >= 0 ? (
-              <TrendingUp className="h-3.5 w-3.5 text-emerald-400" />
+              <TrendingUp className="h-3.5 w-3.5 text-brand-on-dark" />
             ) : (
               <TrendingDown className="h-3.5 w-3.5 text-amber-400" />
             )}
@@ -328,7 +328,7 @@ export const NpvCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
             <>
               <p
                 className={`mt-2 font-mono text-4xl font-bold tabular-nums ${
-                  value.npv >= 0 ? 'text-emerald-400' : 'text-amber-400'
+                  value.npv >= 0 ? 'text-brand-on-dark' : 'text-amber-400'
                 }`}
               >
                 {value.npv >= 0 ? '+' : '−'}
@@ -461,7 +461,7 @@ export const IrrCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
               rows={4}
               value={flows}
               onChange={(event) => setFlows(event.target.value)}
-              className="w-full resize-y rounded-lg border border-zinc-300 bg-white px-3 py-2 font-mono text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-emerald-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
+              className="w-full resize-y rounded-lg border border-zinc-300 bg-white px-3 py-2 font-mono text-xs text-zinc-950 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-tint dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-50"
             />
             <p className="text-[11px] text-zinc-500">
               Needs at least one negative and one positive value. The first value is period 0, usually the initial
@@ -482,13 +482,13 @@ export const IrrCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
 
         <ResultPanel>
           <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wide text-zinc-400">
-            <TrendingUp className="h-3.5 w-3.5 text-emerald-400" /> Internal rate of return
+            <TrendingUp className="h-3.5 w-3.5 text-primary-on-dark" /> Internal rate of return
           </div>
           {result.error ? (
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 {format(value.irr, 2)}%
               </p>
               <p className="mt-1 text-xs text-zinc-400">Per period, assuming annual periods</p>
@@ -497,7 +497,7 @@ export const IrrCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
                 <p
                   className={`mt-3 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] font-medium ${
                     value.clearsHurdle
-                      ? 'bg-emerald-500/15 text-emerald-300'
+                      ? 'bg-brand-on-dark/15 text-brand-on-dark'
                       : 'bg-amber-500/15 text-amber-300'
                   }`}
                 >
@@ -622,7 +622,7 @@ export const InflationCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }
             <p role="alert" className="mt-3 text-sm text-amber-300">{result.error}</p>
           ) : value && (
             <>
-              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-emerald-400">
+              <p className="mt-2 font-mono text-4xl font-bold tabular-nums text-primary-on-dark">
                 {format(value.futureCost)}
               </p>
               <p className="mt-1 text-xs text-zinc-400">
