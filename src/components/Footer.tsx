@@ -1,9 +1,18 @@
-﻿import React from 'react';
+import React from 'react';
 import { ArrowUp, Layers } from 'lucide-react';
 import { Button } from './ui/button';
 import { Link } from '../lib/router';
 import { CATEGORIES } from '../data/categories';
-import { PUBLISHER } from '../lib/brand';
+import { PUBLISHER, BRAND_NAME } from '../lib/brand';
+
+/**
+ * The footer wordmark is derived from BRAND_NAME so a rename can never leave an
+ * old brand on every page. The last word takes the emerald accent; everything
+ * before it stays neutral. "Total Calculation" → "Total " + accented "Calculation".
+ */
+const wordmarkWords = BRAND_NAME.split(' ');
+const wordmarkAccent = wordmarkWords.length > 1 ? wordmarkWords[wordmarkWords.length - 1] : '';
+const wordmarkLead = wordmarkWords.length > 1 ? `${wordmarkWords.slice(0, -1).join(' ')} ` : BRAND_NAME;
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -32,7 +41,7 @@ export const Footer: React.FC = () => {
                 <path d="M9 19.6h8.5" stroke="#09090b" strokeWidth="2.6" strokeLinecap="round" />
                 <circle cx="22.5" cy="19.6" r="2.9" fill="#6366f1" />
               </svg>
-              <span>Formula<span className="text-brand-on-dark">Tap</span></span>
+              <span>{wordmarkLead}<span className="text-brand-on-dark">{wordmarkAccent}</span></span>
             </div>
             <p className="text-xs text-zinc-400 leading-relaxed">
               Deterministic, fast calculators for finance, health, construction, cooking, and everyday planning.
@@ -120,7 +129,7 @@ export const Footer: React.FC = () => {
         <div className="mt-8 pt-6 border-t border-zinc-800 text-xs text-zinc-400 font-mono space-y-3">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div>
-              Total Calculation • All calculations performed locally
+              {BRAND_NAME} • All calculations performed locally
               <span className="mt-1 block">
                 Built and published by{' '}
                 <a
