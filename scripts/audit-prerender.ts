@@ -54,12 +54,12 @@ const currentHost = new URL(site.url).hostname;
 const isStaleDeploymentHost = (value: string) => {
   try {
     const host = new URL(value).hostname;
-    return host === 'calculatedaily.com' || host === 'www.calculatedaily.com';
+    return host === 'totalcalculation.com' || host === 'www.totalcalculation.com';
   } catch {
     return false;
   }
 };
-const staleOriginInUse = currentHost !== 'calculatedaily.com' && currentHost !== 'www.calculatedaily.com';
+const staleOriginInUse = currentHost !== 'totalcalculation.com' && currentHost !== 'www.totalcalculation.com';
 const duplicateUrls = sitemapUrls.filter((url, index) => sitemapUrls.indexOf(url) !== index);
 if (duplicateUrls.length) addError(`Duplicate sitemap URLs: ${[...new Set(duplicateUrls)].join(', ')}`);
 if (site.isPreview && sitemapUrls.length) addError('Preview sitemap must not contain URLs.');
@@ -86,7 +86,7 @@ for (const url of sitemapUrls) {
     continue;
   }
   if (staleOriginInUse && isStaleDeploymentHost(url)) {
-    addError(`Sitemap still uses the old calculatedaily.com origin instead of ${site.url}: ${url}`);
+    addError(`Sitemap still uses the old totalcalculation.com origin instead of ${site.url}: ${url}`);
   }
   if (parsed.search || parsed.hash || (parsed.pathname !== '/' && parsed.pathname.endsWith('/'))) {
     addError(`Sitemap URL is not in preferred canonical format: ${url}`);
@@ -105,14 +105,14 @@ for (const url of sitemapUrls) {
     addError(`Sitemap URL and canonical differ or are duplicated: ${url}`);
   }
   if (staleOriginInUse && canonicals.some((canonical) => canonical.href && isStaleDeploymentHost(canonical.href))) {
-    addError(`Canonical still uses the old calculatedaily.com origin instead of ${site.url}: ${url}`);
+    addError(`Canonical still uses the old totalcalculation.com origin instead of ${site.url}: ${url}`);
   }
   const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.content.trim();
   if (ogUrl !== url) {
     addError(`Sitemap URL and og:url differ or are missing: ${url}`);
   }
   if (staleOriginInUse && ogUrl && isStaleDeploymentHost(ogUrl)) {
-    addError(`og:url still uses the old calculatedaily.com origin instead of ${site.url}: ${url}`);
+    addError(`og:url still uses the old totalcalculation.com origin instead of ${site.url}: ${url}`);
   }
   if ([...document.querySelectorAll<HTMLMetaElement>('meta[name="robots"]')].some((meta) =>
     meta.content.toLowerCase().includes('noindex')
@@ -156,7 +156,7 @@ for (const file of htmlFiles) {
       addError(`Indexable page og:url is missing or incorrect: ${relative}`);
     }
     if (staleOriginInUse && ogUrl && isStaleDeploymentHost(ogUrl)) {
-      addError(`Indexable page og:url still uses the old calculatedaily.com origin: ${relative}`);
+      addError(`Indexable page og:url still uses the old totalcalculation.com origin: ${relative}`);
     }
   }
 

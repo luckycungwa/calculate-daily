@@ -13,13 +13,13 @@
 export const BRAND = {
   name: 'Total Calculation',
   /** Legacy origin that serves the site today. Used only for documentation. */
-  currentCanonicalOrigin: 'https://calculate-daily.vercel.app',
+  currentCanonicalOrigin: 'https://www.totalcalculation.com',
   /** Owned domain, awaiting DNS + Vercel attachment. Set SITE_URL to this at cutover. */
   intendedDomain: 'https://totalcalculation.com',
   tagline: 'Free Online Calculators & Unit Converters',
   shortTagline: 'Free calculators & unit converters',
   /** Existing mailbox. A totalcalculation.com address needs mail configured first. */
-  contactEmail: 'hello@calculatedaily.com',
+  contactEmail: 'hello@totalcalculation.com',
 } as const;
 
 export const BRAND_NAME = BRAND.name;

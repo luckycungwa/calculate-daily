@@ -18,7 +18,7 @@ canonical origin are unchanged.
 | Calculator/lib tests | 141 | **164** | `npm test` → `pass 164` |
 | SEO/router tests | 8 | **8** | `npm test` → `pass 8` |
 | Type check | pass | **pass** | `npx tsc --noEmit` (no output) |
-| Production build | pass | **pass, exit 0** | `SITE_URL=https://calculate-daily.vercel.app npm run build` |
+| Production build | pass | **pass, exit 0** | `SITE_URL=https://www.totalcalculation.com npm run build` |
 
 Page-count reconciliation: +2 calculators add a page and an embed shell each
 (+4 HTML), and the 3 finance pages flipped from `noindex` to indexable each gain
@@ -65,9 +65,9 @@ same row count, and the test suite pins both behaviours.
   `window.location.origin`; it preserves the origin the page was prerendered
   with, so a preview host cannot rewrite canonicals client-side.
 - `scripts/audit-prerender.ts` now also validates `og:url` against the sitemap
-  URL and fails if a stale `calculatedaily.com` origin survives in a canonical,
+  URL and fails if a stale `totalcalculation.com` origin survives in a canonical,
   `og:url`, or sitemap entry.
-- `.env.example` documents `SITE_URL=https://calculate-daily.vercel.app`, the
+- `.env.example` documents `SITE_URL=https://www.totalcalculation.com`, the
   origin that actually serves the site today.
 
 ### 4. Two new calculators (added value, not keyword pages)
@@ -136,7 +136,7 @@ npm run catalog:index
 npm run audit
 npm test
 npx tsc --noEmit
-$env:SITE_URL = "https://calculate-daily.vercel.app"
+$env:SITE_URL = "https://www.totalcalculation.com"
 $env:VERCEL_ENV = "production"
 npm run build
 ```

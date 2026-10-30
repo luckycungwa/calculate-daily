@@ -23,7 +23,7 @@ jobs:
       # Deterministic, non-production canonical origin. This is a reserved TLD
       # (.test) so a CI artefact can never point at the real domain or the
       # parked landing page. Preview-mode builds are exercised separately below.
-      SITE_URL: https://ci.calculatedaily.test
+      SITE_URL: https://ci.totalcalculation.test
 
     steps:
       - uses: actions/checkout@v4
@@ -186,7 +186,7 @@ jobs:
 
       - name: Build preview with SITE_URL set and assert it stays non-indexable
         env:
-          SITE_URL: https://ci-preview.calculatedaily.test
+          SITE_URL: https://ci-preview.totalcalculation.test
           VERCEL_ENV: preview
           VERCEL_URL: ci-preview.vercel.app
         run: |

@@ -1,9 +1,9 @@
-# CalculateDaily — Competitive Intelligence, Opportunity Audit & Build Roadmap
+# totalcalculation — Competitive Intelligence, Opportunity Audit & Build Roadmap
 
 > **Purpose of this document.** This is not a "build more calculators" plan. It is the result of a full
 > competitive intelligence pass against the four reference competitors — **calculator.net** (~215 tools),
 > **thecalculatorsite.com** (~150 tools), **calculatequick.com** (~87 tools), and
-> **online-calculator.com** (~15 tools) — plus a competitive quality audit of every existing CalculateDaily tool.
+> **online-calculator.com** (~15 tools) — plus a competitive quality audit of every existing totalcalculation tool.
 >
 > **Principle.** Competitor coverage ≠ market coverage. The goal is to leave no significant calculator /
 > search-intent opportunity uncovered, to beat competitors where it matters, and to build signature
@@ -19,7 +19,7 @@
 > - **G.** Unique opportunity list (things competitors do not cover)
 > - **H.** Priority backlog (ranked, with intent / effort / value / difficulty)
 > - **I.** Revised roadmap (strategic batches, not a raw count)
-> - **J.** Strategic conclusion (what CalculateDaily will do that nobody else does)
+> - **J.** Strategic conclusion (what totalcalculation will do that nobody else does)
 
 ---
 
@@ -439,7 +439,7 @@ coverage, competitive quality, content depth, UX, SEO, or cluster depth. Finding
 ## E. Workflow Ecosystem Map (12 signature ecosystems)
 
 Each ecosystem is a cluster of calculators + guides + cross-linking that follows the user's real
-problem end-to-end. These become signature CalculateDaily experiences.
+problem end-to-end. These become signature totalcalculation experiences.
 
 | # | Ecosystem | Entry intent | Tools in chain | Anchor content |
 |---|---|---|---|---|
@@ -637,7 +637,7 @@ variants, salary reverse, crypto staking, AI token-cost, meal-cost compare.
 
 ## J. Strategic Conclusion
 
-> **"If we execute this roadmap, what will CalculateDaily do that calculator.net,
+> **"If we execute this roadmap, what will totalcalculation do that calculator.net,
 > thecalculatorsite.com, online-calculator.com, and CalculateQuick do not?"**
 
 Four concrete, checkable answers — none of them "better UX" in the abstract:
@@ -669,7 +669,7 @@ Four concrete, checkable answers — none of them "better UX" in the abstract:
    only. **We will be the first platform where one mortgage, one salary, and one tax calculator
    serve five tax jurisdictions from a single codebase.**
 
-**Measured simply:** after this roadmap, for a given search intent, CalculateDaily should either
+**Measured simply:** after this roadmap, for a given search intent, totalcalculation should either
 (a) own the workflow around it, (b) beat the incumbent's tool on visualization and comparison, or
 (c) be the only credible result because nobody else built it. Tools that achieve none of these three
 are removed. The target is not "200 calculators" — it is **"the best place to solve a real-world

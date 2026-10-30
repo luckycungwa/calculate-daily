@@ -370,7 +370,7 @@ export const BmiCalculator: React.FC<BmiCalculatorProps> = ({ onSaveHistory }) =
                     min={BMI_DIAL.scaleMin}
                     max={BMI_DIAL.scaleMax}
                     zones={BMI_DIAL_ZONES}
-                    accent="#10b981"
+                    accent="#6366f1"
                     ticks={3}
                     caption="BMI"
                     ariaLabel={`Body mass index ${results.bmi.toFixed(1)}, ${results.category}. The scale runs from ${BMI_DIAL.scaleMin} to ${BMI_DIAL.scaleMax}.`}

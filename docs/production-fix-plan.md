@@ -165,9 +165,9 @@ intended behaviour for an error page.
 **Finding: a real divergence, but conditional on deployment configuration — so not applied.**
 
 `prerender.ts:9` builds canonical URLs, `og:url` and the entire sitemap from
-`process.env.SITE_URL || 'https://calculatedaily.com'`. At runtime, `seo.ts:63` rewrites the canonical
+`process.env.SITE_URL || 'https://totalcalculation.com'`. At runtime, `seo.ts:63` rewrites the canonical
 to `${window.location.origin}${canonicalPath}`. If `SITE_URL` is not set for the deployment, the
-prerendered HTML and sitemap advertise `calculatedaily.com` — which today serves a parking lander —
+prerendered HTML and sitemap advertise `totalcalculation.com` — which today serves a parking lander —
 while the hydrated page advertises the real host: two conflicting canonicals on every page.
 
 This is **not a code defect with a safe blind fix**, because which host is correct is a deployment
@@ -239,7 +239,7 @@ const NotFoundPage: React.FC = () => {
 ```ts
 // vite.config.ts — expose the same value the prerenderer already uses
 define: {
-  __SITE_URL__: JSON.stringify(process.env.SITE_URL || 'https://calculatedaily.com'),
+  __SITE_URL__: JSON.stringify(process.env.SITE_URL || 'https://totalcalculation.com'),
 },
 
 // src/lib/seo.ts — replace the origin-based canonical

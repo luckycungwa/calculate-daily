@@ -264,7 +264,7 @@ once live, and ideally a keyword tool export; the rubric has a column waiting fo
 | R4 | **31 single-pair converters** with near-identical templates | Medium | `tool-inventory.csv` (`conversion` rows) |
 | R5 | **YMYL pages without citations** (A1C, blood pressure, metabolic age, caffeine) | Medium | `tool-inventory.csv` notes |
 | R6 | **Thin standalone tools** (absolute value, modulo, boiling point, screen-time cost, pet food) | Low | `tool-inventory.csv` |
-| R7 | **No deployed site** — `calculatedaily.com` currently serves a parking lander (`/lander`); `sitemap.xml` contains one URL | **High** | live fetch during this run |
+| R7 | **No deployed site** — `totalcalculation.com` currently serves a parking lander (`/lander`); `sitemap.xml` contains one URL | **High** | live fetch during this run |
 | R8 | **Misc category holds 2 tools** ("Automotive & Home") — a near-empty category page | Low | `calculators.ts` |
 
 R7 is worth stating plainly: the launch checklist's deploy items are unchecked, and the domain

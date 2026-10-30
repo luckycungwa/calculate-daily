@@ -69,7 +69,7 @@
   z-score cases, compound-interest examples, common-solid volume formulas, loan EMIs, and all 10 distinct opportunity calculators.
 - `npm run test:seo`: **PASS**, 6 route and production/preview origin tests.
 - `npx tsc --noEmit`: **PASS**, no diagnostics.
-- Production build with `SITE_URL=https://ci.calculatedaily.test` and `VERCEL_ENV=production`: **PASS**,
+- Production build with `SITE_URL=https://ci.totalcalculation.test` and `VERCEL_ENV=production`: **PASS**,
   209 prerendered routes and 200 unique sitemap URLs (178 indexable calculators + 4 indexable guides + home + hubs).
 - Prerendered static assertion: **PASS**, 181 calculator pages with non-empty markup and no
   lazy-loading skeletons; the audit checked 210 HTML files, 200 sitemap URLs, canonicals, indexation,

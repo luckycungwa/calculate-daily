@@ -297,7 +297,7 @@ export const AmortizationScheduleCalculator: React.FC<AmortizationScheduleProps>
           </h3>
           <BarChart
             series={[
-              { name: 'Principal', points: yearly.map((y) => ({ label: y.label, value: y.principal })), color: '#10B981' },
+              { name: 'Principal', points: yearly.map((y) => ({ label: y.label, value: y.principal })), color: '#6366f1' },
               { name: 'Interest', points: yearly.map((y) => ({ label: y.label, value: y.interest })), color: '#d4d4d8' },
             ]}
             xLabels={yearly.map((y) => y.label)}

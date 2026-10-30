@@ -17,7 +17,7 @@ Calculate Daily adopts a disciplined, high-density utility aesthetic ("Cockpit D
 - **Deep Charcoal Ink** (`#09090B` / Dark: `#FAFAFA`) - Primary high-contrast text
 - **Muted Steel** (`#71717A` / Dark: `#A1A1AA`) - Secondary metrics, units, and descriptive labels
 - **Structural Border** (`#E4E4E7` / Dark: `#27272A`) - 1px crisp layout boundaries and dividers
-- **Emerald Accent** (`#059669` / Dark: `#10B981`) - Functional primary action, positive delta, active state
+- **Emerald Accent** (`#059669` / Dark: `#6366f1`) - Functional primary action, positive delta, active state
 - **Destructive Rose** (`#E11D48` / Dark: `#F43F5E`) - Negative delta and reset actions
 
 ## 3. Typography Rules

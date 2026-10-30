@@ -23,7 +23,7 @@ function buildSnippet(origin: string, slug: string, name: string): string {
     `<iframe src="${src}" title="${name}" width="100%" height="820" style="border:0;max-width:100%" loading="lazy"></iframe>`,
     '<script>',
     "  addEventListener('message', function (event) {",
-    `    if (event.origin !== '${origin}' || !event.data || event.data.type !== 'calculatedaily:height') return;`,
+    `    if (event.origin !== '${origin}' || !event.data || event.data.type !== 'totalcalculation:height') return;`,
     "    document.querySelectorAll('iframe').forEach(function (frame) {",
     '      if (frame.contentWindow === event.source) frame.height = event.data.height;',
     '    });',

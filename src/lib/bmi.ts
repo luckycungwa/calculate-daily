@@ -34,7 +34,7 @@ export const BMI_ZONES: BmiZone[] = [
     id: 'normal',
     label: 'Normal weight',
     range: '18.5 – 24.9',
-    color: '#10b981',
+    color: '#6366f1',
     lower: 18.5,
     upper: 25,
   },
