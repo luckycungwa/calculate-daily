@@ -68,6 +68,8 @@ const REGISTERED_CUSTOM = new Set([
   'DateDifferenceCalculator',
   'DaysUntilCalculator',
   'ScientificCalculator',
+  'ScientificNotationCalculator',
+  'SignificantFiguresCalculator',
   'GraphingCalculator',
   'TdeeCalculator',
   'SleepCycleCalculator',

@@ -19,6 +19,7 @@ import {
   type TriangleResult,
 } from '../../lib/advancedMath';
 import { useToast } from '../ui/toast';
+import { NormalCurve } from '../charts/NormalCurve';
 
 type CalculatorProps = { onSaveHistory?: (summary: string) => void };
 
@@ -395,6 +396,18 @@ export const NormalDistributionCalculator: React.FC<CalculatorProps> = ({ onSave
             </>
           )}
         </ResultPanel>
+
+        {value && (
+          <div className="md:col-span-2">
+            <NormalCurve
+              mean={toNumber(mean)}
+              standardDeviation={toNumber(sd)}
+              lower={toNumber(lower)}
+              upper={toNumber(upper)}
+              probabilityPercent={value.range.percent}
+            />
+          </div>
+        )}
       </CardContent>
     </Card>
   );

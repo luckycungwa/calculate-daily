@@ -7,6 +7,7 @@ import { Badge } from '../ui/badge';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/card';
 import { ExportModal } from '../common/ExportModal';
 import { useToast } from '../ui/toast';
+import { ProportionBar, DeltaBars } from '../charts/IndicatorBar';
 
 interface PercentageCalculatorProps {
   onSaveHistory?: (summary: string) => void;
@@ -149,6 +150,13 @@ export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSa
               <div className="text-2xl font-bold font-mono text-zinc-950 dark:text-zinc-50 my-1 tabular-nums">
                 {m1Result.toFixed(2)}
               </div>
+              <ProportionBar
+                className="mb-2"
+                percent={parseFloat(m1Pct) || 0}
+                label={`${m1Pct}% of ${m1Val}`}
+                valueLabel={m1Result.toFixed(2)}
+                summary={`${m1Pct}% of ${m1Val} is ${m1Result.toFixed(2)}. The bar fills to ${Math.min(100, Math.max(0, parseFloat(m1Pct) || 0))}% to show the portion of the base.`}
+              />
               <Button
                 type="button"
                 variant="outline"
@@ -202,6 +210,13 @@ export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSa
               <div className="text-2xl font-bold font-mono text-zinc-950 dark:text-zinc-50 my-1 tabular-nums">
                 {m2Result.toFixed(2)}%
               </div>
+              <ProportionBar
+                className="mb-2"
+                percent={m2Result}
+                label={`${m2Val1} of ${m2Val2}`}
+                valueLabel={`${m2Result.toFixed(2)}%`}
+                summary={`${m2Val1} is ${m2Result.toFixed(2)}% of ${m2Val2}. The bar shows that share of the total.`}
+              />
               <Button
                 type="button"
                 variant="outline"
@@ -258,6 +273,15 @@ export const PercentageCalculator: React.FC<PercentageCalculatorProps> = ({ onSa
               <div className={`text-2xl font-bold font-mono my-1 tabular-nums ${isIncrease ? 'text-brand' : 'text-rose-700 dark:text-rose-400'}`}>
                 {isIncrease ? '+' : ''}{m3Pct.toFixed(2)}%
               </div>
+              <DeltaBars
+                className="mb-2"
+                from={v1}
+                to={v2}
+                percent={m3Pct}
+                fromLabel="From"
+                toLabel="To"
+                summary={`${m3Val1} changed to ${m3Val2}: a ${m3Pct.toFixed(2)}% ${isIncrease ? 'increase' : 'decrease'}. Both bars share one scale so the gap is proportional to the real change.`}
+              />
               <Button
                 type="button"
                 variant="outline"

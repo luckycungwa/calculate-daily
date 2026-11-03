@@ -23,6 +23,8 @@ const LAZY_COMPONENTS: Record<string, () => Promise<Record<string, unknown>>> = 
   DateDifferenceCalculator: () => import('./DateCalculators'),
   DaysUntilCalculator: () => import('./DateCalculators'),
   ScientificCalculator: () => import('./ScientificCalculator'),
+  ScientificNotationCalculator: () => import('./ScientificNotationCalculator'),
+  SignificantFiguresCalculator: () => import('./SignificantFiguresCalculator'),
   GraphingCalculator: () => import('./GraphingCalculator'),
   TdeeCalculator: () => import('./HealthCalculators'),
   SleepCycleCalculator: () => import('./HealthCalculators'),

@@ -488,37 +488,315 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
     id: 'scientific',
     slug: 'scientific-calculator',
     name: 'Scientific Calculator',
-    shortDesc: 'Full scientific calculator with trigonometry, logarithms, exponents, factorials, and keyboard support.',
-    tagline: 'Powerful math at your fingertips.',
+    shortDesc: 'Free online scientific calculator with trigonometry, logarithms, powers, roots, factorials, scientific notation and keyboard support.',
+    tagline: 'A full scientific calculator in the browser, with no install and no sign-up.',
     category: 'math',
     iconName: 'Calculator',
     badge: 'Science',
-    keywords: ['scientific calculator', 'online calculator', 'trig calculator', 'log calculator', 'math calculator'],
+    keywords: [
+      'scientific calculator',
+      'online scientific calculator',
+      'scientific calculator online',
+      'free scientific calculator',
+      'scientific calculator with fractions',
+      'trig calculator',
+      'log calculator',
+      'math calculator',
+      'scientific notation on calculator',
+    ],
     kind: 'custom',
     componentId: 'ScientificCalculator',
     content: {
-      intro: 'The Scientific Calculator handles standard arithmetic plus trigonometric functions, logarithms, powers, roots, factorials, and constants like pi and e. It supports both DEG and RAD angle modes.',
-      howItWorks: 'Expressions are parsed using a recursive descent parser that handles operator precedence, unary operators, function calls, and postfix operations. Trig functions respect the selected angle mode.',
-      example: 'sin(30) in DEG mode = 0.5. log(100) = 2. sqrt(144) = 12. 5! = 120. 2^10 = 1024.',
+      intro:
+        'This is a full scientific calculator that runs in the browser: arithmetic, trigonometry in degrees or radians, logarithms, powers and roots, factorials, percentages, and constants such as pi and e. You type a whole expression the way it is written on paper — sin(30)^2 + 4! — and it evaluates with normal operator precedence instead of requiring one button press per operation. It also accepts scientific-notation input such as 2.5e-3, which most on-screen calculators get wrong.',
+      howItWorks:
+        'The expression is split into tokens and evaluated by a recursive-descent parser with the usual precedence ladder: exponents bind tightest, then unary signs, factorials and percentages, then multiplication and division, then addition and subtraction. Powers are right-associative, so 2^3^2 is 2^9 = 512, and -2^2 is -4 while (-2)^2 is 4. sin, cos and tan read their argument in the selected angle mode; asin, acos and atan return a result in that same mode. Anything the parser cannot finish — an unclosed bracket, a trailing operator, a name it does not know — is rejected rather than silently returning a partial answer.',
+      example:
+        'sin(30) in DEG mode is 0.5; switch to RAD and sin(pi/2) is 1. log(100) is 2, ln(e) is 1, sqrt(144) is 12, and 5! is 120. Type 2.5e-3 and you get 0.0025, which is how you enter scientific notation without hunting for an exponent key. 2(3+1) is 8, because a number next to a bracket multiplies.',
       formulas: [
-        { label: 'Sine', expression: 'sin(x) where x is in degrees or radians' },
-        { label: 'Logarithm', expression: 'log(x) = log10(x), ln(x) = natural log' },
+        { label: 'Sine', expression: 'sin(x) — x read in DEG or RAD per the display toggle' },
+        { label: 'Logarithms', expression: 'log(x) = log₁₀(x); ln(x) = logₑ(x)' },
+        { label: 'Factorial', expression: 'n! = n × (n−1) × … × 1, with 0! = 1' },
+        { label: 'Scientific notation input', expression: 'm e n = m × 10ⁿ, so 2.5e-3 = 0.0025' },
       ],
       resultExplanations: [
-        { resultLabel: 'Result', explanation: 'The evaluated result of your expression, updated live as you type.' },
+        {
+          resultLabel: 'Result',
+          explanation:
+            'The value of your whole expression, recalculated as you type and printed to 12 significant figures. An empty display means the expression is not finished or not valid yet.',
+        },
+        {
+          resultLabel: 'DEG / RAD',
+          explanation:
+            'The angle mode applied to sin, cos, tan and their inverses. It changes the answer, so check it before trusting a trigonometry result.',
+        },
       ],
       workflowLinks: [
-        { slug: 'percentage-calculator', step: 'Quick percentage calculations.' },
-        { slug: 'compound-interest-calculator', step: 'Apply scientific math to financial formulas.' },
+        { slug: 'scientific-notation-calculator', step: 'Convert a result into proper scientific or engineering notation.' },
+        { slug: 'significant-figures-calculator', step: 'Round the answer to the precision your measurement supports.' },
       ],
       faqs: [
-        { q: 'How do I switch between degrees and radians?', a: 'Click the DEG/RAD button in the display area. DEG mode is the default and most common for everyday use.' },
-        { q: 'Does it support keyboard input?', a: 'Yes. Focus the calculator and type numbers, operators, parentheses, and functions. Enter evaluates, Escape clears, Backspace deletes.' },
-        { q: 'What is the maximum precision?', a: 'Results are displayed to 12 significant figures. Internal calculations use standard IEEE 754 double precision.' },
+        {
+          q: 'How do I enter scientific notation on this calculator?',
+          a: 'Type the letter e between the mantissa and the exponent: 2.5e-3 means 2.5 × 10⁻³ = 0.0025, and 6.02e23 is Avogadro\u2019s number. You can also press the EE key, and a negative exponent is read correctly.',
+        },
+        {
+          q: 'Why does sin(30) give 0.5 here?',
+          a: 'Because the display is in DEG mode. In RAD mode the same input is interpreted as 30 radians, which is about -0.988. Toggle DEG/RAD next to the display and watch the answer change.',
+        },
+        {
+          q: 'Is this the same as a graphing calculator?',
+          a: 'No. This tool evaluates single expressions. The graphing calculator plots functions of x, which is a different job — use that one when you need to see a curve rather than a number.',
+        },
+        {
+          q: 'Does it work on a phone or in an exam?',
+          a: 'It is responsive and works on a phone browser, and the keypad plus keyboard both work. It is not an approved exam calculator: invigilated exams require an approved physical device, and running a website during an exam is normally not permitted.',
+        },
+        {
+          q: 'Can I type a whole expression?',
+          a: 'Yes. Order of operations is respected, so 2+3*4 is 14 and not 20. Use brackets to override it, and type ^ for powers, ! for factorials and % for percent.',
+        },
+        {
+          q: 'How precise is the result?',
+          a: 'Calculations use IEEE 754 double precision and results are shown to 12 significant figures. Very large or very small answers switch to exponent form so the digits stay readable.',
+        },
       ],
-      related: ['percentage-calculator', 'compound-interest-calculator', 'ratio-proportion-calculator'],
+      related: [
+        'scientific-notation-calculator',
+        'significant-figures-calculator',
+        'fraction-calculator',
+        'exponent-root-calculator',
+        'graphing-calculator',
+        'rounding-calculator',
+      ],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
+    seo: {
+      status: 'index',
+      reviewStatus: 'reviewed',
+      priority: 0.9,
+      updatedAt: '2026-10-31',
+      title: 'Scientific Calculator Online — Trig, Logs, Fractions & Scientific Notation',
+      description:
+        'Free online scientific calculator with sin, cos, tan, logs, powers, roots, factorials, DEG/RAD modes and scientific-notation input like 2.5e-3. Works on mobile with keyboard support.',
+    },
+  },
+  {
+    id: 'scientific-notation',
+    slug: 'scientific-notation-calculator',
+    name: 'Scientific Notation Calculator',
+    shortDesc: 'Convert numbers to scientific, engineering and E-notation, and multiply, divide, add or subtract in scientific form.',
+    tagline: 'Write any number as a × 10ⁿ — and do the arithmetic.',
+    category: 'math',
+    iconName: 'Calculator',
+    badge: 'Notation',
+    keywords: [
+      'scientific notation calculator',
+      'scientific notation',
+      'scientific notation converter',
+      'write in scientific notation calculator',
+      'convert to scientific notation',
+      'standard form calculator',
+      'engineering notation calculator',
+      'e notation converter',
+      'scientific notation to decimal',
+    ],
+    kind: 'custom',
+    componentId: 'ScientificNotationCalculator',
+    content: {
+      intro:
+        'The Scientific Notation Calculator converts between an ordinary decimal number and scientific notation, engineering notation and E-notation, and it will multiply, divide, add or subtract two numbers that are already written in scientific form. It is built for chemistry and physics work where a number like 0.0000006023 has to become 6.023 × 10⁻⁷, and for checking the exponent arithmetic by hand.',
+      howItWorks:
+        'Scientific notation writes a number as a mantissa between 1 and 10 multiplied by a power of ten. The exponent is the number of places the decimal point moved: moving it left gives a positive exponent, moving it right gives a negative one. The calculator normalises the result after rounding, so 99999 at three significant figures becomes 1.00 × 10⁵ rather than 10.0 × 10⁴. Engineering notation uses the same mantissa rule but forces the exponent to a multiple of three, which lines answers up with SI prefixes such as kilo (10³) and micro (10⁻⁶). For multiplication and division the mantissas combine and the exponents add or subtract; for addition and subtraction the values are aligned to the same exponent first.',
+      example:
+        '35 000 becomes 3.5 × 10⁴, or 35 × 10³ in engineering notation. 0.0045 becomes 4.5 × 10⁻³. Multiplying 3.5 × 10⁴ by 2 × 10³ gives 7 × 10⁷: the mantissas multiply (3.5 × 2 = 7) and the exponents add (4 + 3 = 7).',
+      formulas: [
+        {
+          label: 'Scientific notation',
+          expression: 'n = m × 10^e, where 1 ≤ |m| < 10',
+          note: 'The mantissa m carries the significant figures; e is the order of magnitude.',
+        },
+        {
+          label: 'Multiplication',
+          expression: '(a × 10^m) × (b × 10^n) = (a × b) × 10^(m+n)',
+        },
+        {
+          label: 'Division',
+          expression: '(a × 10^m) ÷ (b × 10^n) = (a ÷ b) × 10^(m−n)',
+        },
+        {
+          label: 'Engineering notation',
+          expression: 'n = m × 10^e, where e is a multiple of 3',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Scientific notation',
+          explanation:
+            'The standard a × 10ⁿ form with a single non-zero digit before the decimal point. This is the answer to write in a lab report or exam.',
+        },
+        {
+          resultLabel: 'E-notation',
+          explanation:
+            'The same value in the form calculators, spreadsheets and programming languages read, such as 3.5e4. Copy this into a formula or code cell.',
+        },
+        {
+          resultLabel: 'Engineering notation',
+          explanation:
+            'The same value with an exponent that is a multiple of three, so it maps directly onto SI prefixes: 35 × 10³ is 35 kilo.',
+        },
+        {
+          resultLabel: 'Order of magnitude',
+          explanation:
+            'The exponent alone — the power of ten the number sits at. Two values with the same order of magnitude are within a factor of ten of each other.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'scientific-calculator', step: 'Evaluate the rest of an expression that uses these values.' },
+        { slug: 'significant-figures-calculator', step: 'Check how many significant figures the mantissa is claiming.' },
+      ],
+      faqs: [
+        {
+          q: 'How do I write 0.00042 in scientific notation?',
+          a: 'Move the decimal point four places right to get 4.2, so the number is 4.2 × 10⁻⁴. Enter 0.00042 above and the calculator returns that form along with the E-notation 4.2e-4.',
+        },
+        {
+          q: 'What is the difference between scientific and engineering notation?',
+          a: 'Both use a mantissa times a power of ten. Scientific notation keeps the mantissa between 1 and 10; engineering notation keeps the exponent at a multiple of three, so the mantissa can run from 1 to 1000. 35 000 is 3.5 × 10⁴ scientifically and 35 × 10³ in engineering form.',
+        },
+        {
+          q: 'What does the e mean on a calculator display?',
+          a: 'It is shorthand for × 10 to the power of. A display reading 2.5e-3 means 2.5 × 10⁻³, which is 0.0025. It is not Euler\u2019s number, even though the same letter is used for that constant elsewhere.',
+        },
+        {
+          q: 'How do I multiply and divide numbers in scientific notation?',
+          a: 'Multiply the mantissas and add the exponents; divide the mantissas and subtract the exponents. Then renormalise if the new mantissa falls outside 1 to 10, which is exactly what the second section of this calculator does.',
+        },
+        {
+          q: 'Is scientific notation the same as standard form?',
+          a: 'Yes. In the UK and much of the Commonwealth the same a × 10ⁿ notation is called standard form. The rules and the arithmetic are identical.',
+        },
+        {
+          q: 'How many significant figures should the answer keep?',
+          a: 'No more than the least precise input carried. Round the mantissa to that many figures and let the exponent stay as it is — the significant figures calculator will do that rounding for you.',
+        },
+      ],
+      related: [
+        'scientific-calculator',
+        'significant-figures-calculator',
+        'exponent-root-calculator',
+        'rounding-calculator',
+      ],
+    },
+    seo: {
+      status: 'index',
+      reviewStatus: 'reviewed',
+      priority: 0.82,
+      updatedAt: '2026-10-31',
+      title: 'Scientific Notation Calculator — Converter & Arithmetic (a × 10ⁿ)',
+      description:
+        'Convert any number to scientific notation, engineering notation or E-notation, and multiply, divide, add or subtract numbers written as a × 10ⁿ. Includes worked exponent rules.',
+    },
+  },
+  {
+    id: 'significant-figures',
+    slug: 'significant-figures-calculator',
+    name: 'Significant Figures Calculator',
+    shortDesc: 'Count the significant figures in a measurement and round it to the number of significant figures you need.',
+    tagline: 'Report exactly the precision your measurement supports.',
+    category: 'math',
+    iconName: 'Calculator',
+    badge: 'Precision',
+    keywords: [
+      'sig fig calculator',
+      'significant figures calculator',
+      'sig figs',
+      'significant digits',
+      'sig fig counter',
+      'round to significant figures',
+      'how many significant figures',
+      'significant figures rules',
+    ],
+    kind: 'custom',
+    componentId: 'SignificantFiguresCalculator',
+    content: {
+      intro:
+        'The Significant Figures Calculator counts the significant figures in a number exactly as you wrote it, then rounds that number to any significant-figure count you choose. It is the check you need before writing a chemistry or physics result: it catches the classic mistake of copying every digit from a calculator display into an answer that only supports two or three.',
+      howItWorks:
+        'Significant figures are the digits that carry real information about how precisely something was measured. Non-zero digits always count, zeros between them count, leading zeros never count, and zeros after a decimal point count because they were written deliberately. A whole number ending in zeros with no decimal point is ambiguous — 1500 could be two significant figures or four — so the calculator flags it rather than guessing, and tells you to write it in scientific notation if you mean a specific precision. Rounding then keeps the requested number of figures and replaces the rest with placeholders or an exponent.',
+      example:
+        '0.00450 has three significant figures: the leading zeros are placeholders and the trailing zero after the 5 is a stated measurement. 1.230 has four. 1200 is ambiguous and is reported as two with a warning. Rounding 1234 to two significant figures gives 1.2 × 10³, which is 1200, and rounding 0.004567 to two gives 0.0046.',
+      formulas: [
+        {
+          label: 'Rounding to significant figures',
+          expression: 'round(x, s) keeps s significant digits and sets the rest to zero',
+          note: 'The exponent is unchanged by rounding unless the mantissa carries to 10.',
+        },
+        {
+          label: 'Count',
+          expression: 'all digits − leading zeros (− trailing zeros with no decimal point)',
+        },
+      ],
+      sources: [
+        {
+          label: 'NIST Special Publication 811',
+          expression: 'Guide for the Use of the International System of Units (SI)',
+          note: 'Reference for SI conventions and rounding guidance. The counting rules shown are the standard chemistry and physics convention, applied literally to the digits you type.',
+        },
+      ],
+      resultExplanations: [
+        {
+          resultLabel: 'Significant figures',
+          explanation:
+            'How many digits in your number carry measurement information, counted from the text you typed rather than from a rounded number.',
+        },
+        {
+          resultLabel: 'Rounded to n significant figures',
+          explanation:
+            'The same value rewritten at the precision you asked for, shown in scientific notation so the retained figures are unambiguous, with the flat decimal below it.',
+        },
+      ],
+      workflowLinks: [
+        { slug: 'scientific-notation-calculator', step: 'Write the rounded answer as a × 10ⁿ.' },
+        { slug: 'rounding-calculator', step: 'Round to a decimal place instead of a significant figure.' },
+      ],
+      faqs: [
+        {
+          q: 'How many significant figures does 0.00450 have?',
+          a: 'Three. The three leading zeros only place the decimal point, while 4, 5 and the trailing 0 after the decimal point were all written deliberately and therefore count.',
+        },
+        {
+          q: 'Why is 1200 treated as ambiguous?',
+          a: 'A trailing zero in a whole number with no decimal point may be a placeholder or a measured digit, and nothing in the notation says which. Written as 1.2 × 10³ it has two significant figures; as 1.200 × 10³ it has four. The calculator reports the conservative count and flags the ambiguity.',
+        },
+        {
+          q: 'Do exponent parts count as significant figures?',
+          a: 'No. In 6.022 × 10²³ only the mantissa 6.022 is counted, giving four significant figures. The power of ten just scales the value.',
+        },
+        {
+          q: 'How do I round to significant figures?',
+          a: 'Keep the first n digits from the first non-zero digit, then round using the next digit: 5 or more rounds up. Everything before the first significant digit becomes a placeholder zero, or the value is shown with an exponent.',
+        },
+        {
+          q: 'How many significant figures should a final answer have?',
+          a: 'For multiplication and division, match the input with the fewest significant figures. For addition and subtraction, match the fewest decimal places instead. Round only at the end, not at every step.',
+        },
+      ],
+      related: [
+        'scientific-notation-calculator',
+        'scientific-calculator',
+        'rounding-calculator',
+        'percentage-calculator',
+      ],
+    },
+    seo: {
+      status: 'index',
+      reviewStatus: 'reviewed',
+      priority: 0.78,
+      updatedAt: '2026-10-31',
+      title: 'Sig Fig Calculator — Count & Round Significant Figures',
+      description:
+        'Count significant figures in any measurement and round it to the sig figs you need. Handles leading and trailing zeros, exponent notation, and flags ambiguous values like 1200.',
+    },
   },
   {
     id: 'std-dev',
@@ -996,6 +1274,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       workflowLinks: [
         { slug: 'rounding-calculator', step: 'Round the result to a practical number of decimals.' },
+        { slug: 'scientific-notation-calculator', step: 'Write a very large or very small power as a × 10ⁿ.' },
         { slug: 'gcd-lcm-calculator', step: 'Combine with GCD for number theory problems.' }
       ],
       faqs: [
@@ -1003,9 +1282,9 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
         { q: 'What is a fractional exponent?', a: 'A fractional exponent is a root: x^(1/n) is the nth root of x.' },
         { q: 'How do I calculate 2 to the power of 10?', a: '2^10 = 1024. This is a common value in computing (1 kilobyte = 1024 bytes).' }
       ],
-      related: ['rounding-calculator', 'gcd-lcm-calculator'],
+      related: ['rounding-calculator', 'gcd-lcm-calculator', 'scientific-notation-calculator', 'scientific-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-10-31' },
   },
   {
     id: 'rounding',
@@ -1041,6 +1320,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       workflowLinks: [
         { slug: 'percentage-calculator', step: 'Round percentage results for readability.' },
+        { slug: 'significant-figures-calculator', step: 'Round to a significant figure instead of a decimal place.' },
         { slug: 'exponent-root-calculator', step: 'Round trig values for practical use.' }
       ],
       faqs: [
@@ -1048,9 +1328,9 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
         { q: 'What is rounding to significant figures?', a: 'Significant figures count meaningful digits. For example, 3.14159 to 4 significant figures is 3.142.' },
         { q: 'Why does rounding matter?', a: 'Rounding errors accumulate in calculations. Choosing the right precision prevents misleading results.' }
       ],
-      related: ['percentage-calculator', 'exponent-root-calculator'],
+      related: ['percentage-calculator', 'exponent-root-calculator', 'significant-figures-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-10-31' },
   },
   {
     id: 'prime-check',

@@ -1,0 +1,85 @@
+query,seed,source,interest,growth,intent,existing_page,classification,score,action,status
+casio fx-991cw classwiz non-programmable scientific calculator,scientific calculator,rising,1,1050%,commercial-product,https://www.totalcalculation.com/calculators/scientific-calculator,F,43,No page. Physical-device purchase intent; a website cannot satisfy it without implying it is that device.,monitor
+desmos scientific calculator virginia,scientific calculator,rising,2,600%,navigational-brand-test-tool,,F,38,No page. Brand + state assessment policy; satisfiable only by Desmos or the state board.,monitor
+desmos virginia scientific calculator,scientific calculator,rising,2,500%,navigational-brand-test-tool,,F,38,No page. Duplicate intent of the Virginia row above.,monitor
+sig fig calculator,scientific calculator,rising,0,500%,calculator-tool,https://www.totalcalculation.com/calculators/significant-figures-calculator,C,88,Built /calculators/significant-figures-calculator with tested counting and rounding.,implemented
+desmo,scientific calculator,rising,0,500%,misspelling,,F,10,No page. Misspelling of a competitor brand.,ignore
+va desmos scientific calculator,scientific calculator,rising,1,500%,navigational-brand-test-tool,,F,38,No page. Virginia shorthand for the same brand intent.,monitor
+virginia desmos scientific calculator,scientific calculator,rising,2,450%,navigational-brand-test-tool,,F,38,No page. Same intent as the Virginia rows.,monitor
+desmos scientific calculator georgia,scientific calculator,rising,0,450%,navigational-brand-test-tool,,F,38,No page. Brand + state assessment policy.,monitor
+delta math,scientific calculator,rising,1,400%,unrelated-portal,,F,2,No page. School platform, not a calculation.,ignore
+desmo scientific calculator,scientific calculator,rising,0,400%,misspelling,,F,10,No page. Brand misspelling.,ignore
+desmos scientific graphing calculator,scientific calculator,top+rising,10,400%,navigational-brand,,F,42,No page. Brand navigation; generic graphing intent is served by /calculators/graphing-calculator.,monitor
+demos scientific calculator,scientific calculator,rising,1,400%,misspelling,,F,10,No page. Brand misspelling.,ignore
+graphing calculator desmos,scientific calculator,top+rising,10,400%,navigational-brand,,F,42,No page. Brand navigation.,monitor
+desmos graphing,scientific calculator,top+rising,10,400%,navigational-brand,,F,42,No page. Brand navigation.,monitor
+demos,scientific calculator,rising,1,400%,misspelling,,F,8,No page. Brand misspelling.,ignore
+how to do scientific notation on calculator,scientific calculator,rising,1,400%,how-to,https://www.totalcalculation.com/guides/how-to-use-a-scientific-calculator,D,82,Covered by the EE/scientific-notation section and FAQ of the new guide and calculator page.,implemented
+ixl,scientific calculator,rising,0,400%,unrelated-portal,,F,2,No page. School platform, not a calculation.,ignore
+desmos graphing calculator,scientific calculator,top+rising,10,400%,navigational-brand,,F,42,No page. Brand navigation.,monitor
+joinus scientific calculator,scientific calculator,rising,1,400%,navigational-brand,,F,10,No page. Third-party calculator brand.,ignore
+desmos scientific calculator,scientific calculator,top+rising,100,400%,navigational-brand,,F,42,No page. Highest-interest query in both exports, but it asks for one specific third-party product. Targeting the brand would require implying affiliation; the underlying need (a free scientific calculator in the browser) is targeted on /calculators/scientific-calculator instead.,monitor
+write in scientific notation calculator,scientific calculator,rising,2,350%,calculator-tool,https://www.totalcalculation.com/calculators/scientific-notation-calculator,C,95,Built /calculators/scientific-notation-calculator with decimal/scientific/engineering/E-notation conversion.,implemented
+desmos scientific calculator va,scientific calculator,rising,1,350%,navigational-brand-test-tool,,F,38,No page. Virginia shorthand.,monitor
+desmos,scientific calculator,top+rising,100,350%,navigational-brand,,F,42,No page. Brand navigation.,monitor
+scientific desmos calculator,scientific calculator,top+rising,99,350%,navigational-brand,,F,42,No page. Brand navigation.,monitor
+scientific calculator desmos,scientific calculator,top+rising,100,350%,navigational-brand,,F,42,No page. Brand navigation.,monitor
+calculator desmos scientific,scientific calculator,top+rising,94,350%,navigational-brand,,F,42,No page. Brand navigation.,monitor
+ti84,scientific calculator,rising,1,350%,navigational-brand,,F,12,No page. Physical device brand.,ignore
+desmos calculator,scientific calculator,top+rising,96,350%,navigational-brand,,F,42,No page. Brand navigation.,monitor
+desmos calculator scientific,scientific calculator,top+rising,99,350%,navigational-brand,,F,42,No page. Brand navigation.,monitor
+desmos scientific,scientific calculator,top+rising,97,350%,navigational-brand,,F,42,No page. Brand navigation.,monitor
+scientific calculator ti 84,scientific calculator,rising,2,250%,navigational-brand,,F,12,No page. Physical device brand.,ignore
+ti 84 calculator,scientific calculator,rising,2,250%,navigational-brand,,F,12,No page. Physical device brand.,ignore
+non-programmable scientific calculator,scientific calculator,rising,2,250%,commercial-product,,F,43,No page. Product specification query; answered only by a buyer's guide with verified current model data.,monitor
+ti 84,scientific calculator,rising,2,250%,navigational-brand,,F,12,No page. Physical device brand.,ignore
+best scientific calculator for engineering students,scientific calculator,rising,1,250%,commercial-investigation,,F,45,No page this cycle. A buyer's guide is defensible but must cite current model specs and prices; writing it without verified data would invent facts.,deferred
+studentvue,scientific calculator,rising,0,190%,unrelated-portal,,F,2,No page. School portal.,ignore
+deltamath,scientific calculator,rising,0,180%,unrelated-portal,,F,2,No page. School platform.,ignore
+caculator,scientific calculator,rising,0,180%,misspelling,https://www.totalcalculation.com/calculators/scientific-calculator,F,8,No page. Typo of a term already targeted; creating a URL for it would duplicate content.,ignore
+scientific notation,scientific calculator,top+rising,15,170%,informational,https://www.totalcalculation.com/calculators/scientific-notation-calculator,B,92,Definition, rules and worked examples are on the calculator page and in the guide.,implemented
+nc desmos scientific calculator,scientific calculator,rising,1,170%,navigational-brand-test-tool,,F,38,No page. Brand + state policy.,monitor
+desmos scientific calculator nc,scientific calculator,rising,1,170%,navigational-brand-test-tool,,F,38,No page. Brand + state policy.,monitor
+scientific notation calculator,scientific calculator,top+rising,15,170%,calculator-tool,https://www.totalcalculation.com/calculators/scientific-notation-calculator,C,95,Built and registered; in sitemap with a unique description and title.,implemented
+decimal scientific calculator,scientific calculator,top+rising,5,170%,ambiguous-tool,https://www.totalcalculation.com/calculators/scientific-calculator,F,40,No new page. Ambiguous wording (decimal output vs decimal-only); the scientific calculator already returns decimal results.,monitor
+scientific calculator fx 991,scientific calculator,rising,2,170%,navigational-brand,,F,12,No page. Physical device model.,ignore
+periodic table,scientific calculator,rising,1,160%,reference-data,,F,44,No page. A periodic table is a data reference, not a calculation; building one is a separate product decision.,monitor
+how much is a scientific calculator,scientific calculator,rising,2,160%,commercial-investigation,,F,45,No page. Price intent; prices change and we do not sell devices.,monitor
+calc,scientific calculator,rising,3,150%,ambiguous,https://www.totalcalculation.com/calculators/scientific-calculator,F,20,No page. Too ambiguous to target; the calculator hub already serves it.,ignore
+non graphing scientific calculator,scientific calculator,rising,1,150%,calculator-tool,https://www.totalcalculation.com/calculators/scientific-calculator,B,84,The scientific calculator is the non-graphing tool; wording added to the page and FAQ.,implemented
+scientific notation converter,scientific calculator,rising,0,150%,calculator-tool,https://www.totalcalculation.com/calculators/scientific-notation-calculator,C,95,Converter mode is the first section of the new scientific notation calculator.,implemented
+math solver,scientific calculator,top+rising,13,140%,equation-solving,,C,67,No page this cycle. Needs an actual equation solver (linear/quadratic systems), not a keyword page; quadratic solving exists at /calculators/quadratic-formula-calculator.,deferred
+casio,scientific calculator,top,49,-70%,navigational-brand,,F,15,No page. Declining brand navigation.,ignore
+calculator scientific casio,scientific calculator,top,49,-70%,navigational-brand,,F,15,No page. Declining brand navigation.,ignore
+casio calculator scientific,scientific calculator,top,49,-70%,navigational-brand,,F,15,No page. Declining brand navigation.,ignore
+scientific calculator casio,scientific calculator,top,48,-70%,navigational-brand,,F,15,No page. Declining brand navigation.,ignore
+casio calculator,scientific calculator,top,48,-70%,navigational-brand,,F,15,No page. Declining brand navigation.,ignore
+casio scientific calculator,scientific calculator,top,48,-70%,navigational-brand,,F,15,No page. Declining brand navigation.,ignore
+online scientific calculator,scientific calculator,top,22,30%,calculator-tool,https://www.totalcalculation.com/calculators/scientific-calculator,A,81,Title, description and intro rewritten around this wording; the tool itself was fixed and documented.,implemented
+online calculator,scientific calculator,top,22,40%,calculator-tool,https://www.totalcalculation.com/calculators,A,66,Directory page already targets this; no new page.,implemented
+calculator online,scientific calculator,top,21,30%,calculator-tool,https://www.totalcalculation.com/calculators,A,66,Duplicate intent of the row above.,implemented
+scientific calculator online,scientific calculator,top,21,30%,calculator-tool,https://www.totalcalculation.com/calculators/scientific-calculator,A,81,Same page as online scientific calculator; one canonical URL for both word orders.,implemented
+calculator scientific online,scientific calculator,top,20,30%,calculator-tool,https://www.totalcalculation.com/calculators/scientific-calculator,A,81,Same intent; no separate URL.,implemented
+online calculator scientific,scientific calculator,top,20,30%,calculator-tool,https://www.totalcalculation.com/calculators/scientific-calculator,A,81,Same intent; no separate URL.,implemented
+math calculator,scientific calculator,top,19,20%,calculator-tool,https://www.totalcalculation.com/calculators/scientific-calculator,A,78,Handled by the scientific calculator and the maths category page.,implemented
+scientific graphing calculator,scientific calculator,top,15,20%,calculator-tool,https://www.totalcalculation.com/calculators/graphing-calculator,A,76,Existing graphing calculator covers the intent; no new page.,implemented
+graphing calculator,scientific calculator,top,15,20%,calculator-tool,https://www.totalcalculation.com/calculators/graphing-calculator,A,76,Existing page already targets this term.,implemented
+scientific calculator price,scientific calculator,top,12,-5%,commercial-investigation,,F,45,No page. Price intent; we do not sell devices.,monitor
+what is a scientific calculator,scientific calculator,top,11,110%,informational,https://www.totalcalculation.com/guides/how-to-use-a-scientific-calculator,D,82,Answered in the first section of the new guide.,implemented
+best scientific calculator,scientific calculator,top,11,-40%,commercial-investigation,,F,45,No page. Declining and requires verified model data.,deferred
+texas instruments scientific calculator,scientific calculator,top,7,-80%,navigational-brand,,F,10,No page. Declining brand navigation.,ignore
+scientific calculator texas instruments,scientific calculator,top,7,-80%,navigational-brand,,F,10,No page. Declining brand navigation.,ignore
+texas instruments,scientific calculator,top,7,-70%,navigational-brand,,F,10,No page. Declining brand navigation.,ignore
+free scientific calculator,scientific calculator,top,7,-50%,calculator-tool,https://www.totalcalculation.com/calculators/scientific-calculator,A,81,Freemium wording is already in the short description and FAQ.,implemented
+ti scientific calculator,scientific calculator,top,7,50%,navigational-brand,,F,12,No page. Physical device brand.,ignore
+google scientific calculator,scientific calculator,top,7,-9%,ambiguous-tool,https://www.totalcalculation.com/calculators/scientific-calculator,F,30,No page. People want the search engine's own widget; we cannot displace it and should not imitate it.,monitor
+google calculator,scientific calculator,top,7,-9%,ambiguous-tool,,F,30,No page. Same intent as the row above.,monitor
+fraction calculator,scientific calculator,top,6,20%,calculator-tool,https://www.totalcalculation.com/calculators/fraction-calculator,A,76,Existing fraction calculator; linked from the scientific calculator related list.,implemented
+scientific calculator app,scientific calculator,top,5,-30%,app-install,https://www.totalcalculation.com/calculators/scientific-calculator,F,45,No page. Install intent; the browser tool is described as needing no install and no sign-up.,monitor
+calculator app,scientific calculator,top,5,-30%,app-install,,F,20,No page. Install intent.,ignore
+how to use scientific calculator,scientific calculator,top,5,70%,how-to,https://www.totalcalculation.com/guides/how-to-use-a-scientific-calculator,D,82,New guide written for this query.,implemented
+maths solver,scientific calculator,top,5,100%,equation-solving,,C,64,No page this cycle. Same gap as math solver.,deferred
+scientific calculator casio online,scientific calculator,top,4,30%,navigational-brand,,F,15,No page. Brand navigation.,ignore
+casio scientific calculator online,scientific calculator,top,4,30%,navigational-brand,,F,15,No page. Brand navigation.,ignore
+online scientific calculator casio,scientific calculator,top,4,30%,navigational-brand,,F,15,No page. Brand navigation.,ignore
+buy scientific calculator,scientific calculator,top,4,20%,commercial-product,,F,43,No page. Transactional purchase intent.,monitor

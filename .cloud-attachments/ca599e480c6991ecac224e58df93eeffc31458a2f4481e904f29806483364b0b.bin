@@ -1,0 +1,968 @@
+TOTAL CALCULATION — SEARCH GROWTH, SEO, AEO & GEO MASTER EXECUTION LOOP
+=======================================================================
+
+Website: [https://www.totalcalculation.com](https://www.totalcalculation.com/)
+
+Brand: Total Calculation
+
+Primary objective: Build Total Calculation into a competitive, internationally relevant calculator platform that earns organic search visibility, targets valuable search demand, and progressively competes for Google's top-five positions.
+
+You are responsible for SEO research, technical SEO, search-intent analysis, competitor analysis, content strategy, AEO, GEO, implementation and quality assurance.
+
+You are NOT being asked to produce an SEO report and stop. You must investigate, prioritize, implement, test and document actual improvements.
+
+1\. IMPORTANT BUSINESS CONTEXT
+------------------------------
+
+Total Calculation is a newly rebranded calculator website.
+
+The website has approximately:
+
+*   292 calculators and converters.
+    
+*   12 calculator categories.
+    
+*   A searchable calculator directory.
+    
+*   Supporting educational guides.
+    
+*   Browser-based calculation functionality.
+    
+*   Formula explanations, examples and calculation results.
+    
+
+The site is not yet established in Google search results.
+
+IMPORTANT:
+
+*   Do not assume we have useful Google Search Console performance data.
+    
+*   Do not invent clicks, impressions, rankings, search volumes or traffic.
+    
+*   Do not create a strategy that depends on historical ranking data.
+    
+*   Do not mistake Google Trends interest scores for absolute search volume.
+    
+*   Do not assume that every rising query represents a commercially valuable opportunity.
+    
+*   Do not create new pages simply to increase URL counts.
+    
+
+We are starting with search demand, website quality, technical accessibility and competitor research.
+
+2\. RESEARCH FILES PROVIDED
+---------------------------
+
+I will attach Google Trends CSV exports containing:
+
+*   Top related queries.
+    
+*   Rising related queries.
+    
+*   Eight initial comparison topics:
+    
+    1.  Scientific Calculator
+        
+    2.  GPA Calculator
+        
+    3.  Mortgage Calculator
+        
+    4.  Loan Calculator
+        
+    5.  Tax Calculator
+        
+    6.  Currency Converter
+        
+    7.  BMI Calculator
+        
+    8.  Interest Calculator
+        
+
+The research settings are:
+
+*   Worldwide.
+    
+*   Past three months.
+    
+*   Google Trends.
+    
+*   Top and Rising related queries.
+    
+
+FIRST ACTION:
+
+Find and read every attached CSV.
+
+Determine:
+
+*   Which file represents Top queries.
+    
+*   Which file represents Rising queries.
+    
+*   Which seed topic each query belongs to.
+    
+*   Whether a query is marked Breakout.
+    
+*   Whether the same query appears in multiple files.
+    
+*   Whether queries are closely related or represent different search intentions.
+    
+
+Preserve the original query wording.
+
+Do not invent missing Trends data.
+
+If files are missing or unreadable, report exactly what is missing and continue with the repository audit where possible.
+
+3\. REPOSITORY AND LIVE WEBSITE AUDIT
+-------------------------------------
+
+Before changing anything, inspect the complete repository.
+
+Understand:
+
+*   Framework and build system.
+    
+*   Routing architecture.
+    
+*   Calculator registry.
+    
+*   Calculator component architecture.
+    
+*   Content and guide structure.
+    
+*   SEO metadata implementation.
+    
+*   Structured data implementation.
+    
+*   Sitemap generation.
+    
+*   Robots.txt.
+    
+*   Canonical URLs.
+    
+*   Redirects.
+    
+*   Internal linking.
+    
+*   Search functionality.
+    
+*   Mobile responsiveness.
+    
+*   Rendering and prerendering.
+    
+*   Performance.
+    
+*   Existing design system.
+    
+*   Analytics and indexing configuration.
+    
+
+Inspect all 292 calculators and their actual routes.
+
+Create a baseline audit.
+
+Files to create:
+
+docs/seo-growth/baseline-audit.mdcalculator-inventory.csvtrends-opportunity-map.csvkeyword-clusters.mdtechnical-seo-audit.mdcompetitor-analysis.mdcontent-gap-analysis.mdimplementation-roadmap.mdchange-log.mdqa-report.md
+
+Do not assume the existing website architecture is correct. Verify it.
+
+IMPORTANT:The website's canonical public brand and domain must remain consistent with Total Calculation and [https://www.totalcalculation.com](https://www.totalcalculation.com/).
+
+Do not reintroduce the previous brand or domain into new SEO content, metadata, structured data or internal links.
+
+4\. GOOGLE TRENDS OPPORTUNITY ENGINE
+------------------------------------
+
+Transform the supplied CSV data into a usable keyword opportunity database.
+
+For every query, identify:
+
+*   Original query.
+    
+*   Parent seed keyword.
+    
+*   Trends classification.
+    
+*   Search intent.
+    
+*   Likely user problem.
+    
+*   Existing calculator or guide that addresses it.
+    
+*   Existing URL.
+    
+*   Whether the existing page adequately satisfies the query.
+    
+*   Missing functionality.
+    
+*   Missing educational content.
+    
+*   Internal linking opportunities.
+    
+*   Recommended action.
+    
+
+Assign each query one of these classifications:
+
+A. EXISTING PAGE OPTIMIZATIONAn existing page already satisfies the intent but needs improvement.
+
+B. EXISTING PAGE EXPANSIONThe existing page needs additional functionality, examples, explanations or supporting content.
+
+C. NEW CALCULATOR OPPORTUNITYA genuinely distinct calculation is missing.
+
+D. NEW GUIDE OPPORTUNITYThe query is informational and deserves a useful educational resource.
+
+E. TOPIC HUB OPPORTUNITYA collection of related calculators needs a stronger central landing page.
+
+F. IGNORE OR MONITORThe query is irrelevant, ambiguous, misleading, seasonal without current relevance or too weak to justify investment.
+
+Never create separate URLs for spelling variations or synonyms that share the same intent.
+
+### Opportunity scoring
+
+Use a transparent 100-point internal prioritization model:
+
+*   Trends growth signal: 20 points.
+    
+*   Relevance to Total Calculation: 20 points.
+    
+*   Ability to satisfy the search intent: 20 points.
+    
+*   Existing website readiness: 15 points.
+    
+*   Competitive opportunity: 15 points.
+    
+*   Practical business value: 10 points.
+    
+
+Do not pretend this score is a Google ranking metric.
+
+It is our internal decision-making tool.
+
+Do not assign search-volume values unless supported by an actual source.
+
+5\. COMPETITOR RESEARCH
+-----------------------
+
+Research the leading organic competitors for the most valuable keyword clusters.
+
+Consider relevant established calculator websites, including:
+
+*   Calculator.net
+    
+*   Omni Calculator
+    
+*   The Calculator Site
+    
+*   CalculateQuick
+    
+*   Other competitors discovered through actual searches.
+    
+
+Do not blindly copy competitors.
+
+Investigate:
+
+*   Their page structure.
+    
+*   Calculator capabilities.
+    
+*   Search-intent coverage.
+    
+*   Supporting educational content.
+    
+*   Internal linking.
+    
+*   Page titles and descriptions.
+    
+*   Unique functionality.
+    
+*   Trust signals.
+    
+*   Country and currency support.
+    
+*   Useful features missing from their offerings.
+    
+
+Identify where Total Calculation can offer something genuinely better.
+
+For each priority cluster, document:
+
+1.  What competitors are doing well.
+    
+2.  What they are missing.
+    
+3.  What Total Calculation already offers.
+    
+4.  What we need to improve.
+    
+5.  What would make our page more useful.
+    
+
+Do not claim that a competitor has weak rankings without evidence.
+
+6\. EIGHT INITIAL PRIORITY CLUSTERS
+-----------------------------------
+
+Start with these eight clusters.
+
+### Cluster 1: Scientific Calculator
+
+Investigate:
+
+*   Scientific calculator online.
+    
+*   Scientific notation.
+    
+*   Logarithms.
+    
+*   Trigonometry.
+    
+*   Fractions.
+    
+*   Powers and roots.
+    
+*   Degrees and radians.
+    
+*   Mathematical expression evaluation.
+    
+
+Check the accuracy and usability of existing functionality.
+
+### Cluster 2: GPA Calculator
+
+Investigate:
+
+*   Semester GPA.
+    
+*   Cumulative GPA.
+    
+*   Weighted GPA.
+    
+*   Unweighted GPA.
+    
+*   GPA by credit hours.
+    
+*   GPA conversion.
+    
+*   Different grading scales.
+    
+
+Prioritize multi-subject calculations and clear grading-scale assumptions.
+
+### Cluster 3: Mortgage Calculator
+
+Investigate:
+
+*   Monthly mortgage payment.
+    
+*   Mortgage affordability.
+    
+*   Mortgage interest.
+    
+*   Amortization.
+    
+*   Extra repayments.
+    
+*   Loan comparisons.
+    
+*   Property-related costs.
+    
+
+Investigate international usability and regional differences.
+
+### Cluster 4: Loan Calculator
+
+Investigate:
+
+*   Personal loan.
+    
+*   Car loan.
+    
+*   EMI.
+    
+*   Loan repayment.
+    
+*   Interest costs.
+    
+*   Early repayments.
+    
+*   Loan affordability.
+    
+
+Do not duplicate the mortgage calculator unnecessarily.
+
+### Cluster 5: Tax Calculator
+
+Investigate:
+
+*   Income tax.
+    
+*   Take-home pay.
+    
+*   Tax brackets.
+    
+*   Tax deductions.
+    
+*   Taxable income.
+    
+*   Regional tax calculations.
+    
+
+Tax calculations must use accurate, current jurisdiction-specific rules.
+
+Never publish tax rates without verified official references and effective dates.
+
+### Cluster 6: Currency Converter
+
+Investigate:
+
+*   Currency conversion.
+    
+*   USD to ZAR.
+    
+*   GBP to ZAR.
+    
+*   EUR to USD.
+    
+*   Popular currency pairs.
+    
+*   Exchange-rate calculations.
+    
+
+CRITICAL:Check the live exchange-rate functionality.
+
+Do not silently present stale fallback rates as live rates.
+
+Display rate source, update timestamp and fallback status.
+
+### Cluster 7: BMI Calculator
+
+Investigate:
+
+*   BMI by height and weight.
+    
+*   BMI metric and imperial.
+    
+*   BMI categories.
+    
+*   Healthy weight range.
+    
+*   BMI formula.
+    
+*   BMI limitations.
+    
+
+Use authoritative health references.
+
+Avoid unsupported medical claims.
+
+### Cluster 8: Interest Calculator
+
+Investigate:
+
+*   Simple interest.
+    
+*   Compound interest.
+    
+*   Monthly compound interest.
+    
+*   Annual compound interest.
+    
+*   Savings growth.
+    
+*   Interest earned.
+    
+*   Investment growth.
+    
+
+Ensure formulas and examples are correct.
+
+7\. INTERNATIONAL SEO STRATEGY
+------------------------------
+
+Worldwide is our initial market, but research opportunities in:
+
+*   Worldwide.
+    
+*   United States.
+    
+*   South Africa.
+    
+
+Do not assume the same search intent or calculation requirements apply everywhere.
+
+Identify regional opportunities where formulas, tax systems, grading systems, currencies or conventions differ.
+
+Examples:
+
+*   South African income tax and PAYE.
+    
+*   South African home-loan calculations.
+    
+*   US mortgage and property tax calculations.
+    
+*   International GPA grading differences.
+    
+*   Currency conversion with ZAR.
+    
+
+Only introduce country-specific pages when they provide genuinely distinct value.
+
+Avoid mass-producing translated or geographically duplicated pages.
+
+8\. TECHNICAL SEO — NON-NEGOTIABLE
+----------------------------------
+
+Audit and correct:
+
+*   Canonical host consistency.
+    
+*   Sitemap accuracy.
+    
+*   Sitemap coverage.
+    
+*   Robots.txt.
+    
+*   Indexability.
+    
+*   HTTP status codes.
+    
+*   Redirect chains.
+    
+*   Redirect loops.
+    
+*   Duplicate routes.
+    
+*   Canonical conflicts.
+    
+*   Noindex mistakes.
+    
+*   Missing metadata.
+    
+*   Duplicate titles.
+    
+*   Duplicate descriptions.
+    
+*   Broken internal links.
+    
+*   Orphan pages.
+    
+*   Breadcrumbs.
+    
+*   Structured data.
+    
+*   Prerendered HTML.
+    
+*   Mobile usability.
+    
+*   Core Web Vitals.
+    
+*   Page loading performance.
+    
+
+Verify that important calculator pages contain useful content in the initial HTML and do not rely entirely on client-side rendering for their SEO content.
+
+Check all calculator URLs against the actual route registry.
+
+Do not assume the sitemap is correct because it builds successfully.
+
+The sitemap must contain real, canonical, indexable URLs and exclude invalid, redirected, duplicate or non-indexable routes.
+
+Validate structured data using appropriate validators.
+
+Use appropriate schema types:
+
+*   WebSite.
+    
+*   Organization, where applicable.
+    
+*   WebPage.
+    
+*   BreadcrumbList.
+    
+*   SoftwareApplication only where the page genuinely qualifies.
+    
+*   Article for qualifying editorial guides.
+    
+
+Do not add fake reviews, ratings, prices or unsupported structured data.
+
+Do not add FAQ schema simply to chase rich results.
+
+9\. ON-PAGE SEO AND CONTENT IMPROVEMENTS
+----------------------------------------
+
+Every important calculator should provide:
+
+1.  Clear page title.
+    
+2.  Unique meta description.
+    
+3.  One descriptive H1.
+    
+4.  Short introduction.
+    
+5.  Working calculator above the fold.
+    
+6.  Clear input labels.
+    
+7.  Explanation of the result.
+    
+8.  Formula.
+    
+9.  Worked example.
+    
+10.  Assumptions and limitations.
+    
+11.  Useful related questions.
+    
+12.  Relevant internal links.
+    
+13.  Appropriate authoritative references.
+    
+
+The calculator must remain the main product.
+
+Do not bury the tool underneath unnecessary SEO text.
+
+Avoid generic AI-generated paragraphs.
+
+Write for people who want to complete a calculation.
+
+Use plain, natural language and explain technical concepts.
+
+Content should be accurate, useful and genuinely different from competitor pages.
+
+10\. AEO AND GEO IMPLEMENTATION
+-------------------------------
+
+Prepare pages to provide useful answers to search engines and AI-assisted discovery systems.
+
+Implement:
+
+*   Direct answers to common questions.
+    
+*   Clear definitions.
+    
+*   Formula explanations.
+    
+*   Step-by-step worked examples.
+    
+*   Consistent terminology.
+    
+*   Transparent calculation assumptions.
+    
+*   Reliable source references.
+    
+*   Descriptive headings.
+    
+*   Clear entity and brand information.
+    
+*   Meaningful internal relationships between tools.
+    
+
+For each priority calculator, identify approximately 5–10 genuine user questions.
+
+Answer them accurately and concisely.
+
+Do not write artificial FAQ sections solely for keyword inclusion.
+
+Do not promise ChatGPT, Gemini or Perplexity citations.
+
+Do not invent an AI ranking score.
+
+Prioritize discoverability, crawlability, factual accuracy and content usefulness.
+
+11\. INTERNAL LINKING
+---------------------
+
+Build contextual connections between related calculators.
+
+Examples:
+
+Scientific Calculator:
+
+*   Fraction Calculator.
+    
+*   Percentage Calculator.
+    
+*   Logarithm Calculator.
+    
+*   Trigonometry Calculator.
+    
+
+Mortgage Calculator:
+
+*   Loan Calculator.
+    
+*   Interest Calculator.
+    
+*   Amortization Calculator.
+    
+*   Affordability Calculator.
+    
+
+GPA Calculator:
+
+*   Grade Calculator.
+    
+*   Percentage Calculator.
+    
+*   Average Calculator.
+    
+
+BMI Calculator:
+
+*   Healthy Weight Calculator.
+    
+*   Body Fat Calculator, if available and appropriately implemented.
+    
+
+Currency Converter:
+
+*   Percentage Calculator.
+    
+*   Currency-related guides.
+    
+
+Use descriptive, natural anchor text.
+
+Avoid repetitive exact-match anchors.
+
+Every important calculator should be discoverable through sensible category navigation and contextual internal links.
+
+12\. USER EXPERIENCE AND CALCULATOR QUALITY
+-------------------------------------------
+
+SEO does not compensate for broken calculations.
+
+Test the actual calculator functionality.
+
+Check:
+
+*   Input validation.
+    
+*   Empty inputs.
+    
+*   Zero values.
+    
+*   Negative values where relevant.
+    
+*   Decimal precision.
+    
+*   Very large numbers.
+    
+*   Unit conversions.
+    
+*   Formula accuracy.
+    
+*   Rounding.
+    
+*   Mobile controls.
+    
+*   Keyboard usability.
+    
+*   Accessibility.
+    
+*   Error messages.
+    
+*   Result clarity.
+    
+
+Compare outputs with independently verified calculations.
+
+Do not change formulas simply to make the output look more attractive.
+
+Maintain the existing design system and Total Calculation brand identity.
+
+Do not redesign the entire website without a demonstrated usability or conversion reason.
+
+13\. IMPLEMENTATION RULES
+-------------------------
+
+Work incrementally.
+
+Do not change all 292 pages at once.
+
+Prioritize the eight keyword clusters and critical technical blockers.
+
+For each implementation:
+
+1.  Identify the existing page and its current problems.
+    
+2.  Explain the proposed change in the audit.
+    
+3.  Implement the improvement.
+    
+4.  Run relevant tests.
+    
+5.  Verify the rendered result.
+    
+6.  Check metadata and canonical URLs.
+    
+7.  Check internal links.
+    
+8.  Update the change log.
+    
+
+Use existing architecture and reusable components.
+
+Avoid unnecessary dependencies, paid APIs and backend services.
+
+Prefer lightweight solutions.
+
+Do not introduce new infrastructure unless justified.
+
+Do not delete existing working functionality.
+
+Do not overwrite content without reviewing its current value.
+
+Do not create a second calculator when an existing calculator can be improved.
+
+If a change risks breaking an established feature, isolate it and test it before proceeding.
+
+14\. EXECUTION LOOP
+-------------------
+
+Operate through these stages:
+
+STAGE A — DISCOVERRead all attachments and inspect the repository.
+
+STAGE B — MAPMatch Trends queries to existing pages and identify opportunities.
+
+STAGE C — VALIDATEResearch search intent, competitor coverage, accuracy and technical requirements.
+
+STAGE D — PRIORITIZERank opportunities and select the highest-value improvements.
+
+STAGE E — IMPLEMENTMake actual code and content changes.
+
+STAGE F — TESTRun builds, route checks, functional tests and SEO validation.
+
+STAGE G — REPORTDocument completed work, outstanding problems and evidence.
+
+Do not stop after creating documentation.
+
+Do not implement speculative work merely to show activity.
+
+15\. ONGOING RESEARCH LOOP
+--------------------------
+
+Design the project so the process can be repeated when new Google Trends CSV exports are supplied.
+
+Each new research cycle must:
+
+*   Import new Top and Rising queries.
+    
+*   Deduplicate against previous research.
+    
+*   Identify newly emerging opportunities.
+    
+*   Compare against the existing keyword database.
+    
+*   Check whether the website already addresses the query.
+    
+*   Identify outdated content.
+    
+*   Reassess priorities.
+    
+*   Recommend new improvements.
+    
+*   Record implementation history.
+    
+
+Maintain a historical record so the website does not repeatedly target the same opportunities.
+
+Never overwrite previous research without preserving its history.
+
+16\. DELIVERABLES
+-----------------
+
+At completion, provide:
+
+1.  Actual technical audit.
+    
+2.  Complete calculator inventory.
+    
+3.  Imported Trends query database.
+    
+4.  Keyword opportunity map.
+    
+5.  Competitor gap analysis.
+    
+6.  Eight-cluster content and functionality roadmap.
+    
+7.  Actual code changes.
+    
+8.  Updated content and metadata.
+    
+9.  Internal linking improvements.
+    
+10.  Technical SEO fixes.
+    
+11.  Test results.
+    
+12.  Outstanding issues.
+    
+13.  Next implementation priorities.
+    
+
+Include exact file paths and URLs for every important change.
+
+Separate:
+
+*   Completed.
+    
+*   Partially completed.
+    
+*   Not implemented.
+    
+*   Blocked.
+    
+
+Never report a task as complete merely because a plan or document was created.
+
+17\. SUCCESS CRITERIA
+---------------------
+
+The immediate goal is to make Total Calculation technically sound, useful, crawlable and competitive for its selected search intentions.
+
+Long-term goals:
+
+*   Earn initial Google indexing.
+    
+*   Establish topical relevance.
+    
+*   Capture long-tail search demand.
+    
+*   Build organic impressions and clicks.
+    
+*   Improve rankings progressively.
+    
+*   Compete for top-five positions on selected achievable keywords.
+    
+*   Become a recognizable calculator resource.
+    
+*   Improve visibility across traditional and AI-assisted search.
+    
+
+Do not guarantee rankings or traffic.
+
+Measure actual outcomes when reliable data becomes available.
+
+FINAL INSTRUCTION
+-----------------
+
+Start by reading the attached Google Trends CSV files and auditing the actual repository.
+
+Do not ask me to provide information already available in the repository or attachments.
+
+Do not stop at recommendations.
+
+Work independently, make sensible decisions, preserve existing functionality, and execute the highest-priority improvements.
+
+If an important decision requires my approval, isolate that decision rather than blocking all other work.
+
+Your objective is to make Total Calculation a genuinely better calculator website that deserves to rank — not merely a website with more SEO content.

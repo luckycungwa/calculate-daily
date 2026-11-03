@@ -1,0 +1,295 @@
+slug,name,category,kind,implementation,seo_status,review_status,indexable,in_sitemap,priority,updated_at,faqs,related,workflow_links,formulas,intro_chars,inbound_links,seo_title_override
+percentage-calculator,Percentage Calculator,math,custom,PercentageCalculator,index,reviewed,yes,yes,0.9,2026-08-21,3,3,2,3,345,53,no
+discount-sales-tax-calculator,Discount & Sales Tax Calculator,math,custom,DiscountCalculator,index,reviewed,yes,yes,0.75,2026-08-21,3,3,2,2,206,13,no
+ratio-proportion-calculator,Ratio & Proportion Finder,math,config,2 results,index,reviewed,yes,yes,0.7,2026-08-21,3,3,2,2,243,6,no
+fraction-to-percent-calculator,Fraction to Percent Converter,math,config,2 results,index,reviewed,yes,yes,0.7,2026-08-21,3,3,2,2,232,11,no
+markup-margin-calculator,Markup & Margin Calculator,math,config,3 results,index,reviewed,yes,yes,0.75,2026-08-21,3,3,2,2,224,17,no
+gpa-calculator,GPA Calculator,math,config,1 results,index,reviewed,yes,yes,0.6,2026-08-21,3,3,2,1,224,11,no
+test-score-percentage-calculator,Test Score Percentage Calculator,math,config,2 results,index,reviewed,yes,yes,0.6,2026-08-21,3,3,2,2,195,8,no
+scientific-calculator,Scientific Calculator,math,custom,ScientificCalculator,index,reviewed,yes,yes,0.9,2026-10-31,6,6,2,4,479,12,yes
+scientific-notation-calculator,Scientific Notation Calculator,math,custom,ScientificNotationCalculator,index,reviewed,yes,yes,0.82,2026-10-31,6,4,2,4,397,7,yes
+significant-figures-calculator,Significant Figures Calculator,math,custom,SignificantFiguresCalculator,index,reviewed,yes,yes,0.78,2026-10-31,5,4,2,2,369,9,yes
+standard-deviation-calculator,Standard Deviation Calculator,math,custom,StandardDeviationCalculator,index,reviewed,yes,yes,0.75,2026-08-22,3,3,2,2,192,12,no
+mean-median-mode-calculator,"Mean, Median & Mode Calculator",math,custom,MeanMedianModeCalculator,index,reviewed,yes,yes,0.7,2026-08-22,3,3,2,2,131,9,no
+final-grade-calculator,Final Grade Needed Calculator,math,custom,FinalGradeCalculator,index,reviewed,yes,yes,0.7,2026-08-22,3,3,2,1,173,0,no
+gcd-lcm-calculator,GCD & LCM Calculator,math,config,2 results,index,reviewed,yes,yes,0.8,2026-08-22,3,2,2,1,187,6,no
+factorial-calculator,Factorial Calculator,math,config,1 results,index,reviewed,yes,yes,0.8,2026-08-22,3,2,2,1,215,6,no
+combinations-permutations-calculator,Combinations & Permutations Calculator,math,config,2 results,index,reviewed,yes,yes,0.85,2026-08-22,3,2,2,1,199,4,no
+quadratic-formula-calculator,Quadratic Formula Calculator,math,config,3 results,index,reviewed,yes,yes,0.9,2026-08-22,3,2,2,1,159,8,no
+pythagorean-theorem-calculator,Pythagorean Theorem Calculator,math,config,1 results,index,reviewed,yes,yes,0.85,2026-08-22,3,2,2,1,199,6,no
+circle-area-calculator,Circle Area & Circumference Calculator,math,config,3 results,index,reviewed,yes,yes,0.85,2026-08-22,3,2,2,1,162,2,no
+slope-calculator,Slope Calculator,math,config,2 results,index,reviewed,yes,yes,0.8,2026-08-22,3,2,2,1,141,12,no
+exponent-root-calculator,Exponent & Root Calculator,math,config,2 results,index,reviewed,yes,yes,0.8,2026-10-31,3,4,3,1,154,7,no
+rounding-calculator,Rounding Calculator,math,config,1 results,index,reviewed,yes,yes,0.75,2026-10-31,3,3,3,1,143,7,no
+prime-number-checker,Prime Number Checker,math,config,2 results,index,reviewed,yes,yes,0.8,2026-08-22,3,2,2,1,148,2,no
+absolute-value-calculator,Absolute Value Calculator,math,config,1 results,index,reviewed,yes,yes,0.65,2026-08-22,3,2,2,1,143,0,no
+modulo-calculator,Modulo Calculator,math,config,1 results,index,reviewed,yes,yes,0.75,2026-08-22,3,2,2,1,171,2,no
+exponential-growth-calculator,Exponential Growth Calculator,math,config,1 results,index,reviewed,yes,yes,0.8,2026-08-22,3,2,2,1,180,0,no
+distance-formula-calculator,Distance Formula Calculator,math,config,1 results,index,reviewed,yes,yes,0.8,2026-08-22,3,2,2,1,152,12,no
+fraction-calculator,Fraction Calculator,math,custom,FractionCalculator,index,reviewed,yes,yes,0.8,2026-10-26,4,2,2,3,184,4,no
+graphing-calculator,Graphing Calculator,math,custom,GraphingCalculator,index,reviewed,yes,yes,0.85,2026-10-26,3,3,3,2,253,6,no
+z-score-calculator,Z-Score Calculator,math,custom,ZScoreCalculator,index,reviewed,yes,yes,0.7,2026-10-26,3,2,2,1,175,8,no
+solid-volume-calculator,Volume Calculator,math,custom,SolidVolumeCalculator,index,reviewed,yes,yes,0.7,2026-10-26,3,2,2,5,172,4,no
+density-calculator,Density Calculator,math,custom,DensityCalculator,index,reviewed,yes,yes,0.75,2026-10-26,3,3,2,2,225,4,no
+aps-score-calculator,APS Score Calculator,math,custom,ApsCalculator,index,reviewed,yes,yes,0.85,2026-10-26,4,3,2,3,322,0,no
+confidence-interval-calculator,Confidence Interval Calculator,math,custom,ConfidenceIntervalCalculator,index,reviewed,yes,yes,0.8,2026-10-26,4,4,2,3,246,8,no
+sample-size-calculator,Sample Size Calculator,math,custom,SampleSizeCalculator,index,reviewed,yes,yes,0.8,2026-10-26,4,3,2,2,266,6,no
+variance-calculator,Variance Calculator,math,custom,VarianceCalculator,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,212,0,no
+percentile-calculator,Percentile Calculator,math,custom,PercentileCalculator,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,2,223,2,no
+margin-of-error-calculator,Margin of Error Calculator,math,config,3 results,index,reviewed,yes,yes,0.8,2026-10-26,4,3,3,3,243,0,no
+probability-calculator,Probability Calculator,math,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,4,3,3,3,241,0,no
+normal-distribution-calculator,Normal Distribution Calculator,math,custom,NormalDistributionCalculator,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,259,0,no
+triangle-calculator,Triangle Calculator,math,custom,TriangleCalculator,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,288,4,no
+fraction-to-decimal-calculator,Fraction to Decimal Calculator,math,custom,FractionToDecimalCalculator,index,reviewed,yes,yes,0.8,2026-10-26,4,3,3,3,210,0,no
+compound-interest-calculator,Compound Interest & SIP Calculator,finance,custom,CompoundInterestCalculator,index,reviewed,yes,yes,0.85,2026-10-26,4,3,2,2,239,27,no
+mortgage-calculator,Home Loan EMI & Mortgage Calculator,finance,custom,MortgageCalculator,index,reviewed,yes,yes,0.9,2026-10-30,3,7,3,2,198,28,no
+refinance-calculator,Refinance Calculator,finance,custom,RefinanceCalculator,index,reviewed,yes,yes,0.85,2026-08-21,3,3,2,0,253,8,no
+amortization-schedule-calculator,Loan Prepayment & Amortization Calculator,finance,custom,AmortizationScheduleCalculator,index,reviewed,yes,yes,0.8,2026-10-26,3,3,2,0,205,9,no
+mortgage-affordability-calculator,Mortgage Affordability Calculator,finance,custom,AffordabilityCalculator,index,reviewed,yes,yes,0.95,2026-08-21,3,3,2,0,274,10,no
+rent-vs-buy-calculator,Rent vs Buy Calculator,finance,custom,RentVsBuyCalculator,index,reviewed,yes,yes,0.9,2026-08-21,3,3,2,0,261,2,no
+down-payment-savings-calculator,Down Payment Savings Calculator,finance,custom,DownPaymentSavingsCalculator,index,reviewed,yes,yes,0.8,2026-08-21,3,2,2,0,241,6,no
+loan-payment-calculator,Loan EMI & Monthly Payment Calculator,finance,config,3 results,index,reviewed,yes,yes,0.75,2026-10-26,3,3,2,2,267,19,no
+car-loan-calculator,Car Loan EMI Calculator,finance,custom,CarLoanCalculator,index,reviewed,yes,yes,0.75,2026-10-30,4,3,2,3,193,4,no
+personal-loan-emi-calculator,Personal Loan EMI Calculator,finance,custom,PersonalLoanCalculator,index,reviewed,yes,yes,0.7,2026-10-30,4,3,2,3,221,1,no
+gold-loan-emi-calculator,Gold Loan Eligibility & EMI Calculator,finance,custom,GoldLoanCalculator,index,reviewed,yes,yes,0.65,2026-10-30,4,3,2,4,222,0,no
+simple-interest-calculator,Simple Interest Calculator,finance,config,2 results,index,reviewed,yes,yes,0.6,2026-10-26,3,3,2,2,210,11,no
+hourly-to-annual-salary-calculator,Hourly to Annual Salary,finance,config,3 results,index,reviewed,yes,yes,0.65,2026-08-21,3,3,2,2,208,12,no
+roi-calculator,ROI Calculator,finance,config,2 results,index,reviewed,yes,yes,0.6,2026-08-21,3,3,2,2,212,16,no
+credit-card-interest-calculator,Credit Card Interest Calculator,finance,config,2 results,index,reviewed,yes,yes,0.65,2026-08-21,3,3,2,2,209,6,no
+emergency-fund-calculator,Emergency Fund Calculator,finance,config,2 results,index,reviewed,yes,yes,0.7,2026-08-21,3,2,2,2,243,13,no
+home-equity-calculator,Home Equity Calculator,finance,config,4 results,index,reviewed,yes,yes,0.7,2026-08-21,3,3,2,0,247,4,no
+closing-cost-calculator,Closing Cost Calculator,finance,config,3 results,index,reviewed,yes,yes,0.65,2026-08-21,3,3,2,0,246,10,no
+investment-roi-calculator,Investment ROI Calculator,finance,config,2 results,index,reviewed,yes,yes,0.9,2026-08-22,3,3,2,1,234,11,no
+present-value-calculator,Present Value Calculator,finance,config,1 results,index,reviewed,yes,yes,0.85,2026-08-22,3,3,2,1,296,2,no
+cagr-calculator,CAGR Calculator,finance,config,1 results,index,reviewed,yes,yes,0.9,2026-08-22,3,2,2,1,206,8,no
+debt-to-income-calculator,Debt-to-Income Ratio Calculator,finance,config,1 results,index,reviewed,yes,yes,0.9,2026-10-26,3,2,2,1,210,7,no
+net-worth-calculator,Net Worth Calculator,finance,config,1 results,index,reviewed,yes,yes,0.9,2026-08-22,3,3,2,1,220,4,no
+credit-card-payoff-calculator,Credit Card Payoff Calculator,finance,config,2 results,index,reviewed,yes,yes,0.95,2026-10-24,3,3,2,1,229,8,no
+loan-affordability-calculator,Loan Affordability Calculator,finance,config,2 results,index,reviewed,yes,yes,0.9,2026-10-26,3,3,2,1,222,2,no
+inflation-adjusted-return,Inflation-Adjusted Return Calculator,finance,config,1 results,index,reviewed,yes,yes,0.85,2026-08-22,3,3,2,1,203,8,no
+debt-consolidation-calculator,Debt Consolidation Calculator,finance,config,2 results,index,reviewed,yes,yes,0.85,2026-08-22,3,3,2,1,237,2,no
+retirement-calculator,Retirement Savings Calculator,finance,config,2 results,index,reviewed,yes,yes,0.95,2026-08-22,3,3,2,1,230,5,no
+budget-calculator,50/30/20 Budget Calculator,finance,config,3 results,index,reviewed,yes,yes,0.9,2026-08-22,3,3,2,1,276,28,no
+savings-goal-calculator,Savings Goal Calculator,finance,config,2 results,index,reviewed,yes,yes,0.85,2026-08-22,3,3,2,1,237,10,no
+break-even-calculator,Break-Even Calculator,finance,custom,BreakEvenCalculator,index,reviewed,yes,yes,0.75,2026-10-26,4,2,2,3,215,11,no
+price-per-unit-calculator,Price per Unit Calculator,daily,custom,PricePerUnitCalculator,index,reviewed,yes,yes,0.8,2026-10-26,4,2,2,2,212,4,no
+salary-to-hourly-calculator,Salary to Hourly Calculator,finance,config,4 results,index,reviewed,yes,yes,0.85,2026-10-26,3,2,2,1,232,9,no
+debt-payoff-calculator,Debt Payoff Strategy Calculator,finance,custom,DebtPayoffCalculator,index,reviewed,yes,yes,0.85,2026-10-26,4,3,2,3,287,0,no
+rental-yield-calculator,Rental Yield Calculator,finance,custom,RentalYieldCalculator,index,reviewed,yes,yes,0.8,2026-10-26,3,3,2,3,277,6,no
+commission-calculator,Sales Commission Calculator,finance,custom,CommissionCalculator,index,reviewed,yes,yes,0.75,2026-10-26,3,3,2,3,232,0,no
+take-home-pay-calculator,Take-Home Pay Calculator,finance,config,4 results,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,3,349,10,no
+vat-calculator,VAT Calculator,finance,custom,VatCalculator,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,3,236,0,no
+income-tax-calculator,Income Tax Calculator,finance,config,4 results,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,3,297,4,no
+inflation-calculator,Inflation Calculator,finance,custom,InflationCalculator,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,3,250,2,no
+capital-gains-tax-calculator,Capital Gains Tax Calculator,finance,config,5 results,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,307,2,no
+property-tax-calculator,Property Tax Calculator,finance,config,4 results,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,244,4,no
+roas-calculator,ROAS Calculator,finance,config,4 results,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,303,6,no
+npv-calculator,NPV Calculator,finance,custom,NpvCalculator,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,2,284,4,no
+irr-calculator,IRR Calculator,finance,custom,IrrCalculator,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,2,267,4,no
+conversion-rate-calculator,Conversion Rate Calculator,finance,custom,ConversionRateCalculator,index,reviewed,yes,yes,0.88,2026-10-26,5,3,3,5,411,0,no
+freelance-rate-calculator,Freelance Rate Calculator,finance,custom,FreelanceRateCalculator,index,reviewed,yes,yes,0.88,2026-10-26,5,3,3,5,378,0,no
+overtime-calculator,Overtime Pay Calculator,finance,config,4 results,index,reviewed,yes,yes,0.84,2026-10-26,5,3,3,4,250,0,no
+apr-to-apy-calculator,APR to APY Calculator,finance,config,5 results,index,reviewed,yes,yes,0.82,2026-10-26,5,3,3,4,236,2,no
+payback-period-calculator,Payback Period Calculator,finance,config,4 results,index,reviewed,yes,yes,0.82,2026-10-26,5,3,3,4,234,0,no
+cap-rate-calculator,Cap Rate Calculator,finance,config,4 results,index,reviewed,yes,yes,0.84,2026-10-26,5,3,3,4,261,2,no
+cash-on-cash-return-calculator,Cash-on-Cash Return Calculator,finance,config,5 results,index,reviewed,yes,yes,0.82,2026-10-26,5,3,3,4,256,2,no
+house-flip-calculator,House Flip Calculator,finance,config,5 results,index,reviewed,yes,yes,0.82,2026-10-26,5,3,3,5,276,0,no
+credit-utilization-calculator,Credit Utilization Calculator,finance,config,5 results,index,reviewed,yes,yes,0.84,2026-10-26,5,3,3,4,233,0,no
+severance-pay-calculator,Severance Pay Calculator,finance,config,4 results,index,reviewed,yes,yes,0.78,2026-10-26,5,3,3,4,258,0,no
+dividend-yield-calculator,Dividend Yield Calculator,finance,config,5 results,index,reviewed,yes,yes,0.82,2026-10-26,5,3,3,4,220,0,no
+basis-points-calculator,Basis Points Calculator,finance,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,210,0,no
+customer-acquisition-cost-calculator,Customer Acquisition Cost (CAC) Calculator,finance,config,3 results,index,reviewed,yes,yes,0.78,2026-10-30,4,4,3,2,318,2,no
+customer-lifetime-value-calculator,Customer Lifetime Value (LTV) Calculator,finance,config,5 results,index,reviewed,yes,yes,0.8,2026-10-30,4,4,3,4,295,2,no
+bmi-calculator,BMI & Body Health,health,custom,BmiCalculator,index,reviewed,yes,yes,0.9,2026-08-21,3,3,2,2,209,40,no
+bmr-calculator,BMR & Calorie Baseline,health,config,3 results,index,reviewed,yes,yes,0.8,2026-08-21,3,3,2,2,224,28,no
+calories-burned-calculator,Calories Burned Calculator,health,config,1 results,index,reviewed,yes,yes,0.75,2026-08-21,3,3,2,1,230,22,no
+body-fat-calculator,Body Fat Percentage Calculator,health,config,1 results,index,reviewed,yes,yes,0.7,2026-08-21,3,3,2,2,215,15,no
+ideal-weight-calculator,Ideal Weight Calculator,health,config,2 results,index,reviewed,yes,yes,0.6,2026-08-21,3,3,2,1,196,11,no
+water-intake-calculator,Daily Water Intake Calculator,health,config,2 results,index,reviewed,yes,yes,0.6,2026-08-21,3,3,2,1,194,7,no
+protein-intake-calculator,Protein Intake Calculator,health,config,2 results,index,reviewed,yes,yes,0.65,2026-08-21,3,3,2,2,208,19,no
+target-heart-rate-calculator,Target Heart Rate Calculator,health,config,3 results,index,reviewed,yes,yes,0.6,2026-08-21,3,3,2,2,226,10,no
+dog-age-calculator,Dog Age Calculator,health,config,1 results,index,reviewed,yes,yes,0.55,2026-08-21,3,3,2,1,218,2,no
+tdee-calculator,TDEE & Calorie Calculator,health,custom,TdeeCalculator,index,reviewed,yes,yes,0.85,2026-08-22,3,3,2,2,187,15,no
+sleep-cycle-calculator,Sleep Cycle Calculator,health,custom,SleepCycleCalculator,index,reviewed,yes,yes,0.7,2026-08-22,3,3,2,1,165,8,no
+steps-to-miles-calculator,Steps to Miles & Calories,health,custom,StepsToMilesCalculator,index,reviewed,yes,yes,0.7,2026-08-22,3,3,2,2,158,0,no
+waist-to-hip-ratio-calculator,Waist-to-Hip Ratio Calculator,health,config,1 results,index,reviewed,yes,yes,0.75,2026-08-22,3,2,2,1,246,3,no
+waist-to-height-ratio-calculator,Waist-to-Height Ratio Calculator,health,config,1 results,index,reviewed,yes,yes,0.75,2026-08-22,3,3,2,1,209,3,no
+blood-pressure-calculator,Blood Pressure Category Calculator,health,config,1 results,index,reviewed,yes,yes,0.85,2026-08-22,3,2,2,1,233,6,no
+a1c-calculator,A1C to Blood Sugar Converter,health,config,2 results,index,reviewed,yes,yes,0.85,2026-08-22,3,2,2,1,230,2,no
+lean-body-mass-calculator,Lean Body Mass Calculator,health,config,2 results,index,reviewed,yes,yes,0.7,2026-08-22,3,3,2,1,252,3,no
+calorie-deficit-calculator,Calorie Deficit Calculator,health,config,2 results,index,reviewed,yes,yes,0.8,2026-08-22,3,2,2,1,223,2,no
+body-surface-area-calculator,Body Surface Area Calculator,health,config,1 results,index,reviewed,yes,yes,0.65,2026-08-22,3,2,2,1,196,0,no
+vo2-max-calculator,VO2 Max Estimator,health,config,1 results,index,reviewed,yes,yes,0.7,2026-08-22,3,2,2,1,161,0,no
+carb-intake-calculator,Carb Intake Calculator,health,config,2 results,index,reviewed,yes,yes,0.75,2026-08-22,3,2,2,1,207,0,no
+fat-intake-calculator,Daily Fat Intake Calculator,health,config,2 results,index,reviewed,yes,yes,0.7,2026-08-22,3,2,2,1,221,0,no
+macro-calculator,Complete Macro Calculator,health,config,3 results,index,reviewed,yes,yes,0.8,2026-08-22,3,2,2,1,165,0,no
+sleep-debt-calculator,Sleep Debt Calculator,health,config,2 results,index,reviewed,yes,yes,0.75,2026-10-26,3,2,2,1,192,2,no
+body-frame-size-calculator,Body Frame Size Calculator,health,config,1 results,index,reviewed,yes,yes,0.7,2026-08-22,3,2,2,1,202,1,no
+metabolic-age-calculator,Metabolic Age Calculator,health,config,1 results,index,reviewed,yes,yes,0.7,2026-08-22,3,2,2,1,199,0,no
+caffeine-limit-calculator,Caffeine Intake Limit Calculator,health,config,1 results,index,reviewed,yes,yes,0.7,2026-08-22,3,2,2,1,219,2,no
+body-type-calculator,Body Type Calculator,health,config,2 results,index,reviewed,yes,yes,0.65,2026-08-22,3,3,2,1,168,0,no
+ideal-body-fat-calculator,Ideal Body Fat Percentage Calculator,health,config,2 results,index,reviewed,yes,yes,0.65,2026-08-22,3,3,2,1,204,0,no
+maintain-weight-calculator,Weight Maintenance Calories Calculator,health,config,1 results,index,reviewed,yes,yes,0.75,2026-08-22,3,2,2,1,222,0,no
+running-calories-calculator,Running Calorie Calculator,health,config,1 results,index,reviewed,yes,yes,0.7,2026-08-22,3,2,2,1,216,2,no
+due-date-calculator,Pregnancy Due Date Calculator,health,custom,DueDateCalculator,index,reviewed,yes,yes,0.9,2026-10-26,4,3,2,3,285,6,no
+ovulation-calculator,Ovulation & Fertile Window Calculator,health,custom,OvulationCalculator,index,reviewed,yes,yes,0.9,2026-10-26,4,3,2,3,263,6,no
+conception-calculator,Conception Date Calculator,health,custom,ConceptionCalculator,index,reviewed,yes,yes,0.85,2026-10-26,4,3,2,3,253,6,no
+pregnancy-week-calculator,Pregnancy Week Calculator,health,custom,PregnancyWeekCalculator,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,3,226,0,no
+ldl-cholesterol-calculator,LDL Cholesterol Calculator,health,config,4 results,index,reviewed,yes,yes,0.84,2026-10-26,5,3,3,4,253,0,no
+mean-arterial-pressure-calculator,Mean Arterial Pressure Calculator,health,config,3 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,3,261,0,no
+pack-years-calculator,Pack Years Calculator,health,config,4 results,index,reviewed,yes,yes,0.82,2026-10-26,5,3,3,3,225,0,no
+oz-to-cups-calculator,Oz to Cups Converter,conversion,converter,volume,index,reviewed,yes,yes,0.8,2026-08-21,3,3,2,1,206,5,no
+cups-to-grams-calculator,Cups to Grams Converter,conversion,config,1 results,index,reviewed,yes,yes,0.75,2026-08-21,3,3,2,1,225,12,no
+currency-converter,Currency Converter,conversion,custom,CurrencyConverter,index,reviewed,yes,yes,0.9,2026-08-21,4,3,2,1,181,4,no
+temperature-converter,Temperature Converter,conversion,converter,temperature,index,reviewed,yes,yes,0.7,2026-08-21,3,3,2,3,196,10,no
+length-converter,Length Converter,conversion,converter,length,index,reviewed,yes,yes,0.8,2026-08-21,3,3,2,1,177,18,no
+weight-converter,Weight Converter,conversion,converter,weight,index,reviewed,yes,yes,0.75,2026-08-21,3,3,2,1,192,12,no
+speed-converter,Speed Converter,conversion,converter,speed,index,reviewed,yes,yes,0.7,2026-08-21,3,3,2,1,192,13,no
+area-converter,Area Converter,conversion,converter,area,index,reviewed,yes,yes,0.7,2026-08-21,3,3,2,1,220,6,no
+volume-converter,Volume Converter,conversion,converter,volume,index,reviewed,yes,yes,0.7,2026-08-21,3,3,2,1,179,21,no
+data-storage-converter,Data Storage Converter,conversion,converter,digital,index,reviewed,yes,yes,0.65,2026-08-21,3,3,2,1,201,12,no
+pounds-to-kg-calculator,Pounds to Kilograms Converter,conversion,converter,weight,index,reviewed,yes,yes,0.95,2026-08-22,4,3,2,1,356,2,no
+kg-to-lbs-calculator,Kilograms to Pounds Converter,conversion,converter,weight,index,reviewed,yes,yes,0.9,2026-08-22,3,3,2,1,331,1,no
+celsius-to-fahrenheit-calculator,Celsius to Fahrenheit Converter,conversion,converter,temperature,index,reviewed,yes,yes,0.95,2026-08-22,4,2,2,1,312,2,no
+fahrenheit-to-celsius-calculator,Fahrenheit to Celsius Converter,conversion,converter,temperature,index,reviewed,yes,yes,0.9,2026-08-22,3,2,2,1,325,2,no
+inches-to-cm-calculator,Inches to Centimeters Converter,conversion,converter,length,index,reviewed,yes,yes,0.95,2026-08-22,3,3,2,1,329,3,no
+cm-to-inches-calculator,Centimeters to Inches Converter,conversion,converter,length,index,reviewed,yes,yes,0.9,2026-08-22,3,3,2,1,265,2,no
+feet-to-meters-calculator,Feet to Meters Converter,conversion,converter,length,index,reviewed,yes,yes,0.95,2026-08-22,3,3,2,1,299,5,no
+meters-to-feet-calculator,Meters to Feet Converter,conversion,converter,length,index,reviewed,yes,yes,0.9,2026-08-22,3,2,2,1,266,2,no
+miles-to-km-calculator,Miles to Kilometers Converter,conversion,converter,length,index,reviewed,yes,yes,0.95,2026-08-22,3,2,2,1,306,2,no
+km-to-miles-calculator,Kilometers to Miles Converter,conversion,converter,length,index,reviewed,yes,yes,0.9,2026-08-22,3,3,2,1,272,2,no
+gallons-to-liters-calculator,Gallons to Liters Converter,conversion,converter,volume,index,reviewed,yes,yes,0.95,2026-08-22,3,2,2,1,307,6,no
+liters-to-gallons-calculator,Liters to Gallons Converter,conversion,converter,volume,index,reviewed,yes,yes,0.9,2026-08-22,3,2,2,1,283,2,no
+ounces-to-grams-calculator,Ounces to Grams Converter,conversion,converter,weight,index,reviewed,yes,yes,0.9,2026-08-22,3,3,2,1,286,2,no
+grams-to-ounces-calculator,Grams to Ounces Converter,conversion,converter,weight,index,reviewed,yes,yes,0.85,2026-08-22,3,2,2,1,297,2,no
+cups-to-ml-calculator,Cups to Milliliters Converter,conversion,converter,volume,index,reviewed,yes,yes,0.9,2026-08-22,3,2,2,1,304,1,no
+tablespoons-to-teaspoons-calculator,Tablespoons to Teaspoons Converter,conversion,converter,volume,index,reviewed,yes,yes,0.85,2026-08-22,3,3,2,1,288,0,no
+pints-to-quarts-calculator,Pints to Quarts Converter,conversion,converter,volume,index,reviewed,yes,yes,0.8,2026-08-22,3,2,2,1,246,0,no
+acres-to-square-feet-calculator,Acres to Square Feet Converter,conversion,converter,area,index,reviewed,yes,yes,0.9,2026-08-22,3,3,2,1,284,2,no
+square-feet-to-acres-calculator,Square Feet to Acres Converter,conversion,converter,area,index,reviewed,yes,yes,0.85,2026-08-22,3,2,2,1,267,2,no
+stone-to-pounds-calculator,Stone to Pounds Converter,conversion,converter,weight,index,reviewed,yes,yes,0.85,2026-08-22,3,3,2,1,252,2,no
+pounds-to-stone-calculator,Pounds to Stone Converter,conversion,converter,weight,index,reviewed,yes,yes,0.8,2026-08-22,3,2,2,1,273,2,no
+mb-to-gb-calculator,Megabytes to Gigabytes Converter,conversion,converter,digital,index,reviewed,yes,yes,0.9,2026-08-22,3,2,2,1,275,2,no
+gb-to-tb-calculator,Gigabytes to Terabytes Converter,conversion,converter,digital,index,reviewed,yes,yes,0.85,2026-08-22,3,2,2,1,286,2,no
+hours-to-minutes-calculator,Hours to Minutes Converter,conversion,converter,time-conv,index,reviewed,yes,yes,0.9,2026-08-22,3,2,2,1,247,2,no
+days-to-hours-calculator,Days to Hours Converter,conversion,converter,time-conv,index,reviewed,yes,yes,0.85,2026-08-22,3,2,2,1,231,4,no
+weeks-to-days-calculator,Weeks to Days Converter,conversion,converter,time-conv,index,reviewed,yes,yes,0.85,2026-08-22,3,2,2,1,242,8,no
+months-to-days-calculator,Months to Days Converter,conversion,converter,time-conv,index,reviewed,yes,yes,0.85,2026-08-22,3,2,2,1,234,4,no
+years-to-days-calculator,Years to Days Converter,conversion,converter,time-conv,index,reviewed,yes,yes,0.9,2026-08-22,3,2,2,1,195,2,no
+mph-to-kph-calculator,MPH to KPH Converter,conversion,converter,speed,index,reviewed,yes,yes,0.9,2026-08-22,3,2,2,1,194,1,no
+psi-to-bar-calculator,PSI to Bar Converter,conversion,converter,pressure,index,reviewed,yes,yes,0.85,2026-08-22,3,2,2,1,233,0,no
+work-hours-calculator,Work Hours Calculator,time,config,2 results,index,reviewed,yes,yes,0.7,2026-10-26,3,3,2,1,199,11,no
+decimal-hours-calculator,Decimal Hours Converter,time,config,2 results,index,reviewed,yes,yes,0.65,2026-08-21,3,3,2,1,170,5,no
+days-to-weeks-calculator,Days to Weeks & Months,time,config,3 results,index,reviewed,yes,yes,0.6,2026-08-21,3,2,2,2,200,6,no
+age-calculator,Age Calculator,time,custom,AgeCalculator,index,reviewed,yes,yes,0.85,2026-08-22,3,3,2,1,162,5,no
+date-difference-calculator,Date Difference Calculator,time,custom,DateDifferenceCalculator,index,reviewed,yes,yes,0.8,2026-08-22,3,3,2,1,162,10,no
+days-until-calculator,Days Until Calculator,time,custom,DaysUntilCalculator,index,reviewed,yes,yes,0.75,2026-08-22,3,3,2,1,142,7,no
+time-adder,Time Adder,time,config,1 results,index,reviewed,yes,yes,0.8,2026-08-22,3,2,2,1,134,0,no
+time-zone-converter,Time Zone Converter,time,config,1 results,index,reviewed,yes,yes,0.85,2026-10-26,3,2,2,1,132,4,no
+seconds-to-time-calculator,Seconds to Time Converter,time,config,3 results,index,reviewed,yes,yes,0.7,2026-08-22,3,2,2,1,161,2,no
+minutes-to-hours-calculator,Minutes to Hours Calculator,time,config,2 results,index,reviewed,yes,yes,0.7,2026-08-22,3,2,2,1,100,2,no
+hours-until-calculator,Hours Until Calculator,time,config,2 results,index,reviewed,yes,yes,0.7,2026-10-26,3,2,2,1,155,2,no
+weekly-hours-calculator,Weekly Hours Calculator,time,config,2 results,index,reviewed,yes,yes,0.75,2026-08-22,3,2,2,1,137,14,no
+sleep-hours-calculator,Sleep Hours Calculator,time,config,2 results,index,reviewed,yes,yes,0.75,2026-10-26,3,2,2,1,99,0,no
+add-days-to-date,Add Days to Date Calculator,time,config,2 results,index,reviewed,yes,yes,0.75,2026-08-22,3,2,2,1,160,0,no
+work-hours-per-year-calculator,Work Hours Per Year Calculator,time,config,2 results,index,reviewed,yes,yes,0.7,2026-08-22,3,1,2,1,142,2,no
+time-card-calculator,Weekly Timesheet Calculator,time,custom,TimesheetCalculator,index,reviewed,yes,yes,0.8,2026-10-26,4,3,2,2,243,2,no
+unix-timestamp-converter,Unix Timestamp Converter,time,custom,UnixTimestampCalculator,index,reviewed,yes,yes,0.8,2026-10-26,3,3,2,2,210,0,no
+room-area-calculator,Room Area Calculator,construction,config,2 results,index,reviewed,yes,yes,0.7,2026-08-21,3,3,2,1,203,37,no
+room-volume-calculator,Room Volume Calculator,construction,config,2 results,index,reviewed,yes,yes,0.6,2026-08-21,3,3,2,1,186,13,no
+concrete-calculator,Concrete Calculator,construction,config,3 results,index,reviewed,yes,yes,0.7,2026-08-21,3,3,2,2,200,18,no
+paint-calculator,Paint Calculator,construction,config,2 results,index,reviewed,yes,yes,0.65,2026-08-21,3,3,2,1,205,16,no
+flooring-calculator,Flooring Calculator,construction,config,2 results,index,reviewed,yes,yes,0.65,2026-08-21,3,3,2,1,211,10,no
+lumber-calculator,Lumber & Board Foot Calculator,construction,config,2 results,index,reviewed,yes,yes,0.6,2026-08-21,3,3,2,1,189,13,no
+tile-calculator,Tile Calculator,construction,custom,TileCalculator,index,reviewed,yes,yes,0.8,2026-10-26,3,3,2,3,261,2,no
+landscape-material-calculator,Landscape Material Calculator,construction,custom,LandscapeMaterialCalculator,index,reviewed,yes,yes,0.8,2026-10-26,3,3,2,3,236,10,no
+roofing-calculator,Roofing Calculator,construction,custom,RoofingCalculator,index,reviewed,yes,yes,0.8,2026-10-26,3,3,2,3,215,8,no
+roof-pitch-calculator,Roof Pitch Calculator,construction,config,4 results,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,231,2,no
+drywall-calculator,Drywall Calculator,construction,config,4 results,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,213,4,no
+siding-calculator,Siding Calculator,construction,config,3 results,index,reviewed,yes,yes,0.8,2026-10-26,4,3,3,3,187,2,no
+gravel-calculator,Gravel Calculator,construction,config,4 results,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,3,216,10,no
+topsoil-calculator,Topsoil Calculator,construction,config,4 results,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,204,9,no
+mulch-calculator,Mulch Calculator,construction,config,4 results,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,3,212,6,no
+fence-calculator,Fence Calculator,construction,config,5 results,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,226,4,no
+deck-calculator,Deck Calculator,construction,config,6 results,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,218,4,no
+stair-calculator,Stair Calculator,construction,config,6 results,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,4,232,0,no
+btu-calculator,BTU Calculator,construction,custom,BtuCalculator,index,reviewed,yes,yes,0.88,2026-10-26,5,3,3,6,372,8,no
+insulation-calculator,Insulation Calculator,construction,custom,InsulationCalculator,index,reviewed,yes,yes,0.88,2026-10-26,5,3,3,5,303,4,no
+gutter-calculator,Gutter Calculator,construction,config,5 results,index,reviewed,yes,yes,0.82,2026-10-26,5,3,3,4,285,0,no
+wallpaper-calculator,Wallpaper Calculator,construction,config,5 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,272,0,no
+epoxy-resin-calculator,Epoxy Resin Calculator,construction,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,290,0,no
+sod-calculator,Sod Calculator,construction,config,4 results,index,reviewed,yes,yes,0.82,2026-10-26,5,3,3,4,252,0,no
+paver-calculator,Paver Calculator,construction,config,4 results,index,reviewed,yes,yes,0.84,2026-10-26,5,3,3,4,235,0,no
+rainwater-harvest-calculator,Rainwater Harvesting Calculator,construction,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,286,4,no
+irrigation-calculator,Irrigation Water Calculator,construction,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,271,2,no
+livestock-feed-calculator,Livestock Feed Calculator,construction,config,5 results,index,reviewed,yes,yes,0.78,2026-10-26,5,3,3,4,267,0,no
+firewood-calculator,Firewood Calculator,construction,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,237,0,no
+solar-panel-calculator,Solar Panel Calculator,construction,config,5 results,index,reviewed,yes,yes,0.84,2026-10-26,5,3,3,4,259,2,no
+generator-size-calculator,Generator Size Calculator,construction,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,277,2,no
+rebar-calculator,Rebar Calculator,construction,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,272,2,no
+post-hole-concrete-calculator,Post Hole Concrete Calculator,construction,config,4 results,index,reviewed,yes,yes,0.82,2026-10-26,5,3,3,4,256,2,no
+recipe-scaling-calculator,Recipe Scaler,food,config,1 results,index,reviewed,yes,yes,0.7,2026-08-22,3,3,2,1,210,28,no
+meal-cost-calculator,Cost per Meal Calculator,food,config,1 results,index,reviewed,yes,yes,0.65,2026-08-21,3,2,2,1,206,10,no
+running-pace-calculator,Running Pace Calculator,fitness,config,2 results,index,reviewed,yes,yes,0.65,2026-08-21,3,3,2,1,197,16,no
+one-rep-max-calculator,One Rep Max Calculator,fitness,config,3 results,index,reviewed,yes,yes,0.6,2026-08-22,3,3,2,1,192,5,no
+ip-subnet-calculator,IP Subnet Calculator,tech,custom,IpSubnetCalculator,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,280,2,no
+aspect-ratio-calculator,Aspect Ratio Calculator,tech,config,4 results,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,210,12,no
+pixels-per-inch-calculator,Pixels Per Inch Calculator,tech,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,4,3,3,3,253,12,no
+download-time-calculator,Download Time Calculator,tech,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,4,3,3,2,193,11,no
+binary-to-decimal-calculator,Binary to Decimal Calculator,tech,custom,NumberBaseConverter,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,2,264,8,no
+password-entropy-calculator,Password Entropy Calculator,tech,custom,PasswordEntropyCalculator,index,reviewed,yes,yes,0.8,2026-10-26,4,3,3,2,257,6,no
+url-encoder-decoder,URL Encoder / Decoder,tech,custom,UrlEncoderDecoder,index,reviewed,yes,yes,0.8,2026-10-26,4,3,3,2,221,2,no
+hex-to-rgb-converter,Hex to RGB Converter,tech,custom,ColorConverter,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,223,6,no
+contrast-ratio-calculator,Contrast Ratio Calculator,tech,custom,ContrastRatioCalculator,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,2,271,6,no
+css-clamp-calculator,CSS Clamp Calculator,tech,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,272,2,no
+rem-to-px-calculator,REM to PX Calculator,tech,config,3 results,index,reviewed,yes,yes,0.78,2026-10-26,5,3,3,3,242,2,no
+video-file-size-calculator,Video File Size Calculator,tech,config,4 results,index,reviewed,yes,yes,0.82,2026-10-26,5,3,3,4,233,0,no
+molarity-calculator,Molarity Calculator,science,config,4 results,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,3,265,10,no
+molecular-weight-calculator,Molecular Weight Calculator,science,custom,MolecularWeightCalculator,index,reviewed,yes,yes,0.9,2026-10-31,4,4,4,3,259,8,no
+dilution-calculator,Dilution Calculator,science,config,4 results,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,3,254,6,no
+ph-calculator,pH Calculator,science,custom,PhCalculator,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,3,214,2,no
+half-life-calculator,Half-Life Calculator,science,config,4 results,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,245,0,no
+ohms-law-calculator,Ohm's Law Calculator,science,custom,OhmsLawCalculator,index,reviewed,yes,yes,0.95,2026-10-26,4,3,3,3,246,8,no
+voltage-drop-calculator,Voltage Drop Calculator,science,config,4 results,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,4,235,6,no
+wire-size-calculator,Wire Size Calculator,science,config,4 results,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,3,231,6,no
+resistor-color-code-calculator,Resistor Color Code Calculator,science,custom,ResistorColorCodeCalculator,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,3,240,1,no
+specific-heat-calculator,Specific Heat Calculator,science,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,217,0,no
+ideal-gas-law-calculator,Ideal Gas Law Calculator,science,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,226,0,no
+projectile-motion-calculator,Projectile Motion Calculator,science,config,5 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,256,0,no
+ingredient-weight-converter,Ingredient Weight Converter,food,custom,IngredientWeightConverter,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,4,282,8,no
+butter-converter,Butter Converter,food,custom,ButterConverter,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,4,260,2,no
+flour-converter,Flour Converter,food,custom,FlourConverter,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,4,259,2,no
+oven-temperature-converter,Oven Temperature Converter,food,custom,OvenTemperatureConverter,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,4,328,4,no
+pizza-dough-calculator,Pizza Dough Calculator,food,config,6 results,index,reviewed,yes,yes,0.95,2026-10-26,4,3,3,4,277,4,no
+tire-size-calculator,Tire Size Calculator,misc,config,6 results,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,4,332,0,no
+car-depreciation-calculator,Car Depreciation Calculator,misc,config,6 results,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,4,282,2,no
+speed-distance-time-calculator,Speed Distance Time Calculator,misc,custom,SpeedDistanceTimeCalculator,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,4,246,4,no
+ev-charging-cost-calculator,EV Charging Cost Calculator,misc,custom,EvChargingCostCalculator,index,reviewed,yes,yes,0.88,2026-10-26,5,3,3,5,313,2,no
+trip-cost-calculator,Trip Cost Calculator,misc,custom,TripCostCalculator,index,reviewed,yes,yes,0.88,2026-10-26,5,3,3,6,284,4,no
+brine-calculator,Brine Calculator,food,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,238,0,no
+cake-pan-conversion-calculator,Cake Pan Conversion Calculator,food,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,246,0,no
+race-time-predictor,Race Time Predictor,fitness,custom,RaceTimePredictor,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,3,279,2,no
+golf-handicap-calculator,Golf Handicap Calculator,fitness,custom,GolfHandicapCalculator,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,3,268,0,no
+pet-calorie-calculator,Pet Calorie Calculator,health,custom,PetCalorieCalculator,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,3,274,0,no
+aquarium-volume-calculator,Aquarium Volume Calculator,misc,config,5 results,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,4,272,2,no
+fertilizer-calculator,Fertilizer Calculator,misc,config,5 results,index,reviewed,yes,yes,0.85,2026-10-26,4,3,3,4,260,0,no
+pond-volume-calculator,Pond Volume Calculator,misc,config,4 results,index,reviewed,yes,yes,0.8,2026-10-26,4,3,3,4,290,2,no
+salary-increase-calculator,Salary Increase Calculator,finance,config,5 results,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,4,233,2,no
+moving-cost-calculator,Moving Cost Calculator,misc,config,5 results,index,reviewed,yes,yes,0.8,2026-10-26,4,3,3,4,231,2,no
+swim-pace-calculator,Swim Pace Calculator,fitness,config,5 results,index,reviewed,yes,yes,0.8,2026-10-26,5,3,3,4,232,0,no
+ai-token-cost-calculator,AI Token Cost Calculator,tech,config,6 results,index,reviewed,yes,yes,0.9,2026-10-26,4,3,3,4,280,0,no
+tip-calculator,Tip & Bill Splitter,daily,custom,TipCalculator,index,reviewed,yes,yes,0.9,2026-08-22,3,3,2,2,179,2,no
+fuel-cost-calculator,Fuel Cost Calculator,misc,config,2 results,index,reviewed,yes,yes,0.7,2026-08-22,3,3,2,2,188,32,no
+electricity-cost-calculator,Electricity Cost Calculator,misc,config,2 results,index,reviewed,yes,yes,0.7,2026-08-22,3,3,2,2,184,12,no
+parking-cost-calculator,Parking Cost Calculator,daily,config,2 results,index,reviewed,yes,yes,0.7,2026-08-22,3,2,2,1,133,0,no
+pet-food-calculator,Pet Food Cost Calculator,daily,config,2 results,index,reviewed,yes,yes,0.65,2026-08-22,3,2,2,1,133,4,no
+screen-time-cost-calculator,Screen Time Cost Calculator,daily,config,3 results,index,reviewed,yes,yes,0.7,2026-08-22,3,2,2,1,143,1,no
+subscription-total-calculator,Subscription Total Calculator,daily,config,2 results,index,reviewed,yes,yes,0.8,2026-08-22,3,2,2,1,141,0,no
+alcohol-units-calculator,Alcohol Units Calculator,daily,config,2 results,index,reviewed,yes,yes,0.7,2026-08-22,3,2,2,1,125,2,no
+coffee-ratio-calculator,Coffee Ratio Calculator,daily,config,2 results,index,reviewed,yes,yes,0.65,2026-08-22,3,2,2,1,162,2,no
+boiling-point-calculator,Boiling Point Altitude Calculator,daily,config,2 results,index,reviewed,yes,yes,0.65,2026-08-22,3,2,2,1,176,2,no
+daily-commute-cost-calculator,Daily Commute Cost Calculator,daily,config,3 results,index,reviewed,yes,yes,0.75,2026-08-22,3,2,2,1,142,2,no
+south-africa-fuel-calculator,South Africa Fuel Calculator,daily,custom,SaFuelCalculator,index,reviewed,yes,yes,0.9,2026-10-30,4,3,3,2,450,0,no
+gas-mileage-calculator,Gas Mileage & Fuel Economy Calculator,daily,custom,FuelEconomyCalculator,index,reviewed,yes,yes,0.8,2026-10-26,3,3,2,3,260,4,no
+word-counter,Word & Character Counter,daily,custom,WordCounterCalculator,index,reviewed,yes,yes,0.8,2026-10-26,3,3,2,2,238,0,no
+dimensional-weight-calculator,Dimensional Weight Calculator,daily,custom,DimensionalWeightCalculator,index,reviewed,yes,yes,0.86,2026-10-26,5,3,3,4,318,0,no

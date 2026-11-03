@@ -7,6 +7,7 @@ import { homeRenovationGuide } from './individual/home-renovation';
 import { cookingWeightGuide } from './individual/cooking-weight';
 import { percentageGuide } from './individual/percentages';
 import { datePlanningGuide } from './individual/date-planning';
+import { scientificCalculatorGuide } from './individual/scientific-calculator';
 
 export const GUIDE_REGISTRY: Guide[] = [
   {
@@ -161,6 +162,7 @@ export const GUIDE_REGISTRY: Guide[] = [
   cookingWeightGuide,
   percentageGuide,
   datePlanningGuide,
+  scientificCalculatorGuide,
 ];
 
 export function getGuideBySlug(slug: string): Guide | undefined {

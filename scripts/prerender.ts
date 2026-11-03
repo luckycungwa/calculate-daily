@@ -8,6 +8,7 @@ import { parsePath } from '../src/lib/router';
 import { PAGE_SOURCES } from '../src/lib/pageRegistry';
 import { BRAND_NAME, PUBLISHER } from '../src/lib/brand';
 import { withBrand, DEFAULT_TITLE } from '../src/lib/pageTitle';
+import { buildDescription, DESCRIPTION_MAX } from '../src/lib/metaDescription';
 import { CATALOG_CHUNK_BY_SLUG } from '../src/data/catalogChunks.generated';
 
 const distDir = path.join(process.cwd(), 'dist');
@@ -46,11 +47,44 @@ const esc = (s: string) =>
 const isIndexable = (page: any) =>
   page.seo?.status === 'index' && page.seo?.reviewStatus === 'reviewed';
 
-function setMeta(html: string, pattern: RegExp, replacement: string): string {
-  if (pattern.test(html)) {
-    return html.replace(pattern, replacement);
+const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+/**
+ * Rewrites the `content` of an existing `<meta>` tag, addressed by `name` or
+ * `property`.
+ *
+ * The previous implementation matched each tag with a literal single-line regex
+ * (`<meta name="description" content="…" />`). `index.html` formats those tags
+ * across two lines, so no pattern ever matched and **every** prerendered page
+ * silently shipped the home page's description. Matching the whole tag with a
+ * whitespace-tolerant pattern fixes that; throwing when the tag is absent stops
+ * it recurring as a silent failure.
+ */
+function setMetaContent(
+  html: string,
+  attribute: 'name' | 'property',
+  key: string,
+  content: string
+): string {
+  // `(?:\s)${attribute}=` (not `<meta\s+[^>]*\sname=`) so a tag whose attribute
+  // follows the element name directly on the same spacing still matches, and so
+  // `property="og:name"` cannot be mistaken for `name="og:name"`.
+  const tagPattern = new RegExp(
+    `<meta\\b[^>]*?(?:\\s)${attribute}="${escapeRegExp(key)}"[^>]*>`,
+    'i'
+  );
+  const tag = html.match(tagPattern);
+  if (!tag) {
+    throw new Error(
+      `index.html is missing the <meta ${attribute}="${key}"> tag. ` +
+        'Prerendering cannot set this page metadata, and emitting the shell default would be wrong.'
+    );
   }
-  return html;
+  if (!/\bcontent="[^"]*"/i.test(tag[0])) {
+    throw new Error(`<meta ${attribute}="${key}"> has no content attribute to replace.`);
+  }
+  const updated = tag[0].replace(/\bcontent="[^"]*"/i, () => `content="${esc(content)}"`);
+  return html.replace(tagPattern, () => updated);
 }
 
 function buildShell(
@@ -63,48 +97,25 @@ function buildShell(
   noindex = false,
   preloads: string[] = []
 ): string {
-  let html = shell.replace(/<meta name="robots" content="[^"]*" \/>/g, '');
+  // Strip the shell's default robots tag (any formatting) before deciding what
+  // this page should emit; buildShell adds the correct one back below.
+  // The `(?:\s)name=` form is deliberate: `\s+[^>]*\sname=` requires a second run
+  // of whitespace that a tag like `<meta name="robots" …>` does not have, so the
+  // shell's `index, follow` tag would survive alongside the page's `noindex`.
+  let html = shell.replace(/<meta\b[^>]*?(?:\s)name="robots"[^>]*>\s*/gi, '');
 
-  html = setMeta(
-    html,
-    /<title>[^<]*<\/title>/,
-    `<title>${esc(title)}</title>`
-  );
-  html = setMeta(
-    html,
-    /<meta name="description" content="[^"]*" \/>/,
-    `<meta name="description" content="${esc(description)}" />`
-  );
-  html = setMeta(
-    html,
-    /<meta property="og:title" content="[^"]*" \/>/,
-    `<meta property="og:title" content="${esc(title)}" />`
-  );
-  html = setMeta(
-    html,
-    /<meta property="og:description" content="[^"]*" \/>/,
-    `<meta property="og:description" content="${esc(description)}" />`
-  );
-  html = setMeta(
-    html,
-    /<meta name="twitter:title" content="[^"]*" \/>/,
-    `<meta name="twitter:title" content="${esc(title)}" />`
-  );
-  html = setMeta(
-    html,
-    /<meta name="twitter:description" content="[^"]*" \/>/,
-    `<meta name="twitter:description" content="${esc(description)}" />`
-  );
-  html = setMeta(
-    html,
-    /<meta property="og:image" content="[^"]*" \/>/,
-    `<meta property="og:image" content="${SITE_URL}/og-default.png" />`
-  );
-  html = setMeta(
-    html,
-    /<meta name="twitter:image" content="[^"]*" \/>/,
-    `<meta name="twitter:image" content="${SITE_URL}/og-default.png" />`
-  );
+  if (!/<title>[^<]*<\/title>/.test(html)) {
+    throw new Error('index.html has no <title> element to replace.');
+  }
+  html = html.replace(/<title>[^<]*<\/title>/, () => `<title>${esc(title)}</title>`);
+
+  html = setMetaContent(html, 'name', 'description', description);
+  html = setMetaContent(html, 'property', 'og:title', title);
+  html = setMetaContent(html, 'property', 'og:description', description);
+  html = setMetaContent(html, 'name', 'twitter:title', title);
+  html = setMetaContent(html, 'name', 'twitter:description', description);
+  html = setMetaContent(html, 'property', 'og:image', `${SITE_URL}/og-default.png`);
+  html = setMetaContent(html, 'name', 'twitter:image', `${SITE_URL}/og-default.png`);
 
   const robotsMeta = noindex
     ? `<meta name="robots" content="noindex"${IS_PREVIEW ? ' data-preview="true"' : ''} />`
@@ -171,6 +182,19 @@ async function main() {
 
   const shell = fs.readFileSync(path.join(distDir, 'index.html'), 'utf8');
 
+  // The shell must be the fresh Vite build of index.html. Running this script a
+  // second time against an existing dist/ feeds a already-prerendered page back in
+  // as the template: the home page's canonical and JSON-LD leak into every other
+  // page, and `<div id="root"></div>` no longer exists so pages keep the home
+  // page's markup. Refuse instead of emitting a subtly wrong site.
+  if (!shell.includes('<div id="root"></div>')) {
+    throw new Error(
+      'dist/index.html is not a fresh build shell: <div id="root"></div> is missing, so this ' +
+        'looks like an already-prerendered page. Run `vite build` before `scripts/prerender.ts` ' +
+        '(or use `npm run build`, which does both in order).'
+    );
+  }
+
   // Vite's manifest maps source modules to hashed chunk files. We use it to
   // emit modulepreload tags for the current route's page chunk and catalogue
   // chunk so they download in parallel with the entry instead of after it.
@@ -232,7 +256,7 @@ async function main() {
     file: 'index.html',
     title: DEFAULT_TITLE,
     description:
-      'Free online calculators and unit converters for math, finance, health, construction, cooking, and everyday life. Split bills, check BMI, compare mortgages, convert units, plan savings, and more. Fast browser-based tools with clear examples.',
+      'Free online calculators and unit converters for math, finance, health, construction, cooking, and everyday life. Fast browser-based tools with worked examples.',
     jsonLd: [
       {
         '@context': 'https://schema.org',
@@ -267,7 +291,7 @@ async function main() {
     file: 'calculators.html',
     title: withBrand('All Calculators'),
     description:
-      'Browse every free online calculator and unit converter on Total Calculation, including percentage, BMI, mortgage, savings, temperature, length, weight, and more.',
+      'Browse every free online calculator and unit converter on Total Calculation, including percentage, BMI, mortgage, savings, temperature, length, and weight.',
     jsonLd: [
       {
         '@context': 'https://schema.org',
@@ -298,8 +322,17 @@ async function main() {
     pages.push({
       path: `/calculators/${calc.slug}`,
       file: `calculators/${calc.slug}.html`,
-      title: withBrand(calc.name),
-      description: `${calc.shortDesc} Use the free ${calc.name} to get accurate results instantly, with a worked example and answers to common questions.`,
+      // `seo.title` / `seo.description` override the defaults for priority tools.
+      // Otherwise the description is generated from the page's own introduction
+      // (see `src/lib/metaDescription.ts`) — never from a shared template tail,
+      // which is what produced near-duplicate snippets across the catalogue.
+      title: withBrand(calc.seo?.title ?? calc.name),
+      description: buildDescription({
+        explicit: calc.seo?.description,
+        intro: calc.content.intro,
+        shortDesc: calc.shortDesc,
+        name: calc.name,
+      }),
       noindex: !indexable,
       jsonLd: [
         {
@@ -310,7 +343,9 @@ async function main() {
           url,
           applicationCategory: 'UtilityApplication',
           operatingSystem: 'Any',
-          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          // No `offers` block: the tool is free and there is no purchasable
+          // product. Declaring `price: 0, priceCurrency: USD` on a South African
+          // or Brazilian page asserted a currency the page never used.
         },
         {
           '@context': 'https://schema.org',
@@ -462,26 +497,49 @@ async function main() {
 
   // Individual guide pages
   GUIDE_REGISTRY.forEach((guide) => {
+    const guideUrl = `${SITE_URL}/guides/${guide.slug}`;
+    // `Article` needs `headline`, `author`, `dateModified` and `image` to be
+    // eligible for article rich results. Every value here comes from real
+    // frontmatter: `updatedAt` is only emitted when the guide actually records
+    // one, because a fabricated date is worse than an absent one.
+    const article: Record<string, unknown> = {
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: guide.seo?.title ?? guide.name,
+      name: guide.name,
+      description: guide.shortDesc,
+      url: guideUrl,
+      mainEntityOfPage: { '@type': 'WebPage', '@id': guideUrl },
+      datePublished: guide.publishedAt,
+      author: {
+        '@type': 'Organization',
+        name: PUBLISHER.name,
+        url: PUBLISHER.url,
+      },
+      publisher: {
+        '@type': 'Organization',
+        name: PUBLISHER.name,
+        url: PUBLISHER.url,
+      },
+      image: `${SITE_URL}/og-default.png`,
+    };
+    if (guide.seo?.updatedAt) {
+      article.dateModified = guide.seo.updatedAt;
+    }
+
     pages.push({
       path: `/guides/${guide.slug}`,
       file: `guides/${guide.slug}.html`,
-      title: withBrand(guide.name),
-      description: guide.shortDesc,
+      title: withBrand(guide.seo?.title ?? guide.name),
+      description: buildDescription({
+        explicit: guide.seo?.description,
+        intro: guide.shortDesc,
+        shortDesc: guide.shortDesc,
+        name: guide.name,
+      }),
       noindex: !isIndexable(guide),
       jsonLd: [
-        {
-          '@context': 'https://schema.org',
-          '@type': 'Article',
-          name: guide.name,
-          description: guide.shortDesc,
-          url: `${SITE_URL}/guides/${guide.slug}`,
-          datePublished: guide.publishedAt,
-          publisher: {
-            '@type': 'Organization',
-            name: PUBLISHER.name,
-            url: PUBLISHER.url,
-          },
-        },
+        article,
         {
           '@context': 'https://schema.org',
           '@type': 'FAQPage',
@@ -503,6 +561,32 @@ async function main() {
       ],
     });
   });
+
+  /**
+   * Descriptions must be unique across indexable pages and inside the published
+   * bounds. `buildDescription` is deterministic, so a collision means two pages
+   * genuinely share an introduction — a content problem, not a formatting one —
+   * and the build must fail rather than ship two identical snippets.
+   */
+  {
+    const byDescription = new Map<string, string>();
+    for (const page of pages) {
+      if (page.noindex) continue;
+      const length = page.description.trim().length;
+      if (length < 70 || length > DESCRIPTION_MAX) {
+        throw new Error(
+          `Description for ${page.path} is ${length} characters (allowed 70-${DESCRIPTION_MAX}): "${page.description}"`
+        );
+      }
+      const clash = byDescription.get(page.description);
+      if (clash) {
+        throw new Error(
+          `Duplicate description on ${page.path} and ${clash}: "${page.description}"`
+        );
+      }
+      byDescription.set(page.description, page.path);
+    }
+  }
 
   let rendered = 0;
   for (const page of pages) {

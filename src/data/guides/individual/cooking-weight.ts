@@ -68,6 +68,9 @@ export const cookingWeightGuide: Guide = {
     status: 'index',
     reviewStatus: 'reviewed',
     priority: 0.8,
+    // Last commit that touched this file (git log -1 --format=%cs). The Article
+    // schema only emits `dateModified` when this is a real, recorded date.
+    updatedAt: '2026-10-26',
   },
   publishedAt: '2026-08-22',
 };

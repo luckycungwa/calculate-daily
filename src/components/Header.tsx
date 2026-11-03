@@ -268,9 +268,9 @@ export const Header: React.FC<HeaderProps> = ({
             {/* logo from public img /web-app-manifest-192x192.png*/}
             <img src="/web-app-manifest-192x192.png" alt="Total Calculation logo" className="h-8 w-8" />
             
-            <span className="text-base font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+            {/* <span className="text-base font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
               Total <span className="text-brand">Calculation</span>
-            </span>
+            </span> */}
           </Link>
 
           {/* Desktop navigation */}

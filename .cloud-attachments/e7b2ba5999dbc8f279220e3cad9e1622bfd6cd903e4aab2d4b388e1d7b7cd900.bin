@@ -1,0 +1,1091 @@
+# UNIVERSAL FINAL PRODUCTION + SEO + ORGANIC GROWTH AUDIT
+
+You are the final senior team responsible for taking this website from its current state to a genuinely **production-ready, search-competitive, scalable website**.
+
+Your responsibilities cover:
+
+- Senior frontend engineering
+- Backend/API reliability where applicable
+- Technical SEO
+- Content quality
+- Search intent
+- Information architecture
+- UX/UI
+- Accessibility
+- Performance
+- Security
+- Analytics
+- Conversion optimization
+- Organic growth
+- Content strategy
+- Competitive research
+
+The long-term ambition is:
+
+# BUILD TOWARD 1,000,000 ORGANIC VISITS
+
+Treat 1M organic visits as an **ambitious growth target, NOT a guaranteed outcome**.
+
+Your job is to determine whether the current website has a credible path toward that scale and what would need to change to make it possible.
+
+Do not use black-hat SEO, keyword stuffing, doorway pages, fake authority, spun content, hidden text, fabricated reviews, mass-produced thin pages, or other search-engine manipulation.
+
+The objective is to build a genuinely excellent website that can earn organic traffic because it provides substantially better value than competing alternatives.
+
+---
+
+# PHASE 1 — UNDERSTAND THE ACTUAL PROJECT
+
+Before making recommendations or changes:
+
+Inspect the entire codebase.
+
+Do not assume the architecture.
+
+Determine:
+
+- Framework
+- Rendering strategy
+- Routing
+- Components
+- Data architecture
+- CMS/content system
+- API architecture
+- Authentication
+- Database
+- Deployment
+- Hosting
+- Environment variables
+- Third-party services
+- Analytics
+- SEO implementation
+- Sitemap
+- Robots.txt
+- Existing content
+- Existing URLs
+- Existing tools/features
+- Existing integrations
+
+Create a complete route/page inventory.
+
+Identify which pages are:
+
+- Public
+- Private
+- Dynamic
+- Static
+- Generated
+- User-generated
+- Search/index pages
+- Utility pages
+- Marketing pages
+- Content pages
+- Transactional pages
+
+Do not rewrite or restructure the project blindly.
+
+---
+
+# PHASE 2 — PRODUCTION FUNCTIONALITY TEST
+
+Test the website like a real user.
+
+Every important page and feature must work.
+
+Check:
+
+- Homepage
+- Navigation
+- Menus
+- Forms
+- Buttons
+- Search
+- Authentication
+- Account functionality
+- APIs
+- Database operations
+- Payments where applicable
+- Contact forms
+- Interactive tools
+- Calculators
+- Filters
+- Sorting
+- Pagination
+- Modals
+- CTAs
+- External links
+- Internal links
+- Downloads
+- Media
+- Error handling
+
+For every important route test:
+
+1. Initial load
+2. Direct URL
+3. Hard refresh
+4. Navigation from another page
+5. Mobile viewport
+6. Desktop viewport
+7. Slow connection where practical
+8. Invalid input
+9. Empty state
+10. Error state
+11. Loading state
+
+Look specifically for:
+
+- 404s
+- broken routes
+- hydration problems
+- console errors
+- API failures
+- race conditions
+- broken forms
+- dead buttons
+- incorrect redirects
+- missing loading states
+- broken responsive layouts
+
+Do not consider the website production-ready simply because `npm run build` succeeds.
+
+---
+
+# PHASE 3 — TECHNICAL SEO
+
+Audit the entire site.
+
+Check:
+
+### Crawlability
+
+- robots.txt
+- XML sitemap
+- sitemap indexes
+- crawlable navigation
+- JavaScript-rendered content
+- orphan pages
+- crawl traps
+- URL parameters
+- faceted navigation
+- pagination
+- duplicate URLs
+
+### Indexation
+
+Identify:
+
+- Pages that SHOULD be indexed
+- Pages that SHOULD NOT be indexed
+- Accidental noindex
+- Thin pages
+- Duplicate pages
+- Near duplicates
+- Search-result pages
+- Filter pages
+- Utility pages
+- Tag/category pages
+
+### URLs
+
+Check:
+
+- URL structure
+- consistency
+- trailing slashes
+- lowercase
+- parameters
+- redirects
+- canonicalization
+- duplicate URL variants
+
+### Metadata
+
+Every valuable indexable page should have:
+
+- Unique title
+- Useful meta description
+- Correct canonical
+- Correct robots directive
+- Appropriate H1
+- Logical heading hierarchy
+- Open Graph metadata
+- Social preview metadata where useful
+
+Do not generate generic keyword-stuffed titles.
+
+---
+
+# PHASE 4 — JAVASCRIPT / RENDERING SEO
+
+Determine whether important content is accessible to search engines.
+
+Check:
+
+- SSR
+- SSG
+- ISR
+- CSR
+- hydration
+- dynamic rendering
+- metadata generation
+- JavaScript-only content
+- client-side routing
+- loading states
+- crawlability of important links
+
+If important SEO content only appears after client-side JavaScript execution, determine whether that architecture should be improved.
+
+---
+
+# PHASE 5 — STRUCTURED DATA
+
+Identify genuinely appropriate Schema.org opportunities.
+
+Depending on the website, consider:
+
+- Organization
+- WebSite
+- WebPage
+- BreadcrumbList
+- Article
+- Product
+- SoftwareApplication
+- LocalBusiness
+- FAQPage
+- HowTo
+- Event
+- Review
+- Person
+- JobPosting
+- Recipe
+- Dataset
+- Other relevant schema
+
+Only use structured data that accurately describes visible content.
+
+Never fabricate:
+
+- reviews
+- ratings
+- authors
+- credentials
+- prices
+- organizations
+- events
+- claims
+
+Validate the implementation.
+
+---
+
+# PHASE 6 — CONTENT QUALITY / HUMAN WRITING AUDIT
+
+Read the actual content.
+
+Do not judge quality by word count alone.
+
+Identify:
+
+- AI-sounding writing
+- Generic introductions
+- repetitive phrasing
+- filler
+- keyword stuffing
+- unnecessary headings
+- repetitive conclusions
+- vague claims
+- unsupported claims
+- copied concepts
+- duplicated content
+- templated content
+- search-engine-first writing
+- content that doesn't actually answer the user's question
+
+The objective is NOT simply to make AI content "sound human."
+
+The objective is:
+
+**Make the content genuinely useful.**
+
+Content should demonstrate:
+
+- clarity
+- specificity
+- practical value
+- examples
+- original insights
+- useful structure
+- appropriate expertise
+- trustworthy sourcing
+- strong search-intent alignment
+
+Write for humans first.
+
+---
+
+# PHASE 7 — SEARCH INTENT ANALYSIS
+
+For every major page determine:
+
+- Primary search intent
+- Secondary intent
+- User problem
+- User expectation
+- Desired outcome
+- Search stage
+- Likely SERP features
+
+Then ask:
+
+**Does this page actually solve the problem better than the current search results?**
+
+If not, recommend or implement improvements.
+
+Do not create pages merely because a keyword exists.
+
+---
+
+# PHASE 8 — COMPETITOR + SERP GAP ANALYSIS
+
+Research the current search landscape for the site's important topics.
+
+Identify relevant competitors.
+
+Analyze:
+
+- Ranking pages
+- SERP structure
+- Search intent
+- Content depth
+- UX
+- Tools
+- Internal linking
+- topical coverage
+- backlinks/authority where data is available
+- unanswered questions
+- weak competitor content
+- underserved long-tail searches
+
+Find opportunities where the website can be:
+
+- more useful
+- clearer
+- faster
+- more comprehensive
+- more trustworthy
+- more original
+- easier to navigate
+
+Do not copy competitors.
+
+Use them to identify opportunities.
+
+---
+
+# PHASE 9 — TOPICAL AUTHORITY
+
+Map the website's topic ecosystem.
+
+Identify:
+
+- Core topics
+- Supporting topics
+- Subtopics
+- Pillar pages
+- Cluster pages
+- Commercial pages
+- Informational pages
+- Tool opportunities
+
+Build a topic-cluster architecture where appropriate.
+
+Avoid creating hundreds of pages simply to increase the number of URLs.
+
+Every page must have a distinct purpose.
+
+---
+
+# PHASE 10 — CONTENT CANNIBALIZATION
+
+Create a content map.
+
+For each important URL record:
+
+- URL
+- Topic
+- Search intent
+- Primary keyword/theme
+- Secondary topics
+- Parent page
+- Supporting pages
+- Current quality
+- Indexability
+- Internal links
+- Recommended action
+
+Identify:
+
+- duplicate pages
+- near-duplicates
+- cannibalization
+- overlapping articles
+- weak pages
+- obsolete pages
+- pages that should be merged
+- pages that should redirect
+- pages that should be rewritten
+- pages that should be removed/noindexed
+
+Do not keep weak pages just because they already exist.
+
+---
+
+# PHASE 11 — INTERNAL LINKING
+
+Audit internal linking as an information architecture problem.
+
+Important pages should be discoverable.
+
+Build logical relationships between:
+
+- Homepage
+- Category/topic hubs
+- Pillar pages
+- Supporting pages
+- Tools
+- Product/service pages
+- Commercial pages
+- Informational content
+
+Use descriptive contextual anchors.
+
+Avoid excessive exact-match anchor optimization.
+
+---
+
+# PHASE 12 — ORGANIC TRAFFIC 1M REVERSE ENGINEERING
+
+Now analyze the site's path toward:
+
+# 1,000,000 ORGANIC VISITS
+
+Do NOT simply say:
+
+"Publish more content."
+
+Calculate the approximate scale required.
+
+Model:
+
+### Scenario A — Conservative
+
+Slower growth.
+
+### Scenario B — Target
+
+Growth required to approach 1M.
+
+### Scenario C — Aggressive
+
+Exceptional execution.
+
+Estimate where useful:
+
+- monthly organic traffic
+- annual organic traffic
+- ranking-page requirements
+- topic-cluster requirements
+- content velocity
+- search-demand coverage
+- tool opportunities
+- commercial-intent opportunities
+- internal authority requirements
+
+Clearly label estimates.
+
+Do not invent factual traffic data.
+
+Explain the biggest bottlenecks preventing the target.
+
+---
+
+# PHASE 13 — FIND HIGH-LEVERAGE SEO ASSETS
+
+Look beyond traditional blog posts.
+
+Determine whether the website could create valuable:
+
+- calculators
+- generators
+- directories
+- databases
+- comparison tools
+- interactive tools
+- checklists
+- templates
+- searchable resources
+- calculators
+- visualizations
+- datasets
+- communities
+- user-generated features
+- APIs
+- free tools
+- evergreen reference pages
+
+The best organic-growth asset may not be an article.
+
+Find opportunities competitors have not executed well.
+
+---
+
+# PHASE 14 — MOBILE UX
+
+Assume a significant percentage of users are mobile.
+
+Test:
+
+- navigation
+- typography
+- spacing
+- touch targets
+- forms
+- tables
+- cards
+- buttons
+- menus
+- sticky elements
+- popups
+- ads
+- images
+- long-form content
+
+Ask:
+
+**Can a new visitor immediately understand what this website does?**
+
+Then ask:
+
+**Can they complete the primary task with minimal friction?**
+
+---
+
+# PHASE 15 — CORE WEB VITALS + PERFORMANCE
+
+Audit:
+
+- LCP
+- INP
+- CLS
+- TTFB
+- JavaScript
+- CSS
+- fonts
+- images
+- third-party scripts
+- hydration
+- API requests
+- caching
+- CDN
+- code splitting
+- lazy loading
+- bundle size
+
+Remove unnecessary performance costs.
+
+Do not sacrifice useful functionality simply to chase a perfect Lighthouse score.
+
+---
+
+# PHASE 16 — ACCESSIBILITY
+
+Audit:
+
+- semantic HTML
+- keyboard navigation
+- focus states
+- screen readers
+- labels
+- forms
+- contrast
+- alt text
+- headings
+- buttons
+- error messages
+- ARIA usage
+
+Fix accessibility issues that materially affect usability.
+
+---
+
+# PHASE 17 — SECURITY + PRIVACY
+
+Audit:
+
+- HTTPS
+- security headers
+- authentication
+- authorization
+- API security
+- secrets
+- environment variables
+- XSS
+- CSRF where applicable
+- injection risks
+- rate limiting
+- spam protection
+- file uploads
+- user data
+- third-party scripts
+- cookies
+- privacy controls
+
+Do not expose secrets or sensitive information.
+
+---
+
+# PHASE 18 — CONVERSION / BUSINESS VALUE
+
+SEO traffic is useless if the website cannot turn visitors into meaningful outcomes.
+
+Identify the website's primary business goal.
+
+Depending on the project, this could be:
+
+- lead generation
+- sales
+- subscriptions
+- registrations
+- downloads
+- bookings
+- tool usage
+- newsletter signups
+- advertising
+- affiliate revenue
+- app installs
+- account creation
+
+Audit:
+
+- CTA clarity
+- landing pages
+- trust signals
+- friction
+- forms
+- conversion paths
+- mobile conversion
+- calls to action
+
+Do not sacrifice user experience for monetization.
+
+---
+
+# PHASE 19 — ANALYTICS + GROWTH MEASUREMENT
+
+Ensure the site can measure:
+
+- organic clicks
+- impressions
+- CTR
+- rankings
+- indexed pages
+- landing pages
+- conversions
+- engagement
+- returning users
+- top-performing content
+- zero-traffic pages
+- broken journeys
+- important feature usage
+
+Where appropriate, configure:
+
+- Google Search Console
+- Analytics
+- event tracking
+- conversion tracking
+- error monitoring
+
+Only implement tracking that is necessary and appropriate.
+
+---
+
+# PHASE 20 — PROGRAMMATIC / AI CONTENT SAFEGUARDS
+
+If the site uses AI or programmatic generation, create quality controls.
+
+Before publishing any page, verify:
+
+- unique search intent
+- meaningful value
+- accurate information
+- useful structure
+- original contribution
+- appropriate sourcing
+- no duplication
+- no filler
+- no keyword stuffing
+- no fabricated facts
+
+The system must be capable of saying:
+
+**"This page should NOT be published."**
+
+Quality must beat volume.
+
+---
+
+# PHASE 21 — PAGE-BY-PAGE QUALITY SCORE
+
+Score every important indexable page from 0–100:
+
+- Search intent: /15
+- Content quality: /15
+- Original value: /15
+- Technical SEO: /10
+- Internal linking: /10
+- UX: /10
+- Trust: /10
+- Performance: /5
+- Mobile: /5
+- Conversion/helpfulness: /5
+
+Classify:
+
+### GREEN
+Production ready.
+
+### YELLOW
+Needs improvement.
+
+### RED
+Should not remain indexable in its current form.
+
+For each RED/YELLOW page provide a specific action:
+
+- Rewrite
+- Expand
+- Merge
+- Redirect
+- Noindex
+- Delete
+- Fix technical issue
+- Improve UX
+- Add original value
+- Improve internal linking
+
+---
+
+# PHASE 22 — FINAL PRODUCTION STRESS TEST
+
+Try to break the website.
+
+Test:
+
+- every important route
+- direct URL loading
+- hard refresh
+- mobile
+- desktop
+- navigation
+- forms
+- APIs
+- authentication
+- errors
+- empty states
+- loading states
+- external links
+- redirects
+- sitemap
+- robots
+- canonical URLs
+- metadata
+- structured data
+- accessibility
+- performance
+- security
+
+Check browser console for errors.
+
+Check build output.
+
+Check deployment configuration.
+
+---
+
+# PHASE 23 — IMPLEMENT FIXES
+
+Do NOT stop after producing an audit.
+
+Where the codebase allows you to make changes:
+
+**IMPLEMENT THE FIXES.**
+
+Prioritize:
+
+1. Critical production bugs
+2. Indexation problems
+3. Broken functionality
+4. Major UX problems
+5. Technical SEO problems
+6. Content-quality problems
+7. Internal linking
+8. Performance
+9. Accessibility
+10. Growth infrastructure
+
+After making changes:
+
+- build
+- lint
+- type-check
+- test
+- inspect changed routes
+- verify metadata
+- verify sitemap
+- verify robots
+- verify canonical URLs
+- verify structured data
+- verify internal links
+- verify mobile layouts
+
+Do not introduce regressions.
+
+---
+
+# FINAL REPORT
+
+At the end, provide:
+
+## 1. Production verdict
+
+Choose exactly one:
+
+**READY**
+
+**READY WITH REQUIRED FIXES**
+
+**NOT PRODUCTION READY**
+
+## 2. Current overall score
+
+/100
+
+## 3. Technical SEO
+
+/100
+
+## 4. Content quality
+
+/100
+
+## 5. UX
+
+/100
+
+## 6. Performance
+
+/100
+
+## 7. Accessibility
+
+/100
+
+## 8. Security
+
+/100
+
+## 9. Organic growth readiness
+
+/100
+
+## 10. 1M organic traffic readiness
+
+/100
+
+Explain honestly.
+
+## 11. Critical blockers
+
+Only issues that genuinely need attention.
+
+## 12. Top 25 opportunities
+
+Rank by:
+
+**Impact × Confidence ÷ Effort**
+
+## 13. What was actually fixed
+
+Do not list recommendations as completed work.
+
+Only list changes that were actually implemented and verified.
+
+## 14. Remaining work
+
+Separate:
+
+- Must fix before launch
+- Should fix within 30 days
+- Should fix within 90 days
+- Long-term growth opportunities
+
+---
+
+# 90-DAY GROWTH ROADMAP
+
+Create:
+
+### Days 1–30
+Technical foundation + UX + indexing + quality
+
+### Days 31–60
+Content + topical authority + internal linking
+
+### Days 61–90
+SERP expansion + tools + optimization + authority
+
+---
+
+# 12–24 MONTH ORGANIC GROWTH ROADMAP
+
+Model the evolution:
+
+**Foundation**
+
+→
+
+**Search visibility**
+
+→
+
+**Topical authority**
+
+→
+
+**Organic growth**
+
+→
+
+**Market authority**
+
+→
+
+**Scale**
+
+Identify what must change at each stage.
+
+---
+
+# DEFINITION OF DONE
+
+The website is NOT considered production-ready merely because it compiles.
+
+It must satisfy:
+
+[ ] Production build succeeds
+
+[ ] Critical routes work
+
+[ ] Direct URLs work
+
+[ ] Refreshing routes works
+
+[ ] Important functionality works
+
+[ ] Forms work
+
+[ ] Error states work
+
+[ ] Mobile UX works
+
+[ ] No critical broken links
+
+[ ] Sitemap works
+
+[ ] Robots.txt works
+
+[ ] Canonicals are correct
+
+[ ] Metadata is unique and useful
+
+[ ] Structured data is accurate
+
+[ ] Important pages are indexable
+
+[ ] Low-value pages are controlled
+
+[ ] No serious cannibalization
+
+[ ] Internal linking is logical
+
+[ ] Content is genuinely useful
+
+[ ] Content reads naturally
+
+[ ] No keyword stuffing
+
+[ ] No mass-produced low-value content
+
+[ ] Search intent is satisfied
+
+[ ] Competitor gaps have been identified
+
+[ ] Performance is acceptable
+
+[ ] Accessibility is acceptable
+
+[ ] Security issues are addressed
+
+[ ] Analytics/measurement is ready
+
+[ ] Conversion paths are clear
+
+[ ] Monetization does not damage UX
+
+[ ] Architecture can scale
+
+[ ] Content architecture can scale
+
+[ ] SEO architecture can scale
+
+[ ] The site has a credible path toward substantial organic growth
+
+[ ] Final stress test passes
+
+---
+
+# FINAL PRINCIPLE
+
+Do not optimize this website merely to "look SEO optimized."
+
+Build something that deserves to win.
+
+The standard is:
+
+**Better product + better UX + better content + better technical foundation + better search-intent coverage + better information architecture + continuous measurement and improvement.**
+
+Do not chase 1M traffic by creating 10,000 mediocre pages.
+
+Build the smallest number of high-value assets capable of capturing the largest amount of relevant search demand.
+
+If an existing page is weak, improve it.
+
+If two pages compete, consolidate them.
+
+If a page has no legitimate search purpose, remove or noindex it.
+
+If a competitor has a better experience, understand why.
+
+If an opportunity requires a tool rather than an article, build the tool.
+
+If the current architecture prevents scalable SEO, fix the architecture.
+
+Be critical.
+
+Be evidence-driven.
+
+Do not tell me what I want to hear.
+
+Tell me what is actually preventing this website from becoming a serious organic-growth competitor—and then fix as much of it as the codebase allows.

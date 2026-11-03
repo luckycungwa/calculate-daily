@@ -32,6 +32,8 @@ function NumberField({
   step = 'any',
   suffix,
   hint,
+  min,
+  max,
 }: {
   id: string;
   label: string;
@@ -40,6 +42,10 @@ function NumberField({
   step?: string;
   suffix?: string;
   hint?: string;
+  /** Declared lower bound. Surfaced to assistive tech and used by the spinner. */
+  min?: number;
+  /** Declared upper bound. */
+  max?: number;
 }) {
   return (
     <div className="space-y-1.5">
@@ -50,6 +56,8 @@ function NumberField({
           type="number"
           inputMode="decimal"
           step={step}
+          min={min}
+          max={max}
           value={value}
           onChange={(event) => onChange(event.target.value)}
           className={suffix ? 'pr-10' : undefined}
@@ -106,8 +114,13 @@ export const VatCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
     if (!Number.isFinite(value) || value < 0) {
       return { value: null, error: 'Enter an amount of zero or more.' };
     }
-    if (!Number.isFinite(vatRate) || vatRate <= -100) {
-      return { value: null, error: 'Enter a VAT rate greater than -100%.' };
+    // A VAT rate is a percentage between 0 and 100. Negative rates are not a
+    // thing, and a rate above 100 would report more tax than the price itself,
+    // so both are rejected instead of quietly producing a plausible-looking
+    // figure. This also keeps `100 + vatRate` in the fraction below away from
+    // zero.
+    if (!Number.isFinite(vatRate) || vatRate < 0 || vatRate > 100) {
+      return { value: null, error: 'Enter a VAT rate between 0% and 100%.' };
     }
 
     const multiplier = 1 + vatRate / 100;
@@ -134,7 +147,7 @@ export const VatCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
       <CardHeader className="border-b border-zinc-100 pb-4 dark:border-zinc-800">
         <Badge variant="outline" className="mb-2 w-fit text-[11px] font-mono">Tax</Badge>
         <CardTitle>VAT Calculator</CardTitle>
-        <CardDescription>Add VAT to a net price or strip VAT out of a gross price, using any rate you set.</CardDescription>
+        <CardDescription>Add VAT to a net price or strip VAT out of a gross price, using any rate from 0% to 100%.</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-5 p-5 md:grid-cols-2">
         <div className="space-y-4">
@@ -166,6 +179,7 @@ export const VatCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
             value={amount}
             onChange={setAmount}
             step="0.01"
+            min={0}
             hint={mode === 'add' ? 'The price before tax is added.' : 'The price the customer actually pays.'}
           />
 
@@ -175,6 +189,8 @@ export const VatCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
             value={rate}
             onChange={setRate}
             step="0.1"
+            min={0}
+            max={100}
             suffix="%"
             hint="Common standard rates: 15% South Africa, 20% United Kingdom, 19% Germany, 25% Denmark. Reduced rates exist for some goods."
           />
@@ -308,6 +324,8 @@ export const NpvCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
             value={rate}
             onChange={setRate}
             step="0.1"
+            min={-99}
+            max={1000}
             suffix="%"
             hint="Your cost of capital or the return you could earn elsewhere at similar risk."
           />
@@ -475,6 +493,8 @@ export const IrrCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }) => {
             value={hurdle}
             onChange={setHurdle}
             step="0.1"
+            min={-99}
+            max={1000}
             suffix="%"
             hint="The minimum return you require. Leave as is or clear it to hide the comparison."
           />
@@ -594,6 +614,7 @@ export const InflationCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }
             value={amount}
             onChange={setAmount}
             step="1"
+            min={0}
             hint="A price today, or a future sum you want to deflate."
           />
           <NumberField
@@ -602,6 +623,8 @@ export const InflationCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }
             value={rate}
             onChange={setRate}
             step="0.1"
+            min={-99}
+            max={1000}
             suffix="%"
             hint="Central-bank targets are commonly 2-3%; use the long-run average you actually expect."
           />
@@ -611,6 +634,8 @@ export const InflationCalculator: React.FC<CalculatorProps> = ({ onSaveHistory }
             value={years}
             onChange={setYears}
             step="1"
+            min={0}
+            max={100}
             suffix="yrs"
             hint="Between 0 and 100."
           />

@@ -7,6 +7,7 @@ import { Badge } from '../ui/badge';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/card';
 import { ExportModal } from '../common/ExportModal';
 import { useToast } from '../ui/toast';
+import { DotPlot } from '../charts/DotPlot';
 
 interface CalculatorProps {
   onSaveHistory?: (summary: string) => void;
@@ -30,7 +31,7 @@ export const StandardDeviationCalculator: React.FC<CalculatorProps> = ({ onSaveH
     const nums = parseNumbers(input);
     const n = nums.length;
     if (n === 0) {
-      return { count: 0, sum: 0, mean: 0, median: 0, sampleVariance: 0, populationVariance: 0, sampleStdDev: 0, populationStdDev: 0, min: 0, max: 0, range: 0 };
+      return { values: [] as number[], count: 0, sum: 0, mean: 0, median: 0, sampleVariance: 0, populationVariance: 0, sampleStdDev: 0, populationStdDev: 0, min: 0, max: 0, range: 0 };
     }
     const sum = nums.reduce((a, b) => a + b, 0);
     const mean = sum / n;
@@ -44,6 +45,7 @@ export const StandardDeviationCalculator: React.FC<CalculatorProps> = ({ onSaveH
     const populationVariance = sqDiffs.reduce((a, b) => a + b, 0) / n;
     const sampleVariance = n > 1 ? sqDiffs.reduce((a, b) => a + b, 0) / (n - 1) : 0;
     return {
+      values: nums,
       count: n, sum: parseFloat(sum.toFixed(4)), mean: parseFloat(mean.toFixed(4)),
       median: parseFloat(median.toFixed(4)), sampleVariance: parseFloat(sampleVariance.toFixed(4)),
       populationVariance: parseFloat(populationVariance.toFixed(4)),
@@ -150,6 +152,26 @@ export const StandardDeviationCalculator: React.FC<CalculatorProps> = ({ onSaveH
         </div>
       </CardContent>
 
+      {results.count > 0 && (
+        <div className="px-6 pb-6">
+          <DotPlot
+            values={results.values}
+            markers={[{ value: results.mean, label: `mean ${results.mean}` }]}
+            band={
+              results.sampleStdDev > 0
+                ? {
+                    from: results.mean - results.sampleStdDev,
+                    to: results.mean + results.sampleStdDev,
+                    label: 'mean ± 1 SD',
+                  }
+                : undefined
+            }
+            title="Where your numbers sit"
+            summary={`${results.count} values with a mean of ${results.mean}. The shaded band runs from ${parseFloat((results.mean - results.sampleStdDev).toFixed(2))} to ${parseFloat((results.mean + results.sampleStdDev).toFixed(2))}, one sample standard deviation either side of the mean. A tall stack means that value appears often; a wide spread of dots means the data varies a lot.`}
+          />
+        </div>
+      )}
+
       <ExportModal
         isOpen={isExportOpen}
         onClose={() => setIsExportOpen(false)}
@@ -176,7 +198,7 @@ export const MeanMedianModeCalculator: React.FC<CalculatorProps> = ({ onSaveHist
   const results = useMemo(() => {
     const nums = parseNumbers(input);
     const n = nums.length;
-    if (n === 0) return { count: 0, sum: 0, mean: 0, median: 0, modes: [] as number[], range: 0 };
+    if (n === 0) return { values: [] as number[], count: 0, sum: 0, mean: 0, median: 0, modes: [] as number[], range: 0 };
     const sum = nums.reduce((a, b) => a + b, 0);
     const mean = sum / n;
     const sorted = [...nums].sort((a, b) => a - b);
@@ -186,7 +208,7 @@ export const MeanMedianModeCalculator: React.FC<CalculatorProps> = ({ onSaveHist
     nums.forEach((v) => freq.set(v, (freq.get(v) || 0) + 1));
     const maxFreq = Math.max(...Array.from(freq.values()));
     const modes = maxFreq > 1 ? Array.from(freq.entries()).filter(([, f]) => f === maxFreq).map(([v]) => v).sort((a, b) => a - b) : [];
-    return { count: n, sum: parseFloat(sum.toFixed(4)), mean: parseFloat(mean.toFixed(4)), median: parseFloat(median.toFixed(4)), modes, range: parseFloat((sorted[n - 1] - sorted[0]).toFixed(4)) };
+    return { values: nums, count: n, sum: parseFloat(sum.toFixed(4)), mean: parseFloat(mean.toFixed(4)), median: parseFloat(median.toFixed(4)), modes, range: parseFloat((sorted[n - 1] - sorted[0]).toFixed(4)) };
   }, [input]);
 
   const handleCopySummary = () => {
@@ -292,6 +314,20 @@ export const MeanMedianModeCalculator: React.FC<CalculatorProps> = ({ onSaveHist
           </div>
         </div>
       </CardContent>
+
+      {results.count > 0 && (
+        <div className="px-6 pb-6">
+          <DotPlot
+            values={results.values}
+            markers={[
+              { value: results.mean, label: `mean ${results.mean}`, dashed: true },
+              { value: results.median, label: `median ${results.median}`, dashed: true },
+            ]}
+            title="Your dataset on a number line"
+            summary={`${results.count} values between ${Math.min(...results.values)} and ${Math.max(...results.values)}. The mean sits at ${results.mean} and the median at ${results.median}; the tallest stack is the most frequent value${results.modes.length > 0 ? ` (mode ${results.modes.join(', ')})` : ''}. When the two markers drift apart, a few extreme values are pulling the mean away from the middle.`}
+          />
+        </div>
+      )}
 
       <ExportModal
         isOpen={isExportOpen}

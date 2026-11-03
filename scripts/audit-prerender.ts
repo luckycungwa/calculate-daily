@@ -40,6 +40,31 @@ function addError(message: string) {
   errors.push(message);
 }
 
+/**
+ * Lightweight tag extraction.
+ *
+ * The audit used to parse all 620 generated pages with JSDOM. Each parsed document
+ * lives on the heap until GC runs, and the whole run peaked at the Node heap limit
+ * (~4 GB) — it passed only by a small margin, then began failing with
+ * "JavaScript heap out of memory" as the catalogue grew. The checks below only
+ * need titles, meta tags, link tags and anchors, so they are read directly from the
+ * markup instead. Same assertions, no document tree.
+ */
+function findTags(html: string, tagName: string): string[] {
+  return [...html.matchAll(new RegExp(`<${tagName}\\b[^>]*>`, 'gi'))].map((match) => match[0]);
+}
+
+function attribute(tag: string, name: string): string | undefined {
+  return tag.match(new RegExp(`\\b${name}="([^"]*)"`, 'i'))?.[1];
+}
+
+/** Content of every `<meta>` whose name/property matches `key`. */
+function metaContent(html: string, attributeName: 'name' | 'property', key: string): string[] {
+  return findTags(html, 'meta')
+    .filter((tag) => attribute(tag, attributeName) === key)
+    .map((tag) => attribute(tag, 'content') ?? '');
+}
+
 if (!fs.existsSync(distDir)) {
   throw new Error('Build output directory "dist" does not exist.');
 }
@@ -211,48 +236,38 @@ for (const url of sitemapUrls) {
   const file = fileForPagePath(parsed.pathname);
   if (!fs.existsSync(file)) {
     addError(`Sitemap URL has no prerendered page: ${url} (${path.relative(distDir, file)})`);
-    continue;
   }
-
-  const dom = new JSDOM(fs.readFileSync(file, 'utf8'));
-  const document = dom.window.document;
-  const canonicals = [...document.querySelectorAll<HTMLLinkElement>('link[rel="canonical"]')];
-  if (canonicals.length !== 1 || canonicals[0]?.href !== url) {
-    addError(`Sitemap URL and canonical differ or are duplicated: ${url}`);
-  }
-  for (const canonical of canonicals) {
-    const defect = canonical.href ? staleUrlReason(canonical.href) : undefined;
-    if (defect) addError(`Canonical is not deployable (${defect}): ${canonical.href}`);
-  }
-  const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.content.trim();
-  if (ogUrl !== url) {
-    addError(`Sitemap URL and og:url differ or are missing: ${url}`);
-  }
-  if (ogUrl) {
-    const defect = staleUrlReason(ogUrl);
-    if (defect) addError(`og:url is not deployable (${defect}): ${ogUrl}`);
-  }
-  if ([...document.querySelectorAll<HTMLMetaElement>('meta[name="robots"]')].some((meta) =>
-    meta.content.toLowerCase().includes('noindex')
-  )) {
-    addError(`Noindex page appears in the sitemap: ${url}`);
-  }
-  dom.window.close();
+  // The canonical / og:url / noindex checks for this page happen in the per-page
+  // pass below, which already has the parsed document. Parsing every sitemap URL a
+  // second time here doubled the script's memory for no extra coverage — and with
+  // 620 pages that second copy was enough to exhaust the heap.
 }
+
+/**
+ * Meta descriptions collected per page, so duplicate snippets can be detected
+ * after the per-page pass. The prerenderer previously failed to replace the
+ * shell's description at all, which shipped one identical description on all 620
+ * pages and passed every other check.
+ */
+/** Descriptions of indexable pages only — these must be unique. */
+const indexableDescriptions = new Map<string, string>();
+const SHELL_DESCRIPTION =
+  'Free online calculators and unit converters for math, finance, health, construction, cooking, and everyday life. Fast browser-based tools with worked examples.';
 
 const htmlFiles = collectHtmlFiles(distDir);
 for (const file of htmlFiles) {
   const relative = path.relative(distDir, file).replace(/\\/g, '/');
   const rawHtml = fs.readFileSync(file, 'utf8');
-  const dom = new JSDOM(rawHtml);
-  const document = dom.window.document;
   const pagePath = relative === '404.html' ? '/404.html' : pagePathFromFile(file);
   const url = `${site.url}${pagePath}`;
   const is404 = relative === '404.html';
   const isListed = sitemapSet.has(url);
-  const robots = [...document.querySelectorAll<HTMLMetaElement>('meta[name="robots"]')];
-  const noindex = robots.some((meta) => meta.content.toLowerCase().includes('noindex'));
-  const canonicals = [...document.querySelectorAll<HTMLLinkElement>('link[rel="canonical"]')];
+  const pageTitle = (rawHtml.match(/<title>([\s\S]*?)<\/title>/i)?.[1] ?? '').trim();
+  const robots = metaContent(rawHtml, 'name', 'robots');
+  const noindex = robots.some((content) => content.toLowerCase().includes('noindex'));
+  const canonicals = findTags(rawHtml, 'link')
+    .filter((tag) => attribute(tag, 'rel') === 'canonical')
+    .map((tag) => attribute(tag, 'href') ?? '');
 
   // Public-facing generated HTML must never mention a retired production host, in
   // any attribute, script or JSON-LD payload.
@@ -262,11 +277,23 @@ for (const file of htmlFiles) {
     }
   }
 
-  if (
-    !document.title.trim() ||
-    !document.querySelector<HTMLMetaElement>('meta[name="description"]')?.content.trim()
-  ) {
+  const descriptionMeta = (metaContent(rawHtml, 'name', 'description')[0] ?? '').trim();
+  if (!pageTitle || !descriptionMeta) {
     addError(`Missing title or meta description: ${relative}`);
+  } else {
+    // The shell default is only correct on the home page. Seeing it elsewhere means
+    // the description tag was never rewritten for that page.
+    if (descriptionMeta === SHELL_DESCRIPTION && relative !== 'index.html') {
+      addError(`Page kept the shell's description instead of its own: ${relative}`);
+    }
+    const ogDescription = (metaContent(rawHtml, 'property', 'og:description')[0] ?? '').trim();
+    if (ogDescription && ogDescription !== descriptionMeta) {
+      addError(`og:description does not match meta description: ${relative}`);
+    }
+    const twitterDescription = (metaContent(rawHtml, 'name', 'twitter:description')[0] ?? '').trim();
+    if (twitterDescription && twitterDescription !== descriptionMeta) {
+      addError(`twitter:description does not match meta description: ${relative}`);
+    }
   }
 
   if (site.isPreview || is404 || !isListed) {
@@ -275,10 +302,18 @@ for (const file of htmlFiles) {
     if (isListed) addError(`Non-indexable page appears in sitemap: ${relative}`);
   } else {
     if (noindex) addError(`Indexable page is marked noindex: ${relative}`);
-    if (canonicals.length !== 1 || canonicals[0]?.href !== url) {
+    if (descriptionMeta) {
+      indexableDescriptions.set(relative, descriptionMeta);
+      if (descriptionMeta.length < 70 || descriptionMeta.length > 160) {
+        addError(
+          `Indexable page description is ${descriptionMeta.length} characters (allowed 70-160): ${relative}`
+        );
+      }
+    }
+    if (canonicals.length !== 1 || canonicals[0] !== url) {
       addError(`Indexable page canonical is missing, duplicated, or incorrect: ${relative}`);
     }
-    const ogUrl = document.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.content.trim();
+    const ogUrl = (metaContent(rawHtml, 'property', 'og:url')[0] ?? '').trim();
     if (ogUrl !== url) {
       addError(`Indexable page og:url is missing or incorrect: ${relative}`);
     }
@@ -289,23 +324,25 @@ for (const file of htmlFiles) {
   }
 
   if (relative === 'index.html' && !site.isPreview) {
-    const websiteSchemas = [...document.querySelectorAll<HTMLScriptElement>('script[type="application/ld+json"]')]
-      .flatMap((script) => {
-        try {
-          const data = JSON.parse(script.textContent || 'null');
-          return data?.['@type'] === 'WebSite' ? [data] : [];
-        } catch {
-          addError('Homepage contains invalid JSON-LD.');
-          return [];
-        }
-      });
+    const jsonLdBlocks = [
+      ...rawHtml.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/gi),
+    ].map((match) => match[1]);
+    const websiteSchemas = jsonLdBlocks.flatMap((block) => {
+      try {
+        const data = JSON.parse(block || 'null');
+        return data?.['@type'] === 'WebSite' ? [data] : [];
+      } catch {
+        addError('Homepage contains invalid JSON-LD.');
+        return [];
+      }
+    });
     if (websiteSchemas.length !== 1 || websiteSchemas[0]?.url !== `${site.url}/`) {
       addError('Homepage must contain exactly one WebSite schema with an absolute canonical URL.');
     }
   }
 
-  for (const anchor of document.querySelectorAll<HTMLAnchorElement>('a[href]')) {
-    const href = anchor.getAttribute('href') || '';
+  for (const tag of findTags(rawHtml, 'a')) {
+    const href = attribute(tag, 'href') || '';
     if (!href || href.startsWith('#') || href.startsWith('//')) continue;
     let target: URL;
     try {
@@ -323,7 +360,6 @@ for (const file of htmlFiles) {
       addError(`Internal link has no prerendered destination in ${relative}: ${href}`);
     }
   }
-  dom.window.close();
 }
 
 /**
@@ -343,32 +379,51 @@ for (const slug of embedSlugs) {
     addError(`Indexable calculator has no prerendered embed shell: /embed/${slug}`);
     continue;
   }
-  const embedDom = new JSDOM(fs.readFileSync(embedFile, 'utf8'));
-  const embedDocument = embedDom.window.document;
-  if (!embedDocument.querySelector(`a[href="/calculators/${slug}"]`)) {
+  const embedHtml = fs.readFileSync(embedFile, 'utf8');
+  const hasAttribution = findTags(embedHtml, 'a').some(
+    (tag) => attribute(tag, 'href') === `/calculators/${slug}`
+  );
+  if (!hasAttribution) {
     addError(`Embed shell has no attribution link to /calculators/${slug}`);
   }
   if (sitemapSet.has(`${site.url}/embed/${slug}`)) {
     addError(`Embed shell appears in the sitemap: /embed/${slug}`);
   }
-  embedDom.window.close();
 }
 
 const notFound = path.join(distDir, '404.html');
 if (!fs.existsSync(notFound)) {
   addError('Missing generated 404.html.');
 } else {
-  const notFoundDom = new JSDOM(fs.readFileSync(notFound, 'utf8'));
-  const document = notFoundDom.window.document;
-  if (
-    ![...document.querySelectorAll<HTMLMetaElement>('meta[name="robots"]')].some((meta) =>
-      meta.content.toLowerCase().includes('noindex')
-    ) ||
-    document.querySelector('link[rel="canonical"]')
-  ) {
+  const notFoundHtml = fs.readFileSync(notFound, 'utf8');
+  const notFoundNoindex = metaContent(notFoundHtml, 'name', 'robots').some((content) =>
+    content.toLowerCase().includes('noindex')
+  );
+  const notFoundCanonical = findTags(notFoundHtml, 'link').some(
+    (tag) => attribute(tag, 'rel') === 'canonical'
+  );
+  if (!notFoundNoindex || notFoundCanonical) {
     addError('404.html must be noindex and must not have a canonical.');
   }
-  notFoundDom.window.close();
+}
+
+// Duplicate meta descriptions split a page's snippet signal across two URLs.
+// Indexable pages must be individually distinct: two indexable pages sharing a
+// description means one of them is redundant. Noindex shells (embeds, the 404)
+// are exempt — they are not competing for a snippet.
+{
+  const pagesByDescription = new Map<string, string[]>();
+  for (const [page, description] of indexableDescriptions) {
+    const list = pagesByDescription.get(description) ?? [];
+    list.push(page);
+    pagesByDescription.set(description, list);
+  }
+  const repeated = [...pagesByDescription.entries()].filter(([, pages]) => pages.length > 1);
+  for (const [description, pages] of repeated) {
+    addError(
+      `Identical meta description on ${pages.length} indexable pages (${pages.slice(0, 3).join(', ')}): "${description.slice(0, 70)}…"`
+    );
+  }
 }
 
 if (errors.length) {

@@ -189,6 +189,7 @@ export const SCIENCE_CALCULATORS: CalculatorMeta[] = [
       workflowLinks: [
         { slug: 'molarity-calculator', step: 'Use the molar mass to prepare a solution.' },
         { slug: 'dilution-calculator', step: 'Dilute the stock you prepared.' },
+        { slug: 'significant-figures-calculator', step: 'Report the molar mass at the precision your data supports.' },
         { slug: 'percentage-calculator', step: 'Work with the composition percentages directly.' },
       ],
       faqs: [
@@ -209,9 +210,9 @@ export const SCIENCE_CALCULATORS: CalculatorMeta[] = [
           a: 'No. It uses standard atomic weights averaged over natural abundance. For isotope-labelled work, or for mass spectrometry, use the monoisotopic mass of the specific isotopologue instead.',
         },
       ],
-      related: ['molarity-calculator', 'dilution-calculator', 'percentage-calculator'],
+      related: ['molarity-calculator', 'dilution-calculator', 'significant-figures-calculator', 'percentage-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-31' },
   },
   {
     id: 'dilution',

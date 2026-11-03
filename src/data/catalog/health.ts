@@ -485,8 +485,8 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
     kind: 'config',
     config: {
       fields: [
-        { id: 'age', label: 'Age', type: 'number', defaultValue: 30, min: 15, suffix: 'yrs' },
-        { id: 'restingHR', label: 'Resting Heart Rate', type: 'number', defaultValue: 65, min: 30, suffix: 'bpm' },
+        { id: 'age', label: 'Age', type: 'number', defaultValue: 30, min: 15, max: 110, suffix: 'yrs' },
+        { id: 'restingHR', label: 'Resting Heart Rate', type: 'number', defaultValue: 65, min: 30, max: 220, suffix: 'bpm' },
         { id: 'intensityPct', label: 'Target Intensity', type: 'number', defaultValue: 70, min: 50, max: 90, suffix: '%' },
       ],
       results: [
@@ -546,7 +546,8 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
-      updatedAt: '2026-08-21',
+      // Age and resting-heart-rate bounds added (T-12 field-level min/max).
+      updatedAt: '2026-11-02',
     },
   },
   {

@@ -5,6 +5,7 @@ import { Badge } from '../ui/badge';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/card';
 import { ExportModal } from '../common/ExportModal';
 import { useToast } from '../ui/toast';
+import { tryEvaluate, type AngleMode } from '../../lib/scientificExpression';
 
 interface ScientificCalculatorProps {
   onSaveHistory?: (summary: string) => void;
@@ -12,177 +13,19 @@ interface ScientificCalculatorProps {
 
 type HistoryItem = { expr: string; result: string };
 
-function tokenize(src: string): string[] {
-  const tokens: string[] = [];
-  let i = 0;
-  const s = src.replace(/×/g, '*').replace(/÷/g, '/').replace(/−/g, '-').replace(/π/g, 'pi');
-  while (i < s.length) {
-    if (/\s/.test(s[i])) { i++; continue; }
-    if (/[0-9.]/.test(s[i])) {
-      let num = '';
-      while (i < s.length && /[0-9.eE]/.test(s[i])) {
-        num += s[i]; i++;
-      }
-      tokens.push(num);
-      continue;
-    }
-    if (/[a-zA-Z]/.test(s[i])) {
-      let id = '';
-      while (i < s.length && /[a-zA-Z0-9]/.test(s[i])) { id += s[i]; i++; }
-      tokens.push(id);
-      continue;
-    }
-    if ('+-*/^!%()'.includes(s[i])) { tokens.push(s[i]); i++; continue; }
-    i++;
-  }
-  return tokens;
-}
-
-function parseExpression(tokens: string[], pos: { i: number }, mode: 'deg' | 'rad'): number {
-  const eat = () => tokens[pos.i++];
-  const peek = () => tokens[pos.i];
-
-  const toRad = (v: number) => mode === 'deg' ? (v * Math.PI) / 180 : v;
-  const fromRad = (v: number) => mode === 'deg' ? (v * 180) / Math.PI : v;
-
-  function parseExpr(): number {
-    let left = parseTerm();
-    while (peek() === '+' || peek() === '-') {
-      const op = eat();
-      const right = parseTerm();
-      left = op === '+' ? left + right : left - right;
-    }
-    return left;
-  }
-
-  function parseTerm(): number {
-    let left = parseUnary();
-    while (peek() === '*' || peek() === '/' || (pos.i < tokens.length && /^[0-9.e(]$/.test(peek() as string) && !['('].includes(peek() as string) === false)) {
-      if (peek() === '*' || peek() === '/') {
-        const op = eat();
-        const right = parseUnary();
-        left = op === '*' ? left * right : left / right;
-      } else if (pos.i < tokens.length && !isNaN(parseFloat(peek() as string)) && peek() !== '(') {
-        const right = parseUnary();
-        left = left * right;
-      } else {
-        break;
-      }
-    }
-    return left;
-  }
-
-  function parseUnary(): number {
-    if (peek() === '-') { eat(); return -parsePostfix(); }
-    if (peek() === '+') { eat(); }
-    return parsePostfix();
-  }
-
-  function parsePostfix(): number {
-    let val = parsePower();
-    while (peek() === '!' || peek() === '%') {
-      if (peek() === '!') {
-        eat();
-        val = factorial(val);
-      } else if (peek() === '%') {
-        eat();
-        val = val / 100;
-      }
-    }
-    return val;
-  }
-
-  function parsePower(): number {
-    let base = parsePrimary();
-    if (peek() === '^') {
-      eat();
-      const exp = parseUnary();
-      base = Math.pow(base, exp);
-    }
-    return base;
-  }
-
-  function parsePrimary(): number {
-    const t = peek();
-    if (!t) throw new Error('Unexpected end');
-
-    if (t === '(') {
-      eat();
-      const val = parseExpr();
-      if (peek() === ')') eat();
-      return val;
-    }
-
-    if (t === 'pi') { eat(); return Math.PI; }
-    if (t === 'e') { eat(); return Math.E; }
-
-    if (['sin', 'cos', 'tan', 'asin', 'acos', 'atan', 'ln', 'log', 'sqrt', 'cbrt', 'abs', 'exp'].includes(t as string)) {
-      const fn = eat();
-      let arg: number;
-      if (peek() === '(') {
-        eat();
-        arg = parseExpr();
-        if (peek() === ')') eat();
-      } else {
-        arg = parseUnary();
-      }
-      switch (fn) {
-        case 'sin': return Math.sin(toRad(arg));
-        case 'cos': return Math.cos(toRad(arg));
-        case 'tan': return Math.tan(toRad(arg));
-        case 'asin': return fromRad(Math.asin(arg));
-        case 'acos': return fromRad(Math.acos(arg));
-        case 'atan': return fromRad(Math.atan(arg));
-        case 'ln': return Math.log(arg);
-        case 'log': return Math.log10(arg);
-        case 'sqrt': return Math.sqrt(arg);
-        case 'cbrt': return Math.cbrt(arg);
-        case 'abs': return Math.abs(arg);
-        case 'exp': return Math.exp(arg);
-        default: return 0;
-      }
-    }
-
-    const num = parseFloat(t);
-    if (!isNaN(num)) { eat(); return num; }
-
-    throw new Error(`Unknown: ${t}`);
-  }
-
-  function factorial(n: number): number {
-    if (n < 0 || !Number.isFinite(n)) return NaN;
-    n = Math.round(n);
-    if (n > 170) return Infinity;
-    let r = 1;
-    for (let i = 2; i <= n; i++) r *= i;
-    return r;
-  }
-
-  return parseExpr();
-}
-
-function evaluate(expr: string, mode: 'deg' | 'rad'): string {
-  if (!expr.trim()) return '';
-  try {
-    const tokens = tokenize(expr);
-    const result = parseExpression(tokens, { i: 0 }, mode);
-    if (!Number.isFinite(result)) return 'Undefined';
-    return Number.isInteger(result) ? result.toString() : parseFloat(result.toPrecision(12)).toString();
-  } catch {
-    return '';
-  }
-}
-
+/* The evaluator lives in src/lib/scientificExpression.ts so the arithmetic the
+ * page promises is unit-tested, including scientific-notation input and implicit
+ * multiplication, both of which were previously wrong here. */
 export const ScientificCalculator: React.FC<ScientificCalculatorProps> = ({ onSaveHistory }) => {
   const { toast } = useToast();
   const [expression, setExpression] = useState('');
-  const [angleMode, setAngleMode] = useState<'deg' | 'rad'>('deg');
+  const [angleMode, setAngleMode] = useState<AngleMode>('deg');
   const [history, setHistory] = useState<HistoryItem[]>([]);
   const [copied, setCopied] = useState(false);
   const [isExportOpen, setIsExportOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const result = useMemo(() => evaluate(expression, angleMode), [expression, angleMode]);
+  const result = useMemo(() => tryEvaluate(expression, angleMode), [expression, angleMode]);
 
   const handleEvaluate = () => {
     if (!result) return;
@@ -225,6 +68,7 @@ export const ScientificCalculator: React.FC<ScientificCalculatorProps> = ({ onSa
       if (key === '/') { e.preventDefault(); handleInsert('/'); return; }
       if (key === '(' || key === ')') { handleInsert(key); return; }
       if (key === '^') { handleInsert('^'); return; }
+      if (key === 'e' || key === 'E') { e.preventDefault(); handleInsert('e'); return; }
       if (key === 'Enter' || key === '=') { e.preventDefault(); handleEvaluate(); return; }
       if (key === 'Escape') { handleClear(); return; }
       if (key === 'Backspace') { handleBackspace(); return; }
@@ -238,7 +82,7 @@ export const ScientificCalculator: React.FC<ScientificCalculatorProps> = ({ onSa
     ['asin', 'acos', 'atan', '(', ')'],
     ['ln', 'log', '√', 'x²', 'xʸ'],
     ['n!', '1/x', '%', 'AC', '⌫'],
-    ['7', '8', '9', '÷', ''],
+    ['7', '8', '9', '÷', 'EE'],
     ['4', '5', '6', '×', ''],
     ['1', '2', '3', '-', ''],
     ['0', '.', '=', '+', ''],
@@ -272,6 +116,7 @@ export const ScientificCalculator: React.FC<ScientificCalculatorProps> = ({ onSa
       if (val === 'ln') { handleInsert('ln('); return; }
       if (val === 'log') { handleInsert('log('); return; }
       if (val === '1/x') { handleInsert('1/('); return; }
+      if (val === 'EE') { handleInsert('e'); return; }
       if (val === '×') { handleInsert('*'); return; }
       if (val === '÷') { handleInsert('/'); return; }
       handleInsert(val);
@@ -372,10 +217,12 @@ export const ScientificCalculator: React.FC<ScientificCalculatorProps> = ({ onSa
                 <p>sqrt(144) → 12</p>
                 <p>2^10 → 1024</p>
                 <p>5! → 120</p>
+                <p>1.5e-3 → 0.0015</p>
+                <p>2(3+4) → 14</p>
                 <p>pi → 3.14159…</p>
               </div>
               <div className="pt-3 border-t border-zinc-800 text-[11px] font-mono text-zinc-500">
-                <p>Keyboard: 0-9, +, -, *, /</p>
+                <p>Keyboard: 0-9, +, -, *, /, ^, e</p>
                 <p>Enter = evaluate</p>
                 <p>Esc = clear</p>
               </div>

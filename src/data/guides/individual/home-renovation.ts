@@ -69,6 +69,8 @@ export const homeRenovationGuide: Guide = {
     status: 'index',
     reviewStatus: 'reviewed',
     priority: 0.85,
+    // Last commit that touched this file (git log -1 --format=%cs).
+    updatedAt: '2026-10-26',
   },
   publishedAt: '2026-08-22',
 };

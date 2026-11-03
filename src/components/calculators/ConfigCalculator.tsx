@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Copy, Check, RotateCcw, Code2, Share2, Info } from 'lucide-react';
-import { ConfigCalculatorSpec } from '../../types';
+import { ConfigCalculatorSpec, ConfigField } from '../../types';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
@@ -11,6 +11,8 @@ import { ShareButton } from '../common/ShareButton';
 import { ScenarioCompare } from '../common/ScenarioCompare';
 import { useCurrency, applyCurrency } from '../../lib/currency';
 import { useUrlState, parseParamNumber, buildShareUrl } from '../../lib/share';
+import { parseBoundedNumber } from '../../lib/numberField';
+import { getConfigVisual } from './configVisuals';
 import { useToast } from '../ui/toast';
 
 interface ConfigCalculatorProps {
@@ -46,6 +48,8 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
   const [copied, setCopied] = useState<boolean>(false);
   const [isExportOpen, setIsExportOpen] = useState<boolean>(false);
   const [showCompare, setShowCompare] = useState<boolean>(false);
+  /** Per-field validation message. Empty means the value is acceptable. */
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   const evaluatedResults = useMemo(() => {
     const keys = Object.keys(formValues);
@@ -64,14 +68,39 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
     });
   }, [formValues, spec.results]);
 
-  const handleInputChange = (fieldId: string, val: string) => {
-    const num = parseFloat(val) || 0;
-    const next = {
-      ...formValues,
-      [fieldId]: num,
-    };
+  /**
+   * Field validation, delegated to `src/lib/numberField.ts`.
+   *
+   * `min` / `max` used to be passed to the `<input>` only. The browser does not
+   * enforce those attributes on typed input outside a submitted form, so a
+   * negative VAT rate or a negative length reached the formula and produced a
+   * confident, wrong answer. The value is now clamped into its declared range and
+   * the clamp is announced, so the result can never be computed from a number the
+   * field says is invalid.
+   */
+  const commitValue = (fieldId: string, value: number) => {
+    const next = { ...formValues, [fieldId]: value };
     setFormValues(next);
     syncUrl(next);
+  };
+
+  const setError = (fieldId: string, message?: string) => {
+    setFieldErrors((previous) => {
+      if (!message) {
+        if (!(fieldId in previous)) return previous;
+        const next = { ...previous };
+        delete next[fieldId];
+        return next;
+      }
+      if (previous[fieldId] === message) return previous;
+      return { ...previous, [fieldId]: message };
+    });
+  };
+
+  const handleInputChange = (field: ConfigField, raw: string) => {
+    const { value, error } = parseBoundedNumber(raw, { min: field.min, max: field.max });
+    setError(field.id, error);
+    commitValue(field.id, value);
   };
 
   const handleReset = () => {
@@ -80,6 +109,7 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
       initial[f.id] = f.defaultValue;
     });
     setFormValues(initial);
+    setFieldErrors({});
     syncUrl(initial);
   };
 
@@ -91,9 +121,16 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
 
   const primaryResult = spec.results[0];
   const formattedPrimary = formatResult(evaluatedResults[0] ?? 0, primaryResult);
+  const Visual = getConfigVisual(slug);
+  /**
+   * Fifty catalogue entries were generated with `formulaDescription: 'undefined'`,
+   * which the header printed verbatim. Treat the string "undefined" as absent.
+   */
+  const formulaDescription =
+    spec.formulaDescription && spec.formulaDescription !== 'undefined' ? spec.formulaDescription : undefined;
 
   const handleCopy = () => {
-    const text = `${name} Result: ${formattedPrimary}\nFormula: ${spec.formulaDescription}`;
+    const text = `${name} Result: ${formattedPrimary}${formulaDescription ? `\nFormula: ${formulaDescription}` : ''}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     toast('Result copied to clipboard');
@@ -122,7 +159,7 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
             <span className="text-xs font-mono text-zinc-500">Live Calculation</span>
           </div>
           <CardTitle className="text-xl">{name}</CardTitle>
-          <CardDescription>{spec.formulaDescription}</CardDescription>
+          {formulaDescription && <CardDescription>{formulaDescription}</CardDescription>}
         </div>
 
         <div className="flex items-center gap-2">
@@ -152,7 +189,11 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <div className="lg:col-span-7 space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {spec.fields.map((field) => (
+              {spec.fields.map((field) => {
+                const error = fieldErrors[field.id];
+                const errorId = `config-${name}-${field.id}-error`;
+                const describedBy = error ? errorId : undefined;
+                return (
                 <div key={field.id} className="space-y-1.5">
                   <div className="flex justify-between items-center">
                     <Label htmlFor={`config-${name}-${field.id}`}>{field.label}</Label>
@@ -173,10 +214,12 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
                       max={field.max}
                       step={field.step || 'any'}
                       value={formValues[field.id] ?? field.defaultValue}
-                      onChange={(e) => handleInputChange(field.id, e.target.value)}
+                      onChange={(e) => handleInputChange(field, e.target.value)}
+                      aria-invalid={error ? true : undefined}
+                      aria-describedby={describedBy}
                       className={`font-mono font-bold text-sm tabular-nums ${
                         field.prefix ? 'pl-7' : ''
-                      }`}
+                      } ${error ? 'border-red-500 focus-visible:ring-red-500' : ''}`}
                     />
                     {(field.unit || field.suffix) && (
                       <span className="absolute right-3 top-2 text-xs font-mono text-zinc-400">
@@ -184,19 +227,27 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
                       </span>
                     )}
                   </div>
+                  {error && (
+                    <p id={errorId} role="alert" className="text-xs text-red-600 dark:text-red-400">
+                      {field.label}: {error}
+                    </p>
+                  )}
                 </div>
-              ))}
+                );
+              })}
             </div>
 
-            <div className="p-3 bg-zinc-50 dark:bg-zinc-950 rounded-lg border border-zinc-200 dark:border-zinc-800 flex items-start gap-2.5 text-xs text-zinc-700 dark:text-zinc-300">
-              <Code2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-              <div>
-                <span className="font-mono text-[11px] font-bold text-zinc-900 dark:text-white block">
-                  Evaluated Formula:
-                </span>
-                <span className="font-mono text-[11px] text-zinc-500">{spec.formulaDescription}</span>
+            {formulaDescription && (
+              <div className="p-3 bg-zinc-50 dark:bg-zinc-950 rounded-lg border border-zinc-200 dark:border-zinc-800 flex items-start gap-2.5 text-xs text-zinc-700 dark:text-zinc-300">
+                <Code2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                <div>
+                  <span className="font-mono text-[11px] font-bold text-zinc-900 dark:text-white block">
+                    Evaluated Formula:
+                  </span>
+                  <span className="font-mono text-[11px] text-zinc-500">{formulaDescription}</span>
+                </div>
               </div>
-            </div>
+            )}
 
             {spec.tips && spec.tips.length > 0 && (
               <div className="space-y-1 pt-1">
@@ -255,6 +306,16 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
             </div>
           </div>
         </div>
+
+        {Visual && (
+          <div className="mt-6 border-t border-zinc-100 pt-6 dark:border-zinc-800">
+            <Visual
+              values={formValues}
+              results={evaluatedResults}
+              format={(value) => formatResult(value, primaryResult)}
+            />
+          </div>
+        )}
       </CardContent>
 
       <ExportModal
@@ -263,7 +324,7 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
         calculatorName={name}
         title={`${name} Breakdown`}
         data={exportData}
-        summaryText={`${name} Result: ${formattedPrimary}\nFormula: ${spec.formulaDescription}`}
+        summaryText={`${name} Result: ${formattedPrimary}${formulaDescription ? `\nFormula: ${formulaDescription}` : ''}`}
       />
 
       {showCompare && (

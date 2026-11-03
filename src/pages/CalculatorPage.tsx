@@ -38,8 +38,11 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({ slug, onSaveHist
   const iconName = entry?.iconName ?? link?.iconName;
 
   usePageMeta({
-    title: name ?? 'Calculator Not Found',
+    // `seo.title` / `seo.description` let a page target the query people type
+    // without renaming the tool itself. The prerenderer reads the same fields.
+    title: entry?.seo?.title ?? name ?? 'Calculator Not Found',
     description:
+      entry?.seo?.description ??
       entry?.shortDesc ??
       'The calculator page you requested does not exist. Browse all calculators.',
     keywords: entry?.keywords,

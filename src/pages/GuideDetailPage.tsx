@@ -52,8 +52,8 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ slug }) => {
   usePageMeta(
     guide
       ? {
-          title: guide.name,
-          description: guide.shortDesc,
+          title: guide.seo?.title ?? guide.name,
+          description: guide.seo?.description ?? guide.shortDesc,
           canonicalPath: `/guides/${guide.slug}`,
           noindex:
             guide.seo?.status !== 'index' ||

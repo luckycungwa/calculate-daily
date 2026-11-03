@@ -135,6 +135,14 @@ export interface CalculatorMeta {
     priority?: number;
     /** Real date (YYYY-MM-DD) of the last meaningful content change. Feeds <lastmod>. */
     updatedAt?: string;
+    /**
+     * Search-facing <title> override. Defaults to the tool name. Use it when the
+     * query people actually type ("online scientific calculator") is not the
+     * name we want as the page H1.
+     */
+    title?: string;
+    /** Search-facing meta description override. Defaults to `shortDesc`. */
+    description?: string;
   };
 }
 
@@ -181,6 +189,10 @@ export interface Guide {
     priority?: number;
     /** Real date (YYYY-MM-DD) of the last meaningful content edit. Feeds <lastmod>. */
     updatedAt?: string;
+    /** Search-facing <title> override. Defaults to the guide name. */
+    title?: string;
+    /** Search-facing meta description override. Defaults to `shortDesc`. */
+    description?: string;
   };
   publishedAt: string;
 }
