@@ -8,6 +8,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui
 import { ExportModal } from '../common/ExportModal';
 import { useCurrency } from '../../lib/currency';
 import { useToast } from '../ui/toast';
+import { CompositionBar } from '../charts/IndicatorBar';
 
 interface TipCalculatorProps {
   onSaveHistory?: (summary: string) => void;
@@ -322,6 +323,25 @@ export const TipCalculator: React.FC<TipCalculatorProps> = ({ onSaveHistory }) =
           </div>
         </div>
       </CardContent>
+
+      <div className="px-6 pb-6">
+        <CompositionBar
+          segments={[
+            { label: `Bill ${currency}${results.bill.toFixed(2)}`, value: results.bill, tone: 'muted' },
+            { label: `Tip ${currency}${results.tipAmount.toFixed(2)}`, value: results.tipAmount, tone: 'positive' },
+          ]}
+          totalLabel={`Total ${currency}${results.total.toFixed(2)}`}
+          summary={`The ${currency}${results.total.toFixed(2)} total is ${currency}${results.bill.toFixed(
+            2
+          )} of food and drink plus a ${currency}${results.tipAmount.toFixed(
+            2
+          )} tip, which is ${results.effectiveTipPercent.toFixed(1)}% of the bill.${
+            results.people > 1
+              ? ` Split ${results.people} ways that is ${currency}${results.totalPerPerson.toFixed(2)} each.`
+              : ''
+          }`}
+        />
+      </div>
 
       {/* Export Modal */}
       <ExportModal

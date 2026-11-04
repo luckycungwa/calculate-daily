@@ -34,6 +34,14 @@ export interface ConfigResult {
   prefix?: string;
   suffix?: string;
   accent?: boolean;
+  /**
+   * Text to show instead of the raw number, indexed by value. A result that
+   * answers a yes/no question ("Is Prime?") should read "Yes"/"No", not "1"/"0".
+   * Values outside the list fall back to the normal number formatting.
+   */
+  valueLabels?: string[];
+  /** Show the number without thousands separators, for values such as years. */
+  noGrouping?: boolean;
 }
 
 export interface ConfigCalculatorSpec {

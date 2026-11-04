@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { CalculatorMeta } from '../../types';
+import { CONVERTER_DEFAULTS } from '../../data/unitGroups';
 import { ConfigCalculator } from './ConfigCalculator';
 import { UnitConverter } from './UnitConverter';
 import { DailySavingsChallenge } from '../DailySavingsChallenge';
@@ -171,12 +172,13 @@ export const CalculatorRenderer: React.FC<CalculatorRendererProps> = ({ meta, on
   }
 
   if (meta.kind === 'converter' && meta.unitGroup) {
+    const defaults = CONVERTER_DEFAULTS[meta.id];
     return (
       <UnitConverter
         name={meta.name}
         unitGroup={meta.unitGroup}
-        defaultFrom={meta.id === 'oz-cups' ? 'floz' : undefined}
-        defaultTo={meta.id === 'oz-cups' ? 'cup' : undefined}
+        defaultFrom={defaults?.from}
+        defaultTo={defaults?.to}
         onSaveHistory={onSaveHistory}
       />
     );

@@ -27,8 +27,15 @@ export const UnitConverter: React.FC<UnitConverterProps> = ({
   const { toast } = useToast();
   const group = UNIT_GROUPS[unitGroup];
 
-  const [fromUnit, setFromUnit] = useState<string>(defaultFrom || group.units[0].value);
-  const [toUnit, setToUnit] = useState<string>(defaultTo || group.units[1].value);
+  const hasUnit = (value?: string) => !!value && group.units.some((u) => u.value === value);
+  const initialFrom = hasUnit(defaultFrom) ? defaultFrom! : group.units[0].value;
+  const initialTo =
+    hasUnit(defaultTo) && defaultTo !== initialFrom
+      ? defaultTo!
+      : group.units.find((u) => u.value !== initialFrom)!.value;
+
+  const [fromUnit, setFromUnit] = useState<string>(initialFrom);
+  const [toUnit, setToUnit] = useState<string>(initialTo);
   const [value, setValue] = useState<string>('1');
   const [copied, setCopied] = useState<boolean>(false);
   const [isExportOpen, setIsExportOpen] = useState<boolean>(false);
@@ -53,8 +60,8 @@ export const UnitConverter: React.FC<UnitConverterProps> = ({
 
   const handleReset = () => {
     setValue('1');
-    setFromUnit(group.units[0].value);
-    setToUnit(group.units[1].value);
+    setFromUnit(initialFrom);
+    setToUnit(initialTo);
   };
 
   const handleCopy = () => {

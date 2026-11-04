@@ -113,9 +113,13 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
     syncUrl(initial);
   };
 
-  const formatResult = (num: number, r: { prefix?: string; suffix?: string }) => {
+  const formatResult = (num: number, r: { prefix?: string; suffix?: string; valueLabels?: string[]; noGrouping?: boolean }) => {
     if (!Number.isFinite(num)) return 'Not calculable';
-    const formatted = num.toLocaleString('en-US', { maximumFractionDigits: 2 });
+    const label = r.valueLabels?.[num];
+    if (label !== undefined && Number.isInteger(num)) return label;
+    const formatted = r.noGrouping
+      ? String(num)
+      : num.toLocaleString('en-US', { maximumFractionDigits: 2 });
     return `${applyCurrency(r.prefix, currency) || ''}${formatted}${r.suffix ? ` ${r.suffix}` : ''}`;
   };
 

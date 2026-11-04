@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { CALCULATOR_CATALOG } from '../src/data/calculators';
 import { GUIDE_REGISTRY } from '../src/data/guides';
-import { UNIT_GROUPS } from '../src/data/unitGroups';
+import { UNIT_GROUPS, CONVERTER_DEFAULTS } from '../src/data/unitGroups';
 import { FALLBACK_RATES } from '../src/data/currencies';
 import {
   calculateBreakEven,
@@ -440,6 +440,44 @@ function main() {
 
   auditRedirects(results);
 
+  // Converter pages are named for a direction, so each one must open on the
+  // matching unit pair. A missing or misspelled entry silently falls back to the
+  // first two units in the group — the Years to Days page showing milliseconds.
+  {
+    const problems: string[] = [];
+    for (const calc of CALCULATOR_CATALOG) {
+      if (calc.kind !== 'converter' || !calc.unitGroup) continue;
+      const group = UNIT_GROUPS[calc.unitGroup];
+      if (!group) {
+        problems.push(`${calc.slug}: unknown unit group ${calc.unitGroup}`);
+        continue;
+      }
+      const defaults = CONVERTER_DEFAULTS[calc.id];
+      if (!defaults) {
+        problems.push(`${calc.slug}: no default units`);
+        continue;
+      }
+      if (!group.units.some((u) => u.value === defaults.from)) {
+        problems.push(`${calc.slug}: from=${defaults.from} not in ${group.id}`);
+      }
+      if (!group.units.some((u) => u.value === defaults.to)) {
+        problems.push(`${calc.slug}: to=${defaults.to} not in ${group.id}`);
+      }
+      if (defaults.from === defaults.to) {
+        problems.push(`${calc.slug}: from and to are the same unit`);
+      }
+    }
+    results.push({
+      name: 'converters',
+      slug: 'default-unit-pairs',
+      kind: 'integrity',
+      status: problems.length ? 'FAIL' : 'PASS',
+      detail: problems.length
+        ? problems.join('; ')
+        : `every converter opens on its named unit pair`,
+    });
+  }
+
   // Edge-case regressions. These evaluate a single result against overridden inputs,
   // so they catch maths that is wrong only outside the default values.
   const evalResult = (slug: string, index: number, overrides: Record<string, number>): number | null => {
@@ -503,6 +541,246 @@ function main() {
       kind: 'edge-case',
       status: ok ? 'PASS' : 'FAIL',
       detail: ok ? '0% APR resolves to amount / months, not NaN' : `expected 333.33, got ${payment}`,
+    });
+  }
+
+  {
+    // 9 and 91 are the classic false positives for an odd/even "primality" test.
+    const nine = evalResult('prime-number-checker', 0, { number: 9 });
+    const ninetyOne = evalResult('prime-number-checker', 0, { number: 91 });
+    const ninetySeven = evalResult('prime-number-checker', 0, { number: 97 });
+    const two = evalResult('prime-number-checker', 0, { number: 2 });
+    const ok = nine === 0 && ninetyOne === 0 && ninetySeven === 1 && two === 1;
+    results.push({
+      name: 'Prime Checker',
+      slug: 'prime-number-checker',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok
+        ? '9 and 91 are composite; 97 and 2 are prime'
+        : `expected 9=0, 91=0, 97=1, 2=1, got ${nine}, ${ninetyOne}, ${ninetySeven}, ${two}`,
+    });
+  }
+
+  {
+    // A finished countdown must read 0h 0m, never a negative time.
+    const hours = evalResult('hours-until-calculator', 0, {
+      currentHour: 14,
+      currentMinute: 0,
+      targetHour: 6,
+      targetMinute: 0,
+      daysAhead: 0,
+    });
+    const minutes = evalResult('hours-until-calculator', 1, {
+      currentHour: 14,
+      currentMinute: 0,
+      targetHour: 6,
+      targetMinute: 0,
+      daysAhead: 0,
+    });
+    const ok = hours === 0 && minutes === 0;
+    results.push({
+      name: 'Hours Until',
+      slug: 'hours-until-calculator',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok ? 'a passed target stops at 0h 0m rather than going negative' : `expected 0 and 0, got ${hours} and ${minutes}`,
+    });
+  }
+
+  {
+    // The month/day/year fields must survive a year rollover and a negative offset.
+    const month = evalResult('add-days-to-date', 0, { startYear: 2026, startMonth: 1, startDay: 15, daysToAdd: 45 });
+    const day = evalResult('add-days-to-date', 1, { startYear: 2026, startMonth: 1, startDay: 15, daysToAdd: 45 });
+    const yearAhead = evalResult('add-days-to-date', 2, { startYear: 2026, startMonth: 12, startDay: 31, daysToAdd: 1 });
+    const backwards = evalResult('add-days-to-date', 2, { startYear: 2026, startMonth: 1, startDay: 15, daysToAdd: -45 });
+    const ok = month === 3 && day === 1 && yearAhead === 2027 && backwards === 2025;
+    results.push({
+      name: 'Add Days to Date',
+      slug: 'add-days-to-date',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok
+        ? '15 Jan 2026 + 45 = 1 Mar 2026; 31 Dec 2026 + 1 = 2027; 15 Jan 2026 - 45 = 2025'
+        : `expected 3/1/2027/2025, got ${month}/${day}/${yearAhead}/${backwards}`,
+    });
+  }
+
+  {
+    // 10:00 at UTC-5 is 15:00 at UTC+0.
+    const converted = evalResult('time-zone-converter', 0, { hours: 10, minutes: 0, sourceOffset: -5, targetOffset: 0 });
+    const wrapped = evalResult('time-zone-converter', 0, { hours: 10, minutes: 0, sourceOffset: -5, targetOffset: 9 });
+    const ok = converted === 15 && wrapped === 0;
+    results.push({
+      name: 'Time Zone',
+      slug: 'time-zone-converter',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok ? '10:00 UTC-5 -> 15:00 UTC+0, and 00:00 when shifted past midnight' : `expected 15 and 0, got ${converted} and ${wrapped}`,
+    });
+  }
+
+  {
+    // 30 km each way at 8 L/100km and 1.50/L burns 4.8 litres: 7.20, not 11.25.
+    const daily = evalResult('daily-commute-cost-calculator', 0, {
+      distanceKm: 30,
+      fuelEfficiency: 8,
+      gasPrice: 1.5,
+      workDays: 22,
+    });
+    const ok = daily !== null && Math.abs(daily - 7.2) < 1e-9;
+    results.push({
+      name: 'Commute Cost',
+      slug: 'daily-commute-cost-calculator',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok ? 'L/100km is applied as consumption, giving 4.8 L and $7.20 a day' : `expected 7.2, got ${daily}`,
+    });
+  }
+
+  {
+    // The 483 constant is only valid for a 1.5-mile (2.4 km) run: 12:00 gives 43.75.
+    const twelve = evalResult('vo2-max-calculator', 0, { timeMinutes: 12, timeSeconds: 0 });
+    const half = evalResult('vo2-max-calculator', 0, { timeMinutes: 12, timeSeconds: 30 });
+    const ok =
+      twelve !== null &&
+      half !== null &&
+      Math.abs(twelve - 43.75) < 1e-9 &&
+      Math.abs(half - 42.14) < 0.01;
+    results.push({
+      name: 'VO2 Max',
+      slug: 'vo2-max-calculator',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok ? '1.5 miles in 12:00 gives 43.75 ml/kg/min; 12:30 gives 42.14' : `expected 43.75 and 42.14, got ${twelve} and ${half}`,
+    });
+  }
+
+  {
+    // base^exponent and base^(1/exponent) are inverses; exponent 0 must not divide by zero.
+    const power = evalResult('exponent-root-calculator', 0, { base: 9, exponent: 0.5 });
+    const root = evalResult('exponent-root-calculator', 1, { base: 9, exponent: 0.5 });
+    const zeroRoot = evalResult('exponent-root-calculator', 1, { base: 9, exponent: 0 });
+    const cube = evalResult('exponent-root-calculator', 1, { base: 64, exponent: 3 });
+    const ok =
+      power === 3 &&
+      root === 81 &&
+      cube !== null &&
+      Math.abs(cube - 4) < 1e-9 &&
+      zeroRoot !== null &&
+      Number.isNaN(zeroRoot);
+    results.push({
+      name: 'Exponent & Root',
+      slug: 'exponent-root-calculator',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok
+        ? '9^0.5 = 3 with root 81; cube root of 64 = 4; exponent 0 returns no root rather than Infinity'
+        : `expected 3/81/4/NaN, got ${power}/${root}/${cube}/${zeroRoot}`,
+    });
+  }
+
+  {
+    // The Euclidean algorithm must handle pairs where neither divides the other:
+    // GCD(12,18)=6 not 1, and GCD(48,180)=12 with LCM 720.
+    const gcd1 = evalResult('gcd-lcm-calculator', 0, { a: 12, b: 18 });
+    const lcm1 = evalResult('gcd-lcm-calculator', 1, { a: 12, b: 18 });
+    const gcd2 = evalResult('gcd-lcm-calculator', 0, { a: 48, b: 180 });
+    const lcm2 = evalResult('gcd-lcm-calculator', 1, { a: 48, b: 180 });
+    const coprime = evalResult('gcd-lcm-calculator', 0, { a: 7, b: 13 });
+    const ok = gcd1 === 6 && lcm1 === 36 && gcd2 === 12 && lcm2 === 720 && coprime === 1;
+    results.push({
+      name: 'GCD & LCM',
+      slug: 'gcd-lcm-calculator',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok
+        ? '12/18 gives 6 and 36; 48/180 gives 12 and 720; coprime 7/13 gives 1'
+        : `expected 6/36/12/720/1, got ${gcd1}/${lcm1}/${gcd2}/${lcm2}/${coprime}`,
+    });
+  }
+
+  {
+    // A negative discriminant has no real root: report the real part and the
+    // imaginary part instead of NaN, and reject a = 0.
+    const disc = evalResult('quadratic-formula-calculator', 0, { a: 1, b: 2, c: 5 });
+    const real1 = evalResult('quadratic-formula-calculator', 1, { a: 1, b: 2, c: 5 });
+    const real2 = evalResult('quadratic-formula-calculator', 2, { a: 1, b: 2, c: 5 });
+    const imag = evalResult('quadratic-formula-calculator', 3, { a: 1, b: 2, c: 5 });
+    const realRoot = evalResult('quadratic-formula-calculator', 1, { a: 1, b: -5, c: 6 });
+    const linear = evalResult('quadratic-formula-calculator', 1, { a: 0, b: 2, c: 5 });
+    const ok =
+      disc === -16 &&
+      real1 === -1 &&
+      real2 === -1 &&
+      imag === 2 &&
+      realRoot === 3 &&
+      linear !== null &&
+      Number.isNaN(linear);
+    results.push({
+      name: 'Quadratic Formula',
+      slug: 'quadratic-formula-calculator',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok
+        ? 'discriminant -16 gives real part -1 and imaginary 2; x^2-5x+6 gives root 3; a=0 returns no root'
+        : `expected -16/-1/-1/2/3/NaN, got ${disc}/${real1}/${real2}/${imag}/${realRoot}/${linear}`,
+    });
+  }
+
+  {
+    // 350 ml at 1:16 is 21.875 g of coffee, 6.25% strength.
+    const coffee = evalResult('coffee-ratio-calculator', 0, { waterMl: 350, ratio: 16 });
+    const strength = evalResult('coffee-ratio-calculator', 1, { waterMl: 350, ratio: 16 });
+    const ok =
+      coffee !== null &&
+      strength !== null &&
+      Math.abs(coffee - 21.875) < 1e-9 &&
+      Math.abs(strength - 6.25) < 1e-9;
+    results.push({
+      name: 'Coffee Ratio',
+      slug: 'coffee-ratio-calculator',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok ? '350 ml at 1:16 needs 21.875 g at 6.25% strength' : `expected 21.875 and 6.25, got ${coffee} and ${strength}`,
+    });
+  }
+
+  {
+    // The rate field is a percentage: 5 must mean 5%, not 500%.
+    const final = evalResult('exponential-growth-calculator', 0, { y0: 100, r: 5, t: 10 });
+    const doubling = evalResult('exponential-growth-calculator', 2, { y0: 100, r: 5, t: 10 });
+    const ok =
+      final !== null &&
+      doubling !== null &&
+      Math.abs(final - 164.87) < 0.01 &&
+      Math.abs(doubling - 13.86) < 0.01;
+    results.push({
+      name: 'Exponential Growth',
+      slug: 'exponential-growth-calculator',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok
+        ? '100 at 5% for 10 periods gives 164.87 and a 13.86-period doubling time'
+        : `expected 164.87 and 13.86, got ${final} and ${doubling}`,
+    });
+  }
+
+  {
+    // 300 miles at 30 mpg and $3.50/gal: 10 gallons, $35, about $0.1167 per mile.
+    const cost = evalResult('fuel-cost-calculator', 1, { distanceMiles: 300, mpg: 30, pricePerGallon: 3.5 });
+    const perMile = evalResult('fuel-cost-calculator', 2, { distanceMiles: 300, mpg: 30, pricePerGallon: 3.5 });
+    const ok =
+      cost !== null &&
+      perMile !== null &&
+      Math.abs(cost - 35) < 1e-9 &&
+      Math.abs(perMile - 3.5 / 30) < 1e-9;
+    results.push({
+      name: 'Fuel Cost',
+      slug: 'fuel-cost-calculator',
+      kind: 'edge-case',
+      status: ok ? 'PASS' : 'FAIL',
+      detail: ok ? '300 mi at 30 mpg and $3.50/gal costs $35, or $0.1167 a mile' : `expected 35 and 0.1167, got ${cost} and ${perMile}`,
     });
   }
 

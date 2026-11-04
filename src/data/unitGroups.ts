@@ -189,3 +189,53 @@ export const UNIT_GROUPS: Record<string, UnitGroup> = {
 };
 
 export const UNIT_GROUP_LIST = Object.values(UNIT_GROUPS);
+
+/**
+ * The unit pair each converter page should open on.
+ *
+ * A converter page is named for a specific direction — "Years to Days",
+ * "PSI to Bar" — so it must not open on whichever two units happen to be first
+ * in its group. Without this, the Years to Days page loaded with millisecond to
+ * second selected, which is the most prominent thing on the page and was simply
+ * wrong. Keys are calculator ids; both unit values must exist in the group.
+ */
+export const CONVERTER_DEFAULTS: Record<string, { from: string; to: string }> = {
+  'oz-cups': { from: 'floz', to: 'cup' },
+  temperature: { from: 'C', to: 'F' },
+  length: { from: 'm', to: 'ft' },
+  weight: { from: 'kg', to: 'lb' },
+  speed: { from: 'kmh', to: 'mph' },
+  'area-converter': { from: 'm2', to: 'ft2' },
+  'volume-converter': { from: 'l', to: 'gal' },
+  'data-storage': { from: 'mb', to: 'gb' },
+  'pounds-to-kg': { from: 'lb', to: 'kg' },
+  'kg-to-lbs': { from: 'kg', to: 'lb' },
+  'celsius-fahrenheit': { from: 'C', to: 'F' },
+  'fahrenheit-celsius': { from: 'F', to: 'C' },
+  'inches-cm': { from: 'in', to: 'cm' },
+  'cm-inches': { from: 'cm', to: 'in' },
+  'feet-meters': { from: 'ft', to: 'm' },
+  'meters-feet': { from: 'm', to: 'ft' },
+  'miles-km': { from: 'mi', to: 'km' },
+  'km-miles': { from: 'km', to: 'mi' },
+  'gallons-liters': { from: 'gal', to: 'l' },
+  'liters-gallons': { from: 'l', to: 'gal' },
+  'ounces-grams': { from: 'oz', to: 'g' },
+  'grams-ounces': { from: 'g', to: 'oz' },
+  'cups-ml': { from: 'cup', to: 'ml' },
+  'tbsp-tsp': { from: 'tbsp', to: 'tsp' },
+  'pints-quarts': { from: 'pint', to: 'quart' },
+  'acres-sqft': { from: 'ac', to: 'ft2' },
+  'sqft-acres': { from: 'ft2', to: 'ac' },
+  'stone-pounds': { from: 'st', to: 'lb' },
+  'pounds-stone': { from: 'lb', to: 'st' },
+  'mb-gb': { from: 'mb', to: 'gb' },
+  'gb-tb': { from: 'gb', to: 'tb' },
+  'hours-minutes': { from: 'hr', to: 'min' },
+  'days-hours': { from: 'day', to: 'hr' },
+  'weeks-days': { from: 'week', to: 'day' },
+  'months-days': { from: 'month', to: 'day' },
+  'years-days': { from: 'year', to: 'day' },
+  'mph-kph': { from: 'mph', to: 'kmh' },
+  'psi-bar': { from: 'psi', to: 'bar' },
+};

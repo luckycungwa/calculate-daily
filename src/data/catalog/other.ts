@@ -37,7 +37,7 @@ export const FOOD_CALCULATORS: CalculatorMeta[] = [
       formulas: [
         {
           label: 'Scaled Ingredient',
-          expression: 'Scaled = Amount Ã— (Desired Servings / Original Servings)',
+          expression: 'Scaled = Amount × (Desired Servings / Original Servings)',
         },
       ],
       resultExplanations: [
@@ -236,8 +236,8 @@ export const FITNESS_CALCULATORS: CalculatorMeta[] = [
       formulas: [
         {
           label: 'Estimated One Rep Max',
-          expression: '1RM = Weight Ã— (1 + Reps / 30)',
-          note: 'The Epley formula, most accurate for 1â€“10 reps.',
+          expression: '1RM = Weight × (1 + Reps / 30)',
+          note: 'The Epley formula, most accurate for 1–10 reps.',
         },
       ],
       resultExplanations: [
@@ -296,7 +296,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       formulas: [
         {
           label: 'Tip Amount',
-          expression: 'Tip = Bill Ã— Rate',
+          expression: 'Tip = Bill × Rate',
         },
         {
           label: 'Per Person Share',
@@ -352,20 +352,22 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       results: [
         { label: 'Gallons Needed', formulaCode: 'distanceMiles / mpg', suffix: 'gal' },
         { label: 'Total Fuel Cost', formulaCode: 'distanceMiles / mpg * pricePerGallon', prefix: '$', accent: true },
+        { label: 'Cost per Mile', formulaCode: 'pricePerGallon / mpg', prefix: '$' },
       ],
       formulaDescription: 'Cost = Distance / Efficiency x Price',
       tips: [
         'Highway driving usually beats city mileage, so adjust for your route.',
         'Cost per mile = Price / Efficiency.',
+        'Enter a round-trip distance if you need the cost of both directions.',
       ],
     },
     content: {
       intro:
-        'The Fuel Cost Calculator estimates the cost of a trip based on distance, vehicle efficiency, and current fuel prices. Road-trippers and daily commuters use it to budget gas before leaving.',
+        'The Fuel Cost Calculator turns a trip distance, a vehicle efficiency and a pump price into the fuel bill for the journey. It also shows the gallons the trip consumes and the cost per mile, which is the figure worth comparing between two cars or two routes.',
       howItWorks:
-        'Gallons needed equal distance divided by efficiency. Multiplying by the price per gallon gives total fuel cost for the trip.',
+        'Distance divided by miles per gallon gives the gallons burned; multiplying by the price per gallon gives the cost. Dividing the price by the efficiency instead gives cost per mile, which stays the same regardless of trip length — so a 300-mile trip costs ten times a 30-mile one at the same rate. Efficiency is assumed to be a US-gallon mpg figure and the price a price per US gallon.',
       example:
-        'A 300-mile trip in a 30 mpg car at $3.50 per gallon uses 10 gallons and costs $35.',
+        'A 300-mile trip in a 30 mpg car at $3.50 per gallon: 300 / 30 = 10 gallons, costing 10 x $3.50 = $35, or about $0.117 a mile. The same trip in a 20 mpg car burns 15 gallons and costs $52.50, while a 45 mpg car needs 6.67 gallons and costs $23.33.',
       formulas: [
         {
           label: 'Gallons Needed',
@@ -373,7 +375,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
         },
         {
           label: 'Total Fuel Cost',
-          expression: 'Cost = Gallons Ã— Price per Gallon',
+          expression: 'Cost = Gallons × Price per Gallon',
         },
       ],
       resultExplanations: [
@@ -387,15 +389,23 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
           explanation:
             'The trip gas bill, gallons multiplied by the pump price.',
         },
+        {
+          resultLabel: 'Cost per Mile',
+          explanation:
+            'The price of one mile at this efficiency and fuel price. Handy for comparing vehicles, because it does not depend on trip length.',
+        },
       ],
       workflowLinks: [
         { slug: 'currency-converter', step: 'Convert fuel prices across currencies on cross-border trips.' },
         { slug: 'speed-converter', step: 'Convert distances and speeds between unit systems.' },
+        { slug: 'daily-commute-cost-calculator', step: 'Turn a single trip into a monthly commuting cost.' },
       ],
       faqs: [
-        { q: 'How do I calculate fuel cost for a trip?', a: 'Divide the distance by your miles per gallon to get gallons, then multiply by the fuel price. The calculator does both steps.' },
-        { q: 'How do I find my car mpg?', a: 'Divide the miles driven since your last fill-up by the gallons it took to refill. Your dashboard may also display it.' },
-        { q: 'Can I use liters and kilometers?', a: 'Convert your values first, or use the length and volume converters to translate your numbers into miles and gallons.' },
+        { q: 'How do I calculate fuel cost for a trip?', a: 'Divide the distance by your miles per gallon to get gallons, then multiply by the fuel price. A 300-mile trip at 30 mpg uses 10 gallons, which costs $35 at $3.50 a gallon.' },
+        { q: 'How do I find my car mpg?', a: 'Fill the tank, reset the trip meter, and at the next fill-up divide the miles driven by the gallons it took to refill. That measured figure is more reliable than the dashboard estimate, especially for mostly city driving.' },
+        { q: 'Can I use litres and kilometres?', a: 'Not directly — this calculator assumes miles and US gallons. Convert the distance to miles and the fuel to US gallons first, or use a litre-per-100km calculator, which divides consumption in the opposite direction.' },
+        { q: 'Is a US gallon the same as an imperial gallon?', a: 'No. A US gallon is 3.785 litres and an imperial gallon is 4.546 litres, about 20% larger. A car quoted at 40 mpg (US) is roughly 48 mpg (imperial), so mixing the two makes the cost look wrong.' },
+        { q: 'Why is the real cost usually higher?', a: 'Because the estimate assumes the rated efficiency is achieved. Cold starts, air conditioning, roof racks, tyre pressure, traffic and a heavy load all lower real-world mpg, so treat the result as a best case for the route you described.' },
       ],
       related: ['electricity-cost-calculator', 'speed-converter', 'currency-converter'],
     },
@@ -403,7 +413,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-08-22',
+      updatedAt: '2026-11-04',
     },
   },
   {
@@ -443,11 +453,11 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       formulas: [
         {
           label: 'Energy Used',
-          expression: 'kWh = Watts / 1000 Ã— Hours Ã— Days',
+          expression: 'kWh = Watts / 1000 × Hours × Days',
         },
         {
           label: 'Monthly Cost',
-          expression: 'Cost = kWh Ã— Rate per kWh',
+          expression: 'Cost = kWh × Rate per kWh',
         },
       ],
       resultExplanations: [
@@ -502,31 +512,33 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       formulaDescription: 'undefined',
       tips: [
-      'Compare hourly vs daily rates. Parking garages often have a daily maximum.',
-      'Off-street parking is usually cheaper than on-street meters.'
+        'Compare hourly vs daily rates. Parking garages often have a daily maximum.',
+        'Off-street parking is usually cheaper than on-street meters.',
+        'A stay that touches two calendar days is charged two day passes.'
       ],
     },
     content: {
-      intro: 'The Parking Cost Calculator estimates total parking expenses for a trip based on hourly or daily rates and the duration of your stay.',
-      howItWorks: 'Enter the parking rate and duration. The calculator shows total cost, including any daily maximums.',
-      example: 'Parking at $3/hour for 8 hours = $24, or $15/day max applies = $15.',
-      formulas: [{ label: 'Cost', expression: 'Cost = Rate x Hours (capped at daily max)' }],
+      intro: 'The Parking Cost Calculator estimates what a stay will cost when a car park charges both an hourly rate and a daily maximum. It charges whichever is cheaper, so a long day at an hourly meter never costs more than the daily cap.',
+      howItWorks: 'The hourly total is the hourly rate multiplied by the hours parked. The day-pass total is the daily rate multiplied by the number of calendar days the stay touches, rounded up. The calculator charges the lower of the two, which is how a daily maximum behaves in practice. The days figure shows how many day passes are being counted.',
+      example: 'Eight hours at $3 an hour would be $24, but with a $15 daily maximum the charge is $15. A 30-hour stay spans two days, so the day-pass total is $30 against $90 hourly, and $30 is charged instead.',
+      formulas: [{ label: 'Cost', expression: 'Cost = min(Hourly x Hours, Daily x ceil(Hours / 24))' }],
       resultExplanations: [
         { resultLabel: 'Total Cost', explanation: 'The parking fee, using whichever rate (hourly or daily) is cheaper.' },
-        { resultLabel: 'Days', explanation: 'The number of calendar days covered by the parking duration.' }
+        { resultLabel: 'Days', explanation: 'The number of day passes the stay touches, rounded up.' }
       ],
       workflowLinks: [
         { slug: 'budget-calculator', step: 'Add parking costs to your travel budget.' },
         { slug: 'fuel-cost-calculator', step: 'Pair with fuel costs for total trip expenses.' }
       ],
       faqs: [
-        { q: 'How accurate is this estimate?', a: 'It depends on the actual rates at your parking location. Use it as a planning tool.' },
+        { q: 'How accurate is this estimate?', a: 'It depends on the actual rates at your parking location. Use it as a planning tool and check the sign at the entrance.' },
         { q: 'Does it include taxes?', a: 'No. Enter the total rate including any taxes or fees for an accurate estimate.' },
-        { q: 'Can I use this for monthly parking?', a: 'Yes. Enter the monthly rate divided by 30 as the daily rate.' }
+        { q: 'What if the car park rounds to the next hour?', a: 'The hourly figure here is linear, while most real meters round up to the next hour or part-hour. Enter the number of hours you will actually be billed for.' },
+        { q: 'Can I use this for monthly parking?', a: 'Not directly. Monthly permits are usually a flat fee, so compare that fee with the daily-rate estimate for the days you actually park.' }
       ],
       related: ['budget-calculator', 'fuel-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-04' },
   },
   {
     id: 'pet-food',
@@ -549,14 +561,15 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       formulaDescription: 'undefined',
       tips: [
-      'Buying in bulk often reduces cost per serving.',
-      'Premium food costs more but may reduce vet bills over time.'
+        'Buying in bulk often reduces cost per week.',
+        'A pricier bag can still be cheaper per week if it lasts longer — compare weeks, not bag price.',
+        'Treats and supplements are not included.'
       ],
     },
     content: {
-      intro: 'The Pet Food Cost Calculator estimates how much you spend on pet food each month and per year based on your pet weight and food type.',
-      howItWorks: 'Enter your pet weight, cost per bag, and how often you buy. The calculator estimates annual and monthly costs.',
-      example: 'A 25 kg dog eating a $45 bag every 6 weeks spends about $30 per month.',
+      intro: 'The Pet Food Cost Calculator turns a bag price and how long that bag lasts into a monthly and yearly food bill. It works for dogs, cats or any pet fed from a bought bag, and it makes different bag sizes comparable on the figure that actually matters: cost per week.',
+      howItWorks: 'One bag divided by the number of weeks it lasts gives the weekly cost. Multiplying that by 4.33 weeks per month gives the monthly figure, and by 52 weeks gives the year. The 4.33 is simply 52 / 12, the average number of weeks in a month, so the monthly and annual results stay consistent with each other.',
+      example: 'A $45 bag that lasts six weeks: 45 / 6 = $7.50 a week, so 45 x 4.33 / 6 = $32.48 a month and 45 x 52 / 6 = $390 a year. A $60 bag lasting eight weeks also works out at about $32.48 a month, because both cost $7.50 a week.',
       formulas: [{ label: 'Cost', expression: 'Monthly = (Cost per bag x 4.33) / Weeks per bag' }],
       resultExplanations: [
         { resultLabel: 'Monthly Cost', explanation: 'Estimated monthly spending on pet food.' },
@@ -567,13 +580,14 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
         { slug: 'savings-goal-calculator', step: 'Save for annual pet expenses.' }
       ],
       faqs: [
-        { q: 'How much should I budget for pet food?', a: 'Dogs typically cost $30-80 per month. Cats cost $20-50 per month depending on food quality.' },
+        { q: 'How much should I budget for pet food?', a: 'There is no single figure: a small cat and a large dog differ several fold. Use the price of the bag you actually buy and how many weeks it lasts, rather than an average.' },
+        { q: 'How do I compare two bag sizes?', a: 'Divide each bag price by the weeks it lasts to get a weekly cost, then compare. The lower weekly cost is the better value, even if the bag itself costs more.' },
         { q: 'Does this include treats?', a: 'No. Add 10-20% for treats and supplements if you give them regularly.' },
-        { q: 'Is expensive food worth it?', a: 'Higher quality food often means smaller portions and fewer health issues, which can offset the cost.' }
+        { q: 'Is expensive food worth it?', a: 'That depends on the food and the pet. If a costly bag lasts proportionally longer, the weekly cost may be similar, so compare on weekly cost before deciding.' }
       ],
       related: ['budget-calculator', 'savings-goal-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-11-04' },
   },
   {
     id: 'screen-time-cost',
@@ -598,32 +612,34 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       formulaDescription: 'undefined',
       tips: [
-      'LED monitors use 20-40W. Older LCD panels use 40-60W.',
-      'Sleep mode uses 1-5W. Turn off monitors when not in use.'
+        'LED monitors use 20-40W. Older LCD panels use 40-60W.',
+        'Sleep mode uses 1-5W. Turn the display off when it is not in use.',
+        'The wattage on the power brick is a maximum, not what the screen draws at normal brightness.'
       ],
     },
     content: {
-      intro: 'The Screen Time Cost Calculator estimates how much electricity your monitors or TV consume based on screen time, wattage, and electricity rate.',
-      howItWorks: 'Multiply wattage by hours per day by electricity rate. Standard monitor is 30-60W. TV is 80-200W.',
-      example: 'A 40W monitor used 8 hours/day at $0.15/kWh costs $0.048 per day, $17.52 per year.',
-      formulas: [{ label: 'Cost', expression: 'Cost = Watts x Hours x Rate / 1000' }],
+      intro: 'The Screen Time Cost Calculator converts a display wattage and daily viewing hours into the electricity it costs per day, month and year. A monitor is a small, constant load, so the daily figure looks trivial while the annual number is the one worth checking against your bill.',
+      howItWorks: 'Watts multiplied by hours gives watt-hours per day, and dividing by 1,000 converts that to kilowatt-hours — the unit your electricity bill actually uses. Multiplying by the price per kWh gives the daily cost, and stretching it over 30 days or 365 days gives the monthly and annual figures. Nothing is added for the computer driving the screen, which is a separate and usually larger load.',
+      example: 'A 40 W monitor for 8 hours a day at $0.15 per kWh: 40 x 8 = 320 Wh, or 0.32 kWh, costing $0.048 a day. That is about $1.44 a month and $17.52 a year. A 150 W television watched for 4 hours a day costs $0.09 a day, roughly $32.85 a year.',
+      formulas: [{ label: 'Cost', expression: 'kWh = Watts x Hours / 1000; cost = kWh x rate' }],
       resultExplanations: [
-        { resultLabel: 'Daily Cost', explanation: 'Electricity cost per day of use.' },
-        { resultLabel: 'Monthly Cost', explanation: 'Estimated monthly electricity cost.' },
-        { resultLabel: 'Annual Cost', explanation: 'Estimated yearly electricity cost.' }
+        { resultLabel: 'Daily Cost', explanation: 'Electricity cost for one day at the hours entered.' },
+        { resultLabel: 'Monthly Cost', explanation: 'The daily cost extended over a 30-day month.' },
+        { resultLabel: 'Annual Cost', explanation: 'The daily cost extended over 365 days, assuming the same daily use all year.' }
       ],
       workflowLinks: [
         { slug: 'budget-calculator', step: 'Add electricity costs to your monthly budget.' },
-        { slug: 'fuel-cost-calculator', step: 'Compare energy costs across devices.' }
+        { slug: 'fuel-cost-calculator', step: 'Compare energy costs across devices and trips.' }
       ],
       faqs: [
-        { q: 'How do I find my monitor wattage?', a: 'Check the label on the back or the manufacturer specs. Most monitors are 30-60W.' },
-        { q: 'Does this include the computer?', a: 'No. Add the PC wattage (150-400W for desktops, 30-70W for laptops) separately.' },
-        { q: 'What is the average electricity rate?', a: 'US average is about $0.15/kWh. Rates range from $0.10 to $0.30+ depending on location.' }
+        { q: 'How do I find my monitor wattage?', a: 'Check the label on the back or the manufacturer specifications. Most desktop monitors are rated between 20 W and 60 W, and the rating is usually a maximum at full brightness.' },
+        { q: 'Does this include the computer?', a: 'No. Only the display is counted. A desktop tower typically draws 150-400 W under load and a laptop 30-70 W, so add that separately for the true cost of a session.' },
+        { q: 'What is the average electricity rate?', a: 'US residential rates average roughly $0.15-0.18 per kWh and vary widely by state and tariff. Use the rate printed on your own bill rather than an average for a usable estimate.' },
+        { q: 'Why is the daily cost so small?', a: 'Because one screen draws only a few hundred watts. The annual figure is the useful one: $17.52 for the example monitor, which is a real line item once several screens and a desktop are added together.' }
       ],
       related: ['budget-calculator', 'fuel-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-04' },
   },
   {
     id: 'subscription-total',
@@ -654,26 +670,27 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
     },
     content: {
-      intro: 'The Subscription Total Calculator adds up all your monthly and annual subscriptions to show your true recurring costs per month and per year.',
-      howItWorks: 'Enter each subscription cost and billing frequency. The calculator converts everything to monthly and annual totals.',
-      example: 'Netflix $15/mo + Spotify $10/mo + iCloud $3/mo = $28/mo, $336/year.',
-      formulas: [{ label: 'Total', expression: 'Monthly total = sum of all monthly costs' }],
+      intro: 'The Subscription Total Calculator adds up to five monthly subscription prices and shows what they cost you in a month and over a year. Subscriptions are small individually and easy to forget, so the annual figure is usually the first honest look at what they add up to.',
+      howItWorks: 'Every slot is entered as a monthly amount, and the calculator simply sums the five. The annual total multiplies that sum by 12. Leaving a slot at zero excludes it, so you can use two or three slots for a small set. For a service billed yearly, divide its annual price by 12 before entering it so every slot is on the same monthly basis.',
+      example: 'Netflix at $15, Spotify at $10 and iCloud at $3 a month: 15 + 10 + 3 = $28 a month, which is 28 x 12 = $336 a year. Adding a $120-a-year service means entering $10 a month, which lifts the total to $38 a month and $456 a year.',
+      formulas: [{ label: 'Total', expression: 'Monthly = sum of the five slots; Annual = monthly x 12' }],
       resultExplanations: [
-        { resultLabel: 'Monthly Total', explanation: 'Total monthly recurring charges.' },
-        { resultLabel: 'Annual Total', explanation: 'Total annual recurring charges.' }
+        { resultLabel: 'Monthly Total', explanation: 'The combined monthly charge across all filled slots.' },
+        { resultLabel: 'Annual Total', explanation: 'The monthly total multiplied by 12, assuming every subscription runs all year.' }
       ],
       workflowLinks: [
         { slug: 'budget-calculator', step: 'Include subscriptions in your monthly budget.' },
         { slug: 'savings-goal-calculator', step: 'Redirect cancelled subscriptions to savings.' }
       ],
       faqs: [
-        { q: 'How do I find all my subscriptions?', a: 'Check your bank and credit card statements for recurring charges. Apps like Truebill can help.' },
-        { q: 'What if I pay annually?', a: 'Divide the annual cost by 12 to get the monthly equivalent.' },
-        { q: 'Can I include free trials?', a: 'Add them at their post-trial price so you are prepared if you forget to cancel.' }
+        { q: 'How do I find all my subscriptions?', a: 'Search your bank and card statements for the same merchant appearing every month. The recurring pattern is easier to spot across three months of statements than in a single month.' },
+        { q: 'What if I pay annually?', a: 'Divide the annual price by 12 and enter that monthly equivalent. A $120-a-year plan is $10 a month, which keeps every slot comparable.' },
+        { q: 'Can I track more than five subscriptions?', a: 'Not in one pass — the calculator has five slots. For a longer list, split it into two runs and add the monthly totals, or enter the combined monthly cost of each group.' },
+        { q: 'Can I include free trials?', a: 'Add them at their post-trial price so the total already reflects what you will pay if the trial converts.' }
       ],
       related: ['budget-calculator', 'savings-goal-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-04' },
   },
   {
     id: 'alcohol-units',
@@ -697,14 +714,15 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       formulaDescription: 'undefined',
       tips: [
-      'UK recommended limit is 14 units per week for both men and women.',
-      'A standard unit is 10ml of pure alcohol.'
+        'UK recommended limit is 14 units per week for both men and women.',
+        'A standard unit is 10ml of pure alcohol.',
+        'Units measure how much you drank, not how impaired you are.'
       ],
     },
     content: {
-      intro: 'The Alcohol Units Calculator converts your drink consumption into standard alcohol units and estimates blood alcohol content.',
-      howItWorks: 'Units = ABV% x Volume (ml) / 1000. Enter each drink with its ABV and volume.',
-      example: 'A pint of beer at 5% ABV = 5 x 568 / 1000 = 2.84 units.',
+      intro: 'The Alcohol Units Calculator converts a drink strength and volume into standard alcohol units, then multiplies by how many you had. A UK unit is 10 ml of pure alcohol, so a 568 ml pint at 5% ABV works out at 2.84 units.',
+      howItWorks: 'Pure alcohol in millilitres is the drink volume multiplied by ABV and divided by 100. Dividing that by 10 gives standard units, which is the same as ABV x volume / 1,000. Total units then multiply the per-drink figure by the number of drinks, so mixing different drinks means running each one separately and adding the totals.',
+      example: 'A 568 ml pint at 5% ABV: 5 x 568 / 1,000 = 2.84 units per pint, and three pints total 8.52 units. A 175 ml glass of 13% wine is 2.28 units, a 25 ml shot of 40% spirits is exactly 1.0 unit, and a 330 ml bottle of 4.5% beer is 1.49 units.',
       formulas: [{ label: 'Units', expression: 'Units = ABV x Volume(ml) / 1000' }],
       resultExplanations: [
         { resultLabel: 'Units per Drink', explanation: 'The standard alcohol units in a single serving.' },
@@ -715,13 +733,14 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
         { slug: 'bmi-calculator', step: 'Alcohol calories contribute to weight gain.' }
       ],
       faqs: [
-        { q: 'What is a standard unit?', a: 'A standard unit is 10ml (7.9g) of pure alcohol. In the UK, one unit equals a single shot of spirits.' },
+        { q: 'What is a standard unit?', a: 'A standard unit is 10 ml (8 g) of pure alcohol. In the UK, one unit equals a single 25 ml shot of 40% spirits.' },
         { q: 'How many units in a pint?', a: 'A pint of 5% beer has 2.84 units. A pint of 4% beer has 2.27 units.' },
-        { q: 'What is the weekly limit?', a: 'UK guidelines recommend no more than 14 units per week, spread over 3 or more days.' }
+        { q: 'Does this estimate blood alcohol?', a: 'No. Units measure how much alcohol you drank, not how drunk you are. Blood alcohol depends on body weight, sex, food, time and liver function, so it needs a dedicated BAC formula with those inputs.' },
+        { q: 'What is the weekly limit?', a: 'UK guidelines recommend no more than 14 units per week, spread over 3 or more days. A US standard drink contains 14 g of alcohol, about 1.75 UK units.' }
       ],
       related: ['calorie-deficit-calculator', 'bmi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-04' },
   },
   {
     id: 'coffee-ratio',
@@ -744,31 +763,34 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       formulaDescription: 'undefined',
       tips: [
-      'Drip coffee: 1:15-1:18. French press: 1:12-1:15. Espresso: 1:2-1:3.',
-      'Use a kitchen scale for consistency.'
+        'Drip coffee: 1:15-1:18. French press: 1:12-1:15. Espresso: 1:2-1:3.',
+        'Use a kitchen scale: a scoop of ground coffee varies by 30% or more.',
+        'The ratio counts coffee and water only. It ignores the water the grounds retain.'
       ],
     },
     content: {
-      intro: 'The Coffee Ratio Calculator determines the ideal coffee and water amounts for various brewing methods. A golden ratio of 1:15 to 1:18 is standard for drip coffee.',
-      howItWorks: 'Enter your desired coffee amount or water amount. The calculator applies the brewing ratio to determine the other.',
-      example: 'For 350ml of drip coffee at 1:16 ratio: 350/16 = 21.9g of coffee.',
-      formulas: [{ label: 'Ratio', expression: 'Coffee = Water / Ratio' }],
+      intro: 'The Coffee Ratio Calculator turns a brew ratio and a water volume into the weight of coffee to grind. Ratios are written as 1:X, meaning one part coffee to X parts water by weight, so 1:16 with 350 ml of water needs about 22 g of coffee.',
+      howItWorks: 'Water in millilitres is treated as grams, which is accurate enough for brewing water. Dividing that weight by the X in the ratio gives the dose of coffee in grams. The strength figure is 100 divided by the same ratio: a 1:16 brew is about 6.25% coffee by weight before any water is absorbed by the grounds, which is why the brewed liquid tastes weaker than that number suggests.',
+      example: '350 ml of water at 1:16: 350 / 16 = 21.9 g of coffee, with a strength reading of 6.25%. The same water at a stronger 1:12 needs 29.2 g, and at 1:18 only 19.4 g. Doubling the water to 700 ml doubles every dose.',
+      formulas: [{ label: 'Ratio', expression: 'Coffee(g) = Water(ml) / X for a 1:X ratio' }],
       resultExplanations: [
-        { resultLabel: 'Coffee Needed', explanation: 'Grams of coffee beans for your desired water amount.' },
-        { resultLabel: 'Strength', explanation: 'The concentration percentage of the brew.' }
+        { resultLabel: 'Coffee Needed', explanation: 'Grams of coffee for the water volume you entered.' },
+        { resultLabel: 'Strength', explanation: 'Coffee as a percentage of the water weight, before the grounds absorb any water.' }
       ],
       workflowLinks: [
         { slug: 'caffeine-limit-calculator', step: 'Track caffeine from your daily coffee.' },
-        { slug: 'budget-calculator', step: 'Calculate your coffee spending.' }
+        { slug: 'recipe-scaling-calculator', step: 'Scale the same ratio up or down for a bigger batch.' },
+        { slug: 'budget-calculator', step: 'Cost out your coffee habit.' }
       ],
       faqs: [
-        { q: 'What is the golden ratio for coffee?', a: 'Most specialty coffee recommends 1:15 to 1:18 (coffee to water by weight).' },
-        { q: 'How strong is espresso?', a: 'Espresso uses a 1:2 ratio, making it about 8x stronger per volume than drip coffee.' },
-        { q: 'Does grind size matter?', a: 'Yes. Fine for espresso, medium for drip, coarse for French press. Grind affects extraction time and flavor.' }
+        { q: 'What is the golden ratio for coffee?', a: 'Most specialty coffee recommends 1:15 to 1:18 coffee to water by weight. Drip sits in that range, French press runs stronger at 1:12-1:15, and espresso is a different process entirely at roughly 1:2.' },
+        { q: 'Is this ratio by weight or by volume?', a: 'By weight. A tablespoon of coffee is roughly 5 g, but that varies with grind and roast, so a scale is what makes the ratio repeatable.' },
+        { q: 'Why does the strength figure look high?', a: 'It measures coffee as a share of the water, not the strength of the cup. Some water stays in the grounds, and not every soluble compound is extracted, so brewed coffee is around 1.2-1.5% dissolved solids.' },
+        { q: 'Does grind size matter?', a: 'It changes extraction, not the dose. Fine for espresso, medium for drip, coarse for French press. If the cup tastes sour it is usually under-extracted; bitter means over-extracted.' }
       ],
       related: ['caffeine-limit-calculator', 'budget-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-11-04' },
   },
   {
     id: 'boiling-point',
@@ -785,36 +807,40 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
         { id: 'elevation', label: 'Elevation (meters)', type: 'number', defaultValue: 0, min: 0, max: 9000 }
       ],
       results: [
-        { label: 'Boiling Point', formulaCode: '100 - elevation/300', suffix: 'C', accent: true },
-        { label: 'Fahrenheit', formulaCode: '(100 - elevation/300)*9/5+32', suffix: 'F' }
+        { label: 'Boiling Point', formulaCode: '100 - elevation/300', suffix: '°C', accent: true },
+        { label: 'Fahrenheit', formulaCode: '(100 - elevation/300)*9/5+32', suffix: '°F' }
       ],
       formulaDescription: 'undefined',
       tips: [
-      'Above 3,000m, add 1 minute of cooking time per 1,000 feet above sea level.',
-      'Pressure cookers restore boiling point to 121 degrees C.'
+        'Above 3,000 m, boiled food needs noticeably longer — as a rule of thumb, add about a minute per 300 m.',
+        'A pressure cooker raises the boiling point back above 100 °C, which is why it works at altitude.',
+        'The 1 °C per 300 m figure is a close approximation up to about 6,000 m; above that the drop accelerates.',
       ],
     },
     content: {
-      intro: 'The Boiling Point Altitude Calculator determines the boiling point of water based on elevation. Water boils at a lower temperature at higher altitudes, affecting cooking times.',
-      howItWorks: 'The boiling point drops about 1 degree C for every 300 meters of elevation. Formula: BP = 100 - (Elevation / 300) x 1.',
-      example: 'At 1,500 meters elevation, water boils at 95 degrees C instead of 100 degrees C.',
-      formulas: [{ label: 'BP', expression: 'BP = 100 - (Elevation / 300)' }],
+      intro: 'The Boiling Point Altitude Calculator estimates the temperature at which water boils at a given elevation. Because atmospheric pressure falls as you climb, water boils cooler the higher you go — which is why pasta stays firm and rice stays crunchy on a mountain even after the water has been at a rolling boil.',
+      howItWorks: 'The calculator uses a linear approximation: the boiling point drops about 1 °C for every 300 m of elevation, so the result is 100 − (elevation / 300) in Celsius, converted to Fahrenheit by multiplying by 9/5 and adding 32. The relationship is not truly linear, but between sea level and roughly 6,000 m the approximation holds within about half a degree, which is closer than a kitchen thermometer will resolve.',
+      example: 'At sea level water boils at 100 °C. At 1,500 m the estimate is 100 − 5 = 95 °C, or 203 °F. Denver, at about 1,600 m, comes out at 94.7 °C. At 3,000 m it is 90 °C, at 5,000 m 83.3 °C, and at the summit of Everest (8,848 m) about 70.5 °C, which is well below the temperature a cup of tea is normally brewed at.',
+      formulas: [{ label: 'Boiling Point', expression: 'BP(°C) = 100 - Elevation(m) / 300' }],
       resultExplanations: [
-        { resultLabel: 'Boiling Point', explanation: 'The temperature at which water boils at your elevation.' },
-        { resultLabel: 'Fahrenheit', explanation: 'The boiling point in Fahrenheit scale.' }
+        { resultLabel: 'Boiling Point', explanation: 'The estimated temperature at which water boils at your elevation, in Celsius.' },
+        { resultLabel: 'Fahrenheit', explanation: 'The same boiling point in Fahrenheit, for recipes written in °F.' }
       ],
       workflowLinks: [
-        { slug: 'recipe-scaling-calculator', step: 'Adjust cooking times for altitude.' },
-        { slug: 'temperature-converter', step: 'Convert between Celsius and Fahrenheit.' }
+        { slug: 'recipe-scaling-calculator', step: 'Adjust cooking times and quantities for altitude.' },
+        { slug: 'temperature-converter', step: 'Convert between Celsius and Fahrenheit.' },
+        { slug: 'caffeine-limit-calculator', step: 'Brewing temperature affects how much caffeine is extracted.' }
       ],
       faqs: [
-        { q: 'How much does boiling point drop per meter?', a: 'About 0.0034 degrees C per meter, or roughly 1 degree C per 300 meters.' },
-        { q: 'Does this affect cooking?', a: 'Yes. Water boils at a lower temperature, so food takes longer to cook at altitude.' },
-        { q: 'How do I adjust recipes?', a: 'Add 1 minute of cooking time per 1,000 feet above sea level for boiling foods.' }
+        { q: 'How much does the boiling point drop per meter?', a: 'About 0.0033 °C per metre at low altitude, which is the 1 °C per 300 m this calculator uses. The real rate steepens with height, so the linear rule drifts by roughly half a degree at 6,000 m and rather more near the top of the troposphere.' },
+        { q: 'Does this affect cooking?', a: 'Yes, and mostly for boiled and steamed food. Cooking is driven by temperature, not by how vigorously the water bubbles, so at 3,000 m a pot of water at 90 °C cooks pasta and vegetables noticeably slower than at sea level. Roasting and frying are barely affected because the oven or pan is far hotter than 100 °C.' },
+        { q: 'How do I adjust recipes at altitude?', a: 'For boiled foods, a common rule of thumb is to add about a minute of cooking time per 300 m of elevation, then test rather than trusting the clock. A pressure cooker is the reliable fix: it holds pressure above atmospheric and brings the boiling point back above 100 °C.' },
+        { q: 'Why does water boil cooler at altitude?', a: 'Boiling happens when vapour pressure equals the surrounding air pressure. Higher up there is less air above you, so less pressure to overcome and the water reaches that balance at a lower temperature. In a vacuum water boils at room temperature for the same reason.' },
+        { q: 'Does this work for other liquids?', a: 'The pattern does — every liquid boils at a lower temperature as pressure drops — but the numbers here are specific to water. Alcohol, for example, boils at 78 °C at sea level and falls at its own rate.' }
       ],
       related: ['recipe-scaling-calculator', 'temperature-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-11-04' },
   },
   {
     id: 'daily-commute-cost',
@@ -834,38 +860,40 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
         { id: 'workDays', label: 'Work Days per Month', type: 'number', defaultValue: 22, min: 1, max: 31 }
       ],
       results: [
-        { label: 'Daily Cost', formulaCode: '(distanceKm*2/fuelEfficiency)*gasPrice', suffix: '$', accent: true },
-        { label: 'Monthly Cost', formulaCode: '(distanceKm*2/fuelEfficiency)*gasPrice*workDays', suffix: '$' },
-        { label: 'Annual Cost', formulaCode: '(distanceKm*2/fuelEfficiency)*gasPrice*workDays*12', suffix: '$' }
+        { label: 'Daily Cost', formulaCode: '(distanceKm*2*fuelEfficiency/100)*gasPrice', suffix: '$', accent: true },
+        { label: 'Monthly Cost', formulaCode: '(distanceKm*2*fuelEfficiency/100)*gasPrice*workDays', suffix: '$' },
+        { label: 'Annual Cost', formulaCode: '(distanceKm*2*fuelEfficiency/100)*gasPrice*workDays*12', suffix: '$' }
       ],
       formulaDescription: 'undefined',
       tips: [
-      'This does not include parking, tolls, or vehicle wear.',
-      'Remote work 2 days per week saves 40% on commute costs.'
+        'This does not include parking, tolls, or vehicle wear.',
+        'Remote work 2 days per week saves 40% on commute costs.',
+        'Litres per 100 km is a fuel consumption figure, so lower is better.'
       ],
     },
     content: {
-      intro: 'The Daily Commute Cost Calculator estimates the total daily and annual cost of your commute based on distance, fuel efficiency, and gas price.',
-      howItWorks: 'Daily cost = (Distance x 2) / MPG x Gas Price. Multiply by work days for annual total.',
-      example: 'A 30 km commute, 8L/100km, $1.50/L costs $11.25/day, $2,880/year.',
-      formulas: [{ label: 'Cost', expression: 'Cost = (2 x Distance / MPG) x Gas Price' }],
+      intro: 'The Daily Commute Cost Calculator works out what the drive to and from work costs in fuel each day, month and year. Give it your one-way distance, the fuel consumption and the pump price, and it multiplies the round trip across your working month.',
+      howItWorks: 'A round trip is twice the one-way distance. Fuel used is that distance multiplied by litres per 100 km and divided by 100. Multiplying litres by the price per litre gives the daily cost; multiply by working days per month for the monthly figure, then by 12 for the year. Parking, tolls, insurance and servicing are not part of the result.',
+      example: 'A 30 km each-way commute in a car using 8 L/100 km at $1.50 a litre: 60 km x 8 / 100 = 4.8 litres a day, costing $7.20. At 22 working days that is $158.40 a month, and $1,900.80 over a year.',
+      formulas: [{ label: 'Cost', expression: 'Litres per round trip = 2 x distance x L/100km / 100; cost = litres x price' }],
       resultExplanations: [
         { resultLabel: 'Daily Cost', explanation: 'Fuel cost for a round trip commute.' },
-        { resultLabel: 'Monthly Cost', explanation: 'Estimated monthly fuel cost for commuting.' },
-        { resultLabel: 'Annual Cost', explanation: 'Estimated yearly fuel cost for commuting.' }
+        { resultLabel: 'Monthly Cost', explanation: 'Daily cost multiplied by working days per month.' },
+        { resultLabel: 'Annual Cost', explanation: 'Monthly cost multiplied by 12, assuming the same working pattern all year.' }
       ],
       workflowLinks: [
         { slug: 'budget-calculator', step: 'Include commute costs in your monthly budget.' },
         { slug: 'fuel-cost-calculator', step: 'Calculate fuel costs for any trip.' }
       ],
       faqs: [
-        { q: 'How accurate is this?', a: 'It estimates fuel cost only. Add parking, tolls, insurance, and maintenance for total cost of commuting.' },
-        { q: 'Does this include wear and tear?', a: 'No. Vehicle depreciation and maintenance add about $0.10-0.20 per km on top of fuel costs.' },
-        { q: 'Is remote work cheaper?', a: 'Yes. Working from home eliminates commute costs entirely, saving the average commuter over $2,000 per year.' }
+        { q: 'How accurate is this?', a: 'It estimates fuel cost only. Add parking, tolls, insurance, and maintenance for the full cost of commuting.' },
+        { q: 'Does this include wear and tear?', a: 'No. Depreciation, insurance, tyres and servicing all add to the cost of every kilometre, so the real figure is higher than the fuel bill alone.' },
+        { q: 'Why is my real cost higher than this?', a: 'Official fuel consumption figures come from test cycles. Cold starts, traffic, air conditioning and roof racks all raise real-world consumption, sometimes well above the sticker number.' },
+        { q: 'Is remote work cheaper?', a: 'Yes. Every day you work from home removes one round trip, which is the daily figure above — $7.20 a day in the example, or about $158 a month at 22 working days.' }
       ],
       related: ['budget-calculator', 'fuel-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-11-04' },
   },
   {
     id: 'sa-fuel',

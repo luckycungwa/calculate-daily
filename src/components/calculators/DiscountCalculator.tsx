@@ -8,6 +8,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui
 import { ExportModal } from '../common/ExportModal';
 import { useCurrency } from '../../lib/currency';
 import { useToast } from '../ui/toast';
+import { CompositionBar } from '../charts/IndicatorBar';
 
 interface DiscountCalculatorProps {
   onSaveHistory?: (summary: string) => void;
@@ -219,6 +220,31 @@ export const DiscountCalculator: React.FC<DiscountCalculatorProps> = ({ onSaveHi
           </div>
         </div>
       </CardContent>
+
+      <div className="px-6 pb-6">
+        <CompositionBar
+          segments={[
+            {
+              label: `Discounted goods ${currency}${(results.finalPrice - results.taxAmount).toFixed(2)}`,
+              value: results.finalPrice - results.taxAmount,
+              tone: 'primary',
+            },
+            {
+              label: `Sales tax ${currency}${results.taxAmount.toFixed(2)}`,
+              value: results.taxAmount,
+              tone: 'warning',
+            },
+          ]}
+          totalLabel={`Checkout ${currency}${results.finalPrice.toFixed(2)}`}
+          summary={`The ${currency}${results.finalPrice.toFixed(2)} checkout price is ${currency}${(
+            results.finalPrice - results.taxAmount
+          ).toFixed(2)} of discounted goods plus ${currency}${results.taxAmount.toFixed(
+            2
+          )} of sales tax. The discounts themselves took ${currency}${results.totalSaved.toFixed(
+            2
+          )} off the original ${currency}${results.price.toFixed(2)}, a saving of ${results.savingsPct.toFixed(1)}%.`}
+        />
+      </div>
 
       {/* Export Modal */}
       <ExportModal

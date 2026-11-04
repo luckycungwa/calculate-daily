@@ -1050,7 +1050,7 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
     id: 'vo2-max',
     slug: 'vo2-max-calculator',
     name: 'VO2 Max Estimator',
-    shortDesc: 'Estimate your VO2 max from a recent run time.',
+    shortDesc: 'Estimate VO2 max from a 1.5-mile run time.',
     tagline: 'Your aerobic fitness number.',
     category: 'health',
     iconName: 'Gauge',
@@ -1058,38 +1058,40 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
     kind: 'config',
     config: {
       fields: [
-        { id: 'timeMinutes', label: 'Minutes', type: 'number', defaultValue: 25, min: 1, max: 300 },
+        { id: 'timeMinutes', label: '1.5-Mile Time (Minutes)', type: 'number', defaultValue: 12, min: 1, max: 300 },
         { id: 'timeSeconds', label: 'Seconds', type: 'number', defaultValue: 0, min: 0, max: 59 }
       ],
       results: [
         { label: 'Estimated VO2 Max', formulaCode: '(483 / (timeMinutes + timeSeconds / 60)) + 3.5', suffix: 'ml/kg/min', accent: true }
       ],
-      formulaDescription: 'undefined',
+      formulaDescription: 'VO2 max = 483 / time in minutes + 3.5',
       tips: [
-      'Average VO2 max: sedentary 30-40, active 40-50, competitive runners 55-70+.',
-      'Use a time trial on a flat course for the most accurate estimate.'
+        'This estimate is built for a 1.5-mile (2.4 km) run, not a 5K or a treadmill session at an easy pace.',
+        'Warm up, then run the distance as hard as you can sustain over the full 2.4 km.',
+        'Typical values: sedentary 30-40, active 40-50, competitive runners 55-70+ ml/kg/min.'
       ],
     },
     content: {
-      intro: 'The VO2 Max Estimator calculates your maximum oxygen uptake from a recent run time trial. VO2 max is the gold standard measure of aerobic cardiovascular fitness.',
-      howItWorks: 'Run a known distance at maximum effort. The Cooper formula estimates VO2 max as 483 / time in minutes + 3.5.',
-      example: 'A 5K in 25 minutes: VO2 max = 483 / 25 + 3.5 = 22.8 ml/kg/min.',
+      intro: 'The VO2 Max Estimator turns a hard 1.5-mile (2.4 km) run into an estimate of your maximal oxygen uptake, the standard measure of aerobic fitness. Faster times mean a higher number, and the estimate is comparable with the laboratory values quoted in training books and race-pace tables.',
+      howItWorks: 'The calculator applies the Cooper 1.5-mile equation: 483 divided by the run time in minutes, plus 3.5 for the oxygen you use at rest. Seconds are converted to a fraction of a minute first, so 12 minutes 30 seconds is treated as 12.5. The equation is calibrated for that exact distance at maximal effort, which is why a time from another distance cannot simply be substituted.',
+      example: 'A 1.5-mile run in 12 minutes 00 seconds: 483 / 12 = 40.25, plus 3.5 gives 43.75 ml/kg/min. The same distance in 15 minutes gives 483 / 15 + 3.5 = 35.7, and an elite 9-minute run gives 57.2 — the steep curve is why a minute either way moves the estimate so much.',
       formulas: [{ label: 'Cooper', expression: 'VO2 max = 483 / T(min) + 3.5' }],
       resultExplanations: [
-        { resultLabel: 'Estimated VO2 Max', explanation: 'Your estimated maximal oxygen uptake. Higher values indicate better aerobic fitness.' }
+        { resultLabel: 'Estimated VO2 Max', explanation: 'Your estimated maximal oxygen uptake in millilitres of oxygen per kilogram of body weight per minute. Higher values indicate better aerobic fitness.' }
       ],
       workflowLinks: [
         { slug: 'target-heart-rate-calculator', step: 'Set training zones based on your fitness level.' },
         { slug: 'calories-burned-calculator', step: 'Estimate the calorie cost of your runs.' }
       ],
       faqs: [
-        { q: 'What is a good VO2 max?', a: 'For men, average is 40-50, good is 50-60, elite is 60-80+. For women, average is 30-40, good is 40-50, elite is 55-75+.' },
-        { q: 'How do I improve my VO2 max?', a: 'Consistent interval training (4x4 minute hard efforts), tempo runs, and increasing weekly mileage are most effective.' },
-        { q: 'Is this as accurate as a lab test?', a: 'Field tests agree with lab testing within about 5-10%. Consistent conditions improve reliability.' }
+        { q: 'What distance do I run?', a: 'Exactly 1.5 miles, or 2.4 km. The 483 constant belongs to that distance. For a 5K or a 12-minute run test you need a different equation, so a 5K time entered here will produce a figure that is far too low.' },
+        { q: 'What is a good VO2 max?', a: 'Age and sex both shift the scale. Rough bands for a man in his thirties are 35-40 below average, 40-45 average, 45-55 good and 55+ excellent; women usually score about 5-10 points lower at the same fitness level.' },
+        { q: 'How do I improve my VO2 max?', a: 'Intervals near maximal effort, tempo runs and a gradually rising weekly mileage are the reliable levers. Most of the gain comes from consistent weeks rather than any single session.' },
+        { q: 'Is this as accurate as a lab test?', a: 'No. Field equations typically land within 5-10% of a laboratory treadmill test, and heat, hills, wind and pacing all move the result. Use it to track your own trend under similar conditions, not as a clinical measurement.' }
       ],
       related: ['target-heart-rate-calculator', 'calories-burned-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-04' },
   },
   {
     id: 'carb-intake',
@@ -1159,31 +1161,33 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       formulaDescription: 'undefined',
       tips: [
-      'Most guidelines recommend 20-35% of calories from fat.',
-      'Fat provides 9 calories per gram, more than double the density of protein or carbs.'
+        'Most guidelines put fat at 20-35% of calories.',
+        'Fat provides 9 kcal per gram, more than double protein or carbohydrate at 4.',
+        'Saturated fat is usually advised to stay under 10% of total calories.'
       ],
     },
     content: {
-      intro: 'The Daily Fat Intake Calculator estimates how much dietary fat you need based on your total calories and the percentage of fat in your diet. Fat is essential for hormone production, vitamin absorption, and brain function.',
-      howItWorks: 'Multiply daily calories by the fat percentage, then divide by 9 (calories per gram of fat).',
-      example: 'On a 2,000 kcal diet at 30% fat: 2,000 x 0.30 / 9 = 67 grams of fat per day.',
-      formulas: [{ label: 'Fat', expression: 'Fat (g) = Calories x Fat% / 9' }],
+      intro: 'The Daily Fat Intake Calculator converts a fat percentage into grams per day. Fat is the most calorie-dense macronutrient at 9 kcal per gram, so a percentage target on a food label or diet plan is easier to follow once it becomes a daily gram figure.',
+      howItWorks: 'Calories are multiplied by the fat percentage to give the calories that should come from fat, and that figure is divided by 9, the energy in one gram of fat. The second result simply repeats the calorie figure, which is useful when comparing a gram target against a food label that lists fat calories directly.',
+      example: 'On 2,000 kcal at 30% fat: 2,000 x 0.30 = 600 kcal from fat, and 600 / 9 = 66.7 grams. Dropping to 25% gives 500 kcal and 55.6 grams; raising to 35% gives 700 kcal and 77.8 grams. The same 30% on a 2,500 kcal diet is 83.3 grams.',
+      formulas: [{ label: 'Fat', expression: 'Fat (g) = Calories x Fat% / 100 / 9' }],
       resultExplanations: [
-        { resultLabel: 'Daily Fat Target', explanation: 'Grams of dietary fat to consume daily.' },
-        { resultLabel: 'Fat Calories', explanation: 'How many daily calories come from fat.' }
+        { resultLabel: 'Daily Fat Target', explanation: 'Grams of dietary fat per day at the calorie level and percentage entered.' },
+        { resultLabel: 'Fat Calories', explanation: 'How many of the daily calories come from fat at that percentage.' }
       ],
       workflowLinks: [
         { slug: 'tdee-calculator', step: 'Set your calorie baseline before splitting macros.' },
         { slug: 'protein-intake-calculator', step: 'Set protein alongside fat for a complete plan.' }
       ],
       faqs: [
-        { q: 'How much fat should I eat per day?', a: 'Most guidelines recommend 20-35% of total calories from fat. For 2,000 kcal, that is 44-78 grams per day.' },
-        { q: 'Is dietary fat bad for you?', a: 'No. Healthy fats from olive oil, nuts, avocados, and fish are essential. The concern is excessive saturated and trans fats.' },
-        { q: 'What happens if I eat too little fat?', a: 'Very low fat intakes can impair hormone production and reduce absorption of fat-soluble vitamins (A, D, E, K).' }
+        { q: 'How much fat should I eat per day?', a: 'Most guidelines recommend 20-35% of total calories from fat. For 2,000 kcal that is 44-78 grams per day; the exact figure depends on your calorie target, not on a universal number.' },
+        { q: 'Is dietary fat bad for you?', a: 'No. Fat is required for hormone production and for absorbing vitamins A, D, E and K. The distinction that matters is type: unsaturated fats from olive oil, nuts, seeds and fish in place of saturated fat, and avoiding industrial trans fats.' },
+        { q: 'What happens if I eat too little fat?', a: 'Very low fat intakes can impair hormone production and reduce absorption of the fat-soluble vitamins. The 20% floor in this calculator reflects the usual lower guidance rather than a hard biological limit.' },
+        { q: 'Does the type of fat matter?', a: 'Yes, and this calculator cannot tell them apart. Two diets at 30% fat can differ completely in saturated and unsaturated content, and that split matters far more for health than the total grams.' }
       ],
       related: ['tdee-calculator', 'protein-intake-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-04' },
   },
   {
     id: 'macro-calculator',
@@ -1392,41 +1396,45 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
         { id: 'weightKg', label: 'Weight (kg)', type: 'number', defaultValue: 70, suffix: 'kg', min: 20 }
       ],
       results: [
-        { label: 'Daily Caffeine Limit', formulaCode: 'weightKg * 3', suffix: 'mg', accent: true }
+        { label: 'Daily Caffeine Limit', formulaCode: 'Math.min(weightKg * 3, 400)', suffix: 'mg', accent: true },
+        { label: 'Equivalent Coffees', formulaCode: 'Math.min(weightKg * 3, 400) / 100', suffix: 'cups' }
       ],
       formulaDescription: 'undefined',
       tips: [
-      'One cup of coffee has roughly 80-100 mg of caffeine.',
-      'Pregnant women should limit caffeine to 200 mg per day regardless of weight.'
+        'One 240 ml cup of filter coffee has roughly 80-100 mg of caffeine.',
+        'Pregnant or breastfeeding women should stay at or below 200 mg per day regardless of weight.',
+        'The limit is a daily cap, not a target — and a single large coffee can carry half of it.'
       ],
     },
     content: {
-      intro: 'The Caffeine Intake Limit Calculator recommends a safe daily maximum based on your body weight. The European Food Safety Authority sets the safe limit at 400 mg per day for healthy adults and 3 mg per kg of body weight.',
-      howItWorks: 'Multiply your weight in kilograms by 3 to get your daily caffeine limit in milligrams.',
-      example: 'A 70 kg person has a safe limit of 210 mg, roughly two cups of coffee.',
-      formulas: [{ label: 'Caffeine', expression: 'Limit (mg) = Weight (kg) x 3' }],
+      intro: 'The Caffeine Intake Limit Calculator gives the daily caffeine ceiling that applies to you, using the 3 mg per kilogram of body weight guidance and the 400 mg daily cap for healthy adults. The lower of the two always wins, so a very heavy person still stops at 400 mg.',
+      howItWorks: 'Weight in kilograms is multiplied by 3 to get a weight-based limit in milligrams. That figure is then compared with the 400 mg general ceiling for healthy adults and the calculator reports whichever is lower. A second result divides the answer by 100 mg, the approximate caffeine in a cup of filter coffee, to put the number in cups rather than milligrams.',
+      example: 'A 70 kg adult: 70 x 3 = 210 mg, which is below the 400 mg cap, so 210 mg is the answer — about two 100 mg cups of coffee. At 90 kg the weight-based figure is 270 mg. From about 134 kg the calculation would pass 400 mg, so the cap takes over and the limit stays at 400 mg.',
+      formulas: [{ label: 'Caffeine', expression: 'Limit (mg) = min(Weight (kg) x 3, 400)' }],
       resultExplanations: [
-        { resultLabel: 'Daily Caffeine Limit', explanation: 'The EFSA safe daily maximum based on 3 mg per kg of body weight.' }
+        { resultLabel: 'Daily Caffeine Limit', explanation: 'The lower of the 3 mg/kg weight-based figure and the 400 mg daily cap for healthy adults.' },
+        { resultLabel: 'Equivalent Coffees', explanation: 'The limit expressed in 100 mg cups of filter coffee, for a rough sense of what it means in drinks.' }
       ],
       workflowLinks: [
-        { slug: 'bmr-calculator', step: 'Caffeine can temporarily boost metabolic rate.' },
-        { slug: 'water-intake-calculator', step: 'Balance caffeine diuresis with adequate water.' }
+        { slug: 'bmr-calculator', step: 'Caffeine can temporarily lift metabolic rate.' },
+        { slug: 'water-intake-calculator', step: 'Pair caffeine intake with adequate water.' }
       ],
       faqs: [
-        { q: 'Is 400 mg of caffeine safe for everyone?', a: 'Healthy adults can generally tolerate up to 400 mg/day. People with heart conditions, anxiety, or sleep disorders should consult a doctor.' },
-        { q: 'How much caffeine is in common drinks?', a: 'Coffee (80-100 mg/cup), espresso (63 mg/shot), black tea (40-70 mg/cup), energy drink (80-150 mg/can), cola (30-40 mg/can).' },
-        { q: 'Does caffeine affect sleep?', a: 'Caffeine has a half-life of 5-6 hours. Avoid caffeine within 8 hours of bedtime for better sleep quality.' }
+        { q: 'Is 400 mg of caffeine safe for everyone?', a: 'It is the general ceiling cited for healthy adults, not a guarantee. People with heart conditions, anxiety disorders or insomnia, and anyone taking medication that interacts with caffeine, should ask a clinician about their own limit.' },
+        { q: 'Why does the result stop at 400 mg?', a: 'Because the weight-based 3 mg/kg figure is not the only guidance. The 400 mg daily cap applies to healthy adults regardless of size, so the calculator reports whichever limit is lower and never exceeds it.' },
+        { q: 'How much caffeine is in common drinks?', a: 'Roughly: filter coffee 80-100 mg per 240 ml cup, espresso 63 mg per shot, black tea 40-70 mg per cup, energy drink 80-150 mg per can, cola 30-40 mg per can. Brew strength and serving size move these figures a lot.' },
+        { q: 'Does caffeine affect sleep?', a: 'Yes. Caffeine has a half-life of about 5-6 hours, so a 200 mg coffee at 4 pm still leaves roughly 100 mg in your system at 10 pm. Many people do better with no caffeine in the 8 hours before bed.' }
       ],
       related: ['bmr-calculator', 'water-intake-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-04' },
   },
   {
     id: 'body-type',
     slug: 'body-type-calculator',
     name: 'Body Type Calculator',
-    shortDesc: 'Classify your body type as ectomorph, mesomorph, or endomorph.',
-    tagline: 'Know your body type for training.',
+    shortDesc: 'Compare wrist and ankle size against your height.',
+    tagline: 'Frame size, measured simply.',
     category: 'health',
     iconName: 'ClipboardList',
     keywords: ['body type calculator', 'somatotype', 'ectomorph', 'mesomorph', 'endomorph'],
@@ -1443,31 +1451,34 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       formulaDescription: 'undefined',
       tips: [
-      'Most people are a blend of types rather than purely one.',
-      'Your body type influences optimal training and nutrition strategies.'
+        'Measure the wrist just below the wrist bone, and the ankle at its narrowest point, without pulling the tape tight.',
+        'Ratios only describe frame size. Muscle, body fat and training history are not part of them.',
+        'Most people sit between categories rather than in a tidy one.'
       ],
     },
     content: {
-      intro: 'The Body Type Calculator classifies your body into one of three somatotypes based on simple body measurements. Each type responds differently to exercise and nutrition.',
-      howItWorks: 'Enter your wrist and ankle circumferences relative to your height. Thinner bones suggest ectomorph, thicker suggest endomorph.',
-      example: 'A 175 cm male with a 17 cm wrist and 23 cm ankle is classified as a balanced mesomorph.',
-      formulas: [{ label: 'Somatotype', expression: 'Based on bone structure ratios' }],
+      intro: 'The Body Type Calculator expresses your wrist and ankle circumference as a percentage of your height. Those two ratios are the measurement behind everyday talk of a small, medium or large frame — the frame that somatotype language (ectomorph, mesomorph, endomorph) loosely refers to.',
+      howItWorks: 'Each circumference is divided by height in the same unit and multiplied by 100, giving a percentage of height. Wrist and ankle are used because they carry very little fat, so their girth tracks bone and joint size rather than body composition. The two ratios are reported separately rather than collapsed into a score, because a large wrist with narrow ankles is a real pattern and a single averaged number would hide it.',
+      example: 'A 175 cm person with a 17 cm wrist and 23 cm ankle: 17 / 175 x 100 = 9.71% and 23 / 175 x 100 = 13.14%. At the same height, a 15.5 cm wrist gives 8.86% and a 19 cm wrist gives 10.86% — the range the terms small and large frame are describing.',
+      formulas: [{ label: 'Ratios', expression: 'wrist% = wrist / height x 100; ankle% = ankle / height x 100' }],
       resultExplanations: [
-        { resultLabel: 'Wrist Ratio', explanation: 'Thin wrists (below 8.9% of height) suggest ectomorph. Above 10.0% suggest endomorph.' },
-        { resultLabel: 'Ankle Ratio', explanation: 'Thin ankles (below 12.5% of height) suggest ectomorph. Above 14.5% suggest endomorph.' }
+        { resultLabel: 'Wrist Ratio', explanation: 'Wrist circumference as a percentage of height. Roughly 9.5-10.5% is typical for adults; below that reads as a finer frame, above it as a heavier one.' },
+        { resultLabel: 'Ankle Ratio', explanation: 'Ankle circumference as a percentage of height. Ankles are wider relative to height than wrists, so this number is normally the larger of the two.' }
       ],
       workflowLinks: [
-        { slug: 'body-fat-calculator', step: 'Combine body type with body fat for a full picture.' },
-        { slug: 'bmi-calculator', step: 'BMI does not distinguish body types.' }
+        { slug: 'body-frame-size-calculator', step: 'Cross-check the frame size with the elbow-breadth method.' },
+        { slug: 'body-fat-calculator', step: 'Pair frame size with body composition.' },
+        { slug: 'bmi-calculator', step: 'BMI is a weight-for-height measure and ignores frame entirely.' }
       ],
       faqs: [
-        { q: 'Can I change my body type?', a: 'You cannot change your underlying bone structure, but you can shift body composition through training and nutrition.' },
-        { q: 'What should ectomorphs eat?', a: 'Ectomorphs typically benefit from a calorie surplus with moderate-to-high carbs to support training and recovery.' },
-        { q: 'Are somatotypes scientifically valid?', a: 'They are a useful framework but not a rigid classification. Most people are a blend of two types.' }
+        { q: 'Does this tell me my somatotype?', a: 'No. Somatotyping is a descriptive system built from overall shape — muscle, fat and skeletal breadth together — and no two circumference measurements can assign it. These ratios describe frame size, which is only one ingredient.' },
+        { q: 'What do the percentages mean?', a: 'They put your wrist and ankle in proportion to your height so two people of different heights can be compared. Roughly 9.5-10.5% wrist-to-height covers most adults; the ankle figure is naturally higher because ankles are thicker relative to height.' },
+        { q: 'Can I change my body type?', a: 'You cannot change your bone structure, which is what these ratios reflect. You can change muscle and body fat substantially through training and nutrition, which is what most people actually want when they ask about body type.' },
+        { q: 'Why measure the wrist and ankle?', a: 'Both are narrow, bony sites with little subcutaneous fat, so the tape measures structure rather than body composition. Waist or upper arm circumference would move with diet and training and hide the frame underneath.' }
       ],
       related: ['body-fat-calculator', 'bmi-calculator', 'body-frame-size-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-11-04' },
   },
   {
     id: 'ideal-body-fat',

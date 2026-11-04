@@ -1341,7 +1341,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     id: 'years-days',
     slug: 'years-to-days-calculator',
     name: 'Years to Days Converter',
-    shortDesc: 'Convert years to days for long-term planning and age calculations.',
+    shortDesc: 'Convert years to days at 365 days per year.',
     tagline: 'Years into countable days.',
     category: 'conversion',
     iconName: 'CalendarClock',
@@ -1349,29 +1349,30 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     kind: 'converter',
     unitGroup: 'time-conv',
     content: {
-      intro: 'The Years to Days Converter translates years into days, useful for counting down to milestones, calculating ages, or planning long-term goals. A year has 365 days normally, or 366 in a leap year.',
-      howItWorks: 'Uses 365.25 days per year as the average, accounting for leap years every 4 years.',
-      example: 'A 5-year mortgage is 1,826 days. A 10-year anniversary is 3,652 days.',
-      formulas: [{ label: 'Average Year', expression: 'days = years x 365.25', note: 'Average of 365.25 days accounting for leap years.' }],
-      resultExplanations: [{ resultLabel: 'Time in Days', explanation: 'Your time expressed in days using the average year length.' }],
+      intro: 'The Years to Days Converter multiplies a number of years by 365 to give a day count. It is a plain arithmetic conversion on a fixed 365-day year, which is what you want for budgets, countdowns and contractual periods rather than for dating a calendar.',
+      howItWorks: 'The converter uses exactly 365 days per year, so the arithmetic is unambiguous and reversible: 7 years is 2,555 days, and 2,555 days is 7 years. It deliberately does not add leap days, because leap days depend on which calendar years you cross rather than on how many years you are converting.',
+      example: '5 years is 5 x 365 = 1,825 days, and 10 years is 3,650 days. A real 10-year span containing two or three leap years is 3,652 or 3,653 days, so expect the calendar to run a couple of days ahead of this exact conversion.',
+      formulas: [{ label: 'Exact Year', expression: 'days = years x 365', note: 'The converter treats every year as exactly 365 days.' }],
+      resultExplanations: [{ resultLabel: 'Time in Days', explanation: 'Your time expressed in days, using 365 days per year.' }],
       workflowLinks: [
         { slug: 'months-to-days-calculator', step: 'Convert months to days.' },
         { slug: 'weeks-to-days-calculator', step: 'Convert weeks to days.' }
       ],
       faqs: [
-        { q: 'How many days in 1 year?', a: '365 days in a standard year, 366 in a leap year. Average is 365.25.' },
-        { q: 'How many days in 10 years?', a: 'About 3,652 days, including 2 or 3 leap years.' },
-        { q: 'What years are leap years?', a: 'Years divisible by 4, except century years not divisible by 400. 2024 and 2028 are leap years.' }
+        { q: 'How many days in 1 year?', a: '365 days in a standard year and 366 in a leap year. This converter uses 365 for every year, so it returns 1,825 for five years rather than the 1,826 a calendar containing one leap day would give.' },
+        { q: 'Why is it not 365.25?', a: 'Because 365.25 is an average, not a count. Multiplying by 365.25 produces fractional days and a number that no calendar will ever show, which is worse than a clean 365 for planning purposes.' },
+        { q: 'How many days in 10 years?', a: 'This converter returns 3,650. A real 10-year span usually contains two or three leap days, giving 3,652 or 3,653 — the difference is the leap-year handling, not an error in the multiplication.' },
+        { q: 'What years are leap years?', a: 'Years divisible by 4, except century years not divisible by 400. 2024 and 2028 are leap years; 1900 was not, and 2000 was.' }
       ],
       related: ['months-to-days-calculator', 'weeks-to-days-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-04' },
   },
   {
     id: 'mph-kph',
     slug: 'mph-to-kph-calculator',
     name: 'MPH to KPH Converter',
-    shortDesc: 'Convert miles per hour to kilometers per hour for driving and travel.',
+    shortDesc: 'Convert miles per hour to kilometres per hour and back.',
     tagline: 'Speed limits that cross borders.',
     category: 'conversion',
     iconName: 'Gauge',
@@ -1379,23 +1380,24 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     kind: 'converter',
     unitGroup: 'speed',
     content: {
-      intro: 'The MPH to KPH Converter translates miles per hour into kilometers per hour, essential when driving abroad. European speed limits, GPS readings, and car speedometers outside the US all use km/h.',
-      howItWorks: 'One mph equals approximately 1.60934 km/h. Multiply mph by this factor.',
-      example: '60 mph is 96.6 km/h. 30 mph school zone is 48.3 km/h. 100 mph is 160.9 km/h.',
-      formulas: [{ label: 'Speed Conversion', expression: 'km/h = mph x 1.60934', note: '1 mph = 1.60934 km/h.' }],
-      resultExplanations: [{ resultLabel: 'Speed in km/h', explanation: 'Your speed expressed in km/h using the exact conversion factor.' }],
+      intro: 'The MPH to KPH Converter translates between miles per hour and kilometres per hour, the two units that cover almost every speedometer and speed-limit sign in the world. Enter a speed on either side and the converter shows the equivalent in the other.',
+      howItWorks: 'One mile is exactly 1.609344 kilometres, so one mile per hour is exactly 1.609344 kilometres per hour. Converting mph to km/h multiplies by that factor; converting the other way divides by it. The exact factor matters at speed: rounding it to 1.6 puts a 70 mph limit about 0.7 km/h out.',
+      example: '60 mph x 1.609344 = 96.56 km/h, so a 60 mph motorway limit is posted as 96 km/h in metric countries. A 30 mph town limit is 48.28 km/h, and 100 mph is 160.93 km/h. Going the other way, a 130 km/h autoroute limit is 80.78 mph.',
+      formulas: [{ label: 'Speed Conversion', expression: 'km/h = mph x 1.609344', note: '1 mile = 1.609344 km exactly.' }],
+      resultExplanations: [{ resultLabel: 'Converted Speed', explanation: 'The speed expressed in the other unit, using the exact 1.609344 factor.' }],
       workflowLinks: [
-        { slug: 'speed-converter', step: 'Convert between other speed units.' },
-        { slug: 'fuel-cost-calculator', step: 'Calculate fuel cost per distance.' }
+        { slug: 'speed-converter', step: 'Convert between other speed units, including knots and metres per second.' },
+        { slug: 'fuel-cost-calculator', step: 'Work out what a journey costs at that speed.' }
       ],
       faqs: [
-        { q: 'How fast is 60 mph in km/h?', a: '60 mph equals about 96.6 km/h.' },
-        { q: 'What is 100 km/h in mph?', a: '100 km/h equals about 62.1 mph.' },
-        { q: 'Which countries use mph?', a: 'The US, UK, and a few others use mph. Most of the world uses km/h.' }
+        { q: 'How fast is 60 mph in km/h?', a: '60 mph is 96.56 km/h, which is why a 60 mph road is usually signed as 100 km/h in metric countries. Rounding to 96 or 97 is normal on road signs.' },
+        { q: 'What is 100 km/h in mph?', a: '100 / 1.609344 = 62.14 mph. A 100 km/h limit is therefore slightly faster than a 60 mph limit.' },
+        { q: 'Which countries use mph?', a: 'The United States uses mph for road speeds, and the United Kingdom uses mph for road signs while selling fuel in litres. Most other countries use km/h.' },
+        { q: 'Why 1.609344 and not 1.6?', a: 'The mile is legally defined as exactly 1,609.344 metres, so the conversion is exact. Using 1.6 is fine for a rough mental estimate but drifts by about 0.6% — roughly 1 km/h at motorway speed.' }
       ],
       related: ['speed-converter', 'fuel-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-04' },
   },
   {
     id: 'psi-bar',

@@ -97,15 +97,16 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       tips: [
         'Payroll often bills in quarter-hour (0.25) or tenth-hour (0.1) increments.',
         '30 minutes is 0.5 hours; 45 minutes is 0.75 hours.',
+        'Multiply decimal hours by an hourly rate to get pay: 7.75 x $20 = $155.00.',
       ],
     },
     content: {
       intro:
-        'The Decimal Hours Converter turns hours and minutes into the decimal form used on timesheets and invoices. It is essential for anyone who bills time or processes payroll.',
+        'The Decimal Hours Converter turns a duration written as hours and minutes into the decimal form used on timesheets, invoices and payroll systems. Seven hours and 45 minutes becomes 7.75, which is the number a rate can actually be multiplied by.',
       howItWorks:
-        'Minutes divide by 60 to become a fraction of an hour and add to the whole hours. The tool also returns total minutes for cross-checking.',
+        'Only the minutes need converting. Dividing them by 60 gives their fraction of an hour — 15 minutes is 0.25, 30 is 0.5, 45 is 0.75 — and that fraction is added to the whole hours. The second result multiplies the same duration back out into total minutes, which is the easiest way to check a conversion against a clock or an app.',
       example:
-        'Seven hours and 45 minutes converts to 7.75 decimal hours, or 465 total minutes.',
+        'Seven hours and 45 minutes is 7 + 45/60 = 7.75 decimal hours, or 465 total minutes. Twenty minutes gives 7.3333, often written 7.33, and five minutes gives 7.0833. At $20 an hour, 7.75 hours bills as $155.00.',
       formulas: [
         {
           label: 'Decimal Hours',
@@ -129,9 +130,11 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
         { slug: 'hourly-to-annual-salary-calculator', step: 'Multiply decimal hours by your rate for pay.' },
       ],
       faqs: [
-        { q: 'How do I convert minutes to decimal hours?', a: 'Divide the minutes by 60. Fifteen minutes is 0.25 hours, 30 minutes is 0.5, and 45 minutes is 0.75.' },
-        { q: 'Why does payroll use decimal time?', a: 'Decimal time makes wage multiplication simple, avoiding the awkwardness of base-60 arithmetic in invoices.' },
-        { q: 'How many decimal hours is 8 hours 20 minutes?', a: '20 minutes is 0.333 hours, so the total is approximately 8.33 decimal hours.' },
+        { q: 'How do I convert minutes to decimal hours?', a: 'Divide the minutes by 60. Fifteen minutes is 0.25 hours, 30 minutes is 0.5, and 45 minutes is 0.75. Anything that does not divide evenly leaves a repeating decimal — 20 minutes is 0.3333, which is usually rounded to 0.33 on a timesheet.' },
+        { q: 'Why does payroll use decimal time?', a: 'Because pay is a rate multiplied by hours, and 7.75 x $20 can be done directly. Clock time is base-60, so 7 hours 45 minutes has to be converted before it can be multiplied by anything.' },
+        { q: 'How many decimal hours is 8 hours 20 minutes?', a: '20 / 60 = 0.3333, so it is 8.3333 decimal hours — 8.33 if rounded to two places. Truncating to 8.3 instead loses about two minutes of pay per shift.' },
+        { q: 'Should I round the decimal hours?', a: 'Follow whatever your employer or client specifies. Many payroll systems round to the nearest quarter hour, some to a tenth. Round the final figure, not the minutes, and state the rule on the invoice so the total is reproducible.' },
+        { q: 'Does this handle time over 24 hours?', a: 'Yes, the hours field has no upper limit, so a 30-hour week entered as 30 hours 0 minutes converts normally. For a full week of shifts, add the daily decimal hours together first, then bill the total.' },
       ],
       related: ['work-hours-calculator', 'days-to-weeks-calculator', 'hourly-to-annual-salary-calculator'],
     },
@@ -139,7 +142,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-04',
     },
   },
   {
@@ -332,23 +335,30 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
         { id: 'hours1', label: 'Hours 1', type: 'number', defaultValue: 2, min: 0 },
         { id: 'minutes1', label: 'Minutes 1', type: 'number', defaultValue: 45, min: 0, max: 59 },
         { id: 'hours2', label: 'Hours 2', type: 'number', defaultValue: 1, min: 0 },
-        { id: 'minutes2', label: 'Minutes 2', type: 'number', defaultValue: 30, min: 0, max: 59 }
+        { id: 'minutes2', label: 'Minutes 2', type: 'number', defaultValue: 30, min: 0, max: 59 },
+        { id: 'hours3', label: 'Hours 3', type: 'number', defaultValue: 0, min: 0 },
+        { id: 'minutes3', label: 'Minutes 3', type: 'number', defaultValue: 0, min: 0, max: 59 }
       ],
       results: [
-        { label: 'Total Minutes', formulaCode: '(hours1*60+minutes1)+(hours2*60+minutes2)', suffix: 'min', accent: true }
+        { label: 'Total Hours', formulaCode: 'Math.floor(((hours1*60+minutes1)+(hours2*60+minutes2)+(hours3*60+minutes3))/60)', suffix: 'hrs', accent: true },
+        { label: 'Remaining Minutes', formulaCode: '((hours1*60+minutes1)+(hours2*60+minutes2)+(hours3*60+minutes3))%60', suffix: 'min' },
+        { label: 'Total Minutes', formulaCode: '(hours1*60+minutes1)+(hours2*60+minutes2)+(hours3*60+minutes3)', suffix: 'min' }
       ],
       formulaDescription: 'undefined',
       tips: [
-      'Enter each time block separately.',
-      'The calculator carries 60 minutes into 1 hour automatically.'
+        'Enter each time block separately.',
+        'The calculator carries 60 minutes into 1 hour automatically.',
+        'Leave a block at zero to add only two times.'
       ],
     },
     content: {
-      intro: 'The Time Adder sums multiple time values expressed in hours and minutes. It handles carrying over 60 minutes into hours automatically.',
-      howItWorks: 'Enter hours and minutes for each time block. The calculator totals them and carries any remainder over 60 minutes into the hours column.',
-      example: '2h 45m + 1h 30m + 45m = 5h 0m.',
+      intro: 'The Time Adder sums up to three blocks of hours and minutes and reports the total in hours and minutes. It is the quick way to add call lengths, shift blocks or travel legs without converting everything to minutes by hand.',
+      howItWorks: 'Each block is converted to minutes — hours multiplied by 60 plus its own minutes — and the three totals are added together. The sum is then split back into whole hours and leftover minutes, so every 60 minutes becomes one hour. The raw minute total is also reported for payroll and billing systems that want a single figure.',
+      example: '2 h 45 min + 1 h 30 min + 45 min = 165 + 90 + 45 = 300 minutes, which is 5 hours 0 minutes. Leave the third block at zero to add just two: 2 h 45 min + 1 h 30 min = 255 minutes, or 4 hours 15 minutes.',
       formulas: [{ label: 'Sum', expression: 'Total minutes = sum(h*60+m), then convert back' }],
       resultExplanations: [
+        { resultLabel: 'Total Hours', explanation: 'The combined time in whole hours.' },
+        { resultLabel: 'Remaining Minutes', explanation: 'The leftover minutes after the full hours are taken out.' },
         { resultLabel: 'Total Minutes', explanation: 'The combined time expressed as total minutes.' }
       ],
       workflowLinks: [
@@ -356,13 +366,13 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
         { slug: 'weekly-hours-calculator', step: 'Count working hours for project timelines.' }
       ],
       faqs: [
-        { q: 'Can I add more than 2 time blocks?', a: 'Yes. Enter as many blocks as needed. The calculator sums all of them.' },
-        { q: 'Does it handle seconds?', a: 'This calculator works with hours and minutes. For precise timing, use the stopwatch tool.' },
-        { q: 'Can I subtract time?', a: 'Enter negative values or use the time difference calculator for subtraction.' }
+        { q: 'Can I add more than 3 time blocks?', a: 'This calculator takes three blocks. For longer lists, add the total minutes from each run together, or use the weekly timesheet calculator for a whole week of shifts.' },
+        { q: 'Does it handle seconds?', a: 'This calculator works with hours and minutes. For seconds precision, use the seconds to time converter.' },
+        { q: 'Can I subtract time?', a: 'No. The fields only accept zero or positive values. To find the gap between two clock times, use the work hours calculator with a start and end time.' }
       ],
       related: ['time-zone-converter', 'weekly-hours-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-04' },
   },
   {
     id: 'timezone-converter',
@@ -382,21 +392,25 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
         { id: 'targetOffset', label: 'Target UTC Offset (hrs)', type: 'number', defaultValue: 0, min: -12, max: 14, step: 0.5 }
       ],
       results: [
-        { label: 'Hour Difference', formulaCode: 'targetOffset - sourceOffset', suffix: 'hrs', accent: true }
+        { label: 'Converted Hour (0-23)', formulaCode: 'Math.floor((((hours*60+minutes+(targetOffset-sourceOffset)*60)%1440)+1440)%1440/60)', accent: true },
+        { label: 'Converted Minute', formulaCode: '((((hours*60+minutes+(targetOffset-sourceOffset)*60)%60)+60)%60)' },
+        { label: 'Hour Difference', formulaCode: 'targetOffset - sourceOffset', suffix: 'hrs' }
       ],
       formulaDescription: 'undefined',
       tips: [
-      'Common offsets: EST=-5, CST=-6, MST=-7, PST=-8, GMT=0, CET=+1, JST=+9.',
-      'DST may shift the offset by 1 hour.'
+        'Common offsets: EST=-5, CST=-6, MST=-7, PST=-8, GMT=0, CET=+1, JST=+9.',
+        'Daylight saving is not detected. Look up the offset each zone is using on the date you are converting.'
       ],
     },
     content: {
-      intro: 'The Time Zone Converter converts a specific time between major world time zones. It accounts for daylight saving time automatically.',
-      howItWorks: 'Enter the time and select the source and target time zones. The calculator applies the correct offset.',
-      example: '10:00 AM EST converts to 3:00 PM GMT.',
-      formulas: [{ label: 'Offset', expression: 'Target = Source + (TargetOffset - SourceOffset)' }],
+      intro: 'The Time Zone Converter shifts a clock time from one UTC offset to another and reports how many hours apart the two zones are. Enter the local time and both offsets to see what the clock reads on the other side, including the cases where the answer rolls into the next day.',
+      howItWorks: 'Each offset is measured in hours from UTC, and half-hour zones such as +5.5 are accepted. The calculator adds the target offset, subtracts the source offset, and wraps the answer into a 24-hour day, so a result past midnight comes back as an early-morning hour. Daylight saving is not looked up: offset fields take the value each zone is actually using on that date.',
+      example: '10:00 in New York (UTC-5) converted to London (UTC+0) gives 10:00 - (-5) + 0 = 15:00, with a five-hour difference. The same 10:00 in New York sent to Tokyo (UTC+9) adds 14 hours and lands at 00:00 the next day.',
+      formulas: [{ label: 'Offset', expression: 'Target = Source + (TargetOffset - SourceOffset), wrapped to 24 h' }],
       resultExplanations: [
-        { resultLabel: 'Hour Difference', explanation: 'The offset between the source and target time zones.' }
+        { resultLabel: 'Converted Hour', explanation: 'The hour of the day on the target side, from 0 to 23.' },
+        { resultLabel: 'Converted Minute', explanation: 'The minute on the target side. Half-hour offsets will shift this by 30.' },
+        { resultLabel: 'Hour Difference', explanation: 'How many hours the target zone is ahead of the source zone. Negative means behind.' }
       ],
       workflowLinks: [
         { slug: 'weekly-hours-calculator', step: 'Schedule meetings across time zones.' },
@@ -404,12 +418,13 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       faqs: [
         { q: 'How do I find my UTC offset?', a: 'UTC offset is your hours ahead of or behind UTC. EST is UTC-5, GMT is UTC+0, JST is UTC+9.' },
-        { q: 'Does this handle daylight saving?', a: 'Enter the current DST-adjusted offset. The calculator applies the difference between source and target offsets.' },
+        { q: 'Does this handle daylight saving?', a: 'Only through the offset you enter. The calculator applies the difference between the two offsets you supply, so add one hour to a zone that is observing daylight saving.' },
+        { q: 'Why is the converted time wrong for my city?', a: 'Because the offset entered does not match that date. Zones such as New York are UTC-5 in winter and UTC-4 in summer, so a stale offset is off by an hour.' },
         { q: 'Can I convert between any two zones?', a: 'Yes. Enter the UTC offsets for both source and target zones.' }
       ],
       related: ['weekly-hours-calculator', 'sleep-cycle-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-04' },
   },
   {
     id: 'seconds-to-time',
@@ -432,14 +447,15 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       formulaDescription: 'undefined',
       tips: [
-      'One hour = 3,600 seconds. One minute = 60 seconds.',
-      'This is useful for video timestamps and athletic performance.'
+        'One hour = 3,600 seconds. One minute = 60 seconds.',
+        'This is useful for video timestamps and athletic performance.',
+        'The three outputs always add back up to the seconds you entered.'
       ],
     },
     content: {
-      intro: 'The Seconds to Time Converter breaks a total number of seconds into hours, minutes, and seconds. It is useful for scheduling, video editing, and athletic timing.',
-      howItWorks: 'Hours = floor(seconds / 3600). Minutes = floor((seconds % 3600) / 60). Remaining seconds = seconds % 60.',
-      example: '3,661 seconds = 1 hour, 1 minute, 1 second.',
+      intro: 'The Seconds to Time Converter breaks a raw count of seconds into hours, minutes and seconds. Raw seconds are what stopwatches, video files, logs and fitness apps record; hours and minutes are what people can actually read, so this is the conversion that makes a timestamp usable.',
+      howItWorks: 'Whole hours are the seconds divided by 3,600, rounded down. The remainder is then divided by 60 for whole minutes, and whatever is left is the seconds component. Each output is the remainder after the larger unit is taken out, so the three values always rebuild the original input.',
+      example: '3,661 seconds: 3,661 / 3,600 = 1 hour, leaving 61 seconds; 61 / 60 = 1 minute, leaving 1 second. The result is 1 hour, 1 minute, 1 second. A 90-second clip is 0 hours, 1 minute, 30 seconds, and 7,200 seconds is exactly 2 hours.',
       formulas: [{ label: 'Convert', expression: 'h = floor(s/3600), m = floor(s%3600/60), sec = s%60' }],
       resultExplanations: [
         { resultLabel: 'Hours', explanation: 'The whole hours component.' },
@@ -453,11 +469,12 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       faqs: [
         { q: 'How many seconds are in an hour?', a: '3,600 seconds (60 minutes x 60 seconds).' },
         { q: 'Can I convert hours to seconds?', a: 'Yes. Multiply hours by 3,600, minutes by 60, then add all together.' },
+        { q: 'Why does the minutes value stop at 59?', a: 'Because 60 seconds is carried into a full minute and 60 minutes into a full hour. Each output shows only what is left after the bigger unit is removed.' },
         { q: 'What is this useful for?', a: 'Video editing, athletic timing, scheduling, and any context where time is measured in raw seconds.' }
       ],
       related: ['minutes-to-hours-calculator', 'time-zone-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-04' },
   },
   {
     id: 'minutes-to-hours',
@@ -479,14 +496,15 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       formulaDescription: 'undefined',
       tips: [
-      'One hour = 60 minutes.',
-      'This conversion is useful for payroll, scheduling, and time tracking.'
+        'One hour = 60 minutes.',
+        'For payroll, decimal hours are minutes divided by 60: 2 h 30 min = 2.5 hours.',
+        'The hours are rounded down, so nothing is lost: the leftover minutes carry the remainder.'
       ],
     },
     content: {
-      intro: 'The Minutes to Hours Calculator converts a total number of minutes into hours and remaining minutes.',
-      howItWorks: 'Hours = floor(minutes / 60). Remaining minutes = minutes % 60.',
-      example: '150 minutes = 2 hours and 30 minutes.',
+      intro: 'The Minutes to Hours Calculator turns a total number of minutes into whole hours plus the leftover minutes. It is the conversion behind timesheets, payroll and project tracking, where time is logged in minutes but reported in hours and minutes.',
+      howItWorks: 'Hours are the whole-number part of the minutes divided by 60, rounded down. The remaining minutes are what is left after those full hours are removed, which is the same as the minutes modulo 60. The two values always rebuild the original total: 60 x hours + remaining minutes. Nothing is rounded away, so 119 minutes is reported as 1 hour 59 minutes rather than 2 hours.',
+      example: '150 minutes: 150 / 60 = 2.5, so there are 2 whole hours, and 150 - 120 = 30 minutes left over. The result is 2 hours 30 minutes. Likewise 90 minutes is 1 hour 30 minutes, 60 minutes is exactly 1 hour 0 minutes, and 45 minutes stays at 0 hours 45 minutes.',
       formulas: [{ label: 'Convert', expression: 'h = floor(m/60), rem = m%60' }],
       resultExplanations: [
         { resultLabel: 'Hours', explanation: 'The whole hours portion.' },
@@ -494,16 +512,17 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       workflowLinks: [
         { slug: 'seconds-to-time-calculator', step: 'Break down the minutes component further into seconds.' },
-        { slug: 'weekly-hours-calculator', step: 'Convert working hours to days.' }
+        { slug: 'weekly-hours-calculator', step: 'Add up the hours across a working week.' }
       ],
       faqs: [
         { q: 'How do I convert 90 minutes?', a: '90 / 60 = 1 hour with 30 minutes remaining.' },
         { q: 'Can I use this for decimal hours?', a: 'Yes. Divide minutes by 60 to get decimal hours. 90 minutes = 1.5 hours.' },
+        { q: 'Does it round up or down?', a: 'It rounds down to complete hours and reports the rest as minutes, so 119 minutes is 1 hour 59 minutes, not 2 hours.' },
         { q: 'What is this useful for?', a: 'Payroll calculations, time tracking, project management, and scheduling.' }
       ],
       related: ['seconds-to-time-calculator', 'weekly-hours-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-04' },
   },
   {
     id: 'hours-until',
@@ -524,36 +543,37 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
         { id: 'daysAhead', label: 'Days Ahead', type: 'number', defaultValue: 1, min: 0, max: 30 }
       ],
       results: [
-        { label: 'Hours Until', formulaCode: '(targetHour*60+targetMinute+daysAhead*1440-currentHour*60-currentMinute)/60', suffix: 'hrs', accent: true },
-        { label: 'Remaining Minutes', formulaCode: '(targetHour*60+targetMinute+daysAhead*1440-currentHour*60-currentMinute)%60', suffix: 'min' }
+        { label: 'Hours Until', formulaCode: 'Math.floor(Math.max(0, targetHour*60+targetMinute+daysAhead*1440-currentHour*60-currentMinute)/60)', suffix: 'hrs', accent: true },
+        { label: 'Remaining Minutes', formulaCode: 'Math.max(0, targetHour*60+targetMinute+daysAhead*1440-currentHour*60-currentMinute)%60', suffix: 'min' }
       ],
       formulaDescription: 'undefined',
       tips: [
-      'Set daysAhead to 0 if the target is today.',
-      'If the target time has passed, the result will be 0.'
+        'Set days ahead to 0 for a target later today.',
+        'Add a day for each midnight the target sits beyond. If the target has already passed, the countdown stops at zero.'
       ],
     },
     content: {
-      intro: 'The Hours Until Calculator computes the number of hours between the current time and a target time. It is useful for countdowns, deadlines, and scheduling.',
-      howItWorks: 'Subtract the current time from the target time in hours.',
-      example: 'If it is now 2:00 PM and the target is 6:00 AM tomorrow, the result is 16 hours.',
-      formulas: [{ label: 'Hours', expression: 'Hours = (Target - Now) / 60' }],
+      intro: 'The Hours Until Calculator counts the time between now and a target clock time, adding a number of whole days ahead so it can reach beyond midnight. It answers questions such as how long until a flight, a meeting, a deadline or tomorrow morning.',
+      howItWorks: 'Both times are converted to minutes after midnight. The target is pushed forward by 24 hours for each day ahead, then the current time is subtracted. The total is split into whole hours and remaining minutes and never goes below zero: once a countdown has finished it reports 0 hours 0 minutes instead of a negative time.',
+      example: 'At 14:00 with a target of 06:00 tomorrow: (360 + 1,440) - 840 = 960 minutes, which is 16 hours 0 minutes. Setting the same 06:00 target with 0 days ahead gives 0 hours 0 minutes, because 06:00 today has already passed.',
+      formulas: [{ label: 'Hours', expression: 'Minutes until = max(0, target + daysAhead x 1440 - now)' }],
       resultExplanations: [
         { resultLabel: 'Hours Until', explanation: 'The whole hours remaining until the target time.' },
         { resultLabel: 'Remaining Minutes', explanation: 'The leftover minutes after extracting full hours.' }
       ],
       workflowLinks: [
         { slug: 'sleep-cycle-calculator', step: 'Plan sleep around your target wake time.' },
-        { slug: 'weekly-hours-calculator', step: 'Count working hours until a deadline.' }
+        { slug: 'add-days-to-date', step: 'Work out the calendar date of the deadline.' }
       ],
       faqs: [
-        { q: 'What if the target time has already passed?', a: 'The calculator returns 0h 0m. Set the target to a future time.' },
-        { q: 'Can I use this for deadlines?', a: 'Yes. Enter the deadline hour and minute as the target.' },
-        { q: 'Does it handle multi-day differences?', a: 'Yes. Use the days-ahead field for targets more than one day away.' }
+        { q: 'What if the target time has already passed?', a: 'The countdown stops at 0 hours 0 minutes. Set the target to a future time, or add a day ahead if the target is tomorrow.' },
+        { q: 'What if the target is later today?', a: 'Leave days ahead at 0. From 14:00 to 18:30 the same day is 4 hours 30 minutes, with nothing added.' },
+        { q: 'Can I use this for deadlines?', a: 'Yes. Enter the deadline hour and minute as the target, and add a day ahead for each midnight between now and then.' },
+        { q: 'Does it handle multi-day differences?', a: 'Yes, up to 30 days ahead. 06:00 two days from now is 40 hours after 14:00 today, because two 24-hour days are added before the subtraction.' }
       ],
-      related: ['sleep-cycle-calculator', 'weekly-hours-calculator'],
+      related: ['sleep-cycle-calculator', 'add-days-to-date'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-10-26' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-04' },
   },
   {
     id: 'weekly-hours',
@@ -581,31 +601,33 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       formulaDescription: 'undefined',
       tips: [
-      'A standard full-time week is 40 hours.',
-      'The average across 7 days gives a better picture of work-life balance.'
+        'A standard full-time week is 40 hours.',
+        'The daily average divides by all 7 days, so a 40-hour Monday-to-Friday week averages 5.71 hours per day.',
+        'Decimals are accepted, so 7.5 is a half-day.'
       ],
     },
     content: {
-      intro: 'The Weekly Hours Calculator totals your working hours across a 7-day week. Enter hours for each day to get your weekly total and average.',
-      howItWorks: 'Sum the hours entered for each day of the week.',
-      example: 'Monday-Friday at 8 hours each = 40 hours per week.',
+      intro: 'The Weekly Hours Calculator adds up the hours worked on each day of a seven-day week and reports both the weekly total and the average per day. It suits timesheet checks, part-time schedules, shift work and anyone tracking overtime or a second job.',
+      howItWorks: 'Enter the hours worked from Monday through Sunday; decimals are accepted. The calculator sums all seven entries for the weekly total, then divides that total by 7 for the daily average, including days with no work at all. That makes the average a picture of the whole week rather than of the days you were on shift.',
+      example: 'Five 8-hour weekdays plus a 4-hour Saturday: 8 + 8 + 8 + 8 + 8 + 0 + 4 = 44 hours. The daily average is 44 / 7 = 6.29 hours per day, not the 7.33 you would get by dividing across the six days actually worked.',
       formulas: [{ label: 'Sum', expression: 'Total = sum of all 7 days' }],
       resultExplanations: [
         { resultLabel: 'Total Hours', explanation: 'The total hours worked across all 7 days.' },
-        { resultLabel: 'Daily Average', explanation: 'Average hours per day across the full week.' }
+        { resultLabel: 'Daily Average', explanation: 'Average hours per day across the full week, including days off.' }
       ],
       workflowLinks: [
         { slug: 'work-hours-calculator', step: 'Convert weekly hours into an annual salary.' },
-        { slug: 'work-hours-per-year-calculator', step: 'Check if you are exceeding standard hours.' }
+        { slug: 'work-hours-per-year-calculator', step: 'Turn the weekly total into annual hours.' }
       ],
       faqs: [
-        { q: 'What is a standard work week?', a: 'A standard work week is 40 hours, typically Monday through Friday.' },
+        { q: 'What is a standard work week?', a: 'A standard work week is 40 hours, typically Monday through Friday. Anything above that is usually overtime.' },
         { q: 'Does this include overtime?', a: 'It totals all hours. If your standard is 40 hours, any excess is overtime.' },
+        { q: 'Why is the average divided by seven?', a: 'Because the week is seven days long, including days off. A 40-hour Monday-to-Friday schedule averages 5.71 hours per day; divide by the days you actually worked yourself if you want that figure instead.' },
         { q: 'Can I use this for part-time work?', a: 'Yes. Enter the actual hours for each day, regardless of full-time or part-time status.' }
       ],
       related: ['work-hours-calculator', 'work-hours-per-year-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-11-04' },
   },
   {
     id: 'sleep-hours',
@@ -630,14 +652,15 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       formulaDescription: 'undefined',
       tips: [
-      'Most adults need 7-9 hours of sleep.',
-      'Track your sleep duration over a week to find your average.'
+        'Most adults need 7-9 hours of sleep.',
+        'Track your sleep duration over a week to find your average.',
+        'The result measures time in bed, which is usually 10-20 minutes longer than time asleep.'
       ],
     },
     content: {
-      intro: 'The Sleep Hours Calculator computes the total hours and minutes between your bedtime and wake time.',
-      howItWorks: 'Subtract bedtime from wake time. If wake is earlier in the day, add 24 hours to account for crossing midnight.',
-      example: 'Bedtime 11:30 PM, wake 7:00 AM = 7 hours 30 minutes.',
+      intro: 'The Sleep Hours Calculator measures the time between when you went to bed and when you got up, expressed in hours and minutes. It is useful for checking whether a night met your target and for spotting patterns across a week of late finishes.',
+      howItWorks: 'Both clock times are converted to minutes after midnight and the bedtime is subtracted from the wake time. If the wake time is earlier than or equal to bedtime, the calculator adds 24 hours so the result crosses midnight correctly. The total is then split into whole hours and leftover minutes.',
+      example: 'Bedtime 23:30 and wake time 07:00: 420 - 1,410 = -990, so 1,440 minutes are added for 450 minutes, which is 7 hours 30 minutes. A 01:15 bedtime with a 09:00 wake-up is 465 minutes, or 7 hours 45 minutes.',
       formulas: [{ label: 'Sleep', expression: 'Sleep = Wake - Bedtime (+ 24h if needed)' }],
       resultExplanations: [
         { resultLabel: 'Sleep Hours', explanation: 'The whole hours of sleep.' },
@@ -648,13 +671,14 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
         { slug: 'sleep-debt-calculator', step: 'Check if you are accumulating a deficit.' }
       ],
       faqs: [
-        { q: 'How many hours of sleep do adults need?', a: 'Most adults need 7-9 hours per night. Individual needs vary.' },
+        { q: 'How many hours of sleep do adults need?', a: 'Most adults need 7-9 hours per night. Individual needs vary with age, health and activity level.' },
         { q: 'Does this include time to fall asleep?', a: 'This measures the time in bed. Actual sleep time is typically 10-20 minutes less.' },
-        { q: 'Can I use this for naps?', a: 'Yes. Enter the nap start and end times to get the duration.' }
+        { q: 'What if bedtime and wake time are the same?', a: 'The calculator assumes a full day has passed and returns 24 hours 0 minutes, so enter two different times for a real night.' },
+        { q: 'Can I use this for naps?', a: 'Yes. Enter the nap start and end times to get the duration, including naps that cross midnight.' }
       ],
       related: ['sleep-cycle-calculator', 'sleep-debt-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-10-26' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-11-04' },
   },
   {
     id: 'add-days-to-date',
@@ -668,41 +692,46 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
     kind: 'config',
     config: {
       fields: [
+        { id: 'startYear', label: 'Start Year', type: 'number', defaultValue: 2026, min: 1900, max: 2100 },
         { id: 'startMonth', label: 'Start Month (1-12)', type: 'number', defaultValue: 1, min: 1, max: 12 },
         { id: 'startDay', label: 'Start Day', type: 'number', defaultValue: 15, min: 1, max: 31 },
-        { id: 'daysToAdd', label: 'Days to Add', type: 'number', defaultValue: 45, min: 0 }
+        { id: 'daysToAdd', label: 'Days to Add (negative to go back)', type: 'number', defaultValue: 45, min: -3650, max: 36500 }
       ],
       results: [
-        { label: 'Result Month', formulaCode: 'new Date(2026,startMonth-1,startDay+daysToAdd).getMonth()+1', suffix: 'month', accent: true },
-        { label: 'Result Day', formulaCode: 'new Date(2026,startMonth-1,startDay+daysToAdd).getDate()' }
+        { label: 'Result Month', formulaCode: 'new Date(startYear,startMonth-1,startDay+daysToAdd).getMonth()+1', accent: true, valueLabels: ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] },
+        { label: 'Result Day', formulaCode: 'new Date(startYear,startMonth-1,startDay+daysToAdd).getDate()' },
+        { label: 'Result Year', formulaCode: 'new Date(startYear,startMonth-1,startDay+daysToAdd).getFullYear()', noGrouping: true }
       ],
       formulaDescription: 'undefined',
       tips: [
-      'The calculator handles month and year rollovers automatically.',
-      'Use negative values to subtract days from a date.'
+        'The calculator handles month and year rollovers automatically.',
+        'Enter a negative day count to count backwards.',
+        'The start date is day 0, so adding 1 day gives the next day.'
       ],
     },
     content: {
-      intro: 'The Add Days to Date Calculator determines the date that falls a given number of days after a starting date. It handles month and year boundaries automatically.',
-      howItWorks: 'Enter a starting date and the number of days to add. The calculator rolls over month and year boundaries.',
-      example: 'January 15 + 45 days = March 1.',
+      intro: 'The Add Days to Date Calculator finds the calendar date a set number of days before or after a starting date. It rolls across month and year boundaries for you, including the shorter February of a non-leap year.',
+      howItWorks: 'The starting date and the day offset are handed to the browser calendar handling, which counts real days rather than assuming 30-day months. Month, day and year are entered as plain numbers, and the year can be anything from 1900 to 2100. A negative offset counts backwards, and the starting day itself counts as day zero.',
+      example: 'Starting 15 January 2026 and adding 45 days lands on 1 March 2026: January takes 16 of those days, February contributes 28, and 1 day falls into March. Subtracting 45 days from the same start gives 1 December 2025.',
       formulas: [{ label: 'Date', expression: 'New Date = Start Date + Days' }],
       resultExplanations: [
         { resultLabel: 'Result Month', explanation: 'The month of the resulting date.' },
-        { resultLabel: 'Result Day', explanation: 'The day of the resulting date.' }
+        { resultLabel: 'Result Day', explanation: 'The day of the month of the resulting date.' },
+        { resultLabel: 'Result Year', explanation: 'The year of the resulting date, which changes when the offset crosses New Year.' }
       ],
       workflowLinks: [
-        { slug: 'weekly-hours-calculator', step: 'Count only working days between dates.' },
-        { slug: 'hours-until-calculator', step: 'Find hours until the resulting date.' }
+        { slug: 'hours-until-calculator', step: 'Find the hours until the resulting date.' },
+        { slug: 'weekly-hours-calculator', step: 'Plan the working weeks around a future deadline.' }
       ],
       faqs: [
-        { q: 'Does it handle leap years?', a: 'Yes. The calculator uses the system Date object which accounts for leap years automatically.' },
-        { q: 'Can I subtract days?', a: 'Enter a negative number to find a date in the past.' },
-        { q: 'What happens if the start day exceeds the month?', a: 'The calculator rolls over to the next month automatically.' }
+        { q: 'Does it handle leap years?', a: 'Yes. The date conversion uses real month lengths, so 29 February appears whenever the resulting year is a leap year.' },
+        { q: 'Can I subtract days?', a: 'Yes. Enter a negative number, such as -30, to find the date a month earlier.' },
+        { q: 'Does the result include the starting day?', a: 'No. The start date is day 0, so adding 1 day gives the next day and adding 0 returns the date you entered.' },
+        { q: 'What happens if the start day does not exist in that month?', a: 'The date rolls forward. Entering 31 February resolves to 3 March, or 2 March in a leap year.' }
       ],
-      related: ['weekly-hours-calculator', 'hours-until-calculator'],
+      related: ['hours-until-calculator', 'weekly-hours-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-11-04' },
   },
   {
     id: 'work-hours-per-year',
@@ -726,31 +755,33 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       formulaDescription: 'undefined',
       tips: [
-      'A standard full-time worker puts in about 2,000 hours per year.',
-      'Use this to compare job offers or negotiate hours.'
+        'A 40-hour week with typical leave lands around 1,900-2,000 hours a year.',
+        'Use this to compare job offers or to price freelance time.',
+        'Holidays are counted as 8-hour days.'
       ],
     },
     content: {
-      intro: 'The Work Hours Per Year Calculator estimates the total number of hours you work in a year based on weekly hours, vacation weeks, and holidays.',
-      howItWorks: 'Multiply weekly hours by 52, then subtract vacation and holiday hours.',
-      example: '40 hours/week, 2 weeks vacation, 10 holidays: (40 x 52) - 80 - 80 = 1,920 hours.',
-      formulas: [{ label: 'Annual', expression: 'Hours = (Weekly x 52) - Vacation - Holidays' }],
+      intro: 'The Work Hours Per Year Calculator estimates how many hours you really work in a year once vacation weeks and public holidays are removed. It turns a weekly schedule into an annual figure you can compare across job offers, contracts or freelance rates.',
+      howItWorks: 'The starting point is 52 weeks at your weekly hours. Each vacation week removes one week of hours, and each holiday removes 8 hours, the length of a standard working day. The remainder is divided by 8 to express the same total as eight-hour days, so the two results always agree.',
+      example: '40 hours a week with 2 vacation weeks and 10 holidays: 40 x 52 = 2,080 hours, minus 80 vacation hours and 80 holiday hours, leaves 1,920 hours. That is 240 eight-hour days of work.',
+      formulas: [{ label: 'Annual', expression: 'Hours = (Weekly x 52) - (VacationWeeks x Weekly) - (Holidays x 8)' }],
       resultExplanations: [
         { resultLabel: 'Hours Per Year', explanation: 'Your estimated annual working hours after vacation and holidays.' },
-        { resultLabel: 'Days Per Year', explanation: 'Equivalent number of 8-hour work days.' }
+        { resultLabel: 'Days Per Year', explanation: 'The same total expressed as eight-hour working days.' }
       ],
       workflowLinks: [
-        { slug: 'weekly-hours-calculator', step: 'Track weekly hours first.' },
-        { slug: 'weekly-hours-calculator', step: 'Combine with salary for hourly rate.' }
+        { slug: 'weekly-hours-calculator', step: 'Track the weekly hours that feed this estimate.' },
+        { slug: 'hourly-to-annual-salary-calculator', step: 'Turn the annual hours into a salary comparison.' }
       ],
       faqs: [
-        { q: 'How many work hours in a year?', a: 'A standard full-time year is about 2,000 hours (40 hrs x 50 weeks).' },
+        { q: 'How many work hours in a year?', a: 'A full-time year is about 2,080 hours before leave (40 hours x 52 weeks), and roughly 1,900-2,000 after vacation and holidays.' },
         { q: 'Does this include overtime?', a: 'Enter your actual weekly hours including overtime for an accurate annual total.' },
-        { q: 'How do part-time hours compare?', a: 'Part-time at 20 hours/week yields about 1,000 hours per year before deductions.' }
+        { q: 'Why are holidays fixed at 8 hours?', a: 'Because a public holiday removes one standard working day. If your normal day is longer or shorter, adjust the holiday count or subtract the difference yourself.' },
+        { q: 'How do part-time hours compare?', a: 'Part-time at 20 hours a week gives 1,040 hours before leave, so 920 hours with two vacation weeks and ten holidays.' }
       ],
-      related: ['weekly-hours-calculator'],
+      related: ['weekly-hours-calculator', 'hourly-to-annual-salary-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-04' },
   },
   {
     id: 'timesheet',
