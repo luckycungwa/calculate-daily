@@ -181,11 +181,11 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     unitGroup: 'temperature',
     content: {
       intro:
-        'The Temperature Converter converts between Celsius, Fahrenheit, and Kelvin in either direction. Cooking, weather, and science all use different scales, and this tool removes the mental arithmetic.',
+        'The Temperature Converter changes a reading between Celsius, Fahrenheit and Kelvin in either direction. Weather reports, recipes and lab values use different scales, and the three overlap often enough that the arithmetic is worth doing exactly rather than by eye.',
       howItWorks:
-        'Every scale normalizes to Celsius internally. Fahrenheit converts as (F - 32) x 5/9 and Kelvin as K - 273.15, then the target scale is applied in reverse.',
+        'Every scale is normalised to Celsius first. Fahrenheit becomes (F − 32) x 5/9 and Kelvin becomes K − 273.15, then the target scale is applied in reverse: Celsius x 9/5 + 32 for Fahrenheit, plus 273.15 for Kelvin. The offsets are what catch people out — the two scales do not share a zero point, so converting is not a simple multiplication.',
       example:
-        'Convert 100°F to Celsius: (100 - 32) x 5/9 = 37.8°C. The same temperature is 310.9 K.',
+        '100 °F is (100 − 32) x 5/9 = 37.8 °C, which is 37.8 + 273.15 = 310.9 K. Body temperature of 37 °C is 98.6 °F and 310.15 K, while water freezes at 0 °C, 32 °F and 273.15 K. At −40 the two everyday scales coincide: −40 °C is −40 °F.',
       formulas: [
         {
           label: 'Fahrenheit to Celsius',
@@ -208,21 +208,23 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
         },
       ],
       workflowLinks: [
-        { slug: 'length-converter', step: 'Switch related metric and imperial units in the same project.' },
-        { slug: 'weight-converter', step: 'Complete a unit family conversion for cooking or travel.' },
+        { slug: 'oven-temperature-converter', step: 'Convert an oven setting between conventional and fan scales.' },
+        { slug: 'boiling-point-calculator', step: 'See how altitude changes the boiling point of water.' },
       ],
       faqs: [
-        { q: 'How do I convert Celsius to Fahrenheit?', a: 'Multiply by 9/5 and add 32: C x 9/5 + 32. The converter does this automatically in either direction.' },
-        { q: 'At what temperature are Celsius and Fahrenheit equal?', a: 'At -40 degrees, both scales read -40. It is the one point where the two agree.' },
-        { q: 'Why does Kelvin have no negative numbers?', a: 'Kelvin is an absolute scale starting at absolute zero, the coldest physically possible temperature, so values are never negative.' },
+        { q: 'How do I convert Celsius to Fahrenheit?', a: 'Multiply by 9/5 and add 32. So 20 °C is 68 °F and 37 °C is 98.6 °F. The converter does it in either direction without you picking a formula.' },
+        { q: 'At what temperature are Celsius and Fahrenheit equal?', a: 'At −40: −40 °C and −40 °F are the same temperature. Because the scales have different zero points and different step sizes, they cross exactly once.' },
+        { q: 'Why does Kelvin have no negative numbers?', a: 'Kelvin starts at absolute zero, the coldest temperature physically reachable, so there is nothing below it to record. 0 K is −273.15 °C, and every Kelvin degree is the same size as a Celsius degree.' },
+        { q: 'Is 1 °C the same as 1 °F?', a: 'No. A Celsius degree is 1.8 times a Fahrenheit degree, which is why a 10 °C change is an 18 °F change. Only the size of the step differs; the offset is handled separately.' },
+        { q: 'Which scale should I use for cooking?', a: 'Fan and conventional ovens are usually quoted in Celsius or Fahrenheit, and oven thermostats are often inaccurate by 10 °C or more. Convert the recipe figure, then trust an oven thermometer over the dial.' },
       ],
-      related: ['length-converter', 'weight-converter', 'speed-converter'],
+      related: ['oven-temperature-converter', 'boiling-point-calculator', 'length-converter'],
     },
     seo: {
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -238,11 +240,11 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     unitGroup: 'length',
     content: {
       intro:
-        'The Length Converter handles millimeters through miles, including meters, feet, inches, and yards. It is a go-to for DIY projects, travel math, and international unit switching.',
+        'The Length Converter covers millimetres through miles, including metres, centimetres, inches, feet and yards. It turns dimensions in a plan into the units on your tape measure, and distances in a foreign road sign into units you can picture.',
       howItWorks:
-        'All units normalize to meters. Inches, feet, yards, and miles convert through their exact meter equivalents, then scale to the chosen target unit.',
+        'Every unit is normalised to metres through its exact definition, then scaled to the target unit. The imperial factors are exact by definition rather than rounded: 1 inch is 0.0254 m, 1 foot 0.3048 m, 1 yard 0.9144 m and 1 mile 1,609.344 m. Metric prefixes follow the same pattern in powers of ten, so a kilometre is exactly 1,000 m.',
       example:
-        'Convert 2 miles to kilometers: 2 x 1.609344 = 3.22 km. Or convert 180 cm to feet for a height check: about 5 feet 11 inches.',
+        '2 miles is 2 x 1,609.344 = 3,218.7 m, or 3.22 km. 180 cm is 5.906 ft, which is 5 feet 10.9 inches. A 2x4 timber quoted as 8 feet is 2.44 m, and a 55-inch television is 139.7 cm across the diagonal.',
       formulas: [
         {
           label: 'Normalized Conversion',
@@ -262,9 +264,10 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
         { slug: 'speed-converter', step: 'Pair distance units with their speed equivalents.' },
       ],
       faqs: [
-        { q: 'How many feet are in a meter?', a: 'One meter equals about 3.281 feet, or 39.37 inches. The converter applies the exact factor.' },
-        { q: 'How do I convert inches to centimeters?', a: 'Multiply inches by 2.54. An 11-inch tablet is 27.94 cm across.' },
-        { q: 'Does it include nautical or survey units?', a: 'This tool covers everyday units from millimeters to miles. Nautical miles are available in the speed converter context.' },
+        { q: 'How many feet are in a meter?', a: '1 / 0.3048 = 3.28084 feet, or 39.37 inches. The factor is exact because the foot is defined as 0.3048 m, not measured.' },
+        { q: 'How do I convert inches to centimeters?', a: 'Multiply inches by 2.54. An 11-inch tablet is 27.94 cm across, and a 6-foot person is 182.9 cm tall.' },
+        { q: 'Does it include nautical miles?', a: 'No. This converter stops at the statute mile; a nautical mile is 1,852 m and belongs to navigation rather than everyday length. The speed converter handles knots, which are nautical miles per hour.' },
+        { q: 'Why is a mile 1,609.344 m?', a: 'The mile is defined as exactly 5,280 feet, and the foot as 0.3048 m, so the mile follows from those two definitions. Nothing in the chain is rounded, which is why a conversion can be reversed without drift.' },
       ],
       related: ['temperature-converter', 'weight-converter', 'room-area-calculator'],
     },
@@ -272,7 +275,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.8,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -288,11 +291,11 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     unitGroup: 'weight',
     content: {
       intro:
-        'The Weight Converter converts between milligrams, grams, kilograms, ounces, pounds, stone, and metric tons. Fitness tracking, cooking, and international shipping all rely on these conversions.',
+        'The Weight Converter changes a mass between milligrams, grams, kilograms, tonnes, ounces, pounds and stone. Gym programmes are written in pounds, shipping labels in kilograms and British body weight in stone, so the same number means different things depending on where it was written.',
       howItWorks:
-        'Every unit normalizes to kilograms using exact factors. A pound is 0.453592 kg and an ounce is 0.0283495 kg, so conversions are precise in either direction.',
+        'Every unit normalises to kilograms through its exact factor, then scales to the target unit. A pound is 0.45359237 kg and an ounce is one sixteenth of that, 0.028349523125 kg; a stone is 14 pounds, or 6.35029318 kg. Because each factor is a definition rather than a measurement, round-tripping gives back the original number.',
       example:
-        'Convert 150 pounds to kilograms: 150 x 0.453592 = 68.04 kg. Convert 1 stone to pounds: 14 lbs.',
+        '150 lb is 150 x 0.45359237 = 68.04 kg, the same as 10 stone 10 lb. A 5 kg bag of flour is 11.02 lb, a 1 kg bag is 2.205 lb, and 8 oz of cheese is 226.8 g. A metric tonne of 1,000 kg is 2,204.6 lb.',
       formulas: [
         {
           label: 'Normalized Conversion',
@@ -309,12 +312,14 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       workflowLinks: [
         { slug: 'bmi-calculator', step: 'Convert your weight before checking your BMI.' },
-        { slug: 'length-converter', step: 'Pair weight with height for body metrics.' },
+        { slug: 'cups-to-grams-calculator', step: 'Turn recipe volumes into weights for baking.' },
       ],
       faqs: [
-        { q: 'How many kilograms are in a pound?', a: 'One pound equals 0.453592 kilograms, so dividing pounds by 2.20462 converts to kilograms.' },
-        { q: 'What is a stone?', a: 'A stone is a British mass unit equal to 14 pounds, or about 6.35 kg, still common for body weight in the UK.' },
-        { q: 'Is mass the same as weight?', a: 'Technically no, but for everyday use mass in kilograms and weight in pounds are treated interchangeably on Earth.' },
+        { q: 'How many kilograms are in a pound?', a: '0.45359237 kg exactly, so dividing pounds by 2.20462 converts to kilograms. 150 lb is 68.04 kg and 200 lb is 90.72 kg.' },
+        { q: 'What is a stone?', a: 'A British unit of 14 pounds, or 6.35 kg. Body weight in the UK is commonly given in stones and pounds, so 11 stone 4 lb means 158 lb, about 71.7 kg.' },
+        { q: 'Is mass the same as weight?', a: 'Not in physics: mass is the amount of matter and weight is the force gravity exerts on it, so your weight would differ on the Moon while your mass would not. In everyday use on Earth the two are treated as the same thing, and the units are used interchangeably.' },
+        { q: 'Is a fluid ounce the same as an ounce?', a: 'No. A fluid ounce measures volume, an ounce measures mass, and they only coincide for water. A fluid ounce of honey weighs about 1.4 oz, which is why recipes specify one or the other.' },
+        { q: 'Why does a kilogram weigh 2.2 pounds?', a: 'Because the pound was defined as 0.45359237 kg by international agreement in 1959. The kilogram is the base unit of mass in SI and the pound is defined from it, not the other way round.' },
       ],
       related: ['length-converter', 'temperature-converter', 'bmi-calculator'],
     },
@@ -322,7 +327,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.75,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -338,11 +343,11 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     unitGroup: 'speed',
     content: {
       intro:
-        'The Speed Converter translates between kilometers per hour, miles per hour, knots, and meters per second. It is handy for road-trip math, aviation references, and comparing sports performance.',
+        'The Speed Converter translates between kilometres per hour, miles per hour, knots, metres per second and feet per second. Road signs, boat instruments, weather forecasts and athletics results each settled on a different unit, and this is where they meet.',
       howItWorks:
-        'All speeds normalize to km/h, then scale to the target unit. A mile is 1.609344 km and a knot is 1.852 km/h, giving exact cross-unit results.',
+        'Every speed normalises to km/h and then scales to the target unit. The factors come from definitions rather than measurements: a mile is 1.609344 km, a knot is one nautical mile (1,852 m) per hour so 1.852 km/h, and 1 m/s is 3.6 km/h exactly. Because the inch and therefore the mile are defined in metric terms, none of these steps introduces rounding.',
       example:
-        'Convert 60 mph to km/h: 60 x 1.609344 = 96.56 km/h. Convert 20 knots to mph: about 23 mph.',
+        '60 mph is 96.56 km/h, and 100 km/h is 62.14 mph. 20 knots is 37.04 km/h, or 23.02 mph. A 10 m/s sprint is 36 km/h, and wind reported at 25 mph is about 21.7 knots.',
       formulas: [
         {
           label: 'Normalized Conversion',
@@ -360,11 +365,13 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       workflowLinks: [
         { slug: 'running-pace-calculator', step: 'Convert a running speed into pace per kilometer.' },
         { slug: 'length-converter', step: 'Check the distance units behind a speed figure.' },
+        { slug: 'fuel-cost-calculator', step: 'Turn speed and distance into a trip cost.' },
       ],
       faqs: [
-        { q: 'How many mph is 100 km/h?', a: '100 km/h equals about 62.1 mph, using the factor 1 km = 0.621371 miles.' },
-        { q: 'What is a knot?', a: 'A knot is one nautical mile per hour, used in aviation and maritime travel. One knot equals about 1.15 mph.' },
-        { q: 'How do I convert m/s to km/h?', a: 'Multiply meters per second by 3.6. A 10 m/s sprint is 36 km/h.' },
+        { q: 'How many mph is 100 km/h?', a: '100 / 1.609344 = 62.14 mph, so a 100 km/h limit is slightly faster than a 60 mph limit. The rule of thumb that a km/h figure is about 0.62 of the mph figure holds well below 200 km/h.' },
+        { q: 'What is a knot?', a: 'One nautical mile per hour, which is 1.852 km/h or 1.1508 mph. It is used at sea and in the air because a nautical mile corresponds to one minute of latitude, so degrees of position and distance line up neatly.' },
+        { q: 'How do I convert m/s to km/h?', a: 'Multiply by 3.6. A 10 m/s run is 36 km/h; Usain Bolt\'s 100 m record averaged about 10.44 m/s, which is 37.6 km/h over the whole race.' },
+        { q: 'Why are wind speeds sometimes in knots and sometimes in mph?', a: 'Tradition rather than physics. Marine and aviation forecasts use knots, land forecasts in the US use mph, and most of the rest of the world uses km/h or m/s. Converting lets you compare a hurricane advisory with a local weather app.' },
       ],
       related: ['length-converter', 'running-pace-calculator', 'fuel-cost-calculator'],
     },
@@ -372,7 +379,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -388,16 +395,16 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     unitGroup: 'area',
     content: {
       intro:
-        'The Area Converter converts square meters, square feet, acres, hectares, and square miles. Real estate, landscaping, and international property listings rarely share the same units, so this tool keeps comparisons honest.',
+        'The Area Converter changes an area between square millimetres, square centimetres, square metres, square kilometres, square inches, square feet, square yards, acres, hectares and square miles. Property listings, land deeds and floor plans each pick a different unit, often for the same piece of ground, and this is where they line up.',
       howItWorks:
-        'All units normalize to square meters using exact conversion factors. An acre equals 4046.86 m² and a hectare 10,000 m², enabling precise scaling between systems.',
+        'Every unit normalises to square metres through a fixed factor, then scales to the target. The imperial factors follow from the length definitions: a square foot is 0.3048² = 0.092903 m², a square yard 0.9144² = 0.836127 m², and a square mile 1,609.344² = 2,589,988 m². An acre is 4,840 square yards, or 4,046.86 m², and a hectare is exactly 10,000 m² — the neat metric counterpart that makes the two roughly comparable.',
       example:
-        'Convert 1,000 square feet to square meters: 1,000 x 0.092903 = 92.9 m². Convert 2 acres to hectares: about 0.81 ha.',
+        '1,000 square feet is 1,000 × 0.092903 = 92.9 m². 2 acres is 8,093.7 m², which is 0.81 hectares and just over 3,000 square yards. A 100 m² apartment is 1,076 square feet, and one square mile is 640 acres — the section grid that much of the American Midwest is laid out on.',
       formulas: [
         {
           label: 'Normalized Conversion',
           expression: 'Result = Input (in m²) × Target factor',
-          note: '1 acre = 4046.86 m², 1 hectare = 10,000 m².',
+          note: '1 acre = 4,046.86 m², 1 hectare = 10,000 m².',
         },
       ],
       resultExplanations: [
@@ -410,11 +417,14 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       workflowLinks: [
         { slug: 'room-area-calculator', step: 'Compute a room area, then convert it to other units.' },
         { slug: 'flooring-calculator', step: 'Use converted area to estimate flooring material.' },
+        { slug: 'length-converter', step: 'Convert the dimensions you measured before squaring them.' },
       ],
       faqs: [
-        { q: 'How many square feet are in a square meter?', a: 'One square meter equals about 10.764 square feet. Divide square feet by 10.764 to convert.' },
-        { q: 'What is the difference between acre and hectare?', a: 'A hectare is 10,000 m² and equals about 2.471 acres. Acres are standard in US real estate; hectares are standard elsewhere.' },
-        { q: 'Can I convert room dimensions directly?', a: 'For room areas, enter length and width in the room-area calculator, then use this converter to switch the result to another unit.' },
+        { q: 'How many square feet are in a square meter?', a: 'About 10.764. The factor is not a round number because it comes from squaring 3.28084 feet per metre. To go the other way, multiply square feet by 0.092903.' },
+        { q: 'What is the difference between an acre and a hectare?', a: 'A hectare is 10,000 m² and an acre is 4,046.86 m², so a hectare is about 2.471 acres. Acres dominate US and UK land listings; hectares are standard almost everywhere else, including most of Europe and Australia.' },
+        { q: 'Why can I not just convert the side lengths?', a: 'Because area scales with the square of length. A room 10 feet by 10 feet is 100 square feet, but 10 feet is 3.048 m and the same room is 9.29 m², not 30.4 — converting the sides and multiplying is equivalent, but converting the area directly avoids the mistake.' },
+        { q: 'Can I convert room dimensions directly?', a: 'This tool converts an area you already have. For a room, measure length and width in the room-area calculator and it multiplies them for you; then bring the result here to switch units.' },
+        { q: 'Is a square mile the same as a mile squared?', a: 'Literally yes, but the useful comparison is that one square mile is 640 acres or 2.59 km². That ratio is why American land sections are one mile square — a section is exactly 640 acres.' },
       ],
       related: ['room-area-calculator', 'length-converter', 'flooring-calculator'],
     },
@@ -422,7 +432,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -438,11 +448,11 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     unitGroup: 'volume',
     content: {
       intro:
-        'The Volume Converter converts between milliliters, liters, teaspoons, cups, pints, quarts, gallons, and cubic meters. It serves recipes, fuel, and container math in a single tool.',
+        'The Volume Converter changes a volume between millilitres, litres, teaspoons, tablespoons, cups, pints, quarts, gallons and cubic metres. It covers recipe scaling, fuel, tank capacity and container sizing in one place, and it uses US customary measures throughout because those differ from imperial ones.',
       howItWorks:
-        'Every unit normalizes to liters using exact customary factors. A US gallon is 3.78541 liters and a cup is 0.236588 liters, so conversions stay accurate across systems.',
+        'Every unit normalises to litres through its exact definition, then scales to the target. A US gallon is 231 cubic inches, which is 3.785411784 L, and a US cup is 8 US fluid ounces, 236.588 mL. The same names mean different amounts elsewhere: an imperial gallon is 4.54609 L, about 20% more than a US gallon, and a metric cup used in Australian and New Zealand recipes is 250 mL.',
       example:
-        'Convert 2 gallons to liters: 2 x 3.78541 = 7.57 liters. Convert 500 ml to cups: about 2.11 US cups.',
+        '2 US gallons is 7.571 L, and 500 mL is 2.113 US cups. A 5 L container holds 1.32 US gallons, and a 1 L bottle is 4.227 US cups. In imperial units the same 2 gallons would be 9.092 L, which is why a recipe copied across the Atlantic can taste wrong even when the numbers are unchanged.',
       formulas: [
         {
           label: 'Normalized Conversion',
@@ -460,11 +470,14 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       workflowLinks: [
         { slug: 'room-volume-calculator', step: 'Compute a room volume, then switch its units.' },
         { slug: 'oz-to-cups-calculator', step: 'Convert cooking volumes in the same measurement system.' },
+        { slug: 'cups-to-grams-calculator', step: 'Turn a cup measure into a weight for baking.' },
       ],
       faqs: [
-        { q: 'How many liters are in a gallon?', a: 'A US gallon is 3.785 liters; an imperial gallon is larger at 4.546 liters. This converter uses US customary units.' },
-        { q: 'How many milliliters in a cup?', a: 'A US cup holds 237 milliliters. The converter applies the exact factor for any unit pair.' },
-        { q: 'Does it convert dry volume too?', a: 'Yes, all volume units here are equivalent by capacity. For weight-based baking, use the cups-to-grams tool instead.' },
+        { q: 'How many liters are in a gallon?', a: 'A US gallon is 3.785 L and an imperial gallon is 4.546 L, a gap of about 20%. This converter uses US customary units, so check which gallon a foreign recipe or fuel figure means before converting.' },
+        { q: 'How many milliliters in a cup?', a: 'A US cup is 236.6 mL. Australian, New Zealand and Canadian recipes often use a metric cup of 250 mL, which is 13.4 mL more — enough to shift a delicate bake.' },
+        { q: 'Does it convert dry volume too?', a: 'It converts capacity, not weight, so a cup of flour and a cup of water both read as 236.6 mL even though the flour weighs far less. For baking by weight, use the cups-to-grams converter instead.' },
+        { q: 'Why do US and imperial gallons differ?', a: 'They descend from different historical standards: the US gallon from the 231-cubic-inch wine gallon, the imperial gallon from the 1824 British standard of 4.54609 L. Both names survived, which is why the ambiguity persists.' },
+        { q: 'Is a fluid ounce the same as an ounce?', a: 'No. A US fluid ounce is 29.574 mL of volume; an ounce is 28.3495 g of mass. They only match for water, so honey, oil and syrup have very different weights for the same fluid ounce.' },
       ],
       related: ['oz-to-cups-calculator', 'cups-to-grams-calculator', 'room-volume-calculator'],
     },
@@ -472,7 +485,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -488,11 +501,11 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     unitGroup: 'digital',
     content: {
       intro:
-        'The Data Storage Converter converts between bits, bytes, kilobytes, megabytes, gigabytes, terabytes, and petabytes. It settles file-size and storage questions in either binary or storage-company terms.',
+        'The Data Storage Converter converts sizes between bits, bytes, kilobytes, megabytes, gigabytes, terabytes and petabytes. It uses the binary step of 1,024 that operating systems report, which is why a drive advertised as 1 TB shows roughly 931 GB once it is plugged in.',
       howItWorks:
-        'Units normalize to bytes using binary factors, where each step multiplies by 1,024. This matches how operating systems and file systems count data.',
+        'Every unit normalises to bytes, and each step multiplies by 1,024 — the binary convention behind the labels KB, MB, GB and TB on a computer. Manufacturers use the decimal convention instead, where each step multiplies by 1,000, so the same physical drive carries two different numbers depending on who is counting. A byte is 8 bits, which is where the mismatch between connection speeds in megabits and file sizes in megabytes also comes from.',
       example:
-        'Convert 16 GB to MB: 16 x 1,024 = 16,384 MB. Convert a 5 TB drive to GB: 5,120 GB.',
+        '16 GB is 16 x 1,024 = 16,384 MB, and a 5 TB drive is 5,120 GB by binary maths. A drive sold as 1 TB holds 1,000,000,000,000 bytes, which the operating system reports as 931.3 GB — the capacity is identical, only the step size differs. A 100 Mbps connection moves about 12.5 MB per second, because eight bits make a byte.',
       formulas: [
         {
           label: 'Binary Conversion',
@@ -508,21 +521,23 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
         },
       ],
       workflowLinks: [
-        { slug: 'volume-converter', step: 'Convert related physical volume units.' },
-        { slug: 'length-converter', step: 'Switch the same quantity across another unit family.' },
+        { slug: 'mb-to-gb-calculator', step: 'Check a single megabyte-to-gigabyte figure.' },
+        { slug: 'gb-to-tb-calculator', step: 'Convert a drive capacity into terabytes.' },
       ],
       faqs: [
-        { q: 'How many MB are in a GB?', a: 'In binary terms, 1 GB equals 1,024 MB. Storage vendors sometimes use 1,000, which is why drives show slightly less space than advertised.' },
-        { q: 'What is the difference between a bit and a byte?', a: 'A byte is 8 bits. Internet speeds are often quoted in bits per second, while file sizes are in bytes, creating apparent mismatches.' },
-        { q: 'Why does my drive show less space than labeled?', a: 'Manufacturers use decimal units (1 GB = 1 billion bytes) while operating systems report binary units (1 GB = 1.074 billion bytes).' },
+        { q: 'How many MB are in a GB?', a: '1,024 in binary terms and 1,000 in the decimal terms storage vendors use. This converter uses 1,024, matching what your file manager shows.' },
+        { q: 'What is the difference between a bit and a byte?', a: 'A byte is 8 bits. Broadband speeds are sold in megabits per second while files are measured in bytes, so a 100 Mbps line downloads at roughly 12.5 MB per second rather than 100.' },
+        { q: 'Why does my drive show less space than labeled?', a: 'Manufacturers count 1 GB as 1,000,000,000 bytes; operating systems count 1 GB as 1,073,741,824 bytes. A 1 TB drive therefore reports as about 931 GB, and a 500 GB drive as about 465 GB, with no space actually missing.' },
+        { q: 'What is a KiB?', a: 'A kibibyte, which is 1,024 bytes by the IEC naming convention. Strictly, KB means 1,000 bytes and KiB means 1,024, but Windows labels binary sizes as KB, so the strict distinction is widely ignored in practice.' },
+        { q: 'Does this include petabytes?', a: 'Yes, and each further step is another factor of 1,024. A petabyte is 1,024 terabytes, which is about 1.126 million gigabytes — the scale of large data centres rather than personal storage.' },
       ],
-      related: ['volume-converter', 'length-converter', 'weight-converter'],
+      related: ['mb-to-gb-calculator', 'gb-to-tb-calculator', 'volume-converter'],
     },
     seo: {
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -1109,23 +1124,26 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     kind: 'converter',
     unitGroup: 'weight',
     content: {
-      intro: 'The Stone to Pounds Converter translates stone into pounds, which is how people in the UK and Ireland commonly express body weight. When a British doctor says you weigh 12 stone, converting to pounds gives you a number Americans understand immediately.',
-      howItWorks: 'One stone equals exactly 14 pounds. Multiply the number of stone by 14 to get pounds.',
-      example: 'A person who weighs 10 stone is 140 pounds. A 12-stone person weighs 168 pounds.',
-      formulas: [{ label: 'Conversion Factor', expression: 'lbs = stone x 14', note: '1 stone = 14 pounds exactly.' }],
+      intro: 'The Stone to Pounds Converter changes a weight given in stone into pounds at the fixed rate of 14 pounds per stone. British and Irish body weight is still routinely quoted in stone, while most of the rest of the world reads pounds or kilograms, so the conversion is the first step before comparing, dosing or filling in a form.',
+      howItWorks: 'Multiplying by 14 is exact, because the stone is defined as 14 pounds rather than measured. British weight is usually written in a mixed form — 11 stone 4 pounds, not 11.29 stone — so the whole number is the stone count and the remainder is pounds. One stone is 6.35029318 kg and one pound is 0.45359237 kg, which means the pounds figure divides by 2.20462 to reach kilograms.',
+      example: '10 stone is 140 pounds, which is about 63.5 kg. 12 stone is 168 pounds, or 76.2 kg. The mixed figure 11 stone 4 pounds means 11 × 14 + 4 = 158 pounds, and that is 71.7 kg. A 9 stone 10 pound reading — common in boxing and jockey weights — is 136 pounds.',
+      formulas: [{ label: 'Conversion Factor', expression: 'lbs = stone × 14', note: '1 stone = 14 pounds exactly, about 6.35 kg.' }],
       resultExplanations: [{ resultLabel: 'Weight in Pounds', explanation: 'Your weight expressed in pounds using the exact stone-to-pound ratio.' }],
       workflowLinks: [
         { slug: 'pounds-to-stone-calculator', step: 'Convert back the other direction.' },
+        { slug: 'weight-converter', step: 'Convert the same weight to kilograms and other units.' },
         { slug: 'bmi-calculator', step: 'Calculate BMI after converting your weight.' }
       ],
       faqs: [
-        { q: 'How many pounds in 1 stone?', a: 'Exactly 14 pounds in 1 stone, which is about 6.35 kilograms.' },
-        { q: 'What is 10 stone in pounds?', a: '10 stone equals 140 pounds, or about 63.5 kg.' },
-        { q: 'Why do the British use stone?', a: 'Stone has been used for body weight in the UK since medieval times. Most other countries use kilograms now.' }
+        { q: 'How many pounds in 1 stone?', a: 'Exactly 14 pounds, which is about 6.35 kilograms. The number is a definition, not a measurement, so it never varies.' },
+        { q: 'What is 10 stone in pounds?', a: '10 × 14 = 140 pounds, or about 63.5 kg. Ten stone is a common target weight in UK slimming contexts for exactly that reason — it is a round number in the unit people actually use.' },
+        { q: 'Why do the British use stone?', a: 'It has been the customary unit for body weight in Britain since the medieval wool trade, and unlike most imperial measures it survived metrication for personal weight. Body weight in the UK is still commonly given in stone, while packaged goods are sold in grams.' },
+        { q: 'How do I read 11 stone 4?', a: 'The first number is whole stone and the second is leftover pounds, so 11 stone 4 is 11 × 14 + 4 = 158 pounds. Written as a decimal it would be 11.29 stone, which is why the mixed form is used — it avoids awkward fractions.' },
+        { q: 'Is a stone the same everywhere?', a: 'Not historically. The stone varied by trade and region — a 14-pound stone for body weight, but different values for meat or wool in some periods. The 14-pound stone became the standard, and that is the one this converter uses.' },
       ],
       related: ['pounds-to-stone-calculator', 'weight-converter', 'bmi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-05' },
   },
   {
     id: 'pounds-stone',
@@ -1139,23 +1157,26 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     kind: 'converter',
     unitGroup: 'weight',
     content: {
-      intro: 'The Pounds to Stone Converter translates pounds into stone, the body weight unit still used daily in the UK and Ireland. When reading British health advice or comparing weight with friends across the pond, this conversion gives you a sense of how weight is discussed there.',
-      howItWorks: 'Divide the number of pounds by 14 to get stone. Since one stone equals 14 pounds exactly, the conversion is precise.',
-      example: 'A 154-pound person weighs 11 stone. A 200-pound person weighs 14 stone 4 pounds.',
-      formulas: [{ label: 'Conversion Factor', expression: 'stone = pounds / 14', note: '1 stone = 14 pounds.' }],
+      intro: 'The Pounds to Stone Converter divides a weight in pounds by 14 to give stone, and splits the result into the whole-stone-plus-pounds form the UK actually uses. It is the direction that matters when a US scale, gym log or medical record gives pounds and the person thinks in stone.',
+      howItWorks: 'Dividing by 14 gives stone as a decimal. To split it into the familiar form, take the whole number as stone and multiply the leftover fraction by 14 to get pounds: 158 / 14 = 11.2857, so 11 stone and 0.2857 × 14 = 4 pounds. Because both directions use the same fixed ratio, a figure converted one way and back returns exactly the original weight.',
+      example: '154 pounds is exactly 11 stone, and 200 pounds is 14 stone 4 pounds — not 14.29 stone in everyday speech. 168 pounds is 12 stone, 130 pounds is 9 stone 4, and 250 pounds is 17 stone 12. In metric, 154 pounds is 69.9 kg and one stone is 6.35 kg.',
+      formulas: [{ label: 'Conversion Factor', expression: 'stone = pounds / 14', note: '1 stone = 14 pounds exactly.' }],
       resultExplanations: [{ resultLabel: 'Weight in Stone', explanation: 'Your weight expressed in stone using the exact conversion ratio.' }],
       workflowLinks: [
         { slug: 'stone-to-pounds-calculator', step: 'Convert back the other direction.' },
+        { slug: 'weight-converter', step: 'Convert pounds to kilograms and other units.' },
         { slug: 'bmi-calculator', step: 'Calculate BMI after converting your weight.' }
       ],
       faqs: [
-        { q: 'How do I express stone and pounds separately?', a: 'Divide by 14. The whole number is stone, multiply the remainder by 14 for remaining pounds.' },
-        { q: 'Is stone used anywhere else?', a: 'Stone is primarily used for body weight in the UK and Ireland only.' },
-        { q: 'What is the metric equivalent?', a: 'Most countries use kilograms instead. 1 stone is about 6.35 kg.' }
+        { q: 'How do I express stone and pounds separately?', a: 'Divide the pounds by 14. The whole number is stone, and the remainder — the fraction multiplied by 14 — is the leftover pounds. So 175 / 14 = 12.5, which reads as 12 stone 7 pounds.' },
+        { q: 'Is stone used anywhere else?', a: 'Body weight in the UK and Ireland is the main surviving use, along with some British sporting weight classes. Elsewhere the stone is essentially unknown, which is why a conversion is usually needed before sharing a figure internationally.' },
+        { q: 'What is the metric equivalent?', a: 'One stone is 6.35029318 kg, so a 12 stone person weighs about 76.2 kg. To go straight from pounds to kilograms, multiply by 0.45359237.' },
+        { q: 'Why is 200 pounds not exactly 14 stone 4?', a: 'It is — 14 × 14 = 196, plus 4 makes 200. Written as a decimal, 200 / 14 = 14.2857 stone, and the 0.2857 is 4 pounds. Both forms describe the same weight; only the presentation differs.' },
+        { q: 'Does this work for objects as well as people?', a: 'Yes, the ratio is universal, but the stone is almost never used for anything except body weight today. For luggage, produce or parcels the figure would normally be given in pounds or kilograms instead.' },
       ],
-      related: ['stone-to-pounds-calculator', 'weight-converter'],
+      related: ['stone-to-pounds-calculator', 'weight-converter', 'bmi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-05' },
   },
   {
     id: 'mb-gb',
@@ -1199,23 +1220,26 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     kind: 'converter',
     unitGroup: 'digital',
     content: {
-      intro: 'The Gigabytes to Terabytes Converter scales up from gigabytes to terabytes, which is how external hard drives, NAS systems, and enterprise storage are measured. When shopping for a 2 TB drive or checking your cloud backup quota, converting between these units helps you compare options.',
-      howItWorks: 'One terabyte equals 1,024 gigabytes in binary terms. Divide GB by 1,024 to get TB.',
-      example: 'A 1 TB hard drive is 1,024 GB. A 500 GB SSD is 0.49 TB. A 4 TB backup drive is 4,096 GB.',
-      formulas: [{ label: 'Binary Conversion', expression: 'TB = GB / 1024', note: '1 TB = 1,024 GB in binary.' }],
+      intro: 'The Gigabytes to Terabytes Converter divides a storage figure by 1,024 to express it in terabytes, the unit drives and cloud plans are sold in. Going from phone-scale to drive-scale is where the gap between advertised capacity and reported capacity becomes large enough to notice, so it is worth doing the arithmetic deliberately.',
+      howItWorks: 'A terabyte is 1,024 gigabytes in the binary convention that operating systems use, so dividing by 1,024 converts GB to TB and gives the figure you will see in a file manager. Drive manufacturers count in decimal instead, where a terabyte is 1,000 GB and each gigabyte is a billion bytes. The two conventions diverge by about 10% at this scale: a drive sold as 1 TB holds a trillion bytes, which the operating system reports as 931 GB, or 0.91 TB.',
+      example: '1,024 GB is exactly 1 TB, and 500 GB is 0.49 TB. A drive advertised as 4 TB contains 4,000 GB in decimal terms, which shows up as roughly 3.64 TB in Windows. A 256 GB phone is 0.25 TB, and a 2 TB backup drive holds about 1.82 TB of reported space.',
+      formulas: [{ label: 'Binary Conversion', expression: 'TB = GB / 1,024', note: '1 TB = 1,024 GB in the binary convention.' }],
       resultExplanations: [{ resultLabel: 'Size in Terabytes', explanation: 'Your storage expressed in terabytes using the binary conversion.' }],
       workflowLinks: [
-        { slug: 'mb-to-gb-calculator', step: 'Convert down to gigabytes.' },
-        { slug: 'data-storage-converter', step: 'Convert between all storage units.' }
+        { slug: 'mb-to-gb-calculator', step: 'Convert the smaller step, from megabytes to gigabytes.' },
+        { slug: 'data-storage-converter', step: 'Convert between all storage units, including bits and bytes.' },
+        { slug: 'download-time-calculator', step: 'See how long a file of that size takes to transfer.' }
       ],
       faqs: [
-        { q: 'How many GB in 1 TB?', a: '1 TB = 1,024 GB in binary. Manufacturers sometimes use 1,000 GB = 1 TB.' },
-        { q: 'How many photos fit in 1 TB?', a: 'At 5 MB per photo, about 200,000 photos. At 20 MB per photo (high resolution), about 50,000.' },
-        { q: 'Is 1 TB enough for most people?', a: 'For photos and documents, yes. For large video files or gaming libraries, 2-4 TB is more comfortable.' }
+        { q: 'How many GB in 1 TB?', a: '1,024 GB in the binary convention the calculator uses. Manufacturers quote 1,000 GB to the terabyte, which is the source of the missing-space confusion — the physical drive is the same size either way.' },
+        { q: 'How many photos fit in 1 TB?', a: 'At about 5 MB a photo, roughly 200,000. At 20 MB for a high-resolution raw file, around 50,000. Video dominates storage far more: an hour of 4K footage can be 15-30 GB depending on compression.' },
+        { q: 'Is 1 TB enough for most people?', a: 'For documents and photos, comfortably. For a gaming library or video editing, 2-4 TB is more realistic — modern games are often 50-100 GB each, so twenty of them fills a terabyte before anything else is stored.' },
+        { q: 'Why does a 4 TB drive show 3.6 TB?', a: 'Because 4 TB decimal is 4,000,000,000,000 bytes, and dividing by 1,024 four times gives 3.638 TB binary. Nothing is missing; the manufacturer counts in powers of 1,000 and the operating system counts in powers of 1,024.' },
+        { q: 'Should I use TB or TiB?', a: 'Strictly, TiB is the binary unit (1,024 GiB) and TB is decimal (1,000 GB). Most consumer software labels binary sizes as TB anyway, so this converter follows the common convention rather than the strict one.' },
       ],
       related: ['mb-to-gb-calculator', 'data-storage-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-05' },
   },
   {
     id: 'hours-minutes',
@@ -1229,29 +1253,30 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     kind: 'converter',
     unitGroup: 'time-conv',
     content: {
-      intro: 'The Hours to Minutes Converter translates hours into minutes, which is useful for tracking work sessions, billing clients, or understanding how long a movie or commute takes. Breaking hours into minutes makes short durations easier to plan around.',
-      howItWorks: 'One hour equals exactly 60 minutes. Multiply the number of hours by 60 to get minutes.',
-      example: 'A 2.5-hour meeting is 150 minutes. A 45-minute commute is 0.75 hours. An 8-hour workday is 480 minutes.',
+      intro: 'The Hours to Minutes Converter turns a duration in hours into minutes at the fixed rate of 60 minutes per hour. It is the conversion behind timesheets, meeting notes and billing, where a duration like 2.5 hours has to become a number that a minutes-based system can use.',
+      howItWorks: 'Hours are multiplied by 60. The rate is exact — the hour is defined as 60 minutes — so nothing is rounded and the reverse direction simply divides by 60. Because time is base-60, a decimal part is not hundredths: 0.5 hours is 30 minutes, not 50, which is why clock time and decimal hours diverge.',
+      example: '2.5 hours is 150 minutes, an 8-hour workday is 480 minutes, and a 0.1-hour slot is 6 minutes. Going the other way, a 90-minute film is 1.5 hours and a 45-minute commute is 0.75 hours.',
       formulas: [{ label: 'Time Conversion', expression: 'minutes = hours x 60', note: '1 hour = 60 minutes exactly.' }],
       resultExplanations: [{ resultLabel: 'Time in Minutes', explanation: 'Your time expressed in minutes using the exact hour-to-minute ratio.' }],
       workflowLinks: [
         { slug: 'days-to-hours-calculator', step: 'Convert days to hours for longer periods.' },
-        { slug: 'weeks-to-days-calculator', step: 'Convert weeks to days.' }
+        { slug: 'decimal-hours-calculator', step: 'Turn hours and minutes into payable decimal hours.' }
       ],
       faqs: [
-        { q: 'How many minutes in 1 hour?', a: 'Exactly 60 minutes, which is also the length of a typical TV episode.' },
-        { q: 'How many minutes in 8 hours?', a: '8 hours equals 480 minutes, a standard workday.' },
-        { q: 'How do I convert minutes to hours?', a: 'Divide minutes by 60. A 90-minute movie is 1.5 hours.' }
+        { q: 'How many minutes in 1 hour?', a: 'Exactly 60 minutes. That is why a 60-minute TV slot carries roughly 42-45 minutes of programme once advertising is removed.' },
+        { q: 'How many minutes in 8 hours?', a: '480 minutes, the elapsed time of a standard workday. A full 40-hour week is 2,400 minutes.' },
+        { q: 'How do I convert minutes to hours?', a: 'Divide the minutes by 60. A 90-minute film is 1.5 hours, and 100 minutes is 1.667 hours — 1 hour 40 minutes.' },
+        { q: 'Why is 0.5 hours 30 minutes and not 50?', a: 'Because time counts in sixties. Half of 60 is 30, so the digits after the point in hours do not behave like decimals of 100. That mismatch is exactly what a decimal-hours converter resolves for payroll.' }
       ],
-      related: ['days-to-hours-calculator', 'weeks-to-days-calculator'],
+      related: ['days-to-hours-calculator', 'decimal-hours-calculator', 'weeks-to-days-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-05' },
   },
   {
     id: 'days-hours',
     slug: 'days-to-hours-calculator',
     name: 'Days to Hours Converter',
-    shortDesc: 'Convert days to hours for project deadlines and travel planning.',
+    shortDesc: 'Convert days to hours for deadlines, travel and schedules.',
     tagline: 'Days into workable hours.',
     category: 'conversion',
     iconName: 'Clock',
@@ -1259,9 +1284,9 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     kind: 'converter',
     unitGroup: 'time-conv',
     content: {
-      intro: 'The Days to Hours Converter translates days into hours, which helps with project planning, medication schedules, and understanding time windows. When a deadline is 3 days away, knowing the exact hour count makes scheduling precise.',
-      howItWorks: 'One day equals exactly 24 hours. Multiply the number of days by 24 to get hours.',
-      example: 'A 3-day deadline is 72 hours. A weekend trip of 2 days is 48 hours. A 14-day quarantine is 336 hours.',
+      intro: 'The Days to Hours Converter multiplies a number of days by 24 to give the equivalent number of hours. Deadlines, cancellation windows and itineraries are usually written in days but planned in hours, and this is the conversion between the two.',
+      howItWorks: 'A civil day is 24 hours, so the conversion is a clean multiplication and its reverse is a division by 24. It uses the calendar day rather than the sidereal day: a solar day drifts by seconds across the year but is 24 hours for every practical purpose.',
+      example: '3 days is 72 hours, a 14-day period is 336 hours, and half a day is 12 hours. A 5-day working week is 120 hours of elapsed time even though only about 40 of those hours are paid work.',
       formulas: [{ label: 'Time Conversion', expression: 'hours = days x 24', note: '1 day = 24 hours exactly.' }],
       resultExplanations: [{ resultLabel: 'Time in Hours', explanation: 'Your time expressed in hours using the exact day-to-hour ratio.' }],
       workflowLinks: [
@@ -1269,13 +1294,14 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
         { slug: 'hours-to-minutes-calculator', step: 'Break hours into minutes.' }
       ],
       faqs: [
-        { q: 'How many hours in 1 day?', a: 'Exactly 24 hours, which includes 8 hours of sleep for most people.' },
-        { q: 'How many hours in a work week?', a: 'A standard 5-day work week is 120 hours total, though working hours are typically 40.' },
-        { q: 'Is a day always 24 hours?', a: 'A solar day averages 24 hours but varies slightly. For conversion, 24 hours is the standard.' }
+        { q: 'How many hours in 1 day?', a: 'Exactly 24, of which most adults spend about 8 asleep, leaving roughly 16 waking hours. The 24-hour figure is a definition of the civil day, not a measurement.' },
+        { q: 'How many hours in a work week?', a: 'A 5-day week is 120 hours of elapsed time, but a standard full-time week pays for about 40 of them. The gap is the point of the distinction between days off and paid hours.' },
+        { q: 'Is a day always 24 hours?', a: 'Almost. The solar day averages 24 hours and the sidereal day is 23 hours 56 minutes 4 seconds. Clock days can also be 23 or 25 hours when daylight saving starts or ends.' },
+        { q: 'How many hours are in a year?', a: '365 x 24 = 8,760 hours in a common year and 8,784 in a leap year. A 40-hour working week across 52 weeks comes to 2,080 paid hours, the figure many contracts quote.' }
       ],
       related: ['weeks-to-days-calculator', 'hours-to-minutes-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-05' },
   },
   {
     id: 'weeks-days',
@@ -1289,9 +1315,9 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     kind: 'converter',
     unitGroup: 'time-conv',
     content: {
-      intro: 'The Weeks to Days Converter translates weeks into days, which is useful for project timelines, fitness challenges, and countdown timers. When someone says a project takes 3 weeks, converting to days gives you a concrete number to plan around.',
-      howItWorks: 'One week equals exactly 7 days. Multiply the number of weeks by 7 to get days.',
-      example: 'A 2-week vacation is 14 days. A 6-week fitness program is 42 days. A 1-week notice period is 7 days.',
+      intro: 'The Weeks to Days Converter turns weeks into days at exactly 7 days per week. Notice periods, training blocks and countdowns are usually written in weeks but scheduled in days, and this is the arithmetic that bridges them.',
+      howItWorks: 'Multiplying by 7 is exact, and dividing by 7 reverses it. Because 7 does not divide evenly into a month or a year, week counts rarely line up with calendar months: 52 weeks is 364 days, one short of a common year, which is why a year is 52 weeks and a day.',
+      example: '2 weeks is 14 days, 6 weeks is 42 days, and 90 days is 90 / 7 = 12.86 weeks, or 12 weeks and 6 days. A 12-week programme is 84 days, which is why it often ends a day or two before the three-month mark.',
       formulas: [{ label: 'Time Conversion', expression: 'days = weeks x 7', note: '1 week = 7 days exactly.' }],
       resultExplanations: [{ resultLabel: 'Time in Days', explanation: 'Your time expressed in days using the exact week-to-day ratio.' }],
       workflowLinks: [
@@ -1299,19 +1325,20 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
         { slug: 'days-to-hours-calculator', step: 'Break days into hours.' }
       ],
       faqs: [
-        { q: 'How many days in 1 week?', a: 'Exactly 7 days, which breaks down into 5 weekdays and 2 weekend days.' },
-        { q: 'How many days in 4 weeks?', a: '4 weeks equals exactly 28 days, which is also the length of February.' },
-        { q: 'Is 4 weeks the same as a month?', a: 'Not exactly. Most months have 30 or 31 days, while 4 weeks is 28 days.' }
+        { q: 'How many days in 1 week?', a: 'Exactly 7 — usually 5 weekdays and 2 weekend days, though the split depends on the country and the job.' },
+        { q: 'How many days in 4 weeks?', a: '28 days. That is the length of February in a common year, which is why February is the one month that is exactly four weeks long.' },
+        { q: 'Is 4 weeks the same as a month?', a: 'No. Most months are 30 or 31 days, and the average is 30.44, so four weeks falls about two and a half days short of a month.' },
+        { q: 'How many weeks are in a year?', a: '365 / 7 = 52.14, so a common year is 52 weeks plus one day, and a leap year is 52 weeks plus two. That extra day is why a fixed date drifts to a different weekday each year.' }
       ],
       related: ['months-to-days-calculator', 'days-to-hours-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-05' },
   },
   {
     id: 'months-days',
     slug: 'months-to-days-calculator',
     name: 'Months to Days Converter',
-    shortDesc: 'Convert months to days for pregnancy, subscriptions, and deadlines.',
+    shortDesc: 'Convert months to days using the 30.44-day average.',
     tagline: 'Calendar months into exact days.',
     category: 'conversion',
     iconName: 'CalendarClock',
@@ -1319,9 +1346,9 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     kind: 'converter',
     unitGroup: 'time-conv',
     content: {
-      intro: 'The Months to Days Converter translates months into days, which matters for pregnancy tracking, subscription billing, and lease terms. Since months vary between 28 and 31 days, this calculator uses 30.44 days per month as the average.',
-      howItWorks: 'Uses 30.44 days per month, the average over a year (365.25 / 12). For exact dates, count the specific months involved.',
-      example: 'A 9-month pregnancy is about 274 days. A 6-month lease is roughly 183 days.',
+      intro: 'The Months to Days Converter converts a number of months into days using the average month of 30.44 days. Months are the one common time unit with no fixed length, so an average is the only way to give one number for an arbitrary count of months.',
+      howItWorks: 'An average year of 365.25 days divided by 12 gives 30.4375, rounded here to 30.44. Multiplying by that average is accurate across long spans and approximate across short ones: a specific six-month period can be 181, 182, 183 or 184 days depending on which months it covers and whether a leap day falls inside it.',
+      example: '9 months is about 274 days and 6 months about 183. Three months is roughly 91 days, and 100 days works out to 3.28 months. For a lease or a notice period, count the real calendar days instead: January to June is 181 days in a common year and 182 in a leap year.',
       formulas: [{ label: 'Average Month', expression: 'days = months x 30.44', note: 'Average of 30.44 days per month.' }],
       resultExplanations: [{ resultLabel: 'Time in Days', explanation: 'Your time expressed in days using the average month length.' }],
       workflowLinks: [
@@ -1329,13 +1356,14 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
         { slug: 'years-to-days-calculator', step: 'Convert years to days.' }
       ],
       faqs: [
-        { q: 'How many days in a month?', a: 'Months vary from 28 to 31 days. The average is about 30.44 days.' },
-        { q: 'How many days in 6 months?', a: 'About 183 days using the average. Actual count depends on which months.' },
-        { q: 'How many months is 100 days?', a: 'About 3.28 months, or roughly 3 months and 9 days.' }
+        { q: 'How many days in a month?', a: 'Between 28 and 31 days depending on the month, with February the outlier and the 31-day months alternating through the year. The average across a full year is 30.44.' },
+        { q: 'How many days in 6 months?', a: 'About 183 by this average, but the real answer depends on the months: January to June is 181 days in a common year and 182 in a leap year, while April to September is 183.' },
+        { q: 'How many months is 100 days?', a: '100 / 30.44 = 3.28 months, or roughly 3 months and 9 days. That is an average across the year rather than a fixed answer.' },
+        { q: 'Why use 30.44 instead of 30?', a: 'Because 12 months of 30 days is 360 days, five short of a year. The gap is small per month and large over a multi-year lease, so the average keeps long conversions honest.' }
       ],
       related: ['weeks-to-days-calculator', 'years-to-days-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-05' },
   },
   {
     id: 'years-days',
@@ -1411,22 +1439,24 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
     kind: 'converter',
     unitGroup: 'pressure',
     content: {
-      intro: 'The PSI to Bar Converter translates pounds per square inch into bar, the pressure unit for tire specifications, air compressors, and hydraulics worldwide. European car manuals list tire pressure in bar while American gauges show PSI.',
-      howItWorks: 'One bar equals approximately 14.5038 PSI. Divide PSI by 14.5038 to get bar.',
-      example: 'Car tire at 32 PSI is 2.21 bar. Bicycle tire at 100 PSI is 6.89 bar. Truck tire at 110 PSI is 7.58 bar.',
+      intro: 'The PSI to Bar Converter changes pounds per square inch into bar for tyre pressure, compressors and hydraulics. Both measure the same quantity — force spread over an area — but PSI is standard in the United States while bar is used across most of Europe and Asia, so a car manual and a garage gauge can disagree on units alone.',
+      howItWorks: 'One bar is 100,000 pascals and one psi is 6,894.76 pascals, which makes 1 bar = 14.5038 psi. Dividing psi by 14.5038 gives bar; multiplying reverses it. Both are gauge pressures in everyday use, meaning the reading above atmospheric pressure rather than absolute pressure, and that convention is what tyre placards and compressor dials assume.',
+      example: '32 psi — a typical passenger-car tyre — is 32 / 14.5038 = 2.21 bar. A road bike at 100 psi is 6.89 bar, a truck tyre at 110 psi is 7.58 bar, and an 8 bar compressor is about 116 psi.',
       formulas: [{ label: 'Pressure Conversion', expression: 'bar = PSI / 14.5038', note: '1 bar = 14.5038 PSI.' }],
       resultExplanations: [{ resultLabel: 'Pressure in Bar', explanation: 'Your pressure expressed in bar using the exact conversion factor.' }],
       workflowLinks: [
-        { slug: 'fuel-cost-calculator', step: 'Calculate fuel cost per distance.' },
-        { slug: 'speed-converter', step: 'Convert between other speed units.' }
+        { slug: 'tire-size-calculator', step: 'Check which tyre size the pressure belongs to.' },
+        { slug: 'boiling-point-calculator', step: 'See how pressure changes the boiling point of water.' }
       ],
       faqs: [
-        { q: 'What is 32 PSI in bar?', a: '32 PSI equals about 2.21 bar, a standard passenger car tire pressure.' },
-        { q: 'How many PSI in 1 bar?', a: 'One bar equals 14.5038 PSI, roughly the pressure of a standard car tire.' },
-        { q: 'Is bar the same as atm?', a: 'Close. 1 bar = 0.987 atm. Standard atmospheric pressure is 1.01325 bar.' }
+        { q: 'What is 32 PSI in bar?', a: '32 / 14.5038 = 2.21 bar, a common placard figure for a passenger car. Many European cars state the same pressure as 220 kPa, which is 2.2 bar.' },
+        { q: 'How many PSI in 1 bar?', a: '14.5038 psi. That makes 2 bar about 29 psi and 3 bar about 43.5 psi — a useful pair to remember at a garage pump.' },
+        { q: 'Is bar the same as atm?', a: 'Close but not equal. 1 bar is 0.9869 standard atmospheres, and 1 atmosphere is 1.01325 bar. The difference is under 2%, so a rough conversion is fine for tyres and not for anything calibrated.' },
+        { q: 'What about kPa?', a: '1 bar is exactly 100 kPa, so bar and kPa differ only by a factor of 100. European tyre placards often use both — 2.2 bar and 220 kPa are the same pressure.' },
+        { q: 'Is this gauge pressure or absolute pressure?', a: 'Gauge pressure, which is what a tyre gauge or compressor dial reads. Absolute pressure adds roughly 1 bar (14.7 psi) for the atmosphere on top. Boost gauges and tyre inflators normally show gauge.' }
       ],
-      related: ['fuel-cost-calculator', 'speed-converter'],
+      related: ['tire-size-calculator', 'boiling-point-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-05' },
   }
 ];

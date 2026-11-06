@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { BookOpen, ChevronRight, ArrowLeft, Share2, Copy, Check } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
@@ -98,7 +98,7 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ slug }) => {
     <div className="max-w-4xl mx-auto space-y-8">
       <div className="space-y-1">
         <button onClick={() => navigate('/guides')} className="text-xs font-mono text-zinc-400 hover:text-primary dark:hover:text-primary-tint transition-colors">
-          â† All Guides
+          → All Guides
         </button>
       </div>
 

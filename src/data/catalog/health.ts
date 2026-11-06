@@ -626,12 +626,12 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
     kind: 'custom',
     componentId: 'TdeeCalculator',
     content: {
-      intro: 'The TDEE Calculator determines your Total Daily Energy Expenditure using the Mifflin-St Jeor equation. It shows your BMR, maintenance calories, and calorie targets for cutting or bulking.',
-      howItWorks: 'BMR for men: 10 x weight(kg) + 6.25 x height(cm) - 5 x age - 5. For women: same formula minus 161 instead of 5. BMR is multiplied by an activity factor (1.2 to 1.9) to get TDEE.',
-      example: 'A 30-year-old male, 80kg, 178cm, moderate activity: BMR = 10x80 + 6.25x178 - 5x30 + 5 = 1,792. TDEE = 1,792 x 1.55 = 2,778 cal/day.',
+      intro: 'The TDEE Calculator estimates how many calories you burn in a day using the Mifflin-St Jeor equation for basal metabolic rate, scaled by an activity multiplier. It reports BMR, maintenance calories, and three targets either side of maintenance, which is the range most people actually need: a mild cut, a full deficit, and a lean bulk.',
+      howItWorks: 'BMR is the energy needed at complete rest and comes from weight, height, age and sex — 10 × weight in kg, plus 6.25 × height in cm, minus 5 × age, plus 5 for men or minus 161 for women. That resting figure is then multiplied by an activity factor from 1.2 for sedentary to 1.9 for a highly active athlete, giving total daily energy expenditure. The targets are fixed offsets from TDEE: 250 below for a mild cut, 500 below for steady loss, and 300 above for a lean bulk. Mifflin-St Jeor is used because it outperforms the older Harris-Benedict equation in most validation studies, but any formula is an estimate of a population average, not a measurement of you.',
+      example: 'A 30-year-old man at 75 kg and 175 cm has a BMR of 750 + 1,093.75 − 150 + 5 = 1,699 kcal. At moderate activity, TDEE is 1,699 × 1.55 = 2,633 kcal, so a mild cut is 2,383, weight loss is 2,133 and a lean bulk is 2,933. A woman of the same height and weight has a BMR of 1,533 and a TDEE of 2,376 — the 166-calorie difference is the sex term, not a difference in effort.',
       formulas: [
-        { label: 'BMR (Male)', expression: 'BMR = 10 x weight + 6.25 x height - 5 x age + 5' },
-        { label: 'TDEE', expression: 'TDEE = BMR x Activity Multiplier' },
+        { label: 'BMR (Male)', expression: 'BMR = 10 × weight + 6.25 × height − 5 × age + 5' },
+        { label: 'TDEE', expression: 'TDEE = BMR × Activity Multiplier' },
       ],
       resultExplanations: [
         { resultLabel: 'BMR', explanation: 'Calories your body burns at complete rest for basic functions.' },
@@ -641,15 +641,18 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       workflowLinks: [
         { slug: 'bmr-calculator', step: 'See your basal metabolic rate in detail.' },
         { slug: 'protein-intake-calculator', step: 'Set your protein target for your goal.' },
+        { slug: 'macro-calculator', step: 'Split the calorie target into protein, carbs and fat.' },
       ],
       faqs: [
-        { q: 'How accurate is TDEE?', a: 'Formulas give a good starting estimate within 10-15%. Track your intake and weight for 2-3 weeks to calibrate the real number.' },
-        { q: 'Should I eat back exercise calories?', a: 'Exercise calorie estimates are often inaccurate. Set your activity multiplier conservatively and eat a consistent amount regardless of daily exercise.' },
-        { q: 'How often should I recalculate?', a: 'Every 4-6 weeks, or whenever your weight changes by more than 5 pounds. As you lose weight, your TDEE drops.' },
+        { q: 'How accurate is TDEE?', a: 'Formulas land within roughly 10-15% for most people, which is several hundred calories a day. Treat the figure as a starting point, then track intake and weight for two to three weeks and adjust by 100-200 kcal based on what the scale actually does.' },
+        { q: 'Should I eat back exercise calories?', a: 'Usually not. The activity multiplier already accounts for your typical week, and exercise calorie estimates from watches are unreliable. Double-counting is the most common reason a deficit fails to produce loss.' },
+        { q: 'How often should I recalculate?', a: 'Every 4-6 weeks, or whenever your weight changes by more than 5 pounds. A lighter body has a lower BMR, so the same intake that produced loss at the start becomes maintenance later.' },
+        { q: 'Which activity multiplier should I choose?', a: 'Pick the one that describes your normal week, not your best week. Desk work with no exercise is 1.2; three or four sessions a week is about 1.55. Overestimating activity is the second most common reason the numbers do not match reality.' },
+        { q: 'Is a 500-calorie deficit safe?', a: 'For most adults, yes — it is roughly half a kilogram of fat loss a week. Very low intakes, or deficits above about 1,000 kcal a day, risk muscle loss and nutrient shortfalls without medical supervision, and they are rarely sustainable.' },
       ],
       related: ['bmr-calculator', 'protein-intake-calculator', 'calories-burned-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-06' },
   },
   {
     id: 'sleep-cycle',
@@ -700,9 +703,9 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
     kind: 'custom',
     componentId: 'StepsToMilesCalculator',
     content: {
-      intro: 'The Steps to Miles Calculator converts your step count into distance (km and miles) and estimates calories burned based on your stride length and body weight.',
-      howItWorks: 'Distance = Steps x Stride Length (cm) / 100,000 for km. Miles = km x 0.621371. Calories are estimated using the ACSM walking energy expenditure formula: kcal = km x weight(kg) x 0.53.',
-      example: '10,000 steps with 76cm stride: 7.6 km = 4.72 miles. At 70kg: approximately 284 calories burned.',
+      intro: 'The Steps to Miles Calculator converts a step count into distance in kilometres and miles, then estimates the calories the walk burned from your body weight. Step counters report a number; distance and energy are what make it comparable with a walk you already know.',
+      howItWorks: 'Distance is steps multiplied by stride length in centimetres, divided by 100,000 to give kilometres, and multiplied by 0.621371 for miles. Calories use a simple net walking estimate of 0.53 kcal per kilogram per kilometre, which is why the result rises with both weight and distance. The calorie figure is the energy spent walking, not total daily burn, so it excludes what you would have used sitting still.',
+      example: 'The defaults of 10,000 steps, a 76 cm stride and 70 kg give 10,000 × 76 / 100,000 = 7.6 km, which is 4.72 miles, and 7.6 × 70 × 0.53 = 282 kcal. A shorter 67 cm stride covers only 6.7 km for the same 10,000 steps, and at 90 kg the same 7.6 km costs about 363 kcal.',
       formulas: [
         { label: 'Distance (km)', expression: 'km = Steps x Stride (cm) / 100,000' },
         { label: 'Calories', expression: 'kcal = km x Weight (kg) x 0.53' },
@@ -714,15 +717,18 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       workflowLinks: [
         { slug: 'bmr-calculator', step: 'See your total daily calorie burn.' },
         { slug: 'tdee-calculator', step: 'Factor activity into your calorie targets.' },
+        { slug: 'calories-burned-calculator', step: 'Compare walking with other activities by time.' }
       ],
       faqs: [
-        { q: 'What is the average stride length?', a: 'Adults average 65-80cm (26-31 inches). Men tend toward 76cm, women toward 67cm. Height is the best predictor.' },
-        { q: 'How many steps is a mile?', a: 'Roughly 2,000-2,500 steps per mile depending on stride length. With a 76cm stride, it is about 2,112 steps per mile.' },
-        { q: 'Is the calorie estimate accurate?', a: 'It is a reasonable approximation for walking. Actual calories vary with pace, terrain, and individual metabolism. Use it as a guide, not an exact measure.' },
+        { q: 'What is the average stride length?', a: 'Adults average about 65-80 cm, with men nearer 76 cm and women nearer 67 cm. Height is the best predictor, but measuring is better: walk ten normal steps, measure the distance and divide by ten.' },
+        { q: 'How many steps is a mile?', a: 'About 2,118 with a 76 cm stride, and roughly 2,000-2,500 across the usual range. A shorter stride means more steps per mile, which is why two people with the same step count can cover different distances.' },
+        { q: 'Is the calorie estimate accurate?', a: 'It is a reasonable approximation for steady walking on flat ground. Pace, hills, load and fitness all move the real figure, so treat it as a guide and compare your own weeks rather than treating it as a measurement.' },
+        { q: 'Do I need 10,000 steps a day?', a: 'The 10,000 figure began as a marketing step target, not a research finding. Studies of step counts and mortality show benefits accruing well below it, with most of the gain by around 7,000-8,000 steps for older adults. More is generally better, but the cliff at 10,000 is not real.' },
+        { q: 'Should I use walking or running stride?', a: 'Walking. Running stride is longer and varies far more with pace, so a running step count needs a different stride and a different energy equation. This calculator is calibrated for walking.' },
       ],
       related: ['tdee-calculator', 'bmr-calculator', 'calories-burned-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-05' },
   },
   {
     id: 'waist-to-hip-ratio',
@@ -785,34 +791,42 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
         { id: 'heightCm', label: 'Height (cm)', type: 'number', defaultValue: 175, suffix: 'cm', min: 100 }
       ],
       results: [
-        { label: 'Waist-to-Height Ratio', formulaCode: 'waistCm / heightCm', suffix: ':1', accent: true }
+        { label: 'Waist-to-Height Ratio', formulaCode: 'waistCm / heightCm', suffix: ':1', accent: true },
+        { label: 'Waist at 0.5 Threshold', formulaCode: 'heightCm * 0.5', suffix: 'cm' },
+        { label: 'Above Threshold', formulaCode: 'waistCm - heightCm * 0.5', suffix: 'cm' }
       ],
       formulaDescription: 'undefined',
       tips: [
       'The guideline is simple: keep your waist to less than half your height.',
-      'WHtR is considered a better predictor of health risk than BMI alone.'
+      'WHtR is considered a better predictor of health risk than BMI alone.',
+      'The same rule works in any unit, so inches are fine as long as both are measured the same way.'
       ],
     },
     content: {
-      intro: 'The Waist-to-Height Ratio Calculator compares your waist circumference to your height. Research consistently shows that a ratio above 0.5 signals increased risk of diabetes, heart disease, and early mortality.',
-      howItWorks: 'Divide waist circumference in centimeters by height in centimeters. A result below 0.5 is healthy. Between 0.5 and 0.6 indicates elevated risk. Above 0.6 indicates high risk.',
-      example: 'Someone with an 82 cm waist and 175 cm height has a WHtR of 0.47, safely below the 0.5 threshold.',
+      intro: 'The Waist-to-Height Ratio Calculator divides your waist circumference by your height to produce a single number with a simple rule attached: keep your waist under half your height. It also reports the waist measurement that would sit exactly on that line, so the result becomes a target rather than just a verdict.',
+      howItWorks: 'Waist is divided by height in the same unit, so the ratio is dimensionless — 82 cm over 175 cm gives 0.47 whether you measure in centimetres or inches, as long as both are converted consistently. Below 0.5 is the healthy band, 0.5 to 0.6 indicates elevated risk, and above 0.6 indicates high risk. The threshold column converts that rule into centimetres: half of 175 cm is 87.5 cm, which is the waist at which the ratio reaches 0.5. Unlike BMI, the measure requires no weight and no assumptions about muscle mass, because abdominal fat is the tissue most strongly linked to metabolic and cardiovascular risk.',
+      example: 'A waist of 82 cm and a height of 175 cm give a ratio of 0.47, comfortably inside the healthy band. The 0.5 threshold for that height is 87.5 cm, so there are 5.5 cm of headroom — the calculator reports that as −5.5 cm. At 92 cm the ratio becomes 0.53, inside the elevated band, and at 108 cm it reaches 0.62, which is the high-risk range.',
       formulas: [{ label: 'WHtR', expression: 'WHtR = Waist / Height' }],
       resultExplanations: [
-        { resultLabel: 'Waist-to-Height Ratio', explanation: 'Below 0.5 = healthy. 0.5 to 0.6 = elevated risk. Above 0.6 = high risk of cardiometabolic disease.' }
+        { resultLabel: 'Waist-to-Height Ratio', explanation: 'Below 0.5 = healthy. 0.5 to 0.6 = elevated risk. Above 0.6 = high risk of cardiometabolic disease.' },
+        { resultLabel: 'Waist at 0.5 Threshold', explanation: 'Half your height in centimetres — the largest waist that still keeps the ratio in the healthy band.' },
+        { resultLabel: 'Above Threshold', explanation: 'How far your waist sits beyond that limit. A negative figure means you are under it.' }
       ],
       workflowLinks: [
         { slug: 'bmi-calculator', step: 'Compare WHtR against your BMI classification.' },
-        { slug: 'waist-to-hip-ratio-calculator', step: 'See how fat is distributed across your midsection.' }
+        { slug: 'waist-to-hip-ratio-calculator', step: 'See how fat is distributed across your midsection.' },
+        { slug: 'body-fat-calculator', step: 'Estimate total body fat alongside the central measure.' }
       ],
       faqs: [
-        { q: 'Why is waist-to-height better than BMI?', a: 'WHtR accounts for where you carry fat, not just total weight. It consistently outperforms BMI at predicting cardiovascular and metabolic risk.' },
-        { q: 'What does a WHtR of 0.5 mean?', a: 'At 0.5 you are at the boundary. The recommendation is to stay below this threshold to minimize long-term health risks.' },
-        { q: 'Does this work for children?', a: 'WHtR is validated for adults. For children, age-specific growth charts are more appropriate.' }
+        { q: 'Why is waist-to-height better than BMI?', a: 'WHtR accounts for where you carry fat, not just total weight, and it scales naturally with body size — a tall person is allowed a larger waist. Large studies find it predicts cardiovascular and metabolic risk at least as well as BMI and often better, without needing a scale.' },
+        { q: 'What does a WHtR of 0.5 mean?', a: 'It is the boundary. The guidance is to stay below it, so 0.5 itself is the point to act rather than a comfortable target. Values just under 0.5 are associated with the lowest risk in population data.' },
+        { q: 'Does this work for children?', a: 'The 0.5 rule is validated for adults. Children grow at very different rates and need age- and sex-specific growth charts, so applying an adult threshold to a child can misclassify them in either direction.' },
+        { q: 'Where exactly should I measure my waist?', a: 'At the midpoint between the lowest rib and the top of the hip bone, after a normal exhale, with the tape snug but not compressing the skin. Measuring at the navel is common but can read higher on some body shapes; the midpoint is the more reproducible landmark.' },
+        { q: 'Can I use inches instead of centimetres?', a: 'Yes. The ratio is unitless, so as long as waist and height are in the same unit the answer is identical. The threshold and excess columns will then be in inches, which is why they carry a unit label.' }
       ],
       related: ['bmi-calculator', 'waist-to-hip-ratio-calculator', 'body-fat-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-11-06' },
   },
   {
     id: 'blood-pressure',
@@ -875,35 +889,41 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       results: [
         { label: 'Avg Blood Sugar (mg/dL)', formulaCode: '(a1c * 28.7) - 46.7', suffix: 'mg/dL', accent: true },
-        { label: 'Avg Blood Sugar (mmol/L)', formulaCode: '((a1c * 28.7) - 46.7) / 18', suffix: 'mmol/L' }
+        { label: 'Avg Blood Sugar (mmol/L)', formulaCode: '((a1c * 28.7) - 46.7) / 18', suffix: 'mmol/L' },
+        { label: 'IFCC A1C', formulaCode: '(a1c - 2.15) * 10.929', suffix: 'mmol/mol' }
       ],
       formulaDescription: 'undefined',
       tips: [
       'Normal A1C is below 5.7%. Pre-diabetes is 5.7% to 6.4%. Diabetes is 6.5% or above.',
-      'The American Diabetes Association endorses this formula for converting A1C to average glucose.'
+      'The American Diabetes Association endorses this formula for converting A1C to average glucose.',
+      'UK and many European labs report A1C in mmol/mol (IFCC), not percent (NGSP).'
       ],
     },
     content: {
-      intro: 'The A1C to Blood Sugar Converter translates your hemoglobin A1C percentage into estimated average blood sugar levels in both mg/dL and mmol/L. This helps people with diabetes understand their A1C in terms of daily glucose numbers.',
-      howItWorks: 'The ADAG study established that eAG (mg/dL) = 28.7 x A1C - 46.7. The mmol/L result divides by 18. This formula is endorsed by the American Diabetes Association.',
-      example: 'An A1C of 7.0% converts to an estimated average blood sugar of 154.2 mg/dL or 8.6 mmol/L.',
-      formulas: [{ label: 'eAG', expression: 'eAG = 28.7 x A1C - 46.7' }],
+      intro: 'The A1C to Blood Sugar Converter turns a hemoglobin A1C percentage into estimated average glucose in both mg/dL and mmol/L, and converts the same result into the IFCC units used by laboratories outside the United States. A single A1C number means different things depending on where you read it, and this puts all three representations side by side.',
+      howItWorks: 'The ADAG study established the relationship eAG (mg/dL) = 28.7 × A1C − 46.7, which the American Diabetes Association endorses; dividing by 18 converts to mmol/L, since glucose has a molar mass that makes 18 mg/dL equal one mmol/L. The IFCC conversion is a separate linear relationship, (A1C% − 2.15) × 10.929, giving mmol/mol. The two scales are offset rather than scaled: 7% NGSP is 53 mmol/mol IFCC, and a lab reporting 53 is reporting the same result in different units. A1C reflects average glucose over roughly the lifespan of a red blood cell, about two to three months, weighted toward the most recent weeks.',
+      example: 'An A1C of 7.0% converts to an estimated average glucose of 154.2 mg/dL, which is 8.6 mmol/L, and to 53 mmol/mol on the IFCC scale. At 5.7% — the top of the normal range — the figures are 116.9 mg/dL, 6.5 mmol/L and 39 mmol/mol. At 6.5%, the diabetes threshold, they are 139.9 mg/dL, 7.8 mmol/L and 48 mmol/mol.',
+      formulas: [{ label: 'eAG', expression: 'eAG = 28.7 × A1C − 46.7' }],
       resultExplanations: [
         { resultLabel: 'Avg Blood Sugar (mg/dL)', explanation: 'Your estimated average blood glucose in mg/dL, the unit used by most US glucose meters.' },
-        { resultLabel: 'Avg Blood Sugar (mmol/L)', explanation: 'Your estimated average blood glucose in mmol/L, the unit used in most other countries.' }
+        { resultLabel: 'Avg Blood Sugar (mmol/L)', explanation: 'Your estimated average blood glucose in mmol/L, the unit used in most other countries.' },
+        { resultLabel: 'IFCC A1C', explanation: 'The same A1C on the mmol/mol scale used by laboratories in the UK, Europe and much of the world.' }
       ],
       workflowLinks: [
         { slug: 'bmi-calculator', step: 'See how weight management affects blood sugar control.' },
-        { slug: 'water-intake-calculator', step: 'Hydration supports glucose regulation.' }
+        { slug: 'water-intake-calculator', step: 'Hydration supports glucose regulation.' },
+        { slug: 'blood-pressure-calculator', step: 'Cardiometabolic risk factors tend to cluster.' }
       ],
       faqs: [
-        { q: 'What is a normal A1C?', a: 'Below 5.7% is normal. 5.7% to 6.4% indicates pre-diabetes. 6.5% or above on two separate tests indicates diabetes.' },
-        { q: 'How often should A1C be tested?', a: 'If your results are stable, every 6 months. If managing diabetes or changing treatment, every 3 months.' },
-        { q: 'Does A1C reflect daily glucose swings?', a: 'No. A1C is a 2-3 month average and does not show highs and lows. Continuous glucose monitors capture the variability A1C misses.' }
+        { q: 'What is a normal A1C?', a: 'Below 5.7% is normal. 5.7% to 6.4% indicates pre-diabetes. 6.5% or above on two separate tests indicates diabetes. These are US ADA thresholds; the WHO and some other bodies use slightly different cut-offs for diagnosis, so the label attached to a number can vary by country.' },
+        { q: 'How often should A1C be tested?', a: 'Every six months if results are stable and at target, and every three months if you are managing diabetes or changing treatment. Testing more often than that is uninformative, because the measurement averages two to three months of glucose.' },
+        { q: 'Does A1C reflect daily glucose swings?', a: 'No. A1C is an average, so it can look acceptable while hiding wide excursions — high after meals and low overnight. Continuous glucose monitoring captures that variability, and two people with the same A1C can have very different glucose patterns.' },
+        { q: 'Why do labs report A1C in mmol/mol?', a: 'The IFCC reference method expresses the result as millimoles of glycated hemoglobin per mole, which is the international standard; the NGSP percentage is a US-anchored derived scale. Both measure the same thing, and the conversion here lets you read a result in whichever unit your clinician uses.' },
+        { q: 'Can anything other than glucose affect A1C?', a: 'Yes. Conditions that change red blood cell lifespan — anemia, recent blood loss, some hemoglobin variants, pregnancy and certain kidney problems — can shift the result without a real change in glucose. If the A1C does not match your meter readings, that is worth raising with a clinician.' }
       ],
       related: ['bmi-calculator', 'water-intake-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-06' },
   },
   {
     id: 'lean-body-mass',
@@ -923,35 +943,41 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       results: [
         { label: 'Lean Body Mass', formulaCode: 'sex === 1 ? (0.407 * weightKg) + (0.267 * heightCm) - 19.2 : (0.252 * weightKg) + (0.473 * heightCm) - 48.3', suffix: 'kg', accent: true },
-        { label: 'Body Fat Mass', formulaCode: 'weightKg - (sex === 1 ? (0.407 * weightKg) + (0.267 * heightCm) - 19.2 : (0.252 * weightKg) + (0.473 * heightCm) - 48.3)', suffix: 'kg' }
+        { label: 'Body Fat Mass', formulaCode: 'weightKg - (sex === 1 ? (0.407 * weightKg) + (0.267 * heightCm) - 19.2 : (0.252 * weightKg) + (0.473 * heightCm) - 48.3)', suffix: 'kg' },
+        { label: 'Body Fat Percentage', formulaCode: '(function(){ var lbm = sex === 1 ? (0.407 * weightKg) + (0.267 * heightCm) - 19.2 : (0.252 * weightKg) + (0.473 * heightCm) - 48.3; return (weightKg - lbm) / weightKg * 100; })()', suffix: '%' }
       ],
       formulaDescription: 'undefined',
       tips: [
       'Lean body mass includes muscle, bone, organs, and water.',
-      'Higher LBM relative to total weight indicates a more muscular body composition.'
+      'Higher LBM relative to total weight indicates a more muscular body composition.',
+      'The Boer equation needs only height, weight and sex — no calipers or scans.'
       ],
     },
     content: {
-      intro: 'The Lean Body Mass Calculator estimates the portion of your body weight that is not fat, using the Boer formula. LBM includes muscle, bone, organs, and water. Higher LBM relative to total weight indicates a more muscular or less fatty body composition.',
-      howItWorks: 'Men: LBM = 0.407 x weight(kg) + 0.267 x height(cm) - 19.2. Women: LBM = 0.252 x weight(kg) + 0.473 x height(cm) - 48.3. Fat mass is total weight minus LBM.',
-      example: 'A 70 kg, 175 cm male has an estimated LBM of 55.6 kg, meaning about 14.4 kg is fat mass.',
-      formulas: [{ label: 'Boer', expression: 'LBM = 0.407W + 0.267H - 19.2 (male)' }],
+      intro: 'The Lean Body Mass Calculator estimates how much of your body weight is not fat, using the Boer equation, and reports the fat mass and body fat percentage that follow from it. Lean mass is the part that carries the metabolic and functional value: muscle, bone, organs and the water inside them.',
+      howItWorks: 'The Boer formula predicts lean mass from height, weight and sex alone, so it needs no calipers or scan. For men it is 0.407 × weight in kg, plus 0.267 × height in cm, minus 19.2. For women it is 0.252 × weight, plus 0.473 × height, minus 48.3 — a different slope and intercept, because women carry more essential fat and less skeletal muscle at the same size. Fat mass is total weight minus lean mass, and body fat percentage is that fat mass as a share of total weight. Because the equation is fitted to population averages, it is a reasonable estimate for most adults and less reliable at extremes of height, very high body fat, or high muscularity, where a DEXA scan is more trustworthy.',
+      example: 'A 70 kg, 175 cm man has a lean mass of 28.49 + 46.73 − 19.2 = 56.0 kg, so fat mass is 14.0 kg and body fat percentage is 20.0%. A woman of the same height and weight has a lean mass of 52.1 kg, fat mass of 17.9 kg and 25.6% body fat. At 75 kg the man is predicted 58.0 kg of lean mass and 17.0 kg of fat — 22.6% — because the equation assumes part of the extra weight is lean tissue rather than all fat.',
+      formulas: [{ label: 'Boer', expression: 'LBM = 0.407W + 0.267H − 19.2 (male)' }],
       resultExplanations: [
         { resultLabel: 'Lean Body Mass', explanation: 'The estimated weight of everything in your body that is not fat, in kilograms.' },
-        { resultLabel: 'Body Fat Mass', explanation: 'The estimated fat portion of your body weight.' }
+        { resultLabel: 'Body Fat Mass', explanation: 'The estimated fat portion of your body weight.' },
+        { resultLabel: 'Body Fat Percentage', explanation: 'Fat mass as a share of total weight, the figure that makes the estimate comparable with body-composition standards.' }
       ],
       workflowLinks: [
         { slug: 'body-fat-calculator', step: 'Compare with the Navy tape body-fat method.' },
-        { slug: 'protein-intake-calculator', step: 'Set protein targets based on lean mass.' }
+        { slug: 'protein-intake-calculator', step: 'Set protein targets based on lean mass.' },
+        { slug: 'ideal-body-fat-calculator', step: 'See the healthy body-fat range for your age and sex.' }
       ],
       faqs: [
-        { q: 'How accurate is the Boer formula?', a: 'It provides a reasonable estimate within a few percentage points for most adults. DEXA scans are more precise but less accessible.' },
-        { q: 'Why does lean body matter more than total weight?', a: 'Two people at the same weight can have very different health profiles. Higher LBM means more muscle and a higher metabolic rate.' },
-        { q: 'Can I increase my lean body mass?', a: 'Yes. Resistance training combined with adequate protein intake (1.6-2.2 g/kg) is the most effective way to build lean mass.' }
+        { q: 'How accurate is the Boer formula?', a: 'It typically lands within a few percentage points of a DEXA scan for adults of average build, which is good enough for tracking a trend but not for clinical decisions. People with very high muscle mass are usually under-estimated for body fat, and very lean people are over-estimated.' },
+        { q: 'Why does lean body matter more than total weight?', a: 'Because lean tissue is what burns energy, carries strength and supports bone density. Two people at 80 kg can differ by 10 kg of muscle, and their metabolic rates, health risks and appropriate protein intakes differ with it. Total weight alone cannot distinguish those cases.' },
+        { q: 'Can I increase my lean body mass?', a: 'Yes, though the ceiling is genetic. Resistance training two to four times a week, protein at roughly 1.6-2.2 g per kg of body weight, and a small calorie surplus are the reliable levers. Progress is slow: a few kilograms over a year is a realistic rate for most people.' },
+        { q: 'Does lean mass include water?', a: 'Yes. Lean mass is everything that is not fat, and water is a large part of it — roughly 60% of body weight in a typical adult. That is why hydration status, a salty meal or a hard training session can shift the estimate by a kilogram or more from day to day.' },
+        { q: 'Why are the male and female formulas different?', a: 'Because body composition differs systematically by sex at the same height and weight. The equations were fitted to measured populations, so they encode that difference in the coefficients rather than applying a single formula and adjusting afterwards.' }
       ],
       related: ['body-fat-calculator', 'bmi-calculator', 'protein-intake-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-06' },
   },
   {
     id: 'calorie-deficit',
@@ -971,35 +997,43 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       results: [
         { label: 'Weight to Lose', formulaCode: 'Math.max(0, currentWeightKg - goalWeightKg)', suffix: 'kg', accent: true },
-        { label: 'Days to Goal', formulaCode: 'Math.max(0, currentWeightKg - goalWeightKg) > 0 ? Math.round((currentWeightKg - goalWeightKg) * 7700 / dailyDeficitKcal) : 0', suffix: 'days' }
+        { label: 'Days to Goal', formulaCode: 'Math.max(0, currentWeightKg - goalWeightKg) > 0 ? Math.round((currentWeightKg - goalWeightKg) * 7700 / dailyDeficitKcal) : 0', suffix: 'days' },
+        { label: 'Weeks to Goal', formulaCode: '(function(){ var loss = Math.max(0, currentWeightKg - goalWeightKg); return loss > 0 ? (loss * 7700 / dailyDeficitKcal) / 7 : 0; })()', suffix: 'weeks' },
+        { label: 'Total Deficit Needed', formulaCode: 'Math.max(0, currentWeightKg - goalWeightKg) * 7700', suffix: 'kcal' }
       ],
       formulaDescription: 'undefined',
       tips: [
       'A safe deficit is 300-700 kcal/day for most people.',
-      'A larger deficit loses weight faster but increases hunger and muscle loss risk.'
+      'A larger deficit loses weight faster but increases hunger and muscle loss risk.',
+      'The 7,700 kcal per kilogram figure is an approximation — the real cost rises as you get leaner.'
       ],
     },
     content: {
-      intro: 'The Calorie Deficit Calculator determines how long it will take to reach a goal weight based on a daily calorie deficit. It converts the weight loss target into days using the 7,700 kcal per kilogram of body fat conversion.',
-      howItWorks: 'Each kilogram of body fat stores approximately 7,700 kcal. Divide total deficit needed (weight loss x 7,700) by your daily deficit to get estimated days.',
-      example: 'To lose 10 kg at a 500 kcal/day deficit: 10 x 7,700 / 500 = 154 days, roughly 5 months.',
-      formulas: [{ label: 'Days', expression: 'Days = Weight loss x 7,700 / Deficit' }],
+      intro: 'The Calorie Deficit Calculator turns a weight-loss target and a daily deficit into a timeline, converting kilograms of fat into the calories they represent and dividing by the deficit you can sustain. It reports the total energy gap, the days and the weeks, which is the form a plan is actually made in.',
+      howItWorks: 'A kilogram of body fat stores roughly 7,700 kcal, so losing 10 kg requires a cumulative deficit of about 77,000 kcal. Dividing that by a daily deficit gives the number of days; dividing again by seven gives weeks. The 7,700 figure is an approximation drawn from the energy density of fat tissue, and it overstates the cost slightly as you get leaner, because some of the lost mass is lean tissue and because a smaller body burns fewer calories. That is why real timelines tend to run a little longer than the arithmetic predicts, and why a fixed deficit produces slower loss over time.',
+      example: 'Losing 10 kg at a 500 kcal daily deficit needs 10 × 7,700 = 77,000 kcal of cumulative deficit, which at 500 a day is 154 days — about 22 weeks, or roughly five months. Halving the deficit to 250 kcal doubles the timeline to 308 days. Raising it to 750 kcal brings it to 103 days, but that is a steeper deficit than most people sustain without hunger and muscle loss.',
+      formulas: [{ label: 'Days', expression: 'Days = Weight loss × 7,700 / Daily deficit' }],
       resultExplanations: [
         { resultLabel: 'Weight to Lose', explanation: 'The difference between your current weight and goal weight.' },
-        { resultLabel: 'Days to Goal', explanation: 'The estimated number of days to reach your goal at the given deficit.' }
+        { resultLabel: 'Days to Goal', explanation: 'The estimated number of days to reach your goal at the given deficit.' },
+        { resultLabel: 'Weeks to Goal', explanation: 'The same timeline in weeks, which is how most people plan and review progress.' },
+        { resultLabel: 'Total Deficit Needed', explanation: 'The cumulative calorie gap the whole weight loss represents — the total energy you need to under-eat or burn.' }
       ],
       workflowLinks: [
         { slug: 'bmr-calculator', step: 'Understand your resting calorie baseline.' },
-        { slug: 'protein-intake-calculator', step: 'Keep protein high to preserve muscle during the deficit.' }
+        { slug: 'protein-intake-calculator', step: 'Keep protein high to preserve muscle during the deficit.' },
+        { slug: 'tdee-calculator', step: 'Find the maintenance level the deficit is subtracted from.' }
       ],
       faqs: [
-        { q: 'How big of a calorie deficit is safe?', a: 'A 300-700 kcal/day deficit is sustainable for most adults. Larger deficits may cause muscle loss and metabolic adaptation.' },
-        { q: 'Why does weight loss slow down?', a: 'As you lose weight, your BMR and TDEE decrease. Recalculate your deficit periodically to stay on track.' },
-        { q: 'Does this account for muscle gain?', a: 'No. This is a fat-loss estimate. Strength training may add muscle simultaneously, which affects the scale but not fat-loss trajectory.' }
+        { q: 'How big of a calorie deficit is safe?', a: 'A 300-700 kcal a day deficit is sustainable for most adults, producing roughly 0.25-0.7 kg of loss a week. Larger deficits accelerate short-term loss but raise the risk of muscle loss, nutrient shortfalls and rebound, and they usually need medical supervision.' },
+        { q: 'Why does weight loss slow down?', a: 'As you lose weight your BMR and the energy cost of movement both fall, so the same intake becomes a smaller deficit. The 7,700 kcal figure also becomes less accurate as fat stores shrink. Recalculate every few weeks rather than assuming the original timeline holds.' },
+        { q: 'Does this account for muscle gain?', a: 'No. This is a fat-loss model, and it assumes the weight lost is fat. Someone strength training in a modest deficit can add a little muscle, which slows the scale without slowing fat loss — measurements and photos are better progress checks than weight alone.' },
+        { q: 'Is the timeline a promise?', a: 'No. It is arithmetic on an average, and real bodies hold water, adapt, and lose at an uneven rate. Weeks with no movement followed by a sudden drop are normal. Use the figure to set expectations, not to judge any single week.' },
+        { q: 'What happens when I reach the goal?', a: 'The deficit stops being appropriate, and intake needs to rise to the maintenance level for the new weight — which is lower than it was at the start. That transition, rather than the loss itself, is where most weight is regained, so plan for it before you arrive.' }
       ],
       related: ['bmr-calculator', 'protein-intake-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-06' },
   },
   {
     id: 'body-surface-area',
@@ -1021,30 +1055,33 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       formulaDescription: 'undefined',
       tips: [
-      'Average adult BSA is 1.7 m2 (men) and 1.6 m2 (women).',
-      'BSA is used for drug dosing, chemotherapy, and cardiac output calculations.'
+        'Average adult body surface area is roughly 1.7 m², with men averaging a little higher than women.',
+        'BSA is used for chemotherapy dosing, cardiac index and kidney-function indexing.',
+        'BSA is an estimate of skin area, not a measure of body composition or fitness.'
       ],
     },
     content: {
-      intro: 'The Body Surface Area Calculator estimates your total skin surface area using the Mosteller formula. BSA is used in medicine for drug dosing, organ function assessment, and metabolic calculations.',
-      howItWorks: 'BSA (m2) = sqrt(Height(cm) x Weight(kg) / 3600). It requires only height and weight and is accurate to within 3% of direct measurement methods.',
-      example: 'A person 175 cm tall weighing 70 kg: BSA = sqrt(175 x 70 / 3600) = 1.84 m2.',
+      intro: 'The Body Surface Area Calculator estimates total skin surface area from height and weight using the Mosteller formula. BSA is the number clinicians use when a drug dose or a physiological measurement needs to scale with body size rather than with weight alone.',
+      howItWorks: 'Mosteller\u2019s formula is BSA = √(height in cm × weight in kg / 3600). It needs only two measurements, which is why it became the default in clinical practice, and it tracks more elaborate formulas closely for most adults. Body surface area scales less steeply than weight, so a person twice as heavy does not have twice the skin area — which is exactly why some drug doses are written per m² instead of per kg.',
+      example: 'For 175 cm and 70 kg: 175 × 70 = 12,250, divided by 3,600 gives 3.403, and the square root is 1.84 m². At 90 kg the figure rises to 2.09 m², and at 50 kg it falls to 1.56 m². The reference adult of 70 kg and 175 cm is often quoted as 1.73 m² in clinical literature, so a result of 1.84 m² is at the upper end of typical.',
       formulas: [{ label: 'Mosteller', expression: 'BSA = sqrt(H x W / 3600)' }],
       resultExplanations: [
-        { resultLabel: 'Body Surface Area', explanation: 'Your estimated total body surface area in square meters.' }
+        { resultLabel: 'Body Surface Area', explanation: 'Your estimated total body surface area in square metres, from the Mosteller formula.' }
       ],
       workflowLinks: [
         { slug: 'bmi-calculator', step: 'Pair BSA with BMI for a fuller health picture.' },
         { slug: 'lean-body-mass-calculator', step: 'Understand body composition alongside surface area.' }
       ],
       faqs: [
-        { q: 'What is BSA used for?', a: 'BSA is used in medicine for drug dosing (especially chemotherapy), cardiac output calculations, and assessing kidney function.' },
-        { q: 'How accurate is the Mosteller formula?', a: 'It agrees with more complex formulas within about 1-2% for most adults.' },
-        { q: 'What is a normal BSA?', a: 'The average adult BSA is 1.7 m2 for men and 1.6 m2 for women.' }
+        { q: 'What is BSA used for?', a: 'Chemotherapy and some other drug doses are written per square metre of body surface, cardiac output is reported per m² as the cardiac index, and kidney function is often indexed to a standard 1.73 m² so results can be compared between differently sized people.' },
+        { q: 'How accurate is the Mosteller formula?', a: 'It typically lands within a few per cent of measured surface area for adults, which is close enough for dosing tables and far cheaper than measurement. It is an estimate, though — no formula replaces a clinical assessment for a critical dose.' },
+        { q: 'What is a normal BSA?', a: 'Most adults fall between about 1.5 and 2.1 m², with the clinical reference adult at 1.73 m². Men average slightly higher than women because they tend to be taller and heavier, and children are much lower.' },
+        { q: 'Is BSA better than weight for drug dosing?', a: 'For drugs whose clearance tracks metabolic mass rather than fat or fluid, yes — which is why oncology settled on it. For others, weight-based or fixed dosing is used. The choice is drug-specific and belongs to the prescriber, not to a calculator.' },
+        { q: 'Does BSA work in obesity?', a: 'It is less reliable at extremes. Mosteller and other height-weight formulas tend to overestimate in severe obesity, where lean mass is a smaller share of total weight, and different formulas diverge — which is why dosing protocols for these patients often specify adjustments.' },
       ],
       related: ['bmi-calculator', 'lean-body-mass-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-11-05' },
   },
   {
     id: 'vo2-max',
@@ -1110,35 +1147,41 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       results: [
         { label: 'Daily Carb Target', formulaCode: 'weightKg * gramsPerKg', suffix: 'grams', accent: true },
-        { label: 'Carb Calories', formulaCode: 'weightKg * gramsPerKg * 4', suffix: 'kcal' }
+        { label: 'Carb Calories', formulaCode: 'weightKg * gramsPerKg * 4', suffix: 'kcal' },
+        { label: 'Per Meal (4 meals)', formulaCode: 'weightKg * gramsPerKg / 4', suffix: 'grams' }
       ],
       formulaDescription: 'undefined',
       tips: [
-      'Use 2-3 g/kg for sedentary, 4-6 g/kg for moderate activity, 6-10 g/kg for endurance.',
-      'Carbs provide 4 calories per gram and are the preferred fuel for high-intensity exercise.'
+        'Use 2-3 g/kg for sedentary, 4-6 g/kg for moderate activity, 6-10 g/kg for endurance training.',
+        'Carbs provide 4 kcal per gram and are the preferred fuel for high-intensity exercise.',
+        'Check the gram target against your calorie budget: at 4 kcal/g, 400 g of carbs is 1,600 kcal.'
       ],
     },
     content: {
-      intro: 'The Carb Intake Calculator sets a daily carbohydrate target scaled to your body weight and activity level. Whether you train for endurance events or want balanced nutrition, the number removes the guesswork.',
-      howItWorks: 'Carb needs scale with body weight and activity. Sedentary adults need about 2-3 g/kg, moderate exercisers 4-6 g/kg, and endurance athletes 6-10 g/kg.',
-      example: 'A 70 kg moderate exerciser choosing 5 g/kg needs 350 grams of carbs daily.',
-      formulas: [{ label: 'Carbs', expression: 'Carbs (g) = Weight (kg) x g/kg' }],
+      intro: 'The Carb Intake Calculator sets a daily carbohydrate target from your body weight and a grams-per-kilogram figure chosen for your training load. It turns a range from sports-nutrition guidance into a single number, and shows what that number costs in calories and how it divides across meals.',
+      howItWorks: 'Body weight in kilograms is multiplied by grams per kilogram to give the daily total. That figure is multiplied by 4 — the energy in one gram of carbohydrate — to show how much of the day\u2019s calorie budget it consumes, and divided by four to suggest a per-meal share. The grams-per-kilogram input is the only judgement in the calculation: sedentary adults sit around 2-3, moderate training at 4-6, and heavy endurance work at 6-10.',
+      example: 'A 70 kg runner at 5 g/kg needs 350 g of carbohydrate a day, which is 1,400 kcal — about 70% of a 2,000 kcal diet, and 88 g per meal across four meals. At 3 g/kg the same person needs 210 g and 840 kcal, a much easier fit alongside protein and fat. A 90 kg endurance athlete at 8 g/kg is at 720 g and 2,880 kcal, which only works with a large total intake.',
+      formulas: [{ label: 'Carbs', expression: 'Carbs (g) = Weight (kg) x g/kg; kcal = grams x 4' }],
       resultExplanations: [
-        { resultLabel: 'Daily Carb Target', explanation: 'Grams of carbohydrates to eat each day.' },
-        { resultLabel: 'Carb Calories', explanation: 'How many daily calories come from that carbohydrate target.' }
+        { resultLabel: 'Daily Carb Target', explanation: 'Grams of carbohydrates to eat each day at the chosen grams-per-kilogram figure.' },
+        { resultLabel: 'Carb Calories', explanation: 'How many daily calories come from that carbohydrate target, at 4 kcal per gram.' },
+        { resultLabel: 'Per Meal (4 meals)', explanation: 'The daily target split evenly across four meals, a starting point for portioning.' }
       ],
       workflowLinks: [
         { slug: 'tdee-calculator', step: 'Fit carbs within your total calorie budget.' },
-        { slug: 'protein-intake-calculator', step: 'Set protein alongside carbs for a complete plan.' }
+        { slug: 'protein-intake-calculator', step: 'Set protein alongside carbs for a complete plan.' },
+        { slug: 'macro-calculator', step: 'Turn the same targets into a percentage split.' }
       ],
       faqs: [
-        { q: 'How many carbs do I need per day?', a: 'Sedentary adults need 2-3 g/kg. Moderate exercisers need 4-6 g/kg. Endurance athletes may need 6-10 g/kg.' },
-        { q: 'Are low-carb diets safe?', a: 'Low-carb diets can be effective for weight loss, but very low intakes below 50 g/day may cause fatigue and nutrient gaps.' },
-        { q: 'What are the best carb sources?', a: 'Whole grains, fruits, vegetables, and legumes provide fiber and nutrients alongside carbs.' }
+        { q: 'How many carbs do I need per day?', a: 'Sedentary adults need roughly 2-3 g/kg, moderately active people 4-6 g/kg, and endurance athletes in heavy training 6-10 g/kg. For a 70 kg person that spans about 140 g to 700 g a day, which is why a single figure for everyone cannot work.' },
+        { q: 'Are low-carb diets safe?', a: 'Low-carb diets can work for weight loss and some metabolic conditions, but very low intakes under about 50 g a day are hard to sustain for intense training and can leave nutrient gaps if the foods removed are not replaced. The right level depends on what you are training for.' },
+        { q: 'What are the best carb sources?', a: 'Whole grains, potatoes, fruit, vegetables and legumes bring fibre, vitamins and minerals alongside the carbohydrate. Refined sources are not forbidden — they are simply easier to overeat and carry less of everything else.' },
+        { q: 'Do carbs make you gain fat?', a: 'A calorie surplus does, and carbohydrate is the easiest macronutrient to overeat. Carbs also hold water: every gram of stored glycogen carries roughly 3 g of water, so a high-carb day can move the scale without adding fat.' },
+        { q: 'Should I eat carbs before or after training?', a: 'Both have a case. Carbs before training top up glycogen for the session; carbs after refill it faster, particularly in the first hours. Total daily intake matters more than timing unless you train twice a day.' },
       ],
-      related: ['tdee-calculator', 'protein-intake-calculator'],
+      related: ['tdee-calculator', 'protein-intake-calculator', 'macro-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-11-05' },
   },
   {
     id: 'fat-intake',
@@ -1209,36 +1252,42 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       results: [
         { label: 'Protein', formulaCode: 'dailyCalories * (proteinPct / 100) / 4', suffix: 'grams', accent: true },
         { label: 'Carbs', formulaCode: 'dailyCalories * (carbPct / 100) / 4', suffix: 'grams' },
-        { label: 'Fat', formulaCode: 'dailyCalories * (fatPct / 100) / 9', suffix: 'grams' }
+        { label: 'Fat', formulaCode: 'dailyCalories * (fatPct / 100) / 9', suffix: 'grams' },
+        { label: 'Calories from Split', formulaCode: 'dailyCalories * (proteinPct + carbPct + fatPct) / 100', suffix: 'kcal' }
       ],
       formulaDescription: 'undefined',
       tips: [
-      'Protein and carbs have 4 calories per gram. Fat has 9.',
-      'Common splits: 30/40/30 balanced, 40/30/30 muscle building, 30/50/20 endurance.'
+        'Protein and carbs have 4 kcal per gram. Fat has 9.',
+        'Common splits: 30/40/30 balanced, 40/30/30 higher protein, 30/50/20 endurance.',
+        'Watch the Calories from Split figure — it should match your daily target, or the percentages do not add up to 100%.'
       ],
     },
     content: {
-      intro: 'The Complete Macro Calculator splits your daily calorie target into protein, carbs, and fat grams in one step. It is the fastest way to build a daily nutrition plan.',
-      howItWorks: 'Enter your daily calorie target and the percentage from each macronutrient. Protein and carbs provide 4 kcal/g, while fat provides 9 kcal/g.',
-      example: 'A 2,500 kcal target split 30% protein, 40% carbs, 30% fat yields: 188g protein, 250g carbs, 83g fat.',
+      intro: 'The Complete Macro Calculator splits a daily calorie target into protein, carbohydrate and fat grams. It converts the percentage split on a diet plan into the three numbers you actually weigh and log, and it shows how many calories the split really adds up to.',
+      howItWorks: 'Each percentage is applied to the daily calorie target to give the calories from that macronutrient, then divided by its energy value: 4 kcal per gram for protein and carbohydrate, 9 for fat. The fourth result adds the three percentages together and applies that total to the calorie target. If the split totals 100%, this equals the calorie target; if it totals 110%, it shows 10% more calories than intended, which is the arithmetic slips most often missed.',
+      example: '2,500 kcal split 30% protein, 40% carbs and 30% fat: protein is 2,500 × 0.30 / 4 = 187.5 g, carbs 2,500 × 0.40 / 4 = 250 g, and fat 2,500 × 0.30 / 9 = 83.3 g. The split totals 100%, so Calories from Split reads 2,500. Setting protein to 40% and leaving the others alone gives 2,750 kcal — a 250 kcal overshoot that the gram figures alone would not reveal.',
       formulas: [{ label: 'Macros', expression: 'Protein/Carbs = Cal x %/4; Fat = Cal x %/9' }],
       resultExplanations: [
-        { resultLabel: 'Protein', explanation: 'Daily protein target in grams.' },
-        { resultLabel: 'Carbs', explanation: 'Daily carbohydrate target in grams.' },
-        { resultLabel: 'Fat', explanation: 'Daily fat target in grams.' }
+        { resultLabel: 'Protein', explanation: 'Daily protein target in grams, at 4 kcal per gram.' },
+        { resultLabel: 'Carbs', explanation: 'Daily carbohydrate target in grams, at 4 kcal per gram.' },
+        { resultLabel: 'Fat', explanation: 'Daily fat target in grams, at 9 kcal per gram.' },
+        { resultLabel: 'Calories from Split', explanation: 'What the three percentages add up to in calories. It should match your daily target; if it does not, the percentages do not total 100%.' }
       ],
       workflowLinks: [
         { slug: 'tdee-calculator', step: 'Start with your TDEE to set the calorie target.' },
-        { slug: 'protein-intake-calculator', step: 'Set protein independently using body-weight methods.' }
+        { slug: 'protein-intake-calculator', step: 'Set protein independently using body-weight methods.' },
+        { slug: 'carb-intake-calculator', step: 'Set carbs by body weight and training load.' }
       ],
       faqs: [
-        { q: 'What macro split is best?', a: 'A balanced 30/40/30 works for most people. Higher protein suits muscle building. Higher carbs suit endurance athletes.' },
-        { q: 'Do percentages need to add to 100%?', a: 'Yes. The calculator works best when protein%, carb%, and fat% total 100%.' },
-        { q: 'Should I count macros or just calories?', a: 'Calories determine weight change. Macros determine how you feel, perform, and recover.' }
+        { q: 'What macro split is best?', a: 'There is no single best split. A balanced 30/40/30 suits most people, higher protein helps preserve muscle in a deficit, and higher carbohydrate supports heavy endurance training. Adherence matters more than the exact ratio.' },
+        { q: 'Do percentages need to add to 100%?', a: 'Yes, for the grams to match the calorie target. The calculator applies each percentage independently rather than forcing them to sum, and the Calories from Split result shows the difference — so 30/50/30 reads 2,750 kcal on a 2,500 kcal target.' },
+        { q: 'Should I count macros or just calories?', a: 'Calories decide whether weight changes; macros decide what that weight is made of and how you feel training. Counting calories alone works for simple goals, and tracking protein specifically is the part of macro counting with the clearest evidence behind it.' },
+        { q: 'Why is fat divided by 9 and protein by 4?', a: 'Because fat carries 9 kcal per gram while protein and carbohydrate carry about 4. That is why fat targets look small in grams: 30% of 2,500 kcal is 83 g of fat but 187 g of protein.' },
+        { q: 'Can I use this for weight gain?', a: 'Yes — set the calorie target above your TDEE and keep protein high enough to support the training. A modest surplus of 200-300 kcal a day limits excess fat gain compared with a large one.' },
       ],
-      related: ['tdee-calculator', 'protein-intake-calculator'],
+      related: ['tdee-calculator', 'protein-intake-calculator', 'carb-intake-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-05' },
   },
   {
     id: 'sleep-debt',
@@ -1258,35 +1307,41 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
       ],
       results: [
         { label: 'Nightly Shortfall', formulaCode: 'Math.max(0, targetHours - actualHoursLast7)', suffix: 'hrs', accent: true },
-        { label: 'Total Sleep Debt', formulaCode: 'Math.max(0, targetHours - actualHoursLast7) * daysOfDeficit', suffix: 'hrs' }
+        { label: 'Total Sleep Debt', formulaCode: 'Math.max(0, targetHours - actualHoursLast7) * daysOfDeficit', suffix: 'hrs' },
+        { label: 'Recovery Nights (2h extra)', formulaCode: 'Math.ceil(Math.max(0, targetHours - actualHoursLast7) * daysOfDeficit / 2)', suffix: 'nights' }
       ],
       formulaDescription: 'undefined',
       tips: [
-      'Most adults need 7-9 hours per night.',
-      'You can recover sleep debt by adding 1-2 extra hours per night over several nights.'
+        'Most adults need 7-9 hours per night; teenagers need more.',
+        'Recovery works best at 1-2 extra hours a night over several nights, not one long lie-in.',
+        'A consistent wake time anchors sleep more reliably than an early bedtime.'
       ],
     },
     content: {
-      intro: 'The Sleep Debt Calculator quantifies how much sleep you have lost over a period and estimates the extra sleep needed to recover. Chronic sleep debt accumulates faster than most people realize.',
-      howItWorks: 'Subtract your average actual sleep from your target sleep to find the nightly shortfall. Multiply by the number of deficit days to get total sleep debt.',
-      example: 'Sleeping 6.5 hours nightly for 7 days when you need 8: shortfall is 1.5 hours, total debt is 10.5 hours.',
+      intro: 'The Sleep Debt Calculator multiplies a nightly shortfall by the number of nights it has run to give the total hours owed, plus the number of nights needed to repay it at two extra hours a night. It puts a figure on something that is otherwise easy to wave away, because the deficit accumulates faster than it feels like it does.',
+      howItWorks: 'Target sleep minus average actual sleep gives the shortfall for one night, floored at zero so a surplus night does not offset a deficit. Multiplying by the days in the window gives total debt, and dividing that debt by two gives the recovery nights required at an extra two hours each. The window matters: a 7-day figure describes last week, not a permanent biological account.',
+      example: 'Targeting 8 hours but averaging 6.5 over 7 days: the shortfall is 1.5 hours a night and the debt is 10.5 hours. At two extra hours a night that takes six nights to clear. Over 14 days at the same rate the debt reaches 21 hours, which is why a single lie-in cannot undo a fortnight of short sleep.',
       formulas: [{ label: 'Sleep Debt', expression: 'Debt = (Target - Actual) x Days' }],
       resultExplanations: [
-        { resultLabel: 'Nightly Shortfall', explanation: 'How many hours you are losing each night.' },
-        { resultLabel: 'Total Sleep Debt', explanation: 'The cumulative hours of sleep you owe your body.' }
+        { resultLabel: 'Nightly Shortfall', explanation: 'How many hours you are losing each night, never below zero.' },
+        { resultLabel: 'Total Sleep Debt', explanation: 'The cumulative hours of sleep you owe your body across the days entered.' },
+        { resultLabel: 'Recovery Nights (2h extra)', explanation: 'Nights needed to repay the debt if you add two hours to each night.' }
       ],
       workflowLinks: [
         { slug: 'sleep-cycle-calculator', step: 'Plan sleep around your target wake time.' },
-        { slug: 'bmr-calculator', step: 'Sleep debt slows metabolism.' }
+        { slug: 'sleep-hours-calculator', step: 'Work out how long you actually slept between two times.' },
+        { slug: 'caffeine-limit-calculator', step: 'Check how late caffeine is still in your system at bedtime.' }
       ],
       faqs: [
-        { q: 'Can you catch up on lost sleep?', a: 'Yes, partially. Extra sleep hours in the following days can restore alertness and performance.' },
-        { q: 'How much sleep debt is dangerous?', a: 'Even 1-2 hours per night for a week impairs reaction time, mood, and immune function.' },
-        { q: 'Is it better to sleep more on weekends?', a: 'Extending sleep on weekends helps but is less effective than consistent nightly sleep.' }
+        { q: 'Can you catch up on lost sleep?', a: 'Partially. Extra sleep over the following nights restores alertness and reaction time fairly well, but some measures of attention and glucose handling recover more slowly. A single long sleep does not erase a week of short nights.' },
+        { q: 'How much sleep debt is dangerous?', a: 'Repeatedly sleeping under about 7 hours is associated with impaired attention, mood and immune function, and with higher long-term cardiometabolic risk. One or two short nights are survivable; the pattern is what matters.' },
+        { q: 'Is it better to sleep more on weekends?', a: 'It helps and is better than nothing, but a large weekday deficit and a weekend catch-up creates its own problem — shifting the body clock back and forth, often called social jetlag. A more consistent schedule is usually easier to sustain.' },
+        { q: 'Does sleep debt reset?', a: 'The calculation is a window, not a biological ledger. Physiologically, recovery happens over several nights of adequate sleep, and the estimate resets when your shortfall returns to zero rather than by any fixed rule.' },
+        { q: 'Do naps count toward repayment?', a: 'Yes, particularly short early-afternoon naps. They are less efficient for deep sleep than a full night, so a 20-30 minute nap can support alertness without replacing the hours owed.' },
       ],
-      related: ['sleep-cycle-calculator', 'bmr-calculator'],
+      related: ['sleep-cycle-calculator', 'sleep-hours-calculator', 'caffeine-limit-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-10-26' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-11-05' },
   },
   {
     id: 'body-frame-size',
@@ -1305,34 +1360,38 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
         { id: 'sex', label: 'Sex (1=Male, 0=Female)', type: 'number', defaultValue: 1, min: 0, max: 1, step: 1 }
       ],
       results: [
-        { label: 'Wrist-to-Height Ratio', formulaCode: 'wristCm / heightCm * 100', suffix: '%', accent: true }
+        { label: 'Height-to-Wrist Ratio', formulaCode: 'heightCm / wristCm', suffix: ':1', accent: true }
       ],
       formulaDescription: 'undefined',
       tips: [
       'Measure the wrist just above the wrist bone with a flexible tape.',
-      'Body frame size affects ideal weight ranges. Large-framed individuals have higher healthy weights.'
+      'Body frame size affects ideal weight ranges. Large-framed individuals have higher healthy weights.',
+      'The ratio is height divided by wrist circumference, so a larger number means a smaller frame.'
       ],
     },
     content: {
-      intro: 'The Body Frame Size Calculator classifies your frame as small, medium, or large based on wrist circumference relative to height. Body frame size adjusts what a healthy weight range means for your build.',
-      howItWorks: 'Measure your wrist circumference just above the wrist bone. Divide by height and multiply by 100. Men: below 8.9 small, 8.9-10.0 medium, above 10.0 large.',
-      example: 'A 175 cm tall man with a 17 cm wrist: ratio = 17 / 175 x 100 = 9.7, classified as medium frame.',
-      formulas: [{ label: 'Ratio', expression: 'Ratio = (Wrist / Height) x 100' }],
+      intro: 'The Body Frame Size Calculator compares your height with your wrist circumference to classify your frame as small, medium or large. Frame size is bone structure, not body composition, and it explains why two people of the same height can have different healthy weight ranges without either being over- or under-weight.',
+      howItWorks: 'Height in centimetres is divided by wrist circumference in centimetres, giving a ratio with no units. For men, above 10.4 indicates a small frame, 9.6 to 10.4 a medium frame, and below 9.6 a large frame. For women the bands shift up because average wrist circumference is smaller relative to height: above 11.0 small, 10.1 to 11.0 medium, below 10.1 large. The inversion catches people out — a bigger number means a smaller frame, because a narrow wrist divided into a fixed height gives a larger quotient. The wrist is used because it is a bony site with very little subcutaneous fat, so the tape measures structure rather than today diet.',
+      example: 'A 175 cm man with a 17 cm wrist has a ratio of 175 / 17 = 10.29, which sits inside the medium band of 9.6 to 10.4. The same height with a 15.5 cm wrist gives 11.29 — a small frame — while a 19 cm wrist gives 9.21, a large frame. For a 165 cm woman, a 15 cm wrist gives 11.0, right at the small/medium boundary, and a 17 cm wrist gives 9.71, which is a large frame.',
+      formulas: [{ label: 'Height-to-Wrist Ratio', expression: 'Ratio = Height / Wrist' }],
       resultExplanations: [
-        { resultLabel: 'Wrist-to-Height Ratio', explanation: 'Men: <8.9 small, 8.9-10.0 medium, >10.0 large. Women: <9.2 small, 9.2-10.2 medium, >10.2 large.' }
+        { resultLabel: 'Height-to-Wrist Ratio', explanation: 'Men: above 10.4 small, 9.6-10.4 medium, below 9.6 large. Women: above 11.0 small, 10.1-11.0 medium, below 10.1 large.' }
       ],
       workflowLinks: [
         { slug: 'ideal-weight-calculator', step: 'Adjust your ideal weight target for your frame size.' },
-        { slug: 'bmi-calculator', step: 'BMI does not account for frame size.' }
+        { slug: 'bmi-calculator', step: 'BMI does not account for frame size.' },
+        { slug: 'body-fat-calculator', step: 'Frame size says nothing about body fat — measure that separately.' }
       ],
       faqs: [
-        { q: 'How does frame size affect ideal weight?', a: 'Large-framed individuals naturally carry more bone mass and weigh more at the same height.' },
-        { q: 'How do I measure my wrist?', a: 'Wrap a flexible tape around the narrowest part of your wrist, just above the wrist bone.' },
-        { q: 'Is frame size genetic?', a: 'Yes. Bone structure is largely determined by genetics and does not change significantly with weight loss or gain.' }
+        { q: 'How does frame size affect ideal weight?', a: 'A larger frame carries more bone and connective tissue, so a healthy weight for that person is higher than a formula based on height alone would suggest. The usual adjustment is around 10% either side of the medium-frame figure, not a free pass to ignore body fat.' },
+        { q: 'How do I measure my wrist?', a: 'Wrap a flexible tape around the wrist just above the wrist bone, on the arm you write with, and keep it snug without compressing the skin. Measure twice; a half-centimetre error moves the ratio enough to change a classification near a boundary.' },
+        { q: 'Is frame size genetic?', a: 'Largely, yes. Bone structure is set by genetics and by nutrition during growth, and it does not change meaningfully in adulthood — not with weight loss, and not with training. Muscle can be added around the frame, but the frame itself stays.' },
+        { q: 'Why divide height by wrist rather than the other way round?', a: 'Because the published frame-size bands are expressed that way, and matching them means the number can be read directly. It is the reciprocal of a wrist-to-height percentage, so it carries exactly the same information — only the direction of "bigger means smaller frame" changes.' },
+        { q: 'Can I use this to choose a bike frame or watch strap?', a: 'No. Those use their own measurements — inseam, arm length, wrist flat width — and a body-frame classification is far too coarse. This ratio describes skeletal build for weight-range purposes only.' }
       ],
       related: ['ideal-weight-calculator', 'bmi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-06' },
   },
   {
     id: 'metabolic-age',
@@ -1492,40 +1551,47 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
     kind: 'config',
     config: {
       fields: [
-        { id: 'age', label: 'Age', type: 'number', defaultValue: 30, min: 15, max: 80 },
         { id: 'sex', label: 'Sex (1=Male, 0=Female)', type: 'number', defaultValue: 1, min: 0, max: 1, step: 1 }
       ],
       results: [
-        { label: 'Fitness Range', formulaCode: 'sex === 1 ? 14 : 21', suffix: '% to', accent: true },
-        { label: 'Fitness Upper', formulaCode: 'sex === 1 ? 17 : 24', suffix: '%' }
+        { label: 'Fitness Range — Low', formulaCode: 'sex === 1 ? 14 : 21', suffix: '%', accent: true },
+        { label: 'Fitness Range — High', formulaCode: 'sex === 1 ? 17 : 24', suffix: '%' },
+        { label: 'Athlete Range — Low', formulaCode: 'sex === 1 ? 6 : 14', suffix: '%' },
+        { label: 'Essential Fat Floor', formulaCode: 'sex === 1 ? 2 : 10', suffix: '%' }
       ],
       formulaDescription: 'undefined',
       tips: [
       'Athletes need lower body fat. Average adults are healthy within the fitness range.',
-      'Body fat percentage increases naturally with age.'
+      'Body fat percentage increases naturally with age, even at constant weight.',
+      'The categories are the American Council on Exercise bands, which vary by sex rather than by age.'
       ],
     },
     content: {
-      intro: 'The Ideal Body Fat Percentage Calculator provides the healthy body fat range for your age and sex. Body fat percentage is a more meaningful health metric than BMI because it distinguishes fat from muscle.',
-      howItWorks: 'Healthy body fat ranges are defined by the American Council on Exercise. Men: 6-13% athletes, 14-17% fitness, 18-24% average. Women: 14-20% athletes, 21-24% fitness, 25-31% average.',
-      example: 'A 35-year-old male at 15% body fat is in the fitness category, which is ideal.',
-      formulas: [{ label: 'ACE Ranges', expression: 'Ranges by age and sex' }],
+      intro: 'The Ideal Body Fat Percentage Calculator shows the American Council on Exercise body-fat bands for your sex, including the fitness range, the athlete range and the essential-fat floor below which health is at risk. Body fat percentage is a more informative metric than BMI because it distinguishes fat from muscle — a lean, muscular person and a sedentary person can share a BMI while sitting in completely different categories.',
+      howItWorks: 'The bands come from the American Council on Exercise and are set by sex, not by age. For men, athletes sit at 6-13%, fitness at 14-17%, acceptable at 18-24%, and obesity begins at 25%. For women the same categories run 14-20%, 21-24%, 25-31% and 32% and above, because essential fat — the fat needed for hormone production, organ cushioning and temperature regulation — is much higher in women. Essential fat is about 2-5% for men and 10-13% for women, which is why a man at 4% body fat is at the edge of safety while a woman at 4% would be in serious danger. Age does not change the bands, but body fat tends to rise with age at constant weight as muscle mass declines, so the same number means more at 60 than at 25.',
+      example: 'A man at 15% body fat is in the 14-17% fitness band, 1 percentage point inside the lower bound and 2 below the upper. A woman at 25% is at the top of the fitness band and about to cross into acceptable. A man at 20% is in the acceptable band, and at 26% he is in the obese band, which starts at 25%. At 8% he would be an athlete, but only 6 points above the essential floor.',
+      formulas: [{ label: 'ACE Ranges', expression: 'Ranges by sex: men 6-13-17-24, women 14-20-24-31' }],
       resultExplanations: [
-        { resultLabel: 'Fitness Range', explanation: 'The lower bound of the fitness category for your sex.' },
-        { resultLabel: 'Fitness Upper', explanation: 'The upper bound of the fitness category for your sex.' }
+        { resultLabel: 'Fitness Range — Low', explanation: 'The lower bound of the fitness category for your sex.' },
+        { resultLabel: 'Fitness Range — High', explanation: 'The upper bound of the fitness category. Above this, the acceptable band begins.' },
+        { resultLabel: 'Athlete Range — Low', explanation: 'The lower bound of the athletic band — leaner than most people need for health.' },
+        { resultLabel: 'Essential Fat Floor', explanation: 'The approximate minimum body fat compatible with normal hormonal and physiological function.' }
       ],
       workflowLinks: [
         { slug: 'body-fat-calculator', step: 'Measure your actual body fat.' },
-        { slug: 'bmi-calculator', step: 'BMI does not distinguish fat from muscle.' }
+        { slug: 'bmi-calculator', step: 'BMI does not distinguish fat from muscle.' },
+        { slug: 'lean-body-mass-calculator', step: 'Convert a body fat percentage into lean and fat mass.' }
       ],
       faqs: [
-        { q: 'What is a healthy body fat percentage for men?', a: 'Athletes: 6-13%. Fitness: 14-17%. Acceptable: 18-24%. Above 25% is considered obese.' },
-        { q: 'What is a healthy body fat percentage for women?', a: 'Athletes: 14-20%. Fitness: 21-24%. Acceptable: 25-31%. Above 32% is considered obese.' },
-        { q: 'Can I get too lean?', a: 'Yes. Essential fat (the minimum needed for health) is 2-5% for men and 10-13% for women. Going below these levels is dangerous.' }
+        { q: 'What is a healthy body fat percentage for men?', a: 'Athletes: 6-13%. Fitness: 14-17%. Acceptable: 18-24%. Above 25% is considered obese. These are ACE bands that describe populations, not individual medical thresholds — a lean 22% is not automatically unhealthy.' },
+        { q: 'What is a healthy body fat percentage for women?', a: 'Athletes: 14-20%. Fitness: 21-24%. Acceptable: 25-31%. Above 32% is considered obese. The higher figures reflect essential fat, which supports hormone production and reproduction, and which is why very low body fat in women often disrupts the menstrual cycle.' },
+        { q: 'Can I get too lean?', a: 'Yes. Essential fat is about 2-5% for men and 10-13% for women, and going below it impairs hormone function, immunity and bone health. Bodybuilders reach those levels briefly for competition and rarely stay there, because the cost is measurable.' },
+        { q: 'Why does the calculator not ask my age?', a: 'Because the ACE bands do not vary by age — they are the same thresholds across adulthood. Age still matters in practice, since body fat tends to increase and muscle mass to fall with age at the same body weight, so a 20% reading at 60 represents a different body than 20% at 25.' },
+        { q: 'How accurate is a body fat measurement?', a: 'It depends entirely on the method. DEXA is the practical reference standard at around 1-2 percentage points of error; calipers and bioimpedance scales can be off by 5 points or more and shift with hydration. What matters most is using the same method each time and watching the trend.' }
       ],
       related: ['body-fat-calculator', 'bmi-calculator', 'lean-body-mass-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-11-06' },
   },
   {
     id: 'maintain-weight',
@@ -1592,34 +1658,42 @@ export const HEALTH_CALCULATORS: CalculatorMeta[] = [
         { id: 'durationMin', label: 'Duration (min)', type: 'number', defaultValue: 30, suffix: 'min', min: 1 }
       ],
       results: [
-        { label: 'Estimated Calories Burned', formulaCode: 'Math.round(weightKg * distanceKm * 1.0)', suffix: 'kcal', accent: true }
+        { label: 'Estimated Calories Burned', formulaCode: 'Math.round(weightKg * distanceKm * 1.0)', suffix: 'kcal', accent: true },
+        { label: 'Calories per Minute', formulaCode: '(weightKg * distanceKm) / durationMin', suffix: 'kcal/min' },
+        { label: 'Calories per Mile', formulaCode: 'weightKg * 1.609344', suffix: 'kcal' }
       ],
       formulaDescription: 'undefined',
       tips: [
       'Running burns roughly 1.0 kcal per kg per kilometer.',
-      'Uphill running, wind resistance, and high intensity increase the calorie cost.'
+      'Uphill running, wind resistance, and high intensity increase the calorie cost.',
+      'The cost per kilometre barely changes with pace — distance, not speed, is the main driver.'
       ],
     },
     content: {
-      intro: 'The Running Calorie Calculator estimates the energy cost of a run based on your pace and duration. Running is one of the most efficient calorie-burning exercises, but the actual cost depends on speed and body weight.',
-      howItWorks: 'Running energy cost is approximately 1.0 kcal per kg per kilometer at moderate pace. Faster paces increase cost slightly due to reduced mechanical efficiency.',
-      example: 'A 70 kg person running at 10 km/h for 30 minutes burns roughly 350 calories.',
-      formulas: [{ label: 'Calories', expression: 'Calories = Weight x Distance x 1.0' }],
+      intro: 'The Running Calorie Calculator estimates the energy a run cost from your body weight and the distance covered, then restates it per minute and per mile. It is deliberately a distance-based estimate: running costs roughly one kilocalorie per kilogram of body weight per kilometre, a figure that stays remarkably stable whether you shuffle or sprint.',
+      howItWorks: 'Body weight in kilograms is multiplied by distance in kilometres, because the energy cost of running scales almost linearly with both. That is why pace changes the rate of burn but not the total for a given distance — a faster runner covers the kilometres sooner, so burns the same energy in less time. The per-minute figure divides the total by the duration you entered, which is the rate that matters for comparing against other activities or a workout window. The per-mile figure multiplies weight by 1.609344, the number of kilometres in a mile. The estimate excludes the calories you would have burned at rest, so the net cost of the run is slightly lower than the gross figure — by roughly one kcal per minute of exercise.',
+      example: 'A 70 kg runner covering 5 km burns about 70 × 5 = 350 kcal. Over 30 minutes that is 11.7 kcal per minute, and the same runner burns 112.7 kcal per mile. At 90 kg the same 5 km costs 450 kcal, a 29% increase for identical distance — weight is the multiplier, not fitness. Running the 5 km in 20 minutes instead of 30 raises the rate to 17.5 kcal per minute but leaves the total at 350.',
+      formulas: [{ label: 'Calories', expression: 'Calories = Weight (kg) × Distance (km) × 1.0' }],
       resultExplanations: [
-        { resultLabel: 'Estimated Calories Burned', explanation: 'Estimated energy expenditure. Actual values vary with pace, terrain, wind, and fitness level.' }
+        { resultLabel: 'Estimated Calories Burned', explanation: 'Estimated energy expenditure for the whole run. Actual values vary with terrain, wind and fitness level.' },
+        { resultLabel: 'Calories per Minute', explanation: 'The burn rate for this run, which is what lets you compare it with other activities or fit it into a session.' },
+        { resultLabel: 'Calories per Mile', explanation: 'The cost of one mile at your body weight, for runners who think in miles rather than kilometres.' }
       ],
       workflowLinks: [
         { slug: 'running-pace-calculator', step: 'Convert pace and distance into a run estimate.' },
-        { slug: 'target-heart-rate-calculator', step: 'Pair with heart-rate data for more accuracy.' }
+        { slug: 'target-heart-rate-calculator', step: 'Pair with heart-rate data for more accuracy.' },
+        { slug: 'calories-burned-calculator', step: 'Compare running with other activities by time.' }
       ],
       faqs: [
-        { q: 'Does running burn more calories than walking?', a: 'Yes. Running at moderate pace burns roughly 2-3 times more calories per minute than walking.' },
-        { q: 'How accurate is this estimate?', a: 'Field tests agree with lab testing within about 10-15%. Actual values depend on pace, terrain, and fitness level.' },
-        { q: 'Do heavier people burn more calories running?', a: 'Yes. Running requires moving your entire body, so a heavier person burns more energy at the same pace.' }
+        { q: 'Does running burn more calories than walking?', a: 'Per minute, yes — roughly two to three times more, because running is a more demanding gait. Per mile, the gap is much smaller, around 30%, because walking and running both move the same body mass over the same ground. The real advantage of running is that it covers distance faster.' },
+        { q: 'How accurate is this estimate?', a: 'Field and laboratory measurements generally agree with the 1 kcal/kg/km rule within about 10-15%. Terrain, wind, surface, gait and fitness all move the real figure, and treadmill running is slightly cheaper than outdoor running because there is no air resistance to overcome.' },
+        { q: 'Do heavier people burn more calories running?', a: 'Yes, almost proportionally. Running requires moving your whole body, so at the same pace and distance a 90 kg runner burns about 30% more than a 70 kg runner. This is also why calorie estimates from watches, which often ignore weight, can be badly wrong.' },
+        { q: 'Why does pace not change the total much?', a: 'Because the dominant cost is supporting and propelling body mass over distance, not the speed itself. Faster running costs more per minute but takes fewer minutes, and the two effects largely cancel. Very steep hills are the main exception — climbing adds real work against gravity.' },
+        { q: 'Should I eat back the calories I burned?', a: 'Usually not deliberately, unless you are training at high volume or trying to gain weight. The figure is an estimate, and adding it back on top of an activity multiplier in a TDEE calculation double-counts the same exercise — the most common reason a weight-loss plan stalls.' }
       ],
       related: ['running-pace-calculator', 'calories-burned-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-06' },
   },
   {
     id: 'due-date',

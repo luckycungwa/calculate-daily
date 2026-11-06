@@ -19,20 +19,22 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       results: [
         { label: 'Area', formulaCode: 'lengthFt * widthFt', suffix: 'sq ft', accent: true },
         { label: 'Area in Square Meters', formulaCode: 'lengthFt * widthFt * 0.092903', suffix: 'm²' },
+        { label: 'Perimeter', formulaCode: '2 * (lengthFt + widthFt)', suffix: 'ft' },
       ],
       formulaDescription: 'Area = Length x Width',
       tips: [
         'For irregular rooms, split the space into rectangles and add the areas.',
         'Add 10% waste when ordering flooring or paint.',
+        'Perimeter is the length of skirting or trim around the room, before deducting doors.'
       ],
     },
     content: {
       intro:
-        'The Room Area Calculator finds the floor area of a rectangular room from its length and width, reporting both square feet and square meters. It is the first step in any flooring, paint, or tile estimate.',
+        'The Room Area Calculator multiplies a room\u2019s length and width into floor area in square feet and square metres, and also reports the perimeter. Area is what flooring, tile and carpet are ordered by; perimeter is what skirting boards, coving and edge trim are ordered by, so the tool answers both questions from the same two measurements.',
       howItWorks:
-        'Area is length times width for rectangular spaces. The tool multiplies feet directly for square footage and applies the 0.092903 factor to report square meters.',
+        'Area is length times width, which is why the units come out squared. Multiplying the two feet measurements gives square feet directly, and applying 0.092903 converts to square metres, since one square foot is 0.3048² m². The perimeter adds all four sides of the rectangle, which for a room is twice the length plus twice the width. Both assume a plain rectangle: an L-shaped room, a bay window or a chimney breast has to be split into separate rectangles and the areas added.',
       example:
-        'A room 12 feet by 10 feet has an area of 120 square feet, or about 11.15 square meters.',
+        'A room 12 feet by 10 feet has an area of 120 square feet, which is 120 × 0.092903 = 11.15 square metres. Its perimeter is 2 × (12 + 10) = 44 feet, so that room needs 44 feet of skirting before deducting the doorway. A 4 by 5 metre room is 20 m², which is 215.3 square feet, and a 10% waste allowance on the 120 sq ft floor brings the order to 132 sq ft.',
       formulas: [
         {
           label: 'Floor Area',
@@ -51,15 +53,23 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
           explanation:
             'The same floor area in metric units for international materials or comparisons.',
         },
+        {
+          resultLabel: 'Perimeter',
+          explanation:
+            'The distance around the room in feet, used for skirting, trim and edge materials.',
+        },
       ],
       workflowLinks: [
         { slug: 'flooring-calculator', step: 'Turn the area into a material order with waste.' },
         { slug: 'paint-calculator', step: 'Estimate paint using the same wall area.' },
+        { slug: 'room-volume-calculator', step: 'Add the ceiling height to get the room volume.' },
       ],
       faqs: [
-        { q: 'How do I calculate the area of a room?', a: 'Measure length and width in the same unit, then multiply. A 12 x 10 foot room is 120 square feet.' },
-        { q: 'How do I measure an L-shaped room?', a: 'Split it into two rectangles, compute each area, and add them together. The tool handles one rectangle at a time.' },
-        { q: 'Should I account for waste?', a: 'Yes. Add 5-10% for cutting waste when buying flooring, tile, or carpet, which the flooring calculator handles for you.' },
+        { q: 'How do I calculate the area of a room?', a: 'Measure length and width in the same unit, then multiply. A 12 x 10 foot room is 120 square feet. If the room is not a rectangle, split it into rectangles and add the pieces.' },
+        { q: 'How do I measure an L-shaped room?', a: 'Divide it into two rectangles along the inner corner, calculate each area, and add them. The perimeter result here will not match an L-shape, so measure trim along the walls directly rather than relying on it.' },
+        { q: 'Should I account for waste?', a: 'Yes. Add 5-10% for cutting waste on flooring, tile or carpet, and more for a diagonal or herringbone layout. The flooring calculator applies the allowance for you so the order covers the offcuts.' },
+        { q: 'Does area include the walls?', a: 'No, this is floor area. For painting you need wall area, which is perimeter multiplied by ceiling height, minus doors and windows — the paint calculator does that step.' },
+        { q: 'Why is square metres not just feet divided by three?', a: 'Because area scales with the square of length. One metre is 3.28 feet, so one square metre is 3.28² = 10.76 square feet. Dividing a square-foot figure by three would understate the metric area by more than two thirds.' },
       ],
       related: ['flooring-calculator', 'paint-calculator', 'area-converter'],
     },
@@ -67,7 +77,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -89,25 +99,27 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       results: [
         { label: 'Volume', formulaCode: 'lengthFt * widthFt * heightFt', suffix: 'cu ft', accent: true },
         { label: 'Volume in Cubic Yards', formulaCode: 'lengthFt * widthFt * heightFt / 27', suffix: 'cu yd' },
+        { label: 'Volume in Cubic Meters', formulaCode: 'lengthFt * widthFt * heightFt * 0.0283168', suffix: 'cu m' },
       ],
       formulaDescription: 'Volume = Length x Width x Height',
       tips: [
         '27 cubic feet equal 1 cubic yard, the standard unit for ordering fill.',
-        'Room volume drives HVAC sizing and ventilation calculations.',
+        'One cubic metre is 35.315 cubic feet, so a small room is often under 30 m³.',
+        'Room volume drives HVAC sizing and ventilation calculations.'
       ],
     },
     content: {
       intro:
-        'The Room Volume Calculator computes the interior volume of a space in cubic feet and cubic yards. HVAC sizing, storage capacity, and ventilation planning all start with this measurement.',
+        'The Room Volume Calculator multiplies a room\u2019s length, width and height into its interior volume in cubic feet, cubic yards and cubic metres. Floor area answers how much carpet a room needs; volume answers how much air it holds, which is the figure behind heating, cooling and ventilation decisions.',
       howItWorks:
-        'Volume is length times width times height for a rectangular space. Cubic feet divide by 27 to become cubic yards, the unit most often used to order fill material.',
+        'Length times width times height gives cubic feet when all three are entered in feet. Dividing by 27 converts to cubic yards, the unit bulk materials such as fill, topsoil and concrete are ordered in, and multiplying by 0.0283168 gives cubic metres for metric plans and equipment ratings. The calculation assumes a rectangular room with a flat ceiling, so sloped ceilings, alcoves and stairwells need to be split into separate volumes and added together.',
       example:
-        'A room 12 x 10 x 8 feet holds 960 cubic feet, or about 35.6 cubic yards.',
+        'A room 12 feet by 10 feet with an 8-foot ceiling holds 12 × 10 × 8 = 960 cubic feet, which is 960 / 27 = 35.6 cubic yards, or 960 × 0.0283168 = 27.2 cubic metres. Doubling the length to 24 feet doubles the volume to 1,920 cubic feet, while adding two feet of ceiling height instead gives 1,200 cubic feet — height is often the cheaper way to gain room volume.',
       formulas: [
         {
           label: 'Room Volume',
           expression: 'Volume = Length × Width × Height',
-          note: 'Cubic yards = cu ft / 27.',
+          note: 'Cubic yards = cu ft / 27; cubic metres = cu ft × 0.0283168.',
         },
       ],
       resultExplanations: [
@@ -121,15 +133,23 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
           explanation:
             'The same space in the unit used to order fill and concrete.',
         },
+        {
+          resultLabel: 'Volume in Cubic Meters',
+          explanation:
+            'The same space in metric units, which is how most HVAC and ventilation equipment outside the US is rated.',
+        },
       ],
       workflowLinks: [
         { slug: 'concrete-calculator', step: 'Order concrete for a slab using volume math.' },
         { slug: 'room-area-calculator', step: 'Pair the floor area with the space volume.' },
+        { slug: 'paint-calculator', step: 'Cover the walls that bound the space.' },
       ],
       faqs: [
-        { q: 'How do I calculate the volume of a room?', a: 'Multiply length by width by height in the same unit. A 12 x 10 x 8 foot room is 960 cubic feet.' },
-        { q: 'Why do I need room volume?', a: 'Heating and cooling loads, fan sizing, and storage capacity all depend on volume rather than floor area.' },
-        { q: 'How many cubic feet are in a cubic yard?', a: 'There are 27 cubic feet in a cubic yard, so divide the cubic feet by 27 to convert.' },
+        { q: 'How do I calculate the volume of a room?', a: 'Multiply length by width by height with all three in the same unit. A 12 x 10 x 8 foot room is 960 cubic feet. If your measurements are in metres, the result is already cubic metres and needs no conversion.' },
+        { q: 'Why do I need room volume rather than floor area?', a: 'Because air fills the space, not the floor. Heating and cooling loads, fan and air-conditioner sizing, humidity control and ventilation rates are all calculated per unit of volume, while flooring, paint and tile are calculated per unit of area.' },
+        { q: 'How many cubic feet are in a cubic yard?', a: '27 — three feet in each of three dimensions. That is why 960 cubic feet is only 35.6 cubic yards: a cubic yard is a large amount of material, and ordering fill by the cubic foot would be wildly impractical.' },
+        { q: 'How do I handle a sloped or vaulted ceiling?', a: 'Split the room into a rectangular lower section and a prism above it, calculate each separately and add them. For a simple gable, the prism volume is floor area times the height of the ridge above the wall line, halved. Irregular rooms are best broken into boxes.' },
+        { q: 'Can I use this for storage capacity?', a: 'Yes, with a caveat: it gives the empty volume, not the usable volume. Shelving, clearance and the fact that you cannot stack to the ceiling all reduce what actually fits, so treat the figure as an upper bound rather than a packing estimate.' },
       ],
       related: ['concrete-calculator', 'room-area-calculator', 'volume-converter'],
     },
@@ -137,7 +157,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -160,20 +180,22 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
         { label: 'Volume Needed', formulaCode: 'lengthFt * widthFt * (depthIn / 12) / 27', suffix: 'cu yd', accent: true },
         { label: '60 lb Bags', formulaCode: 'lengthFt * widthFt * (depthIn / 12) / 27 / 0.017', suffix: 'bags' },
         { label: '80 lb Bags', formulaCode: 'lengthFt * widthFt * (depthIn / 12) / 27 / 0.022', suffix: 'bags' },
+        { label: 'Approximate Weight', formulaCode: 'lengthFt * widthFt * (depthIn / 12) / 27 * 2.025', suffix: 'tons' },
       ],
       formulaDescription: 'Volume (cu yd) = Length x Width x Thickness / 27',
       tips: [
         'A 60 lb bag yields about 0.017 cu yd; an 80 lb bag about 0.022 cu yd.',
         'Order 5-10% extra to account for uneven ground and spillage.',
+        'Cured concrete weighs roughly 4,050 lb per cubic yard, or about 2 tons.'
       ],
     },
     content: {
       intro:
-        'The Concrete Calculator estimates the concrete needed for a slab in cubic yards and the number of pre-mixed bags required. It prevents both under-ordering mid-pour and over-ordering that wastes money.',
+        'The Concrete Calculator estimates how much concrete a slab needs in cubic yards, how many pre-mixed bags that represents at two common sizes, and roughly what the pour will weigh. Volume is what you order; weight is what decides whether the load can be moved and how much a delivery will cost.',
       howItWorks:
-        'The slab volume in cubic feet is length times width times thickness in inches divided by 12. Dividing by 27 converts to cubic yards, then bag counts follow from each bag size yield.',
+        'Slab volume is length times width times thickness, with thickness converted from inches to feet by dividing by twelve. Dividing the cubic feet by 27 gives cubic yards, the unit ready-mix is sold in. Bag counts come from each bag\\u2019s yield — about 0.017 cubic yards for a 60 lb bag and 0.022 for an 80 lb bag, which is why the heavier bag needs noticeably fewer. The weight figure uses the standard density of cured concrete, roughly 150 lb per cubic foot, or about 4,050 lb per cubic yard. None of these figures include a waste allowance, so add 5-10% before ordering.',
       example:
-        'A 10 x 8 foot slab at 4 inches thick needs 10 x 8 x 0.333 / 27 = 0.99 cubic yards, or about 58 sixty-pound bags.',
+        'A slab 10 feet by 8 feet at 4 inches thick is 10 × 8 × 0.333 = 26.7 cubic feet, which is 0.99 cubic yards — call it one yard. In bags that is about 58 of the 60 lb size, or 45 of the 80 lb size. The pour weighs approximately 2 short tons. Thickening the slab to 6 inches raises the volume to 1.48 cubic yards, a 50% increase for the same footprint.',
       formulas: [
         {
           label: 'Slab Volume',
@@ -196,15 +218,23 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
           explanation:
             'How many pre-mixed bags to buy if you are mixing by hand, by bag size.',
         },
+        {
+          resultLabel: 'Approximate Weight',
+          explanation:
+            'How heavy the finished slab is in short tons, useful for delivery, trailer limits and structural planning.',
+        },
       ],
       workflowLinks: [
         { slug: 'room-volume-calculator', step: 'Measure the space that needs a concrete fill.' },
         { slug: 'room-area-calculator', step: 'Start from the slab footprint area.' },
+        { slug: 'lumber-calculator', step: 'Price the formwork that holds the pour.' },
       ],
       faqs: [
-        { q: 'How much concrete do I need for a slab?', a: 'Multiply length by width by thickness in feet and divide by 27 for cubic yards. The calculator automates this and reports bag counts.' },
-        { q: 'How many bags of concrete are in a cubic yard?', a: 'Roughly 59 sixty-pound bags or 45 eighty-pound bags per cubic yard, accounting for standard yields.' },
-        { q: 'Should I order extra concrete?', a: 'Order 5-10% extra. Slight over-excavation and spillage are common, and running short mid-pour is far worse than having a little left.' },
+        { q: 'How much concrete do I need for a slab?', a: 'Multiply length by width by thickness in feet and divide by 27 for cubic yards. A 10 x 8 foot slab at 4 inches is about one cubic yard. The calculator does the conversion and adds the bag counts.' },
+        { q: 'How many bags of concrete are in a cubic yard?', a: 'Roughly 59 sixty-pound bags or 45 eighty-pound bags, because the yields are about 0.017 and 0.022 cubic yards respectively. Bags are convenient for small pours; beyond about a cubic yard, ready-mix delivery is usually cheaper and far less work.' },
+        { q: 'Should I order extra concrete?', a: 'Yes — 5-10%. Ground is rarely perfectly level, formwork can bulge, and spillage happens. Running short mid-pour is much worse than having a little left over, because a cold joint between two batches weakens the slab.' },
+        { q: 'How thick should a slab be?', a: 'Four inches is standard for a shed base, patio or footpath. Driveways and anything carrying a vehicle usually need 5-6 inches, and a slab on poor ground needs a thicker edge or a compacted sub-base. Thickness is the single biggest driver of volume.' },
+        { q: 'Does the calculator account for reinforcement?', a: 'No. Rebar or mesh sits inside the volume and does not change how much concrete is needed. It does change the strength and crack resistance, so include it for anything structural, and remember it reduces the effective cover slightly.' },
       ],
       related: ['room-volume-calculator', 'room-area-calculator', 'volume-converter'],
     },
@@ -212,7 +242,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -234,20 +264,22 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       results: [
         { label: 'Gallons Needed', formulaCode: 'wallAreaSqft * coats / coveragePerGallon', suffix: 'gal', accent: true },
         { label: 'Liters Needed', formulaCode: 'wallAreaSqft * coats / coveragePerGallon * 3.78541', suffix: 'L' },
+        { label: 'Gallons for One Coat', formulaCode: 'wallAreaSqft / coveragePerGallon', suffix: 'gal' },
       ],
       formulaDescription: 'Gallons = Area x Coats / Coverage per Gallon',
       tips: [
         'One gallon typically covers about 350 sq ft per coat.',
         'Rough or textured walls absorb more paint than smooth surfaces.',
+        'A colour change usually needs two coats; a refresh in the same colour often needs one.'
       ],
     },
     content: {
       intro:
-        'The Paint Calculator estimates the gallons of paint needed for a job based on surface area, number of coats, and paint coverage. It keeps you from buying too little mid-project or too much at the register.',
+        'The Paint Calculator converts a wall area into the gallons or litres of paint a job needs, allowing for the number of coats and the coverage of the paint you are using. It also shows the one-coat figure, which is the number that tells you whether a second coat is affordable or whether you should be buying a bigger tin.',
       howItWorks:
-        'Total gallons equal the wall area multiplied by the number of coats and divided by the coverage per gallon. Liters are derived by multiplying gallons by 3.785.',
+        'Wall area is multiplied by the number of coats to give the total area to be covered, then divided by the coverage per gallon. Coverage is the variable most people get wrong: a figure printed on the tin usually assumes a smooth, primed, non-porous surface, and new plaster or render can absorb 30% more. One US gallon is 3.78541 litres, which is why the metric figure is larger rather than smaller. The calculation assumes the area you entered is the paintable area — doors, windows and built-in furniture should already be deducted.',
       example:
-        'Painting 400 square feet with two coats using 350 sq ft/gallon coverage needs 400 x 2 / 350 = 2.29 gallons, or about 8.7 liters.',
+        'Painting 400 square feet with two coats at 350 sq ft per gallon needs 400 × 2 / 350 = 2.29 gallons, which is 8.7 litres, and one coat alone would be 1.14 gallons. Since paint is sold in whole containers, that job means buying three gallons or two plus a quart. At 250 sq ft per gallon on a rough surface, the same job needs 3.2 gallons — a 40% jump from the coverage figure alone.',
       formulas: [
         {
           label: 'Gallons Needed',
@@ -265,15 +297,23 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
           explanation:
             'The same paint volume in metric units, useful where paint is sold by the liter.',
         },
+        {
+          resultLabel: 'Gallons for One Coat',
+          explanation:
+            'The volume for a single coat, which shows how much the second coat adds to the bill.',
+        },
       ],
       workflowLinks: [
         { slug: 'room-area-calculator', step: 'Measure the wall area to paint first.' },
         { slug: 'flooring-calculator', step: 'Plan the room materials together in one pass.' },
+        { slug: 'room-volume-calculator', step: 'Check the room volume if you also need ventilation or heating.' },
       ],
       faqs: [
-        { q: 'How much paint do I need for a room?', a: 'Calculate the wall area, multiply by the number of coats, and divide by coverage per gallon (typically 350 sq ft). The calculator does all three steps.' },
-        { q: 'How do I measure wall area?', a: 'Multiply each wall length by its height and subtract windows and doors. Sum all walls for the total surface.' },
-        { q: 'Does paint coverage vary?', a: 'Yes. Smooth primed walls cover near 400 sq ft per gallon, while rough or unprimed surfaces may drop to 250-300 sq ft.' },
+        { q: 'How much paint do I need for a room?', a: 'Calculate the wall area, multiply by the number of coats, and divide by coverage per gallon — typically 350 sq ft. A 12 x 10 foot room with 8-foot ceilings has about 350 sq ft of wall before deductions, so roughly two gallons for two coats.' },
+        { q: 'How do I measure wall area?', a: 'Multiply each wall length by its height, then subtract windows and doors — a standard door is about 21 sq ft and a window about 15. Sum the walls for the total. Measure the height from floor to ceiling including skirting, then ignore the skirting itself.' },
+        { q: 'Does paint coverage vary?', a: 'Considerably. Smooth primed walls can reach 400 sq ft per gallon, while rough, porous or unprimed surfaces may fall to 250. Dark colours over light, or light over dark, often need an extra coat regardless of the stated coverage.' },
+        { q: 'Is primer included?', a: 'No. Primer is a separate product with its own coverage, usually lower because it is designed to soak in. Bare plaster, repaired patches and drastic colour changes all need priming, and that volume should be calculated separately.' },
+        { q: 'Should I buy extra paint for touch-ups?', a: 'Keeping a small amount of the same batch is sensible, because a later tin can be a slightly different shade. The calculator gives the working volume; rounding up to the next container size usually leaves enough for touch-ups without a second purchase.' },
       ],
       related: ['room-area-calculator', 'flooring-calculator', 'lumber-calculator'],
     },
@@ -281,7 +321,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -303,20 +343,23 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       results: [
         { label: 'Flooring Needed', formulaCode: 'roomLengthFt * roomWidthFt * (1 + wastePct / 100)', suffix: 'sq ft', accent: true },
         { label: 'In Square Yards', formulaCode: 'roomLengthFt * roomWidthFt * (1 + wastePct / 100) / 9', suffix: 'sq yd' },
+        { label: 'Room Area', formulaCode: 'roomLengthFt * roomWidthFt', suffix: 'sq ft' },
+        { label: 'Waste Allowance', formulaCode: 'roomLengthFt * roomWidthFt * wastePct / 100', suffix: 'sq ft' },
       ],
       formulaDescription: 'Needed = Room Area x (1 + Waste / 100)',
       tips: [
         'Add 5-10% waste for straight layouts and up to 15% for diagonal or patterned ones.',
         'Square footage divides by 9 to become square yards.',
+        'Order all the flooring in one batch — a later batch can differ in shade and lot.'
       ],
     },
     content: {
       intro:
-        'The Flooring Calculator estimates the material you need for a room, including cutting waste. Hardwood, tile, laminate, and carpet all need extra to cover cuts, and this tool puts the number in plain square feet.',
+        'The Flooring Calculator estimates the material a room needs once cutting waste is included, showing the bare room area, the waste allowance and the total to buy in both square feet and square yards. Waste is not padding for a mistake — it is the unavoidable offcut produced when boards and tiles are cut around walls, doorways and pipes.',
       howItWorks:
-        'Room area is length times width. The waste allowance scales that area by (1 + waste/100) to cover offcuts and mistakes. The result converts to square yards when needed.',
+        'Room area is length times width, and the waste allowance adds a percentage of that area to the total. A straight plank layout in a simple rectangular room wastes around 5-10%; a diagonal or herringbone layout, or a room with many corners, can waste 15% or more, because offcuts cannot be reused across different cut angles. Dividing by 9 converts square feet to square yards, the unit carpet is still sold in. The calculation assumes a rectangular floor — for an L-shaped room, measure each rectangle, add the areas, then apply the waste percentage to the total.',
       example:
-        'A 12 x 10 foot room with 10% waste needs 120 x 1.10 = 132 square feet of flooring, or about 14.7 square yards.',
+        'A room 12 feet by 10 feet has an area of 120 square feet. At 10% waste the allowance is 12 sq ft and the flooring needed is 132 sq ft, which is 14.7 square yards. At 15% waste the total rises to 138 sq ft. For a room of 200 sq ft the same 10% buys 220 sq ft — the percentage stays constant but the absolute quantity of offcut grows with the job.',
       formulas: [
         {
           label: 'Flooring Needed',
@@ -334,15 +377,28 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
           explanation:
             'The same quantity in the unit carpet is often sold by.',
         },
+        {
+          resultLabel: 'Room Area',
+          explanation:
+            'The bare floor area before any waste allowance, which is the figure to use if you are comparing against a quoted price per square foot of finished floor.',
+        },
+        {
+          resultLabel: 'Waste Allowance',
+          explanation:
+            'The extra material the percentage adds in square feet, useful for checking whether your layout justifies the allowance you chose.',
+        },
       ],
       workflowLinks: [
         { slug: 'room-area-calculator', step: 'Measure the room footprint first.' },
         { slug: 'paint-calculator', step: 'Budget the walls while you plan the floor.' },
+        { slug: 'area-converter', step: 'Switch the total into metric units for imported flooring.' },
       ],
       faqs: [
-        { q: 'How much extra flooring should I buy?', a: 'Add 5-10% for straight layouts and up to 15% for diagonal, herringbone, or heavily patterned installations.' },
-        { q: 'How do I convert flooring to square yards?', a: 'Divide square feet by 9. Carpet is commonly sold by the square yard, so 132 sq ft is 14.7 sq yd.' },
-        { q: 'Why does waste matter?', a: 'Cutting planks and tiles around edges, doors, and pipes produces unavoidable offcuts that must be planned for.' },
+        { q: 'How much extra flooring should I buy?', a: 'Add 5-10% for a straight layout in a simple room, and up to 15% for diagonal, herringbone or heavily patterned installations. Patterned tile that must align across a room can waste more still, because every cut has to match the pattern.' },
+        { q: 'How do I convert flooring to square yards?', a: 'Divide square feet by 9. A 132 sq ft order is 14.7 square yards. Carpet is the material usually sold this way, while hardwood, laminate and tile are typically sold by the square foot or by the box with a stated coverage.' },
+        { q: 'Why does waste matter?', a: 'Cutting planks and tiles around edges, doors and pipes produces offcuts that cannot all be reused. Without a waste allowance you will run short near the end of the job, and buying a second batch risks a shade mismatch between production lots.' },
+        { q: 'Does the waste percentage replace careful measuring?', a: 'No. Measure each room at its widest point, including doorways and alcoves, and split irregular shapes into rectangles. Waste covers cutting losses, not measurement errors — a room measured two feet short will still run out.' },
+        { q: 'What about underlay and adhesive?', a: 'They are calculated from the room area rather than the waste-inflated figure, because they are not cut to the same pattern. Use the Room Area result for those, and add the manufacturer\u2019s recommended overlap for underlay, which is usually 5-10 cm per sheet.' },
       ],
       related: ['room-area-calculator', 'paint-calculator', 'lumber-calculator'],
     },
@@ -350,7 +406,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -373,25 +429,27 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       results: [
         { label: 'Total Board Feet', formulaCode: 'pieces * (lengthFt * widthIn * thicknessIn / 12)', suffix: 'bd ft', accent: true },
         { label: 'Board Feet per Piece', formulaCode: 'lengthFt * widthIn * thicknessIn / 12', suffix: 'bd ft' },
+        { label: 'Total Volume', formulaCode: 'pieces * lengthFt * widthIn * thicknessIn / 144', suffix: 'cu ft' },
       ],
       formulaDescription: 'Board Feet = Pieces x Length(ft) x Width(in) x Thickness(in) / 12',
       tips: [
         'One board foot equals 1 foot x 1 foot x 1 inch of lumber.',
-        'Lumber is sold by the board foot, not by weight.',
+        'Board footage is calculated from nominal dimensions, not the finished size.',
+        'Lumber is sold by the board foot, not by weight.'
       ],
     },
     content: {
       intro:
-        'The Lumber & Board Foot Calculator computes the board feet in any pile of lumber. Because lumber is priced by board foot, this tool turns raw dimensions into the number used on the invoice.',
+        'The Lumber & Board Foot Calculator converts a count of boards and their dimensions into total board feet, the unit lumber yards price and invoice in. It also reports the single-piece figure for comparing options and the total volume in cubic feet for shipping and storage.',
       howItWorks:
-        'Board feet equal length in feet times width in inches times thickness in inches divided by 12. Multiplying by the piece count gives the total for the whole order.',
+        'Board feet equal length in feet times width in inches times thickness in inches, divided by twelve, which turns the 144 cubic inches of a board foot into a clean formula. Multiplying by the piece count gives the order total. One board foot is a piece one foot square by one inch thick, and the unit survives because it scales naturally with the way timber is actually described — length in feet, cross-section in inches. The total volume in cubic feet is the same product divided by 144, since a cubic foot holds twelve board feet.',
       example:
-        'Ten pieces of 8-foot 6 x 1 lumber total 10 x (8 x 6 x 1 / 12) = 40 board feet.',
+        'Ten pieces of 8-foot 1 x 6 lumber come to 10 × (8 × 6 × 1 / 12) = 40 board feet, which is 4 board feet per piece. The same ten boards at 2 inches thick would be 80 board feet, because thickness enters the formula linearly — doubling it doubles the price. As a volume check, 40 board feet is 40 / 12 = 3.33 cubic feet of timber.',
       formulas: [
         {
           label: 'Total Board Feet',
           expression: 'Board ft = Pieces × (Length ft × Width in × Thickness in / 12)',
-          note: 'One board foot = 1 ft × 1 ft × 1 in.',
+          note: 'One board foot = 1 ft × 1 ft × 1 in = 144 cubic inches.',
         },
       ],
       resultExplanations: [
@@ -405,15 +463,23 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
           explanation:
             'The single-piece volume, useful for comparing lumber options.',
         },
+        {
+          resultLabel: 'Total Volume',
+          explanation:
+            'The same order expressed as solid cubic feet, useful for shipping weight and storage space.',
+        },
       ],
       workflowLinks: [
         { slug: 'room-area-calculator', step: 'Plan the framing footprint that needs lumber.' },
         { slug: 'room-volume-calculator', step: 'Estimate structural volume for larger builds.' },
+        { slug: 'deck-calculator', step: 'Estimate decking boards for a deck build.' },
       ],
       faqs: [
-        { q: 'What is a board foot?', a: 'It is the unit lumber is priced by: one foot long, one foot wide, and one inch thick, or 144 cubic inches of wood.' },
-        { q: 'How do I calculate board feet?', a: 'Multiply length in feet by width in inches by thickness in inches and divide by 12. The tool handles multiple pieces automatically.' },
-        { q: 'Does dimension lumber match nominal size?', a: 'No. A 2x4 is actually about 1.5 x 3.5 inches. For pricing use the nominal size, but for volume use actual dimensions.' },
+        { q: 'What is a board foot?', a: 'A volume of wood one foot long, one foot wide and one inch thick — 144 cubic inches. It is the pricing unit for hardwood and much dimension lumber, and it lets boards of different lengths and cross-sections be compared on one number.' },
+        { q: 'How do I calculate board feet?', a: 'Multiply length in feet by width in inches by thickness in inches and divide by 12, then multiply by the number of pieces. Ten 8-foot 1 x 6 boards give 40 board feet; the calculator does the whole order at once.' },
+        { q: 'Does dimension lumber match its nominal size?', a: 'No. A 2 x 4 is sold as 2 x 4 but measures about 1.5 x 3.5 inches after planing, and a 1 x 6 is about 0.75 x 5.5 inches. Board footage is calculated from the nominal size, which is why the invoice figure is higher than the timber you can measure.' },
+        { q: 'Why is board footage based on nominal size?', a: 'Because the nominal size describes the rough green timber before surfacing and drying, and that is what the price is set against. Everyone in the trade uses the same convention, so quotes remain comparable even though the finished board is smaller.' },
+        { q: 'How many board feet are in a cubic foot?', a: 'Twelve, because a board foot is one twelfth of a cubic foot. That makes the conversion simple: divide board feet by 12 for cubic feet, and multiply by 12 to go back.' },
       ],
       related: ['room-area-calculator', 'room-volume-calculator', 'paint-calculator'],
     },
@@ -421,7 +487,7 @@ export const CONSTRUCTION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {

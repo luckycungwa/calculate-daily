@@ -358,16 +358,18 @@ export const FinalGradeCalculator: React.FC<CalculatorProps> = ({ onSaveHistory 
     const weight = parseFloat(finalWeight) || 0;
 
     if (weight <= 0 || weight > 100) {
-      return { required: 0, gap: 0, isPossible: true, current, target, weight };
+      return { required: 0, gap: 0, isPossible: true, current, target, weight, maxPossible: 0 };
     }
 
     const required = (target - current * (1 - weight / 100)) / (weight / 100);
     const gap = required - current;
+    const maxPossible = current * (1 - weight / 100) + 100 * (weight / 100);
     return {
       required: parseFloat(required.toFixed(2)),
       gap: parseFloat(gap.toFixed(2)),
       isPossible: required <= 100,
       current, target, weight,
+      maxPossible: parseFloat(maxPossible.toFixed(2)),
     };
   }, [currentGrade, targetGrade, finalWeight]);
 
@@ -511,6 +513,10 @@ export const FinalGradeCalculator: React.FC<CalculatorProps> = ({ onSaveHistory 
                     <span className="text-zinc-400">Grade Gap:</span>
                     <span className={`font-bold tabular-nums ${results.gap > 0 ? 'text-amber-400' : 'text-brand-on-dark'}`}>{results.gap > 0 ? '+' : ''}{results.gap}%</span>
                   </div>
+                  <div className="flex justify-between text-zinc-200">
+                    <span className="text-zinc-400">Highest Possible:</span>
+                    <span className="font-bold tabular-nums">{results.weight > 0 && results.weight <= 100 ? `${results.maxPossible}%` : '--'}</span>
+                  </div>
                   <div className="flex justify-between text-zinc-100 pt-2 border-t border-zinc-800">
                     <span className="font-semibold">Score Needed:</span>
                     <span className="font-bold text-white tabular-nums">{results.required > 0 ? `${results.required}%` : '--'}</span>
@@ -540,6 +546,7 @@ export const FinalGradeCalculator: React.FC<CalculatorProps> = ({ onSaveHistory 
           'Final Weight': `${results.weight}%`,
           'Required Exam Score': `${results.required}%`,
           'Grade Gap': `${results.gap}%`,
+          'Highest Possible Grade': `${results.maxPossible}%`,
           'Feasibility': results.isPossible ? 'Possible' : 'Impossible',
         }}
         summaryText={`Final Grade Plan:\nCurrent: ${results.current}%\nTarget: ${results.target}%\nFinal Weight: ${results.weight}%\nRequired: ${results.required}%`}

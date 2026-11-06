@@ -781,7 +781,7 @@ export const PregnancyWeekCalculator: React.FC<CalculatorProps> = ({ onSaveHisto
 
               {value.nextMilestone && (
                 <p className="mt-3 text-xs text-zinc-300">
-                  Next touchpoint: <span className="font-semibold">week {value.nextMilestone.week}</span> � {value.nextMilestone.label}.
+                  Next touchpoint: <span className="font-semibold">week {value.nextMilestone.week}</span> — {value.nextMilestone.label}.
                 </p>
               )}
 

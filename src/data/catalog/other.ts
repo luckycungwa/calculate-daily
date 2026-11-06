@@ -20,20 +20,23 @@ export const FOOD_CALCULATORS: CalculatorMeta[] = [
       ],
       results: [
         { label: 'Scaled Amount', formulaCode: 'amount * (newServings / originalServings)', accent: true },
+        { label: 'Scale Factor', formulaCode: 'newServings / originalServings', suffix: 'x' },
+        { label: 'Amount per Serving', formulaCode: 'amount / originalServings' },
       ],
       formulaDescription: 'Scaled = Original Amount x (Desired Servings / Original Servings)',
       tips: [
         'Most recipes scale linearly, but spice amounts often need only a gentle increase.',
         'For baking, scaling by weight rather than volume gives the most consistent results.',
+        'Doubling a recipe does not halve the cooking time — larger batches usually take slightly longer.'
       ],
     },
     content: {
       intro:
-        'The Recipe Scaler adjusts any ingredient amount from the original serving count to your desired servings. It is the fast way to cook for two from a four-serving recipe, or to feed a crowd from a dinner for six.',
+        'The Recipe Scaler converts one ingredient amount from the recipe\u2019s original serving count to the number you actually want to cook. It reports the scale factor as well, so you can apply the same multiplier to the rest of the ingredients without recalculating each one.',
       howItWorks:
-        'The scale factor is the desired servings divided by the original servings. Each ingredient amount multiplies by that factor, preserving the ratios that make a recipe taste right.',
+        'The scale factor is the desired servings divided by the original servings, and every ingredient amount is multiplied by it. Ratios are preserved, which is why the dish still tastes like itself — doubling a recipe means every component doubles, not just the obvious ones. The per-serving amount is also reported, which is the figure to use when you want to scale a single portion rather than the whole recipe.',
       example:
-        'Scaling a 4-serving recipe that uses 250 g of rice to 6 servings gives 250 x 6 / 4 = 375 g.',
+        'Scaling a 4-serving recipe that uses 250 g of rice to 6 servings gives a factor of 1.5 and 375 g of rice. Going the other way, from 6 servings to 2 is a factor of 0.33, so the same 250 g becomes 83 g. The per-serving amount is 62.5 g, and multiplying that by any serving count gives the right quantity directly.',
       formulas: [
         {
           label: 'Scaled Ingredient',
@@ -46,15 +49,28 @@ export const FOOD_CALCULATORS: CalculatorMeta[] = [
           explanation:
             'The ingredient quantity adjusted by the serving ratio, keeping the recipe proportions intact.',
         },
+        {
+          resultLabel: 'Scale Factor',
+          explanation:
+            'The multiplier applied to every ingredient — 1.5x means half again as much of everything.',
+        },
+        {
+          resultLabel: 'Amount per Serving',
+          explanation:
+            'How much of the ingredient one serving contains, useful for building portions directly.',
+        },
       ],
       workflowLinks: [
         { slug: 'cups-to-grams-calculator', step: 'Convert scaled volumes into precise weights.' },
         { slug: 'ratio-proportion-calculator', step: 'Apply the same scaling logic to any proportional problem.' },
+        { slug: 'meal-cost-calculator', step: 'Price the scaled batch per serving.' },
       ],
       faqs: [
-        { q: 'How do I scale a recipe?', a: 'Divide the servings you want by the original servings, then multiply every ingredient by that factor. The calculator does the math for one ingredient at a time.' },
-        { q: 'Do spices scale the same way?', a: 'Linearly scaled spice can become overpowering. Increase herbs and spices more gently, tasting as you go.' },
-        { q: 'Does scaling affect cooking time?', a: 'Often, but unpredictably. Baking time rarely changes much, while larger stove-top batches may need a few extra minutes.' },
+        { q: 'How do I scale a recipe?', a: 'Divide the servings you want by the original servings, then multiply every ingredient by that factor. Here that factor is shown as a result, so you can carry it across the recipe after scaling one ingredient.' },
+        { q: 'Do spices scale the same way?', a: 'Not always. Doubling a recipe and doubling the chilli can push a dish past pleasant, so taste as you go and increase strong spices more gently. Salt scales more linearly but is still worth adding in stages.' },
+        { q: 'Does scaling affect cooking time?', a: 'Often, but not predictably. Baking time barely changes for a larger batch of the same depth, while a bigger volume on the hob can need extra minutes to come to temperature. Cook to the visual cue rather than the clock.' },
+        { q: 'Why is scaling by weight better for baking?', a: 'Because volume measurements of flour and sugar vary with how packed they are. A cup of flour can weigh anywhere from 120 to 150 g, so doubling by volume can compound a 20% error. A scale removes that variable entirely.' },
+        { q: 'Can I scale down as well as up?', a: 'Yes. A factor below 1 shrinks the recipe, which is how you go from six servings to two. Small batches are less forgiving — an egg is hard to split — so round to the nearest practical amount and expect slight differences.' },
       ],
       related: ['cups-to-grams-calculator', 'ratio-proportion-calculator', 'meal-cost-calculator'],
     },
@@ -82,20 +98,22 @@ export const FOOD_CALCULATORS: CalculatorMeta[] = [
       ],
       results: [
         { label: 'Cost per Serving', formulaCode: 'totalCost / servings', prefix: '$', accent: true },
+        { label: 'Cost per 30 Servings', formulaCode: 'totalCost / servings * 30', prefix: '$' },
       ],
       formulaDescription: 'Cost per Serving = Total Cost / Servings',
       tips: [
         'Compare home cooking against takeout by the per-serving price.',
         'Include the full cost of the recipe, not just one ingredient.',
+        'Pantry staples like oil, spices and stock are easy to forget — add a rough share if you want a true figure.'
       ],
     },
     content: {
       intro:
-        'The Cost per Meal Calculator divides a recipe total by its serving count to reveal the price of each plate. Meal planners and budgeters use it to compare home cooking against restaurant and delivery prices.',
+        'The Cost per Meal Calculator divides what a recipe cost to make by the number of servings it produced, giving the price of one plate. It also restates that figure across thirty servings, which is the comparison that matters when the decision is whether to cook at home through a working month.',
       howItWorks:
-        'Cost per serving is simply the total recipe cost divided by the number of servings. The result makes meal budgeting concrete and comparable.',
+        'Total recipe cost is divided by the serving count. The only judgement is what belongs in the total: everything used, including partial packs whose remainder stays in the cupboard. Counting a whole pack of an ingredient you used a third of overstates the meal; counting nothing for oil and seasoning understates it. Dividing by servings rather than by weight also assumes the portions are equal, which is a reasonable approximation for most home cooking.',
       example:
-        'A recipe that costs R18 to make and serves four costs R4.50 per serving, a fraction of most takeout prices.',
+        '$18 of ingredients across four servings is $4.50 a plate, or $135 across thirty servings. Compare that with $12 takeout per meal: the same month would cost $360, so the home-cooked choice saves about $225. A cheaper recipe at $9 total and four servings comes to $2.25 a plate, or $67.50 for the month.',
       formulas: [
         {
           label: 'Cost per Serving',
@@ -108,15 +126,23 @@ export const FOOD_CALCULATORS: CalculatorMeta[] = [
           explanation:
             'The price of one plate, giving you a direct comparison against takeout and delivery.',
         },
+        {
+          resultLabel: 'Cost per 30 Servings',
+          explanation:
+            'The same price extended across a month of one serving a day, useful for budgeting against a takeout habit.',
+        },
       ],
       workflowLinks: [
         { slug: 'recipe-scaling-calculator', step: 'Scale the recipe to match your serving needs.' },
         { slug: 'discount-sales-tax-calculator', step: 'Compare meal costs against restaurant promos.' },
+        { slug: 'tip-calculator', step: 'Add service and tip when the meal is eaten out.' },
       ],
       faqs: [
-        { q: 'How do I calculate the cost of a home-cooked meal?', a: 'Add the cost of all ingredients used, then divide by the number of servings. The calculator handles the division instantly.' },
-        { q: 'What should I include in the cost?', a: 'All ingredients actually used, plus reasonable portions of pantry staples like oil and spices if you want full precision.' },
-        { q: 'Is home cooking always cheaper?', a: 'Usually per serving, yes, especially in bulk. This tool lets you put a number on the savings.' },
+        { q: 'How do I calculate the cost of a home-cooked meal?', a: 'Add the cost of everything used in the recipe, then divide by the number of servings. The awkward part is partial packs: if you use a third of a jar, count a third of its price rather than the whole jar.' },
+        { q: 'What should I include in the cost?', a: 'All ingredients actually used, plus a fair share of oil, spices and stock if you want a full figure. Energy costs are usually ignored — a home oven run for an hour may add less than a dollar depending on local rates.' },
+        { q: 'Is home cooking always cheaper?', a: 'Per serving, almost always, and the gap widens with portion size. The exceptions are dishes built on expensive ingredients — a steak dinner at home can approach a cheap restaurant price once everything is counted.' },
+        { q: 'Why divide by servings and not by weight?', a: 'Because people serve themselves by portion, not by gram. A recipe that produces four bowls costs a quarter of the total per bowl regardless of what each weighs. If your portions are very uneven, weight-based cost per 100 g is the fairer measure.' },
+        { q: 'Does this include labour?', a: 'No. It is an ingredient cost, which is what makes it comparable with a menu price. If you value your time at an hourly rate, adding it usually erases the saving against takeout, and that is a lifestyle choice rather than a calculation error.' },
       ],
       related: ['recipe-scaling-calculator', 'markup-margin-calculator'],
     },
@@ -148,48 +174,58 @@ export const FITNESS_CALCULATORS: CalculatorMeta[] = [
       ],
       results: [
         { label: 'Pace', formulaCode: '(timeMin + timeSec / 60) / distanceKm', suffix: 'min/km', accent: true },
+        { label: 'Pace per Mile', formulaCode: '((timeMin + timeSec / 60) / distanceKm) * 1.609344', suffix: 'min/mi' },
         { label: 'Average Speed', formulaCode: 'distanceKm / ((timeMin + timeSec / 60) / 60)', suffix: 'km/h' },
       ],
       formulaDescription: 'Pace = Total Minutes / Distance; Speed = Distance / Hours',
       tips: [
         'To convert min/km to min/mile, multiply by 1.609344.',
         'Split every 5 km by taking one-fifth of your total time.',
+        'Pace is shown in decimal minutes — 5.5 means 5 minutes 30 seconds.',
       ],
     },
     content: {
       intro:
-        'The Running Pace Calculator converts a distance and finish time into pace per kilometer and average speed. Runners planning workouts and races use it to translate effort into numbers they can hold.',
+        'The Running Pace Calculator converts a distance and a finish time into pace per kilometre, the same pace per mile, and average speed. All three describe one run, but they answer different questions: pace is what you hold in a session, per-mile pace is what a race plan written in miles needs, and speed is the figure that compares across distances.',
       howItWorks:
-        'Total time in minutes divides by distance for pace, and distance divided by time in hours gives average speed. Both figures come from the same inputs, so you see the full picture.',
+        'Total time is converted to minutes — 55 minutes 30 seconds becomes 55.5 — and divided by the distance in kilometres to give minutes per kilometre. Multiplying that by 1.609344, the exact number of kilometres in a mile, gives minutes per mile, which is a larger number because a mile is longer than a kilometre. Average speed comes from distance divided by time in hours, and it is the reciprocal of pace scaled by sixty: 5.5 min/km is 60 / 5.5 = 10.9 km/h. The outputs are decimal minutes, so 5.5 means five minutes thirty seconds rather than five minutes fifty seconds.',
       example:
-        'Running 10 km in 55 minutes gives a pace of 5:30 per km and an average speed of 10.9 km/h.',
+        'Running 10 km in 55 minutes gives 5.5 min/km — five minutes thirty seconds — which is 8.85 min/mi, or eight minutes fifty-one seconds per mile, and an average speed of 10.9 km/h. Holding that pace for a half marathon of 21.0975 km projects to 116 minutes, just under two hours. At 6 min/km the same 10 km takes 60 minutes and the speed drops to 10 km/h.',
       formulas: [
         {
           label: 'Running Pace',
           expression: 'Pace = Total Minutes / Distance',
-          note: 'Speed = Distance / Time in hours.',
+          note: 'Speed = Distance / Time in hours; per-mile pace = pace × 1.609344.',
         },
       ],
       resultExplanations: [
         {
           resultLabel: 'Pace',
           explanation:
-            'Minutes per kilometer, the number you hold during a run or race.',
+            'Minutes per kilometre in decimal form, the number you hold during a run or race.',
+        },
+        {
+          resultLabel: 'Pace per Mile',
+          explanation:
+            'The same effort expressed in minutes per mile, for race plans and treadmills that use miles.',
         },
         {
           resultLabel: 'Average Speed',
           explanation:
-            'Distance divided by total time in hours, useful for comparing across distances.',
+            'Distance divided by total time in hours, useful for comparing runs of different lengths.',
         },
       ],
       workflowLinks: [
         { slug: 'calories-burned-calculator', step: 'Estimate the burn of a run at this pace.' },
         { slug: 'target-heart-rate-calculator', step: 'Match the pace to a training heart-rate zone.' },
+        { slug: 'steps-to-miles-calculator', step: 'Compare daily step counts against the distance covered.' },
       ],
       faqs: [
-        { q: 'How do I calculate my running pace?', a: 'Divide your total minutes by the distance. A 55-minute 10 km run is a 5:30 per kilometer pace.' },
-        { q: 'What is a good running pace?', a: 'It depends on experience and distance. Beginners may run 7-8 min/km, while competitive runners hold 4-5 min/km for races.' },
-        { q: 'How do I convert min/km to min/mile?', a: 'Multiply the minutes by 1.609. A 5:30 min/km pace is about 8:51 per mile.' },
+        { q: 'How do I calculate my running pace?', a: 'Divide your total minutes by the distance in kilometres. A 55-minute 10 km run is 5.5 min/km, which reads as 5:30. If your time has seconds, convert them first — 55:30 is 55.5 minutes, not 55.3.' },
+        { q: 'What is a good running pace?', a: 'It depends on experience and distance. Beginners often run 7-8 min/km, recreational runners settle around 5-6 min/km, and competitive club runners hold 3.5-4.5 min/km for races. Pace also slows as distance grows, so a 5K pace is not a marathon pace.' },
+        { q: 'How do I convert min/km to min/mile?', a: 'Multiply by 1.609344. A 5:30 min/km pace becomes 8.85 min/mi, which is 8:51 per mile. Going the other way, divide by the same factor — the mile figure is always the larger number because a mile is longer.' },
+        { q: 'Why is pace shown as a decimal?', a: 'Because it is arithmetic on minutes. 5.5 min/km converts directly to speed and to per-mile pace; presenting 5:30 would need conversion back before any calculation. Read the decimal part as a fraction of a minute: 0.5 is 30 seconds, 0.25 is 15 seconds.' },
+        { q: 'Does this account for elevation or wind?', a: 'No. It assumes a flat, still course at an even effort. Hills and headwinds slow pace noticeably, and a hilly course can cost 20-30 seconds per kilometre even at the same effort, so compare like with like.' },
       ],
       related: ['calories-burned-calculator', 'target-heart-rate-calculator', 'one-rep-max-calculator'],
     },
@@ -197,7 +233,7 @@ export const FITNESS_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -216,23 +252,26 @@ export const FITNESS_CALCULATORS: CalculatorMeta[] = [
         { id: 'reps', label: 'Repetitions', type: 'number', defaultValue: 8, min: 1, max: 12 },
       ],
       results: [
-        { label: 'Estimated 1 Rep Max', formulaCode: 'weightLbs * (1 + reps / 30)', suffix: 'lbs', accent: true },
-        { label: 'Estimated Max (kg)', formulaCode: 'weightLbs * (1 + reps / 30) * 0.453592', suffix: 'kg' },
-        { label: '80% Training Weight', formulaCode: 'weightLbs * (1 + reps / 30) * 0.8', suffix: 'lbs' },
+        { label: 'Estimated 1 Rep Max', formulaCode: 'reps === 1 ? weightLbs : weightLbs * (1 + reps / 30)', suffix: 'lbs', accent: true },
+        { label: 'Estimated Max (kg)', formulaCode: '(reps === 1 ? weightLbs : weightLbs * (1 + reps / 30)) * 0.453592', suffix: 'kg' },
+        { label: '90% Training Weight', formulaCode: '(reps === 1 ? weightLbs : weightLbs * (1 + reps / 30)) * 0.9', suffix: 'lbs' },
+        { label: '80% Training Weight', formulaCode: '(reps === 1 ? weightLbs : weightLbs * (1 + reps / 30)) * 0.8', suffix: 'lbs' },
+        { label: '70% Training Weight', formulaCode: '(reps === 1 ? weightLbs : weightLbs * (1 + reps / 30)) * 0.7', suffix: 'lbs' },
       ],
       formulaDescription: 'Epley: 1RM = Weight x (1 + Reps / 30)',
       tips: [
         'The Epley formula is most accurate for sets of 1-10 reps.',
         'Train with 70-85% of your 1RM for strength building.',
+        'Enter a set taken close to failure — a comfortable set underestimates your max.'
       ],
     },
     content: {
       intro:
-        'The One Rep Max Calculator estimates your maximum single-repetition lift from a heavier set of several reps. Strength athletes use it to set training loads without attempting a risky true max.',
+        'The One Rep Max Calculator estimates the heaviest weight you could lift once, from a set you have already completed at a lighter load. It also converts that estimate to kilograms and reports 90%, 80% and 70% training weights, which is what most programming actually needs — the max itself is rarely lifted.',
       howItWorks:
-        'The Epley formula estimates 1RM as weight x (1 + reps / 30). The tool also converts to kilograms and reports a common 80% training weight for programming.',
+        'The Epley formula multiplies the weight lifted by one plus the reps divided by thirty. Each extra rep adds about 3.3% to the estimate, reflecting that a set taken to near-failure implies more strength than the weight alone suggests. A single rep is returned unchanged, because no extrapolation is needed when the set already is a max. The percentage weights are the estimated max multiplied by 0.9, 0.8 and 0.7, giving the loads for heavy triples, strength sets and higher-volume work respectively. The estimate is only as good as the set you feed it: a set stopped well short of failure will understate the max.',
       example:
-        'Lifting 135 lb for 8 reps estimates a 1RM of 135 x (1 + 8/30) = 171 lb.',
+        'Lifting 135 lb for 8 reps gives 135 × (1 + 8/30) = 171 lb, which is 77.6 kg. The same estimate gives a 90% weight of 154 lb, 80% of 137 lb and 70% of 120 lb. Taking that same 135 lb for only 3 reps instead yields 148.5 lb, so the rep count moves the estimate a long way — which is why recording sets honestly matters more than the formula.',
       formulas: [
         {
           label: 'Estimated One Rep Max',
@@ -247,19 +286,37 @@ export const FITNESS_CALCULATORS: CalculatorMeta[] = [
             'Your projected single-rep maximum derived from the set you completed, used to set training loads.',
         },
         {
+          resultLabel: 'Estimated Max (kg)',
+          explanation:
+            'The same estimate converted to kilograms, for gyms and programmes that load in metric.',
+        },
+        {
+          resultLabel: '90% Training Weight',
+          explanation:
+            'A heavy working weight for sets of roughly 3-5 reps, the range most strength blocks live in.',
+        },
+        {
           resultLabel: '80% Training Weight',
           explanation:
             'A common working weight for strength sets, calculated as 80% of the estimated max.',
+        },
+        {
+          resultLabel: '70% Training Weight',
+          explanation:
+            'A volume weight for sets of roughly 10-12 reps, useful for hypertrophy and technique work.',
         },
       ],
       workflowLinks: [
         { slug: 'protein-intake-calculator', step: 'Fuel strength training with the right protein target.' },
         { slug: 'calories-burned-calculator', step: 'Estimate the energy cost of your sessions.' },
+        { slug: 'bmi-calculator', step: 'Track bodyweight alongside strength progress.' },
       ],
       faqs: [
-        { q: 'What is the Epley formula?', a: 'It estimates one-rep max as weight multiplied by (1 + reps/30). It is one of the most accurate simple predictors for moderate rep ranges.' },
-        { q: 'Should I test my true 1RM?', a: 'Testing a true max carries injury risk. Estimates like this let you program without it, reserving true tests for competitions.' },
-        { q: 'What percentages should I train at?', a: 'Strength work commonly uses 70-85% of 1RM, hypertrophy around 65-80%, and power work with low reps at higher percentages.' },
+        { q: 'What is the Epley formula?', a: 'It estimates one-rep max as weight multiplied by (1 + reps/30). It is one of the more reliable simple predictors in the 1-10 rep range, and it degrades above about 12 reps, which is why this calculator caps the rep input there.' },
+        { q: 'Should I test my true 1RM?', a: 'Rarely. A true max attempt carries real injury risk and costs recovery, and the estimate is within a few per cent for most lifters. Reserve genuine max attempts for competition or a planned testing week with spotters.' },
+        { q: 'What percentages should I train at?', a: 'Strength work commonly uses 70-85% of 1RM, hypertrophy around 65-80%, and power work with low reps at higher percentages. The percentage matters less than proximity to failure: 80% taken close to failure builds strength much like 90%.' },
+        { q: 'Why does the estimate change with reps?', a: 'Because muscular endurance varies between lifters. Two people who both lift 135 lb differ in how many reps they can manage, and the formula infers the max from that. It is an average relationship, so a lifter with unusual endurance or a very low rep count will sit either side of it.' },
+        { q: 'Is 1RM in pounds or kilograms?', a: 'The input is in pounds and both pound and kilogram estimates are shown, so you can read whichever your gym uses. The conversion is 0.453592 kg per pound, the exact definition rather than a rounded 2.2.' },
       ],
       related: ['protein-intake-calculator', 'calories-burned-calculator', 'running-pace-calculator'],
     },
@@ -267,7 +324,7 @@ export const FITNESS_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
-      updatedAt: '2026-08-22',
+      updatedAt: '2026-11-05',
     },
   },
 ];
@@ -288,11 +345,11 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
     componentId: 'TipCalculator',
     content: {
       intro:
-        'The Tip & Bill Splitter computes the tip on any check, adds it to the total, and divides the result evenly across diners. It even rounds up to the next dollar for a cleaner split.',
+        'The Tip & Bill Splitter adds a tip to a restaurant bill and divides the result evenly between diners, showing the per-person share of both the food and the tip. It exists because the awkward part of a shared meal is not the tip rate but the division, and doing it once in a calculator avoids the round-robin arithmetic at the table.',
       howItWorks:
-        'The tip equals the bill times the chosen rate, the grand total is the bill plus tip, and each diner pays that total divided by the group size. The per-person breakdown shows bill share and tip share separately.',
+        'The tip is the bill multiplied by the chosen percentage, and the grand total is bill plus tip. Dividing that total by the number of diners gives the per-person amount, and dividing the tip alone by the same number shows how much of each share is gratuity. Round-up mode raises the total to the next whole unit and recalculates the implied tip percentage, so the tip rate shown is the effective one after rounding rather than the rate you typed. Tipping is applied to the subtotal, before any sales tax, because a percentage of the tax is a tip on money the restaurant never receives.',
       example:
-        'A R84.50 check at 18% with two diners totals R99.71, or R49.86 per person including a R7.61 tip share each.',
+        'A $84.50 check at 18% has a $15.21 tip and a $99.71 total. Split between two diners that is $49.86 each, of which $7.61 is tip. Round up to $100 and the effective rate becomes 18.3% — a small nudge that produces a clean number for everyone. Change the party to four and each share drops to $24.93 with the same total tip.',
       formulas: [
         {
           label: 'Tip Amount',
@@ -318,11 +375,14 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       workflowLinks: [
         { slug: 'percentage-calculator', step: 'Double-check the tip as a percentage of the bill.' },
         { slug: 'discount-sales-tax-calculator', step: 'Add sales tax to the check before tipping.' },
+        { slug: 'meal-cost-calculator', step: 'Work out the cost per serving when cooking at home.' },
       ],
       faqs: [
-        { q: 'How much should I tip?', a: 'In the US, 15-20% is standard for restaurant service, with 18% the common default and 20% for exceptional service.' },
-        { q: 'How do I split a bill unevenly?', a: 'This tool splits evenly. For uneven shares, each person can compute their own portion by entering only their items with their tip rate.' },
-        { q: 'Does it handle rounding?', a: 'Yes. Enable round-up to raise the grand total to the next whole dollar and recalculate the tip to match.' },
+        { q: 'How much should I tip?', a: 'In the US, 15-20% is standard for table service, with 18% the common default and 20% for very good service. In much of Europe service is included by law or custom, and 5-10% is a compliment rather than an expectation. The calculator does not assume a norm — the rate is yours to set.' },
+        { q: 'Should I tip on the pre-tax or post-tax amount?', a: 'Pre-tax is the fairer base, because sales tax is a payment to the government, not the restaurant. On a bill with 8% tax the difference is small, but on a large group check it is real money, and most tipping guidance uses the subtotal.' },
+        { q: 'How do I split a bill unevenly?', a: 'This tool splits evenly. For uneven shares, work out each person\u2019s food total, apply the same tip rate to each, and add the results — or use the per-person figure here as a benchmark and adjust for who ordered what.' },
+        { q: 'Does it handle rounding?', a: 'Yes. Round-up raises the grand total to the next whole unit and recalculates the tip to match, so the effective percentage is shown rather than the nominal one. That is why a round-up from $99.71 to $100 reads 18.3% against an 18% setting.' },
+        { q: 'Is the tip share calculated per person?', a: 'Yes, and it is the tip alone divided by the party size, not the per-person total. Seeing the two separately makes it clear how much of each share is gratitude and how much is the meal.' },
       ],
       related: ['discount-sales-tax-calculator', 'meal-cost-calculator', 'percentage-calculator'],
     },
@@ -330,7 +390,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.9,
-      updatedAt: '2026-08-22',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -436,24 +496,26 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       results: [
         { label: 'Energy Used', formulaCode: 'watts / 1000 * hoursPerDay * daysPerMonth', suffix: 'kWh' },
         { label: 'Monthly Cost', formulaCode: 'watts / 1000 * hoursPerDay * daysPerMonth * ratePerKwh', prefix: '$', accent: true },
+        { label: 'Yearly Cost', formulaCode: 'watts / 1000 * hoursPerDay * daysPerMonth * ratePerKwh * 12', prefix: '$' },
       ],
       formulaDescription: 'Cost = (Watts / 1000) x Hours x Days x Rate',
       tips: [
         'Find wattage on the appliance label or in its manual.',
         'Standby power, from TVs and chargers, adds up across the home.',
+        'Heating and cooling appliances usually dominate the bill — check those first.'
       ],
     },
     content: {
       intro:
-        'The Electricity Cost Calculator estimates the monthly cost of any appliance from its wattage and usage pattern. It turns an opaque electric bill into per-device numbers you can act on.',
+        'The Electricity Cost Calculator turns an appliance\\u2019s wattage and usage pattern into kilowatt-hours and money per month and per year. A single electricity bill tells you the total; this tells you which device is responsible for it, which is the only version of the number you can act on.',
       howItWorks:
-        'Wattage converts to kilowatt-hours by dividing by 1,000, then multiplying by daily hours, days per month, and your electricity rate. The result is that appliance contribution to the bill.',
+        'Watts divided by 1,000 gives kilowatts, multiplied by hours per day and days per month gives monthly kilowatt-hours, and multiplying by your rate per kWh gives the cost. Extending that across twelve months gives the annual figure, which is usually the more revealing number: a device costing $11 a month reads as a rounding error, while $138 a year does not. The calculation assumes the appliance draws its rated wattage continuously while on, which overstates devices that cycle — a fridge compressor, for instance, runs perhaps a third of the time, so its rated draw should be scaled down.',
       example:
-        'A 1,200 W space heater running 2 hours daily for 30 days at R0.16/kWh uses 72 kWh and costs about R11.52 per month.',
+        'A 1,200 W space heater running 2 hours a day for 30 days at $0.16/kWh uses 1.2 × 2 × 30 = 72 kWh and costs $11.52 a month, or $138.24 a year. A 60 W fan used 8 hours a day comes to 14.4 kWh and $2.30 a month, while a 2,000 W clothes dryer run 3 hours a week is roughly 26 kWh and $4.16 a month. The heater, at six times the wattage for half the hours, still costs five times as much.',
       formulas: [
         {
           label: 'Energy Used',
-          expression: 'kWh = Watts / 1000 × Hours × Days',
+          expression: 'kWh = Watts / 1,000 × Hours × Days',
         },
         {
           label: 'Monthly Cost',
@@ -471,15 +533,23 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
           explanation:
             'That energy converted to money using your electricity rate.',
         },
+        {
+          resultLabel: 'Yearly Cost',
+          explanation:
+            'The same usage projected across twelve months, which makes small monthly savings visible.',
+        },
       ],
       workflowLinks: [
         { slug: 'fuel-cost-calculator', step: 'Compare energy costs across transport and home use.' },
         { slug: 'hourly-to-annual-salary-calculator', step: 'Weigh appliance costs against your income.' },
+        { slug: 'emergency-fund-calculator', step: 'Budget for the bill that arrives every month.' },
       ],
       faqs: [
-        { q: 'How do I find an appliance wattage?', a: 'Check the label plate on the back or bottom of the device, or look for a "W" rating. Many manuals list typical wattage too.' },
-        { q: 'What is a kilowatt-hour?', a: 'A kilowatt-hour is 1,000 watts used for one hour. Your utility bills you per kWh consumed.' },
-        { q: 'How do I find my electricity rate?', a: 'It appears on your electric bill as cents or dollars per kWh, often divided into supply and delivery charges that you can sum.' },
+        { q: 'How do I find an appliance wattage?', a: 'Check the label plate on the back or bottom of the device, or look for a "W" rating. Many manuals list typical wattage too. If only amps and volts are given, multiply them — a 10 A appliance on 120 V draws about 1,200 W.' },
+        { q: 'What is a kilowatt-hour?', a: 'A kilowatt-hour is 1,000 watts used for one hour, which is the unit utilities bill in. A 1,000 W appliance run for an hour uses one; a 100 W appliance run for ten hours uses the same amount.' },
+        { q: 'How do I find my electricity rate?', a: 'It appears on your electric bill as cents or dollars per kWh, often split into supply and delivery charges that you sum. Rates vary widely by region, so use your own figure rather than a national average.' },
+        { q: 'Why does the estimate not match my bill?', a: 'Because rated wattage is a maximum, not a constant. Appliances that cycle — fridges, ovens, heaters with thermostats — draw less on average than their label suggests. Devices on standby also use power without appearing to be on at all.' },
+        { q: 'What uses the most electricity at home?', a: 'Usually heating and cooling, then water heating, then refrigeration. Electronics are individually small but numerous, and standby draw across a house can add up to a meaningful slice of the bill over a year.' },
       ],
       related: ['fuel-cost-calculator', 'emergency-fund-calculator', 'hourly-to-annual-salary-calculator'],
     },
@@ -487,7 +557,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-08-22',
+      updatedAt: '2026-11-05',
     },
   },
   {

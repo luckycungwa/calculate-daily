@@ -22,7 +22,7 @@ export const SavingsGoalPage: React.FC<SavingsGoalPageProps> = ({ onSaveHistory 
           Daily Savings Goal Challenge
         </h1>
         <p className="text-sm text-zinc-500 dark:text-zinc-400 max-w-2xl leading-relaxed">
-          Saving R10,000 feels impossible when you think about it as one lump sum. But saving R27.40 a day?
+          Saving $10,000 feels impossible when you think about it as one lump sum. But saving $27.40 a day?
           That's a coffee and a snack. This calculator breaks any financial target into a daily, weekly, and
           monthly pace so you can actually see yourself getting there.
         </p>
@@ -51,8 +51,8 @@ export const SavingsGoalPage: React.FC<SavingsGoalPageProps> = ({ onSaveHistory 
           <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">Why People Fail at Saving</h2>
           <p>
             Most savings plans fail because they set an ambitious monthly target without breaking it down.
-            When you see R5,000 due at the end of the month, it feels overwhelming from day one. By contrast,
-            R166.67 a day is just a small transfer you can automate.
+            When you see $5,000 due at the end of the month, it feels overwhelming from day one. By contrast,
+            $166.67 a day is just a small transfer you can automate.
           </p>
           <p>
             The daily approach also gives you faster feedback. Instead of checking your progress once a month,
@@ -65,7 +65,7 @@ export const SavingsGoalPage: React.FC<SavingsGoalPageProps> = ({ onSaveHistory 
           <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-50">Tips to Stay on Track</h2>
           <ul className="list-disc list-inside space-y-1.5 pl-1">
             <li><strong>Automate it.</strong> Set up a daily transfer to a separate savings account so you never have to decide.</li>
-            <li><strong>Round up.</strong> If your target is R166.67, save R170. The extra R3.33 adds up to over R100 a year.</li>
+            <li><strong>Round up.</strong> If your target is $166.67, save $170. The extra $3.33 adds up to over $100 a year.</li>
             <li><strong>Track visually.</strong> Use a savings tracker app or even a wall chart. Seeing progress matters.</li>
             <li><strong>Start with one week.</strong> Commit to just seven days first. Once the habit forms, the rest follows.</li>
             <li><strong>Celebrate milestones.</strong> Hit 25% of your goal? Treat yourself to something small. Positive reinforcement works.</li>
@@ -91,8 +91,8 @@ export const SavingsGoalPage: React.FC<SavingsGoalPageProps> = ({ onSaveHistory 
           <div className="space-y-4">
             <div>
               <p className="font-medium text-zinc-800 dark:text-zinc-200">How much should I save per day?</p>
-              <p>It depends on your goal and timeline. A R10,000 goal in 6 months means about R55 per day.
-                In 12 months, it drops to roughly R27 per day. Use the calculator above to find your exact number.</p>
+              <p>It depends on your goal and timeline. A $10,000 goal in 6 months means about $55 per day.
+                In 12 months, it drops to roughly $27 per day. Use the calculator above to find your exact number.</p>
             </div>
             <div>
               <p className="font-medium text-zinc-800 dark:text-zinc-200">Should I save daily or monthly?</p>

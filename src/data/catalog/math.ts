@@ -85,7 +85,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Each markdown is applied sequentially to the running price, never to the original. The calculator first subtracts the primary discount, then applies the extra coupon to the discounted subtotal, then adds sales tax to reach the final checkout figure.',
       example:
-        'A R120 jacket at 25% off with an extra 10% promo code and 8% sales tax drops to roughly R87.48. The tool reports the R32.52 saved and the tax added in one screen.',
+        'A $120 jacket at 25% off with an extra 10% promo code and 8% sales tax drops to roughly $87.48. The tool reports the $32.52 saved and the tax added in one screen.',
       formulas: [
         {
           label: 'Price After Discount',
@@ -124,7 +124,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.75,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -307,7 +307,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Markup is added on top of cost: selling price = cost x (1 + markup / 100). Margin measures profit against the selling price instead: margin = profit / selling price x 100. Because the two use different bases, a 50% markup equals only a 33.3% margin.',
       example:
-        'A product costs R40. At a 50% markup the selling price is R60, profit is R20, and the margin is 20 / 60 = 33.3%.',
+        'A product costs $40. At a 50% markup the selling price is $60, profit is $20, and the margin is 20 / 60 = 33.3%.',
       formulas: [
         {
           label: 'Selling Price',
@@ -346,7 +346,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.75,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -430,20 +430,22 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       results: [
         { label: 'Score Percentage', formulaCode: '(correct / total) * 100', suffix: '%', accent: true },
         { label: 'Questions Wrong', formulaCode: 'total - correct' },
+        { label: 'Percentage Missed', formulaCode: '((total - correct) / total) * 100', suffix: '%' },
       ],
       formulaDescription: 'Score = (Correct / Total) x 100',
       tips: [
         'A score of 38/40 equals 95%, a solid A on most grading scales.',
         'Enter wrong answers directly to see both figures at once.',
+        'Scores above 100% mean the correct count exceeds the total — check the question count.'
       ],
     },
     content: {
       intro:
-        'The Test Score Percentage Calculator converts correct answers into a percentage in a split second. Students, teachers, and quiz hosts use it to convert raw scores into grades without mental math.',
+        'The Test Score Percentage Calculator turns a count of correct answers into a percentage of the total, and reports the questions missed alongside it. It is the conversion that turns a marked paper into a grade, and the missed-questions count is what makes the result useful for deciding what to review rather than just what you scored.',
       howItWorks:
-        'The tool divides the number of correct answers by the total number of questions and multiplies by 100. It also reports how many questions were missed for quick review planning.',
+        'Correct answers are divided by the total questions and multiplied by 100, so a score is always relative to how long the test was — 38 out of 40 and 38 out of 50 are the same numerator but very different results. The missed count is the total minus correct, and the percentage missed is the complement, which is often the more actionable number: 5% missed on a forty-question test means two questions, and those two have a topic.',
       example:
-        'Answer 38 of 40 correctly and the calculator returns 95% with 2 questions wrong. A 40/40 gives a perfect 100%.',
+        'Answer 38 of 40 correctly and the score is 95%, with 2 questions wrong and 5% of the paper missed. Getting 30 of 40 gives 75%, and 36 of 50 gives 72% — a lower percentage than 38/40 despite more correct answers, because the denominator matters. A perfect 40/40 is 100% with nothing missed.',
       formulas: [
         {
           label: 'Score Percentage',
@@ -465,15 +467,23 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
           explanation:
             'The count of missed questions, shown alongside your score for quick review planning.',
         },
+        {
+          resultLabel: 'Percentage Missed',
+          explanation:
+            'The complement of the score — the share of the paper lost, which shows how much headroom there is.',
+        },
       ],
       workflowLinks: [
         { slug: 'gpa-calculator', step: 'Turn your test scores into a semester GPA.' },
         { slug: 'percentage-calculator', step: 'Explore what your score means as a share of the total.' },
+        { slug: 'final-grade-calculator', step: 'Work out what the exam needs to lift your course grade.' },
       ],
       faqs: [
-        { q: 'How do I calculate my test percentage?', a: 'Divide the number of correct answers by the total number of questions, then multiply by 100.' },
-        { q: 'What is a passing percentage?', a: 'It depends on your institution, but 60% is a common minimum and 70% is typical for many programs.' },
-        { q: 'Can I plan for a target grade?', a: 'Enter your goal score as the correct count over the total to verify how many questions you need to get right.' },
+        { q: 'How do I calculate my test percentage?', a: 'Divide the number of correct answers by the total number of questions, then multiply by 100. Thirty-eight out of forty is 38 / 40 = 0.95, so 95%. The order matters: dividing total by correct gives a meaningless number.' },
+        { q: 'What is a passing percentage?', a: 'It depends on the institution. In many systems 60% is a minimum pass, 70% is a typical requirement for postgraduate entry, and 90% plus is a distinction. Some exams use a raw pass mark rather than a percentage, so check the rubric rather than assuming.' },
+        { q: 'Can I plan for a target grade?', a: 'Yes, in reverse. Decide the percentage you need, multiply by the total questions to get the number you must answer correctly, and round up. For 80% of 45 questions you need 36 correct.' },
+        { q: 'Why does the score not match the number correct?', a: 'Because the percentage depends on the total. Fifteen out of twenty is 75%, while fifteen out of thirty is 50%. Comparisons across tests of different lengths only work in percentages, which is the point of the conversion.' },
+        { q: 'Does a wrong answer cancel a right one?', a: 'Not on most modern tests, and this calculator does not assume negative marking. Some competitive exams do deduct for errors, in which case the raw score is correct minus a fraction of wrong, and the percentage should be recalculated from that adjusted figure.' },
       ],
       related: ['percentage-calculator', 'gpa-calculator', 'fraction-to-percent-calculator'],
     },
@@ -481,7 +491,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -811,29 +821,32 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
     kind: 'custom',
     componentId: 'StandardDeviationCalculator',
     content: {
-      intro: 'The Standard Deviation Calculator computes a full set of descriptive statistics from any list of numbers: mean, median, sample and population standard deviation, variance, min, max, and range.',
-      howItWorks: 'Enter numbers separated by commas, spaces, or newlines. The calculator parses them, computes the mean, then calculates deviation from the mean for each value. Sample deviation uses n-1 (Bessel correction); population uses n.',
-      example: 'For 4, 8, 6, 5, 3: mean = 5.2, sample std dev = 1.92, population std dev = 1.72.',
+      intro: 'The Standard Deviation Calculator produces a full set of descriptive statistics from one list of numbers: count, sum, mean, median, sample and population variance, sample and population standard deviation, minimum, maximum and range. It also plots the data against a mean ± one standard deviation band, which shows at a glance whether the spread is tight or ragged.',
+      howItWorks: 'The mean is the sum divided by the count. Each value\u2019s distance from the mean is squared, and the average of those squares is the variance. Sample variance divides by n − 1, the Bessel correction, because a sample understates the spread of the wider population it came from; population variance divides by n and is exact for a complete dataset. Standard deviation is the square root of variance, which returns the figure to the original units — that is why it is the number usually quoted, while variance stays in squared units. Range is simply the largest value minus the smallest and says nothing about what happens in between.',
+      example: 'For 4, 8, 6, 5, 3 the sum is 26 across 5 values, so the mean is 5.2 and the median 5. The squared deviations total 14.8: dividing by 4 gives a sample variance of 3.7 and a standard deviation of 1.92, while dividing by 5 gives a population variance of 2.96 and a standard deviation of 1.72. The range is 3 to 8. The two answers differ by about 12% on only five values — that gap shrinks as the sample grows.',
       formulas: [
         { label: 'Mean', expression: 'Mean = Sum / Count' },
-        { label: 'Sample Std Dev', expression: 's = sqrt(Sum((x - mean)^2) / (n-1))' },
+        { label: 'Sample Std Dev', expression: 's = sqrt(Sum((x − mean)²) / (n − 1))' },
       ],
       resultExplanations: [
-        { resultLabel: 'Sample Std Dev', explanation: 'Standard deviation using n-1, appropriate for a sample of a larger population.' },
+        { resultLabel: 'Sample Std Dev', explanation: 'Standard deviation using n−1, appropriate for a sample of a larger population.' },
         { resultLabel: 'Population Std Dev', explanation: 'Standard deviation using n, appropriate when the data is the entire population.' },
       ],
       workflowLinks: [
         { slug: 'mean-median-mode-calculator', step: 'Find central tendency measures.' },
         { slug: 'percentage-calculator', step: 'Convert statistics to percentages.' },
+        { slug: 'confidence-interval-calculator', step: 'Turn the spread into a confidence interval.' },
       ],
       faqs: [
-        { q: 'What is the difference between sample and population?', a: 'Sample standard deviation uses n-1 (Bessel correction) to estimate the true population parameter. Use it when your data is a subset. Population uses n and is exact for the full dataset.' },
-        { q: 'What does standard deviation tell me?', a: 'It measures how spread out numbers are from the mean. A low std dev means values cluster near the mean; a high std dev means they are widely spread.' },
-        { q: 'What input formats work?', a: 'Numbers separated by commas, spaces, or newlines. Mix formats in the same input: "1, 2 3\n4" works fine.' },
+        { q: 'What is the difference between sample and population?', a: 'Sample standard deviation divides by n − 1, which corrects for the fact that a sample\u2019s spread tends to underestimate the population it came from. Population divides by n and is exact when your numbers are the whole group. If in doubt and the data is a subset of something larger, use the sample figure.' },
+        { q: 'What does standard deviation tell me?', a: 'How far values typically sit from the mean, in the same units as the data. A standard deviation of 1.92 on a mean of 5.2 means most values fall roughly between 3.3 and 7.1 — which is exactly the band the dot plot shades.' },
+        { q: 'What input formats work?', a: 'Numbers separated by commas, spaces or new lines, including mixed formats — "1, 2 3\n4" parses correctly. Negative numbers and decimals are accepted, and anything that is not a number is ignored rather than breaking the dataset.' },
+        { q: 'When should I use variance instead?', a: 'Variance is the quantity that adds up: the variance of a sum of independent variables is the sum of their variances, which is why it appears throughout statistics. For describing spread to a person, standard deviation is easier because it shares the data\u2019s units.' },
+        { q: 'Why is the range less useful than standard deviation?', a: 'Because it depends on only two values. One outlier can make the range enormous while the rest of the data is tightly clustered, whereas standard deviation accounts for every value. Report both when the extremes matter.' },
       ],
       related: ['mean-median-mode-calculator', 'percentage-calculator', 'gpa-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-11-05' },
   },
   {
     id: 'mean-median-mode',
@@ -848,9 +861,9 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
     kind: 'custom',
     componentId: 'MeanMedianModeCalculator',
     content: {
-      intro: 'The Mean, Median & Mode Calculator finds all three measures of central tendency from a list of numbers, plus sum, count, and range.',
-      howItWorks: 'Mean is the sum divided by count. Median is the middle value when sorted (or average of the two middle values for even counts). Mode is the most frequent value; bimodal and multimodal datasets are detected.',
-      example: 'For 3, 7, 7, 2, 9: mean = 5.6, median = 7, mode = 7, range = 7.',
+      intro: 'The Mean, Median & Mode Calculator reports all three measures of central tendency from one list of numbers, along with the count, sum and range. The three often disagree, and seeing them side by side is the quickest way to tell whether an average is describing the data or hiding something in it.',
+      howItWorks: 'The mean is the sum divided by the count. The median is the middle value once the list is sorted, or the average of the two middle values when the count is even. The mode is whichever value appears most often, and the calculator reports all of them when several tie — it shows no mode at all when every value appears exactly once. Range is the largest value minus the smallest, and sum and count are shown so you can check the arithmetic by hand.',
+      example: 'For the default list 4, 7, 9, 10, 15, 15, 15, 20, 22: the sum is 117 across 9 values, so the mean is 13. Sorted, the middle value is 15, which is also the mode because it appears three times, and the range is 22 − 4 = 18. Add one more value, say 30, and the mean rises to 14.7 while the median stays 15 — a single outlier moving one number and not the other.',
       formulas: [
         { label: 'Mean', expression: 'Mean = Sum / Count' },
         { label: 'Median', expression: 'Middle value of sorted dataset' },
@@ -865,13 +878,15 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
         { slug: 'gpa-calculator', step: 'Apply averages to grade calculations.' },
       ],
       faqs: [
-        { q: 'What if there are multiple modes?', a: 'The calculator shows all values that share the highest frequency. A dataset with two modes is bimodal; three or more is multimodal.' },
-        { q: 'Which measure should I use?', a: 'Mean is best for symmetric data without outliers. Median is better for skewed data. Mode is useful for categorical or discrete data.' },
-        { q: 'Can I enter negative numbers?', a: 'Yes. Negative numbers, decimals, and mixed formats all work.' },
+        { q: 'What if there are multiple modes?', a: 'The calculator shows every value that shares the highest frequency. Two modes means the data is bimodal, three or more is multimodal, and a list where nothing repeats has no mode at all.' },
+        { q: 'Which measure should I use?', a: 'Use the mean for roughly symmetric data with no extreme values, the median when the data is skewed or has outliers, and the mode for categories or repeated discrete values such as shoe sizes.' },
+        { q: 'Can I enter negative numbers?', a: 'Yes. Negative numbers, decimals and mixed formats all work, and separators can be commas, spaces or new lines. The calculator parses whatever it recognises and ignores the rest.' },
+        { q: 'How is the median found with an even count?', a: 'Take the two middle values of the sorted list and average them. For 2, 4, 6, 10 the middle pair is 4 and 6, so the median is 5 — a value that may not appear in the data at all.' },
+        { q: 'When does the mean mislead?', a: 'Whenever a few values sit far from the rest. Income is the classic case: a handful of very large salaries pull the mean well above the median, which is why median income is the figure reported for typical households.' },
       ],
       related: ['standard-deviation-calculator', 'percentage-calculator', 'gpa-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-05' },
   },
   {
     id: 'final-grade',
@@ -886,27 +901,32 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
     kind: 'custom',
     componentId: 'FinalGradeCalculator',
     content: {
-      intro: 'The Final Grade Calculator tells you exactly what score you need on your final exam to reach your target grade. Enter your current grade, desired grade, and the exam weight.',
-      howItWorks: 'The formula is: Required = (Target - Current x (1 - Weight/100)) / (Weight/100). If the result exceeds 100, the target is mathematically impossible with that exam weight.',
-      example: 'Current grade: 75%, target: 80%, final weight: 25%. Required score = (80 - 75 x 0.75) / 0.25 = (80 - 56.25) / 0.25 = 95%.',
+      intro: 'The Final Grade Calculator works backwards from a target grade to the score the final exam must produce, given your current grade and how much the exam is worth. It also reports the gap between the required score and your current performance, and the highest grade still reachable with a perfect final — which is the fastest way to find out whether a target is realistic before the exam is sat.',
+      howItWorks: 'The current grade is weighted by the fraction of the course already completed, one minus the final weight. Subtracting that from the target leaves the points the final must supply, and dividing by the final weight converts those points into the exam score required. The gap is the required score minus your current grade, so a gap of +20 means you must outperform your current average by twenty percentage points. The highest possible grade assumes the final is aced: current grade weighted as before, plus 100 × the final weight.',
+      example: 'With a 75% current grade, an 80% target and a final worth 25%: the completed work contributes 75 × 0.75 = 56.25 points, the final must supply 80 − 56.25 = 23.75 points, and 23.75 / 0.25 = 95%. That is a +20 point gap, and with a perfect final the course grade would be 81.25%. Raise the target to 85% and the required score becomes 115% — mathematically impossible, and the calculator flags it rather than returning a number you cannot achieve.',
       formulas: [
-        { label: 'Required Score', expression: 'Required = (Target - Current x (1 - Weight/100)) / (Weight/100)' },
+        { label: 'Required Score', expression: 'Required = (Target − Current × (1 − Weight/100)) / (Weight/100)' },
       ],
       resultExplanations: [
         { resultLabel: 'Required Exam Score', explanation: 'The minimum percentage you need on the final to hit your target.' },
+        { resultLabel: 'Grade Gap', explanation: 'How far the required score sits above or below your current grade.' },
+        { resultLabel: 'Highest Possible', explanation: 'The course grade you would finish with if the final were perfect.' },
       ],
       workflowLinks: [
         { slug: 'gpa-calculator', step: 'Compute your overall GPA across courses.' },
         { slug: 'test-score-percentage-calculator', step: 'Check your current test performance.' },
+        { slug: 'mean-median-mode-calculator', step: 'Check how the same scores average out across a set.' },
       ],
       faqs: [
-        { q: 'What if the result is over 100?', a: 'That means your target grade is mathematically impossible with the current exam weight. You would need extra credit or a higher exam weight.' },
-        { q: 'Does this work with weighted categories?', a: 'This uses a simple two-component model: everything before the final (weighted at 1 - final weight) and the final exam itself.' },
-        { q: 'Can I use this for GPA?', a: 'For single-course grade targets, yes. For overall GPA across multiple courses, use the GPA Calculator instead.' },
+        { q: 'What if the result is over 100?', a: 'The target is out of reach with that exam weight, and the calculator labels it impossible rather than showing an unattainable score. The Highest Possible figure shows the ceiling: if it reads 81.25%, no final performance gets you to 85% in that course.' },
+        { q: 'Does this work with weighted categories?', a: 'It uses a two-component model: everything already completed, as one figure at 1 - final weight, and the final exam itself. If your course has several remaining assignments with different weights, add them into the final weight and treat them as one block.' },
+        { q: 'Can I use this for GPA?', a: 'For a single course grade target, yes. GPA involves credit hours and grade points across courses, which this does not model — the GPA calculator handles that separately.' },
+        { q: 'Why does a small final weight change the answer so much?', a: 'Because the required score is divided by the final weight. At 25% weight each point of the final is worth a quarter of a point in the course, so large course gains need large exam scores. At 50% weight, the same target needs a far more modest exam result.' },
+        { q: 'What if I have already taken the final?', a: 'Enter the score as the target and set the weight to 100%, then the required score equals that target. For a completed course, the GPA calculator is the better tool.' },
       ],
       related: ['gpa-calculator', 'test-score-percentage-calculator', 'percentage-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-05' },
   },
   {
     id: 'gcd-lcm',
@@ -1133,7 +1153,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
     id: 'pythagorean',
     slug: 'pythagorean-theorem-calculator',
     name: 'Pythagorean Theorem Calculator',
-    shortDesc: 'Find any side of a right triangle given two sides.',
+    shortDesc: 'Find the hypotenuse, area, and perimeter of a right triangle.',
     tagline: 'The classic right triangle.',
     category: 'math',
     iconName: 'Triangle',
@@ -1141,38 +1161,45 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
     kind: 'config',
     config: {
       fields: [
-        { id: 'a', label: 'Side a', type: 'number', defaultValue: 3, min: 0 },
-        { id: 'b', label: 'Side b', type: 'number', defaultValue: 4, min: 0 }
+        { id: 'a', label: 'Leg a', type: 'number', defaultValue: 3, min: 0 },
+        { id: 'b', label: 'Leg b', type: 'number', defaultValue: 4, min: 0 }
       ],
       results: [
-        { label: 'Hypotenuse (c)', formulaCode: 'Math.sqrt(a*a + b*b)', accent: true }
+        { label: 'Hypotenuse (c)', formulaCode: 'Math.sqrt(a*a + b*b)', accent: true },
+        { label: 'Area', formulaCode: 'a * b / 2' },
+        { label: 'Perimeter', formulaCode: 'a + b + Math.sqrt(a*a + b*b)' }
       ],
       formulaDescription: 'undefined',
       tips: [
-      'The most common Pythagorean triples are 3-4-5, 5-12-13, and 8-15-17.',
-      'This theorem only applies to right triangles.'
+        'The most common Pythagorean triples are 3-4-5, 5-12-13 and 8-15-17, and any multiple of a triple is also a triple.',
+        'This theorem only applies to right triangles.',
+        'To find a leg from the hypotenuse, rearrange: b = √(c² − a²).'
       ],
     },
     content: {
-      intro: 'The Pythagorean Theorem Calculator finds any missing side of a right triangle. It confirms the fundamental relationship: the square of the hypotenuse equals the sum of squares of the other two sides.',
-      howItWorks: 'c = sqrt(a^2 + b^2). Enter any two sides to find the third. Enter both legs to find the hypotenuse, or one leg and the hypotenuse to find the other leg.',
-      example: 'A right triangle with legs 3 and 4 has a hypotenuse of 5: sqrt(9+16) = 5.',
-      formulas: [{ label: 'Pythagoras', expression: 'c^2 = a^2 + b^2' }],
+      intro: 'The Pythagorean Theorem Calculator takes the two legs of a right triangle and returns the hypotenuse, along with its area and perimeter. The theorem is the relationship that makes right triangles measurable from two sides, and it is the same equation behind the distance formula, screen diagonals and roof geometry.',
+      howItWorks: 'Squaring each leg, adding the two squares and taking the square root gives the hypotenuse: c = √(a² + b²). Area is the two legs multiplied and halved, because in a right triangle one leg can be treated as the base and the other as the height. Perimeter simply adds the three sides, using the hypotenuse the calculator just found. The two legs must be the sides meeting at the right angle — the hypotenuse is always the longest side and is never an input here.',
+      example: 'Legs of 3 and 4 give √(9 + 16) = 5, an area of 3 x 4 / 2 = 6 and a perimeter of 12. A 5-12 triangle gives 13, which is the next whole-number triple. A television sold as 55 inches has a 16:9 panel of about 47.9 by 26.9 inches, and the diagonal of those two numbers works out to 55.0 — the advertised size is the hypotenuse.',
+      formulas: [{ label: 'Pythagoras', expression: 'c² = a² + b²; area = a x b / 2' }],
       resultExplanations: [
-        { resultLabel: 'Hypotenuse (c)', explanation: 'The longest side of the right triangle, opposite the right angle.' }
+        { resultLabel: 'Hypotenuse (c)', explanation: 'The longest side of the right triangle, opposite the right angle.' },
+        { resultLabel: 'Area', explanation: 'Half the product of the two legs, which act as base and height.' },
+        { resultLabel: 'Perimeter', explanation: 'The sum of all three sides, including the hypotenuse.' }
       ],
       workflowLinks: [
-        { slug: 'distance-formula-calculator', step: 'Distance formula is derived from the Pythagorean theorem.' },
-        { slug: 'distance-formula-calculator', step: 'Find the distance between the two points.' }
+        { slug: 'distance-formula-calculator', step: 'Apply the same theorem to the gap between two points.' },
+        { slug: 'slope-calculator', step: 'Pair the rise and run with the direct distance.' },
+        { slug: 'circle-area-calculator', step: 'Move from a triangle to the circle around it.' }
       ],
       faqs: [
-        { q: 'Does this work for non-right triangles?', a: 'No. The Pythagorean theorem applies only to right triangles. Use the law of cosines for other triangles.' },
-        { q: 'What is a Pythagorean triple?', a: 'Three positive integers satisfying a^2 + b^2 = c^2, such as (3,4,5), (5,12,13), and (8,15,17).' },
-        { q: 'Can I use it to check if a triangle is right?', a: 'Yes. If a^2 + b^2 = c^2 exactly, the triangle is a right triangle.' }
+        { q: 'Does this work for non-right triangles?', a: 'No. The theorem holds only when one angle is exactly 90°. For other triangles use the law of cosines, c² = a² + b² − 2ab·cos C, which reduces to Pythagoras when C is 90°.' },
+        { q: 'What is a Pythagorean triple?', a: 'Three whole numbers that fit the theorem, such as 3-4-5, 5-12-13 and 8-15-17. Any multiple of a triple also works: 6-8-10 and 30-40-50 are the 3-4-5 triangle scaled up.' },
+        { q: 'Can I use it to check if a triangle is right?', a: 'Yes. Measure all three sides and test whether the two shorter ones squared add up to the longest squared. Builders use the 3-4-5 version to square a corner on site, because a tape measure gives the check without a protractor.' },
+        { q: 'How do I find a leg instead of the hypotenuse?', a: 'Rearrange the formula: b = √(c² − a²). With a hypotenuse of 13 and one leg of 5, the other leg is √(169 − 25) = 12. This calculator takes the two legs, so enter them here and use the hypotenuse it returns.' },
       ],
-      related: ['distance-formula-calculator', 'slope-calculator'],
+      related: ['distance-formula-calculator', 'slope-calculator', 'circle-area-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-05' },
   },
   {
     id: 'circle',

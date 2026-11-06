@@ -20,7 +20,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Future value is computed with the compound growth formula FV = P x (1 + r/n)^(nt) for the principal, plus an annuity term for monthly contributions. The tool subtracts total deposits from the final balance to isolate interest earned.',
       example:
-        'Start with R5,000, add R250 at the end of each month, and assume an 8% nominal annual rate compounded monthly for 10 years. The estimate is about R56,835, including roughly R21,835 in growth before tax, fees, and inflation.',
+        'Start with $5,000, add $250 at the end of each month, and assume an 8% nominal annual rate compounded monthly for 10 years. The estimate is about $56,835, including roughly $21,835 in growth before tax, fees, and inflation.',
       formulas: [
         {
           label: 'Future Value of Principal',
@@ -60,7 +60,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.85,
-      updatedAt: '2026-10-26',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -144,7 +144,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Monthly savings come from the difference between your current payment and the new-rate payment on the same balance. Break-even divides closing costs by that monthly savings figure, and lifetime interest savings compare holding the old loan to term versus the new one.',
       example:
-        'Refinancing a R250,000 balance from 6.5% to 5.5% over 25 years saves about R153 a month. With R7,000 in closing costs, the refi breaks even in roughly 3.8 years.',
+        'Refinancing a $250,000 balance from 6.5% to 5.5% over 25 years saves about $153 a month. With $7,000 in closing costs, the refi breaks even in roughly 3.8 years.',
       resultExplanations: [
         {
           resultLabel: 'Break-Even Point',
@@ -172,7 +172,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.85,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -194,7 +194,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Each month, the interest due is the balance times the monthly rate, and the rest of your payment reduces principal. Because the balance falls, interest shrinks over time and the principal portion grows. The annual chart shows the shift.',
       example:
-        'A R300,000 loan at 6.5% over 30 years carries a payment near R1,896. Total interest approaches R382,000, but adding R100 a month cuts about 4 years off the term and saves over R60,000 in interest.',
+        'A $300,000 loan at 6.5% over 30 years carries a payment near $1,896. Total interest approaches $382,000, but adding $100 a month cuts about 4 years off the term and saves over $60,000 in interest.',
       resultExplanations: [
         {
           resultLabel: 'Payoff Time',
@@ -222,7 +222,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.8,
-      updatedAt: '2026-10-26',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -244,7 +244,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'The tool applies the 36% back-end DTI guideline: housing payment plus other debts should stay under 36% of gross monthly income. It backs out the largest home price whose principal-and-interest, property tax, and insurance fit that budget.',
       example:
-        'With R85,000 in annual income, R400 in monthly debts, 20% down, and a 6.5% rate, the calculator finds a comfortable maximum near R430,000 with a monthly payment around R2,700.',
+        'With $85,000 in annual income, $400 in monthly debts, 20% down, and a 6.5% rate, the calculator finds a comfortable maximum near $430,000 with a monthly payment around $2,700.',
       resultExplanations: [
         {
           resultLabel: 'Maximum Home Price',
@@ -272,7 +272,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.95,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -294,7 +294,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Renting accumulates monthly rent payments that grow at your rent-increase rate. Buying starts with a down payment, then monthly principal-and-interest, property tax, and insurance; the principal portion becomes equity that offsets the cash outlay.',
       example:
-        'At R1,600 a month rent growing 3% a year, ten years of renting costs about R220,000. Buying a R350,000 home with 20% down at 6.5% costs more upfront but builds roughly R130,000 in equity, often making ownership the cheaper path long-term.',
+        'At $1,600 a month rent growing 3% a year, ten years of renting costs about $220,000. Buying a $350,000 home with 20% down at 6.5% costs more upfront but builds roughly $130,000 in equity, often making ownership the cheaper path long-term.',
       resultExplanations: [
         {
           resultLabel: 'Net Cost of Buying',
@@ -322,7 +322,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.9,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -344,7 +344,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Each month your balance grows by the monthly deposit plus interest earned. The tool reports the daily and weekly equivalents of that pace and the total time needed to hit your target.',
       example:
-        'Saving R80,000 with R20,000 already banked and R1,000 a month at 4% reaches the goal in about 4.5 years. That is roughly R44 a day toward your down payment.',
+        'Saving $80,000 with $20,000 already banked and $1,000 a month at 4% reaches the goal in about 4.3 years. That is roughly $38 a day toward your down payment.',
       resultExplanations: [
         {
           resultLabel: 'Time to Down Payment',
@@ -372,7 +372,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.8,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -408,7 +408,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'It applies the amortization formula M = P x r x (1+r)^n / ((1+r)^n - 1) with the monthly rate and total payment count. Total interest is the difference between all payments and the amount borrowed.',
       example:
-        'Borrow R20,000 at 7% annual interest for 5 years with monthly payments. The estimated installment is about R396; the exact result depends on the entered amount, rate, and term.',
+        'Borrow $20,000 at 7% annual interest for 5 years with monthly payments. The estimated installment is about $396; the exact result depends on the entered amount, rate, and term.',
       formulas: [
         {
           label: 'Monthly Payment',
@@ -447,7 +447,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.75,
-      updatedAt: '2026-10-26',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -616,7 +616,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Simple interest follows the formula I = P x r x t: principal times the annual rate times the number of years. The tool also returns the total balance, which is the principal plus interest.',
       example:
-        'Deposit R10,000 at a flat 5% annual rate for 3 years. Interest is 10,000 x 0.05 x 3 = R1,500, giving a final balance of R11,500.',
+        'Deposit $10,000 at a flat 5% annual rate for 3 years. Interest is 10,000 x 0.05 x 3 = $1,500, giving a final balance of $11,500.',
       formulas: [
         {
           label: 'Simple Interest',
@@ -655,7 +655,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
-      updatedAt: '2026-10-26',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -691,7 +691,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Annual income is the hourly rate multiplied by hours per week and weeks worked per year. Monthly pay is the annual figure divided by 12, giving a realistic estimate for budgeting.',
       example:
-        'At R25 per hour for 40 hours a week over 52 weeks, annual income is R52,000, with weekly pay of R1,000 and monthly pay near R4,333.',
+        'At $25 per hour for 40 hours a week over 52 weeks, annual income is $52,000, with weekly pay of $1,000 and monthly pay near $4,333.',
       formulas: [
         {
           label: 'Annual Salary',
@@ -721,7 +721,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       faqs: [
         { q: 'How many hours are in a standard work year?', a: 'A typical full-time year is 2,080 hours (40 hours x 52 weeks). Many freelancers bill closer to 1,800 hours after holidays.' },
         { q: 'Is this gross or net income?', a: 'The calculator reports gross income before taxes and deductions. Net pay depends on your tax bracket and withholdings.' },
-        { q: 'How do I convert an annual salary to hourly?', a: 'Divide the annual salary by the hours worked per year. R52,000 / 2,080 equals R25 per hour.' },
+        { q: 'How do I convert an annual salary to hourly?', a: 'Divide the annual salary by the hours worked per year. $52,000 / 2,080 equals $25 per hour.' },
       ],
       related: ['roi-calculator', 'markup-margin-calculator', 'emergency-fund-calculator'],
     },
@@ -729,7 +729,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -759,11 +759,11 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
     },
     content: {
       intro:
-        'The ROI Calculator measures how efficiently your investment performed by comparing the final value to what you put in. Investors, marketers, and founders use it to judge a single decision in one clear percentage.',
+        'The ROI Calculator measures how efficiently a single investment performed by comparing the final value with the amount put in, reporting both the net profit in money and the return as a percentage. It is the plainest way to judge whether a decision paid off, and also the one most often quoted without the holding period that would make it comparable.',
       howItWorks:
-        'Net profit is the final value minus the amount invested. ROI expresses that profit as a percentage of the original investment: (final - invested) / invested x 100.',
+        'Net profit is the final value minus the amount invested. Dividing that profit by the original investment and multiplying by 100 gives the return as a percentage, so the same percentage means the same proportional gain whatever the size of the stake. Because the denominator is the original capital, a 50% loss requires a 100% gain to recover — the asymmetry comes from measuring both moves against the starting figure, and it is why percentage losses are more damaging than they look.',
       example:
-        'Invest R5,000 and receive R6,500 back. Net profit is R1,500 and ROI is 30%, meaning every rand returned R1.30.',
+        'Invest $5,000 and receive $6,500 back: net profit is $1,500 and ROI is 30%, which is $1.30 returned for every $1 put in. Invest $5,000 and get $3,500 back instead and the loss is $1,500, an ROI of −30%. Recovering that requires a 42.9% gain on the reduced balance, not 30%, because the target is now measured from $3,500 rather than $5,000.',
       formulas: [
         {
           label: 'Net Profit',
@@ -778,7 +778,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
         {
           resultLabel: 'Net Profit',
           explanation:
-            'The absolute gain, final value minus the amount invested.',
+            'The absolute gain, final value minus the amount invested, before fees and taxes.',
         },
         {
           resultLabel: 'Return on Investment',
@@ -789,11 +789,14 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       workflowLinks: [
         { slug: 'compound-interest-calculator', step: 'Project the same capital over time with compounding.' },
         { slug: 'simple-interest-calculator', step: 'Check the flat-rate equivalent of this return.' },
+        { slug: 'cagr-calculator', step: 'Turn a multi-year total return into an annual rate.' },
       ],
       faqs: [
-        { q: 'What is a good ROI?', a: 'It depends on risk and timeframe. Stock-market averages hover around 7-10% annually, while startups and ads require much higher returns to justify the risk.' },
-        { q: 'Does ROI include time?', a: 'No, basic ROI ignores duration. Annualized ROI divides the growth by the holding period for fair comparison.' },
-        { q: 'What if I lose money?', a: 'When the final value is below the invested amount, the calculator reports a negative ROI and a loss.' },
+        { q: 'What is a good ROI?', a: 'It depends on risk and timeframe. Broad stock-market returns have averaged roughly 7-10% a year over long periods, while a small business or an ad campaign has to clear a much higher bar to justify its risk and illiquidity. A percentage is only meaningful next to the risk taken to earn it.' },
+        { q: 'Does ROI include time?', a: 'No. This is total return over the whole holding period, so 30% over one year and 30% over ten years show as identical. To compare investments of different lengths, convert to an annual rate — the CAGR calculator does that.' },
+        { q: 'What if I lose money?', a: 'When the final value is below the invested amount, the calculator reports a negative profit and a negative ROI. Note that the percentage loss and the percentage gain needed to recover are not symmetric: a 30% loss needs about 43% to undo.' },
+        { q: 'Should ROI be calculated before or after fees?', a: 'After, ideally. Enter the amount actually invested including purchase costs, and the final value net of selling costs and taxes. A gross ROI is not wrong, but it is optimistic, and it makes two deals hard to compare if their fee structures differ.' },
+        { q: 'Can ROI be used for things other than investments?', a: 'Yes — marketing spend, equipment purchases, training, energy efficiency upgrades. The formula only needs a cost and a resulting value. What it will not tell you is the timing of the return or the risk of not getting it at all.' },
       ],
       related: ['compound-interest-calculator', 'simple-interest-calculator', 'markup-margin-calculator'],
     },
@@ -801,7 +804,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -835,7 +838,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Monthly interest is the balance multiplied by the annual percentage rate divided by 12. Because cards compound daily, this is an accurate first-order estimate of the next statement charge.',
       example:
-        'A R3,000 balance at 24% APR accrues about R60 in interest this month and roughly R720 over a full year if the balance stays flat.',
+        'A $3,000 balance at 24% APR accrues about $60 in interest this month and roughly $720 over a full year if the balance stays flat.',
       formulas: [
         {
           label: 'Monthly Interest',
@@ -873,7 +876,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -907,7 +910,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'The target fund is your monthly essential expenses times the months of coverage you choose. Dividing that target across a year gives a weekly savings rate that turns the goal into an action plan.',
       example:
-        'With R3,000 in monthly expenses, a 6-month cushion is R18,000. Saving toward it over a year means setting aside about R346 each week.',
+        'With $3,000 in monthly expenses, a 6-month cushion is $18,000. Saving toward it over a year means setting aside about $346 each week.',
       formulas: [
         {
           label: 'Target Emergency Fund',
@@ -946,7 +949,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -984,7 +987,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Equity is simply the home value minus the mortgage balance. LTV divides the mortgage by the value, and the HELOC estimate caps borrowing at 80% of the value minus what you still owe.',
       example:
-        'A home worth R450,000 with a R280,000 mortgage leaves R170,000 in equity, an LTV of about 62%, and a potential HELOC of roughly R80,000 at an 80% LTV cap.',
+        'A home worth $450,000 with a $280,000 mortgage leaves $170,000 in equity, an LTV of about 62%, and a potential HELOC of roughly $80,000 at an 80% LTV cap.',
       faqs: [
         { q: 'What is a good loan-to-value ratio?', a: 'Lenders prefer LTV below 80%. Above that, private mortgage insurance is typically required and refinancing options narrow.' },
         { q: 'How is home equity used?', a: 'Equity can back home-improvement loans, HELOCs, cash-out refinancing, or a bigger down payment on a future home.' },
@@ -1000,7 +1003,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -1040,7 +1043,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       howItWorks:
         'Origination and title fees scale as a percentage of the loan, appraisal and inspection are flat, and prepaids cover escrow items like property tax and homeowners insurance. The tool sums them and adds the result to your down payment for a true cash-out total.',
       example:
-        'On a R400,000 home with a R320,000 loan, a 1% origination fee, 0.5% title cost, R900 appraisal, and R3,500 in prepaids produce closing costs near R8,700 and total cash needed around R88,700.',
+        'On a $400,000 home with a $320,000 loan, a 1% origination fee, 0.5% title cost, $900 appraisal, and $3,500 in prepaids produce closing costs near $9,200 and total cash needed around $89,200.',
       faqs: [
         { q: 'What is included in closing costs?', a: 'Loan origination, title search and insurance, appraisal, attorney or escrow fees, recording charges, and prepaid taxes and insurance are the common items.' },
         { q: 'Can the seller pay my closing costs?', a: 'Often yes, within limits set by the loan program. Ask your agent to negotiate a seller concession when you make the offer.' },
@@ -1056,7 +1059,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-06',
     },
   },
   {
@@ -1076,31 +1079,36 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       results: [
         { label: 'ROI', formulaCode: '(gain - cost) / cost * 100', suffix: '%', accent: true },
-        { label: 'Net Profit', formulaCode: 'gain - cost', prefix: '$' }
+        { label: 'Net Profit', formulaCode: 'gain - cost', prefix: '$' },
+        { label: 'Growth Multiple', formulaCode: 'gain / cost', suffix: 'x' }
       ],
       formulaDescription: 'ROI = (gain - cost) / cost x 100',
     },
     content: {
-      intro: 'The Investment ROI Calculator measures how much profit you earn relative to the amount you invested. Whether you put money into stocks, a rental property, or a small business, ROI tells you the percentage gain or loss on your capital.',
-      howItWorks: 'ROI equals the gain minus the cost, divided by the cost, times 100. This gives you a percentage representing how much your money grew.',
-      example: 'You invest $10,000 and sell for $13,500. ROI = (13500 - 10000) / 10000 x 100 = 35%.',
-      formulas: [{ label: 'ROI Formula', expression: 'ROI = (gain - cost) / cost x 100' }],
+      intro: 'The Investment ROI Calculator measures the profit on an investment as a percentage of what was put in, plus the net profit in money and the multiple the capital became. It is the simplest common yardstick for comparing deals, and also the one most often quoted in a way that hides a short holding period or ignores the costs of getting in and out.',
+      howItWorks: 'Net profit is the final value minus the investment cost. Dividing that by the cost and multiplying by 100 turns it into a percentage, so a $3,500 gain on $10,000 is 35%. The growth multiple is the final value divided by the cost, which expresses the same thing as a factor: 1.35x. ROI is a pure ratio, so a 35% return on $10,000 and on $1,000 are treated as equal — the calculator says nothing about how long the money was tied up, which is why annualising with CAGR is the fairer comparison between deals of different lengths.',
+      example: 'Invest $10,000 and sell for $13,500: net profit is $3,500, ROI is 35% and the growth multiple is 1.35x. Sell instead for $7,000 and the net profit is −$3,000 with ROI at −30%. Note that recovering from −30% needs a 43% gain, not 30%, because the loss is measured against the original capital while the recovery is measured against the reduced one.',
+      formulas: [{ label: 'ROI Formula', expression: 'ROI = (gain − cost) / cost × 100' }],
       resultExplanations: [
-        { resultLabel: 'ROI', explanation: 'Your percentage return on the original investment.' },
-        { resultLabel: 'Net Profit', explanation: 'The actual dollar amount you gained.' }
+        { resultLabel: 'ROI', explanation: 'Your percentage return on the original investment, ignoring how long it was held.' },
+        { resultLabel: 'Net Profit', explanation: 'The actual dollar amount gained or lost, before any fees or taxes.' },
+        { resultLabel: 'Growth Multiple', explanation: 'How many times the original investment the final value is — 1.35x is the same as a 35% ROI.' },
       ],
       workflowLinks: [
-        { slug: 'cagr-calculator', step: 'Compare annualized returns over multiple years.' },
-        { slug: 'compound-interest-calculator', step: 'Project future growth.' }
+        { slug: 'cagr-calculator', step: 'Convert the total return into an annual rate.' },
+        { slug: 'compound-interest-calculator', step: 'Project future growth.' },
+        { slug: 'inflation-adjusted-return', step: 'See what the return is worth after inflation.' },
       ],
       faqs: [
-        { q: 'Is ROI the same as annual return?', a: 'No. ROI measures total return over the entire period. Annual return breaks it down per year.' },
-        { q: 'Can ROI be negative?', a: 'Yes. If you lose money, ROI is negative. A $10,000 investment dropping to $7,000 gives -30% ROI.' },
-        { q: 'Does ROI account for inflation?', a: 'Basic ROI does not. For inflation-adjusted returns, use the real return calculator.' }
+        { q: 'Is ROI the same as annual return?', a: 'No. ROI measures the total return over the whole holding period, so 35% over one year and 35% over ten years are the same ROI but very different annual rates. Convert to CAGR before comparing investments held for different lengths of time.' },
+        { q: 'Can ROI be negative?', a: 'Yes. If the final value is below the cost, net profit is negative and ROI is a negative percentage. A $10,000 investment falling to $7,000 is a −30% ROI, and it needs a 43% gain to get back to even.' },
+        { q: 'Does ROI account for inflation?', a: 'Not in this basic form. A 35% nominal return over several years may be close to zero in real terms if inflation ran high. The inflation-adjusted return calculator strips that out.' },
+        { q: 'Should fees and taxes be included?', a: 'Ideally yes, and the honest way is to enter the final value net of selling costs and any income already received, and the cost including purchase fees. ROI is only as accurate as those two numbers; a gross figure flatters the result.' },
+        { q: 'How do I compare two deals of different sizes?', a: 'ROI already does that, because it is a ratio. What it cannot compare is risk or duration, so pair it with CAGR for time and read the underlying numbers before treating a high percentage as a better deal.' },
       ],
       related: ['cagr-calculator', 'compound-interest-calculator', 'inflation-adjusted-return'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-05' },
   },
   {
     id: 'present-value',
@@ -1161,30 +1169,37 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
         { id: 'years', label: 'Years', type: 'number', defaultValue: 5, min: 1 }
       ],
       results: [
-        { label: 'CAGR', formulaCode: '(Math.pow(ev/bv, 1/years) - 1) * 100', suffix: '%', accent: true }
+        { label: 'CAGR', formulaCode: '(Math.pow(ev/bv, 1/years) - 1) * 100', suffix: '%', accent: true },
+        { label: 'Total Return', formulaCode: '(ev/bv - 1) * 100', suffix: '%' },
+        { label: 'Growth Multiple', formulaCode: 'ev/bv', suffix: 'x' }
       ],
       formulaDescription: 'CAGR = (EV/BV)^(1/n) - 1',
     },
     content: {
-      intro: 'The CAGR Calculator computes the Compound Annual Growth Rate, smoothing volatile returns into a single annual figure. Investors use CAGR to compare investments with different time horizons on equal footing.',
-      howItWorks: 'CAGR equals the ending value divided by the beginning value, raised to the power of 1/years, minus 1.',
-      example: 'An investment grows from $10,000 to $18,000 in 5 years. CAGR = (18000/10000)^(1/5) - 1 = 12.47%.',
-      formulas: [{ label: 'CAGR', expression: 'CAGR = (EV/BV)^(1/n) - 1' }],
+      intro: 'The CAGR Calculator reduces a start value, an end value and a number of years to one compound annual growth rate — the steady yearly percentage that would take the first figure to the second. It is the only fair way to compare investments held for different lengths of time, because it removes the effect of the period and of any volatility along the way.',
+      howItWorks: 'The ending value is divided by the beginning value to get the total multiple, that multiple is raised to the power of one over the number of years, and one is subtracted to leave a rate. Taking a root is what reverses compounding: if a value grew 12.47% a year for five years, multiplying by 1.1247 five times gets you back to 1.8 times the start. The calculator also shows total return, which is the simple percentage change with no time component, and the growth multiple itself. Years are whole numbers here, so a two-and-a-half-year holding should be entered as 2.5 only if the field allows it — otherwise use 3 for an approximation.',
+      example: '$10,000 growing to $18,000 over 5 years: the multiple is 1.8, 1.8 raised to the power 0.2 is 1.1247, so CAGR is 12.47%. Total return is 80% and the growth multiple is 1.8x. The same 80% over 10 years is only 6.05% a year, which is why a headline total return tells you nothing until you know the period.',
+      formulas: [{ label: 'CAGR', expression: 'CAGR = (EV/BV)^(1/n) − 1' }],
       resultExplanations: [
-        { resultLabel: 'CAGR', explanation: 'The annualized rate of return over this period.' }
+        { resultLabel: 'CAGR', explanation: 'The constant annual rate that would produce the same end value over the period.' },
+        { resultLabel: 'Total Return', explanation: 'The simple percentage change from beginning to ending value, ignoring time.' },
+        { resultLabel: 'Growth Multiple', explanation: 'How many times the beginning value the ending value is — 1.8x means an 80% gain.' },
       ],
       workflowLinks: [
         { slug: 'investment-roi-calculator', step: 'Calculate total ROI.' },
-        { slug: 'inflation-adjusted-return', step: 'Adjust for inflation.' }
+        { slug: 'inflation-adjusted-return', step: 'Adjust for inflation.' },
+        { slug: 'compound-interest-calculator', step: 'Project the same rate forward.' },
       ],
       faqs: [
-        { q: 'What is CAGR?', a: 'Compound Annual Growth Rate. It smooths returns into a single annual percentage for comparison.' },
-        { q: 'Is CAGR the same as average return?', a: 'No. CAGR accounts for compounding. Average return does not.' },
-        { q: 'Can CAGR be negative?', a: 'Yes. If your investment lost value, CAGR shows the annual rate of decline.' }
+        { q: 'What is CAGR?', a: 'Compound Annual Growth Rate — the single yearly rate that would take a beginning value to an ending value over a set number of years if growth were perfectly smooth. It is a reporting device, not a prediction: no real investment grows by the same percentage every year.' },
+        { q: 'Is CAGR the same as average return?', a: 'No, and the gap grows with volatility. Averaging yearly returns arithmetically overstates the result, because a 50% loss needs a 100% gain to recover. CAGR is the geometric mean, so it accounts for that asymmetry and always sits at or below the arithmetic average.' },
+        { q: 'Can CAGR be negative?', a: 'Yes. If the ending value is below the beginning value, the multiple is under 1 and the root stays under 1, so subtracting one gives a negative rate. A fall from $10,000 to $7,000 over 5 years is a CAGR of about −6.9% a year.' },
+        { q: 'Does CAGR include dividends?', a: 'Only if the ending value does. Using a price alone gives price CAGR; using total return with dividends reinvested gives total-return CAGR. The two can differ by two or three percentage points a year for a dividend-paying stock, so state which one you are quoting.' },
+        { q: 'What about contributions along the way?', a: 'CAGR assumes a single lump sum left untouched. If money was added or withdrawn, the calculation is distorted — a large contribution near the end flatters the rate. For cash flows, use a money-weighted return such as IRR instead.' },
       ],
-      related: ['investment-roi-calculator', 'inflation-adjusted-return'],
+      related: ['investment-roi-calculator', 'inflation-adjusted-return', 'compound-interest-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-05' },
   },
   {
     id: 'debt-to-income',
@@ -1202,30 +1217,37 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
         { id: 'debts', label: 'Total Monthly Debts', type: 'number', defaultValue: 1800, prefix: '$', min: 0 }
       ],
       results: [
-        { label: 'DTI Ratio', formulaCode: '(debts / income) * 100', suffix: '%', accent: true }
+        { label: 'DTI Ratio', formulaCode: '(debts / income) * 100', suffix: '%', accent: true },
+        { label: 'Max Debt at 43% DTI', formulaCode: 'income * 0.43', prefix: '$' },
+        { label: 'Room Before 43%', formulaCode: 'income * 0.43 - debts', prefix: '$' }
       ],
       formulaDescription: 'DTI = (monthly debts / gross income) x 100',
     },
     content: {
-      intro: 'The Debt-to-Income Ratio Calculator computes the percentage of gross monthly income that goes toward debt payments. Lenders use this ratio to determine mortgage eligibility, with most requiring a DTI below 43%.',
-      howItWorks: 'DTI equals total monthly debt payments divided by gross monthly income, multiplied by 100. Include rent, car loans, student loans, and credit card minimums.',
-      example: 'Gross monthly income $6,000, monthly debts $1,800. DTI = 1800/6000 x 100 = 30%. Below the 43% threshold.',
-      formulas: [{ label: 'DTI Ratio', expression: 'DTI = (debts / income) x 100' }],
+      intro: 'The Debt-to-Income Ratio Calculator divides your total monthly debt payments by your gross monthly income to produce the percentage lenders use to judge affordability. It also shows the debt level that would sit exactly at the 43% mark and how much room is left before you reach it, which is what turns the ratio from a verdict into a plan.',
+      howItWorks: 'Only debt payments count in the numerator: rent or the proposed mortgage payment, car loans, student loans, personal loans, child support and minimum credit card payments. Gross income is used rather than take-home pay, because lenders assess the ratio before tax. The 43% ceiling is the long-standing qualified mortgage benchmark in the United States, though many lenders prefer 36% and some government-backed loans allow more. Note that for a mortgage application the lender substitutes the proposed housing payment for your current rent, so the ratio should be calculated with the payment you would actually face.',
+      example: 'Gross monthly income of $6,000 and total monthly debts of $1,800 gives a DTI of 30%, comfortably below 43%. At 43% this income supports $2,580 of debt, so there is $780 of headroom. Add a $450 car payment and the ratio rises to 37.5%; take on a further $400 and it reaches 44.2%, which pushes it over the benchmark.',
+      formulas: [{ label: 'DTI Ratio', expression: 'DTI = (Monthly Debts / Gross Monthly Income) × 100' }],
       resultExplanations: [
-        { resultLabel: 'DTI Ratio', explanation: 'Below 36% is good, below 43% needed for most mortgages.' }
+        { resultLabel: 'DTI Ratio', explanation: 'The share of gross monthly income committed to debt payments. Below 36% is comfortable, below 43% is generally required for a qualified mortgage.' },
+        { resultLabel: 'Max Debt at 43% DTI', explanation: 'The total monthly debt payment your income could carry at the 43% benchmark — the ceiling, not a target.' },
+        { resultLabel: 'Room Before 43%', explanation: 'How much additional monthly debt payment fits before crossing 43%. A negative figure means the ratio is already above it.' }
       ],
       workflowLinks: [
-        { slug: 'mortgage-calculator', step: 'Calculate your mortgage payment.' },
-        { slug: 'loan-affordability-calculator', step: 'Find how much you can borrow.' }
+        { slug: 'mortgage-calculator', step: 'Calculate the payment a given loan would add to your debts.' },
+        { slug: 'loan-affordability-calculator', step: 'Find how much you can borrow.' },
+        { slug: 'net-worth-calculator', step: 'Balance the debt picture against your assets.' }
       ],
       faqs: [
-        { q: 'What is a good DTI ratio?', a: 'Below 36% is good. Below 43% is needed for most mortgages.' },
-        { q: 'Does DTI include utilities?', a: 'No. DTI only counts debt payments, not utilities or insurance.' },
-        { q: 'How do I lower my DTI?', a: 'Pay down debt, increase income, or avoid new debt before applying for a mortgage.' }
+        { q: 'What is a good DTI ratio?', a: 'Under 36% is generally considered comfortable, with housing costs below 28% of gross income. Many mortgages require 43% or lower, and some lenders will go higher with compensating factors such as a large deposit or strong credit. Lower is better, but the threshold that matters depends on the loan.' },
+        { q: 'Does DTI include utilities?', a: 'No. Utilities, insurance, groceries and subscriptions are living expenses, not debt payments, so they are excluded. That is also the ratio\u2019s weakness: two households with identical DTIs can have very different amounts left over each month.' },
+        { q: 'How do I lower my DTI?', a: 'Pay down balances that carry a minimum payment — clearing a credit card removes its minimum entirely — or increase income. Avoid taking on new debt in the months before applying, because a new loan raises the ratio even if the payment is small.' },
+        { q: 'Does rent count as debt?', a: 'For a mortgage application, the proposed housing payment replaces rent in the calculation, which is why the ratio often jumps when someone moves from renting to buying. For a standalone assessment, include rent if it is a recurring obligation.' },
+        { q: 'Is DTI the same as debt-to-credit ratio?', a: 'No. DTI compares debt payments to income; credit utilisation compares revolving balances to credit limits. Both affect lending decisions, but utilisation is the heavier factor in a credit score, while DTI is the heavier factor in affordability.' }
       ],
-      related: ['mortgage-calculator', 'loan-affordability-calculator'],
+      related: ['mortgage-calculator', 'loan-affordability-calculator', 'net-worth-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-05' },
   },
   {
     id: 'net-worth',

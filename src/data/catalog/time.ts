@@ -23,25 +23,27 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       results: [
         { label: 'Hours Worked', formulaCode: '(function(){ var s = startHour * 60 + startMin; var e = endHour * 60 + endMin; if (e < s) { e += 1440; } return Math.max(0, e - s - breakMin) / 60; })()', suffix: 'hours', accent: true },
         { label: 'Minutes Worked', formulaCode: '(function(){ var s = startHour * 60 + startMin; var e = endHour * 60 + endMin; if (e < s) { e += 1440; } return Math.max(0, e - s - breakMin); })()', suffix: 'min' },
+        { label: 'Overtime (over 8h)', formulaCode: '(function(){ var s = startHour * 60 + startMin; var e = endHour * 60 + endMin; if (e < s) { e += 1440; } return Math.max(0, (Math.max(0, e - s - breakMin) / 60) - 8); })()', suffix: 'hours' },
       ],
       formulaDescription: 'Hours = (End time - Start time - Break) in minutes / 60, with an end time earlier than the start treated as the next day',
       tips: [
         'Shifts that cross midnight are handled: 22:00 to 06:00 counts as 8 hours.',
         'Use the 24-hour clock so afternoon shifts are unambiguous.',
         'Subtract every unpaid break to match payroll.',
+        'Overtime is reported against an 8-hour day, so adjust for your own contract and local rules.'
       ],
     },
     content: {
       intro:
-        'The Work Hours Calculator computes the exact hours worked between a start and end time after subtracting breaks. Freelancers tracking time and employees checking pay stubs use it for accurate totals.',
+        'The Work Hours Calculator converts a start time, an end time and an unpaid break into the exact hours worked, in both decimal hours and minutes. It also reports anything beyond eight hours as overtime. Decimal hours matter because payroll systems bill in tenths and hundredths, not in hours and minutes, and that conversion is where timesheets usually go wrong.',
       howItWorks:
-        'Start and end times convert to total minutes since midnight, the break is subtracted, and the remainder is divided by 60 for decimal hours. The tool also reports the figure in minutes.',
+        'Both times are converted to minutes since midnight, the break is subtracted, and the remainder is divided by 60. That division is what produces a decimal — 8 hours 30 minutes becomes 8.5, not 8.30, because 30 minutes is half an hour rather than thirty hundredths. If the end time is earlier than the start time, 1,440 minutes are added to the end, which treats the shift as finishing the next day and is what makes overnight shifts work. The result is floored at zero, so a break longer than the shift produces no negative hours.',
       example:
-        'Working 9:00 AM to 5:30 PM with a 30-minute lunch yields 8.0 hours: (1050 - 540 - 30) = 480 minutes, divided by 60.',
+        'A 9:00 to 17:30 shift with a 30-minute unpaid lunch gives 1,050 − 540 − 30 = 480 minutes, which is exactly 8.0 hours and 0.0 overtime. The same shift crossing midnight — 22:00 to 06:00 with a 30-minute break — is 480 − 30 = 450 minutes, or 7.5 hours, because the end time is treated as the following day. A 9:00 to 18:00 shift with a 45-minute break is 495 minutes, or 8.25 hours, with 0.25 hours of overtime.',
       formulas: [
         {
           label: 'Hours Worked',
-          expression: 'Hours = (End âˆ’ Start âˆ’ Break) minutes / 60',
+          expression: 'Hours = (End - Start - Break) minutes / 60',
         },
       ],
       resultExplanations: [
@@ -55,15 +57,23 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
           explanation:
             'The same total expressed in minutes, useful for payroll systems that track exact minutes.',
         },
+        {
+          resultLabel: 'Overtime (over 8h)',
+          explanation:
+            'Hours beyond a standard eight-hour day. Adjust for your contract, since overtime rules and thresholds vary by country and employer.',
+        },
       ],
       workflowLinks: [
         { slug: 'decimal-hours-calculator', step: 'Convert the result into the decimal form payroll uses.' },
         { slug: 'hourly-to-annual-salary-calculator', step: 'Turn hours worked into income projections.' },
+        { slug: 'weekly-hours-calculator', step: 'Total a whole week of shifts.' },
       ],
       faqs: [
-        { q: 'How do I calculate hours worked by hand?', a: 'Convert both times to minutes since midnight, subtract the break, then divide by 60. For example, 9 to 5:30 with a 30-minute lunch is 8 hours.' },
-        { q: 'Does it handle overnight shifts?', a: 'Yes. If the end time is earlier than the start time, the calculator treats the shift as ending the next day.' },
-        { q: 'Should breaks be included?', a: 'Only unpaid breaks should be subtracted. Paid 15-minute breaks stay within working hours.' },
+        { q: 'How do I calculate hours worked by hand?', a: 'Convert both times to minutes since midnight, subtract the break, then divide by 60. A 9:00 to 17:30 shift with a 30-minute lunch is 480 minutes, so 8 hours. If the end time is earlier than the start, add 24 hours to it first.' },
+        { q: 'Does it handle overnight shifts?', a: 'Yes. If the end time is earlier than the start time, the calculator treats the shift as ending the next day. A 22:00 to 06:00 shift therefore counts as eight elapsed hours rather than a negative number.' },
+        { q: 'Should breaks be included?', a: 'Only unpaid breaks should be subtracted. Paid rest breaks stay within working hours, while a lunch break is usually unpaid and comes off the total. If your contract is unclear on which is which, payroll is the authority, not a calculator.' },
+        { q: 'Why do payroll systems want decimal hours?', a: 'Because they multiply hours by a rate. 8 hours 30 minutes cannot be multiplied directly, but 8.5 can. Converting 30 minutes to 0.5 hours is the step, and treating it as 0.30 overpays or underpays depending on direction — always check which the timesheet expects.' },
+        { q: 'How is overtime counted?', a: 'This tool reports anything over 8 hours in the shift, which is a common daily threshold. Many jurisdictions use a weekly threshold of 40 hours instead, or a mix, so use the figure as a reference and apply your own rules.' },
       ],
       related: ['decimal-hours-calculator', 'days-to-weeks-calculator', 'hourly-to-annual-salary-calculator'],
     },
@@ -172,11 +182,11 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
     },
     content: {
       intro:
-        'The Days to Weeks & Months converter translates a day count into weeks, months, and years. Project planning, savings challenges, and countdowns all benefit from seeing a number in familiar time units.',
+        'The Days to Weeks & Months converter restates a day count in weeks, average months and years. A number of days is precise but hard to picture; the same span in weeks or months is what makes a deadline, a savings challenge or a training block feel like a real length of time.',
       howItWorks:
-        'Weeks are days divided by 7. Months use the average month length of 30.44 days, derived from 365.25 days across 12 months, which is accurate for planning horizons.',
+        'Weeks are days divided by seven, so 90 days becomes 12.86 weeks — 12 full weeks and six leftover days. Months use an average of 30.44 days, derived from 365.25 days across twelve months, because calendar months are all different lengths. Years use 365 days. The averages make a multi-month span readable, but they are approximations: a specific 90-day window may cover three full calendar months and a bit, or two months and change, depending on which months it lands in.',
       example:
-        '90 days equals 12.9 weeks, or roughly 3.0 months, useful for a savings challenge or a project timeline.',
+        '90 days is 12.86 weeks, which is 12 weeks and 6 days, or about 2.96 average months — roughly two months and 29 days. In years that is 0.25, a quarter of a year. A 30-day span is 4.29 weeks, and 365 days is exactly 52.14 weeks, which is why a year is described as 52 weeks and a day.',
       formulas: [
         {
           label: 'Weeks',
@@ -192,30 +202,38 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
         {
           resultLabel: 'Weeks',
           explanation:
-            'The day count broken into 7-day weeks.',
+            'The day count broken into 7-day weeks, including the fractional part.',
         },
         {
           resultLabel: 'Months (avg)',
           explanation:
             'The day count in average calendar months, using 30.44 days per month for planning.',
         },
+        {
+          resultLabel: 'Years',
+          explanation:
+            'The day count as a fraction of a 365-day year.',
+        },
       ],
       workflowLinks: [
+        { slug: 'weeks-to-days-calculator', step: 'Convert the other way, from weeks back to days.' },
+        { slug: 'months-to-days-calculator', step: 'Check the same span using the average month.' },
         { slug: 'work-hours-calculator', step: 'Plan a schedule in exact working hours.' },
-        { slug: 'decimal-hours-calculator', step: 'Convert planning time into billing-friendly decimal form.' },
       ],
       faqs: [
-        { q: 'How many weeks are in 30 days?', a: '30 days divided by 7 equals about 4.3 weeks. Calendar months vary between 4 and 4.4 weeks.' },
-        { q: 'Why is a month 30.44 days?', a: 'It is the average calendar month length: 365.25 days divided by 12. It smooths over months with 28 to 31 days.' },
-        { q: 'Is this exact for calendar dates?', a: 'For exact date math, compare the specific start and end dates. This converter is best for estimating time horizons.' },
+        { q: 'How many weeks are in 30 days?', a: '30 / 7 = 4.29 weeks, or 4 weeks and 2 days. Calendar months range from about 4 weeks to 4.4 weeks, which is why the month figure and the week figure rarely line up neatly.' },
+        { q: 'How many weeks are in 90 days?', a: '12.86 weeks, which is 12 weeks and 6 days. Ninety days is often quoted as "three months", and by the 30.44-day average it is 2.96 months — close enough for planning, a few days short of three calendar months in most windows.' },
+        { q: 'Why does a year show as 52.14 weeks?', a: 'Because 365 / 7 = 52.14. A common year is 52 weeks plus one day, and a leap year is 52 weeks plus two, which is why a fixed date drifts to a different weekday each year.' },
+        { q: 'Should I use this or an exact date calculator?', a: 'Use this for planning horizons and rough conversions. For a lease, notice period or age, use exact calendar dates, because 90 days and three months are not the same thing and the gap can matter legally.' },
+        { q: 'Does the month figure account for leap years?', a: 'The 30.44 average partly does, since it derives from a 365.25-day year, but the years result uses a flat 365. Over a single year that is a one-day difference, which is invisible in the fractional output but worth knowing if you are converting long spans.' },
       ],
-      related: ['work-hours-calculator', 'decimal-hours-calculator'],
+      related: ['weeks-to-days-calculator', 'months-to-days-calculator', 'days-until-calculator'],
     },
     seo: {
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-05',
     },
   },
   {
@@ -231,26 +249,28 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
     kind: 'custom',
     componentId: 'AgeCalculator',
     content: {
-      intro: 'The Age Calculator converts a date of birth into years, months, and days. It also shows total days lived, zodiac sign, and how many days until your next birthday.',
-      howItWorks: 'The calculator uses UTC date math to count exact years, months, and days between your birth date and today. Zodiac sign is determined from birth month and day.',
-      example: 'Someone born on June 15, 2000 is exactly 26 years old with 3 months and 5 days. Total days lived: about 9,600.',
-      formulas: [{ label: 'Age', expression: 'Years = today.year - birth.year; adjust if month/day have not passed yet' }],
+      intro: 'The Age Calculator turns a date of birth into an exact age in years, months and days, alongside total days lived, the zodiac sign and a countdown to the next birthday. Calendar age and elapsed days are different numbers, and both are reported here so you can use whichever the question needs.',
+      howItWorks: 'The calculator subtracts the birth date from today in calendar units rather than dividing elapsed seconds. Years are counted first, then months, then days; when the day of the month has not yet been reached this month, it borrows the length of the previous month and steps the month count back. That borrowing is why the day figure can look larger than the day of the month you are in. Total days lived is a separate straight count of elapsed days, and the next birthday is projected forward to the coming year, with the weekday it falls on.',
+      example: 'Born 15 June 2000, and viewed on 20 September 2026, the age is 26 years, 3 months and 5 days — the birthday has passed, so three full months have elapsed since it, plus five days. Total days lived across that span is 9,593. The zodiac sign is Gemini, because the birth date falls before the 21 June cutoff, and the next birthday is reported with the weekday it lands on.',
+      formulas: [{ label: 'Age', expression: 'Years = today.year − birth.year; adjust if month/day have not passed yet' }],
       resultExplanations: [
-        { resultLabel: 'Age (Years, Months, Days)', explanation: 'Your exact age broken into calendar units.' },
-        { resultLabel: 'Next Birthday', explanation: 'Days remaining until your next birthday, or celebration day if today is your birthday.' },
+        { resultLabel: 'Age (Years, Months, Days)', explanation: 'Your exact age broken into calendar units, counting whole months since your last birthday.' },
+        { resultLabel: 'Next Birthday', explanation: 'The weekday and year of your next birthday, plus the number of days until it arrives.' },
       ],
       workflowLinks: [
         { slug: 'date-difference-calculator', step: 'Calculate the exact gap between any two dates.' },
         { slug: 'days-until-calculator', step: 'Count down to any future event.' },
       ],
       faqs: [
-        { q: 'How is age calculated in months?', a: 'Months are counted as full calendar months between your birth date and today. If your birthday has passed this year, months start from your last birthday.' },
-        { q: 'What is my zodiac sign?', a: 'Zodiac signs are based on birth month and day. The calculator determines your sun sign from the standard Western zodiac date ranges.' },
-        { q: 'Does it handle leap year birthdays?', a: 'Yes. If born on February 29, the calculator uses March 1 for non-leap years to keep the count accurate.' },
+        { q: 'How is age calculated in months?', a: 'Months are whole calendar months since your last birthday, not a division of days by 30. That is why 26 years 3 months means three complete months have passed since the birthday, whatever their length.' },
+        { q: 'What is my zodiac sign?', a: 'The calculator assigns the standard Western sun sign from the birth month and day, using the usual date ranges. It is the popular-astrology convention, not an astronomical position — the sun actually drifts about one sign from the traditional dates over the past two millennia.' },
+        { q: 'Does it handle leap year birthdays?', a: 'A 29 February birthday rolls to 1 March in common years, because the date does not exist. Some jurisdictions legally mark it on 28 February instead, so an official age on that one day can differ by a day.' },
+        { q: 'Why is total days lived not years times 365?', a: 'Because leap days accumulate. Every four years adds one, minus the century exceptions, so a 26-year span contains six or seven extra days. The total-days figure counts them exactly; multiplying by 365 would be short by about a week.' },
+        { q: 'Does the countdown use my local date?', a: 'It compares dates at midnight UTC, so the answer reflects the calendar date rather than the exact hour. Near midnight in time zones far from UTC the result can change a few hours before or after your local day rolls over.' },
       ],
       related: ['date-difference-calculator', 'days-until-calculator', 'days-to-weeks-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-05' },
   },
   {
     id: 'date-difference',
@@ -265,26 +285,29 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
     kind: 'custom',
     componentId: 'DateDifferenceCalculator',
     content: {
-      intro: 'The Date Difference Calculator counts the exact time between any two dates. It shows total days, weeks and days, years, months, and business days (weekdays only).',
-      howItWorks: 'Both dates are parsed to UTC. Total days = (end - start) / 86400000. Weeks and remaining days use integer division. Business days iterate through the range counting Mon-Fri.',
-      example: 'From January 1 to March 15, 2026: 73 total days, 10 weeks and 3 days, 0 years 2 months 14 days, 53 business days.',
-      formulas: [{ label: 'Total Days', expression: 'Total Days = (End Date - Start Date) / 86400000' }],
+      intro: 'The Date Difference Calculator counts the gap between two dates four different ways: total calendar days, weeks and days, years months and days, and business days. The same span produces four different-looking numbers, and which one is correct depends entirely on what you are counting — elapsed time, working capacity, or a contractual period.',
+      howItWorks: 'Both dates are read at midnight UTC and subtracted, giving whole elapsed days between them. Weeks are that total divided by seven with the remainder kept as days. The years-months-days figure is counted in calendar units the way a person would: full years first, then months, then leftover days, borrowing from the previous month where needed. Business days iterate every date from the earlier to the later endpoint and count Monday to Friday, including both endpoints — so a Monday-to-Friday week counts five, not four. Public holidays are not excluded anywhere in the calculation.',
+      example: 'From 1 January 2026 to 15 March 2026 there are 73 elapsed calendar days, which is 10 weeks and 3 days, or 2 months and 14 days in calendar units. Because both endpoints are counted, the business-day figure is 52 — the span touches 11 working weeks, but the partial weeks at each end add up to fewer than five each. If the end date is moved earlier than the start, the difference is reported in reverse.',
+      formulas: [{ label: 'Total Days', expression: 'Total Days = (End Date − Start Date) / 86,400,000' }],
       resultExplanations: [
-        { resultLabel: 'Total Days', explanation: 'The raw day count between the two dates.' },
-        { resultLabel: 'Business Days', explanation: 'Weekdays only (Mon-Fri), excluding weekends.' },
+        { resultLabel: 'Total Days', explanation: 'The raw count of elapsed days between the two dates, not counting the start date itself.' },
+        { resultLabel: 'Business Days', explanation: 'Weekdays only, Monday to Friday, counting both endpoints and ignoring public holidays.' },
       ],
       workflowLinks: [
         { slug: 'age-calculator', step: 'Calculate your exact age from a date of birth.' },
         { slug: 'days-until-calculator', step: 'Count down to a specific future date.' },
+        { slug: 'work-hours-calculator', step: 'Turn the working days into payable hours.' },
       ],
       faqs: [
-        { q: 'Are weekends included in the count?', a: 'Total days includes all calendar days. Business days exclude Saturdays and Sundays.' },
-        { q: 'Does it count holidays?', a: 'No. Business days are Monday through Friday only. Public holidays are not excluded.' },
-        { q: 'Can I calculate backward?', a: 'If the start date is after the end date, the calculator shows the difference in reverse.' },
+        { q: 'Are weekends included in the count?', a: 'Total days includes every calendar day. Business days exclude Saturdays and Sundays entirely, which is why the two figures can differ by nearly 30% over a month.' },
+        { q: 'Does it count holidays?', a: 'No. Business days are Monday to Friday only, so a bank holiday counts as a working day here. For contractual deadlines, subtract the public holidays in the relevant country yourself.' },
+        { q: 'Can I calculate backward?', a: 'Yes. If the start date is after the end date, the difference is shown as a past span rather than a future one, and the day, week and month counts stay positive.' },
+        { q: 'Why do the month count and the day count not match?', a: 'They answer different questions. Dividing 73 days by 30.44 gives about 2.4 months, while the calendar method says 2 months and 14 days, because January and February are 31 and 28 days long. The calendar version matches how leases, notice periods and ages are actually counted.' },
+        { q: 'Is the end date included?', a: 'For total days, no — 1 January to 2 January is one day. For business days, yes, both endpoints are counted. That inconsistency is deliberate: it matches how elapsed time and working-day counts are normally used.' },
       ],
       related: ['age-calculator', 'days-until-calculator', 'days-to-weeks-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-05' },
   },
   {
     id: 'days-until',
@@ -299,26 +322,30 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
     kind: 'custom',
     componentId: 'DaysUntilCalculator',
     content: {
-      intro: 'The Days Until Calculator counts down from today to any target date. It shows days remaining, weeks, and the day of week your target falls on.',
-      howItWorks: 'The target date is compared to today at midnight UTC. If the target is in the past, it shows how many days ago it was. If today, it shows a celebration message.',
-      example: 'If today is August 21, 2026 and the target is December 25, 2026, there are 126 days until Christmas, about 18 weeks.',
-      formulas: [{ label: 'Days Until', expression: 'Days = floor((Target Date - Today) / 86400000)' }],
+      intro: 'The Days Until Calculator counts the calendar days from today to any target date, then restates the same span in whole weeks and leftover days and names the weekday the target falls on. It works in both directions: a future date gives a countdown, a past date gives how long ago it was, and today itself is recognised separately.',
+      howItWorks: 'Both dates are reduced to midnight UTC and subtracted, so the answer is a count of calendar dates rather than a duration in hours. The absolute difference is taken, which is what allows past dates to report a clean number of days ago, and the sign decides whether the result is presented as remaining or elapsed. Weeks are the day count divided by seven, floored, with the remainder shown as days — so 18 weeks and 0 days is a span of exactly 126 days, not one that ends mid-week.',
+      example: 'From 21 August 2026 to 25 December 2026 there are 126 days, which is exactly 18 weeks and 0 days. The target falls on a Friday. Going the other way, a target of 21 August 2026 viewed on 25 December 2026 reports 126 days ago rather than a negative countdown. A date of today returns the celebration case with zero days rather than a direction.',
+      formulas: [{ label: 'Days Until', expression: 'Days = floor((Target Date − Today) / 86,400,000)' }],
       resultExplanations: [
-        { resultLabel: 'Days Remaining', explanation: 'Calendar days from today until the target date.' },
-        { resultLabel: 'Weeks', explanation: 'The same period in weeks, useful for planning.' },
+        { resultLabel: 'Days Remaining', explanation: 'Calendar days from today until the target date, or since it if the date has passed.' },
+        { resultLabel: 'Weeks', explanation: 'The same span in whole weeks, with leftover days shown separately.' },
+        { resultLabel: 'Day of Week', explanation: 'The weekday the target date falls on, useful for scheduling the event itself.' },
       ],
       workflowLinks: [
         { slug: 'age-calculator', step: 'See your complete age breakdown from date of birth.' },
         { slug: 'date-difference-calculator', step: 'Compare any two dates in detail.' },
+        { slug: 'add-days-to-date', step: 'Work out the date a fixed number of days away.' },
       ],
       faqs: [
-        { q: 'What happens if the date is in the past?', a: 'The calculator shows how many days ago the date was, along with weeks.' },
-        { q: 'Is today counted?', a: 'If the target date is today, the calculator shows a celebration message with 0 days remaining.' },
-        { q: 'Does it account for time zones?', a: 'All comparisons use midnight UTC to keep calculations consistent regardless of your local time zone.' },
+        { q: 'What happens if the date is in the past?', a: 'The calculator takes the absolute difference and reports how many days ago the date was, along with the same weeks-and-days breakdown. It does not show a negative countdown.' },
+        { q: 'Is today counted?', a: 'No. If the target is today, the result is zero days with a celebration message. If the target is tomorrow, the result is one day, because the count is of intervening dates rather than inclusive of both ends.' },
+        { q: 'Does it account for time zones?', a: 'It compares dates at midnight UTC, so the answer follows the calendar date rather than your local clock. If you are several hours from UTC, the count can tick over before or after your own midnight.' },
+        { q: 'Does it skip weekends?', a: 'No, this counts every calendar day. For working days between two dates, use the date difference calculator, which counts Monday to Friday separately.' },
+        { q: 'Does it handle leap years?', a: 'Yes, because it subtracts actual dates rather than multiplying an average. A span crossing 29 February is one day longer than the same dates in a common year, and the count reflects that automatically.' },
       ],
       related: ['age-calculator', 'date-difference-calculator', 'days-to-weeks-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-11-05' },
   },
   {
     id: 'time-adder',

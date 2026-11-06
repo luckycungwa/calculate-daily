@@ -577,7 +577,7 @@ export const TriangleCalculator: React.FC<CalculatorProps> = ({ onSaveHistory })
 // ==========================================
 
 function formatDecimal(value: number, places: number): string {
-  if (!Number.isFinite(value)) return '�';
+  if (!Number.isFinite(value)) return '—';
   const fixed = value.toFixed(Math.min(12, Math.max(0, places)));
   return fixed.includes('.') ? fixed.replace(/0+$/, '').replace(/\.$/, '') : fixed;
 }
@@ -658,7 +658,7 @@ export const FractionToDecimalCalculator: React.FC<CalculatorProps> = ({ onSaveH
                   <dd className="font-mono text-zinc-100">
                     {Math.abs(value.decimal) >= 1
                       ? `${value.mixedWhole} ${value.mixedNumerator}/${value.mixedDenominator}`
-                      : '�'}
+                      : '—'}
                   </dd>
                 </div>
               </dl>

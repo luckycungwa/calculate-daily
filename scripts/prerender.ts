@@ -677,7 +677,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
     '/contact': '2026-10-30',
     '/privacy': '2026-10-30',
     '/terms': '2026-10-30',
-    '/savings-goal': '2026-10-30',
+    '/savings-goal': '2026-11-06',
   };
 
   const contentDateByPath = new Map<string, string>();

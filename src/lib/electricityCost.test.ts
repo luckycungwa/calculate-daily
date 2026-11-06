@@ -61,8 +61,8 @@ test('LED savings come from the identical formula, only the wattage differs', ()
     ratePerKwh: 2,
     daysPerMonth: 30,
   });
-  assert.ok(Math.abs(savings.conventional.costPerMonth - 0.6 * 5 * 30 * 2) < 1e-9); // R180
-  assert.ok(Math.abs(savings.led.costPerMonth - 0.09 * 5 * 30 * 2) < 1e-9); // R27
+  assert.ok(Math.abs(savings.conventional.costPerMonth - 0.6 * 5 * 30 * 2) < 1e-9); // $180
+  assert.ok(Math.abs(savings.led.costPerMonth - 0.09 * 5 * 30 * 2) < 1e-9); // $27
   assert.ok(Math.abs(savings.monthlySaving - 153) < 1e-9);
   // annual uses 365 real days, not 12 x the 30-day month: costPerYear diff
   assert.ok(Math.abs(savings.annualSaving - (savings.conventional.costPerYear - savings.led.costPerYear)) < 1e-9);
