@@ -58,9 +58,11 @@ export const debtPayoffGuide: Guide = {
   relatedCalculators: ['savings-goal-calculator', 'simple-interest-calculator', 'percentage-calculator'],
   relatedGuides: ['compound-interest-savings-guide', 'complete-home-buying-guide'],
   seo: {
-    status: 'noindex',
-    reviewStatus: 'pending',
+    status: 'index',
+    reviewStatus: 'reviewed',
     priority: 0.95,
+    updatedAt: '2026-11-14',
+    title: 'Debt Payoff Strategy: Snowball vs Avalanche',
   },
   publishedAt: '2026-08-22',
 };

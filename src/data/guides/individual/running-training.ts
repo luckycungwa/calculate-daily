@@ -66,9 +66,11 @@ export const runningTrainingGuide: Guide = {
   relatedCalculators: ['protein-intake-calculator', 'bmr-calculator', 'water-intake-calculator'],
   relatedGuides: ['tdee-macros-complete-guide', 'bmi-body-fat-weight-guide'],
   seo: {
-    status: 'noindex',
-    reviewStatus: 'pending',
+    status: 'index',
+    reviewStatus: 'reviewed',
     priority: 0.85,
+    updatedAt: '2026-11-14',
+    title: 'Running Pace, Heart Rate Zones & Training',
   },
   publishedAt: '2026-08-22',
 };

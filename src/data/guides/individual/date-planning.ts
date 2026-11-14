@@ -69,7 +69,8 @@ export const datePlanningGuide: Guide = {
     reviewStatus: 'reviewed',
     priority: 0.8,
     // Last commit that touched this file (git log -1 --format=%cs).
-    updatedAt: '2026-10-26',
+    updatedAt: '2026-11-13',
+    title: 'Date Planning, Countdowns & Work Hours',
   },
   publishedAt: '2026-08-22',
 };

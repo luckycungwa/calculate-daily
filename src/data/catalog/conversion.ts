@@ -164,7 +164,9 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.9,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-13',
+      title: 'Currency Converter - Live Exchange Rates',
+      description: 'Convert money between 40+ world currencies using live reference exchange rates, with the rate and the date it was retrieved shown.',
     },
   },
   {
@@ -224,7 +226,9 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-11-05',
+      updatedAt: '2026-11-13',
+      title: 'Temperature Converter - C, F & Kelvin',
+      description: 'Convert temperature between Celsius, Fahrenheit and Kelvin with the exact formula and offset, plus a conversion table of common values.',
     },
   },
   {
@@ -275,7 +279,9 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.8,
-      updatedAt: '2026-11-05',
+      updatedAt: '2026-11-13',
+      title: 'Length Converter - Metres, Feet, Inches & Miles',
+      description: 'Convert length between millimetres, metres, centimetres, inches, feet, yards and miles, with the exact factors and a conversion table.',
     },
   },
   {
@@ -327,7 +333,9 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.75,
-      updatedAt: '2026-11-05',
+      updatedAt: '2026-11-13',
+      title: 'Weight Converter - kg, lb, oz & Stone',
+      description: 'Convert mass between milligrams, grams, kilograms, tonnes, ounces, pounds and stone, with the exact factors and a conversion table.',
     },
   },
   {
@@ -485,7 +493,9 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-11-05',
+      updatedAt: '2026-11-13',
+      title: 'Volume Converter - Litres, Gallons & Cups',
+      description: 'Convert volume between millilitres, litres, teaspoons, tablespoons, cups, pints, quarts, gallons and cubic metres, with a conversion table.',
     },
   },
   {
@@ -537,7 +547,9 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
-      updatedAt: '2026-11-05',
+      updatedAt: '2026-11-13',
+      title: 'Data Storage Converter - MB, GB, TB & Bytes',
+      description: 'Convert file sizes between bits, bytes, KB, MB, GB, TB and PB. 1 GB equals 1,024 MB. Includes a conversion table and worked examples.',
     },
   },
   {
@@ -569,7 +581,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['kg-to-lbs-calculator', 'weight-converter', 'bmi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-11-13', title: 'Pounds to Kg Converter - 1 lb = 0.453592 kg', description: 'Convert pounds to kilograms with the exact factor: 1 lb = 0.453592 kg. Includes a conversion table, the formula, and worked examples.' },
   },
   {
     id: 'kg-to-lbs',
@@ -599,7 +611,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['pounds-to-kg-calculator', 'weight-converter', 'bmi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-13', title: 'Kg to Lbs Converter - 1 kg = 2.20462 lb', description: 'Convert kilograms to pounds with the exact factor: 1 kg = 2.20462 lb. Includes a conversion table, the formula, and worked examples.' },
   },
   {
     id: 'celsius-fahrenheit',
@@ -630,7 +642,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['fahrenheit-to-celsius-calculator', 'temperature-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-11-13', title: 'Celsius to Fahrenheit - 0 C = 32 F', description: 'Convert Celsius to Fahrenheit with the exact formula: F = C x 9/5 + 32. Includes a conversion table and worked examples.' },
   },
   {
     id: 'fahrenheit-celsius',
@@ -660,7 +672,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['celsius-to-fahrenheit-calculator', 'temperature-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-13', title: 'Fahrenheit to Celsius - 32 F = 0 C', description: 'Convert Fahrenheit to Celsius with the exact formula: C = (F - 32) x 5/9. Includes a conversion table and worked examples.' },
   },
   {
     id: 'inches-cm',
@@ -690,7 +702,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['cm-to-inches-calculator', 'feet-to-meters-calculator', 'length-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-11-13', title: 'Inches to Cm - 1 in = 2.54 cm', description: 'Convert inches to centimeters with the exact factor: 1 in = 2.54 cm. Includes a conversion table and worked examples.' },
   },
   {
     id: 'cm-inches',
@@ -720,7 +732,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['inches-to-cm-calculator', 'length-converter', 'feet-to-meters-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-13', title: 'Cm to Inches - 1 cm = 0.393701 in', description: 'Convert centimeters to inches with the exact factor: 1 cm = 0.393701 in. Includes a conversion table and worked examples.' },
   },
   {
     id: 'feet-meters',
@@ -750,7 +762,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['meters-to-feet-calculator', 'inches-to-cm-calculator', 'length-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-11-13', title: 'Feet to Meters - 1 ft = 0.3048 m', description: 'Convert feet to meters with the exact factor: 1 ft = 0.3048 m. Includes a conversion table, the formula, and worked examples.' },
   },
   {
     id: 'meters-feet',
@@ -780,7 +792,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['feet-to-meters-calculator', 'length-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-13', title: 'Meters to Feet - 1 m = 3.28084 ft', description: 'Convert meters to feet with the exact factor: 1 m = 3.28084 ft. Includes a conversion table, the formula, and worked examples.' },
   },
   {
     id: 'miles-km',
@@ -810,7 +822,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['km-to-miles-calculator', 'length-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-11-13', title: 'Miles to Km - 1 mile = 1.60934 km', description: 'Convert miles to kilometers with the exact factor: 1 mile = 1.60934 km. Includes a conversion table and worked examples.' },
   },
   {
     id: 'km-miles',
@@ -840,7 +852,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['miles-to-km-calculator', 'length-converter', 'mph-to-kph-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-13', title: 'Km to Miles - 1 km = 0.621371 mi', description: 'Convert kilometers to miles with the exact factor: 1 km = 0.621371 mi. Includes a conversion table and worked examples.' },
   },
   {
     id: 'gallons-liters',
@@ -870,7 +882,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['liters-to-gallons-calculator', 'volume-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.95, updatedAt: '2026-11-13', title: 'Gallons to Liters - 1 gal = 3.78541 L', description: 'Convert US gallons to liters with the exact factor: 1 gal = 3.78541 L. Includes a conversion table and worked examples.' },
   },
   {
     id: 'liters-gallons',
@@ -900,7 +912,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['gallons-to-liters-calculator', 'volume-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-13', title: 'Liters to Gallons - 1 L = 0.264172 gal', description: 'Convert liters to US gallons with the exact factor: 1 L = 0.264172 gal. Includes a conversion table and worked examples.' },
   },
   {
     id: 'ounces-grams',
@@ -930,7 +942,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['grams-to-ounces-calculator', 'weight-converter', 'recipe-scaling-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-13', title: 'Ounces to Grams - 1 oz = 28.3495 g', description: 'Convert ounces to grams with the exact factor: 1 oz = 28.3495 g. Includes a conversion table and worked examples.' },
   },
   {
     id: 'grams-ounces',
@@ -960,7 +972,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['ounces-to-grams-calculator', 'weight-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-13', title: 'Grams to Ounces - 1 g = 0.035274 oz', description: 'Convert grams to ounces with the exact factor: 1 g = 0.035274 oz. Includes a conversion table and worked examples.' },
   },
   {
     id: 'cups-ml',
@@ -990,7 +1002,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['recipe-scaling-calculator', 'volume-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-13', title: 'Cups to Milliliters - 1 cup = 236.588 mL', description: 'Convert cups to milliliters with the exact factor: 1 cup = 236.588 mL. Includes a conversion table and worked examples.' },
   },
   {
     id: 'tbsp-tsp',
@@ -1020,7 +1032,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['cups-to-ml-calculator', 'recipe-scaling-calculator', 'volume-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-13', title: 'Tablespoons to Teaspoons - 1 tbsp = 3 tsp', description: 'Convert tablespoons to teaspoons with the exact factor: 1 tbsp = 3 tsp. Includes a conversion table and worked examples.' },
   },
   {
     id: 'pints-quarts',
@@ -1050,7 +1062,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['volume-converter', 'gallons-to-liters-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-13', title: 'Pints to Quarts - 1 pint = 2 quarts', description: 'Convert pints to quarts with the exact factor: 1 pint = 2 quarts. Includes a conversion table and worked examples.' },
   },
   {
     id: 'acres-sqft',
@@ -1080,7 +1092,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['square-feet-to-acres-calculator', 'room-area-calculator', 'area-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-13', title: 'Acres to Square Feet - 1 acre = 43,560 sq ft', description: 'Convert acres to square feet with the exact factor: 1 acre = 43,560 sq ft. Includes a conversion table and worked examples.' },
   },
   {
     id: 'sqft-acres',
@@ -1110,7 +1122,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['acres-to-square-feet-calculator', 'area-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-13', title: 'Square Feet to Acres - 1 acre = 43,560 sq ft', description: 'Convert square feet to acres with the exact factor: 1 acre = 43,560 sq ft. Includes a conversion table and worked examples.' },
   },
   {
     id: 'stone-pounds',
@@ -1143,7 +1155,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['pounds-to-stone-calculator', 'weight-converter', 'bmi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-05' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-13', title: 'Stone to Pounds - 1 stone = 14 lb', description: 'Convert stone to pounds with the exact factor: 1 stone = 14 lb. Includes a conversion table and worked examples.' },
   },
   {
     id: 'pounds-stone',
@@ -1176,7 +1188,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['stone-to-pounds-calculator', 'weight-converter', 'bmi-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-05' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-13', title: 'Pounds to Stone - 1 lb = 0.157473 st', description: 'Convert pounds to stone with the exact factor: 1 lb = 0.157473 st. Includes a conversion table and worked examples.' },
   },
   {
     id: 'mb-gb',
@@ -1206,7 +1218,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['gb-to-tb-calculator', 'data-storage-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-08-22' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-13', title: 'MB to GB Converter - 1 GB = 1,024 MB', description: 'Convert megabytes to gigabytes: 1 GB = 1,024 MB. Includes a conversion table for file sizes and worked examples.' },
   },
   {
     id: 'gb-tb',
@@ -1239,7 +1251,7 @@ export const CONVERSION_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['mb-to-gb-calculator', 'data-storage-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-05' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-13', title: 'GB to TB Converter - 1 TB = 1,024 GB', description: 'Convert gigabytes to terabytes: 1 TB = 1,024 GB. Includes a conversion table for file sizes and worked examples.' },
   },
   {
     id: 'hours-minutes',

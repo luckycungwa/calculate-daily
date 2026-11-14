@@ -21,9 +21,9 @@ export const AllCalculatorsPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<CalculatorCategory>(initialCategory);
 
   usePageMeta({
-    title: 'All Calculators',
+    title: 'Free Online Calculators - Every Tool A-Z',
     description:
-      'Browse every free online calculator and unit converter on Total Calculation, including percentage, BMI, mortgage, savings, temperature, length, weight, and more.',
+      'Browse every free online calculator and unit converter on Total Calculation: finance, health, construction, conversion, math, food, time, and more.',
     canonicalPath: '/calculators',
   });
 

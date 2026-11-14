@@ -120,8 +120,8 @@ export const scientificCalculatorGuide: Guide = {
     status: 'index',
     reviewStatus: 'reviewed',
     priority: 0.8,
-    updatedAt: '2026-10-31',
-    title: 'How to Use a Scientific Calculator — Degrees, Radians, Logs & Notation',
+    updatedAt: '2026-11-13',
+    title: 'How to Use a Scientific Calculator - Full Guide',
     description:
       'A practical guide to scientific calculator functions: DEG vs RAD, log vs ln, powers and roots, typing scientific notation with the e key, and how many significant figures to report.',
   },

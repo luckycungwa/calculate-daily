@@ -70,7 +70,8 @@ export const homeRenovationGuide: Guide = {
     reviewStatus: 'reviewed',
     priority: 0.85,
     // Last commit that touched this file (git log -1 --format=%cs).
-    updatedAt: '2026-10-26',
+    updatedAt: '2026-11-13',
+    title: 'Home Renovation Math: Measure Twice, Cut Once',
   },
   publishedAt: '2026-08-22',
 };

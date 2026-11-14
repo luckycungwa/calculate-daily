@@ -834,11 +834,11 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
     },
     content: {
       intro:
-        'The Credit Card Interest Calculator reveals the monthly interest charge on an unpaid balance, making the cost of revolving debt impossible to ignore. Use it before deciding how aggressively to pay down a card.',
+        'The Credit Card Interest Calculator reveals the monthly interest charge on an unpaid balance, making the cost of revolving debt impossible to ignore. Use it before deciding how aggressively to pay down a card. The formula follows the way card issuers describe interest in their own disclosures, and the sources below explain the rules behind it. The result is an estimate of one statement cycle, not a statement: issuers charge interest on the average daily balance, so paying part-way through the cycle lowers the amount.',
       howItWorks:
         'Monthly interest is the balance multiplied by the annual percentage rate divided by 12. Because cards compound daily, this is an accurate first-order estimate of the next statement charge.',
       example:
-        'A $3,000 balance at 24% APR accrues about $60 in interest this month and roughly $720 over a full year if the balance stays flat.',
+        'A $3,000 balance at 24% APR accrues about $60 in interest this month and roughly $720 over a full year if the balance stays flat. Paying $500 of that balance down before the due date cuts the next cycle by about $10 and the annual cost by about $120, and the saving grows every month the balance stays lower.',
       formulas: [
         {
           label: 'Monthly Interest',
@@ -867,8 +867,24 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       faqs: [
         { q: 'How is credit card interest calculated?', a: 'Cards convert the APR to a daily rate and charge interest on the average daily balance. Monthly interest approximates balance x APR / 12.' },
+        { q: 'What is the difference between APR and APY?', a: 'APR is the annualised rate including most fees, while APY reflects compounding and is the fairer comparison for savings. A credit card shows APR because interest compounds daily on the balance you carry.' },
+        { q: 'What is a grace period?', a: 'Most cards give you a grace period of around 21 days from the statement date to pay in full with no interest. Paying less than the statement balance starts interest accruing from the transaction date, not the statement date.' },
+        { q: 'How much would I save by paying down $1,000?', a: 'On a $3,000 balance at 24% APR, $1,000 less balance saves about $20 in interest the next cycle and about $240 over a year, and the saving grows as the balance falls.' },
         { q: 'How can I avoid paying interest?', a: 'Pay the full statement balance before the due date every month. Most cards then offer a grace period with no interest on purchases.' },
         { q: 'Does this include fees?', a: 'No. Late fees, balance-transfer fees, and cash-advance fees are separate from the interest charge shown here.' },
+        { q: 'Why does my statement differ from this estimate?', a: 'Cards charge interest on the average daily balance, not the balance on the statement day, so paying mid-cycle lowers the average and the charge. Promotional rates, rate changes after a statement closes, and fees also change the figure.' },
+      ],
+      sources: [
+        {
+          label: 'Consumer Financial Protection Bureau - Credit card interest and statements',
+          expression: 'How a card issuer may charge interest on a credit card account',
+          note: 'The CFPB explains that a card issuer may charge interest on an outstanding balance and that a grace period applies when you pay in full; the average daily balance method used by issuers is described here.',
+        },
+        {
+          label: 'Consumer Financial Protection Bureau - Credit card debt',
+          expression: 'Paying down revolving card debt',
+          note: 'Guidance on reducing card balances, which is the lever this calculator quantifies.',
+        },
       ],
       related: ['loan-payment-calculator', 'emergency-fund-calculator', 'simple-interest-calculator'],
     },
@@ -876,7 +892,9 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.65,
-      updatedAt: '2026-11-06',
+      updatedAt: '2026-11-13',
+      title: 'Credit Card Interest Calculator - Monthly Cost',
+      description: 'See the monthly interest on an unpaid balance, what a full statement cycle costs, and how paying it down changes the total. Worked example included.',
     },
   },
   {
@@ -3037,7 +3055,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['hourly-to-annual-salary-calculator', 'salary-to-hourly-calculator', 'take-home-pay-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88, updatedAt: '2026-10-26' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88, updatedAt: '2026-11-13', title: 'Freelance Rate Calculator - Your Real Hourly Rate', description: 'Work backwards from the income you want to the hourly rate you need, after tax, business costs, and unpaid admin time. Worked examples included.' },
   },
   {
     id: 'overtime',

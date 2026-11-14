@@ -818,7 +818,7 @@ export const SPORTS_AND_HOME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['inflation-calculator', 'take-home-pay-calculator', 'salary-to-hourly-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-13', title: 'Salary Increase Calculator - Raise & Inflation', description: 'See what a raise is worth per month and per year, and what it is worth after inflation once you account for the cost of living.' },
   },
   {
     id: 'moving-cost',

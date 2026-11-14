@@ -158,6 +158,14 @@ export interface CategoryMeta {
   id: Exclude<CalculatorCategory, 'all' | 'ai'>;
   label: string;
   description: string;
+  /**
+   * Optional longer introduction rendered on the category page below the
+   * heading. Category pages that list only a handful of tools are otherwise
+   * one-line pages, so this is where the category earns its place in search:
+   * what the tools have in common, how the maths is done, and where the models
+   * stop being a good guide. Keep it specific to the category.
+   */
+  intro?: string;
 }
 
 export interface CalculationHistoryItem {

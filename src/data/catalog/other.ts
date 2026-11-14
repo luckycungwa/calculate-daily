@@ -78,7 +78,9 @@ export const FOOD_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-08-22',
+      updatedAt: '2026-11-13',
+      title: 'Recipe Scaler - Scale Any Recipe by Servings',
+      description: 'Scale every ingredient in a recipe up or down to the number of servings you need, keeping the ratios exactly the same. Includes a worked example.',
     },
   },
   {
@@ -657,7 +659,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['budget-calculator', 'savings-goal-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-11-04' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-11-13', title: 'Pet Food Cost Calculator - Monthly Cost', description: 'Work out what a pet food bag really costs per month and per year from the bag price, the animal weight, and how long one bag lasts.' },
   },
   {
     id: 'screen-time-cost',
@@ -760,7 +762,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['budget-calculator', 'savings-goal-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-04' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-13', title: 'Subscription Total Calculator - What You Pay', description: 'Add up your monthly subscriptions and see the yearly total, the average per week, and what one unwanted subscription costs per year.' },
   },
   {
     id: 'alcohol-units',
@@ -963,7 +965,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['budget-calculator', 'fuel-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-11-04' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-11-13', title: 'Daily Commute Cost Calculator - Fuel & Parking', description: 'Work out what your daily drive to work costs in fuel, parking, and wear, per day, per month, and per year. Includes a worked example.' },
   },
   {
     id: 'sa-fuel',

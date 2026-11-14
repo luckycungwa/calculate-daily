@@ -7,7 +7,7 @@ export const PrivacyPage: React.FC = () => {
   usePageMeta({
     title: 'Privacy Policy',
     description:
-      'How Total Calculation handles calculator inputs, browser storage, optional analytics, and third-party services.',
+      'How Total Calculation handles calculator inputs, browser storage, analytics, advertising cookies, and third-party services.',
     canonicalPath: '/privacy',
   });
 
@@ -22,7 +22,15 @@ export const PrivacyPage: React.FC = () => {
     },
     {
       title: 'Optional Analytics',
-      body: 'If a Google Analytics measurement ID is configured for a deployment, the site loads Google Analytics and sends page-view events containing the page path, page title, and page URL without its query string. No analytics events are sent when the measurement ID is absent. The application does not currently provide an analytics-consent prompt; do not enable analytics in places where prior consent is required until an appropriate consent flow is in place.',
+      body: 'Analytics is optional and off unless a measurement ID is configured for the deployment. When it is enabled, the site sends page-view events containing the page path, page title, and page URL without its query string. Analytics is only enabled in deployments that already handle any consent the law requires before those events are collected; when the measurement ID is absent, nothing is sent.',
+    },
+    {
+      title: 'Advertising and Cookies',
+      body: 'This site is supported by advertising, and ads are labelled as advertising. When advertising is enabled on a deployment, ad units are served by Google AdSense (publisher ID pub-8180440849942257) and by Google-certified partners. Google, as a third-party vendor, uses cookies to serve ads based on your prior visits to this website and other websites. Google\'s use of advertising cookies enables it and its partners to serve ads to you based on your visits to this site and other sites on the internet. These cookies are set and read by Google and its partners, not by Total Calculation, and the values you type into a calculator are never sent to an advertiser or used to target an ad.',
+    },
+    {
+      title: 'Your Advertising Choices',
+      body: 'You can turn off personalised advertising in Google Ads Settings at google.com/settings/ads, and you can opt out of third-party vendors\' use of cookies for personalised advertising at aboutads.info/choices or, in Europe, youronlinechoices.eu. Where the law requires prior consent for advertising cookies, such as in the European Economic Area, the United Kingdom, and Switzerland, a Google-certified consent management platform asks for your choice before those cookies are set, and you can change or withdraw that choice at any time from the consent control shown on the page.',
     },
     {
       title: 'Third-Party Services',
@@ -33,12 +41,12 @@ export const PrivacyPage: React.FC = () => {
       body: 'Total Calculation is built and operated by 44Tag Studios, a web design studio in Johannesburg, South Africa. The studio is the data controller for the information described here and answers privacy questions at 44tagstudios@gmail.com.',
     },
     {
-      title: 'Accounts, Advertising, and Hosting',
-      body: 'An account is not required. No advertising scripts are currently included in the application. Analytics, when enabled, may use cookies or similar identifiers according to the Google tag configuration. The hosting provider may process standard request and security logs when pages are served. If advertising or additional tracking is introduced, this policy and any required consent controls must be updated before enabling it.',
+      title: 'Accounts, Logs, and Hosting',
+      body: 'An account is not required and no profile is created for you. The hosting provider processes standard request and security logs when pages are served, which typically include your IP address, user agent, and the requested path. Advertising and analytics identifiers are covered in the sections above. If new tracking or advertising technology is introduced, this policy is updated before it is enabled.',
     },
     {
       title: 'Contact',
-      body: 'For privacy questions, use the contact details on the Contact page.',
+      body: 'For privacy questions, use the contact details on the Contact page. Data handling questions are answered by 44Tag Studios at 44tagstudios@gmail.com.',
     },
   ];
 
@@ -53,7 +61,7 @@ export const PrivacyPage: React.FC = () => {
           Privacy Policy
         </h1>
         <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          Last updated: October 24, 2026
+          Last updated: November 13, 2026
         </p>
       </div>
 

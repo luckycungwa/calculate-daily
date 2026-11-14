@@ -57,6 +57,11 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({ categoryId }) => {
         <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 max-w-2xl">
           {category.description}
         </p>
+        {category.intro && (
+          <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mt-3 max-w-3xl">
+            {category.intro}
+          </p>
+        )}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

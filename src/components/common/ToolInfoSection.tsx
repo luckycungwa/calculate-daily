@@ -15,13 +15,16 @@ import { getCalculatorLink } from '../../data/catalogLinks';
 import { getIcon } from './iconMap';
 import { Link } from '../../lib/router';
 import { Card, CardContent } from '../ui/card';
+import { ConversionReference } from './ConversionReference';
 
 interface ToolInfoSectionProps {
   content: ToolContent;
   currentSlug: string;
+  /** Present on unit converter pages: the unit pair the tool opens with. */
+  converter?: { unitGroup: string; from: string; to: string };
 }
 
-export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, currentSlug }) => {
+export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, currentSlug, converter }) => {
   const related = (content.related || [])
     .map((slug) => {
       const link = getCalculatorLink(slug);
@@ -45,6 +48,10 @@ export const ToolInfoSection: React.FC<ToolInfoSectionProps> = ({ content, curre
           <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{content.intro}</p>
         </CardContent>
       </Card>
+
+      {converter && (
+        <ConversionReference unitGroup={converter.unitGroup} from={converter.from} to={converter.to} />
+      )}
 
       <Card>
         <CardContent className="p-6 space-y-4">

@@ -111,8 +111,9 @@ export const AboutSection: React.FC = () => {
           copies are marked noindex and are not treated as separate pages in search.
         </p>
         <p>
-          There is no paywall, no sign-up, and no advertising script on the site today. Saving a result writes a
-          summary to your own browser storage, not to a server.
+          There is no paywall and no sign-up. Where the site carries advertising, the ads are labelled and kept
+          separate from the calculator and its result - no advertiser sees the values you enter, and no ad is an
+          endorsement of a result. Saving a result writes a summary to your own browser storage, not to a server.
         </p>
       </Section>
 

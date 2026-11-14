@@ -289,9 +289,9 @@ async function main() {
   pages.push({
     path: '/calculators',
     file: 'calculators.html',
-    title: withBrand('All Calculators'),
+    title: withBrand('Free Online Calculators - Every Tool A-Z'),
     description:
-      'Browse every free online calculator and unit converter on Total Calculation, including percentage, BMI, mortgage, savings, temperature, length, and weight.',
+      'Browse every free online calculator and unit converter on Total Calculation: finance, health, construction, conversion, math, food, time, and more.',
     jsonLd: [
       {
         '@context': 'https://schema.org',
@@ -447,7 +447,7 @@ async function main() {
       file: 'privacy.html',
       title: withBrand('Privacy Policy'),
       description:
-        'How Total Calculation handles calculator inputs, browser storage, optional analytics, and third-party services.',
+        'How Total Calculation handles calculator inputs, browser storage, analytics, advertising cookies, and third-party services.',
     },
     {
       path: '/terms',
@@ -455,6 +455,13 @@ async function main() {
       title: withBrand('Terms of Service'),
       description:
         'The terms governing your use of Total Calculation free online calculators and unit converters.',
+    },
+    {
+      path: '/disclaimer',
+      file: 'disclaimer.html',
+      title: withBrand('Disclaimer'),
+      description:
+        'What Total Calculation results mean: estimates for general information, the assumptions behind them, and the limits of financial, health and legal advice.',
     },
     {
       path: '/contact',
@@ -644,6 +651,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
     `${SITE_URL}/about`,
     `${SITE_URL}/privacy`,
     `${SITE_URL}/terms`,
+    `${SITE_URL}/disclaimer`,
     `${SITE_URL}/contact`,
   ];
   CATEGORIES.forEach((cat) => sitemapUrls.push(`${SITE_URL}/categories/${cat.id}`));
@@ -673,10 +681,11 @@ Sitemap: ${SITE_URL}/sitemap.xml
    * it is derived from the newest content it links to (see listDatesFor below).
    */
   const STATIC_PAGE_DATES: Record<string, string> = {
-    '/about': '2026-10-30',
-    '/contact': '2026-10-30',
-    '/privacy': '2026-10-30',
-    '/terms': '2026-10-30',
+    '/about': '2026-11-13',
+    '/contact': '2026-11-13',
+    '/privacy': '2026-11-13',
+    '/terms': '2026-11-13',
+    '/disclaimer': '2026-11-13',
     '/savings-goal': '2026-11-06',
   };
 
@@ -729,6 +738,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
     '/about': 0.5,
     '/privacy': 0.3,
     '/terms': 0.3,
+    '/disclaimer': 0.4,
     '/contact': 0.5,
   };
   CATEGORIES.forEach((cat) => {

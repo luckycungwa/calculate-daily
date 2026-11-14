@@ -70,7 +70,8 @@ export const cookingWeightGuide: Guide = {
     priority: 0.8,
     // Last commit that touched this file (git log -1 --format=%cs). The Article
     // schema only emits `dateModified` when this is a real, recorded date.
-    updatedAt: '2026-10-26',
+    updatedAt: '2026-11-14',
+    title: 'Cooking by Weight: Grams vs Cups',
   },
   publishedAt: '2026-08-22',
 };

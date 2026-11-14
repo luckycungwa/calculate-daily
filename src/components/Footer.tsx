@@ -117,6 +117,11 @@ export const Footer: React.FC = () => {
                 </Link>
               </li>
               <li>
+                <Link to="/disclaimer" className="inline-block py-1 hover:text-zinc-100">
+                  Disclaimer
+                </Link>
+              </li>
+              <li>
                 <Link to="/contact" className="inline-block py-1 hover:text-zinc-100">
                   Contact Us
                 </Link>
@@ -152,7 +157,11 @@ export const Footer: React.FC = () => {
             </Button>
           </div>
           <p className="text-zinc-400 leading-relaxed max-w-3xl">
-            Results are estimates for general informational purposes and are not professional financial, medical, legal, or construction advice. Consult a qualified professional before making decisions based on these calculations.
+            Results are estimates for general informational purposes and are not professional financial, medical, legal, or construction advice. Consult a qualified professional before making decisions based on these calculations.{' '}
+            <Link to="/disclaimer" className="text-zinc-300 underline-offset-2 hover:text-white hover:underline">
+              Read the full disclaimer
+            </Link>
+            .
           </p>
         </div>
       </div>

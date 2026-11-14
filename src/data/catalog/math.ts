@@ -199,7 +199,9 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-08-21',
+      updatedAt: '2026-11-13',
+      title: 'Ratio Calculator - Proportions & Missing Values',
+      description: 'Solve proportions such as A:B = C:D, find the missing value, or scale by a ratio. Shows the cross-multiplication method with worked examples.',
     },
   },
   {
@@ -491,7 +493,9 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.6,
-      updatedAt: '2026-11-05',
+      updatedAt: '2026-11-13',
+      title: 'Test Score Percentage Calculator - Grade It',
+      description: 'Turn a count of correct answers into a test percentage, see the questions you missed, and check the grade bands for common pass marks.',
     },
   },
   {
@@ -584,8 +588,8 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.9,
-      updatedAt: '2026-10-31',
-      title: 'Scientific Calculator Online — Trig, Logs, Fractions & Scientific Notation',
+      updatedAt: '2026-11-13',
+      title: 'Scientific Calculator Online - Trig & Logs',
       description:
         'Free online scientific calculator with sin, cos, tan, logs, powers, roots, factorials, DEG/RAD modes and scientific-notation input like 2.5e-3. Works on mobile with keyboard support.',
     },
@@ -701,8 +705,8 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.82,
-      updatedAt: '2026-10-31',
-      title: 'Scientific Notation Calculator — Converter & Arithmetic (a × 10ⁿ)',
+      updatedAt: '2026-11-13',
+      title: 'Scientific Notation Calculator & Converter',
       description:
         'Convert any number to scientific notation, engineering notation or E-notation, and multiply, divide, add or subtract numbers written as a × 10ⁿ. Includes worked exponent rules.',
     },
@@ -802,8 +806,8 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.78,
-      updatedAt: '2026-10-31',
-      title: 'Sig Fig Calculator — Count & Round Significant Figures',
+      updatedAt: '2026-11-13',
+      title: 'Sig Fig Calculator - Count & Round Figures',
       description:
         'Count significant figures in any measurement and round it to the sig figs you need. Handles leading and trailing zeros, exponent notation, and flags ambiguous values like 1200.',
     },
@@ -982,7 +986,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['prime-number-checker', 'factorial-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-04' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-13', title: 'GCD and LCM Calculator', description: 'Find the greatest common divisor and the least common multiple of two whole numbers, with the Euclid method shown and a worked example.' },
   },
   {
     id: 'factorial',
@@ -1147,7 +1151,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['slope-calculator', 'distance-formula-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-04' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-13', title: 'Quadratic Formula Calculator - Solve ax2+bx+c', description: 'Solve any ax2 + bx + c = 0 equation with the quadratic formula, including complex roots, the vertex, and a worked example.' },
   },
   {
     id: 'pythagorean',
@@ -1454,7 +1458,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['gcd-lcm-calculator', 'factorial-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-04' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-13', title: 'Prime Number Checker - Test Any Whole Number', description: 'Test whether a whole number is prime and count its divisors, with the trial division method explained and worked examples.' },
   },
   {
     id: 'abs-value',
@@ -1599,7 +1603,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['compound-interest-calculator', 'exponent-root-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-04' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-13', title: 'Exponential Growth Calculator - Compound Rate', description: 'Project a value forward at a constant percentage rate over a number of periods, showing the growth factor and the value reached. Worked examples included.' },
   },
   {
     id: 'distance-formula',
@@ -1648,7 +1652,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['pythagorean-theorem-calculator', 'slope-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-04' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-13', title: 'Distance Formula Calculator - Two Points', description: 'Measure the straight-line distance between two points on a flat plane with the distance formula, then check the midpoint and the line slope.' },
   },
   {
     id: 'fraction',
@@ -1823,7 +1827,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['scientific-calculator', 'graphing-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-10-26' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-13', title: 'Volume Calculator - Cube, Sphere & Cylinder', description: 'Find the volume of a cube, rectangular prism, sphere, cylinder, or cone from the dimensions you enter, with the formula for each shape shown.' },
   },
   {
     id: 'density',

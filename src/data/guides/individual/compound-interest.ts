@@ -16,7 +16,7 @@ export const compoundInterestGuide: Guide = {
         body: [
           'Simple interest earns only on the original amount. Compound interest earns on the original amount plus accumulated interest. Each period, your earnings start earning their own earnings.',
           'With annual compounding at a fixed 7% rate, $10,000 becomes about $14,026 after 5 years, $19,672 after 10 years, and $38,697 after 20 years. This illustration excludes taxes, fees, inflation, and rate changes.',
-          'Compounding frequency matters when the nominal rate is held constant. On $10,000 at 7% for 10 years, annual compounding gives about $19,672, monthly compounding about $20,097, and daily compounding about $20,137. Real products use their own stated rates and terms.',
+          'Compounding frequency matters when the nominal rate is held constant. On $10,000 at 7% for 10 years, annual compounding gives about $19,672, monthly compounding about $20,097, and daily compounding about $20,136. Real products use their own stated rates and terms.',
         ],
         callout: 'Rule of 72: Divide 72 by your interest rate to estimate how many years it takes to double your money. At 7%, money doubles roughly every 10.3 years.',
       },
@@ -57,9 +57,11 @@ export const compoundInterestGuide: Guide = {
   relatedCalculators: ['credit-card-interest-calculator', 'loan-payment-calculator', 'mortgage-affordability-calculator'],
   relatedGuides: ['debt-payoff-strategy-guide', 'complete-home-buying-guide'],
   seo: {
-    status: 'noindex',
-    reviewStatus: 'pending',
+    status: 'index',
+    reviewStatus: 'reviewed',
     priority: 0.9,
+    updatedAt: '2026-11-14',
+    title: 'Compound Interest: How Growth Actually Works',
   },
   publishedAt: '2026-08-22',
 };

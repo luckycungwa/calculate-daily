@@ -62,10 +62,24 @@ export const ContactPage: React.FC = () => {
             </ul>
           </div>
 
+          <div className="p-4 rounded-lg border border-zinc-200 dark:border-zinc-800">
+            <h3 className="text-xs font-bold text-zinc-950 dark:text-zinc-50 uppercase tracking-wider">
+              What This Inbox Is For
+            </h3>
+            <ul className="mt-2 space-y-1.5 text-xs text-zinc-600 dark:text-zinc-400">
+              <li>- Reporting a calculation that looks wrong, with the numbers you used.</li>
+              <li>- Asking for a calculator that does not exist yet, with the inputs it would need.</li>
+              <li>- Requesting an embed, licensing, or advertising enquiry.</li>
+              <li>- Privacy questions about what the site stores in your browser.</li>
+            </ul>
+          </div>
+
           <p className="text-[11px] text-zinc-500 dark:text-zinc-400 text-center leading-relaxed">
             Messages are read by the site operator. No response time is guaranteed, and this inbox is not a support
             channel for a bank, lender, employer, or clinician. Reports that a published calculation is wrong are
-            prioritised and fixed in the calculator and its worked example together.
+            prioritised and fixed in the calculator and its worked example together. If a page disagrees with a
+            deduction, a diagnosis, a quote, or a valuation you have been given, raise it with that provider - a
+            result here cannot overturn their figure.
           </p>
         </CardContent>
       </Card>

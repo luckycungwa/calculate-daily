@@ -2,6 +2,7 @@ import React from 'react';
 import { ScrollText } from 'lucide-react';
 import { usePageMeta } from '../lib/seo';
 import { Badge } from '../components/ui/badge';
+import { Link } from '../lib/router';
 
 export const TermsPage: React.FC = () => {
   usePageMeta({
@@ -18,11 +19,15 @@ export const TermsPage: React.FC = () => {
     },
     {
       title: 'Results Are Estimates',
-      body: 'Calculator outputs are mathematical estimates for general informational purposes. They are not professional financial, legal, medical, or construction advice. Always consult a qualified professional before making decisions based on these results.',
+      body: 'Calculator outputs are mathematical estimates for general informational purposes. They are not professional financial, legal, medical, or construction advice. Always consult a qualified professional before making decisions based on these results. The Disclaimer page explains what each family of calculators does and does not model.',
     },
     {
       title: 'No Warranty',
       body: 'The tools are provided "as is" without warranty of any kind. While we work to keep formulas accurate, we do not guarantee that results are error-free or suitable for your specific situation.',
+    },
+    {
+      title: 'Limitation of Liability',
+      body: 'To the extent permitted by law, Total Calculation and its publisher are not liable for any loss or damage arising from reliance on a calculated result, from an interruption in availability, or from an error in a figure, formula, or source. You remain responsible for checking any result against the terms of the contract, product, or professional advice that governs your situation. Nothing here limits rights you have under consumer law where you live.',
     },
     {
       title: 'Acceptable Use',
@@ -30,7 +35,15 @@ export const TermsPage: React.FC = () => {
     },
     {
       title: 'Intellectual Property',
-      body: 'The site design, text, and original content belong to Total Calculation. Formulas are common mathematical knowledge and remain freely usable by everyone.',
+      body: 'The site design, text, and original content belong to Total Calculation. Formulas are common mathematical knowledge and remain freely usable by everyone. You may embed a calculator on your own site through the embed route; the embed keeps the attribution link back to the canonical page.',
+    },
+    {
+      title: 'Advertising and Third-Party Links',
+      body: 'The site may display advertising served by third parties, and it links to government, standards, and data sources. Advertisements and linked sites are outside our control: an ad or a link is not an endorsement, no advertiser reviews or approves a result, and the terms and privacy practices of the destination apply once you leave this site. How advertising technology works here is described in the Privacy Policy.',
+    },
+    {
+      title: 'Privacy',
+      body: 'Calculator values are processed in your browser and are not sent to a server for calculation. What the site stores locally, and what third parties receive, is set out in the Privacy Policy.',
     },
     {
       title: 'Changes',
@@ -49,7 +62,7 @@ export const TermsPage: React.FC = () => {
           Terms of Service
         </h1>
         <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          Last updated: August 15, 2026
+          Last updated: November 13, 2026
         </p>
       </div>
 
@@ -61,6 +74,26 @@ export const TermsPage: React.FC = () => {
           </div>
         ))}
       </div>
+
+      <p className="text-xs text-zinc-500 dark:text-zinc-400 leading-relaxed">
+        Related pages:{' '}
+        <Link to="/disclaimer" className="text-primary dark:text-primary-tint hover:underline">
+          Disclaimer
+        </Link>
+        ,{' '}
+        <Link to="/privacy" className="text-primary dark:text-primary-tint hover:underline">
+          Privacy Policy
+        </Link>
+        ,{' '}
+        <Link to="/about" className="text-primary dark:text-primary-tint hover:underline">
+          About &amp; Methodology
+        </Link>
+        . Questions about these terms go to the{' '}
+        <Link to="/contact" className="text-primary dark:text-primary-tint hover:underline">
+          Contact page
+        </Link>
+        .
+      </p>
     </div>
   );
 };

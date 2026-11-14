@@ -40,7 +40,7 @@ export const bmiWeightGuide: Guide = {
         heading: 'Finding Your Ideal Weight',
         body: [
           'There is no single ideal weight for any height. It depends on your frame size, muscle mass, age, and personal goals. A better approach is targeting a body fat percentage range rather than a specific weight.',
-          'For most people, a healthy weight falls between the midpoint and upper end of the normal BMI range, combined with body fat in the healthy range. This might be 150-180 pounds for a 5-foot-10 man depending on build.',
+          'For most people, a healthy weight sits in the middle of the normal BMI band, combined with body fat in the healthy range. For a 5-foot-10 man, the full normal BMI band runs from about 129 to 174 pounds, and the middle of that band is roughly 150 pounds, depending on build.',
           'Focus on what your body can do rather than a number on the scale. Can you walk up stairs without getting winded? Can you carry groceries? Can you play with your kids? Functional fitness matters more than aesthetic categories.',
         ],
       },
@@ -57,9 +57,11 @@ export const bmiWeightGuide: Guide = {
   relatedCalculators: ['tdee-calculator', 'protein-intake-calculator', 'calories-burned-calculator'],
   relatedGuides: ['tdee-macros-complete-guide', 'running-pace-training-zones-guide'],
   seo: {
-    status: 'noindex',
-    reviewStatus: 'pending',
+    status: 'index',
+    reviewStatus: 'reviewed',
     priority: 0.85,
+    updatedAt: '2026-11-14',
+    title: 'BMI and Body Fat: What the Numbers Mean',
   },
   publishedAt: '2026-08-22',
 };

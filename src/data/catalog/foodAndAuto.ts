@@ -92,7 +92,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['cups-to-grams-calculator', 'butter-converter', 'recipe-scaling-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-10-26' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.9, updatedAt: '2026-11-13', title: 'Ingredient Weight Converter - Cups to Grams', description: 'Turn cups, tablespoons, teaspoons, and millilitres into grams for baking ingredients, using the density of each ingredient rather than one flat rule.' },
   },
   {
     id: 'butter',
@@ -859,7 +859,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['running-pace-calculator', 'fuel-cost-calculator', 'speed-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-10-26' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-13', title: 'Speed Distance Time Calculator - Solve Any One', description: 'Solve for speed, distance, or time: enter two values and the third is calculated. Shows the formula and worked examples for km/h, mph, and m/s.' },
   },
   {
     id: 'ev-charging-cost',
@@ -1048,7 +1048,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['fuel-cost-calculator', 'gas-mileage-calculator', 'ev-charging-cost-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88, updatedAt: '2026-10-26' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88, updatedAt: '2026-11-13', title: 'Trip Cost Calculator - Fuel, Tolls & Per Person', description: 'Budget a whole trip: fuel, tolls, parking, lodging, and food, then split the total per person and per mile. Includes a worked example.' },
   },
   {
     id: 'brine',

@@ -216,9 +216,11 @@ export const GUIDE_REGISTRY: Guide[] = [
     relatedCalculators: ['bmi-calculator', 'body-fat-calculator', 'ideal-weight-calculator'],
     relatedGuides: ['bmi-body-fat-weight-guide', 'running-pace-training-zones-guide'],
     seo: {
-      status: 'noindex',
-      reviewStatus: 'pending',
+      status: 'index',
+      reviewStatus: 'reviewed',
       priority: 0.85,
+      updatedAt: '2026-11-14',
+      title: 'TDEE, Macros, and Your Calorie Target',
     },
     publishedAt: '2026-08-21',
   },

@@ -549,7 +549,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['seconds-to-time-calculator', 'weekly-hours-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-04' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.7, updatedAt: '2026-11-13', title: 'Minutes to Hours Converter - 60 min = 1 hr', description: 'Convert minutes to hours, decimal hours, and seconds: 60 minutes equals 1 hour. Includes a conversion table and worked examples.' },
   },
   {
     id: 'hours-until',
@@ -654,7 +654,7 @@ export const TIME_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['work-hours-calculator', 'work-hours-per-year-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-11-04' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.75, updatedAt: '2026-11-13', title: 'Weekly Hours Calculator - Total Hours Worked', description: 'Add up the hours you worked on each day of the week to get your weekly total, the average per day, and the hours that count as overtime.' },
   },
   {
     id: 'sleep-hours',

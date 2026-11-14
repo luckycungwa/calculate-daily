@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Copy, Check, RotateCcw, Code2, Share2, Info } from 'lucide-react';
+import { Copy, Check, RotateCcw, Code2, Share2, Info, AlertTriangle } from 'lucide-react';
 import { ConfigCalculatorSpec, ConfigField } from '../../types';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -67,6 +67,9 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
       }
     });
   }, [formValues, spec.results]);
+
+  /** Results whose formula has no defined value at the current inputs. */
+  const undefinedResultCount = evaluatedResults.filter((v) => !Number.isFinite(v)).length;
 
   /**
    * Field validation, delegated to `src/lib/numberField.ts`.
@@ -280,6 +283,25 @@ export const ConfigCalculator: React.FC<ConfigCalculatorProps> = ({ name, slug, 
                 </div>
                 <p className="text-[11px] text-zinc-400 font-mono mt-1">Calculated instantly</p>
               </div>
+
+              {/*
+                A formula can legitimately have no value at a given input - a
+                zero divisor, a square root of a negative number, an odds ratio at
+                certainty. The result then renders as "Not calculable", which on
+                its own reads like a bug. Say why, in one line, so the reader knows
+                the tool is refusing rather than failing.
+              */}
+              {undefinedResultCount > 0 && (
+                <p className="text-[11px] text-zinc-300 font-mono leading-relaxed flex gap-1.5 mb-3">
+                  <AlertTriangle className="w-3 h-3 mt-0.5 shrink-0 text-zinc-400" />
+                  <span>
+                    {undefinedResultCount === 1 ? 'One result has' : `${undefinedResultCount} results have`} no
+                    defined value for these inputs - the formula divides by zero or leaves its domain (for example a
+                    negative term, an angle with no valid root, or an odds ratio at 0 or 1). Change an input to see a
+                    number.
+                  </span>
+                </p>
+              )}
 
               {spec.results.length > 1 && (
                 <div className="space-y-2 pt-2 border-t border-zinc-800">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ChevronRight } from 'lucide-react';
 import { getCategoryById } from '../data/categories';
+import { CONVERTER_DEFAULTS } from '../data/unitGroups';
 import { getCalculatorLink } from '../data/catalogLinks';
 import { useCalculatorEntry } from '../lib/useCalculatorEntry';
 import { usePageMeta } from '../lib/seo';
@@ -68,6 +69,20 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({ slug, onSaveHist
   const Icon = getIcon(iconName);
   const category = entry ? getCategoryById(entry.category) : undefined;
 
+  /**
+   * A unit converter page gets a reference block with the exact factor and a
+   * table of common values. The pair is the one the tool opens with, so the
+   * block answers the question the visitor typed.
+   */
+  const converterPair =
+    entry?.kind === 'converter' && entry.unitGroup
+      ? (() => {
+          const defaults = CONVERTER_DEFAULTS[entry.id];
+          if (!defaults) return undefined;
+          return { unitGroup: entry.unitGroup, from: defaults.from, to: defaults.to };
+        })()
+      : undefined;
+
   return (
     <div className="space-y-6">
       {/* Breadcrumb */}
@@ -121,7 +136,11 @@ export const CalculatorPage: React.FC<CalculatorPageProps> = ({ slug, onSaveHist
           {entry.seo?.status === 'index' && entry.seo?.reviewStatus === 'reviewed' && (
             <EmbedCard slug={entry.slug} name={entry.name} />
           )}
-          <ToolInfoSection content={entry.content} currentSlug={entry.slug} />
+          <ToolInfoSection
+            content={entry.content}
+            currentSlug={entry.slug}
+            converter={converterPair}
+          />
         </>
       ) : loading ? (
         <ToolSkeleton />

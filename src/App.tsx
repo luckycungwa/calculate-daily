@@ -152,6 +152,8 @@ export default function App() {
         return <Page />;
       case 'terms':
         return <Page />;
+      case 'disclaimer':
+        return <Page />;
       case 'contact':
         return <Page />;
       case 'guides':

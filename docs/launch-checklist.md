@@ -176,3 +176,23 @@ set, which must remain unindexable → a **production-guard** build that must fa
 Launch ≠ traffic. Do not forecast traffic from page counts. Continue tested batches from the living
 opportunity register and use real Search Console data after launch to reprioritise. Do not publish
 until the hosted CI and preview gates above pass.
+
+## AdSense monetisation gate - publisher-side, not code
+
+Full audit: [`adsense-readiness.md`](./adsense-readiness.md). The site-side work is done; these
+steps happen in the AdSense account and only after the domain migration gate above passes.
+
+- [x] `public/ads.txt` publishes `google.com, pub-8180440849942257, DIRECT, f08c47fec0942fa0`
+- [x] `/disclaimer` published, linked from the footer of every page, and cross-linked from the
+      privacy policy and terms
+- [x] Privacy policy discloses Google advertising cookies, the publisher ID, opt-out links, and
+      the consent position for the EEA, UK and Switzerland
+- [x] No page states that the site carries no advertising
+- [ ] Google-certified CMP enabled in AdSense (Privacy & messaging) for EEA/UK/CH **before** ads
+      serve - this is a publisher-side setting, there is no CMP code in this repository
+- [ ] Site added to AdSense and ownership verified (ads.txt crawl or verification snippet)
+- [ ] Ad code (or Auto ads) added after approval; ads labelled, clear of the result panel, and
+      never styled to resemble a calculator control
+- [ ] `https://www.totalcalculation.com/ads.txt` re-fetched after deploy and returns the line above
+- [ ] Ad density and placement reviewed at 360 px width - no ad above the calculator result
+- [ ] Do not claim or imply guaranteed approval anywhere in the review notes
