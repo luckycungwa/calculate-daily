@@ -628,24 +628,30 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
         { id: 'weeksPerBag', label: 'Weeks per Bag', type: 'number', defaultValue: 6, min: 0.5, step: 0.5 }
       ],
       results: [
-        { label: 'Monthly Cost', formulaCode: 'bagCost * 4.33 / weeksPerBag', suffix: '$', accent: true },
-        { label: 'Annual Cost', formulaCode: 'bagCost * 52 / weeksPerBag', suffix: '$' }
+        { label: 'Weekly Cost', formulaCode: 'bagCost / weeksPerBag', suffix: '$/wk' },
+        { label: 'Monthly Cost', formulaCode: 'bagCost * 52 / weeksPerBag / 12', suffix: '$/mo', accent: true },
+        { label: 'Annual Cost', formulaCode: 'bagCost * 52 / weeksPerBag', suffix: '$/yr' }
       ],
-      formulaDescription: 'undefined',
+      formulaDescription: 'Weekly cost = bag price / weeks per bag; monthly cost = weekly cost x 52 / 12; annual cost = weekly cost x 52.',
       tips: [
-        'Buying in bulk often reduces cost per week.',
-        'A pricier bag can still be cheaper per week if it lasts longer — compare weeks, not bag price.',
-        'Treats and supplements are not included.'
+        'Compare the cost per week rather than the price of the bag alone.',
+        'A larger bag can cost more upfront but less per week if it lasts proportionally longer.',
+        'Treats, supplements and other food purchases are not included unless you add them separately.'
       ],
     },
     content: {
-      intro: 'The Pet Food Cost Calculator turns a bag price and how long that bag lasts into a monthly and yearly food bill. It works for dogs, cats or any pet fed from a bought bag, and it makes different bag sizes comparable on the figure that actually matters: cost per week.',
-      howItWorks: 'One bag divided by the number of weeks it lasts gives the weekly cost. Multiplying that by 4.33 weeks per month gives the monthly figure, and by 52 weeks gives the year. The 4.33 is simply 52 / 12, the average number of weeks in a month, so the monthly and annual results stay consistent with each other.',
-      example: 'A $45 bag that lasts six weeks: 45 / 6 = $7.50 a week, so 45 x 4.33 / 6 = $32.48 a month and 45 x 52 / 6 = $390 a year. A $60 bag lasting eight weeks also works out at about $32.48 a month, because both cost $7.50 a week.',
-      formulas: [{ label: 'Cost', expression: 'Monthly = (Cost per bag x 4.33) / Weeks per bag' }],
+      intro: 'The Pet Food Cost Calculator estimates the weekly, monthly and annual cost of packaged pet food from the price of a bag and the number of weeks it lasts. Use it to compare different bag sizes on a consistent cost-per-week basis for dogs, cats or other pets.',
+      howItWorks: 'Divide the bag price by the number of weeks it lasts to get weekly cost. Multiply the weekly figure by 52 / 12 for an average monthly estimate, and by 52 for the annual estimate. Using 52 weeks divided by 12 months keeps the monthly and annual figures consistent.',
+      example: 'A $45 bag lasting six weeks costs $7.50 per week. That is about $32.50 per average month ($7.50 x 52 / 12) and $390 per year ($7.50 x 52). A $60 bag lasting eight weeks also costs $7.50 per week, so the two bags have the same ongoing food cost despite different upfront prices.',
+      formulas: [
+        { label: 'Weekly cost', expression: 'Bag price / weeks per bag' },
+        { label: 'Monthly cost', expression: 'Weekly cost x 52 / 12' },
+        { label: 'Annual cost', expression: 'Weekly cost x 52' }
+      ],
       resultExplanations: [
-        { resultLabel: 'Monthly Cost', explanation: 'Estimated monthly spending on pet food.' },
-        { resultLabel: 'Annual Cost', explanation: 'Estimated yearly spending on pet food.' }
+        { resultLabel: 'Weekly Cost', explanation: 'The bag price divided by the number of weeks it lasts.' },
+        { resultLabel: 'Monthly Cost', explanation: 'The weekly cost multiplied by 52 and divided by 12, giving an average month.' },
+        { resultLabel: 'Annual Cost', explanation: 'The weekly cost multiplied by 52 weeks.' }
       ],
       workflowLinks: [
         { slug: 'budget-calculator', step: 'Include pet costs in your household budget.' },
@@ -654,12 +660,12 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       faqs: [
         { q: 'How much should I budget for pet food?', a: 'There is no single figure: a small cat and a large dog differ several fold. Use the price of the bag you actually buy and how many weeks it lasts, rather than an average.' },
         { q: 'How do I compare two bag sizes?', a: 'Divide each bag price by the weeks it lasts to get a weekly cost, then compare. The lower weekly cost is the better value, even if the bag itself costs more.' },
-        { q: 'Does this include treats?', a: 'No. Add 10-20% for treats and supplements if you give them regularly.' },
+        { q: 'Does this include treats?', a: 'No. Treats and supplements are separate purchases, so add their costs separately if you want a broader pet-food budget.' },
         { q: 'Is expensive food worth it?', a: 'That depends on the food and the pet. If a costly bag lasts proportionally longer, the weekly cost may be similar, so compare on weekly cost before deciding.' }
       ],
       related: ['budget-calculator', 'savings-goal-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-11-13', title: 'Pet Food Cost Calculator - Monthly Cost', description: 'Work out what a pet food bag really costs per month and per year from the bag price, the animal weight, and how long one bag lasts.' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-11-18', title: 'Pet Food Cost Calculator - Weekly, Monthly & Annual Cost', description: 'Estimate weekly, monthly and annual pet food costs from a bag price and how many weeks it lasts. Compare different bag sizes using cost per week.' },
   },
   {
     id: 'screen-time-cost',
@@ -733,22 +739,29 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       results: [
         { label: 'Monthly Total', formulaCode: 'sub1+sub2+sub3+sub4+sub5', suffix: '$/mo', accent: true },
+        { label: 'Weekly Average', formulaCode: '(sub1+sub2+sub3+sub4+sub5)*12/52', suffix: '$/wk' },
         { label: 'Annual Total', formulaCode: '(sub1+sub2+sub3+sub4+sub5)*12', suffix: '$/yr' }
       ],
-      formulaDescription: 'undefined',
+      formulaDescription: 'Monthly total = sum of monthly subscription amounts; weekly average = annual total / 52; annual total = monthly total x 12.',
       tips: [
-      'The average household has $200-300 per month in subscriptions.',
-      'Review subscriptions quarterly and cancel unused ones.'
+        'Convert annual plans to a monthly equivalent by dividing the annual price by 12.',
+        'Convert weekly plans to a monthly equivalent by multiplying the weekly price by 52 and dividing by 12.',
+        'Review recurring charges against recent bank or card statements before cancelling anything.'
       ],
     },
     content: {
-      intro: 'The Subscription Total Calculator adds up to five monthly subscription prices and shows what they cost you in a month and over a year. Subscriptions are small individually and easy to forget, so the annual figure is usually the first honest look at what they add up to.',
-      howItWorks: 'Every slot is entered as a monthly amount, and the calculator simply sums the five. The annual total multiplies that sum by 12. Leaving a slot at zero excludes it, so you can use two or three slots for a small set. For a service billed yearly, divide its annual price by 12 before entering it so every slot is on the same monthly basis.',
-      example: 'Netflix at $15, Spotify at $10 and iCloud at $3 a month: 15 + 10 + 3 = $28 a month, which is 28 x 12 = $336 a year. Adding a $120-a-year service means entering $10 a month, which lifts the total to $38 a month and $456 a year.',
-      formulas: [{ label: 'Total', expression: 'Monthly = sum of the five slots; Annual = monthly x 12' }],
+      intro: 'The Subscription Total Calculator adds up to five recurring subscription costs entered as monthly amounts. It shows the combined monthly bill, an average weekly cost based on 52 weeks per year, and the full-year total so you can compare small recurring charges on the same basis.',
+      howItWorks: 'Enter each service as a monthly equivalent. Add a monthly price directly; divide an annual price by 12; or multiply a weekly price by 52 and divide by 12. The calculator sums the five monthly equivalents, multiplies the result by 12 for the annual total, and divides the annual total by 52 for an average weekly figure. Leave unused slots at zero. The weekly result is an annualised average, not a promise that a provider bills weekly.',
+      example: 'For example, Netflix at $15, Spotify at $10 and iCloud at $3 per month total $28 per month. That is $336 per year and about $6.46 per week when the annual cost is divided by 52. A $120-a-year service is entered as $10 per month, bringing the monthly total to $38 and the annual total to $456.',
+      formulas: [
+        { label: 'Monthly total', expression: 'Monthly = sum of the five monthly-equivalent inputs' },
+        { label: 'Weekly average', expression: 'Weekly = (monthly x 12) / 52' },
+        { label: 'Annual total', expression: 'Annual = monthly x 12' }
+      ],
       resultExplanations: [
         { resultLabel: 'Monthly Total', explanation: 'The combined monthly charge across all filled slots.' },
-        { resultLabel: 'Annual Total', explanation: 'The monthly total multiplied by 12, assuming every subscription runs all year.' }
+        { resultLabel: 'Weekly Average', explanation: 'The annualised cost divided by 52. It is an average for comparison and budgeting, even when providers charge monthly or annually.' },
+        { resultLabel: 'Annual Total', explanation: 'The sum of the monthly equivalents multiplied by 12, assuming each subscription runs for a full year.' }
       ],
       workflowLinks: [
         { slug: 'budget-calculator', step: 'Include subscriptions in your monthly budget.' },
@@ -756,13 +769,14 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       faqs: [
         { q: 'How do I find all my subscriptions?', a: 'Search your bank and card statements for the same merchant appearing every month. The recurring pattern is easier to spot across three months of statements than in a single month.' },
-        { q: 'What if I pay annually?', a: 'Divide the annual price by 12 and enter that monthly equivalent. A $120-a-year plan is $10 a month, which keeps every slot comparable.' },
+        { q: 'How do I enter an annual or weekly plan?', a: 'Convert every charge to a monthly equivalent first. Divide an annual price by 12. For a weekly price, multiply by 52 and divide by 12. This keeps the comparison consistent.' },
+        { q: 'What does the weekly average mean?', a: 'It is the annual total divided by 52. It helps compare recurring costs but does not mean the provider charges you every week.' },
         { q: 'Can I track more than five subscriptions?', a: 'Not in one pass — the calculator has five slots. For a longer list, split it into two runs and add the monthly totals, or enter the combined monthly cost of each group.' },
         { q: 'Can I include free trials?', a: 'Add them at their post-trial price so the total already reflects what you will pay if the trial converts.' }
       ],
       related: ['budget-calculator', 'savings-goal-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-13', title: 'Subscription Total Calculator - What You Pay', description: 'Add up your monthly subscriptions and see the yearly total, the average per week, and what one unwanted subscription costs per year.' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-18', title: 'Subscription Total Calculator | Monthly & Annual Cost', description: 'Total up to five recurring subscriptions entered as monthly equivalents. Compare the combined monthly bill, average weekly cost and annual spend.' },
   },
   {
     id: 'alcohol-units',
