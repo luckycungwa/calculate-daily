@@ -65,6 +65,17 @@ const site = resolveSite({
   VERCEL_URL: process.env.VERCEL_URL,
 });
 
+/**
+ * CI may opt into its reserved .test origin so generated build artefacts never
+ * advertise the production domain. This exception is limited to the exact
+ * GitHub Actions origin; local, preview and production audits remain strict.
+ */
+const allowCiTestOrigin =
+  process.env.CI === 'true' &&
+  process.env.ALLOW_CI_TEST_ORIGIN === 'true' &&
+  site.url === 'https://ci.totalcalculation.test';
+const expectedOrigin = allowCiTestOrigin ? site.url : CANONICAL_ORIGIN;
+
 // ---------------------------------------------------------------------------
 // helpers
 // ---------------------------------------------------------------------------
@@ -160,7 +171,7 @@ function originProblem(value: string): string | undefined {
     return 'not an absolute URL';
   }
   if (RETIRED_SET.has(parsed.hostname.toLowerCase())) return `retired host ${parsed.hostname}`;
-  if (parsed.origin !== CANONICAL_ORIGIN) return `origin ${parsed.origin} is not ${CANONICAL_ORIGIN}`;
+  if (parsed.origin !== expectedOrigin) return `origin ${parsed.origin} is not ${expectedOrigin}`;
   if (parsed.protocol !== 'https:') return 'not HTTPS';
   return undefined;
 }
@@ -213,9 +224,9 @@ if (site.isPreview) {
 // 2. canonical origin of the build
 // ---------------------------------------------------------------------------
 
-if (site.url !== CANONICAL_ORIGIN) {
+if (site.url !== expectedOrigin) {
   fail(
-    `This build resolved the origin ${site.url}, but the canonical origin is ${CANONICAL_ORIGIN}. ` +
+    `This build resolved the origin ${site.url}, but the expected origin is ${expectedOrigin}. ` +
       'Every canonical, og:url, JSON-LD url, sitemap entry and robots declaration would be wrong.'
   );
 }
@@ -286,7 +297,7 @@ const pages: PageFacts[] = htmlFiles.map((file) => {
   const facts: PageFacts = {
     relative,
     pagePath,
-    url: `${CANONICAL_ORIGIN}${pagePath}`,
+    url: `${expectedOrigin}${pagePath}`,
     noindex: robots.some((meta) => (meta.content || '').toLowerCase().includes('noindex')),
     canonical: document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.href || undefined,
     ogUrl: document.querySelector<HTMLMetaElement>('meta[property="og:url"]')?.content?.trim() || undefined,
@@ -412,7 +423,7 @@ if (!robotsLines.some((line) => /^Allow:\s*\/$/i.test(line))) fail('robots.txt s
 const sitemapDeclarations = robotsLines
   .filter((line) => /^Sitemap:/i.test(line))
   .map((line) => line.replace(/^Sitemap:\s*/i, '').trim());
-const expectedSitemap = `${CANONICAL_ORIGIN}/sitemap.xml`;
+const expectedSitemap = `${expectedOrigin}/sitemap.xml`;
 if (sitemapDeclarations.length !== 1) {
   fail(`robots.txt must declare exactly one sitemap, found ${sitemapDeclarations.length}.`);
 } else if (sitemapDeclarations[0] !== expectedSitemap) {
@@ -544,7 +555,7 @@ const banner = '='.repeat(72);
 console.log(banner);
 console.log('LOCAL BUILD VERIFICATION — generated output in dist/');
 console.log(banner);
-console.log(`canonical origin : ${CANONICAL_ORIGIN}`);
+console.log(`canonical origin : ${expectedOrigin}`);
 console.log(`build origin     : ${site.url}`);
 info.forEach((line) => console.log(line));
 
