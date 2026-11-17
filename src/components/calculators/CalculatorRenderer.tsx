@@ -35,6 +35,7 @@ const LAZY_COMPONENTS: Record<string, () => Promise<Record<string, unknown>>> = 
   FinalGradeCalculator: () => import('./StatisticsCalculators'),
   ZScoreCalculator: () => import('./MathOpportunityCalculators'),
   SolidVolumeCalculator: () => import('./MathOpportunityCalculators'),
+  RatioProportionCalculator: () => import('./MathOpportunityCalculators'),
   SaFuelCalculator: () =>
     import('./SaFuelCalculator').then((mod) => ({ SaFuelCalculator: mod.default })),
   PricePerUnitCalculator: () => import('./OpportunityCalculators'),

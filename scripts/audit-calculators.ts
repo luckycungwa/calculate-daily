@@ -79,6 +79,7 @@ const REGISTERED_CUSTOM = new Set([
   'FinalGradeCalculator',
   'ZScoreCalculator',
   'SolidVolumeCalculator',
+  'RatioProportionCalculator',
   'SaFuelCalculator',
   'PricePerUnitCalculator',
   'BreakEvenCalculator',

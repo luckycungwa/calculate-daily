@@ -130,58 +130,57 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
   {
     id: 'ratio',
     slug: 'ratio-proportion-calculator',
-    name: 'Ratio & Proportion Finder',
-    shortDesc: 'Solve proportions like a:b = c:d and scale values by a ratio.',
-    tagline: 'Find the missing term in any ratio instantly.',
+    name: 'Ratio Calculator & Simplifier',
+    shortDesc: 'Simplify ratios, solve proportions, compare ratios, and split totals proportionally.',
+    tagline: 'Solve, simplify and compare ratios in one tool.',
     category: 'math',
     iconName: 'Scale',
-    keywords: ['ratio', 'proportion', 'ratio calculator', 'proportion calculator', 'cross multiply', 'scale factor'],
-    kind: 'config',
-    config: {
-      fields: [
-        { id: 'a', label: 'Ratio Term A', type: 'number', defaultValue: 2, min: 0 },
-        { id: 'b', label: 'Ratio Term B', type: 'number', defaultValue: 5, min: 0 },
-        { id: 'c', label: 'Known Matching Value', type: 'number', defaultValue: 8, min: 0 },
-      ],
-      results: [
-        { label: 'Missing Value (D)', formulaCode: 'c * b / a', accent: true },
-        { label: 'Scale Factor', formulaCode: 'c / a' },
-      ],
-      formulaDescription: 'D = C x (B / A)',
-      tips: [
-        'Ratios express relationships: a recipe ratio of 2:5 scales any amount.',
-        'Cross-multiplication works for any four-term proportion.',
-      ],
-    },
+    keywords: [
+      'ratio calculator', 'ratio simplifier', 'simplify ratios', 'proportion calculator',
+      'equivalent ratios', 'compare ratios', 'scale a ratio', 'divide in a ratio',
+      'ratio to fraction', 'cross multiply', 'scale factor',
+    ],
+    kind: 'custom',
+    componentId: 'RatioProportionCalculator',
     content: {
       intro:
-        'The Ratio & Proportion Finder solves proportions of the form A:B = C:D. Given three known terms it instantly returns the missing fourth, which makes it ideal for scaling recipes, resizing images, mixing solutions, and converting between units.',
+        'The Ratio Calculator & Simplifier handles common ratio tasks in one place: reduce a ratio to simplest form, solve a missing proportion term, scale a ratio to a new value, compare two ratios, or divide a total in a given proportion. It is useful for recipes, classroom maths, mixing quantities, sharing costs and comparing equivalent relationships.',
       howItWorks:
-        'A proportion states that two ratios are equal. Cross-multiplying gives A x D = B x C, so the missing value is D = C x B / A. The tool also reports the scale factor, which is how many times larger the matched side has been scaled.',
+        'Choose the task that matches your question. To simplify, divide both terms by their greatest common divisor. To solve A:B = C:D, cross-multiply and calculate D = (B x C) / A. To scale, keep the same relationship while changing the first term. To compare ratios, compare their cross-products. To split a total, divide it according to each term's share of A + B.',
       example:
-        'A paint mix needs a 2:5 ratio of base to pigment. If you pour 8 liters of base, the missing pigment is 8 x 5 / 2 = 20 liters.',
+        'For a 2:5 paint mix, entering 8 as the new first term gives 20 as the matching second term. Simplifying 12:18 gives 2:3. Dividing $100 in a 2:3 ratio gives $40 and $60. Comparing 2:3 with 4:6 shows that the ratios are equivalent.',
       formulas: [
         {
-          label: 'Missing Proportion Term',
-          expression: 'D = C × (B / A)',
-          note: 'From the equality A:B = C:D via cross-multiplication.',
+          label: 'Simplify a ratio',
+          expression: 'A:B → (A ÷ GCD):(B ÷ GCD)',
+          note: 'Divide both terms by their greatest common divisor.',
         },
         {
-          label: 'Scale Factor',
-          expression: 'Scale = C / A',
-          note: 'How many times larger the matched side is scaled.',
+          label: 'Missing proportion term',
+          expression: 'D = (B × C) ÷ A',
+          note: 'Solve A:B = C:D by cross-multiplication.',
+        },
+        {
+          label: 'Scale a ratio',
+          expression: 'D = (C × B) ÷ A',
+          note: 'Keep the same ratio when the first term changes to C.',
+        },
+        {
+          label: 'Compare ratios',
+          expression: 'Compare A × D with B × C',
+          note: 'Equal cross-products mean the ratios are equivalent.',
+        },
+        {
+          label: 'Split a total',
+          expression: 'Share A = Total × A ÷ (A + B)',
+          note: 'The second share uses B in place of A.',
         },
       ],
       resultExplanations: [
         {
-          resultLabel: 'Missing Value (D)',
+          resultLabel: 'Ratio result',
           explanation:
-            'The fourth term that keeps the ratio proportional. For A:B = 2:5 with C = 8, the result is 20.',
-        },
-        {
-          resultLabel: 'Scale Factor',
-          explanation:
-            'The multiplier connecting the two ratio sides. It shows how much larger the second set of terms is than the first.',
+            'The result panel changes with the selected task and shows the simplified ratio, missing term, scaled term, comparison, or proportional shares.',
         },
       ],
       workflowLinks: [
@@ -199,9 +198,9 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       status: 'index',
       reviewStatus: 'reviewed',
       priority: 0.7,
-      updatedAt: '2026-11-13',
-      title: 'Ratio Calculator - Proportions & Missing Values',
-      description: 'Solve proportions such as A:B = C:D, find the missing value, or scale by a ratio. Shows the cross-multiplication method with worked examples.',
+      updatedAt: '2026-11-17',
+      title: 'Ratio Calculator | Simplify, Compare & Solve Proportions',
+      description: 'Simplify ratios, solve missing proportion terms, scale values, compare two ratios and divide totals proportionally. Includes formulas and worked examples.',
     },
   },
   {
