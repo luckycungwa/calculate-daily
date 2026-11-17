@@ -138,7 +138,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
     keywords: [
       'ratio calculator', 'ratio simplifier', 'simplify ratios', 'proportion calculator',
       'equivalent ratios', 'compare ratios', 'scale a ratio', 'divide in a ratio',
-      'ratio to fraction', 'cross multiply', 'scale factor',
+      'cross multiply', 'scale factor',
     ],
     kind: 'custom',
     componentId: 'RatioProportionCalculator',
