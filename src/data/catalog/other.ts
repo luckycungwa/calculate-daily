@@ -750,7 +750,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
     },
     content: {
-      intro: 'The Subscription Total Calculator adds up to five recurring subscription costs entered as monthly amounts. It shows the combined monthly bill, an average weekly cost based on 52 weeks per year, and the full-year total so you can compare small recurring charges on the same basis.',
+      intro: 'Use the Subscription Total Calculator when calculating the total cost of recurring service fees. Add up to five subscription costs entered as monthly amounts to see the combined monthly bill, an average weekly cost based on 52 weeks per year, and the full-year total.',
       howItWorks: 'Enter each service as a monthly equivalent. Add a monthly price directly; divide an annual price by 12; or multiply a weekly price by 52 and divide by 12. The calculator sums the five monthly equivalents, multiplies the result by 12 for the annual total, and divides the annual total by 52 for an average weekly figure. Leave unused slots at zero. The weekly result is an annualised average, not a promise that a provider bills weekly.',
       example: 'For example, Netflix at $15, Spotify at $10 and iCloud at $3 per month total $28 per month. That is $336 per year and about $6.46 per week when the annual cost is divided by 52. A $120-a-year service is entered as $10 per month, bringing the monthly total to $38 and the annual total to $456.',
       formulas: [

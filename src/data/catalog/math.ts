@@ -146,7 +146,7 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
       intro:
         'The Ratio Calculator & Simplifier handles common ratio tasks in one place: reduce a ratio to simplest form, solve a missing proportion term, scale a ratio to a new value, compare two ratios, or divide a total in a given proportion. It is useful for recipes, classroom maths, mixing quantities, sharing costs and comparing equivalent relationships.',
       howItWorks:
-        'Choose the task that matches your question. To simplify, divide both terms by their greatest common divisor. To solve A:B = C:D, cross-multiply and calculate D = (B x C) / A. To scale, keep the same relationship while changing the first term. To compare ratios, compare their cross-products. To split a total, divide it according to each term's share of A + B.',
+        'Choose the task that matches your question. To simplify, divide both terms by their greatest common divisor. To solve A:B = C:D, cross-multiply and calculate D = (B x C) / A. To scale, keep the same relationship while changing the first term. To compare ratios, compare their cross-products. To split a total, divide it according to the share represented by each term of A + B.',
       example:
         'For a 2:5 paint mix, entering 8 as the new first term gives 20 as the matching second term. Simplifying 12:18 gives 2:3. Dividing $100 in a 2:3 ratio gives $40 and $60. Comparing 2:3 with 4:6 shows that the ratios are equivalent.',
       formulas: [
@@ -191,6 +191,9 @@ export const MATH_CALCULATORS: CalculatorMeta[] = [
         { q: 'What does A:B = C:D mean?', a: 'It states that the relationship between A and B is the same as the relationship between C and D. Given any three values, the fourth can always be found.' },
         { q: 'Can I use this to scale recipes?', a: 'Yes. Set A to the original yield and C to the desired yield, with B as the ingredient amount. The result D is the scaled ingredient amount.' },
         { q: 'What if the ratio is inverted?', a: 'Enter the terms in the order they appear in your ratio. Swapping A and B simply gives the reciprocal relationship.' },
+        { q: 'How do I simplify a ratio?', a: 'Enter the two terms and choose Simplify a ratio. The calculator divides both terms by their greatest common divisor. Decimal terms are supported up to six decimal places.' },
+        { q: 'How do I compare two ratios?', a: 'Choose Compare two ratios and enter A, B, C and D. The calculator compares A × D with B × C to tell you whether the ratios are equivalent or which is larger.' },
+        { q: 'How do I divide an amount in a ratio?', a: 'Choose Divide a total in a ratio, enter the two ratio terms and the total. Each share is calculated as the total multiplied by its term and divided by the sum of both terms.' },
       ],
       related: ['percentage-calculator', 'recipe-scaling-calculator', 'fraction-to-percent-calculator'],
     },
