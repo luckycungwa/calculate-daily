@@ -665,7 +665,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['budget-calculator', 'savings-goal-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-11-18', title: 'Pet Food Cost Calculator - Weekly, Monthly & Annual Cost', description: 'Estimate weekly, monthly and annual pet food costs from a bag price and how many weeks it lasts. Compare different bag sizes using cost per week.' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.65, updatedAt: '2026-11-17', title: 'Pet Food Cost Calculator - Weekly, Monthly & Annual Cost', description: 'Estimate weekly, monthly and annual pet food costs from a bag price and how many weeks it lasts. Compare different bag sizes using cost per week.' },
   },
   {
     id: 'screen-time-cost',
@@ -776,7 +776,7 @@ export const DAILY_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['budget-calculator', 'savings-goal-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-18', title: 'Subscription Total Calculator | Monthly & Annual Cost', description: 'Total up to five recurring subscriptions entered as monthly equivalents. Compare the combined monthly bill, average weekly cost and annual spend.' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.8, updatedAt: '2026-11-17', title: 'Subscription Total Calculator | Monthly & Annual Cost', description: 'Total up to five recurring subscriptions entered as monthly equivalents. Compare the combined monthly bill, average weekly cost and annual spend.' },
   },
   {
     id: 'alcohol-units',

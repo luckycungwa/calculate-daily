@@ -859,7 +859,7 @@ export const FOOD_AND_AUTO_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['running-pace-calculator', 'fuel-cost-calculator', 'speed-converter'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-18', title: 'Speed, Distance & Time Calculator | Solve Any One', description: 'Calculate speed, distance or travel time from the other two values. Includes the formula, worked examples and common speed units.' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.85, updatedAt: '2026-11-17', title: 'Speed, Distance & Time Calculator | Solve Any One', description: 'Calculate speed, distance or travel time from the other two values. Includes the formula, worked examples and common speed units.' },
   },
   {
     id: 'ev-charging-cost',

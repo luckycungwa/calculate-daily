@@ -3057,7 +3057,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['hourly-to-annual-salary-calculator', 'salary-to-hourly-calculator', 'take-home-pay-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88, updatedAt: '2026-11-18', title: 'Freelance Hourly Rate Calculator | Hourly & Day Rate', description: 'Calculate the hourly and day rate needed to reach your income target after tax, business expenses and unpaid time. Includes a worked example.' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88, updatedAt: '2026-11-17', title: 'Freelance Hourly Rate Calculator | Hourly & Day Rate', description: 'Calculate the hourly and day rate needed to reach your income target after tax, business expenses and unpaid time. Includes a worked example.' },
   },
   {
     id: 'overtime',
