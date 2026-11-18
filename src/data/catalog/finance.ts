@@ -717,6 +717,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       workflowLinks: [
         { slug: 'emergency-fund-calculator', step: 'Size your safety net relative to your monthly pay.' },
         { slug: 'roi-calculator', step: 'Evaluate the return on training or education from this income.' },
+        { slug: 'freelance-rate-calculator', step: 'Estimate a sustainable freelance rate when comparing employment with contract work.' },
       ],
       faqs: [
         { q: 'How many hours are in a standard work year?', a: 'A typical full-time year is 2,080 hours (40 hours x 52 weeks). Many freelancers bill closer to 1,800 hours after holidays.' },
@@ -1731,7 +1732,8 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       workflowLinks: [
         { slug: 'tip-calculator', step: 'Calculate tips based on your hourly rate.' },
-        { slug: 'budget-calculator', step: 'Build a budget from your salary.' }
+        { slug: 'budget-calculator', step: 'Build a budget from your salary.' },
+        { slug: 'freelance-rate-calculator', step: 'Calculate a rate that accounts for unpaid time, tax reserves and business costs.' }
       ],
       faqs: [
         { q: 'Why 2,080 hours?', a: '40 hours per week x 52 weeks = 2,080. This is the standard full-time work year used for salary conversions.' },
@@ -3055,7 +3057,7 @@ export const FINANCE_CALCULATORS: CalculatorMeta[] = [
       ],
       related: ['hourly-to-annual-salary-calculator', 'salary-to-hourly-calculator', 'take-home-pay-calculator'],
     },
-    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88, updatedAt: '2026-11-13', title: 'Freelance Rate Calculator - Your Real Hourly Rate', description: 'Work backwards from the income you want to the hourly rate you need, after tax, business costs, and unpaid admin time. Worked examples included.' },
+    seo: { status: 'index', reviewStatus: 'reviewed', priority: 0.88, updatedAt: '2026-11-17', title: 'Freelance Hourly Rate Calculator | Hourly & Day Rate', description: 'Calculate the hourly and day rate needed to reach your income target after tax, business expenses and unpaid time. Includes a worked example.' },
   },
   {
     id: 'overtime',

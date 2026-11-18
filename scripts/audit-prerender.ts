@@ -11,6 +11,16 @@ const site = resolveSite({
 });
 const errors: string[] = [];
 
+/**
+ * CI uses a reserved .test origin so generated artefacts never advertise the
+ * production domain. Permit that exact origin only in GitHub Actions when the
+ * workflow opts in; normal production builds must still use CANONICAL_ORIGIN.
+ */
+const allowCiTestOrigin =
+  process.env.CI === 'true' &&
+  process.env.ALLOW_CI_TEST_ORIGIN === 'true' &&
+  site.url === 'https://ci.totalcalculation.test';
+
 /** Any hostname that must never appear in generated output. */
 const retiredHostnames = [...RETIRED_HOSTNAMES, 'localhost', '127.0.0.1'];
 
@@ -100,7 +110,7 @@ if (fs.existsSync(publicDir)) {
  * build that resolves elsewhere is the migration defect that put
  * `calculate-daily.vercel.app` URLs in production, so it is an error, not a note.
  */
-if (!site.isPreview && site.url !== CANONICAL_ORIGIN) {
+if (!site.isPreview && site.url !== CANONICAL_ORIGIN && !allowCiTestOrigin) {
   addError(
     `Non-preview build resolved origin ${site.url}, expected ${CANONICAL_ORIGIN}. ` +
       'Canonical URLs, og:url, JSON-LD and the sitemap would all contradict the canonical domain.'

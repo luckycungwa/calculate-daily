@@ -24,6 +24,9 @@ jobs:
       # (.test) so a CI artefact can never point at the real domain or the
       # parked landing page. Preview-mode builds are exercised separately below.
       SITE_URL: https://ci.totalcalculation.test
+      # The prerender audit allows this exact reserved test origin in CI only.
+      # Production and Vercel builds do not set this opt-in.
+      ALLOW_CI_TEST_ORIGIN: 'true'
 
     steps:
       - uses: actions/checkout@v4
